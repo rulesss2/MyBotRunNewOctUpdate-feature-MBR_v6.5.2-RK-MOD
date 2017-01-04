@@ -161,16 +161,16 @@ Global $TrainESpell[4] = [-1, -1, -1, -1] ;
 Global $TrainHaSpell[4] = [-1, -1, -1, -1] ;
 Global $TrainSkSpell[4] = [-1, -1, -1, -1] ;
 
-Global $FullLSpell[4] = [74, 392 + $midOffsetY, 0x515151, 40]
-Global $FullRSpell[4] = [186, 405 + $midOffsetY, 0x696969, 40]
-Global $FullFSpell[4] = [266, 395 + $midOffsetY, 0x929292, 40]
-Global $FullHSpell[4] = [70, 505 + $midOffsetY, 0xB1B1B1, 40]
-Global $FullJSpell[4] = [170, 495 + $midOffsetY, 0xABABAB, 40]
-Global $FullCSpell[4] = [269, 502 + $midOffsetY, 0xA4A4A4, 40]
-Global $FullPSpell[4] = [375, 410 + $midOffsetY, 0x929292, 40]
-Global $FullESpell[4] = [370, 510 + $midOffsetY, 0x858585, 40]
-Global $FullHaSpell[4] = [470, 410 + $midOffsetY, 0x929292, 40]
-Global $FullSkSpell[4] = [475, 510 + $midOffsetY, 0x4A4A4A, 40]
+Global $FullLSpell[4] = [-1, -1, -1, -1] ;
+Global $FullRSpell[4] = [-1, -1, -1, -1] ;
+Global $FullFSpell[4] = [-1, -1, -1, -1] ;
+Global $FullHSpell[4] = [-1, -1, -1, -1] ;
+Global $FullJSpell[4] = [-1, -1, -1, -1] ;
+Global $FullCSpell[4] = [-1, -1, -1, -1] ;
+Global $FullPSpell[4] = [-1, -1, -1, -1] ;
+Global $FullESpell[4] = [-1, -1, -1, -1] ;
+Global $FullHaSpell[4] = [-1, -1, -1, -1] ;
+Global $FullSkSpell[4] = [-1, -1, -1, -1] ;
 
 Global $GemLSpell[4] = [25, 340 + $midOffsetY, 0x030300, 1] ; These will never be True! I put wrong Coords/Color, Because i have Gem lol
 Global $GemRSpell[4] = [25, 340 + $midOffsetY, 0x030300, 1] ; These will never be True! I put wrong Coords/Color, Because i have Gem lol

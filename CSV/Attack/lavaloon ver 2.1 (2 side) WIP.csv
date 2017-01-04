@@ -1,0 +1,66 @@
+NOTE  |Author: Ahsan - ver. 2.1-
+NOTE  |Attack: lavaloon
+NOTE  |Make Troops: 20-30 loon , 3-4 lava, 1 lava in CC (optional), 10-30 minions
+NOTE  |Make Spells: 2-4 rage, 2 haste, 1-2 freeze spell
+
+      |-----------------------------------------------------------------------------------------------|
+      |                                                                                               |
+      |                                                                                               |
+
+      |EXTR. GOLD |EXTR.ELIXIR|EXTR. DARK |DEPO. GOLD |DEPO.ELIXIR|DEPO. DARK |TOWNHALL   |FORCED SIDE|
+SIDE  |0          |0          |0          |0          |0          |0          |10         |ADefense   |
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|
+MAKE  |A          |FRONT-LEFT |10         |1          |INT-EXT    |0          |2          |           |
+MAKE  |B          |FRONT-RIGHT|10         |1          |INT-EXT    |0          |2          |           |
+MAKE  |C          |FRONT-LEFT |10         |2          |INT-EXT    |0          |2          |           |
+MAKE  |D          |FRONT-RIGHT|10         |2          |INT-EXT    |0          |2          |           |
+MAKE  |I          |FRONT-LEFT |10         |-8         |INT-EXT    |0          |0          |           |
+MAKE  |J          |FRONT-RIGHT|10         |-8         |INT-EXT    |0          |0          |           |
+MAKE  |M          |FRONT-LEFT |10         |-12        |INT-EXT    |0          |0          |           |
+MAKE  |N          |LEFT-FRONT |10         |-12        |INT-EXT    |0          |0          |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|           |
+DROP  |A-B        |4          |1          |Lava       |50-80      |100        |300-800    |           |
+DROP  |C-D        |1-8        |5          |Ball       |50-100     |100        |400-500    |           |
+DROP  |A          |1          |1          |king       |0          |0          |50-100     |           |
+DROP  |A          |1          |1          |queen      |0          |0          |50-100     |           |
+DROP  |I-J        |3          |1          |RSpell     |0          |0          |100        |           |
+DROP  |C-D        |1-10       |5          |Mini       |50-100     |100        |500-1000   |           |
+WAIT  |1000-2000  |           |           |           |           |           |           |           |
+DROP  |M          |1          |1          |HaSpell    |0          |0          |100        |           |
+
+      |DEFENSE____|OPTIONS________|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|____________|
+DROPS |EAGLE      |R:T,B:F,S:A,L:T|1          |FSpell     |0          |0          |0          |            |
+
+WAIT  |5500-6000   |           |           |           |           |           |           |            |
+
+      |-----------------------------------------------------------------------------------------------|
+
+      |EXTR. GOLD |EXTR.ELIXIR|EXTR. DARK |DEPO. GOLD |DEPO.ELIXIR|DEPO. DARK |TOWNHALL   |FORCED SIDE|
+SIDE  |0          |0          |0          |0          |0          |0          |10         |ADefense   |
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|
+MAKE  |A          |FRONT-LEFT |10         |1          |INT-EXT    |0          |2          |           |
+MAKE  |B          |FRONT-RIGHT|10         |1          |INT-EXT    |0          |2          |           |
+MAKE  |C          |FRONT-LEFT |10         |2          |INT-EXT    |0          |2          |           |
+MAKE  |D          |FRONT-RIGHT|10         |2          |INT-EXT    |0          |2          |           |
+MAKE  |I          |FRONT-LEFT |10         |-8         |INT-EXT    |0          |0          |           |
+MAKE  |J          |FRONT-RIGHT|10         |-8         |INT-EXT    |0          |0          |           |
+MAKE  |M          |FRONT-LEFT |10         |-12        |INT-EXT    |0          |0          |           |
+MAKE  |N          |LEFT-FRONT |10         |-12        |INT-EXT    |0          |0          |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|           |
+DROP  |A-B        |4          |1          |Lava       |50-80      |100        |250-500    |           |
+DROP  |B          |5          |1          |castle     |50         |100        |250-500    |           |
+DROP  |C-D        |1-8        |6          |Ball       |50-100     |100        |400-500    |           |
+DROP  |A          |1          |1          |warden     |0          |0          |50-100    |           |
+DROP  |I-J        |3          |1          |RSpell     |0          |0          |100        |           |
+DROP  |C-D        |1-10       |5          |Mini       |50-100     |100        |500-1000   |           |
+WAIT  |1000-2000  |           |           |           |           |           |           |           |
+DROP  |M          |1          |1          |HaSpell    |0          |0          |100        |           |
+WAIT  |2000-3000  |           |           |           |           |           |           |           |
+DROP  |A          |1          |1          |warden     |0          |0          |400-500    |           |
+
+      |DEFENSE____|OPTIONS________|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|____________|
+DROPS |INFERNO    |R:T,B:T,S:A,L:T|1          |FSpell     |0          |0          |0          |            |

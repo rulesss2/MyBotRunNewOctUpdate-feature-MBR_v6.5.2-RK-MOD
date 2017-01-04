@@ -554,11 +554,12 @@ $sModeText[$TB] = "TH Bully"
 $sModeText[$DT] = "Drop Trophy"
 $sModeText[$MA] = "Milking Attack"
 
-Global Const $REDLINE_NONE = -1
 Global Const $REDLINE_IMGLOC_RAW = 0
 Global Const $REDLINE_IMGLOC = 1
 Global Const $REDLINE_ORIGINAL = 2
-Global $iRedlineRoutine = [$REDLINE_IMGLOC_RAW, $REDLINE_IMGLOC_RAW, 0, 0, 0, 0] ; -1 = don't use red line, 0 = ImgLoc raw red line routine (default), 1 = New ImgLoc based deployable red line routine, 2 = Original red line routine
+Global Const $REDLINE_NONE = 3 ; $REDLINE_NONE
+; $iRedlineRoutine[$DB] = Dead Bases , $iRedlineRoutine[$LB] = Live bases ....
+Global $iRedlineRoutine = [$REDLINE_IMGLOC_RAW, $REDLINE_IMGLOC_RAW, 0, 0, 0, 0] ; 3 = don't use red line, 0 = ImgLoc raw red line routine (default), 1 = New ImgLoc based deployable red line routine, 2 = Original red line routine
 
 Global Const $DROPLINE_EDGE_FIXED = 0
 Global Const $DROPLINE_EDGE_FIRST = 1

@@ -39,7 +39,7 @@ Local $x = 25, $y = 20
 		$y +=25
 		$lblNotesScriptDB =  GUICtrlCreateEdit("", $x, $y + 5, 200, 120, $ES_WANTRETURN+$WS_VSCROLL+$ES_AUTOVSCROLL+$ES_MULTILINE+$ES_READONLY)
 		$cmbScriptRedlineImplDB = GUICtrlCreateCombo("", $x, $y + 195, 230, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-			GUICtrlSetData(-1, GetTranslated(607,9, "ImgLoc Raw Redline (default)|ImgLoc Redline Drop Points|Original Redline"))
+			GUICtrlSetData(-1, GetTranslated(607,9, "ImgLoc Raw Redline (default)|ImgLoc Redline Drop Points|Original Redline|External Edges"))
 			_GUICtrlComboBox_SetCurSel(-1, $iRedlineRoutine[$DB])
 			$txtTip = GetTranslated(607,10, "Choose the Redline implementation. ImgLoc Redline is default and best.")
 			_GUICtrlSetTip(-1, $txtTip)
@@ -66,9 +66,9 @@ Local $x = 25, $y = 20
 			$txtTip =  GetTranslated(607,8, "Copy current Attack Script to a new name")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "DuplicateScriptDB")
-		GUICtrlCreateGroup("", -99, -99, 1, 1)	
+		GUICtrlCreateGroup("", -99, -99, 1, 1)
 	   $y += 80
-					
+
 		$grpScriptSpeedDB = GUICtrlCreateGroup(GetTranslated(607,30, "CSV Deployment Speed"), $x-1, $y, 230, 50)
 			$lbltxtSelectedSpeedDB = GUICtrlCreateLabel(GetTranslated(607,31, "Normal speed"), $x + 20, $y+20, 75, 25)
 				_GUICtrlSetTip(-1, GetTranslated(607,32, "Increase or decrease the speed at which the CSV attack script deploys troops and waves."))
@@ -78,7 +78,7 @@ Local $x = 25, $y = 20
 				_GUICtrlSlider_SetTicFreq(-1, 1)
 				GUICtrlSetLimit(-1, 18, 0) ; change max/min value
 				GUICtrlSetData(-1, 4) ; default value
-				GUICtrlSetOnEvent(-1, "sldSelectedSpeedDB")	
+				GUICtrlSetOnEvent(-1, "sldSelectedSpeedDB")
                 GUICtrlCreateGroup("", -99, -99, 1, 1)
 ;GUISetState()
 

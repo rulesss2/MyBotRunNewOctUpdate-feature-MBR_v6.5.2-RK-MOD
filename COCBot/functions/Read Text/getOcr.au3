@@ -261,7 +261,7 @@ Func getBarracksNewTroopQuantity($x_start, $y_start) ;  -> Gets quantity of troo
 EndFunc   ;==>getBarracksNewTroopQuantity
 
 Func getTroopsSpellsLevel($x_start, $y_start) ;  -> Gets quantity of troops in army Window
-	Return getOcrAndCapture("coc_Spellslevel", $x_start, $y_start, 20, 14, True)
+	Return getOcrAndCapture("coc-spellslevel", $x_start, $y_start, 20, 14, True)
 EndFunc   ;==>getBarracksNewTroopQuantity
 
 

@@ -47,11 +47,11 @@ $frmBotEx = GUICreate("", $_GUI_MAIN_WIDTH, $_GUI_MAIN_HEIGHT - $_GUI_BOTTOM_HEI
 GUICtrlCreateLabel("", 0, 0, $_GUI_MAIN_WIDTH, 5)
 GUICtrlSetBkColor(-1, $COLOR_WHITE)
 $frmBot_MAIN_PIC = _GUICtrlCreatePic($sLogoPath, 0, $_GUI_MAIN_TOP, $_GUI_MAIN_WIDTH, 80)
-$frmBot_URL_PIC = _GUICtrlCreatePic($sLogoUrlPath, 0, $_GUI_MAIN_TOP + 67, $_GUI_MAIN_WIDTH, 13)
+$frmBot_URL_PIC = _GUICtrlCreatePic($sLogoUrlPath, 0, 0, 0, 0)
 GUICtrlSetCursor(-1, 0)
 
 $hToolTip = _GUIToolTip_Create($frmBot) ; tool tips for URL links etc
-_GUIToolTip_SetMaxTipWidth($hToolTip, $_GUI_MAIN_WIDTH) ; support multiple lines
+_GUIToolTip_SetMaxTipWidth($frmBot_URL_PIC, $_GUI_MAIN_WIDTH) ; support multiple lines
 
 GUISwitch($frmBot)
 $frmBotEmbeddedShieldInput = GUICtrlCreateInput("", 0, 0, -1, -1, $WS_TABSTOP)

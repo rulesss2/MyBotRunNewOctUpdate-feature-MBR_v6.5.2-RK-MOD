@@ -26,7 +26,7 @@ Local $x = 25, $y = 20
 ;			GUICtrlSetState(-1, $GUI_UNCHECKED)
 ;			GUICtrlSetState(-1, $GUI_HIDE)
 ;			_GUICtrlSetTip(-1, $txtTip)
-		$y +=15
+		$y +=3
 		$cmbScriptNameAB=GUICtrlCreateCombo("", $x , $y, 200, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL, $WS_VSCROLL))
 			$txtTip = GetTranslated(607,4, -1)
 			_GUICtrlSetTip(-1, $txtTip)
@@ -37,7 +37,7 @@ Local $x = 25, $y = 20
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, 'UpdateComboScriptNameAB') ; Run this function when the secondary GUI [X] is clicked
 		$y +=25
-		$lblNotesScriptAB =  GUICtrlCreateLabel("", $x, $y + 5, 200, 180)
+		$lblNotesScriptAB =  GUICtrlCreateEdit("", $x, $y + 5, 200, 120, $ES_WANTRETURN+$WS_VSCROLL+$ES_AUTOVSCROLL+$ES_MULTILINE+$ES_READONLY)
 		$cmbScriptRedlineImplAB = GUICtrlCreateCombo("", $x, $y + 195, 230, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetData(-1, GetTranslated(607,9, "ImgLoc Raw Redline (default)|ImgLoc Redline Drop Points|Original Redline|External Edges"))
 			_GUICtrlComboBox_SetCurSel(-1, $iRedlineRoutine[$LB])
@@ -66,6 +66,7 @@ Local $x = 25, $y = 20
 			$txtTip =  GetTranslated(607,8, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "DuplicateScriptAB")
+	GUICtrlCreateGroup("", -99, -99, 1, 1)		
 	; CSV Deployment Speed Mod
 		$y += 80
 		$grpScriptSpeedAB = GUICtrlCreateGroup(GetTranslated(607,30, -1), $x-1, $y, 230, 50)
@@ -76,7 +77,7 @@ Local $x = 25, $y = 20
 				_GUICtrlSlider_SetTipSide(-1, $TBTS_BOTTOM)
 				_GUICtrlSlider_SetTicFreq(-1, 1)
 				GUICtrlSetLimit(-1, 18, 0) ; change max/min value
-				GUICtrlSetData(-1, 5) ; default value
+				GUICtrlSetData(-1, 4) ; default value
 				GUICtrlSetOnEvent(-1, "sldSelectedSpeedAB")
 
 	GUICtrlCreateGroup("", -99, -99, 1, 1)

@@ -5,7 +5,7 @@
 ; Parameters ....: None
 ; Return values .: Array with data on Dark Elixir Drills found in search
 ; Author ........: LunaEclipse(March, 2016)
-; Modified ......: 
+; Modified ......:
 ; Remarks .......: This file is part of MyBot, previously known as ClashGameBot. Copyright 2015
 ;                  MyBot is distributed under the terms of the GNU GPL
 ; Related .......:
@@ -28,7 +28,7 @@ EndFunc   ;==>getNumberOfDrills
 
 Func fillDrillArray($listPixelByLevel = -1)
 	Local $result[0][5]
-	
+
 	Local $pixel[2], $pixelWithLevel, $level, $pixelStr
 	Local $numDrills = getNumberOfDrills($listPixelByLevel)
 	Local $invalid = false, $pixelerror = 5 ; 5 pixel error margin for DE drill search
@@ -70,14 +70,14 @@ Func fillDrillArray($listPixelByLevel = -1)
 			Next
 
 			If $invalid Then
-				If $DebugSmartZap = 1 Then 
+				If $DebugSmartZap = 1 Then
 					SetLog("Dark Elixir Drill: [" & $pixel[0] & "," & $pixel[1] & "], Level: " & $level, $COLOR_DEBUG)
 					SetLog("Found Duplicate Dark Elixir Drill", $COLOR_ERROR)
 				EndIf
 				ContinueLoop
 			EndIf
-			
-			
+
+
 			; Check to make sure the found drill is actually inside the valid COC Area
 			If isInsideDiamond($pixel) Then
 				Local $drill[1][5]
@@ -90,7 +90,7 @@ Func fillDrillArray($listPixelByLevel = -1)
 
 				If $DebugSmartZap = 1 Then SetLog("Dark Elixir Drill: [" & $drill[0][0] & "," & $drill[0][1] & "], Level: " & $drill[0][2] & ", Hold: " & $drill[0][3] & ", Steal: " & $drill[0][4], $COLOR_DEBUG)
 			Else
-				If $DebugSmartZap = 1 Then 
+				If $DebugSmartZap = 1 Then
 					SetLog("Dark Elixir Drill: [" & $pixel[0] & "," & $pixel[1] & "], Level: " & $level, $COLOR_DEBUG)
 					SetLog("Found Dark Elixir Drill with an invalid location.", $COLOR_ERROR)
 				EndIf
@@ -152,7 +152,7 @@ EndFunc   ;==>drillSearch
 
 Func CheckDrillLvl($x, $y)
 	_CaptureRegion2($x - 50, $y - 50, $x + 40, $y + 40)
-	Local $directory = @ScriptDir & "\imgxml\Storages\Drills\SmartZap"
+	Local $directory = @ScriptDir & "\imgxml\Storages\Drills_lv"
 	Local $Maxpositions = 1
 
 	Local $aResult = multiMatches($directory, $Maxpositions, "FV", "FV")

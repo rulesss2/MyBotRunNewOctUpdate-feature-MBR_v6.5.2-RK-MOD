@@ -439,6 +439,9 @@ Func Idle() ;Sequence that runs until Full Army
 		NotifyPendingActions()
 		If _Sleep($iDelayIdle1) Then Return
 		If $CommandStop = -1 Then SetLog("====== Waiting for full army  ======", $COLOR_SUCCESS)
+		If $ChatbotChatGlobal = true or $ChatbotChatClan = true Then
+               ChatbotMessage()	
+		EndIf	   
 		Local $hTimer = TimerInit()
 		Local $iReHere = 0
 		;PrepareDonateCC()
@@ -451,9 +454,9 @@ Func Idle() ;Sequence that runs until Full Army
 				If $iReHere = 1 And SkipDonateNearFullTroops(True, $aHeroResult) = False Then
 					DonateCC(True)
 			   ;modification Chat by rulesss
-			    If $iReHere = 6 Then
-			        ChatbotMessage()
-			    EndIf
+			   ; If $iReHere = 6 Then
+			    ;    ChatbotMessage()
+			    ;EndIf
                ;End Chat
 				ElseIf SkipDonateNearFullTroops(False, $aHeroResult) = False Then
 					DonateCC(True)
@@ -478,7 +481,7 @@ Func Idle() ;Sequence that runs until Full Army
 		If _Sleep($iDelayIdle1) Then Return
 		If $Restart = True Then ExitLoop
 		If $iCollectCounter > $COLLECTATCOUNT Then ; This is prevent from collecting all the time which isn't needed anyway
-			Local $aRndFuncList = ['Collect', 'CheckTombs', 'DonateCC', 'CleanYard']
+			Local $aRndFuncList = ['Collect', 'CheckTombs', 'DonateCC', 'SendChat', 'CleanYard']
 			While 1
 				If $RunState = False Then Return
 				If $Restart = True Then ExitLoop
@@ -574,7 +577,7 @@ Func Idle() ;Sequence that runs until Full Army
 			EndIf
 			If $Restart = True Then ExitLoop ; if smart wait activated, exit to runbot in case user adjusted GUI or left emulator/bot in bad state
 		EndIf
-
+		
 	WEnd
 EndFunc   ;==>Idle
 
@@ -717,6 +720,10 @@ Func _RunFunction($action)
 				If SkipDonateNearFullTroops(True) = False Then DonateCC()
 				If _Sleep($iDelayRunBot1) = False Then checkMainScreen(False)
 			EndIF
+		Case "SendChat"	
+		    If $ChatbotChatGlobal = true or $ChatbotChatClan = true Then
+               ChatbotMessage()
+		    EndIf
 		Case "DonateCC,Train"
 			If $iSkipDonateNearFulLTroopsEnable = 1 and $FirstStart = true Then getArmyCapacity(True, True)
 			If $bActiveDonate = True Then

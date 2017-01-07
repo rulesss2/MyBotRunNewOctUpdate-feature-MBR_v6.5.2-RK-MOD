@@ -52,7 +52,7 @@
 #include <GUIToolTip.au3>
 #include <Crypt.au3>
 
-Global Const $sLogoPath = @ScriptDir & "\Images\Logo.png"
+Global Const $sLogoPath = @ScriptDir & "\Images\Logo.jpg"
 Global Const $sLogoUrlPath = @ScriptDir & "\Images\LogoURL.png"
 Global Const $GAME_WIDTH = 860
 Global Const $GAME_HEIGHT = 732

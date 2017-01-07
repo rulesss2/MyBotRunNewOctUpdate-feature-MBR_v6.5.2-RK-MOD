@@ -1342,8 +1342,8 @@ Func WhatToTrain($ReturnExtraTroopsOnly = False, $showlog = True)
 	EndIf
 
 	; Get Current available troops
-;~ 	CheckExistentArmy("Troops", $showlog)
-;~ 	CheckExistentArmy("Spells", $showlog)
+    CheckExistentArmy("Troops", $showlog)
+	CheckExistentArmy("Spells", $showlog)
 
 	Switch $ReturnExtraTroopsOnly
 		Case False

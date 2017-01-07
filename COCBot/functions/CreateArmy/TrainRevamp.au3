@@ -13,12 +13,6 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
-Global Enum $ArmyTAB, $TrainTroopsTAB, $BrewSpellsTAB, $QuickTrainTAB
-Global $checkSpells = False
-Global $fullcastlespells = False
-Global $fullcastletroops = False
-Global $ErrorReadCamp = True
-
 Func TrainRevamp()
 	StartGainCost()
 
@@ -43,8 +37,8 @@ Func TrainRevamp()
 	EndIf
 
 	;Load Troop and Spell counts in "Cur"
-	CheckExistentArmy("Troops")
-	CheckExistentArmy("Spells")
+;~ 	CheckExistentArmy("Troops")
+;~ 	CheckExistentArmy("Spells")
 	CountNumberDarkSpells() ; needed value for spell donate
 
 	If $Runstate = False Then Return
@@ -237,7 +231,7 @@ Func CheckArmySpellCastel()
 	SetLog(" - Army Window Opened!", $COLOR_ACTION1)
 	If _Sleep(250) Then Return
 	If $Runstate = False Then Return
-	checkArmyCamp(False, False)
+	checkArmyCamp(False, False) ; CheckExistentArmy (troops and spells )
 
 	If $debugsetlogTrain = 1 Then $debugOcr = 1
 	Local $sSpells = getArmyCampCap(99, 313) ; OCR read Spells trained and total
@@ -287,8 +281,8 @@ Func CheckArmySpellCastel()
 		Return
 	EndIf
 
-	Setlog(" - Army Camp: " & $CurCamp & "/" & $TotalCamp, $COLOR_GREEN) ; coc-ms
-	If $aGetSpellsSize[0] <> "" And $aGetSpellsSize[1] <> "" Then Setlog(" - Spells: " & $aGetSpellsSize[0] & "/" & $aGetSpellsSize[1], $COLOR_GREEN) ; coc-ms
+    ;Setlog(" - Army Camp: " & $CurCamp & "/" & $TotalCamp, $COLOR_GREEN) ; coc-ms
+	;If $aGetSpellsSize[0] <> "" And $aGetSpellsSize[1] <> "" Then Setlog(" - Spells: " & $aGetSpellsSize[0] & "/" & $aGetSpellsSize[1], $COLOR_GREEN) ; coc-ms
 	If $aGetCastleSize[0] <> "" And $aGetCastleSize[1] <> "" Then Setlog(" - Clan Castle: " & $aGetCastleSize[0] & "/" & $aGetCastleSize[1], $COLOR_GREEN) ; coc-ms
 
 	; If Drop Trophy with Heroes is checked and a Hero is Available or under the trophies range, then set $bFullArmyHero to True
@@ -1348,8 +1342,8 @@ Func WhatToTrain($ReturnExtraTroopsOnly = False, $showlog = True)
 	EndIf
 
 	; Get Current available troops
-	CheckExistentArmy("Troops", $showlog)
-	CheckExistentArmy("Spells", $showlog)
+;~ 	CheckExistentArmy("Troops", $showlog)
+;~ 	CheckExistentArmy("Spells", $showlog)
 
 	Switch $ReturnExtraTroopsOnly
 		Case False

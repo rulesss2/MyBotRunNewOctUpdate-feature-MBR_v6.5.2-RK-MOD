@@ -1756,6 +1756,12 @@ Global Const $aDrillLevelHold[6] = [120, 225, 405, 630, 960, 1350]
 ; = $aDrillLevelHold/$aDrillLevelHP * $aLSpellDmg (different Lvls, with old values)
 Global Const $aDrillLevelSteal[6] = [59, 102, 172, 251, 343, 479]
 
+Global Enum $ArmyTAB, $TrainTroopsTAB, $BrewSpellsTAB, $QuickTrainTAB
+Global $checkSpells = False
+Global $fullcastlespells = False
+Global $fullcastletroops = False
+Global $ErrorReadCamp = True
+
 ;Wait for Castle
 Global $iChkWaitForCastleSpell[$iModeCount]
 Global $iCmbWaitForCastleSpell[$iModeCount]

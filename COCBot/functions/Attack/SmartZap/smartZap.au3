@@ -5,7 +5,7 @@
 ; Parameters ....: None
 ; Return values .: None
 ; Author ........: LunaEclipse(March, 2016)
-; Modified ......: TheRevenor(November, 2016), ProMac(Desember, 2016), TheRevenor(Desember, 2016)
+; Modified ......: TheRevenor(November, 2016), ProMac(December, 2016), TheRevenor(December, 2016), TripleM(January, 2017)
 ; Remarks .......: This file is part of MyBot, previously known as ClashGameBot. Copyright 2015
 ;                  MyBot is distributed under the terms of the GNU GPL
 ; Related .......:
@@ -212,10 +212,9 @@ Func smartZap($minDE = -1)
 	EndIf
 
 	; Get Drill locations and info
-	Local $listPixelByLevel = getDrillArray()
-	Local $aDarkDrills = drillSearch($listPixelByLevel)
-
-	Local $strikeOffsets = [7, 10]
+	Local $aDarkDrills = drillSearch()
+	
+	Local $strikeOffsets = [0, 12]
 	Local $drillLvlOffset, $spellAdjust, $numDrills, $testX, $testY, $tempTestX, $tempTestY, $strikeGain, $expectedDE
 	Local $error = 5 ; 5 pixel error margin for DE drill search
 
@@ -380,21 +379,18 @@ Func zapDrill(ByRef $Spells, $x, $y)
 EndFunc   ;==>zapDrill
 
 Func ReCheckDrillExist($x, $y)
-	Local $result
-	If _Sleep($DelaySmartZap3) Then Return ; 3 seconds to disapear green bars
-	_CaptureRegion2($x - 50, $y - 50, $x + 40, $y + 40)
+	If _Sleep($DelaySmartZap4) Then Return ; 4 seconds to disappear dust and bars
+	_CaptureRegion2($x - 25, $y - 25, $x + 25, $y + 25)
 	Local $directory = @ScriptDir & "\imgxml\Storages\Drills"
 	Local $Maxpositions = 1
 
-	Local $aResult = multiMatches($directory, $Maxpositions, "FV", "FV")
-	$result = ConvertImgloc2MBR($aResult, $Maxpositions)
+	Local $aResult = multiMatches($directory, $Maxpositions, "FV", "FV", "", 0, 1000, False) ; Setting Force Captureregion to false, else it will recapture the whole screen, finding any drill
 
-	If StringLen($result) > 3 Then
-		If $DebugSmartZap = 1 Then SetLog("ReCheckDrillExist: Yes| " & $result, $COLOR_SUCCESS)
+	If UBound($aResult) > 1 Then
+		If $DebugSmartZap = 1 Then SetLog("ReCheckDrillExist: Yes| " & UBound($aResult), $COLOR_SUCCESS)
 		Return True
 	Else
-		If $DebugSmartZap = 1 Then SetLog("ReCheckDrillExist: No| " & $result, $COLOR_ERROR)
-		Return False
+		If $DebugSmartZap = 1 Then SetLog("ReCheckDrillExist: No| " & UBound($aResult), $COLOR_ERROR)
 	EndIf
 	Return False
 EndFunc   ;==>ReCheckDrillExist

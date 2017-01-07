@@ -455,8 +455,7 @@ Func saveConfig() ;Saves the controls settings to the config
 		$iUnbreakableMode = 0
 	EndIf
 
-	; save PushBullet / Telegram GUI -> Variables ----------------------------------------
-
+	;PushBullet / Telegram----------------------------------------
 	If GUICtrlRead($chkNotifyPBEnabled) = $GUI_CHECKED Then
 		$NotifyPBEnabled = 1
 	Else
@@ -481,6 +480,13 @@ Func saveConfig() ;Saves the controls settings to the config
 		$NotifyDeletePushesOlderThan = 0
 	EndIf
 
+
+	If GUICtrlRead($chkNotifyDeleteOldPBPushes) = $GUI_CHECKED Then
+		$NotifyDeletePushesOlderThan = 1
+	Else
+		$NotifyDeletePushesOlderThan = 0
+	EndIf
+
 	$NotifyDeletePushesOlderThanHours = _GUICtrlComboBox_GetCurSel($cmbNotifyPushHours)
 
 	If GUICtrlRead($chkNotifyAlertMatchFound) = $GUI_CHECKED Then
@@ -494,6 +500,7 @@ Func saveConfig() ;Saves the controls settings to the config
 	Else
 		$NotifyAlerLastRaidIMG = 0
 	EndIf
+
 
 	If GUICtrlRead($chkNotifyAlertUpgradeWall) = $GUI_CHECKED Then
 		$NotifyAlertUpgradeWalls = 1
@@ -521,7 +528,7 @@ Func saveConfig() ;Saves the controls settings to the config
 
 	If GUICtrlRead($chkNotifyAlertMaintenance) = $GUI_CHECKED Then
 		$NotifyAlertMaintenance = 1
-	Else
+	ElseIf $NotifyAlertMaintenance = 0 Then
 		$NotifyAlertMaintenance = 0
 	EndIf
 
@@ -536,7 +543,13 @@ Func saveConfig() ;Saves the controls settings to the config
 	Else
 		$NotifyAlertBOTUpdate = 0
 	EndIf
-
+;================Modified kychera=============
+If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
+		$NotifyAlertBOTSleep = 1
+	Else
+		$NotifyAlertBOTSleep = 0
+	EndIf
+;=============================================
 	If GUICtrlRead($chkNotifyDeleteOldPBPushes) = $GUI_CHECKED Then
 		$NotifyDeletePushesOlderThan = 1
 	Else
@@ -546,6 +559,7 @@ Func saveConfig() ;Saves the controls settings to the config
 	$NotifyPBToken = GUICtrlRead($txbNotifyPBToken)
 	$NotifyTGToken = GUICtrlRead($txbNotifyTGToken)
 	$NotifyOrigin = GUICtrlRead($txbNotifyOrigin)
+
 
 	If GUICtrlRead($chkNotifyAlertLastRaidTXT) = $GUI_CHECKED Then
 		$NotifyAlerLastRaidTXT = 1
@@ -571,13 +585,40 @@ Func saveConfig() ;Saves the controls settings to the config
 		$NotifyAlertVillageReport = 0
 	EndIf
 
+	If GUICtrlRead($chkNotifyAlertLastAttack) = $GUI_CHECKED Then
+		$NotifyAlertLastAttack = 1
+	Else
+		$NotifyAlertLastAttack = 0
+	EndIf
+
 	If GUICtrlRead($chkNotifyAlertTakeBreak) = $GUI_CHECKED Then
 		$NotifyAlertTakeBreak = 1
 	Else
 		$NotifyAlertTakeBreak = 0
 	EndIf
 
-	; halt&resume gui -> variables ---------------------------------------------------
+	;Scheduler
+	If GUICtrlRead($chkNotifyWeekDays) = $GUI_CHECKED Then
+		IniWrite($config, "notify", "NotifyWeekDaysEnable", 1)
+	Else
+		IniWrite($config, "notify", "NotifyWeekDaysEnable", 0)
+	EndIf
+	Local $string = ""
+	For $i = 0 To 6
+		If GUICtrlRead(Eval("chkNotifyWeekdays" & $i)) = $GUI_CHECKED Then
+			$string &= "1|"
+		Else
+			$string &= "0|"
+		EndIf
+	Next
+	IniWrite($config, "notify", "NotifyWeekDays", $string)
+	If GUICtrlRead($chkNotifyHours) = $GUI_CHECKED Then
+		IniWrite($config, "notify", "NotifyHoursEnable", 1)
+	Else
+		IniWrite($config, "notify", "NotifyHoursEnable", 0)
+	EndIf
+
+	; save upgrade buildings GUI -> Variables ------------------------------------------------------------------
 	If GUICtrlRead($chkBotStop) = $GUI_CHECKED Then
 		$ichkBotStop = 1
 	Else
@@ -2219,62 +2260,6 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWrite($building, "upgrade", "upgraderepeat" & $iz, $ichkUpgrdeRepeat[$iz])
 	Next
 
-	;PushBullet / Telegram----------------------------------------
-
-	IniWriteS($config, "notify", "PBEnabled", $NotifyPBEnabled)
-	IniWriteS($config, "notify", "PBToken", $NotifyPBToken)
-	IniWriteS($config, "notify", "Origin", $NotifyOrigin)
-	IniWriteS($config, "notify", "PBRemote", $NotifyRemoteEnable)
-	IniWriteS($config, "notify", "DeleteAllPBPushes", $NotifyDeleteAllPushesOnStart)
-	IniWriteS($config, "notify", "DeleteOldPBPushes", $NotifyDeletePushesOlderThan)
-	IniWriteS($config, "notify", "HoursPushBullet", $NotifyDeletePushesOlderThanHours)
-	IniWriteS($config, "notify", "TGEnabled", $NotifyTGEnabled)
-	IniWriteS($config, "notify", "TGToken", $NotifyTGToken)
-	IniWriteS($config, "notify", "AlertPBVMFound", $NotifyAlertMatchFound)
-	IniWriteS($config, "notify", "AlertPBLastRaid", $NotifyAlerLastRaidIMG)
-	IniWriteS($config, "notify", "AlertPBWallUpgrade", $NotifyAlertUpgradeWalls)
-	IniWriteS($config, "notify", "AlertPBOOS", $NotifyAlertOutOfSync)
-	IniWriteS($config, "notify", "AlertPBOtherDevice", $NotifyAlertAnotherDevice)
-	IniWriteS($config, "notify", "AlertPBLastRaidTxt", $NotifyAlerLastRaidTXT)
-	IniWriteS($config, "notify", "AlertPBCampFull", $NotifyAlertCampFull)
-	IniWriteS($config, "notify", "AlertPBVillage", $NotifyAlertVillageReport)
-	IniWriteS($config, "notify", "AlertPBLastAttack", $NotifyAlertLastAttack)
-	IniWriteS($config, "notify", "AlertPBVBreak", $NotifyAlertTakeBreak)
-	IniWriteS($config, "notify", "AlertBuilderIdle", $NotifyAlertBulderIdle)
-	IniWriteS($config, "notify", "AlertPBMaintenance", $NotifyAlertMaintenance)
-	IniWriteS($config, "notify", "AlertPBBAN", $NotifyAlertBAN)
-	IniWriteS($config, "notify", "AlertPBUpdate", $NotifyAlertBOTUpdate)
-
-	;Schedule
-	If GUICtrlRead($chkNotifyWeekDays) = $GUI_CHECKED Then
-		IniWrite($config, "notify", "NotifyWeekDaysEnable", 1)
-	Else
-		IniWrite($config, "notify", "NotifyWeekDaysEnable", 0)
-	EndIf
-	Local $string = ""
-	For $i = 0 To 6
-		If GUICtrlRead(Eval("chkNotifyWeekdays" & $i)) = $GUI_CHECKED Then
-			$string &= "1|"
-		Else
-			$string &= "0|"
-		EndIf
-	Next
-	IniWrite($config, "notify", "NotifyWeekDays", $string)
-
-	If GUICtrlRead($chkNotifyHours) = $GUI_CHECKED Then
-		IniWrite($config, "notify", "NotifyHoursEnable", 1)
-	Else
-		IniWrite($config, "notify", "NotifyHoursEnable", 0)
-	EndIf
-	Local $string = ""
-	For $i = 0 To 23
-		If GUICtrlRead(Eval("chkNotifyHours" & $i)) = $GUI_CHECKED Then
-			$string &= "1|"
-		Else
-			$string &= "0|"
-		EndIf
-	Next
-	IniWrite($config, "notify", "NotifyHours", $string)
 
 	;Misc Settings--------------------------------------------------------------------------
 
@@ -2376,7 +2361,62 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWriteS($building, "other", "yWardenAltarPos", $WardenAltarPos[1])
 
 
+    ;PushBullet / Telegram----------------------------------------
+	IniWriteS($config, "notify", "PBEnabled", $NotifyPBEnabled)
+	IniWriteS($config, "notify", "AccountToken", $NotifyPBToken)
+	IniWriteS($config, "notify", "OrigPushBullet", $NotifyOrigin)
+	IniWriteS($config, "notify", "PBRemote", $NotifyRemoteEnable)
+	IniWriteS($config, "notify", "DeleteAllPBPushes", $NotifyDeleteAllPushesOnStart)
+	IniWriteS($config, "notify", "DeleteOldPBPushes", $NotifyDeletePushesOlderThan)
+	IniWriteS($config, "notify", "HoursPushBullet", $NotifyDeletePushesOlderThanHours)
+	IniWriteS($config, "notify", "TGEnabled", $NotifyTGEnabled)
+	IniWriteS($config, "notify", "TGToken", $NotifyTGToken)
+	IniWriteS($config, "notify", "AlertPBVMFound", $NotifyAlertMatchFound)
+	IniWriteS($config, "notify", "AlertPBLastRaid", $NotifyAlerLastRaidIMG)
+	IniWriteS($config, "notify", "AlertPBWallUpgrade", $NotifyAlertUpgradeWalls)
+	IniWriteS($config, "notify", "AlertPBOOS", $NotifyAlertOutOfSync)
+	IniWriteS($config, "notify", "AlertPBOtherDevice", $NotifyAlertAnotherDevice)
+	IniWriteS($config, "notify", "AlertPBLastRaidTxt", $NotifyAlerLastRaidTXT)
+	IniWriteS($config, "notify", "AlertPBCampFull", $NotifyAlertCampFull)
+	IniWriteS($config, "notify", "AlertPBVillage", $NotifyAlertVillageReport)
+	IniWriteS($config, "notify", "AlertPBLastAttack", $NotifyAlertLastAttack)
+	IniWriteS($config, "notify", "AlertPBVBreak", $NotifyAlertTakeBreak)
+	IniWriteS($config, "notify", "AlertBuilderIdle", $NotifyAlertBulderIdle)
+	IniWriteS($config, "notify", "AlertPBMaintenance", $NotifyAlertMaintenance)
+	IniWriteS($config, "notify", "AlertPBBAN", $NotifyAlertBAN)
+	IniWriteS($config, "notify", "AlertPBUpdate", $NotifyAlertBOTUpdate)
+	IniWriteS($config, "notify", "AlertPBSleep", $NotifyAlertBOTSleep)
 
+	;Schedule
+	If GUICtrlRead($chkNotifyWeekDays) = $GUI_CHECKED Then
+		IniWrite($config, "notify", "NotifyWeekDaysEnable", 1)
+	Else
+		IniWrite($config, "notify", "NotifyWeekDaysEnable", 0)
+	EndIf
+	Local $string = ""
+	For $i = 0 To 6
+		If GUICtrlRead(Eval("chkNotifyWeekdays" & $i)) = $GUI_CHECKED Then
+			$string &= "1|"
+		Else
+			$string &= "0|"
+		EndIf
+	Next
+	IniWrite($config, "notify", "NotifyWeekDays", $string)
+	If GUICtrlRead($chkNotifyHours) = $GUI_CHECKED Then
+		IniWrite($config, "notify", "NotifyHoursEnable", 1)
+	Else
+		IniWrite($config, "notify", "NotifyHoursEnable", 0)
+	EndIf
+
+	Local $string = ""
+	For $i = 0 To 23
+		If GUICtrlRead(Eval("chkNotifyHours" & $i)) = $GUI_CHECKED Then
+			$string &= "1|"
+		Else
+			$string &= "0|"
+		EndIf
+	Next
+	IniWrite($config, "notify", "NotifyHours", $string)
 
 	IniWriteS($config, "other", "WAOffsetX", $iWAOffsetX)
 	IniWriteS($config, "other", "WAOffsetY", $iWAOffsetY)

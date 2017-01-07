@@ -5,7 +5,7 @@
 ; Parameters ....: None
 ; Return values .: None
 ; Author ........: Full revamp of Notify by IceCube (2016-09)
-; Modified ......: IceCube (2016-12) v1.5.1
+; Modified ......: IceCube (2016-12) v1.5.3
 ; Remarks .......: This file is part of MyBot, previously known as ClashGameBot. Copyright 2015-2016
 ;                  MyBot is distributed under the terms of the GNU GPL
 ; Related .......:
@@ -84,8 +84,6 @@ EndFunc   ;==>_GetDateFromUnix
 
 ;Execute Notify Pending Actions
 Func NotifyPendingActions()
-		If ($NotifyPBEnabled = 0 Or $NotifyPBToken = "") And ($NotifyTGEnabled = 0 Or $NotifyTGToken = "") Then Return
-
 		NotifyRemoteControl()
 
 		If $PBRequestScreenshot = 1 Or $TGRequestScreenshot = 1 Then
@@ -102,16 +100,30 @@ Func NotifyPendingActions()
 		EndIf
 		PushMsg("BuilderIdle")
 EndFunc   ;==>NotifyPendingActions
+
+;Calulate next XP level
+Func _NextXPLevel($VillageLevel)
+	  If $VillageLevel <= 199 Then
+		 Return $VillageLevel * 50
+	  ElseIf $VillageLevel >= 200 And $VillageLevel >= 299 Then
+		 Return ($VillageLevel - 199) * 500 + 9950
+	  ElseIf $VillageLevel >= 300 Then
+		 Return ($VillageLevel - 299) * 1000 + 59000
+	  Else
+		 Return 0
+	  EndIf
+EndFunc   ;==>NotifyPendingActions
+
 ;MISC --------------------------------------------------------------------------------------------------
 
 
 ; PushBullet ---------------------------------
 Func PushBulletRemoteControl()
-	If ($NotifyPBEnabled = 1) And $NotifyRemoteEnable = 1 Then NotifyRemoteControlProc(1)
+ 	If ($NotifyPBEnabled = 1) And $NotifyRemoteEnable = 1 Then NotifyRemoteControlProc(1)
 EndFunc   ;==>PushBulletRemoteControl
 
 Func PushBulletDeleteOldPushes()
-	If $NotifyPBEnabled = 1 And $NotifyDeletePushesOlderThan = 1 Then _DeleteOldPushes() ; check every 30 min if must delete old pushbullet messages, increase delay time for anti ban pushbullet
+ 	If $NotifyPBEnabled = 1 And $NotifyDeletePushesOlderThan = 1 Then _DeleteOldPushes() ; check every 30 min if must delete old pushbullet messages, increase delay time for anti ban pushbullet
 EndFunc   ;==>PushBulletDeleteOldPushes
 
 Func NotifylPushBulletMessage($pMessage = "")
@@ -265,7 +277,7 @@ Func NotifyDeleteOldPushesFromPushBullet()
 		EndIf
 	EndIf
 	If $msgdeleted > 0 Then
-		SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,734,"removed") & " " & $msgdeleted & " " & GetTranslated(620,735,"messages older than") & " " & $NotifyDeletePushesOlderThanHours & " h ", $COLOR_GREEN)
+		If Not ($iDelete) Then SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,729,"An error occurred deleting temporary screenshot file."), $COLOR_RED)
 	EndIf
 EndFunc   ;==> NotifyDeleteOldPushesFromPushBullet
 
@@ -338,13 +350,13 @@ Func NotifyPushFileToTelegram($File, $Folder, $FileType, $body)
 	If $NotifyTGEnabled = 1 And $NotifyTGToken <> ""  Then
 		If FileExists($sProfilePath & "\" & $sCurrProfile & '\' & $Folder & '\' & $File) Then
 
-			Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+			Local $oHTTP2 = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
 			Local $telegram_url = "https://api.telegram.org/bot" & $NotifyTGToken & "/sendPhoto"
 			$Result = RunWait($pCurl & " -i -X POST " & $telegram_url & ' -F chat_id="' & $TGChatID &' " -F photo=@"' & $sProfilePath & "\" & $sCurrProfile & '\' & $Folder & '\' & $File  & '"', "", @SW_HIDE)
-			$oHTTP.Open("Post", "https://api.telegram.org/bot" & $NotifyTGToken & "/sendPhoto", False)
-			$oHTTP.SetRequestHeader("Content-Type", "application/json")
+			$oHTTP2.Open("Post", "https://api.telegram.org/bot" & $NotifyTGToken & "/sendPhoto", False)
+			$oHTTP2.SetRequestHeader("Content-Type", "application/json")
 			Local $pPush = '{"type": "file", "file_name": "' & $File & '", "file_type": "' & $FileType & '", "file_url": "' & $telegram_url & '", "body": "' & $body & '"}'
-			$oHTTP.Send($pPush)
+			$oHTTP2.Send($pPush)
 		Else
 			SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,726,"Unable to send file") & " " & $File, $COLOR_RED)
 			NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,170,"Unable to Upload File") & "\n" & GetTranslated(620,146,"Occured an error type 2 uploading file to Telegram server..."))
@@ -366,6 +378,7 @@ Func NotifyGetLastMessageFromTelegram()
 
 	Local $uid = _StringBetween($Result, 'update_id":', '"message"')             ;take update id
 	$TGLast_UID = StringTrimRight(_Arraypop($uid), 2)
+
 
 	Local $findstr2 = StringRegExp(StringUpper($Result), '"TEXT":"')
 	If $findstr2 = 1 Then
@@ -406,13 +419,13 @@ Func NotifyActivateKeyboardOnTelegram($TGMsg)
 	'\ud83d\udcc8 ' & GetTranslated(620,804,"Stats") & '","' & _
 	'\ud83d\udcaa ' & GetTranslated(620,805,"Troops") & '","' & _
 	'\u2753 ' & GetTranslated(620,806,"Help") & '"],["' & _
-	'\u25aa ' & GetTranslated(620,807,"Stop") & '","' & _
-	'\ud83d\udd00 ' & GetTranslated(620,808,"Pause") & '","' & _
+	'\u23F9 ' & GetTranslated(620,807,"Stop") & '","' & _
+	'\u23F8 ' & GetTranslated(620,808,"Pause") & '","' & _
 	'\u25b6 ' & GetTranslated(620,809,"Resume") & '","' & _
 	'\ud83d\udd01 ' & GetTranslated(620,810,"Restart") & '"],["' & _
 	'\ud83d\udccb ' & GetTranslated(620,811,"Log") & '","' & _
-	'\ud83c\udf04 ' & GetTranslated(620,812,"Lastraid") & '","' & _
-	'\ud83d\udcc4 ' & GetTranslated(620,813,"LastRaidTxt") & '"],["' & _
+	'\uD83D\uDCB0 ' &"LASTRAID" & '","' & _
+	'\uD83D\uDCB0 ' & GetTranslated(620,813,"LastRaidTxt") & '"],["' & _
 	'\u2705 ' & GetTranslated(620,814,"Attack On") & '","' & _
 	'\u274C ' & GetTranslated(620,815,"Attack Off") & '"],["' & _
 	'\ud83d\udca4 ' & GetTranslated(620,816,"Hibernate") & '","' & _
@@ -431,7 +444,7 @@ Func NotifyRemoteControlProc($OnlyPB)
 	If ($NotifyPBEnabled = 0 And $NotifyTGEnabled = 0) Or $NotifyRemoteEnable = 0 Then Return
 
 	;PushBullet ---------------------------------------------------------------------------------
-	If $OnlyPB = 0 And $NotifyPBEnabled = 1 And $NotifyPBToken <> "" Then
+	If $NotifyPBEnabled = 1 And $NotifyPBToken <> "" Then
 		Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
 		Local $pushbulletApiUrl
 		If $pushLastModified = 0 Then
@@ -477,6 +490,20 @@ Func NotifyRemoteControlProc($OnlyPB)
 							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " <" & $NotifyOrigin & "> " & GetTranslated(620,21,"LASTRAID") & GetTranslated(620,22, " - send the last raid loot screenshot of") & " <" & $NotifyOrigin & ">"
 							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " <" & $NotifyOrigin & "> " & GetTranslated(620,23,"LASTRAIDTXT") & GetTranslated(620,24, " - send the last raid loot values of") & " <" & $NotifyOrigin & ">"
 							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " <" & $NotifyOrigin & "> " & GetTranslated(620,25,"SCREENSHOT") & GetTranslated(620,26, " - send a screenshot of") & " <" & $NotifyOrigin & ">"
+							;======addied kychera====== sendchat
+							$txtHelp &= '\n' & GetTranslated(620, 1, -1) & " <" & $NotifyOrigin & "> SENDCHAT <TEXT> - send TEXT in clan chat of <Village Name>"
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,21,"ACC <account list>") & GetTranslated(638,26, " - set new play list")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,22,"ADD <acc number>") & GetTranslated(638,27, " - add an account to play list")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,23,"REM <acc number>") & GetTranslated(638,28, " - remove an account from play list")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,24,"MAP <acc number>-<profile number>") & GetTranslated(638,29, " - set profile to an account. eg: BOT MAP 1-3")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,25,"MODE <mode ID>") & GetTranslated(638,30, " - set switching mode. Eg: BOT MODE 0")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,2,"PRO <profile number>") & GetTranslated(638,12, " - set new bot profiles")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,3,"GETORDER") & GetTranslated(638,13, " - get current CoC account and bot profile")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,4,"STOPSTART") & GetTranslated(638,14, " - stop then start bot again")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,5,"ALLPRO <all profile number>") & GetTranslated(638,15, " - set up profiles correspond to all exists accounts")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,10,"ATKP 1/0") & GetTranslated(638,20, " - 1-enable/0-disable attack plan")
+							$txtHelp &= '\n' & GetTranslated(620, 1, -1) & " <" & $NotifyOrigin & "> GETCHATS <STOP|NOW|INTERVAL> - select any of this three option to do")
+							;======>
 							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " <" & $NotifyOrigin & "> " & GetTranslated(620,27,"SCREENSHOTHD") & GetTranslated(620,28, " - send a screenshot in high resolution of") & " <" & $NotifyOrigin & ">"
 							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " <" & $NotifyOrigin & "> " & GetTranslated(620,29,"BUILDER") & GetTranslated(620,30, " - send a screenshot of builder status of") & " <" & $NotifyOrigin & ">"
 							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " <" & $NotifyOrigin & "> " & GetTranslated(620,31,"SHIELD") & GetTranslated(620,32, " - send a screenshot of shield status of") & " <" & $NotifyOrigin & ">"
@@ -543,7 +570,7 @@ Func NotifyRemoteControlProc($OnlyPB)
 							NotifyDeleteMessageFromPushBullet($iden[$x])
 						Case GetTranslated(620,1, -1) & " " & StringUpper($NotifyOrigin) & " " & GetTranslated(620,17,"STATS")
 							SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,710,"Your request has been received. Statistics sent"), $COLOR_GREEN)
-							NotifyPushToPushBullet($NotifyOrigin & " | " & GetTranslated(620,108, "Stats Village Report") & "\n" & GetTranslated(620,148, "At Start") & "\n[" & GetTranslated(620,109, "G") & "]: " & _NumberFormat($iGoldStart) & " [" & GetTranslated(620,110, "E") & "]: " & _NumberFormat($iElixirStart) & " [" & GetTranslated(620,111, "DE") & "]: " & _NumberFormat($iDarkStart) & " [" & GetTranslated(620,112, "T") & "]: " & $iTrophyStart & "\n\n" & GetTranslated(620,114, "Now (Current Resources)") &"\n[" & GetTranslated(620,109, "G") & "]: " & _NumberFormat($iGoldCurrent) & " [" & GetTranslated(620,110, "E") & "]: " & _NumberFormat($iElixirCurrent) & " [" & GetTranslated(620,111, "DE") & "]: " & _NumberFormat($iDarkCurrent) & " [" & GetTranslated(620,112, "T") & "]: " & $iTrophyCurrent & " [" & GetTranslated(620,121, "GEM") & "]: " & $iGemAmount & "\n \n [" & GetTranslated(620,105, "No. of Free Builders") & "]: " & $iFreeBuilderCount & "\n [" & GetTranslated(620,117, "No. of Wall Up") & "]: " & GetTranslated(620,109, "G") & ": " & $iNbrOfWallsUppedGold & "/ " & GetTranslated(620,110, "E") & ": " & $iNbrOfWallsUppedElixir & "\n\n" & GetTranslated(620,116, "Attacked") & ": " & $iAttackedCount & "\n" & GetTranslated(620,115, "Skipped") & ": " & $iSkippedVillageCount)
+							NotifyPushToPushBullet($NotifyOrigin & " | " & GetTranslated(620,108, "Stats Village Report") & "\n" & GetTranslated(620,148, "At Start") & "\n[" & GetTranslated(620,109, "G") & "]: " & _NumberFormat($iGoldStart) & " [" & GetTranslated(620,110, "E") & "]: " & _NumberFormat($iElixirStart) & " [" & GetTranslated(620,111, "DE") & "]: " & _NumberFormat($iDarkStart) & " [" & GetTranslated(620,112, "T") & "]: " & $iTrophyStart & "\n\n" & GetTranslated(620,114, "Now (Current Resources)") &"\n[" & GetTranslated(620,109, "G") & "]: " & _NumberFormat($iGoldCurrent) & " [" & GetTranslated(620,110, "E") & "]: " & _NumberFormat($iElixirCurrent) & " [" & GetTranslated(620,111, "DE") & "]: " & _NumberFormat($iDarkCurrent) & " [" & GetTranslated(620,112, "T") & "]: " & $iTrophyCurrent & " [" & GetTranslated(620,121, "GEM") & "]: " & $iGemAmount & "\n \n [" & GetTranslated(620,105, "No. of Free Builders") & "]: " & $iFreeBuilderCount & "\n [" & GetTranslated(620,117, "No. of Wall Up") & "]: " & GetTranslated(620,109, "G") & ": " & $iNbrOfWallsUppedGold & "/ " & GetTranslated(620,110, "E") & ": " & $iNbrOfWallsUppedElixir & "\n\n" & GetTranslated(620,116, "Attacked") & ": " & GUICtrlRead($lblresultvillagesattacked) & "\n" & GetTranslated(620,115, "Skipped") & ": " & $iSkippedVillageCount)NotifyPushToPushBullet($NotifyOrigin & " | " & GetTranslated(620,108, "Stats Village Report") & "\n" & GetTranslated(620,148, "At Start") & "\n[" & GetTranslated(620,109, "G") & "]: " & _NumberFormat($iGoldStart) & " [" & GetTranslated(620,110, "E") & "]: " & _NumberFormat($iElixirStart) & " [" & GetTranslated(620,111, "DE") & "]: " & _NumberFormat($iDarkStart) & " [" & GetTranslated(620,112, "T") & "]: " & $iTrophyStart & " [" & GetTranslated(620,183, "Level") & "]: " & $iLevelXPStart & " [" & GetTranslated(620,182, "XP") & "]: " & $iXPStart & "\n\n" & GetTranslated(620,114, "Now (Current Resources)") &"\n[" & GetTranslated(620,109, "G") & "]: " & _NumberFormat($iGoldCurrent) & " [" & GetTranslated(620,110, "E") & "]: " & _NumberFormat($iElixirCurrent) & " [" & GetTranslated(620,111, "DE") & "]: " & _NumberFormat($iDarkCurrent) & " [" & GetTranslated(620,112, "T") & "]: " & $iTrophyCurrent  & " [" & GetTranslated(620,183, "Level") & "]: " & $iLevelXPCurrent & " [" & GetTranslated(620,182, "XP") & "]: " & $iXPCurrent & " [" & GetTranslated(620,121, "GEM") & "]: " & $iGemAmount & "\n \n [" & GetTranslated(620,105, "No. of Free Builders") & "]: " & $iFreeBuilderCount & "\n [" & GetTranslated(620,117, "No. of Wall Up") & "]: " & GetTranslated(620,109, "G") & ": " & $iNbrOfWallsUppedGold & "/ " & GetTranslated(620,110, "E") & ": " & $iNbrOfWallsUppedElixir & "\n\n" & GetTranslated(620,116, "Attacked") & ": " & $iAttackedCount & "\n" & GetTranslated(620,115, "Skipped") & ": " & $iSkippedVillageCount)
 							NotifyDeleteMessageFromPushBullet($iden[$x])
 						Case GetTranslated(620,1, -1) & " " & StringUpper($NotifyOrigin) & " " & GetTranslated(620,19,"LOG")
 							SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,711,"Your request has been received from ") & $NotifyOrigin & ". " & GetTranslated(620,712,"Log is now sent"), $COLOR_GREEN)
@@ -639,6 +666,98 @@ Func NotifyRemoteControlProc($OnlyPB)
 									NotifyPushToPushBullet($NotifyOrigin & " | " & GetTranslated(620,97, "Command not recognized") & "\n" & GetTranslated(620,99, "Please push BOT HELP to obtain a complete command list."))
 									NotifyDeleteMessageFromPushBullet($iden[$x])
 								EndIf
+						;=================================== "Chat Bot" ===================================	addied kychera 12.2016===
+						    Local $lsNewOrd
+						    If StringLeft($body[$x], 7) = "BOT ACC" Then		;Chalicucu order switch COC Account
+							   $lsNewOrd = ReorderAcc(StringMid($body[$x], 9))
+							   NotifyPushToPushBullet("Reordered COC account: " & $lsNewOrd & " (" & AccGetStep() & ")")
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf StringLeft($body[$x], 7) = "BOT PRO" Then		;Chalicucu order switch bot profile
+							   $lsNewOrd = ReorderCurPro(StringMid($body[$x], 9))
+							   NotifyPushToPushBullet("Reordered bot profile: " & $lsNewOrd )
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf StringLeft($body[$x], 10) = "BOT ALLPRO" Then		;Chalicucu order switch bot profile
+							   $lsNewOrd = ReorderAllPro(StringMid($body[$x], 12))
+							   NotifyPushToPushBullet("Reordered bot profile for all acc: " & $lsNewOrd )
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf StringLeft($body[$x], 7) = "BOT MAP" Then		;Chalicucu Mapping Account & Profile
+							   MapAccPro(StringMid($body[$x], 9))
+							  NotifyPushToPushBullet("Mapping success: " & StringMid($body[$x], 9) )
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf $body[$x] = "BOT GETORDER" Then		;Chalicucu inquiry acc order
+							   SetLog("Get order: [" & $body[$x] & "]", $COLOR_RED)
+							   NotifyPushToPushBullet("Ordered COC acc: " & AccGetOrder() & " (" & AccGetStep() _
+												   & ")\nCurrent:  " & $nCurCOCAcc _
+												   & "\nBot profile: " & ProGetOrderName() _
+												   & "\nSwitch Mode: " & $iSwitchMode & " - " & GUICtrlRead($cmbSwitchMode))
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf StringLeft($body[$x], 7) = "BOT ADD" Then		;Chalicucu Add Account to Playing list
+							   $lsNewOrd = AddAcc(StringMid($body[$x], 9))
+							   NotifyPushToPushBullet($lsNewOrd)
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf StringLeft($body[$x], 7) = "BOT REM" Then		;Chalicucu Remove Account from Playing list
+							   $lsNewOrd = RemAcc(StringMid($body[$x], 9))
+							   NotifyPushToPushBullet($lsNewOrd)
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf StringLeft($body[$x], 8) = "BOT MODE" Then		;Chalicucu Change Switching Mode
+							   $lsNewOrd = SwitchMode(StringMid($body[$x], 10))
+							   SetLog($lsNewOrd, $COLOR_RED)
+							   NotifyPushToPushBullet($lsNewOrd)
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf $body[$x] = "BOT STOPSTART" Then		;Chalicucu Stop then start again
+							   btnStop()
+							   btnStart()
+							   SetLog("Receive STOPSTART", $COLOR_RED)
+							  NotifyPushToPushBullet("Received STOPSTART")
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf StringLeft($body[$x],8) = "BOT ATKP" Then	;Chalicucu Option to enable/disable Attack Plan
+							   $iChkAtkPln = (Number(StringMid($body[$x],10))=1)
+							   IniWrite($profile, "switchcocacc" , "CheckAtkPln" , Number(StringMid($body[$x],10)))
+							   If $iChkAtkPln Then
+								   GUICtrlSetState($chkAtkPln, $GUI_CHECKED)
+								   NotifyPushToPushBullet("Enabled attack scheduler!")
+							   Else
+								   GUICtrlSetState($chkAtkPln, $GUI_UNCHECKED)
+								   NotifyPushToPushBullet("Disabled attack scheduler!")
+							   EndIf
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    EndIf
+							If StringInStr($body[$x], StringUpper($NotifyOrigin) & " SENDCHAT ") Then
+								$FoundChatMessage = 1
+								$chatMessage = StringRight($body[$x], StringLen($body[$x]) - StringLen("BOT " & StringUpper($NotifyOrigin) & " SENDCHAT "))
+								$chatMessage = StringLower($chatMessage)
+								ChatbotPushbulletQueueChat($chatMessage)
+								NotifyPushToPushBullet($NotifyOrigin & " | Chat queued, will send on next idle")
+								NotifyDeleteMessageFromPushBullet($iden[$x])
+							ElseIf StringInStr($body[$x], StringUpper($NotifyOrigin) & " GETCHATS ") Then
+								$FoundChatMessage = 1
+								$Interval = StringRight($body[$x], StringLen($body[$x]) - StringLen("BOT " & StringUpper($NotifyOrigin) & " GETCHATS "))
+								If $Interval = "STOP" Then
+									ChatbotPushbulletStopChatRead()
+									NotifyPushToPushBullet($NotifyOrigin & " | Stopping interval sending")
+								ElseIf $Interval = "NOW" Then
+									ChatbotPushbulletQueueChatRead()
+									NotifyPushToPushBullet($NotifyOrigin & " | Command queued, will send clan chat image on next idle")
+								Else
+									If Number($Interval) <> 0 Then
+										ChatbotPushbulletIntervalChatRead(Number($Interval))
+										NotifyPushToPushBullet($NotifyOrigin & " | Command queued, will send clan chat image on interval")
+									Else
+										SetLog("Chatbot: incorrect command syntax, Example: BOT <VillageName> GETCHATS NOW|STOP|INTERVAL", $COLOR_RED)
+										NotifyPushToPushBullet($NotifyOrigint & " | Command not recognized" & "\n" & "Example: BOT <VillageName> GETCHATS NOW|STOP|INTERVAL")
+									EndIf
+								EndIf
+									NotifyDeleteMessageFromPushBullet($iden[$x])
+							Else
+								Local $lenstr = StringLen(GetTranslated(620, 1, -1) & " " & StringUpper($NotifyOrigin) & " " & "")
+								Local $teststr = StringLeft($body[$x], $lenstr)
+								If $teststr = (GetTranslated(620, 1, -1) & " " & StringUpper($NotifyOrigin) & " " & "") Then
+								SetLog("Pushbullet: received command syntax wrong, command ignored.", $COLOR_RED)
+									NotifyPushToPushBullet($NotifyOrigin & " | " & GetTranslated(620, 51, "Command not recognized") & "\n" & GetTranslated(620, 52, "Please push BOT HELP to obtain a complete command list."))
+									NotifyDeleteMessageFromPushBullet($iden[$x])
+								EndIf
+							EndIf
+                        ;============>
 					EndSwitch
 					$body[$x] = ""
 					$iden[$x] = ""
@@ -652,12 +771,12 @@ Func NotifyRemoteControlProc($OnlyPB)
 
 
 	;Telegram ---------------------------------------------------------------------------------
-	If $NotifyTGEnabled = 1 And $NotifyTGToken <> ""  Then
+	If $OnlyPB = 0 And $NotifyTGEnabled = 1 And $NotifyTGToken <> ""  Then
 		$TGLastMessage = NotifyGetLastMessageFromTelegram()
 		Local $TGActionMSG = StringUpper(StringStripWS($TGLastMessage, $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES)) ;upercase & remove space laset message
 		If ($TGActionMSG = "/START" Or $TGActionMSG = "KEYB") And $TGLastRemote <> $TGLast_UID Then
 			$TGLastRemote = $TGLast_UID
-			NotifyActivateKeyboardOnTelegram($NotifyVersionMSG)
+			NotifyActivateKeyboardOnTelegram("\uD83D\uDE0E \u270C Telegram " & $NotifyVersion & " by RK MOD Team")
 		Else
 			If $TGLastRemote <> $TGLast_UID Then
 				$TGLastRemote = $TGLast_UID
@@ -684,7 +803,11 @@ Func NotifyRemoteControlProc($OnlyPB)
 						$txtHelp &= "\n" & GetTranslated(620,43,"HIBERNATE") & GetTranslated(620,44, " - Hibernate host PC")
 						$txtHelp &= "\n" & GetTranslated(620,46,"SHUTDOWN") & GetTranslated(620,48, " - Shut down host PC")
 						$txtHelp &= "\n" & GetTranslated(620,50,"STANDBY") & GetTranslated(620,51, " - Standby host PC")
-
+                        ;==========addied kychera=====
+						$txtHelp &= "\n" & GetTranslated(18, 110, "SWITCHPROFILE <PROFILENAME> - Swap Profile Village and restart bot")
+						$txtHelp &= "\n" & GetTranslated(18, 111, "GETCHATS <INTERVAL|NOW|STOP> - to get the latest clan chat as an image")
+						$txtHelp &= "\n" & GetTranslated(18, 112, "SENDCHAT <chat message> - to send a chat to your clan")
+						;=============================>
 						NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,100,"Request for Help") & "\n" & $txtHelp)
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,702,"Your request has been received from ") & $NotifyOrigin & ". " & GetTranslated(620,703,"Help has been sent"), $COLOR_GREEN)
 					Case GetTranslated(620,9,"RESTART"), '\UD83D\UDD01 ' & GetTranslated(620,9,"RESTART")
@@ -692,7 +815,7 @@ Func NotifyRemoteControlProc($OnlyPB)
 						NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,165,"Request to Restart") & "...\n" & GetTranslated(620,143,"Your bot and Emulator are now restarting..."))
 						SaveConfig()
 						_Restart()
-					Case GetTranslated(620,11,"STOP"), '\U25AA ' & GetTranslated(620,11,"Stop")
+					Case GetTranslated(620,11,"STOP"), '\u23F9 ' & GetTranslated(620,11,"Stop")
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,706, "Your request has been received. Bot is now stopped"), $COLOR_GREEN)
 						If $Runstate = True Then
 							 NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,125,"Request to Stop...") & "\n" & GetTranslated(620,126,"Your bot is now stopping..."))
@@ -700,7 +823,7 @@ Func NotifyRemoteControlProc($OnlyPB)
 						Else
 							NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,125,"Request to Stop...") & "\n" & GetTranslated(620,127,"Your bot is currently stopped, no action was taken"))
 						EndIf
-					Case GetTranslated(620,13,"PAUSE"), '\UD83D\UDD00 ' & GetTranslated(620,13,"PAUSE")
+					Case GetTranslated(620,13,"PAUSE"), '\u23F8 ' & GetTranslated(620,13,"PAUSE")
 						If $TPaused = False And $Runstate = True Then
 							If ( _ColorCheck(_GetPixelColor($NextBtn[0], $NextBtn[1], True), Hex($NextBtn[2], 6), $NextBtn[3])) = False And IsAttackPage() Then
 								SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,707, "Unable to pause during attack"), $COLOR_RED)
@@ -720,7 +843,7 @@ Func NotifyRemoteControlProc($OnlyPB)
 							SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,708,"Your bot is currently paused, no action was taken"), $COLOR_GREEN)
 							NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,166,"Request to Pause") & "\n" & GetTranslated(620,150,"Your bot is currently paused, no action was taken"))
 						EndIf
-					Case GetTranslated(620,15,"RESUME"), '\U25B6 ' & GetTranslated(620,15,"RESUME")
+					Case GetTranslated(620,15,"RESUME"), '\u25b6 ' & GetTranslated(620,15,"RESUME")
 						If $TPaused = True And $Runstate = True Then
 							TogglePauseImpl("Push")
 						Else
@@ -741,7 +864,8 @@ Func NotifyRemoteControlProc($OnlyPB)
 							$DarkGainPerHour = _NumberFormat(Round($iDarkTotal / (Int(TimerDiff($sTimer) + $iTimePassed)) * 3600 * 1000)) & " / h"
 						EndIf
 						$TrophyGainPerHour = _NumberFormat(Round($iTrophyTotal / (Int(TimerDiff($sTimer) + $iTimePassed)) * 3600 * 1000)) & " / h"
-						Local $txtStats = " | " & GetTranslated(620,108,"Stats Village Report") & "\n" & GetTranslated(620,148,"At Start") & "\n[" & GetTranslated(620,109, "G") & "]: " & _NumberFormat($iGoldStart) & " [" & GetTranslated(620,110, "E") & "]: "
+						Local $txtStats = " | " & GetTranslated(620,108,"Stats Village Report") & "\n"
+							  $txtStats &= GetTranslated(620,148,"At Start") & "\n[" & GetTranslated(620,109, "G") & "]: " & _NumberFormat($iGoldStart) & " [" & GetTranslated(620,110, "E") & "]: "
 							  $txtStats &= _NumberFormat($iElixirStart) & " [D]: " & _NumberFormat($iDarkStart) & " [" & GetTranslated(620,112, "T") & "]: " & $iTrophyStart
 							  $txtStats &= "\n\n" & GetTranslated(620,114,"Now (Current Resources)") & "\n[" & GetTranslated(620,109, "G") & "]: " & _NumberFormat($iGoldCurrent) & " [" & GetTranslated(620,110, "E") & "]: " & _NumberFormat($iElixirCurrent)
 							  $txtStats &= " [D]: " & _NumberFormat($iDarkCurrent) & " [" & GetTranslated(620,112, "T") & "]: " & $iTrophyCurrent & " [GEM]: " & $iGemAmount
@@ -751,10 +875,10 @@ Func NotifyRemoteControlProc($OnlyPB)
 							  $txtStats &= $iNbrOfWallsUppedGold & "/ [" & GetTranslated(620,110, "E") & "]: " & $iNbrOfWallsUppedElixir & "\n\n" & GetTranslated(620,116,"Attacked") & ": "
 							  $txtStats &= $iAttackedCount & "\n" & GetTranslated(620,115,"Skipped") & ": " & $iSkippedVillageCount
 						NotifyPushToTelegram($NotifyOrigin & $txtStats)
-					Case GetTranslated(620,19,"LOG"), '\UD83D\UDCCB ' & GetTranslated(620,19,"LOG")
+					Case GetTranslated(620,19,"LOG"), '\ud83d\udccb ' & GetTranslated(620,19,"LOG")
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,711,"Your request has been received from ") & $NotifyOrigin & ". " & GetTranslated(620,712,"Log is now sent"), $COLOR_GREEN)
 						NotifyPushFileToTelegram($sLogFName, "logs", "text\/plain; charset=utf-8", $NotifyOrigin & " | Current Log " & "\n")
-					Case GetTranslated(620,21,"LASTRAID"), '\UD83C\UDF04 ' & GetTranslated(620,21,"LASTRAID")
+					Case "LASTRAID", '\uD83D\uDCB0 ' & GetTranslated(620,21,"LASTRAID")
 						 If $LootFileName <> "" Then
 							NotifyPushFileToTelegram($LootFileName, GetTranslated(620,120, "Loots"), "image/jpeg", $NotifyOrigin & " | " & GetTranslated(620,152,"Last Raid") & "\n" & $LootFileName)
 							SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,713,"Push Last Raid Snapshot..."), $COLOR_GREEN)
@@ -764,7 +888,7 @@ Func NotifyRemoteControlProc($OnlyPB)
 							SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,714,"Your request has been received. Last Raid txt sent"), $COLOR_GREEN)
 							NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,142,"Last Raid txt") & "\n" & "[" & GetTranslated(620,109, "G") & "]: " & _NumberFormat($iGoldLast) & " [" & GetTranslated(620,110, "E") & "]: " & _NumberFormat($iElixirLast) & " [D]: " & _NumberFormat($iDarkLast) & " [" & GetTranslated(620,112, "T") & "]: " & $iTrophyLast)
 						EndIf
-					Case GetTranslated(620,23,"LASTRAIDTXT"), '\UD83D\UDCC4 ' & GetTranslated(620,23,"LASTRAIDTXT")
+					Case GetTranslated(620,23,"LASTRAIDTXT"), '\uD83D\uDCB0 ' & GetTranslated(620,23,"LASTRAIDTXT")
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,714,"Your request has been received. Last Raid txt sent"), $COLOR_GREEN)
 						NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,142,"Last Raid txt") & "\n" & "[" & GetTranslated(620,109, "G") & "]: " & _NumberFormat($iGoldLast) & " [" & GetTranslated(620,110, "E") & "]: " & _NumberFormat($iElixirLast) & " [D]: " & _NumberFormat($iDarkLast) & " [" & GetTranslated(620,112, "T") & "]: " & $iTrophyLast)
 					Case GetTranslated(620,25,"SCREENSHOT")
@@ -829,6 +953,34 @@ Func NotifyRemoteControlProc($OnlyPB)
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,702,"Your request has been received from ") & $NotifyOrigin & ". " & GetTranslated(620,723,"Standby PC"), $COLOR_GREEN)
 						NotifyPushToTelegram(GetTranslated(620,52,"PC Standby sequence initiated"))
 						Shutdown(32)
+					;=================================== "Chat Bot" ===================================addied Kychera 12.2016
+					Case Else
+						If StringInStr($TGActionMSG, "SENDCHAT") Then
+							$FoundChatMessage = 1
+							$chatMessage = StringRight($TGActionMSG, StringLen($TGActionMSG) - StringLen("SENDCHAT "))
+							$chatMessage = StringLower($chatMessage)
+							ChatbotPushbulletQueueChat($chatMessage)
+							NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(18, 97, "Chat queued, will send on next idle"))
+						ElseIf StringInStr($TGActionMSG, "GETCHATS") Then
+							$FoundChatMessage = 1
+							$Interval = StringRight($TGActionMSG, StringLen($TGActionMSG) - StringLen("GETCHATS "))
+							If $Interval = "STOP" Then
+								ChatbotPushbulletStopChatRead()
+								NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(18, 117, "Stopping interval sending"))
+							ElseIf $Interval = "NOW" Then
+								ChatbotPushbulletQueueChatRead()
+								NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(18, 118, "Command queued, will send clan chat image on next idle"))
+							Else
+								If Number($Interval) <> 0 Then
+									ChatbotPushbulletIntervalChatRead(Number($Interval))
+									NotifyPushToTelegram($NotifyOrigint & " | " & GetTranslated(18, 119, "Command queued, will send clan chat image on interval"))
+								Else
+									SetLog("Telegram: received command syntax wrong, command ignored.", $COLOR_RED)
+									NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(18, 46, "Command not recognized") & "\n" & GetTranslated(18, 47, "Please push BOT HELP to obtain a complete command list."))
+								EndIf
+							EndIf
+						EndIf
+                    ;=========================>
 				EndSwitch
 			EndIf
 		EndIf
@@ -912,34 +1064,30 @@ Func NotifyPushMessageToBoth($Message, $Source = "")
 			If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1)  And $NotifyAlerLastRaidTXT = 1 Then
 				NotifyPushToBoth($NotifyOrigin & " | " & GetTranslated(620,119, "Last Raid txt") & "\n" & "[" & GetTranslated(620,109, "G") & "]: " & _NumberFormat($iGoldLast) & " [" & GetTranslated(620,110, "E") & "]: " & _NumberFormat($iElixirLast) & " [" & GetTranslated(620,111, "DE") & "]: " & _NumberFormat($iDarkLast) & " [" & GetTranslated(620,112, "T") & "]: " & $iTrophyLast)
 				If _Sleep($iDelayPushMsg1) Then Return
-				If $NotifyPBEnabled = 1 Then SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,727,"Last Raid Text has been sent!"), $COLOR_GREEN)
-				If $NotifyTGEnabled = 1 Then SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,727,"Last Raid Text has been sent!"), $COLOR_GREEN)
+				SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,727,"Last Raid Text has been sent!"), $COLOR_GREEN)
 			EndIf
+
 			If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1)  And $NotifyAlerLastRaidIMG = 1 Then
-				
 				;create a temporary file to send with pushbullet...
 				Local $Date = @YEAR & "-" & @MON & "-" & @MDAY
 				Local $Time = @HOUR & "." & @MIN
 				If $ScreenshotLootInfo = 1 Then
-					$AttackFile = $LootFileName
+				$AttackFile = $LootFileName
 				Else
-					_CaptureRegion()
-					$AttackFile = "Notify_" & $Date & "__" & $Time & ".jpg" ; separator __ is need  to not have conflict with saving other files if $TakeSS = 1 and $chkScreenshotLootInfo = 0
-					$hBitmap_Scaled = _GDIPlus_ImageResize($hBitmap, _GDIPlus_ImageGetWidth($hBitmap) / 2, _GDIPlus_ImageGetHeight($hBitmap) / 2) ;resize image
-					_GDIPlus_ImageSaveToFile($hBitmap_Scaled, $dirLoots & $AttackFile)
-					_GDIPlus_ImageDispose($hBitmap_Scaled)
+				_CaptureRegion()
+                $AttackFile = "Notify_" & $Date & "__" & $Time & ".jpg" ; separator __ is need  to not have conflict with saving other files if $TakeSS = 1 and $chkScreenshotLootInfo = 0
+                $hBitmap_Scaled = _GDIPlus_ImageResize($hBitmap, _GDIPlus_ImageGetWidth($hBitmap) / 2, _GDIPlus_ImageGetHeight($hBitmap) / 2) ;resize image
+                _GDIPlus_ImageSaveToFile($hBitmap_Scaled, $dirLoots & $AttackFile)
+                _GDIPlus_ImageDispose($hBitmap_Scaled)
 				EndIf
+
 				;push the file
-				If $NotifyPBEnabled = 1 Then SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,728,"Last Raid screenshot has been sent!"), $COLOR_GREEN)
-				If $NotifyTGEnabled = 1 Then SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,728,"Last Raid screenshot has been sent!"), $COLOR_GREEN)
+				SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,728,"Last Raid screenshot has been sent!"), $COLOR_GREEN)
 				NotifyPushFileToBoth($AttackFile, GetTranslated(620,120, "Loots"), "image/jpeg", $NotifyOrigin & " | " & GetTranslated(620,118, "Last Raid") & "\n" & $AttackFile)
 				;wait a second and then delete the file
-				If _Sleep($iDelayPushMsg1) Then Return
+				If _Sleep(1500) Then Return
 				Local $iDelete = FileDelete($dirLoots & $AttackFile)
-				If Not $iDelete Then
-					If $NotifyPBEnabled = 1 Then SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,729,"An error occurred deleting temporary screenshot file."), $COLOR_RED)
-					If $NotifyTGEnabled = 1 Then SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,729,"An error occurred deleting temporary screenshot file."), $COLOR_RED)
-				EndIf	
+				SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,729,"An error occurred deleting temporary screenshot file."), $COLOR_RED)
 			EndIf
 		Case "FoundWalls"
 			If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertUpgradeWalls = 1 Then NotifyPushToBoth($NotifyOrigin & " | " & GetTranslated(620,173, "Found Wall level") & " " & $icmbWalls + 4 & "\n" & " " & GetTranslated(620,177, "Wall segment has been located") & "...\n" & GetTranslated(620,153, "Upgrading") & "...")
@@ -998,15 +1146,13 @@ Func NotifyPushMessageToBoth($Message, $Source = "")
 			Local $Screnshotfilename = "Screenshot_" & $Date & "_" & $Time & ".jpg"
 			_GDIPlus_ImageSaveToFile($hBitmap_Scaled, $dirTemp & $Screnshotfilename)
 			_GDIPlus_ImageDispose($hBitmap_Scaled)
-			If $PBRequestScreenshot = 1 Or $TGRequestScreenshot = 1 Then
-				If $PBRequestScreenshot = 1 And $NotifyPBEnabled = 1 Then 
-					NotifyPushFileToPushBullet($Screnshotfilename, "Temp", "image/jpeg", $NotifyOrigin & " | " & GetTranslated(620,162, "Screenshot of your village") & " " & "\n" & $Screnshotfilename)
-					SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,730,"Screenshot sent!"), $COLOR_GREEN)
-				EndIf
-				If $TGRequestScreenshot = 1 And $NotifyTGEnabled = 1 Then 
-					NotifyPushFileToTelegram($Screnshotfilename, "Temp", "image/jpeg", $NotifyOrigin & " | " & GetTranslated(620,162, "Screenshot of your village") & " " & "\n" & $Screnshotfilename)
-					SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,730,"Screenshot sent!"), $COLOR_GREEN)
-				EndIf
+			If $PBRequestScreenshotHD = 1 Then
+				NotifyPushFileToPushBullet($Screnshotfilename, "Temp", "image/jpeg", $NotifyOrigin & " | " & GetTranslated(620,162, "Screenshot of your village") & " " & "\n" & $Screnshotfilename)
+				SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,730,"Screenshot sent!"), $COLOR_GREEN)
+			EndIf
+			If $TGRequestScreenshotHD = 1 Then
+				NotifyPushFileToTelegram($Screnshotfilename, "Temp", "image/jpeg", $NotifyOrigin & " | " & GetTranslated(620,162, "Screenshot of your village") & " " & "\n" & $Screnshotfilename)
+				SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,730,"Screenshot sent!"), $COLOR_GREEN)
 			EndIf
 			$PBRequestScreenshot = 0
 			$PBRequestScreenshotHD = 0
@@ -1015,10 +1161,7 @@ Func NotifyPushMessageToBoth($Message, $Source = "")
 			;wait a second and then delete the file
 			If _Sleep($iDelayPushMsg2) Then Return
 			Local $iDelete = FileDelete($dirTemp & $Screnshotfilename)
-			If Not $iDelete Then
-				If $NotifyPBEnabled = 1 Then SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,729,"An error occurred deleting temporary screenshot file."), $COLOR_RED)
-				If $NotifyTGEnabled = 1 Then SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,729,"An error occurred deleting temporary screenshot file."), $COLOR_RED)
-			EndIf
+			If Not $iDelete Then SetLog(GetTranslated(620,720,"Notify PushBullet") & ": " & GetTranslated(620,729,"An error occurred deleting temporary screenshot file."), $COLOR_RED)
 		Case "BuilderInfo"
 			Click(0,0, 5)
 			Click(274,8)
@@ -1028,25 +1171,20 @@ Func NotifyPushMessageToBoth($Message, $Source = "")
 			_CaptureRegion(224, 74, 446, 262)
 			Local $Screnshotfilename = "Screenshot_" & $Date & "_" & $Time & ".jpg"
 			_GDIPlus_ImageSaveToFile($hBitmap, $dirTemp & $Screnshotfilename)
-			If $PBRequestBuilderInfo = 1 Or $TGRequestBuilderInfo = 1 Then
-				If $PBRequestBuilderInfo = 1 And $NotifyPBEnabled = 1 Then
-					NotifyPushFileToPushBullet($Screnshotfilename, "Temp", "image/jpeg", $NotifyOrigin & " | " &  "Builder Information" & "\n" & $Screnshotfilename)
-					SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,731,"Builder Information sent!"), $COLOR_GREEN)
-				EndIf
-				If $TGRequestBuilderInfo = 1 And $NotifyTGEnabled = 1 Then 
-					NotifyPushFileToTelegram($Screnshotfilename, "Temp", "image/jpeg", $NotifyOrigin & " | " &  "Builder Information" & "\n" & $Screnshotfilename)
-					SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,731,"Builder Information sent!"), $COLOR_GREEN)
-				EndIf
+			If $PBRequestBuilderInfo = 1 Then
+				NotifyPushFileToPushBullet($Screnshotfilename, "Temp", "image/jpeg", $NotifyOrigin & " | " &  "Builder Information" & "\n" & $Screnshotfilename)
+				SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,731,"Builder Information sent!"), $COLOR_GREEN)
+			EndIf
+			If $TGRequestBuilderInfo = 1 Then
+				NotifyPushFileToTelegram($Screnshotfilename, "Temp", "image/jpeg", $NotifyOrigin & " | " &  "Builder Information" & "\n" & $Screnshotfilename)
+				SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,731,"Builder Information sent!"), $COLOR_GREEN)
 			EndIf
 			$PBRequestBuilderInfo = 0
 			$TGRequestBuilderInfo = 0
 			;wait a second and then delete the file
 			If _Sleep($iDelayPushMsg2) Then Return
 			Local $iDelete = FileDelete($dirTemp & $Screnshotfilename)
-			If Not $iDelete Then
-				If $NotifyPBEnabled = 1 Then SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,729,"An error occurred deleting temporary screenshot file."), $COLOR_RED)
-				If $NotifyTGEnabled = 1 Then SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,729,"An error occurred deleting temporary screenshot file."), $COLOR_RED)
-			EndIf
+            If Not $iDelete Then SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,729,"An error occurred deleting temporary screenshot file."), $COLOR_RED)
 			Click(0,0, 5)
 		Case "ShieldInfo"
 			Click(0,0, 5)
@@ -1057,37 +1195,39 @@ Func NotifyPushMessageToBoth($Message, $Source = "")
 			_CaptureRegion(200, 165, 660, 568)
 			Local $Screnshotfilename = "Screenshot_" & $Date & "_" & $Time & ".jpg"
 			_GDIPlus_ImageSaveToFile($hBitmap, $dirTemp & $Screnshotfilename)
-			If $PBRequestShieldInfo = 1 Or $TGRequestShieldInfo = 1 Then
-				If $PBRequestShieldInfo = 1 And $NotifyPBEnabled = 1 Then
-					NotifyPushFileToPushBullet($Screnshotfilename, "Temp", "image/jpeg", $NotifyOrigin & " | " &  "Shield Information" & "\n" & $Screnshotfilename)
-					SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,732,"Shield Information sent!"), $COLOR_GREEN)
-				EndIf
-				If $TGRequestShieldInfo = 1 And $NotifyTGEnabled = 1 Then 
-					NotifyPushFileToTelegram($Screnshotfilename, "Temp", "image/jpeg", $NotifyOrigin & " | " &  "Shield Information" & "\n" & $Screnshotfilename)
-					SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,732,"Shield Information sent!"), $COLOR_GREEN)
-				EndIf
+			If $PBRequestShieldInfo = 1 Then
+				NotifyPushFileToPushBullet($Screnshotfilename, "Temp", "image/jpeg", $NotifyOrigin & " | " &  "Shield Information" & "\n" & $Screnshotfilename)
+				SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,732,"Shield Information sent!"), $COLOR_GREEN)
+			EndIf
+			If $TGRequestShieldInfo = 1 Then
+				NotifyPushFileToTelegram($Screnshotfilename, "Temp", "image/jpeg", $NotifyOrigin & " | " &  "Shield Information" & "\n" & $Screnshotfilename)
+				SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,732,"Shield Information sent!"), $COLOR_GREEN)
 			EndIf
 			$PBRequestShieldInfo = 0
 			$TGRequestShieldInfo = 0
 			;wait a second and then delete the file
 			If _Sleep($iDelayPushMsg2) Then Return
 			Local $iDelete = FileDelete($dirTemp & $Screnshotfilename)
-			If Not $iDelete Then
-				If $NotifyPBEnabled = 1 Then SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,729,"An error occurred deleting temporary screenshot file."), $COLOR_RED)
-				If $NotifyTGEnabled = 1 Then SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,729,"An error occurred deleting temporary screenshot file."), $COLOR_RED)
-			EndIf
+			If Not $iDelete Then SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,729,"An error occurred deleting temporary screenshot file."), $COLOR_RED)
 			Click(0,0, 5)
 		Case "DeleteAllPBMessages"
 			NotifyDeletePushBullet()
-			If $NotifyPBEnabled = 1 Then SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,733,"All messages deleted."), $COLOR_GREEN)
-			If $NotifyTGEnabled = 1 Then SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,733,"All messages deleted."), $COLOR_GREEN)
+			SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,733,"All messages deleted."), $COLOR_GREEN)
 			$NotifyDeleteAllPushesNow = False ; reset value
 		Case "CampFull"
 			If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertCampFull = 1 Then
 				NotifyPushToBoth($NotifyOrigin & " | " & GetTranslated(620,128, "Your Army Camps are now Full"))
-				If $NotifyPBEnabled = 1 Then SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,128, "Your Army Camps are now Full"), $COLOR_GREEN)
-				If $NotifyTGEnabled = 1 Then SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,128, "Your Army Camps are now Full"), $COLOR_GREEN)
 			EndIf
+;===============Modified kychera===========
+		Case "SleepBot"
+		    If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertBOTSleep = 1 Then
+		      NotifyPushToBoth($NotifyOrigin & " | " & GetTranslated(620,736, "Bot Sleep") & "..." & "\n" & $sWaitTime)
+		    EndIf
+		Case "WakeUpBot"
+		    If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertBOTSleep = 1 Then
+		      NotifyPushToBoth($NotifyOrigin & " | " & GetTranslated(620,737, "Wake Up Bot"))
+		    EndIf
+;==========================================
 		Case "Misc"
 			NotifyPushToBoth($Message)
 	EndSwitch
@@ -1095,6 +1235,7 @@ EndFunc   ;==> NotifyPushMessageToBoth
 
 Func NotifyPushFileToBoth($File, $Folder, $FileType, $body)
 	If ($NotifyPBEnabled = 0 Or $NotifyPBToken = "") And ($NotifyTGEnabled = 0 Or $NotifyTGToken = "") Then Return
+
 
 	;PushBullet ---------------------------------------------------------------------------------
 	If $NotifyPBEnabled = 1 And $NotifyPBToken <> "" Then
@@ -1151,3 +1292,10 @@ Func NotifyPushFileToBoth($File, $Folder, $FileType, $body)
 	;Telegram ---------------------------------------------------------------------------------
 EndFunc   ;==> NotifyPushFileToBoth
 ; Both ---------------------------------
+
+
+
+
+
+
+

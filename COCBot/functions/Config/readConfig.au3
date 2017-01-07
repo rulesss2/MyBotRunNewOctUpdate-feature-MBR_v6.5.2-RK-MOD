@@ -733,43 +733,38 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		IniReadS($iWAOffsetX, $config, "other", "WAOffsetX", "")
 		IniReadS($iWAOffsetY, $config, "other", "WAOffsetY", "")
 
-		;==============================================================
-		;NOTIFY CONFIG ================================================
-		;==============================================================
 		;PushBullet / Telegram----------------------------------------
-		IniReadS($NotifyPBToken, $config, "notify", "PBToken", "")
+		IniReadS($NotifyPBToken, $config, "notify", "AccountToken", "")
 		IniReadS($NotifyTGToken, $config, "notify", "TGToken", "")
-		IniReadS($NotifyOrigin, $config, "notify", "Origin", $sCurrProfile)
+		IniReadS($NotifyOrigin, $config, "notify", "OrigPushBullet", $sCurrProfile)
 
-		IniReadS($NotifyAlerLastRaidTXT, $config, "notify", "AlertPBLastRaidTxt", 0, "int")
-		IniReadS($NotifyPBEnabled, $config, "notify", "PBEnabled", 0, "int")
-		IniReadS($NotifyTGEnabled, $config, "notify", "TGEnabled", 0, "int")
-		IniReadS($NotifyRemoteEnable, $config, "notify", "PBRemote", 0, "int")
-		IniReadS($NotifyDeleteAllPushesOnStart, $config, "notify", "DeleteAllPBPushes", 0, "int")
-		IniReadS($NotifyAlertMatchFound, $config, "notify", "AlertPBVMFound", 0, "int")
-		IniReadS($NotifyAlerLastRaidIMG, $config, "notify", "AlertPBLastRaid", 0, "int")
-		IniReadS($NotifyAlertUpgradeWalls, $config, "notify", "AlertPBWallUpgrade", 0, "int")
-		IniReadS($NotifyAlertOutOfSync, $config, "notify", "AlertPBOOS", 0, "int")
-		IniReadS($NotifyAlertTakeBreak, $config, "notify", "AlertPBVBreak", 0, "int")
-		IniReadS($NotifyAlertAnotherDevice, $config, "notify", "AlertPBOtherDevice", 0, "int")
-		IniReadS($NotifyDeletePushesOlderThanHours, $config, "notify", "HoursPushBullet", 4, "int")
-		IniReadS($NotifyDeletePushesOlderThan, $config, "notify", "DeleteOldPBPushes", 0, "int")
-		IniReadS($NotifyAlertCampFull, $config, "notify", "AlertPBCampFull", 0, "int")
-		IniReadS($NotifyAlertVillageReport, $config, "notify", "AlertPBVillage", 0, "int")
-		IniReadS($NotifyAlertLastAttack, $config, "notify", "AlertPBLastAttack", 0, "int")
-		IniReadS($NotifyAlertBulderIdle, $config, "notify", "AlertBuilderIdle", 0, "int")
-		IniReadS($NotifyAlertMaintenance, $config, "notify", "AlertPBMaintenance", 0, "int")
-		IniReadS($NotifyAlertBAN, $config, "notify", "AlertPBBAN", 0, "int")
-		IniReadS($NotifyAlertBOTUpdate, $config, "notify", "AlertPBUpdate", 0, "int")
+		IniReadS($NotifyAlerLastRaidTXT, $config, "notify", "AlertPBLastRaidTxt", "0")
+		IniReadS($NotifyPBEnabled, $config, "notify", "PBEnabled", "0")
+		IniReadS($NotifyTGEnabled, $config, "notify", "TGEnabled", "0")
+		IniReadS($NotifyRemoteEnable, $config, "notify", "PBRemote", "0")
+		IniReadS($NotifyDeleteAllPushesOnStart, $config, "notify", "DeleteAllPBPushes", "0")
+		IniReadS($NotifyAlertMatchFound, $config, "notify", "AlertPBVMFound", "0")
+		IniReadS($NotifyAlerLastRaidIMG, $config, "notify", "AlertPBLastRaid", "0")
+		IniReadS($NotifyAlertUpgradeWalls, $config, "notify", "AlertPBWallUpgrade", "0")
+		IniReadS($NotifyAlertOutOfSync, $config, "notify", "AlertPBOOS", "0")
+		IniReadS($NotifyAlertTakeBreak, $config, "notify", "AlertPBVBreak", "0")
+		IniReadS($NotifyAlertAnotherDevice, $config, "notify", "AlertPBOtherDevice", "0")
+		IniReadS($NotifyDeletePushesOlderThanHours, $config, "notify", "HoursPushBullet", "4")
+		IniReadS($NotifyDeletePushesOlderThan, $config, "notify", "DeleteOldPBPushes", "0")
+		IniReadS($NotifyAlertCampFull, $config, "notify", "AlertPBCampFull", "0")
+		IniReadS($NotifyAlertVillageReport, $config, "notify", "AlertPBVillage", "0")
+		IniReadS($NotifyAlertLastAttack, $config, "notify", "AlertPBLastAttack", "0")
+		IniReadS($NotifyAlertBulderIdle, $config, "notify", "AlertBuilderIdle", "0")
+		IniReadS($NotifyAlertMaintenance, $config, "notify", "AlertPBMaintenance", "0")
+		IniReadS($NotifyAlertBAN, $config, "notify", "AlertPBBAN", "0")
+		IniReadS($NotifyAlertBOTUpdate, $config, "notify", "AlertPBUpdate", "0")
+		IniReadS($NotifyAlertBOTSleep, $config, "notify", "AlertPBSleep", "0")
 
-		;Schedule
-		$NotifyScheduleWeekDaysEnable = Int(IniRead($config, "notify", "NotifyWeekDaysEnable", 0))
+        ;Schedule
+		$NotifyScheduleWeekDaysEnable = IniRead($config, "notify", "NotifyWeekDaysEnable", "0")
 		$NotifyScheduleWeekDays = StringSplit(IniRead($config, "notify", "NotifyWeekDays", "1|1|1|1|1|1|1"),"|", $STR_NOCOUNT)
-		$NotifyScheduleHoursEnable = Int(IniRead($config, "notify", "NotifyHoursEnable", 0))
+		$NotifyScheduleHoursEnable = IniRead($config, "notify", "NotifyHoursEnable", "0")
 		$NotifyScheduleHours = StringSplit(IniRead($config, "notify", "NotifyHours", "1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1"),"|", $STR_NOCOUNT)
-		;==============================================================
-		;NOTIFY CONFIG ================================================
-		;==============================================================
 
 
 		IniReadS($ichkDeleteLogs, $config, "deletefiles", "DeleteLogs", 1, "int")

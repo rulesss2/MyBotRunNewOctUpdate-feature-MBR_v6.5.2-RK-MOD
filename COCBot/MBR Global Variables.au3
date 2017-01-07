@@ -571,11 +571,10 @@ Global $iDroplineEdge = [$DROPLINE_EDGE_FIRST, $DROPLINE_EDGE_FIRST, 0, 0, 0, 0]
 Global $iAtkAlgorithm[$iModeCount]
 
 ;--------------------------------------------------------------------------
-; Notify Revamp - PushBullet/Telegram variables
+; Notify Revamp - PushBullet/Telegram variables - Added by DocOC team
 ;-------------------------------------------------------------------------
 ;PushBullet---------------------------------------------------------------
-Global $NotifyVersion = "Revamp v1.5.1"
-Global $NotifyVersionMSG = $sBotTitle & " | Notify " & $NotifyVersion
+Global $NotifyVersion = " v 1.6.0 "
 Global $NotifyPBEnabled = 0
 Global $NotifyPBToken = ""
 
@@ -609,7 +608,7 @@ Global $NotifyAlertMaintenance = 1
 Global $NotifyAlertBAN = 1
 Global $NotifyAlertBOTUpdate = 1
 Global $iReportIdleBuilder = 0
-
+Global $NotifyAlertBOTSleep = 0
 
 ;Schedule---------------------------------------------------------------
 Global $NotifyScheduleHoursEnable
@@ -640,9 +639,9 @@ Global $TGLastMessage = ""
 Global $grpNotify, $chkNotifyPBEnabled,$chkNotifyRemote,$chkNotifyDeleteAllPBPushes,$btnNotifyDeleteMessages,$chkNotifyDeleteOldPBPushes,$cmbNotifyPushHours
 Global $txbNotifyPBToken, $txbNotifyTGToken, $txbNotifyOrigin, $chkNotifyAlertMatchFound, $chkNotifyAlertLastRaidIMG, $chkNotifyAlertLastRaidTXT, $chkNotifyAlertCampFull
 Global $chkNotifyAlertUpgradeWall, $chkNotifyAlertOutOfSync, $chkNotifyAlertTakeBreak, $chkNotifyAlertBuilderIdle, $chkNotifyAlertVillageStats, $chkNotifyAlertLastAttack
-Global $chkNotifyAlertAnotherDevice, $chkNotifyAlertMaintenance, $chkNotifyAlertBAN, $chkNotifyBOTUpdate
+Global $chkNotifyAlertAnotherDevice, $chkNotifyAlertMaintenance, $chkNotifyAlertBAN, $chkNotifyBOTUpdate, $chkNotifyBOTSleep
 ;--------------------------------------------------------------------------
-; Notify Revamp - PushBullet/Telegram variables
+; Notify Revamp - PushBullet/Telegram variables - Added by DocOC team
 ;-------------------------------------------------------------------------
 
 Global $sLogFName = ""
@@ -1821,10 +1820,6 @@ Global $sAndroidInstance = ""
 Global $sBotTitle
 
 ; Stats Top Loot
-Global $myHourlyStatsGold = ""
-Global $myHourlyStatsElixir = ""
-Global $myHourlyStatsDark = ""
-Global $myHourlyStatsTrophy =""
 Global $topgoldloot = 0
 Global $topelixirloot = 0
 Global $topdarkloot = 0

@@ -1708,10 +1708,7 @@ chkskipDonateNearFulLTroopsEnable()
 	GUICtrlSetState($chkCheckDeleteConf, $GUI_HIDE)
 	;------------------------------------------------------------------------------------
 
-
-;==============================================================
-	;NOTIFY CONFIG ================================================
-	;==============================================================
+	;PushBullet / Telegram ---------------------------------------------------------
 
 	; apply notify PushBullet
 	If $NotifyPBEnabled = 1 Then
@@ -1837,7 +1834,14 @@ chkskipDonateNearFulLTroopsEnable()
 	ElseIf $NotifyAlertBOTUpdate = 0 Then
 		GUICtrlSetState($chkNotifyBOTUpdate, $GUI_UNCHECKED)
 	EndIf
+;==========Modified Kychera==
+If $NotifyAlertBOTSleep = 1 Then
+		GUICtrlSetState($chkNotifyBOTSleep, $GUI_CHECKED)
+	ElseIf $NotifyAlertBOTSleep = 0 Then
+		GUICtrlSetState($chkNotifyBOTSleep, $GUI_UNCHECKED)
+	EndIf
 
+;============================
 	GUICtrlSetData($txbNotifyPBToken, $NotifyPBToken)
 	GUICtrlSetData($txbNotifyTGToken, $NotifyTGToken)
 	GUICtrlSetData($txbNotifyOrigin, $NotifyOrigin)
@@ -1853,7 +1857,7 @@ chkskipDonateNearFulLTroopsEnable()
 			GUICtrlSetState(Eval("chkNotifyHours" & $i), $GUI_CHECKED)
 		Else
 			GUICtrlSetState(Eval("chkNotifyHours" & $i), $GUI_UNCHECKED)
-	EndIf
+		EndIf
 	Next
 	If $NotifyScheduleWeekDaysEnable = 1 Then
 		GUICtrlSetState($chkNotifyWeekDays, $GUI_CHECKED)
@@ -1868,11 +1872,7 @@ chkskipDonateNearFulLTroopsEnable()
 			GUICtrlSetState(Eval("chkNotifyWeekdays" & $i), $GUI_UNCHECKED)
 		EndIf
 	Next
-
-
-	;==============================================================
-	;NOTIFY CONFIG ================================================
-	;==============================================================
+	;PushBullet / Telegram ---------------------------------------------------------
 
 
 

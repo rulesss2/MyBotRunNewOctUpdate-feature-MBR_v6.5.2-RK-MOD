@@ -109,7 +109,7 @@ Func WaitnOpenCoC($iWaitTime, $bFullRestart = False)
 	If $iSec > 0 Then $sWaitTime &= $iSec & " seconds "
 	SetLog("Waiting " & $sWaitTime & "before starting CoC", $COLOR_SUCCESS)
 	If _SleepStatus($iWaitTime) Then Return False ; Wait for server to see log off
-
+    PushMsg("SleepBot")
 	If Not StartAndroidCoC() Then Return
 	If Not $RunState Then Return
 
@@ -120,6 +120,7 @@ Func WaitnOpenCoC($iWaitTime, $bFullRestart = False)
 		$Restart = True
 	Else
 		waitMainScreen()
+		PushMsg("WakeUpBot")
 	EndIf
 
 EndFunc   ;==>WaitnOpenCoC
@@ -151,6 +152,7 @@ Func PoliteCloseCoC($sSource = "Unknown_")
 				Setlog("Can not find Okay button to exit CoC, Forcefully Closing CoC", $COLOR_ERROR)
 				If $debugImageSave = 1 Then DebugImageSave($sSource)
 				CloseCoC()
+				PushMsg("SleepBot"
 				ExitLoop
 			EndIf
 			$i += 1
@@ -200,12 +202,14 @@ Func PoliteCloseCoC($sSource = "Unknown_")
 					Setlog("Polite Close Unsupported - " & $AndroidGameDistributor & ", Forcefully Closing CoC", $COLOR_ERROR)
 					If $debugImageSave = 1 Then DebugImageSave($sSource)
 					CloseCoC()
+					PushMsg("SleepBot"
 					ExitLoop
 			EndSwitch
 			If $i > 10 Then
 				Setlog("Can not find exit button: " & $AndroidGameDistributor & ", Forcefully Closing CoC", $COLOR_ERROR)
 				If $debugImageSave = 1 Then DebugImageSave($sSource)
 				CloseCoC()
+				PushMsg("SleepBot"
 				ExitLoop
 			EndIf
 			$i += 1

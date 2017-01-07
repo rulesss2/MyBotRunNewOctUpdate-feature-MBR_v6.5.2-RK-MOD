@@ -13,8 +13,6 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
-
-
 Func chkPBTGenabled()
 	If GUICtrlRead($chkNotifyPBEnabled) = $GUI_CHECKED Then
 		$NotifyPBEnabled = 1
@@ -64,6 +62,7 @@ Func chkPBTGenabled()
 		GUICtrlSetState($chkNotifyAlertMaintenance, $GUI_ENABLE)
 		GUICtrlSetState($chkNotifyAlertBAN, $GUI_ENABLE)
 		GUICtrlSetState($chkNotifyBOTUpdate, $GUI_ENABLE)
+		GUICtrlSetState($chkNotifyBOTSleep, $GUI_ENABLE)
 	Else
 		GUICtrlSetState($chkNotifyRemote, $GUI_DISABLE)
 		GUICtrlSetState($txbNotifyOrigin, $GUI_DISABLE)
@@ -85,6 +84,7 @@ Func chkPBTGenabled()
 		GUICtrlSetState($chkNotifyDeleteAllPBPushes, $GUI_DISABLE)
 		GUICtrlSetState($chkNotifyDeleteOldPBPushes, $GUI_DISABLE)
 		GUICtrlSetState($btnNotifyDeleteMessages, $GUI_DISABLE)
+		GUICtrlSetState($chkNotifyBOTSleep, $GUI_DISABLE)
 	EndIf
 EndFunc   ;==>chkPBTGenabled
 
@@ -129,7 +129,7 @@ Func _Restart()
 	; Restart My Bot
 	Local $pid = Run("cmd.exe /c start """" " & $sCmdLine, $WorkingDir, @SW_HIDE) ; cmd.exe only used to support launched like "..\AutoIt3\autoit3.exe" from console
 	If @error = 0 Then
-		CloseAndroid("_Restart")
+		CloseAndroid()
 		SetLog("Restarting " & $sBotTitle)
 		; Wait 1 Minute to get closed
 		_SleepStatus(60 * 1000)

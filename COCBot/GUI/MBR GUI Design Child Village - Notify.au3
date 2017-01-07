@@ -123,6 +123,11 @@ $hGUI_NOTIFY_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,18,"PushBullet/T
 		$chkNotifyBOTUpdate = GUICtrlCreateCheckbox(GetTranslated(619,49, "BOT Update"), $x + 210, $y, -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(619,50, "Send an Alert when there is a new version of the bot."))
 			GUICtrlSetState(-1, $GUI_DISABLE)
+		;============Modified Kychera=========
+		$chkNotifyBOTSleep = GUICtrlCreateCheckbox(GetTranslated(619,71, "BOT Sleep"), $x + 315, $y, -1, -1)
+			_GUICtrlSetTip(-1, GetTranslated(619,72, "Send an Alert when Sleep."))
+			GUICtrlSetState(-1, $GUI_DISABLE)
+	   ;=====================================
 		$lblNotifyHelp = GUICtrlCreateLabel(GetTranslated(619,69,"Help ?"), $x + 200, $y + 60, 220, 24, $SS_RIGHT)
 			GUICtrlSetOnEvent(-1, "NotifyHelp")
 			GUICtrlSetCursor(-1, 0)

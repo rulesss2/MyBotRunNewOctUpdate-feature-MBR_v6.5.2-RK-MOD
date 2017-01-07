@@ -79,7 +79,7 @@ Func setupInstances()
 	; Update Bot title
 	Local $sOldTitle = $sBotTitle
 
-    $sBotTitle & "(" & ($AndroidInstance <> "" ? $AndroidInstance : $Android) & ")"
+	$sBotTitle = $sAndroidInfo & "(" & ($AndroidInstance <> "" ? $AndroidInstance : $Android) & ")"
 	Local $hMutexTmp = _Singleton($sBotTitle, 1)
 	If $hMutexTmp = 0 And $sBotTitle <> $sOldTitle Then
 		MsgBox(0, $sBotTitle, "My Bot for " & $Android & ($AndroidInstance <> "" ? " instance (" & $AndroidInstance & ")" : "") & " is already running." & @CRLF & @CRLF & _

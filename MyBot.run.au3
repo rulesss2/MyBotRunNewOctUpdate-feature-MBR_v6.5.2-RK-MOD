@@ -78,10 +78,22 @@ EndIf
 
 #include "COCBot\functions\Android\Android.au3"
 
+If $aCmdLine[0] < 2 and $sAndroid = "" Then
+	DetectRunningAndroid()
+	If Not $FoundRunningAndroid Then DetectInstalledAndroid()
+EndIf
+
 ; Update Bot title
 $sBotTitle = $sBotTitle & "(" & ($AndroidInstance <> "" ? $AndroidInstance : $Android) & ")" ;Do not change this. If you do, multiple instances will not work.
 
 UpdateSplashTitle($sBotTitle & GetTranslated(500, 20, ", Profile: %s", $sCurrProfile))
+
+If $bBotLaunchOption_Restart = True Then
+   If CloseRunningBot($sBotTitle) = True Then
+	  ; wait for Mutexes to get disposed
+	  ;Sleep(1000) ; slow systems
+   EndIf
+EndIf
 
 If $bBotLaunchOption_Restart = True Then
 	If WinGetHandle($sBotTitle) Then SplashStep(GetTranslated(500, 36, "Closing previous bot..."))

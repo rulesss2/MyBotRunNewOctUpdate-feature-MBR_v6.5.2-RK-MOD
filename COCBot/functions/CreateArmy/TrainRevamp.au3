@@ -1245,20 +1245,6 @@ Func GetSlotNumber($Spells = False)
 				EndIf
 			Next
 
-			#CS		This Codes Not Needed With New 'True' Train Order and new Training System ;)
-				; Code for DARK Elixir Troops to Put Current Troops into an array by Order
-				For $i = 0 To (UBound($TroopDarkName) - 1)
-				If $Runstate = False Then Return
-				If Number(Eval("Cur" & $TroopDarkName[$i])) > 0 Then
-				For $j = 0 To (UBound($Orders) - 1)
-				If Eval("e" & $TroopDarkName[$i]) = $Orders[$j] Then
-				$allCurTroops[$j] = $TroopDarkName[$i]
-				EndIf
-				Next
-				EndIf
-				Next
-			#CE
-
 			_ArryRemoveBlanks($allCurTroops)
 
 			Return $allCurTroops
@@ -1305,16 +1291,7 @@ Func WhatToTrain($ReturnExtraTroopsOnly = False, $showlog = True)
 				ReDim $ToReturn[UBound($ToReturn) + 1][2]
 			EndIf
 		Next
-		#CS		This Codes Not Needed With New 'True' Train Order and new Training System ;)
-			; Dark Troops
-			For $i = 0 To (UBound($TroopDarkName) - 1)
-			If Number(Eval($TroopDarkName[$i] & "Comp")) > 0 Then
-			$ToReturn[UBound($ToReturn) - 1][0] = $TroopDarkName[$i]
-			$ToReturn[UBound($ToReturn) - 1][1] = Number(Eval($TroopDarkName[$i] & "Comp"))
-			ReDim $ToReturn[UBound($ToReturn) + 1][2]
-			EndIf
-			Next
-		#CE
+
 		; Spells
 		For $i = 0 To (UBound($SpellName) - 1)
 			If $Runstate = False Then Return
@@ -1341,10 +1318,6 @@ Func WhatToTrain($ReturnExtraTroopsOnly = False, $showlog = True)
 		Return $ToReturn
 	EndIf
 
-	; Get Current available troops
-    CheckExistentArmy("Troops", $showlog)
-	CheckExistentArmy("Spells", $showlog)
-
 	Switch $ReturnExtraTroopsOnly
 		Case False
 			; Check Elixir Troops needed quantity to Train
@@ -1356,18 +1329,6 @@ Func WhatToTrain($ReturnExtraTroopsOnly = False, $showlog = True)
 					ReDim $ToReturn[UBound($ToReturn) + 1][2]
 				EndIf
 			Next
-
-			#CS		This Codes Not Needed With New 'True' Train Order and new Training System ;)
-				; Check DARK Elixir Troops needed quantity to Train
-				For $i = 0 To (UBound($TroopDarkName) - 1)
-				If $Runstate = False Then Return
-				If Number(Eval($TroopDarkName[$i] & "Comp")) > 0 Then
-				$ToReturn[UBound($ToReturn) - 1][0] = $TroopDarkName[$i]
-				$ToReturn[UBound($ToReturn) - 1][1] = Number(Number(Eval($TroopDarkName[$i] & "Comp")) - Number(Eval("Cur" & $TroopDarkName[$i])))
-				ReDim $ToReturn[UBound($ToReturn) + 1][2]
-				EndIf
-				Next
-			#CE
 
 			; Check Spells needed quantity to Brew
 			For $i = 0 To (UBound($SpellName) - 1)
@@ -1391,20 +1352,6 @@ Func WhatToTrain($ReturnExtraTroopsOnly = False, $showlog = True)
 					EndIf
 				EndIf
 			Next
-
-			#CS		This Codes Not Needed With New 'True' Train Order and new Training System ;)
-				; Check DARK Elixir Troops Extra Quantity
-				For $i = 0 To (UBound($TroopDarkName) - 1)
-				If $Runstate = False Then Return
-				If Number(Eval("Cur" & $TroopDarkName[$i])) > 0 Then
-				If StringInStr(Number(Number(Eval($TroopDarkName[$i] & "Comp")) - Number(Eval("Cur" & $TroopDarkName[$i]))), "-") > 0 Then
-				$ToReturn[UBound($ToReturn) - 1][0] = $TroopDarkName[$i]
-				$ToReturn[UBound($ToReturn) - 1][1] = StringReplace(Number(Number(Eval($TroopDarkName[$i] & "Comp")) - Number(Eval("Cur" & $TroopDarkName[$i]))), "-", "")
-				ReDim $ToReturn[UBound($ToReturn) + 1][2]
-				EndIf
-				EndIf
-				Next
-			#CE
 
 			; Check Spells Extra Quantity
 			For $i = 0 To (UBound($SpellName) - 1)

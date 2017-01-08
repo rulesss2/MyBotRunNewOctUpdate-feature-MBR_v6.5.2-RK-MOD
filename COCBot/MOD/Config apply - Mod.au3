@@ -94,6 +94,9 @@ GUICtrlSetData($chkchatdelay, $ichkchatdelay)
 		GUICtrlSetState($chkRusLang2, $GUI_UNCHECKED)
 
 	EndIf
+	
+	_GUICtrlComboBox_SetCurSel($cmbLang, $icmbLang)
+	$icmbLang = _GUICtrlComboBox_GetCurSel($cmbLang)
 ;==========;Russian Languages by Kychera==========
 
     ; Android Settings

@@ -633,7 +633,7 @@ EndFunc   ;==>ChangeLanguageToTR
 ; MAIN SCRIPT ==============================================
 
 Func ChatbotMessage() ; run the chatbot
-	If $FoundChatMessage = 1 Or $ChatbotChatGlobal Then
+	If $ChatbotChatGlobal Then
 		SetLog(GetTranslated(106, 37, "Chatbot: Sending some chats"), $COLOR_GREEN)
 	ElseIf $ChatbotChatClan Then
 		SetLog(GetTranslated(106, 38, "Chatbot: Sending some chats"), $COLOR_GREEN)

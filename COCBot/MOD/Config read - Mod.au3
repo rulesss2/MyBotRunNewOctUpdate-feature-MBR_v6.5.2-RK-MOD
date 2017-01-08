@@ -44,7 +44,7 @@
    ;==========;Russian Languages by Kychera==========
    $ichkRusLang = IniRead($config, "Lang", "chkRusLang", "0")
    $ichkRusLang2 = IniRead($config, "Lang", "chkRusLang2", "0")
-
+   $icmbLang = IniRead($config, "Lang", "cmbLang", "8")
 
    ; Android Settings
    $sAndroid = IniRead($config, "Android", "Emulator", "<No Emulators>")

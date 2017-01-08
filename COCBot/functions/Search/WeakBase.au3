@@ -188,7 +188,8 @@ Func getIsWeak($aResults, $searchType)
 			And $aResults[$eWeakInferno][2] <= Number($iCmbWeakInferno[$searchType]) _
 			And $aResults[$eWeakXBow][2] <= Number($iCmbWeakXBow[$searchType]) _
 			And $aResults[$eWeakWizard][2] <= Number($iCmbWeakWizTower[$searchType]) _
-			And $aResults[$eWeakMortar][2] <= Number($iCmbWeakMortar[$searchType])
+			And $aResults[$eWeakMortar][2] <= Number($iCmbWeakMortar[$searchType]) _
+			And $aResults[$eWeakAirDefense][2] <= Number($iCmbWeakAirDefense[$searchType])
 EndFunc   ;==>getIsWeak
 
 Func IsWeakBaseActive($type)

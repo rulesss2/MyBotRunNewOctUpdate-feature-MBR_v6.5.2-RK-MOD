@@ -129,7 +129,7 @@ Func _Restart()
 	; Restart My Bot
 	Local $pid = Run("cmd.exe /c start """" " & $sCmdLine, $WorkingDir, @SW_HIDE) ; cmd.exe only used to support launched like "..\AutoIt3\autoit3.exe" from console
 	If @error = 0 Then
-		CloseAndroid()
+		CloseAndroid("_OpenAndroid")
 		SetLog("Restarting " & $sBotTitle)
 		; Wait 1 Minute to get closed
 		_SleepStatus(60 * 1000)

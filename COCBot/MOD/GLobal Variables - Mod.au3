@@ -91,6 +91,8 @@ Global $chkRusLang
 Global $ichkRusLang = 0
 Global $chkRusLang2
 Global $ichkRusLang2 = 0
+Global $cmbLang
+Global $icmbLang
 ;==========;Russian Languages by Kychera==========
 
 ;Forecast Added by rulesss

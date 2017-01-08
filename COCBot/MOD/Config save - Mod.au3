@@ -91,6 +91,9 @@ IniWrite($config, "global", "chdelay", GUICtrlRead($chkchatdelay))
 	EndIf
 
 	IniWriteS($config, "Lang", "chkRusLang2", $ichkRusLang2)
+	$icmbLang = _GUICtrlComboBox_GetCurSel($cmbLang)
+    IniWriteS($config, "Lang", "cmbLang", $icmbLang)
+	
 	;==========;Russian Languages by Kychera==========
 
 ; Android Settings

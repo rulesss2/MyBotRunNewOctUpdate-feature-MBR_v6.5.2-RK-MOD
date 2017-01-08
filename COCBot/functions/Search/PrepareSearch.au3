@@ -14,7 +14,9 @@
 ; Example .......: No
 ; ===============================================================================================================================
 Func PrepareSearch() ;Click attack button and find match button, will break shield
-
+     If $ChatbotChatGlobal = true or $ChatbotChatClan = true Then
+               ChatbotMessage()	
+	 EndIf	  
 	SetLog("Going to Attack...", $COLOR_INFO)
 
 	ChkAttackCSVConfig()

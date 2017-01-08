@@ -814,7 +814,7 @@ Func NotifyRemoteControlProc($OnlyPB)
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,704, "Your request has been received."), $COLOR_GREEN)
 						NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,165,"Request to Restart") & "...\n" & GetTranslated(620,143,"Your bot and Emulator are now restarting..."))
 						SaveConfig()
-						_Restart()
+						_Restart()						
 					Case GetTranslated(620,11,"STOP"), '\u23F9 ' & GetTranslated(620,11,"Stop")
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,706, "Your request has been received. Bot is now stopped"), $COLOR_GREEN)
 						If $Runstate = True Then

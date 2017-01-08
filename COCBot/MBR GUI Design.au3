@@ -46,8 +46,8 @@ TraySetToolTip($sBotTitle)
 $frmBotEx = GUICreate("", $_GUI_MAIN_WIDTH, $_GUI_MAIN_HEIGHT - $_GUI_BOTTOM_HEIGHT + $_GUI_MAIN_TOP, 0, 0, BitOR($WS_CHILD, $WS_TABSTOP), $WS_EX_TOPMOST, $frmBot)
 GUICtrlCreateLabel("", 0, 0, $_GUI_MAIN_WIDTH, 5)
 GUICtrlSetBkColor(-1, $COLOR_WHITE)
-$frmBot_MAIN_PIC = _GUICtrlCreatePic($sLogoPath, 0, $_GUI_MAIN_TOP, $_GUI_MAIN_WIDTH, 80)
-$frmBot_URL_PIC = _GUICtrlCreatePic($sLogoUrlPath, 0, 0, 0, 0)
+$frmBot_MAIN_PIC = _GUICtrlCreatePic($sLogoPath, 0, $_GUI_MAIN_TOP, $_GUI_MAIN_WIDTH, 67)
+$frmBot_URL_PIC = _GUICtrlCreatePic($sLogoUrlPath, 0, $_GUI_MAIN_TOP + 67, $_GUI_MAIN_WIDTH, 13)
 GUICtrlSetCursor(-1, 0)
 
 $hToolTip = _GUIToolTip_Create($frmBot) ; tool tips for URL links etc

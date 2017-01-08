@@ -452,8 +452,8 @@ Func Idle() ;Sequence that runs until Full Army
 		If _Sleep($iDelayIdle1) Then Return
 		If $CommandStop = -1 Then SetLog("====== Waiting for full army  ======", $COLOR_SUCCESS)
 		If $ChatbotChatGlobal = true or $ChatbotChatClan = true Then
-               ChatbotMessage()	
-		EndIf	   
+               ChatbotMessage()
+		EndIf
 		Local $hTimer = TimerInit()
 		Local $iReHere = 0
 		;PrepareDonateCC()
@@ -589,7 +589,7 @@ Func Idle() ;Sequence that runs until Full Army
 			EndIf
 			If $Restart = True Then ExitLoop ; if smart wait activated, exit to runbot in case user adjusted GUI or left emulator/bot in bad state
 		EndIf
-		
+
 	WEnd
 EndFunc   ;==>Idle
 
@@ -599,7 +599,7 @@ Func AttackMain() ;Main control for attack functions
  		MainSuperXPHandler()
  		Return
  	EndIf
-	getArmyCapacity(True, True)
+    ;getArmyCapacity(True, True)
 	If IsSearchAttackEnabled() Then
 		If (IsSearchModeActive($DB) And checkCollectors(True, False)) Or IsSearchModeActive($LB) Or IsSearchModeActive($TS) Then
 			If $iChkUseCCBalanced = 1 Or $iChkUseCCBalancedCSV = 1 Then ;launch profilereport() only if option balance D/R it's activated
@@ -732,7 +732,7 @@ Func _RunFunction($action)
 				If SkipDonateNearFullTroops(True) = False Then DonateCC()
 				If _Sleep($iDelayRunBot1) = False Then checkMainScreen(False)
 			EndIF
-		Case "SendChat"	
+		Case "SendChat"
 		    If $ChatbotChatGlobal = true or $ChatbotChatClan = true Then
                ChatbotMessage()
 		    EndIf

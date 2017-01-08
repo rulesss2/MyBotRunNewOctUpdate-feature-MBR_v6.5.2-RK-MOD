@@ -1024,7 +1024,7 @@ Func RemoveExtraTroops($toRemove)
 		For $i = 0 To (UBound($toRemove) - 1)
 			If IsSpellToBrew($toRemove[$i][0]) Then ExitLoop
 			$CounterToRemove += 1
-			If $CounterToRemove = 1 then If SetLog("Troops To Remove: ", $COLOR_GREEN)
+			If $CounterToRemove = 1 then SetLog("Troops To Remove: ", $COLOR_GREEN)
 			SetLog("  " & NameOfTroop(Eval("e" & $toRemove[$i][0])) & ": " & $toRemove[$i][1] & "x", $COLOR_GREEN)
 		Next
 

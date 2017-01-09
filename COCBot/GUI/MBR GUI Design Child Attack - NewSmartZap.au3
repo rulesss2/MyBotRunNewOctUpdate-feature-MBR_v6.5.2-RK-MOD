@@ -99,7 +99,7 @@ Local $x = 20, $y = 25
 			_GUICtrlSetTip(-1, $txtTip)
 	$x = 320
 	$y = 265
-		$chkDebugSmartZap = GUICtrlCreateCheckbox(GetTranslated(638, 23,"Debug SZ"), $x + 50 + 2, $y + 80, -1, -1)
+		$chkDebugSmartZap = GUICtrlCreateCheckbox(GetTranslated(638, 23,"Debug SZ"), $x + 42, $y + 80, -1, -1)
 		$txtTip = GetTranslated(638, 24, "Use this to debug SmartZap")
 		_GUICtrlSetTip(-1, $txtTip)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)

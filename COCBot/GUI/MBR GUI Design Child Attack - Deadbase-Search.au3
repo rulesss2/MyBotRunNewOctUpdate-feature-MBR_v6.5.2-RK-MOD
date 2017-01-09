@@ -19,19 +19,19 @@ Local $x = 25, $y = 45
 		$chkDBActivateSearches = GUICtrlCreateCheckbox(GetTranslated(625,1,"Search"), $x, $y, 68, 18)
 			$txtTip = GetTranslated(625,68, "Note - enables SEARCH range for this attack type ONLY.") & @CRLF & _
 				GetTranslated(625,69, "Setting will not set search limit to restart search process!")
-			_GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1,$GUI_CHECKED)
 			GUICtrlSetOnEvent(-1, "chkDBActivateSearches")
 		$txtDBSearchesMin = GUICtrlCreateInput("1", $x + 70, $y, 40, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 			$txtTip = GetTranslated(625,2, "Set the Min. number of searches to activate this attack option") & @CRLF & @CRLF & _
 				GetTranslated(625,68, -1) & @CRLF & GetTranslated(625,69, -1)
-			_GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetLimit(-1, 6)
 		$lblDBSearches = GUICtrlCreateLabel("-", $x + 113, $y + 2, -1, -1)
 		$txtDBSearchesMax = GUICtrlCreateInput("9999", $x + 120, $y, 40, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER)) ;ChrW(8734)
 			$txtTip = GetTranslated(625,3, "Set the Max number of searches to activate this attack option") & @CRLF & @CRLF & _
 				GetTranslated(625,68, -1) & @CRLF & GetTranslated(625,69,-1)
-			_GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetLimit(-1, 6)
 		$picDBSearches = GUICtrlCreateIcon($pIconLib, $eIcnMagnifier, $x + 163, $y + 1, 16, 16)
 	$y += 21
@@ -43,7 +43,7 @@ Local $x = 25, $y = 45
 			GUICtrlSetState(-1,$GUI_DISABLE)
 			$txtTip = GetTranslated(625,5, "Set the Min. number of tropies where this attack will be used") & @CRLF & @CRLF & _
 				GetTranslated(625,68, -1) & @CRLF & GetTranslated(625,70,-1)
-			_GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetLimit(-1, 6)
 		$lblDBTropies = GUICtrlCreateLabel("-", $x + 113, $y + 2, -1, -1)
 			GUICtrlSetState(-1,$GUI_DISABLE)
@@ -51,7 +51,7 @@ Local $x = 25, $y = 45
 			GUICtrlSetState(-1,$GUI_DISABLE)
 			$txtTip = GetTranslated(625,6, "Set the Max number of tropies where this attack will be used") & @CRLF & @CRLF & _
 				GetTranslated(625,68, -1) & @CRLF & GetTranslated(625,70, -1)
-			_GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetLimit(-1, 6)
 		$picDBTrophies = GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x + 163, $y + 1, 16, 16)
 	$y +=21
@@ -76,7 +76,7 @@ Local $x = 25, $y = 45
 		$chkDBKingWait = GUICtrlCreateCheckbox("", $x, $y + 55, 16, 16)
 			Local $sTxtKingWait = GetTranslated(625,50, "Wait for Hero option disabled when continuous Upgrade Hero selected!")
 			$txtTip = GetTranslated(625,10, "Wait for King to be ready before attacking...") & @CRLF & $sTxtKingWait & @CRLF & GetTranslated(625,65, "Enabled with TownHall 7 and higher")
-			_GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBKingWait")
 		$IMGchkDBKingWait=GUICtrlCreateIcon($pIconLib, $eIcnKing, $x - 18, $y + 4, 48, 48)
 			_GUICtrlSetTip(-1, $txtTip)
@@ -86,7 +86,7 @@ Local $x = 25, $y = 45
 	$x += 55
 		$chkDBQueenWait = GUICtrlCreateCheckbox("", $x, $y + 55, 16, 16)
 			$txtTip = GetTranslated(625,12, "Wait for Queen to be ready before attacking...") & @CRLF & $sTxtKingWait & @CRLF & GetTranslated(625,66, "Enabled with TownHall 9 and higher")
-			_GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetOnEvent(-1, "chkDBQueenWait")
 		$IMGchkDBQueenWait=GUICtrlCreateIcon($pIconLib, $eIcnQueen, $x - 18, $y + 4, 48, 48)
 			_GUICtrlSetTip(-1, $txtTip)
@@ -96,7 +96,7 @@ Local $x = 25, $y = 45
 	$x += 55
 		$chkDBWardenWait = GUICtrlCreateCheckbox("", $x, $y + 55, 16, 16)
  			$txtTip = GetTranslated(625,13, "Wait for Warden to be ready before attacking...") & @CRLF & $sTxtKingWait & @CRLF & GetTranslated(625,67, "Enabled with TownHall 11")
- 			_GUICtrlSetTip(-1, $txtTip)
+ 			GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetOnEvent(-1, "chkDBWardenWait")
 		$IMGchkDBWardenWait=GUICtrlCreateIcon($pIconLib, $eIcnWarden, $x - 18, $y + 4, 48, 48)
  			_GUICtrlSetTip(-1, $txtTip)
@@ -118,7 +118,7 @@ Local $x = 25, $y = 45
 		$chkDBSpellsWait = GUICtrlCreateCheckbox(GetTranslated(625,71, "Wait for Spells to be Ready"), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,72, "Stop searching for this attack type when Spells are not ready") & @CRLF & _
 			GetTranslated(625,73, "Warning: Do not enable unless you have spell factory or bot will not attack!")
- 			_GUICtrlSetTip(-1, $txtTip)
+ 			GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetOnEvent(-1, "chkDBSpellsWait")
 
 
@@ -128,9 +128,10 @@ Local $x = 25, $y = 45
 			GUICtrlSetOnEvent(-1, "chkDBWaitForCCSpell")
 
 		$cmbDBWaitForCastleSpell = GUICtrlCreateCombo(GetTranslated(625,76, "Any"), $x, $y + 50, -1, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-			$txtTip = GetTranslated(625,77, "Wait until Someone Donate this Spell, Else remove other spells in Castle and Request AGAIN")
+			$txtTip = GetTranslated(625,77, "Wait until Someone Donate this Spell") & @CRLF & _
+			GetTranslated(625,81, "Else remove other spells in Castle and Request AGAIN")
 			GUICtrlSetData(-1, $sTxtPoisonSpells & "|" & $sTxtEarthquakeSpells & "|" & $sTxtHasteSpells & "|" & $sTxtSkeletonSpells)
-			_GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetTip(-1, $txtTip)
 
 		$chkDBWaitForCastleTroops = GUICtrlCreateCheckbox(GetTranslated(625,78, "Wait for Castle troops to be full"), $x, $y + 75, -1, -1)
 			$txtTip = GetTranslated(625,79, "Wait until your Clan Castle be Full")
@@ -143,7 +144,7 @@ Local $x = 220, $y = 45
 		$cmbDBMeetGE = GUICtrlCreateCombo("", $x , $y + 10, 65, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			$txtTip = GetTranslated(625,15, "Search for a base that meets the values set for Gold And/Or/Plus Elixir.") & @CRLF & GetTranslated(625,16, "AND: Both conditions must meet, Gold and Elixir.") & @CRLF & GetTranslated(625,17, "OR: One condition must meet, Gold or Elixir.") & @CRLF & GetTranslated(625,18, "+ (PLUS): Total amount of Gold + Elixir must meet.")
 			GUICtrlSetData(-1, GetTranslated(625,19, "G And E") &"|" & GetTranslated(625,20, "G Or E") & "|" & GetTranslated(625,21, "G + E"), GetTranslated(625,19, -1))
-			_GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "cmbDBGoldElixir")
 		$txtDBMinGold = GUICtrlCreateInput("80000", $x + 85, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 			$txtTip = GetTranslated(625,23, "Set the Min. amount of Gold to search for on a village to attack.")

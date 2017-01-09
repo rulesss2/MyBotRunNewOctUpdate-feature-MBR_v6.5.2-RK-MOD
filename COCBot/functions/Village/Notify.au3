@@ -884,7 +884,7 @@ Func NotifyRemoteControlProc($OnlyPB)
 							SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,713,"Push Last Raid Snapshot..."), $COLOR_GREEN)
 						Else
 							NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,141,"There is no last raid screenshot."))
-							SetLog(GetTranslated(620,141,"There is no last raid screenshot."))
+							SetLog(GetTranslated(620,141,"There is no last raid screenshot."),  $COLOR_GREEN)
 							SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,714,"Your request has been received. Last Raid txt sent"), $COLOR_GREEN)
 							NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,142,"Last Raid txt") & "\n" & "[" & GetTranslated(620,109, "G") & "]: " & _NumberFormat($iGoldLast) & " [" & GetTranslated(620,110, "E") & "]: " & _NumberFormat($iElixirLast) & " [D]: " & _NumberFormat($iDarkLast) & " [" & GetTranslated(620,112, "T") & "]: " & $iTrophyLast)
 						EndIf

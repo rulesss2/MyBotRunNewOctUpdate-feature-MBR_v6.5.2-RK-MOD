@@ -1769,7 +1769,7 @@ Global $iChkWaitForCastleTroops[$iModeCount]
 ; Force brew Spells before attack
 Global $ichkForceBrewBeforeAttack = 0
 
-Global $itxtLevBarb = 1, $itxtLevArch = 1, $itxtLevGobl = 1, $itxtLevGiant = 1, $itxtLevWall = 1
+Global $itxtLevBarb = 0, $itxtLevArch = 0, $itxtLevGobl = 0, $itxtLevGiant = 0, $itxtLevWall = 0
 Global $itxtLevHeal = 0, $itxtLevPekk = 0, $itxtLevBall = 0, $itxtLevWiza = 0, $itxtLevDrag = 0
 Global $itxtLevBabyD = 0, $itxtLevMine = 0 , $itxtLevIceW = 0
 

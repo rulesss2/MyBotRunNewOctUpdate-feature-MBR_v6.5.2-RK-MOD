@@ -173,12 +173,12 @@ Local $x = $xStart + 10, $y = $yStart + 25
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 $y += + 318
-	$chkForecastBoost = GUICtrlCreateCheckbox("Boost When >", $x, $y, -1, -1)
-		$txtTip = "Boost Barracks,Heroes, when the loot index."
+	$chkForecastBoost = GUICtrlCreateCheckbox(GetTranslated(107,11, "Boost When >"), $x, $y, -1, -1)
+		$txtTip = GetTranslated(107,13, "Boost Barracks,Heroes, when the loot index.")
 		GUICtrlSetTip(-1, $txtTip)
 		GUICtrlSetOnEvent(-1, "chkForecastBoost")
-	$txtForecastBoost = GUICtrlCreateInput("6.0", $x + 90, $y + 2, 30, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
-		$txtTip = "Minimum loot index for boosting."
+	$txtForecastBoost = GUICtrlCreateInput("6.0", $x + 87, $y + 2, 30, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
+		$txtTip = GetTranslated(107,7, "Minimum loot index for boosting.")
 		GUICtrlSetLimit(-1, 3)
 		GUICtrlSetTip(-1, $txtTip)
 		_GUICtrlEdit_SetReadOnly(-1, True)
@@ -186,16 +186,16 @@ $y += + 318
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 $y += - 27
-	$chkForecastHopingSwitchMax = GUICtrlCreateCheckbox("", $x + 158, $y + 27, 13, 13)
+	$chkForecastHopingSwitchMax = GUICtrlCreateCheckbox("", $x + 150, $y + 27, 13, 13)
 			$txtTip = "" ; à renseigner
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkForecastHopingSwitchMax")
-			GUICtrlCreateLabel(GetTranslated(107,16,"Switch to"), $x + 177, $y + 27, -1, -1)
-	$cmbForecastHopingSwitchMax = GUICtrlCreateCombo("", $x + 225, $y + 25, 95, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			GUICtrlCreateLabel(GetTranslated(107,16,"Switch to"), $x + 168, $y + 27, -1, -1)
+	$cmbForecastHopingSwitchMax = GUICtrlCreateCombo("", $x + 218, $y + 25, 95, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			$txtTip = "" ; à renseigner
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_DISABLE)
-	$lblForecastHopingSwitchMax = GUICtrlCreateLabel(GetTranslated(107,17,"When Index <"), $x + 325, $y + 28, -1, -1)
+	$lblForecastHopingSwitchMax = GUICtrlCreateLabel(GetTranslated(107,17,"When Index <"), $x + 316, $y + 28, -1, -1)
 	$txtForecastHopingSwitchMax = GUICtrlCreateInput("2.5", $x + 400, $y + 26, 30, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
 			$txtTip = "" ; à renseigner
 			GUICtrlSetTip(-1, $txtTip)
@@ -204,16 +204,16 @@ $y += - 27
 			GUICtrlSetData(-1, 2.5)
 			GUICtrlSetTip(-1, $txtTip)
 			_GUICtrlEdit_SetReadOnly(-1, True)
-	$chkForecastHopingSwitchMin = GUICtrlCreateCheckbox("", $x + 158, $y + 55, 13, 13)
+	$chkForecastHopingSwitchMin = GUICtrlCreateCheckbox("", $x + 150, $y + 55, 13, 13)
 			$txtTip = "" ; à renseigner
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkForecastHopingSwitchMin")
-			GUICtrlCreateLabel(GetTranslated(107,18,"Switch to"), $x + 177, $y + 55, -1, -1)
-	$cmbForecastHopingSwitchMin = GUICtrlCreateCombo("", $x + 225, $y + 53, 95, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			GUICtrlCreateLabel(GetTranslated(107,18,"Switch to"), $x + 168, $y + 55, -1, -1)
+	$cmbForecastHopingSwitchMin = GUICtrlCreateCombo("", $x + 218, $y + 53, 95, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			$txtTip = "" ; à renseigner
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_DISABLE)
-	$lblForecastHopingSwitchMin = GUICtrlCreateLabel(GetTranslated(107,19,"When Index >"), $x + 325, $y + 58, -1, -1)
+	$lblForecastHopingSwitchMin = GUICtrlCreateLabel(GetTranslated(107,19,"When Index >"), $x + 316, $y + 58, -1, -1)
 	$txtForecastHopingSwitchMin = GUICtrlCreateInput("2.5", $x + 400, $y + 54, 30, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
 			$txtTip = "" ; à renseigner
 			GUICtrlSetTip(-1, $txtTip)

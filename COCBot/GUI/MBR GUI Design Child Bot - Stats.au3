@@ -93,7 +93,7 @@ $hGUI_STATS_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,38,"Gain"))
 		$LegendLeague = GUICtrlCreateIcon($pIconLib, $eLegend, $x - 2, $y - 5 + 15, 56, 56)
 		GUICtrlSetState(-1,$GUI_HIDE)
 
-		$txtLeague = GUICtrlCreateLabel(GetTranslated(632,106, "League"), $x + 3, $y, -1, -1, $SS_CENTER)
+		$txtLeague = GUICtrlCreateLabel(GetTranslated(632,106, "League"), $x + 8, $y, -1, -1, $SS_CENTER)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 		GUICtrlSetColor(-1, $COLOR_BLACK)
 
@@ -940,7 +940,7 @@ $hGUI_STATS_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600, 55,"Donations"))
 Local $x = 5, $y = 28, $z = 33
 
 $grpElxTr = GUICtrlCreateGroup(GetTranslated(632,118,"Troops"), $x, $y, 427, 220, BitOR($GUI_SS_DEFAULT_GROUP,$BS_CENTER))
-
+GUICtrlSetFont(-1, 11, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 $x -= 25
 $y += 20
 $z += 20
@@ -1048,7 +1048,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 Local $x = 5, $y = 255, $z = 263
 
 $grpDElxTrSp = GUICtrlCreateGroup(GetTranslated(632,119,"Spells"), $x, $y, 427, 95, BitOR($GUI_SS_DEFAULT_GROUP,$BS_CENTER))
-
+GUICtrlSetFont(-1, 11, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 $x -= 12
 $x += 55
 $y += 20

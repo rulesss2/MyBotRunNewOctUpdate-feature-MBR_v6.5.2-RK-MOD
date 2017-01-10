@@ -14,7 +14,7 @@
 ; ===============================================================================================================================
 
 ;TAB Profile Stats - SwitchAcc Mode - DEMEN
-$hGUI_STATS_TAB_ITEM4 = GUICtrlCreateTabItem("Profile Stats")
+$hGUI_STATS_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(1111,3,"Profile Stats"))
 
 
 Local $x = 25, $y = 30
@@ -31,23 +31,23 @@ Global $lblGoldLootAcc[8], $lblElixirLootAcc[8], $lblDarkLootAcc[8], $lblTrophyL
 Global $lblHourlyStatsGoldAcc[8], $lblHourlyStatsElixirAcc[8], $lblHourlyStatsDarkAcc[8], $lblHourlyStatsTrophyAcc[8]
 Global $aStartHide[8], $aSecondHide[8],$aEndHide[8]
 
-	$lblStatsRev = GUICtrlCreateLabel("Stats", $x - 10, $y, 87, 17, $SS_CENTER)
+	$lblStatsRev = GUICtrlCreateLabel(GetTranslated(632, 107, "Stats"), $x - 10, $y, 87, 17, $SS_CENTER)
 	GUICtrlSetBkColor(-1, 0xA8A8A8)
 	GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 	GUICtrlSetColor(-1, $COLOR_BLACK)
-	$lblGoldRev = GUICtrlCreateLabel("Gold", $x + 77, $y, 95, 17, $SS_CENTER)
+	$lblGoldRev = GUICtrlCreateLabel(GetTranslated(632, 108, "Gold"), $x + 77, $y, 95, 17, $SS_CENTER)
 	GUICtrlSetBkColor(-1, 0xA8A8A8)
 	GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 	GUICtrlSetColor(-1, $COLOR_BLACK)
-	$lblElixirRev = GUICtrlCreateLabel("Elixir", $x + 172, $y, 75, 17, $SS_CENTER)
+	$lblElixirRev = GUICtrlCreateLabel(GetTranslated(632, 109, "Elixir"), $x + 172, $y, 75, 17, $SS_CENTER)
 	GUICtrlSetBkColor(-1, 0xA8A8A8)
 	GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 	GUICtrlSetColor(-1, $COLOR_BLACK)
-	$lblDarkRev = GUICtrlCreateLabel("DarkE", $x + 247, $y, 90, 17, $SS_CENTER)
+	$lblDarkRev = GUICtrlCreateLabel(GetTranslated(632, 110, "DarkE"), $x + 247, $y, 90, 17, $SS_CENTER)
 	GUICtrlSetBkColor(-1, 0xA8A8A8)
 	GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 	GUICtrlSetColor(-1, $COLOR_BLACK)
-	$lblTrophyRev = GUICtrlCreateLabel("Trophy", $x + 327, $y, 75, 17, $SS_CENTER)
+	$lblTrophyRev = GUICtrlCreateLabel(GetTranslated(632, 111,"Trophy"), $x + 327, $y, 75, 17, $SS_CENTER)
 	GUICtrlSetBkColor(-1, 0xA8A8A8)
 	GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 	GUICtrlSetColor(-1, $COLOR_BLACK)
@@ -62,7 +62,8 @@ Global $aStartHide[8], $aSecondHide[8],$aEndHide[8]
 
 	   $aStartHide[$i] = GUICtrlCreateDummy()
 
-	   $grpVillageAcc[$i] = GUICtrlCreateGroup("Village: ", $x-10, $y + $i * $delY, 425, 75)
+	   $grpVillageAcc[$i] = GUICtrlCreateGroup(GetTranslated(1111, 4, "Village: "), $x-10, $y + $i * $delY, 425, 75)
+	    GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 		If $i <= $nTotalProfile - 1 Then GUICtrlSetData(-1, "Village: " & $ProfileList[$i+1])
 
 		 GUICtrlCreateGraphic($x + 295, $y + $i * $delY, 115, 17, $SS_WHITERECT)
@@ -77,40 +78,52 @@ Global $aStartHide[8], $aSecondHide[8],$aEndHide[8]
 		 $picResultGemNowAcc = GUICtrlCreateIcon ($pIconLib, $eIcnGem, $x + 390, $y + $i * $delY, 16, 14)
 
 		 $y +=17
-	     GUICtrlCreateLabel("Village report:", $x + 10, $y + 1 + $i * $delY, - 1, - 1)
+	     GUICtrlCreateLabel(GetTranslated(1111, 1, "Village report:"), $x + 10, $y + 1 + $i * $delY, - 1, - 1)
 
 			 $lblResultGoldNowAcc[$i] = GUICtrlCreateLabel("0", $x + $delX, $y + 1 + $i * $delY, 60, 17, $SS_RIGHT)
+			 GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 				GUICtrlCreateIcon ($pIconLib, $eIcnGold, $x + 65 + $delX, $y + $i * $delY, 16, 16)
 			 $lblResultElixirNowAcc[$i] = GUICtrlCreateLabel("0", $x + $delX*2, $y + 1 + $i * $delY, 60, 17, $SS_RIGHT)
+			 GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 				GUICtrlCreateIcon ($pIconLib, $eIcnElixir, $x + 65 + $delX*2, $y + $i * $delY, 16, 16)
 			 $lblResultDENowAcc[$i] = GUICtrlCreateLabel("0", $x + $delX*3, $y + 1 + $i * $delY, 60, 17, $SS_RIGHT)
+			 GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 				GUICtrlCreateIcon ($pIconLib, $eIcnDark, $x + 65 + $delX*3, $y + $i * $delY, 16, 16)
 			 $lblResultTrophyNowAcc[$i] = GUICtrlCreateLabel("0", $x - 15 + $delX*4, $y + 1 + $i * $delY, 60, 17, $SS_RIGHT)
+			 GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 				GUICtrlCreateIcon ($pIconLib, $eIcnTrophy, $x + 50 + $delX*4, $y + $i * $delY, 16, 16)
 
 		 $aSecondHide[$i] = GUICtrlCreateDummy()
 		 $y +=17
-	     GUICtrlCreateLabel("Gain per Hour:", $x + 10, $y + 1 + $i * $delY, - 1, - 1)
+	     GUICtrlCreateLabel(GetTranslated(632,26, "Gain per Hour:"), $x + 10, $y + 1 + $i * $delY, - 1, - 1)
 
 			 $lblHourlyStatsGoldAcc[$i] = GUICtrlCreateLabel("0/h", $x + $delX, $y + 1 + $i * $delY, 60, 17, $SS_RIGHT)
+			 GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 				GUICtrlCreateIcon ($pIconLib, $eIcnGold, $x + 65 + $delX, $y + $i * $delY, 16, 16)
 			 $lblHourlyStatsElixirAcc[$i] = GUICtrlCreateLabel("0/h", $x + $delX*2, $y + 1 + $i * $delY, 60, 17, $SS_RIGHT)
+			 GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 				GUICtrlCreateIcon ($pIconLib, $eIcnElixir, $x + 65 + $delX*2, $y + $i * $delY, 16, 16)
 			 $lblHourlyStatsDarkAcc[$i] = GUICtrlCreateLabel("0/h", $x + $delX*3, $y + 1 + $i * $delY, 60, 17, $SS_RIGHT)
+			 GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 				GUICtrlCreateIcon ($pIconLib, $eIcnDark, $x + 65 + $delX*3, $y + $i * $delY, 16, 16)
 			 $lblHourlyStatsTrophyAcc[$i] = GUICtrlCreateLabel("0/h", $x - 15 + $delX*4, $y + 1 + $i * $delY, 60, 17, $SS_RIGHT)
+			 GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 				GUICtrlCreateIcon ($pIconLib, $eIcnTrophy, $x + 50 + $delX*4, $y + $i * $delY, 16, 16)
 
 		 $y +=17
-	     GUICtrlCreateLabel("Total Gain:", $x + 10, $y + 1 + $i * $delY, - 1, - 1)
+	     GUICtrlCreateLabel(GetTranslated(632,20, "Total Gain:"), $x + 10, $y + 1 + $i * $delY, - 1, - 1)
 
 			 $lblGoldLootAcc[$i] = GUICtrlCreateLabel("0", $x + $delX, $y + 1 + $i * $delY, 60, 17, $SS_RIGHT)
+			 GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 				GUICtrlCreateIcon ($pIconLib, $eIcnGold, $x + 65 + $delX, $y + $i * $delY, 16, 16)
 			 $lblElixirLootAcc[$i] = GUICtrlCreateLabel("0", $x + $delX*2, $y + 1 + $i * $delY, 60, 17, $SS_RIGHT)
+			 GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 				GUICtrlCreateIcon ($pIconLib, $eIcnElixir, $x + 65 + $delX*2, $y + $i * $delY, 16, 16)
 			 $lblDarkLootAcc[$i] = GUICtrlCreateLabel("0", $x + $delX*3, $y + 1 + $i * $delY, 60, 17, $SS_RIGHT)
+			 GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 				GUICtrlCreateIcon ($pIconLib, $eIcnDark, $x + 65 + $delX*3, $y + $i * $delY, 16, 16)
 			 $lblTrophyLootAcc[$i] = GUICtrlCreateLabel("0", $x - 15 + $delX*4, $y + 1 + $i * $delY, 60, 17, $SS_RIGHT)
+			 GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 				GUICtrlCreateIcon ($pIconLib, $eIcnTrophy, $x + 50 + $delX*4, $y + $i * $delY, 16, 16)
 
 		 $aEndHide[$i] = GUICtrlCreateDummy()

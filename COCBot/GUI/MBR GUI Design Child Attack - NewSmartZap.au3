@@ -24,7 +24,7 @@ Local $x = 20, $y = 25
 		GUICtrlCreateIcon($pIconLib, $eIcnEarthQuakeSpell, $x + 125, $y + 20, 25, 25)
 		GUICtrlCreateIcon($pIconLib, $eIcnDrill, $x - 10, $y + 90, 25, 25)
 	$y += 50
-		$lblLSpell = GUICtrlCreateLabel(GetTranslated(638, 3, "Use LSpells"), $x + 27, $y + 15, -1, -1)
+		$lblLSpell = GUICtrlCreateLabel(GetTranslated(638, 3, "Use LSpells"), $x + 37, $y + 15, -1, -1)
 		GUICtrlSetOnEvent(-1, "chkSmartLightSpell")
 		$chkSmartLightSpell = GUICtrlCreateCheckbox(" ", $x + 51, $y -3, 16, 16)
 		$txtTip = GetTranslated(638, 4, "Check this to drop Lightning Spells on top of Dark Elixir Drills.") & @CRLF & @CRLF & _
@@ -33,7 +33,7 @@ Local $x = 20, $y = 25
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkSmartLightSpell")
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
-		$lblEQZap = GUICtrlCreateLabel(GetTranslated(638, 7, "Use EQSpell"), $x + 105, $y + 15, -1, -1)
+		$lblEQZap = GUICtrlCreateLabel(GetTranslated(638, 7, "Use EQSpell"), $x + 110, $y + 15, -1, -1)
 		GUICtrlSetOnEvent(-1, "chkEarthQuakeZap")
 		$chkEarthQuakeZap = GUICtrlCreateCheckbox(" ", $x + 131, $y -3, 16, 16)
 		$txtTip = GetTranslated(638, 8, "Check this to drop EarthQuake Castle Spell on any Dark Elixir Drill")

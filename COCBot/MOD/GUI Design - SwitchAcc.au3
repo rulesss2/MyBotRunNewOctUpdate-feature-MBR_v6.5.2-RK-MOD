@@ -87,9 +87,9 @@ $grpSwitchAcc = GUICtrlCreateGroup(GetTranslated(637, 30, "Switch Account Mode")
 
 	$y += 35
 		GUICtrlCreateLabel("No.", $x-10, $y, 15,-1,$SS_CENTER)
-		GUICtrlCreateLabel("Profile Name", $x+10, $y, 90,-1,$SS_CENTER)
-		GUICtrlCreateLabel("Acc.", $x+105, $y, 30,-1,$SS_CENTER)
-		GUICtrlCreateLabel("Bot Type", $x+140, $y, 60,-1,$SS_CENTER)
+		GUICtrlCreateLabel(GetTranslated(637,54, "Profile Name"), $x+10, $y, 90,-1,$SS_CENTER)
+		GUICtrlCreateLabel(GetTranslated(637,55, "Acc."), $x+105, $y, 30,-1,$SS_CENTER)
+		GUICtrlCreateLabel(GetTranslated(637,56, "Bot Type"), $x+140, $y, 60,-1,$SS_CENTER)
 
 	$y += 20
 		GUICtrlCreateGraphic($x - 10, $y, 205, 1, $SS_GRAYRECT)

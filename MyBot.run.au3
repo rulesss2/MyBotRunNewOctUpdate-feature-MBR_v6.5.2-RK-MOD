@@ -206,7 +206,7 @@ CheckDisplay() ; verify display size and DPI (Dots Per Inch) setting
 $iGUIEnabled = 1
 
 ;~ InitializeVariables();initialize variables used in extrawindows
-CheckVersion() ; check latest version on mybot.run site
+;~ CheckVersion() ; check latest version on mybot.run site
 
 ;~ Update profile to write config for SwitchAcc Mode - DEMEN
 btnUpdateProfile()

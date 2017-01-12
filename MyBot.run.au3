@@ -35,7 +35,7 @@ ProcessSetPriority(@AutoItPID, $PROCESS_ABOVENORMAL)
 Global $iBotLaunchTime = 0
 Global $hBotLaunchTime = TimerInit()
 
-$sBotVersion = "v6.5.2" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it is also use on Checkversion()
+$sBotVersion = "v6.5.3" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it is also use on Checkversion()
 $sBotTitle = "My Bot " & $sBotVersion & " " ;~ Don't use any non file name supported characters like \ / : * ? " < > |
 
 #include "COCBot\functions\Config\DelayTimes.au3"
@@ -659,7 +659,7 @@ Func Attack() ;Selects which algorithm
 		Algorithm_AttackCSV()
 	ElseIf $iMatchMode = $DB And $iAtkAlgorithm[$DB] = 2 Then
 		If $debugsetlog = 1 Then Setlog("start milking attack", $COLOR_ERROR)
-		Algorithm_MilkingAttack()
+		Alogrithm_MilkingAttack()
 	Else
 		If $debugsetlog = 1 Then Setlog("start standard attack", $COLOR_ERROR)
 		algorithm_AllTroops()

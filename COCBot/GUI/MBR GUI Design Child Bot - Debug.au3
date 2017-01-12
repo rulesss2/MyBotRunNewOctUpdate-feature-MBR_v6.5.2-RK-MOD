@@ -74,6 +74,10 @@ $chkDebugDeadbaseImage = GUICtrlCreateCheckbox(GetTranslated(636, 116, "Deadbase
 _GUICtrlSetTip(-1, GetTranslated(636, 117, "Debug: Saves images of skipped deadbase villages."))
 GUICtrlSetState(-1, $GUI_DISABLE)
 GUICtrlSetState(-1, $GUI_HIDE)
+$y += 20
+$chkDebugSmartZap = GUICtrlCreateCheckbox(GetTranslated(638, 23,"Debug SmartZap"), $x, $y -5, -1, -1)
+$txtTip = GetTranslated(638, 24, "Use this to debug SmartZap")
+_GUICtrlSetTip(-1, $txtTip)
 
 Local $x = 300
 $y = 52
@@ -85,6 +89,9 @@ $btnTestDonateCC = GUICtrlCreateButton(GetTranslated(636, 89, "Test Donate"), $x
 $y += $yNext
 
 $btnTestRequestCC = GUICtrlCreateButton(GetTranslated(636, 110, "Test Request"), $x, $y, 140, 25)
+$y += $yNext
+
+$btnTestAttackBar = GUICtrlCreateButton(GetTranslated(636, 90, "Test Attack Bar"), $x, $y, 140, 25)
 $y += $yNext
 
 $btnTestClickDrag = GUICtrlCreateButton(GetTranslated(636, 102, "Test Click Drag (scrolling)"), $x, $y, 140, 25)
@@ -106,9 +113,6 @@ $btnTestTrainsimgloc = GUICtrlCreateButton("New Train Test", $x, $y, 140, 25)
 $y += $yNext
 
 $btnTestQuickTrainsimgloc = GUICtrlCreateButton("Quick Train Test", $x, $y, 140, 25)
-$y += $yNext
-
-$btnTestimglocTroopBar = GUICtrlCreateButton("IMGLOC ATTACKBAR", $x, $y, 140, 25)
 
 ; now go up again
 $x -= 145
@@ -124,7 +128,7 @@ $y -= $yNext
 $btnTestAttackCSV = GUICtrlCreateButton(GetTranslated(636, 121, "Test Attack CSV"), $x, $y, 140, 25)
 $y -= $yNext
 
-$btnTestSmartZap = GUICtrlCreateButton("Test SmartZap", $x, $y, 140, 25)
+$btnTestimglocTroopBar = GUICtrlCreateButton("IMGLOC ATTACKBAR", $x, $y, 140, 25)
 $y -= $yNext
 
 $btnTestConfigSave = GUICtrlCreateButton("Config Save", $x + 20, $y, 120, 25)

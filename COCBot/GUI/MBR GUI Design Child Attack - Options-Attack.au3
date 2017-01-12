@@ -15,9 +15,9 @@
 
 Local $x = 25, $y = 45
 	$grpRoyalAbilitiesCSV = GUICtrlCreateGroup(GetTranslated(634,1, "Hero Abilities"), $x - 20, $y - 20, 420, 60)
-		GUICtrlCreateIcon($pIconLib, $eIcnKingAbility, $x-10, $y, 24, 24)
-		GUICtrlCreateIcon($pIconLib, $eIcnQueenAbility, $x+ 15, $y, 24, 24)
-		GUICtrlCreateIcon($pIconLib, $eIcnWardenAbility, $x + 40, $y, 24, 24)
+		GUICtrlCreateIcon($pIconLib, $eIcnKing, $x-10, $y, 24, 24)
+		GUICtrlCreateIcon($pIconLib, $eIcnQueen, $x+ 15, $y, 24, 24)
+		GUICtrlCreateIcon($pIconLib, $eIcnWarden, $x+ 40, $y, 24, 24)
 
 	$x += 70
 	$y -= 4
@@ -38,7 +38,7 @@ Local $x = 25, $y = 45
 		$lblRoyalAbilitiesSec = GUICtrlCreateLabel(GetTranslated(603,6, "sec."), $x + 115, $y + 4, -1, -1)
 	$x += 150
 	$y -= 15
-		GUICtrlCreateIcon($pIconLib, $eIcnWardenAbility, $x - 7, $y + 2, 32, 32)
+		GUICtrlCreateIcon($pIconLib, $eIcnWarden, $x - 7, $y + 2, 32, 32)
 	$y += 12
 		$chkUseWardenAbility = GUICtrlCreateCheckbox(GetTranslated(634,9, "Force after") & ":", $x + 30, $y , -1, -1)
 			$txtTip = GetTranslated(634,10, "Use the ability of the Grand Warden on a timer.")

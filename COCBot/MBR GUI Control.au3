@@ -30,15 +30,15 @@ Global $BotAction = $eBotNoAction
 
 ;Dynamic declaration of Array controls, cannot be on global variables because the GUI has to be created first for these control-id's to be known.
 Global $aChkDonateControls = [$chkDonateBarbarians, $chkDonateArchers, $chkDonateGiants, $chkDonateGoblins, $chkDonateWallBreakers, $chkDonateBalloons, $chkDonateWizards, $chkDonateHealers, $chkDonateDragons, $chkDonatePekkas, $chkDonateBabyDragons, $chkDonateMiners, $chkDonateMinions, $chkDonateHogRiders, $chkDonateValkyries, $chkDonateGolems, $chkDonateWitches, $chkDonateLavaHounds, $chkDonateBowlers, $chkDonateCustomA, $chkDonateCustomB]
-Global $aChkDonateControlsSpell = [$chkDonatePoisonSpells, $chkDonateEarthQuakeSpells, $chkDonateHasteSpells, $chkDonateSkeletonSpells]
+Global $aChkDonateControlsSpell = [$chkDonatePoisonSpells, $chkDonateEarthQuakeSpells, $chkDonateHasteSpells, $chkDonateSkeletonSpells, $chkDonateLightningSpells, $chkDonateHealSpells, $chkDonateRageSpells, $chkDonateJumpSpells, $chkDonateFreezeSpells]
 Global $aChkDonateAllControls = [$chkDonateAllBarbarians, $chkDonateAllArchers, $chkDonateAllGiants, $chkDonateAllGoblins, $chkDonateAllWallBreakers, $chkDonateAllBalloons, $chkDonateAllWizards, $chkDonateAllHealers, $chkDonateAllDragons, $chkDonateAllPekkas,  $chkDonateAllBabyDragons,  $chkDonateAllMiners, $chkDonateAllMinions, $chkDonateAllHogRiders, $chkDonateAllValkyries, $chkDonateAllGolems, $chkDonateAllWitches, $chkDonateAllLavaHounds, $chkDonateAllBowlers, $chkDonateAllCustomA, $chkDonateAllCustomB]
-Global $aChkDonateAllControlsSpell = [$chkDonateAllPoisonSpells, $chkDonateAllEarthQuakeSpells, $chkDonateAllHasteSpells, $chkDonateAllSkeletonSpells]
+Global $aChkDonateAllControlsSpell = [$chkDonateAllPoisonSpells, $chkDonateAllEarthQuakeSpells, $chkDonateAllHasteSpells, $chkDonateAllSkeletonSpells, $chkDonateAllLightningSpells, $chkDonateAllHealSpells, $chkDonateAllRageSpells, $chkDonateAllJumpSpells, $chkDonateAllFreezeSpells]
 Global $aTxtDonateControls = [$txtDonateBarbarians, $txtDonateArchers, $txtDonateGiants, $txtDonateGoblins, $txtDonateWallBreakers, $txtDonateBalloons, $txtDonateWizards, $txtDonateHealers, $txtDonateDragons, $txtDonatePekkas, $txtDonateBabyDragons, $txtDonateMiners, $txtDonateMinions, $txtDonateHogRiders, $txtDonateValkyries, $txtDonateGolems, $txtDonateWitches, $txtDonateLavaHounds, $txtDonateBowlers, $txtDonateCustomA, $txtDonateCustomB]
-Global $aTxtDonateControlsSpell = [$txtDonatePoisonSpells, $txtDonateEarthQuakeSpells, $txtDonateHasteSpells, $txtDonateSkeletonSpells]
+Global $aTxtDonateControlsSpell = [$txtDonatePoisonSpells, $txtDonateEarthQuakeSpells, $txtDonateHasteSpells, $txtDonateSkeletonSpells, $txtDonateLightningSpells, $txtDonateHealSpells, $txtDonateRageSpells, $txtDonateJumpSpells, $txtDonateFreezeSpells]
 Global $aTxtBlacklistControls = [$txtBlacklistBarbarians, $txtBlacklistArchers, $txtBlacklistGiants, $txtBlacklistGoblins, $txtBlacklistWallBreakers, $txtBlacklistBalloons, $txtBlacklistWizards, $txtBlacklistHealers, $txtBlacklistDragons, $txtBlacklistPekkas, $txtBlacklistBabyDragons, $txtBlacklistMiners, $txtBlacklistMinions, $txtBlacklistHogRiders, $txtBlacklistValkyries, $txtBlacklistGolems, $txtBlacklistWitches, $txtBlacklistLavaHounds, $txtBlacklistBowlers, $txtBlacklistCustomA, $txtBlacklistCustomB]
-Global $aTxtBlacklistControlsSpell = [$txtBlacklistPoisonSpells, $txtBlacklistEarthQuakeSpells, $txtBlacklistHasteSpells, $txtBlacklistSkeletonSpells]
+Global $aTxtBlacklistControlsSpell = [$txtBlacklistPoisonSpells, $txtBlacklistEarthQuakeSpells, $txtBlacklistHasteSpells, $txtBlacklistSkeletonSpells, $txtBlacklistLightningSpells, $txtBlacklistHealSpells, $txtBlacklistRageSpells, $txtBlacklistJumpSpells, $txtBlacklistFreezeSpells]
 Global $aLblBtnControls = [$lblBtnBarbarians, $lblBtnArchers, $lblBtnGiants, $lblBtnGoblins, $lblBtnWallBreakers, $lblBtnBalloons, $lblBtnWizards, $lblBtnHealers, $lblBtnDragons, $lblBtnPekkas, $lblBtnBabyDragons, $lblBtnMiners, $lblBtnMinions, $lblBtnHogRiders, $lblBtnValkyries, $lblBtnGolems, $lblBtnWitches, $lblBtnLavaHounds, $lblBtnBowlers, $lblBtnCustomA, $lblBtnCustomB]
-Global $aLblBtnControlsSpell = [$lblBtnPoisonSpells, $lblBtnEarthQuakeSpells, $lblBtnHasteSpells, $lblBtnSkeletonSpells]
+Global $aLblBtnControlsSpell = [$lblBtnPoisonSpells, $lblBtnEarthQuakeSpells, $lblBtnHasteSpells, $lblBtnSkeletonSpells, $lblBtnLightningSpells, $lblBtnHealSpells, $lblBtnRageSpells, $lblBtnJumpSpells, $lblBtnFreezeSpells]
 
 Global $aMainTabItems = [$tabMain, $tabGeneral, $tabVillage, $tabAttack, $tabBot, $tabMod, $tabAboutUs]
 
@@ -53,7 +53,7 @@ Global $aTabControlsSearch = [$hGUI_SEARCH_TAB, $hGUI_SEARCH_TAB_ITEM1, $hGUI_SE
 Global $aTabControlsDeadbase = [$hGUI_DEADBASE_TAB, $hGUI_DEADBASE_TAB_ITEM1, $hGUI_DEADBASE_TAB_ITEM2, $hGUI_DEADBASE_TAB_ITEM3, $hGUI_DEADBASE_TAB_ITEM4]
 Global $aTabControlsActivebase = [$hGUI_ACTIVEBASE_TAB, $hGUI_ACTIVEBASE_TAB_ITEM1, $hGUI_ACTIVEBASE_TAB_ITEM2, $hGUI_ACTIVEBASE_TAB_ITEM3]
 Global $aTabControlsTHSnipe = [$hGUI_THSNIPE_TAB, $hGUI_THSNIPE_TAB_ITEM1, $hGUI_THSNIPE_TAB_ITEM2, $hGUI_THSNIPE_TAB_ITEM3]
-Global $aTabControlsAttackOptions = [$hGUI_AttackOption_TAB, $hGUI_AttackOption_TAB_ITEM1, $hGUI_AttackOption_TAB_ITEM2, $hGUI_AttackOption_TAB_ITEM3,  $hGUI_AttackOption_TAB_ITEM4]
+Global $aTabControlsAttackOptions = [$hGUI_AttackOption_TAB, $hGUI_AttackOption_TAB_ITEM1, $hGUI_AttackOption_TAB_ITEM2, $hGUI_AttackOption_TAB_ITEM3,  $hGUI_AttackOption_TAB_ITEM4,  $hGUI_AttackOption_TAB_ITEM5]
 Global $aTabControlsStrategies = [$hGUI_STRATEGIES_TAB, $hGUI_STRATEGIES_TAB_ITEM1, $hGUI_STRATEGIES_TAB_ITEM2]
 
 Global $aTabControlsBot = [$hGUI_BOT_TAB, $hGUI_BOT_TAB_ITEM1, $hGUI_BOT_TAB_ITEM2, $hGUI_BOT_TAB_ITEM3, $hGUI_BOT_TAB_ITEM4, $hGUI_BOT_TAB_ITEM5]
@@ -61,7 +61,7 @@ Global $aTabControlsBot = [$hGUI_BOT_TAB, $hGUI_BOT_TAB_ITEM1, $hGUI_BOT_TAB_ITE
 Global $aTabControlsMod = [$hGUI_MOD_TAB, $hGUI_MOD_TAB_ITEM1, $hGUI_MOD_TAB_ITEM2, $hGUI_MOD_TAB_ITEM4]
 Global $aTabControlsStats = [$hGUI_STATS_TAB, $hGUI_STATS_TAB_ITEM1, $hGUI_STATS_TAB_ITEM2, $hGUI_STATS_TAB_ITEM3]
 
-Global $aAlwaysEnabledControls = [$chkUpdatingWhenMinimized, $chkHideWhenMinimized, $chkDebugClick, $chkDebugSetlog, $chkDebugDisableZoomout, $chkDebugDisableVillageCentering, $chkDebugDeadbaseImage, $chkDebugOcr, $chkDebugImageSave, $chkdebugBuildingPos, $chkdebugTrain, $chkdebugOCRDonate,$btnTestTrain, $btnTestDonateCC, $btnTestRequestCC, $btnTestClickDrag, $btnTestImage, $btnTestVillageSize, $btnTestDeadBase, $btnTestDeadBaseFolder, $btnTestTHimgloc, $btnTestimglocTroopBar,$btnTestQuickTrainsimgloc, $chkdebugAttackCSV, $chkmakeIMGCSV, $btnTestAttackCSV, $btnTestFindButton, $txtTestFindButton, $btnTestCleanYard, $lblLightningUsed, $lblSmartZap, $lblEarthQuakeUsed, $btnTestConfigSave, $btnTestConfigRead, $btnTestConfigApply]
+Global $aAlwaysEnabledControls = [$chkUpdatingWhenMinimized, $chkHideWhenMinimized, $chkDebugClick, $chkDebugSetlog, $chkDebugDisableZoomout, $chkDebugDisableVillageCentering, $chkDebugDeadbaseImage, $chkDebugOcr, $chkDebugImageSave, $chkdebugBuildingPos, $chkdebugTrain, $chkdebugOCRDonate,$btnTestTrain, $btnTestDonateCC, $btnTestRequestCC, $btnTestAttackBar, $btnTestClickDrag, $btnTestImage, $btnTestVillageSize, $btnTestDeadBase, $btnTestDeadBaseFolder, $btnTestTHimgloc, $btnTestimglocTroopBar,$btnTestQuickTrainsimgloc, $chkdebugAttackCSV, $chkmakeIMGCSV, $btnTestAttackCSV, $btnTestFindButton, $txtTestFindButton, $btnTestCleanYard, $lblLightningUsed, $lblSmartZap, $lblEarthQuakeUsed, $btnTestConfigSave, $btnTestConfigRead, $btnTestConfigApply]
 
 Global $frmBot_WNDPROC = 0
 Global $frmBot_WNDPROC_ptr = 0
@@ -488,6 +488,8 @@ Func GUIControl_WM_COMMAND($hWind, $iMsg, $wParam, $lParam)
 			btnTestDonateCC()
 		Case $btnTestRequestCC
 			btnTestRequestCC()
+		Case $btnTestAttackBar
+			btnTestAttackBar()
 		Case $btnTestClickDrag
 			btnTestClickDrag()
 		Case $btnTestImage
@@ -504,8 +506,6 @@ Func GUIControl_WM_COMMAND($hWind, $iMsg, $wParam, $lParam)
 			imglocTestQuickTrain(1)
 		Case $btnTestimglocTroopBar
 			TestImglocTroopBar()
-	    Case $btnTestSmartZap
-			btnTestSmartZap()
 		Case $btnTestAttackCSV
 			btnTestAttackCSV()
 		Case $btnTestFindButton
@@ -1559,7 +1559,7 @@ Func Bind_ImageList($nCtrl)
 
 		Case $hGUI_UPGRADE_TAB
 			; the icons for upgrade tab
-			Local $aIconIndex[4] = [$eIcnLaboratory, $eIcnKingAbility, $eIcnMortar, $eIcnWall]
+			Local $aIconIndex[4] = [$eIcnLaboratory, $eIcnHeroes, $eIcnMortar, $eIcnWall]
 
 		Case $hGUI_NOTIFY_TAB
 			; the icons for NOTIFY tab

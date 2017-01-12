@@ -633,7 +633,7 @@ Func chkDBSpellsWait()
 			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
 	EndIf
-EndFunc
+EndFunc  ;==>chkDBSpellsWait
 
 Func chkABSpellsWait()
 	If $iTownHallLevel > 4 Or $iTownHallLevel = 0 Then ; Must be TH5+ to have spells
@@ -657,7 +657,7 @@ Func chkABSpellsWait()
 			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
 	EndIf
-EndFunc
+EndFunc  ;==>chkABSpellsWait
 
 Func chkSpellWaitError()
 

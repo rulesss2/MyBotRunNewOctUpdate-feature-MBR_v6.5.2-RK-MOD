@@ -13,7 +13,7 @@
 ; Example .......: Noo
 ; ===============================================================================================================================
 
-Func Algorithm_MilkingAttack()
+Func Alogrithm_MilkingAttack()
 
 	LoadAmountOfResourcesImages()
 

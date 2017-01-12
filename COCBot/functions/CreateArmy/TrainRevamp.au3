@@ -5,7 +5,7 @@
 ; Parameters ....: None
 ; Return values .: None
 ; Author ........: Mr.Viper & ProMac OCT 2016
-; Modified ......: ProMac (NOV 2016), Boju (11-2016), MR.ViPER (15-12-2016)
+; Modified ......: ProMac (NOV 2016), Boju (11-2016), MR.ViPER (15-12-2016) , ProMac(01-2017)
 ; Remarks .......: This file is part of MyBot, previously known as ClashGameBot. Copyright 2015-2016
 ;                  MyBot is distributed under the terms of the GNU GPL
 ; Related .......:
@@ -37,9 +37,9 @@ Func TrainRevamp()
 	EndIf
 
 	;Load Troop and Spell counts in "Cur"
-;~ 	CheckExistentArmy("Troops")
-;~ 	CheckExistentArmy("Spells")
-	CountNumberDarkSpells() ; needed value for spell donate
+	;CheckExistentArmy("Troops") ; routine on checkArmyCamp
+	;CheckExistentArmy("Spells") ; routine on checkArmyCamp
+	CountNumberSpells() ; needed value for spell donate
 
 	If $Runstate = False Then Return
 
@@ -92,9 +92,9 @@ Func CheckCamp($NeedOpenArmy = False, $CloseCheckCamp = False)
 	Local $Num = 0
 	Local $Num2 = 0									;============= Adding QuickTrainCombo - DEMEN
 	Local $Num3 = 0									;============= Adding QuickTrainCombo - DEMEN
-	If GUICtrlRead($hRadio_Army1) = $GUI_CHECKED Then $Num = 1
-	If GUICtrlRead($hRadio_Army2) = $GUI_CHECKED Then $Num = 2
-	If GUICtrlRead($hRadio_Army3) = $GUI_CHECKED Then $Num = 3
+	If $iChkQuickArmy1 = 1 Then $Num = 1
+	If $iChkQuickArmy2 = 1 Then $Num = 2
+	If $iChkQuickArmy3 = 1 Then $Num = 3
     If GUICtrlRead($hRadio_Army12) = $GUI_CHECKED Then			;============= Adding QuickTrainCombo - DEMEN
 		$Num = 1
 		$Num2 = 2
@@ -281,7 +281,7 @@ Func CheckArmySpellCastel()
 		Return
 	EndIf
 
-    ;Setlog(" - Army Camp: " & $CurCamp & "/" & $TotalCamp, $COLOR_GREEN) ; coc-ms
+	;Setlog(" - Army Camp: " & $CurCamp & "/" & $TotalCamp, $COLOR_GREEN) ; coc-ms
 	;If $aGetSpellsSize[0] <> "" And $aGetSpellsSize[1] <> "" Then Setlog(" - Spells: " & $aGetSpellsSize[0] & "/" & $aGetSpellsSize[1], $COLOR_GREEN) ; coc-ms
 	If $aGetCastleSize[0] <> "" And $aGetCastleSize[1] <> "" Then Setlog(" - Clan Castle: " & $aGetCastleSize[0] & "/" & $aGetCastleSize[1], $COLOR_GREEN) ; coc-ms
 
@@ -326,9 +326,9 @@ Func CheckArmySpellCastel()
 
 	If $IsFullArmywithHeroesAndSpells = True Then
 		If (($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertCampFull = 1) Then PushMsg("CampFull")
-		Setlog("Chief, are your Army ready for battle? Yes, they are!", $COLOR_GREEN)
+		Setlog("Chief, is your Army ready for battle? Yes, it is!", $COLOR_GREEN)
 	Else
-		Setlog("Chief, are your Army ready for battle? No, Not yet!", $COLOR_ACTION)
+		Setlog("Chief, is your Army ready for the battle? No, not yet!", $COLOR_ACTION)
 		If $text <> "" Then Setlog(" -" & $text & " not Ready!", $COLOR_ACTION)
 	EndIf
 
@@ -413,6 +413,7 @@ Func checkspells()
 EndFunc   ;==>checkspells
 
 Func IsFullCastleSpells($returnOnly = False)
+	Local $CCSpellFull = False
 	Local $ToReturn = False
 	If $Runstate = False Then Return
 	If $iChkWaitForCastleSpell[$DB] = 0 And $iChkWaitForCastleSpell[$LB] = 0 Then
@@ -424,16 +425,21 @@ Func IsFullCastleSpells($returnOnly = False)
 		EndIf
 	EndIf
 
-	Local Const $rColCheck = _ColorCheck(_GetPixelColor(512, 470, True), Hex(0x93C230, 6), 30)
+	$sTempCCSpells = getArmyCampCap(530, 435 + $midOffsetY)
+	$aTempCCSpells = StringSplit($sTempCCSpells,"", $STR_NOCOUNT)
+	$iCurCCSpell = $aTempCCSpells[0]
+	$iMaxCCSpell = $aTempCCSpells[1]
+	If $iCurCCSpell = $iMaxCCSpell Then $CCSpellFull = True
 	Local $rColCheckFullCCTroops = False
-	$ToReturn = (IIf($iDBcheck = 1, IIf($iChkWaitForCastleSpell[$DB] = 1, $rColCheck, True), 1) And IIf($iABcheck = 1, IIf($iChkWaitForCastleSpell[$LB] = 1, $rColCheck, True), 1))
+	$ToReturn = (IIf($iDBcheck = 1, IIf($iChkWaitForCastleSpell[$DB] = 1, $CCSpellFull, True), 1) And IIf($iABcheck = 1, IIf($iChkWaitForCastleSpell[$LB] = 1, $CCSpellFull, True), 1))
 
 
 	If $ToReturn = True Then
 		Setlog("Getting current available spell in clan castle.")
-		$CurCCSpell = GetCurCCSpell()
-		If $CurCCSpell = "" Then
-			If $returnOnly = False Then SetLog("Failed to get current available spell in clan castle", $COLOR_RED)
+		$CurCCSpell1 = GetCurCCSpell(1)
+		$CurCCSpell2 = GetCurCCSpell(2)
+		If $CurCCSpell1 = "" And $iCurCCSpell = 0 Then
+			If $returnOnly = False Then SetLog("Failed to get current available spell in clan castle", $COLOR_ERROR)
 			$ToReturn = False
 			If $returnOnly = False Then
 				Return $ToReturn
@@ -441,17 +447,17 @@ Func IsFullCastleSpells($returnOnly = False)
 				Return ""
 			EndIf
 		EndIf
-		Local $bShouldRemove
-		$bShouldRemove = Not CompareCCSpellWithGUI($CurCCSpell)
+		Local $aShouldRemove
+		$aShouldRemove = CompareCCSpellWithGUI($CurCCSpell1, $CurCCSpell2)
 
-		If $bShouldRemove = True Then
+		If $aShouldRemove <> "" Then
 			SetLog("Removing Useless Spell from Clan Castle", $COLOR_BLUE)
-			RemoveCastleSpell()
+			RemoveCastleSpell($aShouldRemove)
 			If _Sleep(1000) Then Return
 			$canRequestCC = _ColorCheck(_GetPixelColor($aRequestTroopsAO[0], $aRequestTroopsAO[1], True), Hex($aRequestTroopsAO[2], 6), $aRequestTroopsAO[5])
 			If $canRequestCC = True Then
 				$rColCheckFullCCTroops = _ColorCheck(_GetPixelColor(24, 470, True), Hex(0x93C230, 6), 30)
-				If $rColCheckFullCCTroops = True Then SetLog("Castle spell is empty, Requesting for...")
+				If $rColCheckFullCCTroops = True Then SetLog("Clan Castle Spell is empty, Requesting for...")
 				If $returnOnly = False Then
 					RequestCC(False, IIf($rColCheckFullCCTroops = True Or ($iChkWaitForCastleTroops[$DB] = 0 And $iChkWaitForCastleTroops[$LB] = 0), IIf($iChkWaitForCastleSpell[$LB] = 1, IIf(String(GUICtrlRead($cmbABWaitForCastleSpell)) = "Any", "", String(GUICtrlRead($cmbABWaitForCastleSpell) & " Spell")), IIf($iChkWaitForCastleSpell[$DB] = 1, IIf(String(GUICtrlRead($cmbDBWaitForCastleSpell)) = "Any", "", String(GUICtrlRead($cmbDBWaitForCastleSpell) & " Spell")), "")), ""))
 				Else
@@ -465,7 +471,7 @@ Func IsFullCastleSpells($returnOnly = False)
 		$canRequestCC = _ColorCheck(_GetPixelColor($aRequestTroopsAO[0], $aRequestTroopsAO[1], True), Hex($aRequestTroopsAO[2], 6), $aRequestTroopsAO[5])
 		If $canRequestCC = True Then
 			$rColCheckFullCCTroops = _ColorCheck(_GetPixelColor(24, 470, True), Hex(0x93C230, 6), 30)
-			If $rColCheckFullCCTroops = True Then SetLog("Castle spell is empty, Requesting for...")
+			If $rColCheckFullCCTroops = True Then SetLog("Clan Castle Spell is empty, Requesting for...")
 			If $returnOnly = False Then
 				RequestCC(False, IIf($rColCheckFullCCTroops = True Or ($iChkWaitForCastleTroops[$DB] = 0 And $iChkWaitForCastleTroops[$LB] = 0), IIf($iChkWaitForCastleSpell[$LB] = 1, IIf(String(GUICtrlRead($cmbABWaitForCastleSpell)) = "Any", "", String(GUICtrlRead($cmbABWaitForCastleSpell) & " Spell")), IIf($iChkWaitForCastleSpell[$DB] = 1, IIf(String(GUICtrlRead($cmbDBWaitForCastleSpell)) = "Any", "", String(GUICtrlRead($cmbDBWaitForCastleSpell) & " Spell")), "")), ""))
 			Else
@@ -481,7 +487,7 @@ Func IsFullCastleSpells($returnOnly = False)
 	EndIf
 EndFunc   ;==>IsFullCastleSpells
 
-Func RemoveCastleSpell()
+Func RemoveCastleSpell($Slots)
 	If _ColorCheck(_GetPixelColor(806, 472, True), Hex(0xD0E878, 6), 25) = False Then ; If no 'Edit Army' Button found in army tab to edit troops
 		SetLog("Cannot find/verify 'Edit Army' Button in Army tab", $COLOR_ORANGE)
 		Return False ; Exit function
@@ -492,8 +498,14 @@ Func RemoveCastleSpell()
 
 	If _Sleep(500) Then Return
 
-	Local $pos[2] = [575, 575]
-	ClickRemoveTroop($pos, 1, $isldTrainITDelay) ; Click on Remove button as much as needed
+	Local $pos[2] = [575, 575], $pos2[2] = [645, 575]
+
+		If $Slots[0] > 0 Then
+			ClickRemoveTroop($pos, $Slots[0], $isldTrainITDelay) ; Click on Remove button as much as needed
+		EndIf
+		If $Slots[1] > 0 Then
+			ClickRemoveTroop($pos2, $Slots[1], $isldTrainITDelay)
+		EndIf
 
 	If _Sleep(400) Then Return
 
@@ -508,7 +520,7 @@ Func RemoveCastleSpell()
 
 	Click(Random(720, 815, 1), Random(558, 589, 1)) ; Click on 'Okay' button to save changes
 
-	If _Sleep(700) Then Return
+	If _Sleep(1200) Then Return
 
 	If _ColorCheck(_GetPixelColor(508, 428, True), Hex(0xFFFFFF, 6), 30) = False Then ; If no 'Okay' button found to verify that we accept the changes
 		SetLog("Cannot find/verify 'Okay #2' Button in Army tab", $COLOR_ORANGE)
@@ -518,48 +530,216 @@ Func RemoveCastleSpell()
 
 	Click(Random(445, 585, 1), Random(400, 455, 1)) ; Click on 'Okay' button to Save changes... Last button
 
-	SetLog("Castle Sell Removed", $COLOR_GREEN)
+	SetLog("Clan Castle Spell Removed", $COLOR_GREEN)
 	If _Sleep(200) Then Return
 	Return True
 EndFunc   ;==>RemoveCastleSpell
 
-Func CompareCCSpellWithGUI($CS)
-	Local $SpellsInGUI[2] = [GUICtrlRead($cmbDBWaitForCastleSpell), GUICtrlRead($cmbABWaitForCastleSpell)]
-	$dbCSPellWait = IIf($iDBcheck = 1, IIf($iChkWaitForCastleSpell[$DB] = 1, $SpellsInGUI[0] = "Any", True), True)
-	$lbCSPellWait = IIf($iABcheck = 1, IIf($iChkWaitForCastleSpell[$LB] = 1, $SpellsInGUI[1] = "Any", True), True)
-	If $dbCSPellWait = True And $lbCSPellWait = True Then Return True
-	If $Runstate = False Then Return
-	Switch $SpellsInGUI[0]
-		Case $sTxtPoisonSpells
-			$SpellsInGUI[0] = "PSpell"
-		Case $sTxtEarthquakeSpells
-			$SpellsInGUI[0] = "ESpell"
-		Case $sTxtHasteSpells
-			$SpellsInGUI[0] = "HaSpell"
-		Case $sTxtSkeletonSpells
-			$SpellsInGUI[0] = "SkSpell"
-	EndSwitch
-	Switch $SpellsInGUI[1]
-		Case $sTxtPoisonSpells
-			$SpellsInGUI[1] = "PSpell"
-		Case $sTxtEarthquakeSpells
-			$SpellsInGUI[1] = "ESpell"
-		Case $sTxtHasteSpells
-			$SpellsInGUI[1] = "HaSpell"
-		Case $sTxtSkeletonSpells
-			$SpellsInGUI[1] = "SkSpell"
-	EndSwitch
+Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2)
+	If Not $Runstate Then Return
+	Local $sDBCCSpell, $sDBCCSpell2, $sABCCSpell, $sABCCSpell2
+	Local $bCheckDBCCSpell, $bCheckDBCCSpell2, $bCheckABCCSpell, $bCheckABCCSpell2
+	Local $aShouldRemove[2]
 
-	Return ((IIf($iDBcheck = 1, IIf($iChkWaitForCastleSpell[$DB] = 1, $CS = $SpellsInGUI[0], False), False)) Or (IIf($iABcheck = 1, IIf($iChkWaitForCastleSpell[$LB] = 1, $CS = $SpellsInGUI[1], False), False)))
+	$iDBCCSpell = $iCmbWaitForCastleSpell[$DB]
+	$iDBCCSpell2 = $iCmbWaitForCastleSpell2[$DB]
+	$iABCCSpell = $iCmbWaitForCastleSpell[$LB]
+	$iABCCSpell2 = $iCmbWaitForCastleSpell2[$LB]
+
+
+	If $iDBCCSpell = 0 And $iDBCCSpell2 = 0 And $iABCCSpell = 0 And $iABCCSpell2 = 0 Then Return
+
+	If $iDBcheck = 1 And $iChkWaitForCastleSpell[$DB] = 1 Then
+		$bCheckDBCCSpell = True
+	EndIf
+	If $iABcheck = 1 And $iChkWaitForCastleSpell[$LB] = 1 Then
+		$bCheckABCCSpell = True
+	EndIf
+
+
+	If $bCheckDBCCSpell Then
+		Switch $iDBCCSpell
+			Case 0
+				$bCheckDBCCSpell2 = True
+			Case 1
+				$sDBCCSpell = "LSpell"
+				$iDBCCSpell2 = -1
+			Case 2
+				$sDBCCSpell = "HSpell"
+				$iDBCCSpell2 = -1
+			Case 3
+				$sDBCCSpell = "RSpell"
+				$iDBCCSpell2 = -1
+			Case 4
+				$sDBCCSpell = "JSpell"
+				$iDBCCSpell2 = -1
+			Case 5
+				$sDBCCSpell = "Fpell"
+				$iDBCCSpell2 = -1
+			Case 6
+				$sDBCCSpell = "PSpell"
+				$bCheckDBCCSpell2 = True
+			Case 7
+				$sDBCCSpell = "ESpell"
+				$bCheckDBCCSpell2 = True
+			Case 8
+				$sDBCCSpell = "HaSpell"
+				$bCheckDBCCSpell2 = True
+			Case 9
+				$sDBCCSpell = "SkSpell"
+				$bCheckDBCCSpell2 = True
+		EndSwitch
+
+		If $bCheckDBCCSpell2 Then
+			Switch $iDBCCSpell2
+				Case 1
+					$sDBCCSpell2 = "PSpell"
+				Case 2
+					$sDBCCSpell2 = "ESpell"
+				Case 3
+					$sDBCCSpell2 = "HaSpell"
+				Case 4
+					$sDBCCSpell2 = "SkSpell"
+			EndSwitch
+		EndIf
+
+		If $CCSpell2 = "" Then
+			If $CCSpell1 = $sDBCCSpell And $iDBCCSpell < 6 And $iDBCCSpell > 0 Then
+				Return
+			Else
+				$aShouldRemove[0] = 1
+				Return $aShouldRemove
+			EndIf
+		ElseIf $CCSpell1[0][3] = 2 Then
+			If ($CCSpell1[0][0] = $sDBCCSpell Or $iDBCCSpell = 0) And ($CCSpell1[0][0] = $sDBCCSpell2 Or $iDBCCSpell2 = 0) Then
+				Return
+			ElseIf $CCSpell1[0][0] =(( $sDBCCSpell Or $iDBCCSpell = 0) And ($CCSpell1[0][0] <> $sDBCCSpell2 And $iDBCCSpell2  <> 0)) Or (($CCSpell1[0][0] <> $sDBCCSpell And $iDBCCSpell <> 0) And ($CCSpell1[0][0] = $sDBCCSpell2 Or $iDBCCSpell2 = 0)) Then
+				$aShouldRemove[0] = 1
+				Return $aShouldRemove
+			Else
+				$aShouldRemove[0] = 2
+				Return $aShouldRemove
+			EndIf
+		ElseIf $CCSpell1 <> "" And $CCSpell2 <> "" Then
+			If ($CCSpell1[0][0] = $sDBCCSpell Or $iDBCCSpell = 0 Or ($CCSpell1[0][0] = $sDBCCSpell2 Or $iDBCCSpell2 = 0 And $CCSpell2[0][0] <> $sDBCCSpell2)) And (($CCSpell2[0][0] = $sDBCCSpell Or $iDBCCSpell = 0 And $CCSpell1[0][0] <> $sDBCCSpell) Or $CCSpell2[0][0] = $sDBCCSpell2 Or $iDBCCSpell2 = 0) Then
+				Return
+			ElseIf ($CCSpell1[0][0] <> $sDBCCSpell And $iDBCCSpell <> 0 And $CCSpell1[0][0] <> $sDBCCSpell2 And $iDBCCSpell2 <> 0) And ($CCSpell2[0][0] <> $sDBCCSpell And $iDBCCSpell <> 0 And $CCSpell2[0][0] <> $sDBCCSpell2 And $iDBCCSpell2 <> 0) Then
+				$aShouldRemove[0] = 1
+				$aShouldRemove[1] = 1
+				Return $aShouldRemove
+			ElseIf ($CCSpell1[0][0] <> $sDBCCSpell And $iDBCCSpell <> 0) And ($CCSpell1[0][0] <> $sDBCCSpell2 And $iDBCCSpell2 <> 0) Then
+				$aShouldRemove[0] = 1
+				Return $aShouldRemove
+			ElseIf ($CCSpell2[0][0] <> $sDBCCSpell And $iDBCCSpell <> 0) And ($CCSpell2[0][0] <> $sDBCCSpell2 And $iDBCCSpell2 <> 0) Then
+				$aShouldRemove[1] = 1
+				Return $aShouldRemove
+			EndIf
+		EndIf
+
+	EndIf
+
+	If $bCheckABCCSpell Then
+		Switch $iDBCCSpell
+			Case 0
+				$bCheckABCCSpell2 = True
+			Case 1
+				$sABCCSpell = "LSpell"
+			Case 2
+				$sABCCSpell = "HSpell"
+			Case 3
+				$sABCCSpell = "RSpell"
+			Case 4
+				$sABCCSpell = "JSpell"
+			Case 5
+				$sABCCSpell = "Fpell"
+			Case 6
+				$sABCCSpell = "PSpell"
+				$bCheckABCCSpell2 = True
+			Case 7
+				$sABCCSpell = "ESpell"
+				$bCheckABCCSpell2 = True
+			Case 8
+				$sABCCSpell = "HaSpell"
+				$bCheckABCCSpell2 = True
+			Case 9
+				$sABCCSpell = "SkSpell"
+				$bCheckABCCSpell2 = True
+		EndSwitch
+
+		If $bCheckABCCSpell2 Then
+			Switch $iABCCSpell2
+				Case 1
+					$sABCCSpell2 = "PSpell"
+				Case 2
+					$sABCCSpell2 = "ESpell"
+				Case 3
+					$sABCCSpell2 = "HaSpell"
+				Case 4
+					$sABCCSpell2 = "SkSpell"
+			EndSwitch
+		EndIf
+
+		If $CCSpell2 = "" Then
+			If $CCSpell1 = $sABCCSpell And $iABCCSpell < 6 And $iABCCSpell > 0 Then
+				Return
+			Else
+				$aShouldRemove[0] = 1
+				Return $aShouldRemove
+			EndIf
+		ElseIf $CCSpell1[0][3] = 2 Then
+			If ($CCSpell1[0][0] = $sABCCSpell Or $iABCCSpell = 0) And ($CCSpell1[0][0] = $sABCCSpell2 Or $iABCCSpell2 = 0) Then
+				Return
+			ElseIf $CCSpell1[0][0] =(( $sABCCSpell Or $iABCCSpell = 0) And ($CCSpell1[0][0] <> $sABCCSpell2 And $iABCCSpell2  <> 0)) Or (($CCSpell1[0][0] <> $sABCCSpell And $iABCCSpell <> 0) And ($CCSpell1[0][0] = $sABCCSpell2 Or $iABCCSpell2 = 0)) Then
+				$aShouldRemove[0] = 1
+				Return $aShouldRemove
+			Else
+				$aShouldRemove[0] = 2
+				Return $aShouldRemove
+			EndIf
+		ElseIf $CCSpell1 <> "" And $CCSpell2 <> "" Then
+			If ($CCSpell1[0][0] = $sABCCSpell Or $iABCCSpell = 0 Or ($CCSpell1[0][0] = $sABCCSpell2 Or $iABCCSpell2 = 0 And $CCSpell2[0][0] <> $sABCCSpell2)) And (($CCSpell2[0][0] = $sABCCSpell Or $iABCCSpell = 0 And $CCSpell1[0][0] <> $sABCCSpell) Or $CCSpell2[0][0] = $sABCCSpell2 Or $iABCCSpell2 = 0) Then
+				Return
+			ElseIf ($CCSpell1[0][0] <> $sABCCSpell And $iABCCSpell <> 0 And $CCSpell1[0][0] <> $sABCCSpell2 And $iABCCSpell2 <> 0) And ($CCSpell2[0][0] <> $sABCCSpell And $iABCCSpell <> 0 And $CCSpell2[0][0] <> $sABCCSpell2 And $iABCCSpell2 <> 0) Then
+				$aShouldRemove[0] = 1
+				$aShouldRemove[1] = 1
+				Return $aShouldRemove
+			ElseIf ($CCSpell1[0][0] <> $sABCCSpell And $iABCCSpell <> 0) And ($CCSpell1[0][0] <> $sABCCSpell2 And $iABCCSpell2 <> 0) Then
+				$aShouldRemove[0] = 1
+				Return $aShouldRemove
+			ElseIf ($CCSpell2[0][0] <> $sABCCSpell And $iABCCSpell <> 0) And ($CCSpell2[0][0] <> $sABCCSpell2 And $iABCCSpell2 <> 0) Then
+				$aShouldRemove[1] = 1
+				Return $aShouldRemove
+			EndIf
+		EndIf
+	EndIf
+
+
+	
 EndFunc   ;==>CompareCCSpellWithGUI
 
-Func GetCurCCSpell()
+Func GetCurCCSpell($SpellNr)
 	If $Runstate = False Then Return
 	Local $directory = "armytspells-bundle"
-	Local $res = SearchArmy($directory, 508, 518, 585, 570, "", True)
+	If $SpellNr = 1 Then
+		$x1 = 508
+		$x2 = 587
+		$y1 = 500
+		$y2 = 570
+	ElseIf $SpellNr = 2 Then
+		$x1 = 587
+		$x2 = 660
+		$y1 = 500
+		$y2 = 570
+	Else
+		If $debugSetlog = 1 Then SetLog("GetCurCCSpell() called with the wrong argument!", $COLOR_ERROR)
+		Return
+	EndIf
+	Local $res = SearchArmy($directory, $x1, $y1, $x2, $y2, "CCSpells", True)
 	If ValidateSearchArmyResult($res) Then
-		Setlog(" - " & NameOfTroop(Eval("e" & $res[0][0])), $COLOR_GREEN)
-		Return $res[0][0]
+		For $i = 0 To UBound($res) - 1
+			Setlog(" - " & NameOfTroop(Eval("e" & $res[$i][0])), $COLOR_GREEN)
+		Next
+		Return $res
 	EndIf
 	Return ""
 EndFunc   ;==>GetCurCCSpell
@@ -880,7 +1060,7 @@ Func DragIfNeeded($Troop)
 
 	If IsDarkTroop($Troop) Then
 		If _ColorCheck(_GetPixelColor(834, 403, True), Hex(0xD3D3CB, 6), 5) then $rCheckPixel = True
-		If $debugsetlogTrain then Setlog("$rCheckPixel Dark Troops: " & $rCheckPixel)
+		If $debugsetlogTrain then Setlog("DragIfNeeded Dark Troops: " & $rCheckPixel)
 		For $i = 1 To 3
 			If $rCheckPixel = False Then
 				ClickDrag(715, 445 + $midOffsetY, 220, 445 + $midOffsetY, 2000)
@@ -892,7 +1072,7 @@ Func DragIfNeeded($Troop)
 		Next
 	Else
 		If _ColorCheck(_GetPixelColor(22, 403, True), Hex(0xD3D3CB, 6), 5) then $rCheckPixel = True
-		If $debugsetlogTrain then Setlog("$rCheckPixel Normal Troops: " & $rCheckPixel)
+		If $debugsetlogTrain then Setlog("DragIfNeeded Normal Troops: " & $rCheckPixel)
 		For $i = 1 To 3
 			If $rCheckPixel = False Then
 				ClickDrag(220, 445 + $midOffsetY, 725, 445 + $midOffsetY, 2000)
@@ -1079,7 +1259,7 @@ Func RemoveExtraTroops($toRemove)
 		If $Runstate = False Then Return
 		Click(Random(720, 815, 1), Random(558, 589, 1)) ; Click on 'Okay' button to save changes
 
-		If _Sleep(700) Then Return
+		If _Sleep(1200) Then Return
 
 		If _ColorCheck(_GetPixelColor(508, 428, True), Hex(0xFFFFFF, 6), 30) = False Then ; If no 'Okay' button found to verify that we accept the changes
 			SetLog("Cannot find/verify 'Okay #2' Button in Army tab", $COLOR_ORANGE)
@@ -1245,6 +1425,20 @@ Func GetSlotNumber($Spells = False)
 				EndIf
 			Next
 
+			#CS		This Codes Not Needed With New 'True' Train Order and new Training System ;)
+				; Code for DARK Elixir Troops to Put Current Troops into an array by Order
+				For $i = 0 To (UBound($TroopDarkName) - 1)
+				If $Runstate = False Then Return
+				If Number(Eval("Cur" & $TroopDarkName[$i])) > 0 Then
+				For $j = 0 To (UBound($Orders) - 1)
+				If Eval("e" & $TroopDarkName[$i]) = $Orders[$j] Then
+				$allCurTroops[$j] = $TroopDarkName[$i]
+				EndIf
+				Next
+				EndIf
+				Next
+			#CE
+
 			_ArryRemoveBlanks($allCurTroops)
 
 			Return $allCurTroops
@@ -1318,9 +1512,13 @@ Func WhatToTrain($ReturnExtraTroopsOnly = False, $showlog = True)
 		Return $ToReturn
 	EndIf
 
+	; Get Current available troops
+	CheckExistentArmy("Troops", $showlog) ; Update the $Cur variables
+	CheckExistentArmy("Spells", $showlog) ; Update the $Cur variables
+
 	Switch $ReturnExtraTroopsOnly
 		Case False
-			; Check Elixir Troops needed quantity to Train
+			; Check Troops needed quantity to Train
 			For $i = 0 To (UBound($TroopName) - 1)
 				If $Runstate = False Then Return
 				If Number(Eval($TroopName[$i] & "Comp")) > 0 Then
@@ -1341,7 +1539,7 @@ Func WhatToTrain($ReturnExtraTroopsOnly = False, $showlog = True)
 				EndIf
 			Next
 		Case Else
-			; Check Elixir Troops Extra Quantity
+			; Check Troops Extra Quantity
 			For $i = 0 To (UBound($TroopName) - 1)
 				If $Runstate = False Then Return
 				If Number(Eval("Cur" & $TroopName[$i])) > 0 Then
@@ -1583,7 +1781,7 @@ Func CheckExistentArmy($txt = "", $showlog = True)
 	EndIf
 
 	If $txt = "Spells" Then
-		CountNumberDarkSpells()
+		CountNumberSpells()
 	EndIf
 
 EndFunc   ;==>CheckExistentArmy
@@ -1749,6 +1947,11 @@ Func SearchArmy($directory = "", $x = 0, $y = 0, $x1 = 0, $y1 = 0, $txt = "", $s
 		For $i = 0 To UBound($aResult) - 1
 			$aResult[$i][3] = Number(getBarracksNewTroopQuantity(Slot($aResult[$i][1], "spells"), 341)) ; coc-newarmy
 			;Setlog("$aResult: " & $aResult[$i][0] & "|" & $aResult[$i][1] & "|" & $aResult[$i][2] & "|" & $aResult[$i][3])
+		Next
+	EndIf
+	If $txt = "CCSpells" Then
+		For $i = 0 To UBound($aResult) - 1
+			$aResult[$i][3] = Number(getBarracksNewTroopQuantity(Slot($aResult[$i][1], "troop"), 498)) ; coc-newarmy
 		Next
 	EndIf
 	If $txt = "Heroes" Then
@@ -2137,12 +2340,23 @@ Func CheckIsEmptyQueuedAndNotFullArmy()
 	EndIf
 EndFunc   ;==>CheckIsEmptyQueuedAndNotFullArmy
 
-;New Function to count number of dark troops - value needed for existing donate()
-Func CountNumberDarkSpells()
+;New Function to count number of Spells - value needed for existing donate()
+Func CountNumberSpells()
+	;CurTotalDonSpell[0] needed for Spell Donations
+	;CurTotalDonSpell[1] needed to see if more than 6 different Spells are trained, if so then drag donation window
 
-	$CurTotalDarkSpell = $CurPSpell + $CurESpell + $CurHaSpell + $CurSkSpell
+	$CurTotalDonSpell[0] = $CurLSpell + $CurHSpell + $CurRSpell + $CurJSpell + $CurFSpell + $CurPSpell + $CurESpell + $CurHaSpell + $CurSkSpell
+	If $CurLSpell > 0 Then $CurTotalDonSpell[1] += 1
+	If $CurHSpell > 0 Then $CurTotalDonSpell[1] += 1
+	If $CurRSpell > 0 Then $CurTotalDonSpell[1] += 1
+	If $CurJSpell > 0 Then $CurTotalDonSpell[1] += 1
+	If $CurFSpell > 0 Then $CurTotalDonSpell[1] += 1
+	If $CurPSpell > 0 Then $CurTotalDonSpell[1] += 1
+	If $CurESpell > 0 Then $CurTotalDonSpell[1] += 1
+	If $CurHaSpell > 0 Then $CurTotalDonSpell[1] += 1
+	If $CurSkSpell > 0 Then $CurTotalDonSpell[1] += 1
 
-	Return $CurTotalDarkSpell
+	Return $CurTotalDonSpell
 EndFunc   ;==>CountNumberDarkSpells
 
 Func getReceivedTroops($x_start, $y_start, $skip = False) ; Check if 'you received Castle Troops from' , will proceed with a Sleep until the message disappear

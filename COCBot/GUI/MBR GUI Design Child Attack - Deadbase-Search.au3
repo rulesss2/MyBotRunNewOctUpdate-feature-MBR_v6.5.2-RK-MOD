@@ -127,11 +127,15 @@ Local $x = 25, $y = 45
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBWaitForCCSpell")
 
-		$cmbDBWaitForCastleSpell = GUICtrlCreateCombo(GetTranslated(625,76, "Any"), $x, $y + 50, -1, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-			$txtTip = GetTranslated(625,77, "Wait until Someone Donate this Spell") & @CRLF & _
-			GetTranslated(625,81, "Else remove other spells in Castle and Request AGAIN")
+		$cmbDBWaitForCastleSpell = GUICtrlCreateCombo(GetTranslated(625,76, "Any"), $x, $y + 50, 70, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			$txtTip = GetTranslated(625,77, "Wait until Someone Donate this Spell, Else remove other spells in Castle and Request AGAIN")
+			GUICtrlSetData(-1, $sTxtLightningSpells & "|" & $sTxtHealSpells & "|" & $sTxtRageSpells & "|" & $sTxtJumpSpells & "|" & $sTxtFreezeSpells & "|" & $sTxtPoisonSpells & "|" & $sTxtEarthquakeSpells & "|" & $sTxtHasteSpells & "|" & $sTxtSkeletonSpells)
+			_GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetOnEvent(-1, "cmbDBWaitForCCSpell")
+		$lblDBWaitForCastleSpell = GUICtrlCreateLabel(GetTranslated(641, 40, "And"), $x + 80, $y + 53, -1, -1)
+		$cmbDBWaitForCastleSpell2 = GUICtrlCreateCombo(GetTranslated(625,76, "Any"),$x + 110, $y + 50, 70, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetData(-1, $sTxtPoisonSpells & "|" & $sTxtEarthquakeSpells & "|" & $sTxtHasteSpells & "|" & $sTxtSkeletonSpells)
-			GUICtrlSetTip(-1, $txtTip)
+			_GUICtrlSetTip(-1, $txtTip)
 
 		$chkDBWaitForCastleTroops = GUICtrlCreateCheckbox(GetTranslated(625,78, "Wait for Castle troops to be full"), $x, $y + 75, -1, -1)
 			$txtTip = GetTranslated(625,79, "Wait until your Clan Castle be Full")

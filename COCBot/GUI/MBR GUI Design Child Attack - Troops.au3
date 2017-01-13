@@ -41,11 +41,11 @@ $sTxtNone = GetTranslated(603, 0, "None")
 
 $hGUI_ARMY_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 30, $_GUI_MAIN_HEIGHT - 255 - 30, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
 
-$hGUI_ARMY_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600, 52, "Troops/Spells"))
+$hGUI_ARMY_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(1010, 1, "Troops/Spells"))
 Local $xStart = 0, $yStart = 0
 Local $x = $xStart
 Local $y = $yStart + 8
-	$hChk_UseQTrain = GUICtrlCreateCheckbox(GetTranslated(621, 34, "Use Quick Train"), $x + 15, $y + 19, -1, 15)
+	$hChk_UseQTrain = GUICtrlCreateCheckbox(GetTranslated(1010,5, "Use Quick Train"), $x + 15, $y + 19, -1, 15)
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
 	GUICtrlSetOnEvent(-1, "chkUseQTrain")
 	$hRadio_Army1 = GUICtrlCreateRadio(GetTranslated(621, 37, "Army 1"), $x + 120, $y + 20, 50, 15)
@@ -55,7 +55,7 @@ Local $y = $yStart + 8
 	GUICtrlSetState(-1, $GUI_DISABLE)
 	$hRadio_Army3 = GUICtrlCreateRadio(GetTranslated(621, 39, "Army 3"), $x + 240, $y + 20, 50, 15)
 	GUICtrlSetState(-1, $GUI_DISABLE)
-	$LblRemovecamp = GUICtrlCreateLabel(GetTranslated(621, 41, "Remove Army"), $x + 335, $y + 20, -1, 15, $SS_LEFT)
+;~ 	$LblRemovecamp = GUICtrlCreateLabel(GetTranslated(621, 41, "Remove Army"), $x + 335, $y + 20, -1, 15, $SS_LEFT)
 	$icnRemovecamp = GUICtrlCreateIcon($pIconLib, $eIcnResetButton, $x + 405, $y + 17, 24, 24)
 	GUICtrlSetOnEvent(-1, "Removecamp")
 
@@ -67,7 +67,7 @@ Local $y = $yStart + 8
    ; ========= Adding QuickTrainCombo - DEMEN
 Local $x = 10
 Local $y = 45
-$grpTrainTroopsGUI = GUICtrlCreateGroup(GetTranslated(1000, 1, "Train Troops"), $x, $y, 418, 195)
+$grpTrainTroopsGUI = GUICtrlCreateGroup(GetTranslated(1010, 2, "Train Troops"), $x, $y, 418, 195)
 
 Local $x = 30
 $y += 20
@@ -385,7 +385,7 @@ $Y += 35
 	GUICtrlSetState(-1, BitOR($GUI_DISABLE, $GUI_HIDE))
 
 $x += 38
-	$lblTotalTroops = GUICtrlCreateLabel(GetTranslated(621, 15, "Total"), $x + 295, $y + 7, -1, -1, $SS_RIGHT)
+	$lblTotalTroops = GUICtrlCreateLabel(GetTranslated(621, 15, "Total"), $x + 286, $y + 7, -1, -1, $SS_RIGHT)
 	$lblCountTotal = GUICtrlCreateLabel(0, $x + 330, $y + 5, 30, 15, $SS_CENTER)
 	_GUICtrlSetTip(-1, GetTranslated(621, 16, "The total Units of Troops should equal Total Army Camps."))
 	GUICtrlSetBkColor(-1, $COLOR_MONEYGREEN) ;lime, moneygreen
@@ -395,11 +395,11 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 Local $x = 10
 Local $y = 240
-	$grpBrewSpells = GUICtrlCreateGroup(GetTranslated(1000, 2, "Brew Spells"), $x, $y, 418, 123)
+	$grpBrewSpells = GUICtrlCreateGroup(GetTranslated(1010, 3, "Brew Spells"), $x, $y, 418, 123)
 	$x += 20
 	$y += 17
 	$lblTotalSpell = GUICtrlCreateLabel(GetTranslated(622, 2, "Spell Capacity") & " :", $x - 15, $y, -1, -1, $SS_RIGHT)
-	$txtTotalCountSpell = GUICtrlCreateCombo("", $x + 80, $y - 3, 35, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+	$txtTotalCountSpell = GUICtrlCreateCombo("", $x + 120, $y - 3, 35, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 	_GUICtrlSetTip(-1, GetTranslated(622, 3, "Enter the No. of Spells Capacity. Set to ZERO if you don't want any Spells"))
 	GUICtrlSetBkColor(-1, $COLOR_MONEYGREEN) ;lime, moneygreen
 	GUICtrlSetData(-1, "0|2|4|6|7|8|9|10|11", "0")
@@ -537,7 +537,7 @@ $x += 38
 
 $y += 56
 Local $x = 17
-	$chkForceBrewBeforeAttack = GUICtrlCreateCheckbox(GetTranslated(621, 42, "Force Brew Spells"), $x, $y + 12, -1, -1)
+	$chkForceBrewBeforeAttack = GUICtrlCreateCheckbox(GetTranslated(1010, 17, "Force Brew Spells"), $x, $y + 12, -1, -1)
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
 
 Local $x = 210

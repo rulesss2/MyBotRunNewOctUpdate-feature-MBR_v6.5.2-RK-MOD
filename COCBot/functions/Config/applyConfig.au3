@@ -2199,6 +2199,11 @@ If $NotifyAlertBOTSleep = 1 Then
 	Else
 		GUICtrlSetState($chkDebugDeadbaseImage, $GUI_UNCHECKED)
 	EndIf
+	If $DebugSmartZap = 1 Then
+		GUICtrlSetState($chkDebugSmartZap, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkDebugSmartZap, $GUI_UNCHECKED)
+	EndIf
 	If $debugOcr = 1 Then
 		GUICtrlSetState($chkDebugOcr, $GUI_CHECKED)
 	Else

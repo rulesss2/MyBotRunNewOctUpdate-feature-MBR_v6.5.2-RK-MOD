@@ -300,7 +300,7 @@ EndFunc   ;==>chkmakeIMGCSV
 Func btnTestTrain()
 	Local $currentOCR = $debugOcr
 	Local $currentRunState = $RunState
-	
+
 	$RunState = True
 	BeginImageTest()
 

@@ -770,6 +770,11 @@ If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
 		Else
 			$debugDeadbaseImage = 0
 		EndIf
+		If GUICtrlRead($chkDebugSmartZap) = $GUI_CHECKED Then
+			$DebugSmartZap = 1
+		Else
+			$DebugSmartZap = 0
+		EndIf
 		If GUICtrlRead($chkDebugOcr) = $GUI_CHECKED Then
 			$debugOcr = 1
 		Else

@@ -468,6 +468,8 @@ Func GUIControl_WM_COMMAND($hWind, $iMsg, $wParam, $lParam)
 			chkDebugDisableVillageCentering()
 		Case $chkDebugDeadbaseImage
 			chkDebugDeadbaseImage()
+	    Case $chkDebugSmartZap
+			chkDebugSmartZap()
 		Case $chkDebugOcr
 			chkDebugOcr()
 		Case $chkDebugImageSave
@@ -488,12 +490,8 @@ Func GUIControl_WM_COMMAND($hWind, $iMsg, $wParam, $lParam)
 			btnTestDonateCC()
 		Case $btnTestRequestCC
 			btnTestRequestCC()
-		Case $btnTestAttackBar
-			btnTestAttackBar()
 		Case $btnTestClickDrag
 			btnTestClickDrag()
-		Case $btnTestImage
-			btnTestImage()
 		Case $btnTestVillageSize
 			btnTestVillageSize()
 		Case $btnTestDeadBase
@@ -502,8 +500,6 @@ Func GUIControl_WM_COMMAND($hWind, $iMsg, $wParam, $lParam)
 			btnTestDeadBaseFolder()
 		Case $btnTestTHimgloc
 			imglocTHSearch()
-		Case $btnTestQuickTrainsimgloc
-			imglocTestQuickTrain(1)
 		Case $btnTestimglocTroopBar
 			TestImglocTroopBar()
 		Case $btnTestAttackCSV
@@ -1736,6 +1732,7 @@ If $devmode = 1 Then
 	GUICtrlSetState($chkDebugDisableZoomout, $GUI_SHOW + $GUI_ENABLE)
 	GUICtrlSetState($chkDebugDisableVillageCentering, $GUI_SHOW + $GUI_ENABLE)
 	GUICtrlSetState($chkDebugDeadbaseImage, $GUI_SHOW + $GUI_ENABLE)
+	GUICtrlSetState($chkDebugSmartZap, $GUI_SHOW + $GUI_ENABLE)
 	GUICtrlSetState($chkDebugOcr, $GUI_SHOW + $GUI_ENABLE)
 	GUICtrlSetState($chkDebugImageSave, $GUI_SHOW + $GUI_ENABLE)
 	GUICtrlSetState($chkdebugBuildingPos, $GUI_SHOW + $GUI_ENABLE)

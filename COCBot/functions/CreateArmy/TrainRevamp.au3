@@ -283,7 +283,7 @@ Func CheckArmySpellCastel()
 
 	;Setlog(" - Army Camp: " & $CurCamp & "/" & $TotalCamp, $COLOR_GREEN) ; coc-ms
 	;If $aGetSpellsSize[0] <> "" And $aGetSpellsSize[1] <> "" Then Setlog(" - Spells: " & $aGetSpellsSize[0] & "/" & $aGetSpellsSize[1], $COLOR_GREEN) ; coc-ms
-	If $aGetCastleSize[0] <> "" And $aGetCastleSize[1] <> "" Then Setlog(" - Clan Castle: " & $aGetCastleSize[0] & "/" & $aGetCastleSize[1], $COLOR_GREEN) ; coc-ms
+	If $aGetCastleSize[0] <> "" And $aGetCastleSize[1] <> "" Then Setlog("Total Clan Castle: " & $aGetCastleSize[0] & "/" & $aGetCastleSize[1]) ; coc-ms
 
 	; If Drop Trophy with Heroes is checked and a Hero is Available or under the trophies range, then set $bFullArmyHero to True
 	If IsWaitforHeroesActive() = False And $iChkTrophyHeroes = 0 Then $bFullArmyHero = True
@@ -425,17 +425,25 @@ Func IsFullCastleSpells($returnOnly = False)
 		EndIf
 	EndIf
 
-	$sTempCCSpells = getArmyCampCap(530, 435 + $midOffsetY)
-	$aTempCCSpells = StringSplit($sTempCCSpells,"", $STR_NOCOUNT)
-	$iCurCCSpell = $aTempCCSpells[0]
-	$iMaxCCSpell = $aTempCCSpells[1]
+	$sTempCCSpells = getArmyCampCap(527, 438 + $midOffsetY)
+	If $debugsetlogTrain then setlog("CCSpells OCR string: " & $sTempCCSpells)
+	If $sTempCCSpells <> "" then
+		$aTempCCSpells = StringSplit($sTempCCSpells,"#", $STR_NOCOUNT)
+		$iCurCCSpell = $aTempCCSpells[0]
+		$iMaxCCSpell = $aTempCCSpells[1]
+		Setlog("Total Clan Castle Spells: " & $aTempCCSpells[0] & "/" & $aTempCCSpells[1])
+	Else
+		Setlog("Get Castle Spells capacity error!", $COLOR_ERROR)
+		$iMaxCCSpell = 0
+		$iCurCCSpell = 0
+	EndIf
 	If $iCurCCSpell = $iMaxCCSpell Then $CCSpellFull = True
 	Local $rColCheckFullCCTroops = False
 	$ToReturn = (IIf($iDBcheck = 1, IIf($iChkWaitForCastleSpell[$DB] = 1, $CCSpellFull, True), 1) And IIf($iABcheck = 1, IIf($iChkWaitForCastleSpell[$LB] = 1, $CCSpellFull, True), 1))
 
 
 	If $ToReturn = True Then
-		Setlog("Getting current available spell in clan castle.")
+		If $debugsetlogTrain then Setlog("Getting current available spell in clan castle.")
 		$CurCCSpell1 = GetCurCCSpell(1)
 		$CurCCSpell2 = GetCurCCSpell(2)
 		If $CurCCSpell1 = "" And $iCurCCSpell = 0 Then
@@ -2175,16 +2183,16 @@ Func MakingDonatedTroops()
 				EndIf
 
 				If $DefaultTroopGroup[$i][2] * $DefaultTroopGroup[$i][4] <= $RemainTrainSpace[2] Then ; Troopheight x donate troop qty <= avaible train space
-					Local $pos = GetTrainPos(Eval("e" & $DefaultTroopGroup[$i][0]))
+					;Local $pos = GetTrainPos(Eval("e" & $DefaultTroopGroup[$i][0]))
 					Local $howMuch = $DefaultTroopGroup[$i][4]
 					If $DefaultTroopGroup[$i][5] = "e" Then
-						;TrainIt(Eval("e" & $MergedTroopGroup[$i][0]), $howMuch, $isldTrainITDelay)
-						PureClick($pos[0], $pos[1], $howMuch, 500)
+						TrainIt(Eval("e" & $DefaultTroopGroup[$i][0]), $howMuch, $isldTrainITDelay)
+						;PureClick($pos[0], $pos[1], $howMuch, 500)
 					Else
-						ClickDrag(616, 445 + $midOffsetY, 400, 445 + $midOffsetY, 2000) ; Click drag for dark Troops
-						;TrainIt(Eval("e" & $MergedTroopGroup[$i][0]), $howMuch, $isldTrainITDelay)
-						PureClick($pos[0], $pos[1], $howMuch, 500)
-						ClickDrag(400, 445 + $midOffsetY, 616, 445 + $midOffsetY, 2000) ; Click drag for Elixer Troops
+						ClickDrag(715, 445 + $midOffsetY, 220, 445 + $midOffsetY, 2000) ; Click drag for dark Troops
+						TrainIt(Eval("e" & $DefaultTroopGroup[$i][0]), $howMuch, $isldTrainITDelay)
+						;PureClick($pos[0], $pos[1], $howMuch, 500)
+						ClickDrag(220, 445 + $midOffsetY, 725, 445 + $midOffsetY, 2000) ; Click drag for Elixer Troops
 					EndIf
 					If $DefaultTroopGroup[$i][4] > 1 Then $Plural = 1
 					Setlog(" - Trained " & $DefaultTroopGroup[$i][4] & " " & NameOfTroop(Eval("e" & $DefaultTroopGroup[$i][0]), $Plural), $COLOR_ACTION)
@@ -2202,16 +2210,16 @@ Func MakingDonatedTroops()
 						EndIf
 						If $DefaultTroopGroup[$i][2] <= $RemainTrainSpace[2] And $DefaultTroopGroup[$i][4] > 0 Then
 							;TrainIt(Eval("e" & $TroopName[$i]), 1, $isldTrainITDelay)
-							Local $pos = GetTrainPos(Eval("e" & $DefaultTroopGroup[$i][0]))
+							;Local $pos = GetTrainPos(Eval("e" & $DefaultTroopGroup[$i][0]))
 							Local $howMuch = 1
 							If $TroopType[$i] = "e" Then
-								;TrainIt(Eval("e" & $MergedTroopGroup[$i][0]), 1, $isldTrainITDelay)
-								PureClick($pos[0], $pos[1], $howMuch, 500)
+								TrainIt(Eval("e" & $DefaultTroopGroup[$i][0]), $howMuch, $isldTrainITDelay)
+								;PureClick($pos[0], $pos[1], $howMuch, 500)
 							Else
-								ClickDrag(616, 445 + $midOffsetY, 400, 445 + $midOffsetY, 2000) ; Click drag for dark Troops
-								;TrainIt(Eval("e" & $MergedTroopGroup[$i][0]), 1, $isldTrainITDelay)
-								PureClick($pos[0], $pos[1], $howMuch, 500)
-								ClickDrag(400, 445 + $midOffsetY, 616, 445 + $midOffsetY, 2000) ; Click drag for Elixer Troops
+								ClickDrag(715, 445 + $midOffsetY, 220, 445 + $midOffsetY, 2000) ; Click drag for dark Troops
+								TrainIt(Eval("e" & $DefaultTroopGroup[$i][0]), $howMuch, $isldTrainITDelay)
+								;PureClick($pos[0], $pos[1], $howMuch, 500)
+								ClickDrag(220, 445 + $midOffsetY, 725, 445 + $midOffsetY, 2000) ; Click drag for Elixer Troops
 							EndIf
 							If $DefaultTroopGroup[$i][4] > 1 Then $Plural = 1
 							Setlog(" - Trained " & $DefaultTroopGroup[$i][4] & " " & NameOfTroop(Eval("e" & $DefaultTroopGroup[$i][0]), $Plural), $COLOR_ACTION)
@@ -2228,8 +2236,8 @@ Func MakingDonatedTroops()
 		$RemainTrainSpace = GetOCRCurrent(48, 160)
 		If $RemainTrainSpace[0] < $RemainTrainSpace[1] Then ; army camps full
 			Local $howMuch = $RemainTrainSpace[2]
-			;TrainIt(Eval($eArch), 1, $isldTrainITDelay)
-			PureClick($TrainArch[0], $TrainArch[1], $howMuch, 500)
+			TrainIt(Eval($eArch), $howMuch, $isldTrainITDelay)
+			;PureClick($TrainArch[0], $TrainArch[1], $howMuch, 500)
 			If $RemainTrainSpace[2] > 0 Then $Plural = 1
 			Setlog(" - Trained " & $howMuch & " archer(s)!", $COLOR_ACTION)
 			If _Sleep(1000) Then Return ; Needed Delay, OCR was not picking up Troop Changes
@@ -2253,7 +2261,8 @@ Func MakingDonatedTroops()
 				Local $pos = GetTrainPos(Eval("e" & $SpellName[$i]))
 				Local $howMuch = Eval("Don" & $SpellName[$i])
 				If $howMuch > 1 Then $Plural = 1
-				PureClick($pos[0], $pos[1], $howMuch, 500)
+				TrainIt(Eval("e" & $SpellName[$i]), $howMuch, $isldTrainITDelay)
+				;PureClick($pos[0], $pos[1], $howMuch, 500)
 				Setlog(" - Brewed " & $howMuch & " " & NameOfTroop(Eval("e" & $SpellName[$i]), $Plural), $COLOR_ACTION)
 				Assign("Don" & $SpellName[$i], Eval("Don" & $SpellName[$i]) - $howMuch)
 			EndIf
@@ -2303,8 +2312,8 @@ Func CheckIsFullQueuedAndNotFullArmy()
 			If _Sleep(500) Then Return
 			$ArmyCamp = GetOCRCurrent(48, 160)
 			Local $ArchToMake = $ArmyCamp[2]
-			If ISArmyWindow(False, $TrainTroopsTAB) Then PureClick($TrainArch[0], $TrainArch[1], $ArchToMake, 500)
-			Setlog("Trained " & $ArchToMake & " archer(s)!")
+			If ISArmyWindow(False, $TrainTroopsTAB) Then TrainIt($eArch, $ArchToMake, $isldTrainITDelay) ; PureClick($TrainArch[0], $TrainArch[1], $ArchToMake, 500)
+			Setlog("Trained " & $ArchToMake & " Archer(s)!")
 		Else
 			SetLog(" - Conditions NOT met: FULL queue and Not Full Army")
 		EndIf
@@ -2331,8 +2340,8 @@ Func CheckIsEmptyQueuedAndNotFullArmy()
 				If _Sleep(500) Then Return
 				$ArmyCamp = GetOCRCurrent(48, 160)
 				Local $ArchToMake = $ArmyCamp[2]
-				If ISArmyWindow(False, $TrainTroopsTAB) Then PureClick($TrainArch[0], $TrainArch[1], $ArchToMake, 500)
-				SetLog(" - Trained " & $ArchToMake & " archer(s)!")
+				If ISArmyWindow(False, $TrainTroopsTAB) Then TrainIt($eArch, $ArchToMake, $isldTrainITDelay) ;PureClick($TrainArch[0], $TrainArch[1], $ArchToMake, 500)
+				SetLog(" - Trained " & $ArchToMake & " Archer(s)!")
 			Else
 				SetLog(" - Conditions NOT met: Empty queue and Not Full Army")
 			EndIf

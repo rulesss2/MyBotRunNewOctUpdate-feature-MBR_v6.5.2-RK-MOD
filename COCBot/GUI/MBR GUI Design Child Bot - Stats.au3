@@ -617,8 +617,7 @@ $hGUI_STATS_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,39,"Misc"))
 ;--> TAB Misc
 ;TAB Attacks
 $hGUI_STATS_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,40,"Attacks"))
-$34 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)
-Local $xStart = 25, $yStart = 45
+	Local $xStart = 25, $yStart = 45
 	$x = $xStart + 3
 	$y = $yStart + 20
 		$lblStatsDB = GUICtrlCreateLabel(GetTranslated(632,71, "Dead Base"), $x - 20, $y - 32, 187, 17, $SS_CENTER)
@@ -643,7 +642,7 @@ Local $xStart = 25, $yStart = 45
 		$lblAttacked[$DB] = GUICtrlCreateLabel("0", $x + 115, $y + 2, 70, 17, $SS_RIGHT)
 		_GUICtrlSetTip(-1, $txtTip)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnGold, $x - 10, $y, 16, 16)
@@ -653,7 +652,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalGoldGain[$DB] = GUICtrlCreateLabel("0", $x + 115, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnElixir, $x - 10, $y, 16, 16)
@@ -663,7 +662,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalElixirGain[$DB] = GUICtrlCreateLabel("0", $x + 115, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnDark, $x - 10, $y, 16, 16)
@@ -673,7 +672,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalDElixirGain[$DB] = GUICtrlCreateLabel("0", $x + 115, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x - 10, $y, 16, 16)
@@ -683,23 +682,23 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalTrophyGain[$DB] = GUICtrlCreateLabel("0", $x + 115, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$x += 30
 	$y += 25
 		$lblNbrOfDetectedMines[$DB] = GUICtrlCreateLabel("0", $x - 18, $y - 2, 20, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		GUICtrlCreateIcon($pIconLib, $eIcnMine, $x + 6, $y - 4, 16, 16)
 	$x += 20
 		$lblNbrOfDetectedCollectors[$DB] = GUICtrlCreateLabel("0", $x + 18, $y - 2, 20, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		GUICtrlCreateIcon($pIconLib, $eIcnCollector, $x + 43, $y - 4, 16, 16)
 	$x += 20
 		$lblNbrOfDetectedDrills[$DB] = GUICtrlCreateLabel("0", $x + 54, $y - 2, 20, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		GUICtrlCreateIcon($pIconLib, $eIcnDrill, $x + 79, $y - 4, 16, 16)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
@@ -713,7 +712,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblAttacked[$LB] = GUICtrlCreateLabel("0", $x + 150, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnGold, $x + 22, $y, 16, 16)
@@ -723,7 +722,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalGoldGain[$LB] = GUICtrlCreateLabel("0", $x + 150, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnElixir, $x + 22, $y, 16, 16)
@@ -733,7 +732,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalElixirGain[$LB] = GUICtrlCreateLabel("0", $x + 150, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 22, $y, 16, 16)
@@ -743,7 +742,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalDElixirGain[$LB] = GUICtrlCreateLabel("0", $x + 150, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x + 22, $y, 16, 16)
@@ -753,23 +752,23 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalTrophyGain[$LB] = GUICtrlCreateLabel("0", $x + 150, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$x += 62
 	$y += 25
 		$lblNbrOfDetectedMines[$LB] = GUICtrlCreateLabel("0", $x - 18, $y - 2, 20, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		GUICtrlCreateIcon($pIconLib, $eIcnMine, $x + 6, $y - 4, 16, 16)
 	$x += 20
 		$lblNbrOfDetectedCollectors[$LB] = GUICtrlCreateLabel("0", $x + 18, $y - 2, 20, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 			GUICtrlCreateIcon($pIconLib, $eIcnCollector, $x + 43, $y - 4, 16, 16)
 	$x += 20
 		$lblNbrOfDetectedDrills[$LB] = GUICtrlCreateLabel("0", $x + 54, $y - 2, 20, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		GUICtrlCreateIcon($pIconLib, $eIcnDrill, $x + 79, $y - 4, 16, 16)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
@@ -796,7 +795,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblAttacked[$TS] = GUICtrlCreateLabel("0", $x + 115, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnGold, $x - 10, $y, 16, 16)
@@ -806,7 +805,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalGoldGain[$TS] = GUICtrlCreateLabel("0", $x + 115, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnElixir, $x - 10, $y, 16, 16)
@@ -816,7 +815,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalElixirGain[$TS] = GUICtrlCreateLabel("0", $x + 115, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnDark, $x - 10, $y, 16, 16)
@@ -826,7 +825,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalDElixirGain[$TS] = GUICtrlCreateLabel("0", $x + 115, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x - 10, $y, 16, 16)
@@ -836,7 +835,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalTrophyGain[$TS] = GUICtrlCreateLabel("0", $x + 115, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$x += 25
 	$y += 25
@@ -846,7 +845,7 @@ Local $xStart = 25, $yStart = 45
 		;GUICtrlCreateLabel("Success:", $x - 15, $y - 2, -1, 17)
 		$lblNbrOfTSSuccess = GUICtrlCreateLabel("0", $x + 13, $y - 2, 25, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$x += 50
 		GUICtrlCreateIcon($pIconLib, $eIcnRedLight, $x + 35, $y - 4, 16, 16)
@@ -855,7 +854,7 @@ Local $xStart = 25, $yStart = 45
 		;GUICtrlCreateLabel("Fail:", $x + 50, $y - 2, -1, 17)
 		$lblNbrOfTSFailed = GUICtrlCreateLabel("0", $x + 63, $y - 2, 25, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
@@ -869,7 +868,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblAttacked[$TB] = GUICtrlCreateLabel("0", $x + 150, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnGold, $x + 22, $y, 16, 16)
@@ -879,7 +878,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalGoldGain[$TB] = GUICtrlCreateLabel("0", $x + 150, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnElixir, $x + 22, $y, 16, 16)
@@ -889,7 +888,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalElixirGain[$TB] = GUICtrlCreateLabel("0", $x + 150, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 22, $y, 16, 16)
@@ -899,7 +898,7 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalDElixirGain[$TB] = GUICtrlCreateLabel("0", $x + 150, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		$txtTip = GetTranslated(632,88, "The amount of Dark Elixir gained from TH Bully bases attacked by the Bot.")
 		_GUICtrlSetTip(-1, $txtTip)
 	$y += 20
@@ -910,25 +909,25 @@ Local $xStart = 25, $yStart = 45
 		_GUICtrlSetTip(-1, $txtTip)
 		$lblTotalTrophyGain[$TB] = GUICtrlCreateLabel("0", $x + 150, $y + 2, 70, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		_GUICtrlSetTip(-1, $txtTip)
 	$x += 64
 	$y += 25
 		$lblNbrOfDetectedMines[$TB] = GUICtrlCreateLabel("0", $x - 18, $y - 2, 18, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		GUICtrlCreateIcon($pIconLib, $eIcnMine, $x + 6, $y - 4, 16, 16)
 	$x += 20
 		$lblNbrOfDetectedCollectors[$TB] = GUICtrlCreateLabel("0", $x + 18, $y - 2, 18, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		GUICtrlCreateIcon($pIconLib, $eIcnCollector, $x + 43, $y - 4, 16, 16)
 	$x += 20
 		$lblNbrOfDetectedDrills[$TB] = GUICtrlCreateLabel("0", $x + 54, $y - 2, 18, 17, $SS_RIGHT)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		GUICtrlSetColor(-1, 0x663399)
+		GUICtrlSetColor(-1, $COLOR_BLACK)
 		GUICtrlCreateIcon($pIconLib, $eIcnDrill, $x + 79, $y - 4, 16, 16)
-	$x -= 120
+	$x -= 124
 	$y -= 110
 		$lblRev1 = GUICtrlCreateLabel("", $x + 28, $y - 160, 5, 300)
 		GUICtrlSetBkColor(-1, 0xA8A8A8)

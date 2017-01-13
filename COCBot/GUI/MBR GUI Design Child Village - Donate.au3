@@ -511,7 +511,7 @@ $x += $Offx
 	$y = $yDon
 	$chkExtraAlphabets = GUICtrlCreateCheckbox(GetTranslated(612,25, "Enable Cyrillic Alphabet"), $x - 15 , $y +149, -1, -1)
 		_GUICtrlSetTip(-1, GetTranslated(612,26, "Check this to enable the Cyrillic Alphabet Recognition."))
-	$chkExtraChinese = GUICtrlCreateCheckbox(GetTranslated(612,103, "Enable Chinese Alphabet"), $x + 125, $y + 149, -1, -1)
+	$chkExtraChinese = GUICtrlCreateCheckbox(GetTranslated(612,103, "Enable Chinese Alphabet"), $x + 201, $y + 149, -1, -1)
 		_GUICtrlSetTip(-1, GetTranslated(612,104, "Check this to enable the Chinese Alphabet Recognition."))
 	$grpBarbarians = GUICtrlCreateGroup($sTxtBarbarians, $x - 20, $y - 20, 430, 169)
 		$x -= 10

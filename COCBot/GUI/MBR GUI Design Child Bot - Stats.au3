@@ -934,7 +934,7 @@ $hGUI_STATS_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,40,"Attacks"))
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 ;--> TAB Attacks
-
+;TAB Attacks
 $hGUI_STATS_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600, 55,"Donations"))
 
 Local $x = 5, $y = 28, $z = 33
@@ -1045,59 +1045,34 @@ $y += 45
 
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
-Local $x = 5, $y = 250, $z = 263
+Local $x = 5, $y = 255, $z = 263
 
-$grpDElxTrSp = GUICtrlCreateGroup(GetTranslated(632,119,"Spells"), $x, $y, 427, 150, BitOR($GUI_SS_DEFAULT_GROUP,$BS_CENTER))
+$grpDElxTrSp = GUICtrlCreateGroup(GetTranslated(632,119,"Spells"), $x, $y, 427, 95, BitOR($GUI_SS_DEFAULT_GROUP,$BS_CENTER))
 GUICtrlSetFont(-1, 11, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-
-$x -= 25
+$x -= 12
+$x += 55
 $y += 20
 $z += 20
 
-	GUICtrlCreateIcon($pIconLib, $eIcnLightSpell, $x + 60, $y, 32, 32)
-	$lblDonQ[20] = GUICtrlCreateLabel("0", $x + 25, $z, 30, 20, $SS_RIGHT)
+	GUICtrlCreateIcon($pIconLib, $eIcnPoisonSpell, $x + 60, $y, 32, 32)
+	$lblDonQ[20] = GUICtrlCreateLabel("0", $x + 20, $z, 35, 20, $SS_RIGHT)
 	GUICtrlSetFont(-1, 11, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 
-	GUICtrlCreateIcon($pIconLib, $eIcnHealSpell, $x + 130, $y, 32, 32)
+	GUICtrlCreateIcon($pIconLib, $eIcnEarthQuakeSpell, $x + 130, $y, 32, 32)
 	$lblDonQ[21] = GUICtrlCreateLabel("0", $x + 90, $z, 35, 20, $SS_RIGHT)
 	GUICtrlSetFont(-1, 11, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 
-	GUICtrlCreateIcon($pIconLib, $eIcnRageSpell, $x + 200, $y, 32, 32)
+	GUICtrlCreateIcon($pIconLib, $eIcnHasteSpell, $x + 200, $y, 32, 32)
 	$lblDonQ[22] = GUICtrlCreateLabel("0", $x + 160, $z, 35, 20, $SS_RIGHT)
 	GUICtrlSetFont(-1, 11, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 
-	GUICtrlCreateIcon($pIconLib, $eIcnJumpSpell, $x + 270, $y, 32, 32)
+	GUICtrlCreateIcon($pIconLib, $eIcnSkeletonSpell, $x + 270, $y, 32, 32)
 	$lblDonQ[23] = GUICtrlCreateLabel("0", $x + 230, $z, 35, 20, $SS_RIGHT)
 	GUICtrlSetFont(-1, 11, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 
-	GUICtrlCreateIcon($pIconLib, $eIcnFreezeSpell, $x + 340, $y, 32, 32)
-	$lblDonQ[24] = GUICtrlCreateLabel("0", $x + 300, $z, 35, 20, $SS_RIGHT)
-	GUICtrlSetFont(-1, 11, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-
-
-$y += 50
-$z += 50
-
-
-	GUICtrlCreateIcon($pIconLib, $eIcnPoisonSpell, $x + 60, $y, 32, 32)
-	$lblDonQ[25] = GUICtrlCreateLabel("0", $x + 25, $z, 30, 20, $SS_RIGHT)
-	GUICtrlSetFont(-1, 11, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-
-	GUICtrlCreateIcon($pIconLib, $eIcnHasteSpell, $x + 130, $y, 32, 32)
-	$lblDonQ[26] = GUICtrlCreateLabel("0", $x + 90, $z, 35, 20, $SS_RIGHT)
-	GUICtrlSetFont(-1, 11, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-
-	GUICtrlCreateIcon($pIconLib, $eIcnEarthquakeSpell, $x + 200, $y, 32, 32)
-	$lblDonQ[27] = GUICtrlCreateLabel("0", $x + 160, $z, 35, 20, $SS_RIGHT)
-	GUICtrlSetFont(-1, 11, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-
-	GUICtrlCreateIcon($pIconLib, $eIcnSkeletonSpell, $x + 270, $y, 32, 32)
-	$lblDonQ[28] = GUICtrlCreateLabel("0", $x + 230, $z, 35, 20, $SS_RIGHT)
-	GUICtrlSetFont(-1, 11, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-
-
-$x += 26
-$y += 45
+$x -= 40
+$x -= 2
+$y += 40
 
 	$lblTotalSpellsQ = GUICtrlCreateLabel(GetTranslated(632,120,"Total Donated") & " : 0", $x + 5, $y, 230, 20, $SS_CENTER)
 	GUICtrlSetFont(-1, 11, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)

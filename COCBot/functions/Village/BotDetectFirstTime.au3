@@ -53,6 +53,8 @@ Func BotDetectFirstTime()
 		Setlog("Proceed with caution as errors may occur.", $COLOR_ERROR)
 	EndIf
 
+	If $iTownHallLevel < 2 or ( $TownHallPos[1] = "" Or $TownHallPos[1] = -1) then LocateTownHall()
+
 	;If _Sleep($iDelayBotDetectFirstTime1) Then Return
 	;ClanLevel()
 	If _Sleep($iDelayBotDetectFirstTime1) Then Return

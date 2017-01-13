@@ -29,7 +29,6 @@ Global $iOldGoldFromMines, $iOldElixirFromCollectors, $iOldDElixirFromDrills ; n
 Global $iOldAttackedCount, $iOldAttackedVillageCount[$iModeCount + 1] ; number of attack villages for DB, LB, TB, TS
 Global $iOldTotalGoldGain[$iModeCount + 1], $iOldTotalElixirGain[$iModeCount + 1], $iOldTotalDarkGain[$iModeCount + 1], $iOldTotalTrophyGain[$iModeCount + 1] ; total resource gains for DB, LB, TB, TS
 Global $iOldNbrOfDetectedMines[$iModeCount + 1], $iOldNbrOfDetectedCollectors[$iModeCount + 1], $iOldNbrOfDetectedDrills[$iModeCount + 1] ; number of mines, collectors, drills detected for DB, LB, TB
-Global $iOldGainedXPHour
 
 Func UpdateStats()
 	If $FirstRun = 1 Then
@@ -39,7 +38,7 @@ Func UpdateStats()
 		GUICtrlSetState($picResultElixirTemp, $GUI_HIDE)
 		GUICtrlSetState($picResultDETemp, $GUI_HIDE)
 
-		GUICtrlSetState($lblResultGoldNow, $GUI_SHOW)
+		GUICtrlSetState($lblResultGoldNow, $GUI_SHOW + $GUI_DISABLE) ; $GUI_DISABLE to trigger default view in btnVillageStat
 		GUICtrlSetState($picResultGoldNow, $GUI_SHOW)
 		GUICtrlSetState($lblResultElixirNow, $GUI_SHOW)
 		GUICtrlSetState($picResultElixirNow, $GUI_SHOW)
@@ -55,13 +54,11 @@ Func UpdateStats()
 		GUICtrlSetState($lblResultTrophyNow, $GUI_SHOW)
 		GUICtrlSetState($lblResultBuilderNow, $GUI_SHOW)
 		GUICtrlSetState($lblResultGemNow, $GUI_SHOW)
+		btnVillageStat("UpdateStats")
 		$iGoldStart = $iGoldCurrent
 		$iElixirStart = $iElixirCurrent
 		$iDarkStart = $iDarkCurrent
 		$iTrophyStart = $iTrophyCurrent
-		;XP & Level detection
-		$iXPStart = $iXPCurrent
-		$iLevelXPStart = $iLevelXPCurrent
 		GUICtrlSetData($lblResultGoldStart, _NumberFormat($iGoldCurrent, True))
 		GUICtrlSetData($lblResultGoldNow, _NumberFormat($iGoldCurrent, True))
 		$iOldGoldCurrent = $iGoldCurrent
@@ -87,14 +84,13 @@ Func UpdateStats()
 	EndIf
 
 	If $FirstAttack = 1 Then
-;~ 		GUICtrlSetState($lblLastAttackTemp, $GUI_HIDE)
-;~ 		GUICtrlSetState($lblLastAttackBonusTemp, $GUI_HIDE)
-;~ 		GUICtrlSetState($lblTotalLootTemp, $GUI_HIDE)
-;~ 		GUICtrlSetState($lblHourlyStatsTemp, $GUI_HIDE)
+		;GUICtrlSetState($lblLastAttackTemp, $GUI_HIDE)
+		;GUICtrlSetState($lblLastAttackBonusTemp, $GUI_HIDE)
+		;GUICtrlSetState($lblTotalLootTemp, $GUI_HIDE)
+		;GUICtrlSetState($lblHourlyStatsTemp, $GUI_HIDE)
 		$FirstAttack = 2
 	EndIf
 
-    ;Top Loot by rulesss
 	If Number($iGoldLast) > Number($topgoldloot) Then
 		$topgoldloot = $iGoldLast
 		GUICtrlSetData($lbltopgoldloot, _NumberFormat($topgoldloot))
@@ -114,7 +110,7 @@ Func UpdateStats()
 		$topTrophyloot = $iTrophylast
 		GUICtrlSetData($lbltopTrophyloot, _NumberFormat($topTrophyloot))
 	EndIf
-	; --------------------- End
+
 	If $ResetStats = 1 Then
 		GUICtrlSetData($lblResultGoldStart, _NumberFormat($iGoldCurrent, True))
 		GUICtrlSetData($lblResultElixirStart, _NumberFormat($iElixirCurrent, True))
@@ -127,7 +123,7 @@ Func UpdateStats()
 		GUICtrlSetData($lblHourlyStatsDark, "")
 		GUICtrlSetData($lblHourlyStatsTrophy, "")
 		GUICtrlSetData($lblResultGoldHourNow, "") ;GUI BOTTOM
-		GUICtrlSetData($lblResultElixirHourNow, "");GUI BOTTOM
+		GUICtrlSetData($lblResultElixirHourNow, "") ;GUI BOTTOM
 		GUICtrlSetData($lblResultDEHourNow, "") ;GUI BOTTOM
 
 	EndIf
@@ -326,27 +322,29 @@ Func UpdateStats()
 		$iOldDElixirFromDrills = $iDElixirFromDrills
 	EndIf
 
-;==============================================================
-; SmartZap - Added by DocOC team
-;==============================================================
-   ; SmartZap DE Gain - Added by DocOC team
-	If $iOldSmartZapGain <> $smartZapGain Then
-		GUICtrlSetData($lblSmartZap, _NumberFormat($smartZapGain, True))
-		$iOldSmartZapGain = $smartZapGain
+	; ============================================================================
+	; ================================= SmartZap =================================
+	; ============================================================================
+	; SmartZap DE Gain
+	If $iOldSmartZapGain <> $iSmartZapGain Then
+		GUICtrlSetData($lblSmartZapGain, _NumberFormat($iSmartZapGain, True))
+		$iOldSmartZapGain = $iSmartZapGain
 	EndIf
 
-	; SmartZap Spells Used - Added by DocOC team
-	If $iOldNumLTSpellsUsed <> $numLSpellsUsed Then
-		GUICtrlSetData($lblLightningUsed, _NumberFormat($numLSpellsUsed, True))
-		$iOldNumLTSpellsUsed = $numLSpellsUsed
- 	EndIf
-;==============================================================
-; SmartZap - Added by DocOC team
-;==============================================================
-	If $iOldGainedXPHour <> $iGainedXPHour Then
-		GUICtrlSetData($lblXPSXWonHour, _NumberFormat($iGainedXPHour))
-		$iOldGainedXPHour = $iGainedXPHour
+	; SmartZap Spells Used
+	If $iOldNumLSpellsUsed <> $iNumLSpellsUsed Then
+		GUICtrlSetData($lblLightningUsed, _NumberFormat($iNumLSpellsUsed, True))
+		$iOldNumLSpellsUsed = $iNumLSpellsUsed
 	EndIf
+
+	; EarthQuake Spells Used
+	If $iOldNumEQSpellsUsed <> $iNumEQSpellsUsed Then
+		GUICtrlSetData($lblEarthQuakeUsed, _NumberFormat($iNumEQSpellsUsed, True))
+		$iOldNumEQSpellsUsed = $iNumEQSpellsUsed
+	EndIf
+	; ============================================================================
+	; ================================= SmartZap =================================
+	; ============================================================================
 
 	$iAttackedCount = 0
 
@@ -415,20 +413,17 @@ Func UpdateStats()
 		EndIf
 		GUICtrlSetData($lblHourlyStatsTrophy, _NumberFormat(Round($iTrophyTotal / (Int(TimerDiff($sTimer) + $iTimePassed)) * 3600 * 1000)) & " / h")
 
-		If $ichkSwitchAcc <> 1 Then 		; 	SwitchAcc Mode - Demen
-			GUICtrlSetData($lblResultGoldHourNow, _NumberFormat(Round($iGoldTotal / (Int(TimerDiff($sTimer) + $iTimePassed)) * 3600)) & "K / h") ;GUI BOTTOM
-			GUICtrlSetData($lblResultElixirHourNow, _NumberFormat(Round($iElixirTotal / (Int(TimerDiff($sTimer) + $iTimePassed)) * 3600)) & "K / h") ;GUI BOTTOM
-			If $iDarkStart <> "" Then
-				GUICtrlSetData($lblResultDEHourNow, _NumberFormat(Round($iDarkTotal / (Int(TimerDiff($sTimer) + $iTimePassed)) * 3600 * 1000)) & " / h") ;GUI BOTTOM
-			EndIf							; 	SwitchAcc Mode - Demen
+	If $ichkSwitchAcc <> 1 Then 		; 	SwitchAcc Mode - Demen
+		GUICtrlSetData($lblResultGoldHourNow, _NumberFormat(Round($iGoldTotal / (Int(TimerDiff($sTimer) + $iTimePassed)) * 3600)) & "K / h") ;GUI BOTTOM
+		GUICtrlSetData($lblResultElixirHourNow, _NumberFormat(Round($iElixirTotal / (Int(TimerDiff($sTimer) + $iTimePassed)) * 3600)) & "K / h") ;GUI BOTTOM
+		If $iDarkStart <> "" Then
+			GUICtrlSetData($lblResultDEHourNow, _NumberFormat(Round($iDarkTotal / (Int(TimerDiff($sTimer) + $iTimePassed)) * 3600 * 1000)) & " / h") ;GUI BOTTOM
 		EndIf
+	EndIf							; 	SwitchAcc Mode - Demen
 
 	EndIf
 
-	If $ichkSwitchAcc = 1 Then UpdateStatsForSwitchAcc()	;	SwitchAcc Mode - Demen
-
-    ;Top Loot by rulesss
-    If Number($iGoldLast) > Number($topgoldloot) Then
+	If Number($iGoldLast) > Number($topgoldloot) Then
 		$topgoldloot = $iGoldLast
 		GUICtrlSetData($lbltopgoldloot, _NumberFormat($topgoldloot))
 	EndIf
@@ -447,7 +442,9 @@ Func UpdateStats()
 		$topTrophyloot = $iTrophylast
 		GUICtrlSetData($lbltopTrophyloot, _NumberFormat($topTrophyloot))
 	EndIf
-    ;---------------End
+
+	If $ichkSwitchAcc = 1 Then UpdateStatsForSwitchAcc()	;	SwitchAcc Mode - Demen
+
 	If $ResetStats = 1 Then
 		$ResetStats = 0
 	EndIf
@@ -461,10 +458,10 @@ Func ResetStats()
 	$sTimer = TimerInit()
 	GUICtrlSetData($lblresultruntime, "00:00:00")
 	GUICtrlSetData($lblResultRuntimeNow, "00:00:00")
-;~ 	GUICtrlSetState($lblLastAttackTemp, $GUI_SHOW)
-;~ 	GUICtrlSetState($lblLastAttackBonusTemp, $GUI_SHOW)
-;~ 	GUICtrlSetState($lblTotalLootTemp, $GUI_SHOW)
-;~ 	GUICtrlSetState($lblHourlyStatsTemp, $GUI_SHOW)
+	;GUICtrlSetState($lblLastAttackTemp, $GUI_SHOW)
+	;GUICtrlSetState($lblLastAttackBonusTemp, $GUI_SHOW)
+	;GUICtrlSetState($lblTotalLootTemp, $GUI_SHOW)
+	;GUICtrlSetState($lblHourlyStatsTemp, $GUI_SHOW)
 	$iGoldStart = $iGoldCurrent
 	$iElixirStart = $iElixirCurrent
 	$iDarkStart = $iDarkCurrent
@@ -501,13 +498,11 @@ Func ResetStats()
 	$iGoldFromMines = 0
 	$iElixirFromCollectors = 0
 	$iDElixirFromDrills = 0
-
-	If $ichkSwitchAcc = 1 Then ResetStatsForSwitchAcc()		;	SwitchAcc Mode - Demen
-
-; ======================= SmartZap - Added by NTS team =======================
-	$smartZapGain = 0
-	$numLSpellsUsed = 0
-; ======================= SmartZap - Added by NTS team =======================
+	; ======================= SmartZap =======================
+	$iSmartZapGain = 0
+	$iNumLSpellsUsed = 0
+	$iNumEQSpellsUsed = 0
+	; ======================= SmartZap =======================
 	For $i = 0 To $iModeCount
 		$iAttackedVillageCount[$i] = 0
 		$iTotalGoldGain[$i] = 0
@@ -518,5 +513,18 @@ Func ResetStats()
 		$iNbrOfDetectedCollectors[$i] = 0
 		$iNbrOfDetectedDrills[$i] = 0
 	Next
+
+	For $i = 0 To 28
+		$TroopsDonQ[$i] = 0
+		GUICtrlSetData($lblDonQ[$i], $TroopsDonQ[$i])
+		$TroopsDonXP[$i] = 0
+	Next
+
+	GUICtrlSetData($lblTotalTroopsQ, "Total Donated : 0")
+	GUICtrlSetData($lblTotalSpellsQ, "Total Donated : 0")
+	GUICtrlSetData($lblTotalTroopsXP, "XP Won : 0")
+	GUICtrlSetData($lblTotalSpellsXP, "XP Won : 0")
+    If $ichkSwitchAcc = 1 Then ResetStatsForSwitchAcc()		;	SwitchAcc Mode - Demen
+
 	UpdateStats()
 EndFunc   ;==>ResetStats

@@ -577,10 +577,10 @@ Global $iDroplineEdge = [$DROPLINE_EDGE_FIRST, $DROPLINE_EDGE_FIRST, 0, 0, 0, 0]
 Global $iAtkAlgorithm[$iModeCount]
 
 ;--------------------------------------------------------------------------
-; Notify Revamp - PushBullet/Telegram variables - Added by DocOC team
+; Notify PushBullet/Telegram variables -  by RK Team
 ;-------------------------------------------------------------------------
 ;PushBullet---------------------------------------------------------------
-Global $NotifyVersion = " v 1.6.0 "
+Global $NotifyVersion = " MOD v 1.6.0 "
 Global $NotifyPBEnabled = 0
 Global $NotifyPBToken = ""
 
@@ -647,7 +647,7 @@ Global $txbNotifyPBToken, $txbNotifyTGToken, $txbNotifyOrigin, $chkNotifyAlertMa
 Global $chkNotifyAlertUpgradeWall, $chkNotifyAlertOutOfSync, $chkNotifyAlertTakeBreak, $chkNotifyAlertBuilderIdle, $chkNotifyAlertVillageStats, $chkNotifyAlertLastAttack
 Global $chkNotifyAlertAnotherDevice, $chkNotifyAlertMaintenance, $chkNotifyAlertBAN, $chkNotifyBOTUpdate, $chkNotifyBOTSleep
 ;--------------------------------------------------------------------------
-; Notify Revamp - PushBullet/Telegram variables - Added by DocOC team
+; Notify PushBullet/Telegram variables -  by RK Team
 ;-------------------------------------------------------------------------
 
 Global $sLogFName = ""

@@ -776,7 +776,7 @@ Func NotifyRemoteControlProc($OnlyPB)
 		Local $TGActionMSG = StringUpper(StringStripWS($TGLastMessage, $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES)) ;upercase & remove space laset message
 		If ($TGActionMSG = "/START" Or $TGActionMSG = "KEYB") And $TGLastRemote <> $TGLast_UID Then
 			$TGLastRemote = $TGLast_UID
-			NotifyActivateKeyboardOnTelegram("\uD83D\uDE0E \u270C Telegram " & $NotifyVersion & " by RK MOD Team")
+			NotifyActivateKeyboardOnTelegram("\uD83D\uDE0E \u270C Telegram " & $NotifyVersion & " by RK Team")
 		Else
 			If $TGLastRemote <> $TGLast_UID Then
 				$TGLastRemote = $TGLast_UID
@@ -814,7 +814,7 @@ Func NotifyRemoteControlProc($OnlyPB)
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,704, "Your request has been received."), $COLOR_GREEN)
 						NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,165,"Request to Restart") & "...\n" & GetTranslated(620,143,"Your bot and Emulator are now restarting..."))
 						SaveConfig()
-						_Restart()						
+						_Restart()
 					Case GetTranslated(620,11,"STOP"), '\u23F9 ' & GetTranslated(620,11,"Stop")
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,706, "Your request has been received. Bot is now stopped"), $COLOR_GREEN)
 						If $Runstate = True Then

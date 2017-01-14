@@ -1302,10 +1302,7 @@ Func tabBot()
 			Case $tabidx = 3 ; Android tab
 				GUISetState(@SW_HIDE, $hGUI_STATS)
 				ControlHide("","",$cmbLanguage)
-			Case $tabidx = 4 ; Android tab
-				GUISetState(@SW_HIDE, $hGUI_STATS)
-				ControlHide("","",$cmbLanguage)
-			Case $tabidx = 5 ; Stats tab
+			Case $tabidx = 4 ; Stats tab
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_STATS)
 				ControlHide("","",$cmbLanguage)
 		EndSelect

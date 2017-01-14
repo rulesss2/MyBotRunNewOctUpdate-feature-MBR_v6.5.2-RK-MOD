@@ -775,6 +775,11 @@ If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
 		Else
 			$DebugSmartZap = 0
 		EndIf
+		If GUICtrlRead($chkDebugSX) = $GUI_CHECKED Then
+			$DebugSX = 1
+		Else
+			$DebugSX = 0
+		EndIf
 		If GUICtrlRead($chkDebugOcr) = $GUI_CHECKED Then
 			$debugOcr = 1
 		Else
@@ -2653,6 +2658,8 @@ If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
 		IniWriteS($config, "debug", "disablevillagecentering", $debugDisableVillageCentering)
 		IniWriteS($config, "debug", "debugdeadbaseimage", $debugDeadbaseImage)
 		IniWriteS($config, "debug", "debugocr", $debugOcr)
+		IniWriteS($config, "debug", "DebugSmartZap", $DebugSmartZap)
+		IniWriteS($config, "debug", "DebugSX", $DebugSX)
 		IniWriteS($config, "debug", "debugimagesave", $DebugImageSave)
 		IniWriteS($config, "debug", "debugbuildingpos", $debugBuildingPos)
 		IniWriteS($config, "debug", "debugtrain", $debugsetlogTrain)

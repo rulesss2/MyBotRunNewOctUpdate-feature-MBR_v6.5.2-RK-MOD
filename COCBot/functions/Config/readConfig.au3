@@ -798,6 +798,8 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 			$DebugDisableZoomout = BitOR($DebugDisableZoomout, Int(IniRead($config, "debug", "disablezoomout", 0)))
 			$DebugDisableVillageCentering = BitOR($DebugDisableVillageCentering, Int(IniRead($config, "debug", "disablevillagecentering", 0)))
 			$DebugDeadbaseImage = BitOR($DebugDeadbaseImage, Int(IniRead($config, "debug", "debugdeadbaseimage", 0)))
+			$DebugSmartZap =  BitOR($DebugSmartZap, Int(IniRead($config, "debug", "DebugSmartZap", 0)))
+			$DebugSX =  BitOR($DebugSX, Int(IniRead($config, "debug", "DebugSX", 0)))
 			$DebugOcr = BitOR($DebugOcr, Int(IniRead($config, "debug", "debugocr", 0)))
 			$DebugImageSave = BitOR($DebugImageSave, Int(IniRead($config, "debug", "debugimagesave", 0)))
 			$debugBuildingPos = BitOR($debugBuildingPos, Int(IniRead($config, "debug", "debugbuildingpos", 0)))
@@ -1217,7 +1219,7 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 
 		$_CheckIceWizardSlot = True ; recheck if Ice Wizard exists in Train Window
 
-	    ; SuperXP
+		; SuperXP
 		IniReadS($ichkEnableSuperXP, $config, "attack", "EnableSuperXP", "0")
 		IniReadS($irbSXTraining, $config, "attack", "SXTraining", "1")
 		IniReadS($itxtMaxXPtoGain, $config, "attack", "MaxXptoGain", "500")

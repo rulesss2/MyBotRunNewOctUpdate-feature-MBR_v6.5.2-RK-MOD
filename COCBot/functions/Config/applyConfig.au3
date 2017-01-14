@@ -2204,6 +2204,11 @@ If $NotifyAlertBOTSleep = 1 Then
 	Else
 		GUICtrlSetState($chkDebugSmartZap, $GUI_UNCHECKED)
 	EndIf
+	If $DebugSX = 1 Then
+		GUICtrlSetState($chkDebugSX, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkDebugSX, $GUI_UNCHECKED)
+	EndIf
 	If $debugOcr = 1 Then
 		GUICtrlSetState($chkDebugOcr, $GUI_CHECKED)
 	Else
@@ -2320,6 +2325,8 @@ If $NotifyAlertBOTSleep = 1 Then
 		GUICtrlSetState($chkdebugTrain, $GUI_ENABLE)
 		GUICtrlSetState($chkmakeIMGCSV, $GUI_ENABLE)
 		GUICtrlSetState($chkdebugAttackCSV, $GUI_ENABLE)
+		GUICtrlSetState($chkDebugSmartZap, $GUI_ENABLE)
+		GUICtrlSetState($chkDebugSX, $GUI_ENABLE)
 ;~ 		GUICtrlSetState($btnTestVillage, $GUI_SHOW)
 	EndIf
 
@@ -2529,6 +2536,8 @@ If $NotifyAlertBOTSleep = 1 Then
 		GUICtrlSetState($chkMilkingDebugVillage, $GUI_SHOW)
 		GUICtrlSetState($chkMilkingVillageDebugIMG, $GUI_SHOW)
 		GUICtrlSetState($chkMilkingDebugFullSearch, $GUI_SHOW)
+		GUICtrlSetState($chkDebugSmartZap, $GUI_SHOW)
+		GUICtrlSetState($chkDebugSX, $GUI_SHOW)
 
 
 		If $debugresourcesoffset = 1 Then

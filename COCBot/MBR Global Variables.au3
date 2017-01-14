@@ -97,6 +97,7 @@ Global $debugAndroidEmbedded = 0
 Global $debugWindowMessages = 0 ; 0=off, 1=most Window Messages, 2=all Window Messages
 Global $DebugSmartZap = 0
 Global $DebugGdiCount = 0 ; monitor bot GDI Handle count, 0 = Disabled, <> 0 = Enabled
+Global $DebugSX = 0 ; Debug SuperXP
 
 Global Const $COLOR_ORANGE = 0xFF7700  ; Used for donate GUI buttons
 Global Const $COLOR_ERROR = $COLOR_RED   ; Error messages
@@ -1779,7 +1780,7 @@ Global $ichkForceBrewBeforeAttack = 0
 
 Global $itxtLevBarb = 0, $itxtLevArch = 0, $itxtLevGobl = 0, $itxtLevGiant = 0, $itxtLevWall = 0
 Global $itxtLevHeal = 0, $itxtLevPekk = 0, $itxtLevBall = 0, $itxtLevWiza = 0, $itxtLevDrag = 0
-Global $itxtLevBabyD = 0, $itxtLevMine = 0 
+Global $itxtLevBabyD = 0, $itxtLevMine = 0
 
 Global $itxtLevMini = 0, $itxtLevHogs = 0, $itxtLevValk = 0, $itxtLevGole = 0
 Global $itxtLevWitc = 0, $itxtLevLava = 0, $itxtLevBowl = 0

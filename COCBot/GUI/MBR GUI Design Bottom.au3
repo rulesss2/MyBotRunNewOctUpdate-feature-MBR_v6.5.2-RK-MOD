@@ -85,8 +85,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 If $AndroidAdbScreencap = True Then chkBackground() ; update background mode GUI
 
-$pic2arrow = GUICtrlCreateIcon($pIconLib, $eIcn2Arrow, $x + 190, $y + 10, 48, 48)
-
+$pic2arrow = _GUICtrlCreatePic(@ScriptDir & "\Images\Logo2.png", $x + 190, $y + 10, 54, 52)
 $lblVersion = GUICtrlCreateLabel($sBotVersion, 200, $y + 60, 60, 17, $SS_CENTER)
 	GUICtrlSetColor(-1, $COLOR_MEDGRAY)
 

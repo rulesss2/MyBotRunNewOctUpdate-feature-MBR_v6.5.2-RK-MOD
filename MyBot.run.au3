@@ -256,7 +256,7 @@ WEnd
 
 Func runBot() ;Bot that runs everything in order
 
-	If $ichkSwitchAcc = 1 And $bReMatchAcc = True Then 				; SwitchAcc - DEMEN
+	If $ichkSwitchAcc = 1 And $bReMatchAcc = True Then 				; SwitchAcc
 		$nCurProfile = _GUICtrlCombobox_GetCurSel($cmbProfile) + 1
 		Setlog("Rematching Profile [" & $nCurProfile &"] - " & $ProfileList[$nCurProfile] & " (CoC Acc. " & $aMatchProfileAcc[$nCurProfile-1] & ")")
 		SwitchCoCAcc()
@@ -384,7 +384,7 @@ Func runBot() ;Bot that runs everything in order
 				If _Sleep($iDelayRunBot3) Then Return
 				If $Restart = True Then ContinueLoop
 
-				If $ichkSwitchAcc = 1 And $aProfileType[$nCurProfile-1] = 2 Then checkSwitchAcc()  		;  Switching to active account after donation - SwitchAcc for  - DEMEN
+				If $ichkSwitchAcc = 1 And $aProfileType[$nCurProfile-1] = 2 Then checkSwitchAcc()  		;  Switching to active account after donation - SwitchAcc
 
 				Idle()
 				;$fullArmy1 = $fullArmy
@@ -451,7 +451,7 @@ Func Idle() ;Sequence that runs until Full Army
 		NotifyPendingActions()
 		If _Sleep($iDelayIdle1) Then Return
 		If $CommandStop = -1 Then SetLog("====== Waiting for full army  ======", $COLOR_SUCCESS)
-		If $ChatbotChatGlobal = true or $ChatbotChatClan = true Then
+		If $ChatbotChatGlobal = True Or $ChatbotChatClan = True Then
                ChatbotMessage()
 		EndIf
 		Local $hTimer = TimerInit()
@@ -477,7 +477,7 @@ Func Idle() ;Sequence that runs until Full Army
 				If $Restart = True Then ExitLoop
 				If checkAndroidReboot() Then ContinueLoop 2
 			WEnd
-		EndIF
+		EndIf
 		If _Sleep($iDelayIdle1) Then ExitLoop
 		checkObstacles() ; trap common error messages also check for reconnecting animation
 		checkMainScreen(False) ; required here due to many possible exits
@@ -731,16 +731,16 @@ Func _RunFunction($action)
 				;If $iSkipDonateNearFulLTroopsEnable = 1 and $FirstStart = False Then getArmyCapacity(True, True)
 				If SkipDonateNearFullTroops(True) = False Then DonateCC()
 				If _Sleep($iDelayRunBot1) = False Then checkMainScreen(False)
-			EndIF
+			EndIf
 		Case "SendChat"
-		    If $ChatbotChatGlobal = true or $ChatbotChatClan = true Then
+		    If $ChatbotChatGlobal = True Or $ChatbotChatClan = True Then
                ChatbotMessage()
 		    EndIf
 		Case "DonateCC,Train"
-			If $iSkipDonateNearFulLTroopsEnable = 1 and $FirstStart = true Then getArmyCapacity(True, True)
+			If $iSkipDonateNearFulLTroopsEnable = 1 And $FirstStart = True Then getArmyCapacity(True, True)
 			If $bActiveDonate = True Then
 				If SkipDonateNearFullTroops(True) = False Then DonateCC()
-			EndIF
+			EndIf
 			If _Sleep($iDelayRunBot1) = False Then checkMainScreen(False)
 			If $troops_maked_after_fullarmy = False And $actual_train_skip < $max_train_skip Then
 				$troops_maked_after_fullarmy = False

@@ -256,7 +256,7 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 
 		IniReadS($isldTrainITDelay, $config, "other", "TrainITDelay", 40, "int")
 
-		IniReadS($ichkCloseWaitEnable, $config, "other", "chkCloseWaitEnable", 1, "int")
+		IniReadS($ichkCloseWaitEnable, $config, "other", "chkCloseWaitEnable", 0, "int")
 		IniReadS($ichkCloseWaitTrain, $config, "other", "chkCloseWaitTrain", 0, "int")
 		IniReadS($ibtnCloseWaitStop, $config, "other", "btnCloseWaitStop", 0, "int")
 		IniReadS($ibtnCloseWaitStopRandom, $config, "other", "btnCloseWaitStopRandom", 0, "int")

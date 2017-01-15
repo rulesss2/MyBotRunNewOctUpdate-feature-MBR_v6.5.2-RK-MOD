@@ -240,3 +240,24 @@ Func sldSelectedSpeedAB()
 	IF $isldSelectedCSVSpeed[$LB] = 4 Then $speedText = "Normal"
 	GUICtrlSetData($lbltxtSelectedSpeedAB, $speedText & " speed")
 EndFunc   ;==>sldSelectedSpeedAB
+
+Func cmbSwLang()
+Switch GUICtrlRead($cmbSwLang) ;Added Multi Switch Language by rulesss and kuchera
+		                       Case "EN"
+		                                setForecast2()
+							   Case "RU"
+		                                setForecast3()
+							   Case "FR"
+			                            setForecast4()
+		                       Case "DE"
+		                                setForecast5()
+		                       Case "ES"
+		                                setForecast6()
+		                       Case "IT"
+		                                setForecast7()
+							   Case "PT"
+						                setForecast8()
+						       Case "IN"
+						                setForecast9()
+								 EndSwitch
+							EndFunc	 

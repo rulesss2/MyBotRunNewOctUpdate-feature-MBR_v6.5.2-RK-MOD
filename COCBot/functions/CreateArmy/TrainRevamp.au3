@@ -474,8 +474,12 @@ Func IsFullCastleSpells($returnOnly = False)
 		$aShouldRemove = CompareCCSpellWithGUI($CurCCSpell1, $CurCCSpell2)
 
 		; Debug
-		If $debugsetlogTrain then Setlog(" » Slot 1 to remove: " & $aShouldRemove[0])
-		If $debugsetlogTrain then Setlog(" » Slot 2 to remove: " & $aShouldRemove[1])
+		If UBound($aShouldRemove) > 1 then
+			If $debugsetlogTrain then Setlog(" » Slot 1 to remove: " & $aShouldRemove[0])
+			If $debugsetlogTrain then Setlog(" » Slot 2 to remove: " & $aShouldRemove[1])
+		Else
+			If $debugsetlogTrain then Setlog(" » Slot 1 to remove: " & $aShouldRemove)
+		EndIf
 
 		If $aShouldRemove[0] > 0 or $aShouldRemove[1] > 0 Then
 			SetLog("Removing Useless Castle Spells!", $COLOR_BLUE)
@@ -644,7 +648,7 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2)
 
 		If $CCSpell2 = "" Then
 			If $CCSpell1 = $sDBCCSpell And $iDBCCSpell < 6 And $iDBCCSpell > 0 Then
-				Return
+				Return $aShouldRemove
 			Else
 				$aShouldRemove[0] = 1
 				Return $aShouldRemove
@@ -726,7 +730,7 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2)
 
 		If $CCSpell2 = "" Then
 			If $CCSpell1 = $sABCCSpell And $iABCCSpell < 6 And $iABCCSpell > 0 Then
-				Return
+				Return $aShouldRemove
 			Else
 				$aShouldRemove[0] = 1
 				Return $aShouldRemove

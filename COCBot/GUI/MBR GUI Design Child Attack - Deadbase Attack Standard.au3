@@ -85,7 +85,7 @@ Local $x = 25, $y = 20
 
     $x = 25
 	$y += 60
-	$lblDBMultiFinger = GUICtrlCreateLabel(GetTranslated(671,51,"Style:"), $x, $y + 3, 35, -1, $SS_RIGHT)
+	$lblDBMultiFinger = GUICtrlCreateLabel(GetTranslated(671,51,"Style:"), $x - 5, $y + 3, 35, -1, $SS_RIGHT)
 	$cmbDBMultiFinger = GUICtrlCreateCombo("", $x + 35, $y, 175, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 		$txtTip = GetTranslated(671,52,"Select which multi finger attack style you would like.") & @CRLF & @CRLF & _
 			GetTranslated(671,53,	  "     Random will chose one of the attacks at random.") & @CRLF & _

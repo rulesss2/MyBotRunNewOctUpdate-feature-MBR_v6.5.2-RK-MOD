@@ -71,7 +71,7 @@ $hGUI_NOTIFY_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,18,"PushBullet/T
 		$lblOrigPushBullet = GUICtrlCreateLabel(GetTranslated(619,20, "Origin") & ":", $x + 120, $y + 3, -1, -1, $SS_RIGHT)
 			$txtTip = GetTranslated(619,21, "Origin - Village name.")
 			_GUICtrlSetTip(-1, $txtTip)
-		$txbNotifyOrigin = GUICtrlCreateInput("", $x + 170, $y, 230, 19)
+		$txbNotifyOrigin = GUICtrlCreateInput("", $x + 183, $y, 227, 19)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_DISABLE)
 		$y += 25

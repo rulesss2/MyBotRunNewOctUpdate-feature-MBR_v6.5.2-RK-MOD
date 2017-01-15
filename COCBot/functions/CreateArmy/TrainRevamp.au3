@@ -433,36 +433,59 @@ Func IsFullCastleSpells($returnOnly = False)
 		$iMaxCCSpell = $aTempCCSpells[1]
 		Setlog("Total Clan Castle Spells: " & $aTempCCSpells[0] & "/" & $aTempCCSpells[1])
 	Else
-		Setlog("Get Castle Spells capacity error!", $COLOR_ERROR)
+		Setlog("Castle Spells unavailable!", $COLOR_INFO)
 		$iMaxCCSpell = 0
 		$iCurCCSpell = 0
+		$CCSpellFull = True
+		Return True
 	EndIf
+
+
 	If $iCurCCSpell = $iMaxCCSpell Then $CCSpellFull = True
 	Local $rColCheckFullCCTroops = False
-	$ToReturn = (IIf($iDBcheck = 1, IIf($iChkWaitForCastleSpell[$DB] = 1, $CCSpellFull, True), 1) And IIf($iABcheck = 1, IIf($iChkWaitForCastleSpell[$LB] = 1, $CCSpellFull, True), 1))
 
+
+	; Verifying if was checked 'wait for' Castle Spells on Dead Base and Alive Bases only when the previous capacity OCR was Full
+	$ToReturn = (IIf($iDBcheck = 1, IIf($iChkWaitForCastleSpell[$DB] = 1, $CCSpellFull, True), 1) And IIf($iABcheck = 1, IIf($iChkWaitForCastleSpell[$LB] = 1, $CCSpellFull, True), 1))
+	If $debugsetlogTrain then Setlog("Is necessary proceed with Castle Spells detection? " & $ToReturn, $COLOR_DEBUG)
 
 	If $ToReturn = True Then
 		If $debugsetlogTrain then Setlog("Getting current available spell in clan castle.")
-		$CurCCSpell1 = GetCurCCSpell(1)
-		$CurCCSpell2 = GetCurCCSpell(2)
-		If $CurCCSpell1 = "" And $iCurCCSpell = 0 Then
-			If $returnOnly = False Then SetLog("Failed to get current available spell in clan castle", $COLOR_ERROR)
-			$ToReturn = False
+		; Imgloc Detection
+		$CurCCSpell1 = "" 	; reset the Global variable
+		$CurCCSpell2 = ""	; reset the Global variable
+		If $iMaxCCSpell < 3 then $CurCCSpell1 = GetCurCCSpell(1)
+		If $iMaxCCSpell > 1 then $CurCCSpell2 = GetCurCCSpell(2)
+
+		; If the OCR gives > 0 and the Imgloc empty will proceeds with an error!
+		If $CurCCSpell1 = "" And $iCurCCSpell > 0 Then
 			If $returnOnly = False Then
+				SetLog("Failed to get current available spell in clan castle", $COLOR_ERROR)
+				$ToReturn = False
 				Return $ToReturn
 			Else
 				Return ""
 			EndIf
 		EndIf
-		Local $aShouldRemove
+
+		; Compare the detection with the GUI selection
+		; Local $aShouldRemove will store in an array [0]=slot 1 and [1]=slot 2 the spells to remove
+		Local $aShouldRemove[2] = [0,0]
 		$aShouldRemove = CompareCCSpellWithGUI($CurCCSpell1, $CurCCSpell2)
 
-		If $aShouldRemove <> "" Then
-			SetLog("Removing Useless Spell from Clan Castle", $COLOR_BLUE)
+		; Debug
+		If $debugsetlogTrain then Setlog(" » Slot 1 to remove: " & $aShouldRemove[0])
+		If $debugsetlogTrain then Setlog(" » Slot 2 to remove: " & $aShouldRemove[1])
+
+		If $aShouldRemove[0] > 0 or $aShouldRemove[1] > 0 Then
+			SetLog("Removing Useless Castle Spells!", $COLOR_BLUE)
 			RemoveCastleSpell($aShouldRemove)
 			If _Sleep(1000) Then Return
+			; Check the Request Clan troops & Spells buttom
 			$canRequestCC = _ColorCheck(_GetPixelColor($aRequestTroopsAO[0], $aRequestTroopsAO[1], True), Hex($aRequestTroopsAO[2], 6), $aRequestTroopsAO[5])
+			; Debug
+			If $debugsetlogTrain then Setlog(" » Clans Castle button available? " & $canRequestCC)
+			; Let´s request Troops & Spells
 			If $canRequestCC = True Then
 				$rColCheckFullCCTroops = _ColorCheck(_GetPixelColor(24, 470, True), Hex(0x93C230, 6), 30)
 				If $rColCheckFullCCTroops = True Then SetLog("Clan Castle Spell is empty, Requesting for...")
@@ -544,23 +567,25 @@ Func RemoveCastleSpell($Slots)
 EndFunc   ;==>RemoveCastleSpell
 
 Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2)
+
 	If Not $Runstate Then Return
 	Local $sDBCCSpell, $sDBCCSpell2, $sABCCSpell, $sABCCSpell2
 	Local $bCheckDBCCSpell, $bCheckDBCCSpell2, $bCheckABCCSpell, $bCheckABCCSpell2
-	Local $aShouldRemove[2]
+	Local $aShouldRemove[2] = [0,0]
 
 	$iDBCCSpell = $iCmbWaitForCastleSpell[$DB]
 	$iDBCCSpell2 = $iCmbWaitForCastleSpell2[$DB]
 	$iABCCSpell = $iCmbWaitForCastleSpell[$LB]
 	$iABCCSpell2 = $iCmbWaitForCastleSpell2[$LB]
 
-
 	If $iDBCCSpell = 0 And $iDBCCSpell2 = 0 And $iABCCSpell = 0 And $iABCCSpell2 = 0 Then Return
 
 	If $iDBcheck = 1 And $iChkWaitForCastleSpell[$DB] = 1 Then
+		If $debugsetlogTrain then Setlog(" Let's compare CC Spells on Dead Bases!" , $COLOR_DEBUG)
 		$bCheckDBCCSpell = True
 	EndIf
 	If $iABcheck = 1 And $iChkWaitForCastleSpell[$LB] = 1 Then
+		If $debugsetlogTrain then Setlog(" Let's compare CC Spells on Alive Bases" , $COLOR_DEBUG)
 		$bCheckABCCSpell = True
 	EndIf
 
@@ -568,6 +593,7 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2)
 	If $bCheckDBCCSpell Then
 		Switch $iDBCCSpell
 			Case 0
+				$sDBCCSpell = "Any"
 				$bCheckDBCCSpell2 = True
 			Case 1
 				$sDBCCSpell = "LSpell"
@@ -582,7 +608,7 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2)
 				$sDBCCSpell = "JSpell"
 				$iDBCCSpell2 = -1
 			Case 5
-				$sDBCCSpell = "Fpell"
+				$sDBCCSpell = "FSpell"
 				$iDBCCSpell2 = -1
 			Case 6
 				$sDBCCSpell = "PSpell"
@@ -600,6 +626,8 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2)
 
 		If $bCheckDBCCSpell2 Then
 			Switch $iDBCCSpell2
+				Case 0
+					$sDBCCSpell2 = "Any"
 				Case 1
 					$sDBCCSpell2 = "PSpell"
 				Case 2
@@ -610,6 +638,9 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2)
 					$sDBCCSpell2 = "SkSpell"
 			EndSwitch
 		EndIf
+
+		If $debugsetlogTrain then Setlog("1 [DB] GUI Spell is " &  $sDBCCSpell, $COLOR_DEBUG)
+		If $debugsetlogTrain then Setlog("2 [DB] GUI Spell is " &  $sDBCCSpell2, $COLOR_DEBUG)
 
 		If $CCSpell2 = "" Then
 			If $CCSpell1 = $sDBCCSpell And $iDBCCSpell < 6 And $iDBCCSpell > 0 Then
@@ -649,6 +680,7 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2)
 	If $bCheckABCCSpell Then
 		Switch $iDBCCSpell
 			Case 0
+				$sABCCSpell = "Any"
 				$bCheckABCCSpell2 = True
 			Case 1
 				$sABCCSpell = "LSpell"
@@ -659,7 +691,7 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2)
 			Case 4
 				$sABCCSpell = "JSpell"
 			Case 5
-				$sABCCSpell = "Fpell"
+				$sABCCSpell = "FSpell"
 			Case 6
 				$sABCCSpell = "PSpell"
 				$bCheckABCCSpell2 = True
@@ -676,6 +708,8 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2)
 
 		If $bCheckABCCSpell2 Then
 			Switch $iABCCSpell2
+				Case 0
+					$sABCCSpell2 = "Any"
 				Case 1
 					$sABCCSpell2 = "PSpell"
 				Case 2
@@ -686,6 +720,9 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2)
 					$sABCCSpell2 = "SkSpell"
 			EndSwitch
 		EndIf
+
+		If $debugsetlogTrain then Setlog("1 [AB] GUI Spell is " &  $sDBCCSpell, $COLOR_DEBUG)
+		If $debugsetlogTrain then Setlog("2 [AB] GUI Spell is " &  $sDBCCSpell2, $COLOR_DEBUG)
 
 		If $CCSpell2 = "" Then
 			If $CCSpell1 = $sABCCSpell And $iABCCSpell < 6 And $iABCCSpell > 0 Then
@@ -722,7 +759,6 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2)
 	EndIf
 
 
-	
 EndFunc   ;==>CompareCCSpellWithGUI
 
 Func GetCurCCSpell($SpellNr)

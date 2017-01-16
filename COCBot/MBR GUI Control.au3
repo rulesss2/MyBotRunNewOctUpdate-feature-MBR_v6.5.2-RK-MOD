@@ -679,24 +679,7 @@ Func GUIControl_WM_NOTIFY($hWind, $iMsg, $wParam, $lParam)
 							GUICtrlSetState($hGUI_MOD_TAB_ITEM4, $GUI_SHOW)
 							sleep(100)
 							If TimerDiff($TimerForecast) > (1 * 10000) Then ; 1 Refresh Graphique toutes les 5 mn maxi, faut pas abuser
-						Switch GUICtrlRead($cmbSwLang) ;Added Multi Switch Language by rulesss and Kychera
-		                       Case "EN"
-		                                setForecast2()
-							   Case "RU"
-		                                setForecast3()
-							   Case "FR"
-			                            setForecast4()
-		                       Case "DE"
-		                                setForecast5()
-		                       Case "ES"
-		                                setForecast6()
-		                       Case "IT"
-		                                setForecast7()
-							   Case "PT"
-						                setForecast8()
-						       Case "IN"
-						                setForecast9()
-			            EndSwitch
+						cmbSwLang()			            
                             $TimerForecast = TimerInit()
 							EndIf
 						EndIf

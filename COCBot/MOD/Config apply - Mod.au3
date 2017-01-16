@@ -94,7 +94,7 @@ GUICtrlSetData($chkchatdelay, $ichkchatdelay)
 		GUICtrlSetState($chkRusLang2, $GUI_UNCHECKED)
 
 	EndIf
-	
+
 	_GUICtrlComboBox_SetCurSel($cmbLang, $icmbLang)
 	$icmbLang = _GUICtrlComboBox_GetCurSel($cmbLang)
 ;==========;Russian Languages by Kychera==========
@@ -152,3 +152,12 @@ GUICtrlSetData($chkchatdelay, $ichkchatdelay)
     Else
          GUICtrlSetState($chkLaunchWatchdog, $GUI_UNCHECKED)
     EndIf
+
+	; Check Collectors Outside - Added By rulesss
+	If $ichkDBMeetCollOutside = 1 Then
+		GUICtrlSetState($chkDBMeetCollOutside, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkDBMeetCollOutside, $GUI_UNCHECKED)
+	EndIf
+	chkDBMeetCollOutside()
+	GUICtrlSetData($txtDBMinCollOutsidePercent, $iDBMinCollOutsidePercent)

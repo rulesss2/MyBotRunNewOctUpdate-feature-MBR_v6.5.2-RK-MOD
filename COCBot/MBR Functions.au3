@@ -321,4 +321,5 @@
 ;Adding Multy Lang by Kychera
 #include "MOD\Multy Lang.au3"
 
+#include "MOD\AreCollectorsOutside.au3"
 #include "functions\Android\modifyAndroid.au3"

@@ -21,11 +21,12 @@ Local $x = 10, $y = 45
 Local $txtTip1 = GetTranslated(626,15, "If this box is checked, then the bot will look")
 Local $txtFull = GetTranslated(626,30, "Full")
 
-	$grpDeadBaseCollectors = GUICtrlCreateGroup(GetTranslated(626,1,"Collectors"), $x - 5, $y - 20, 420, 305)
+	$grpDeadBaseCollectors = GUICtrlCreateGroup(GetTranslated(626,1,"Collectors"), $x - 5, $y - 20, 420, 335)
 		$txtCollectors = GUICtrlCreateLabel(GetTranslated(626,2, "Choose which collectors to search for while looking for a dead base. Also, choose how full they must be."), $x, $y, 250, 28)
 		$chkDeadBaseDisableCollectorsFilter = GUICtrlCreateCheckbox(GetTranslated(626,32,"Disable Collector Filter"), $x+228, $y+7, 178, 18)
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
 			_GUICtrlSetTip(-1, GetTranslated(626,33, "Excluding Collector Filter the bot consider DeadBase as LiveBase"))
+
 	$y+=40
 		$chkLvl6 = GUICtrlCreateCheckbox("", $x, $y, 18, 18)
 			$txtTip = $txtTip1 & @CRLF & GetTranslated(626,16, "for level 6 elixir collectors during dead base detection.")
@@ -148,6 +149,22 @@ Local $txtFull = GetTranslated(626,30, "Full")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetData(-1, "1|2|3|4|5|6", "3")
 			GUICtrlSetOnEvent(-1, "cmbMinCollectorMatches")
+   $x = 40
+   $y = -15
+        $chkDBMeetCollOutside = GUICtrlCreateCheckbox(GetTranslated(2,107, "Check Collectors Outside"), $x+250, $y+90, -1, -1)
+			$txtTip = GetTranslated(2,108, "Search for bases that has their collectors outside.")
+			GUICtrlSetOnEvent(-1, "chkDBMeetCollOutside")
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetState(-1, $GUI_UNCHECKED)
+			GUICtrlCreateLabel(GetTranslated(2,109, "Min: "), $x+270, $y+120, -1, -1)
+		$txtDBMinCollOutsidePercent = GUICtrlCreateInput("50", $x+300, $y+115, 31, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			$txtTip = GetTranslated(2,110, "Set the Min. % of collectors outside to search for on a village to attack.")
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetState(-1, $GUI_DISABLE)
+			GUICtrlSetLimit(-1, 3)
+			GUICtrlSetData(-1, 50)
+			GUICtrlCreateLabel("%", $x+335, $y+120, -1, -1)
+			GUICtrlSetTip(-1, $txtTip)
 
 	$y += 25
 		$lblTolerance = GUICtrlCreateLabel("-15" & _PadStringCenter(GetTranslated(626,11, "Tolerance"), 66, " ") & "15", $x, $y)

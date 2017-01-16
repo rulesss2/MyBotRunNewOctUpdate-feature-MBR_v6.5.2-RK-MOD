@@ -93,7 +93,7 @@ IniWrite($config, "global", "chdelay", GUICtrlRead($chkchatdelay))
 	IniWriteS($config, "Lang", "chkRusLang2", $ichkRusLang2)
 	$icmbLang = _GUICtrlComboBox_GetCurSel($cmbLang)
     IniWriteS($config, "Lang", "cmbLang", $icmbLang)
-	
+
 	;==========;Russian Languages by Kychera==========
 
 ; Android Settings
@@ -143,3 +143,11 @@ EndIf
     EndIf
 
     IniWriteS($config, "Other", "chkLaunchWatchdog", $ichkLaunchWatchdog)
+
+	; Check Collectors Outside - Added by rulesss
+	If GUICtrlRead($chkDBMeetCollOutside) = $GUI_CHECKED Then
+		IniWriteS($config, "search", "DBMeetCollOutside", 1)
+	Else
+		IniWriteS($config, "search", "DBMeetCollOutside", 0)
+	EndIf
+	IniWriteS($config, "search", "DBMinCollOutsidePercent", GUICtrlRead($txtDBMinCollOutsidePercent))

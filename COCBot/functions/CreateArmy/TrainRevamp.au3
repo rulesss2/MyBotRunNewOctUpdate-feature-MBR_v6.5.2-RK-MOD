@@ -597,7 +597,7 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2, $CastleCapacity)
 	If _Sleep(100) then Return
 
 	; Variables to Fill with Spell's names
-	Local $sCCSpell, $sCCSpell2
+	Local $sCCSpell, $sCCSpell2 , $bCheckDBCCSpell= False , $bCheckABCCSpell = False
 
 	; Variable will be true if is necessary check the slot2 ( when the capacity is 2 and the first slot is a Dark Spell )
 	Local $bCheckCCSpell2 = False
@@ -2236,7 +2236,7 @@ Func MakingDonatedTroops()
 			If $Runstate = False Then Return
 			If Eval("Don" & $SpellName[$i]) > 0 Then
 				$Plural = 0
-				Local $pos = GetTrainPos(Eval("e" & $SpellName[$i]))
+				;Local $pos = GetTrainPos(Eval("e" & $SpellName[$i]))
 				Local $howMuch = Eval("Don" & $SpellName[$i])
 				If $howMuch > 1 Then $Plural = 1
 				TrainIt(Eval("e" & $SpellName[$i]), $howMuch, $isldTrainITDelay)

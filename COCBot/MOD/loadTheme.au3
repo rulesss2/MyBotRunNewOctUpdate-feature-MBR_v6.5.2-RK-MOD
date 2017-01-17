@@ -26,7 +26,7 @@ Func btnLoadTheme()
 	    _USkin_LoadSkin($ThemeConfig)
 		writeThemeConfig()
 	Local $ThemeName = StringRegExpReplace(IniRead(@ScriptDir & "\Themes\skin.ini", "skin", "skin", @ScriptDir & "\Themes\Themes\hex.msstyles"), '^(?:.*\\)([^\\]*?)(?:\.[^.]+)?$', '\1')	
-	    SetLog(GetTranslated(601, 28, "Theme modified : ") & $ThemeName, $COLOR_ORANGE)
+	    SetLog(GetTranslated(601, 28, "Theme modified") & ":" & " " & $ThemeName, $COLOR_ORANGE)
 	EndIf
 	
 EndFunc   ;==>btnLoadTheme

@@ -238,7 +238,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 				EndIf
 			Else
 				$iMatchMode = $DB
-				cmbCSVSpeed()
+				;cmbCSVSpeed()
 				ExitLoop
 			EndIf
 		ElseIf $match[$LB] And Not $dbBase Then
@@ -246,7 +246,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			SetLog("      " & "Live Base Found!", $COLOR_SUCCESS, "Lucida Console", 7.5)
 			$logwrited = True
 			$iMatchMode = $LB
-			cmbCSVSpeed()
+			;cmbCSVSpeed()
 			ExitLoop
 		ElseIf $match[$LB] And $iDeadBaseDisableCollectorsFilter = 1 Then
 			SetLog($GetResourcesTXT, $COLOR_SUCCESS, "Lucida Console", 7.5)

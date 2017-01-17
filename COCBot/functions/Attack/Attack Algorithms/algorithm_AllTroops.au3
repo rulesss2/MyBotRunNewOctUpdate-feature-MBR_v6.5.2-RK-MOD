@@ -96,7 +96,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 	Local $SlotsGiants = 1 ; standard on middle of village
 
 	If Number($GiantComp) > 16 Or (Number($GiantComp) >= 8 And $nbSides = 5) Then $SlotsGiants = 2 ; will be split in 2 slots, when >16 or >=8 with FF
-	If Number($GiantComp) > 20 Or (Number($GiantComp) >= 12 And $nbSides = 5)  then $SlotsGiants = 0 ; spread on vector, when >20 or >=12 with FF
+	If Number($GiantComp) > 20 Or (Number($GiantComp) >= 12 And $nbSides = 5) Then $SlotsGiants = 0 ; spread on vector, when >20 or >=12 with FF
 
 	; $ListInfoDeploy = [Troop, No. of Sides, $WaveNb, $MaxWaveNb, $slotsPerEdge]
 	If $iMatchMode = $LB And $iChkDeploySettings[$LB] = 5 Then ; Customise DE side wave deployment here

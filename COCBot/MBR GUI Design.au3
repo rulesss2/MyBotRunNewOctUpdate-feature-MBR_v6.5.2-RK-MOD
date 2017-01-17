@@ -36,6 +36,7 @@ Global $hImageList = 0
 SplashStep(GetTranslated(500, 23, "Loading Main GUI..."))
 $frmBot = GUICreate($sBotTitle, $_GUI_MAIN_WIDTH, $_GUI_MAIN_HEIGHT + $_GUI_MAIN_TOP, $frmBotPosX, $frmBotPosY, BitOr($WS_MINIMIZEBOX, $WS_CAPTION, $WS_POPUP, $WS_SYSMENU, $WS_CLIPCHILDREN, $WS_CLIPSIBLINGS))
 GUISetOnEvent($GUI_EVENT_SECONDARYDOWN, "rightclick")
+WinSetTrans($frmBot,"",235)
 ; group multiple bot windows using _WindowAppId
 _WindowAppId($frmBot, "MyBot.run")
 GUISetIcon($pIconLib, $eIcnGUI)

@@ -23,6 +23,8 @@
 #include "functions\Config\readConfig.au3"
 #include "functions\Config\saveConfig.au3"
 
+#include "MOD\LoadTheme.au3"
+
 #include "functions\Attack\AttackReport.au3"
 #include "functions\Attack\BuildingSide.au3"
 #include "functions\Attack\GoldElixirChange.au3"

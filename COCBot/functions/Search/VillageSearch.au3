@@ -237,16 +237,14 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 					SetLog("Collectors are not outside, skipping search !", $COLOR_RED, "Lucida Console", 7.5)
 				EndIf
 			Else
-				$iMatchMode = $DB
-				;cmbCSVSpeed()
+				$iMatchMode = $DB				
 				ExitLoop
 			EndIf
 		ElseIf $match[$LB] And Not $dbBase Then
 			SetLog($GetResourcesTXT, $COLOR_SUCCESS, "Lucida Console", 7.5)
 			SetLog("      " & "Live Base Found!", $COLOR_SUCCESS, "Lucida Console", 7.5)
 			$logwrited = True
-			$iMatchMode = $LB
-			;cmbCSVSpeed()
+			$iMatchMode = $LB			
 			ExitLoop
 		ElseIf $match[$LB] And $iDeadBaseDisableCollectorsFilter = 1 Then
 			SetLog($GetResourcesTXT, $COLOR_SUCCESS, "Lucida Console", 7.5)

@@ -25,7 +25,7 @@ Func btnLoadTheme()
 		$ThemeConfig = $sFileOpenDialog
 	    _USkin_LoadSkin($ThemeConfig)
 		writeThemeConfig()
-	Local $ThemeName = StringRegExpReplace(IniRead(@ScriptDir & "\Themes\skin.ini", "skin", "skin", @ScriptDir & "\Themes\Themes\hex.msstyles"), '^(?:.*\\)([^\\]*?)(?:\.[^.]+)?$', '\1')	
+	$ThemeName = StringRegExpReplace(IniRead(@ScriptDir & "\Themes\skin.ini", "skin", "skin", @ScriptDir & "\Themes\Themes\MyBot Default Skin.msstyles"), '^(?:.*\\)([^\\]*?)(?:\.[^.]+)?$', '\1')	
 	    SetLog(GetTranslated(601, 28, "Theme modified") & ":" & " " & $ThemeName, $COLOR_ORANGE)
 	EndIf
 	

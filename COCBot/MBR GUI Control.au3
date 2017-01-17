@@ -131,7 +131,7 @@ Global $Initiate = 0
 Global $GUIControl_Disabled = False
 Global $ichklanguageFirst = 0
 Global $ichklanguage = 1
-
+readThemeConfig()
 AtkLogHead()
 
 ;~ ------------------------------------------------------

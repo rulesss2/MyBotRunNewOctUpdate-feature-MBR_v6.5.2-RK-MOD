@@ -75,7 +75,10 @@ EndIf
 If CheckPrerequisites(True) Then
 	MBRFunc(True) ; start MBRFunctions dll
 EndIf
-
+;==================Themes====
+#include "Themes\_UskinLibrary.au3"
+_Uskin_LoadDLL()
+;===========================
 #include "COCBot\functions\Android\Android.au3"
 
 If $aCmdLine[0] < 2 and $sAndroid = "" Then

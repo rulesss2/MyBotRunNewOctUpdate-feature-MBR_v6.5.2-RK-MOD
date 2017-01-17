@@ -70,11 +70,18 @@ $grpButtons = GUICtrlCreateGroup("https://mybot.run " & GetTranslated(602,0, "- 
 		_GUICtrlSetTip(-1, $txtTip)
 		GUICtrlSetOnEvent(-1, "chkBackground")
 		GUICtrlSetState(-1, (($AndroidAdbScreencap = True) ? ($GUI_CHECKED) : ($GUI_UNCHECKED)))
-	$lblDonate = GUICtrlCreateLabel(GetTranslated(601,19,"Support the development"), $x + 224, $y + 80, 220, 24, $SS_RIGHT)
+	$lblDonate = GUICtrlCreateLabel(GetTranslated(601,19,"Support the development"), $x + 300, $y + 80, 100, 24, $SS_RIGHT)
 		GUICtrlSetCursor(-1, 0) ; https://www.autoitscript.com/autoit3/docs/functions/MouseGetCursor.htm
 		GUICtrlSetFont(-1, 8.5, $FW_BOLD) ;, $GUI_FONTITALIC + $GUI_FONTUNDER)
 		$txtTip = GetTranslated(601,18,"Paypal Donate?")
 		_GUICtrlSetTip(-1, $txtTip)
+;Theme addied Kychera		
+	$loadTheme = GUICtrlCreateButton(GetTranslated(601,20, "Theme"), $x + 200, $y + 76, 40, 22)
+    $txtTip = GetTranslated(601, 27, "Change Theme")
+		_GUICtrlSetTip(-1, $txtTip)
+         GUICtrlSetOnEvent(-1, "btnLoadTheme")
+         GUICtrlSetOnEvent(-1, "")
+;==>		 
 	$btnAttackNowDB = GUICtrlCreateButton(GetTranslated(602,18, "DB Attack!"), $x + 190, $y - 4, 60, -1)
 		GUICtrlSetState(-1, $GUI_HIDE)
 	$btnAttackNowLB = GUICtrlCreateButton(GetTranslated(602,19, "LB Attack!"), $x + 190, $y + 23, 60, -1)

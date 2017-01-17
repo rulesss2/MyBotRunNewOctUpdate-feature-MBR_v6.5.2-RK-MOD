@@ -117,6 +117,8 @@ Global $ichkLaunchWatchdog = 1
 ;~ Global $iUseLaunchWatchdog
 Global $chkLaunchWatchdog
 
+Global $ThemeConfig ;Theme
+Global $ThemeName
 ; Check Collector Outside - Added by rulesss
 #region Check Collectors Outside
 ; collectors outside filter

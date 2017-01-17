@@ -33,7 +33,7 @@ If $ichkDisableSplash = 0 Then
 	$iY = _GDIPlus_ImageGetHeight($hSplashImg)
 
     ; Create Splash container
-    $hSplash = GUICreate("", $iX, $iY + $iT + $iB + 60, -1, -1, BitOR($WS_POPUP, $WS_BORDER), BitOR($WS_EX_TOPMOST, $WS_EX_WINDOWEDGE, $WS_EX_TOOLWINDOW))
+    $hSplash = GUICreate("", $iX, $iY + $iT + $iB + 60, -1, -1, BitOR($WS_POPUP, $WS_BORDER), BitOR($WS_EX_WINDOWEDGE, $WS_EX_TOOLWINDOW))
 	GUISetBkColor($COLOR_WHITE, $hSplash)
     _GUICtrlCreatePic($hSplashImg, 0, $iT) ; Splash Image
     $lSplashTitle = GUICtrlCreateLabel($sBotTitle, 15, $iY + $iT + $iB + 3, $iX - 30, 15, $SS_CENTER) ; Splash Title

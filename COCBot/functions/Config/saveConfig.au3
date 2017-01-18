@@ -2884,6 +2884,7 @@ If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
 	IniWriteS($config, "troop", "QuickTrain1", $iChkQuickArmy1)
 	IniWriteS($config, "troop", "QuickTrain2", $iChkQuickArmy2)
 	IniWriteS($config, "troop", "QuickTrain3", $iChkQuickArmy3)
+
 ; ============================================================================
 ; ================================= SmartZap =================================
 ; ============================================================================
@@ -2922,6 +2923,26 @@ If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
 ; ============================================================================
 ; ================================= SmartZap =================================
 ; ============================================================================
+
+
+   ; ================================================== TREASURY COLLECT PART ================================================== ;
+
+	IniWrite($config, "Treasury", "chkEnableTrCollect", $ichkEnableTrCollect)
+	IniWrite($config, "Treasury", "chkForceTrCollect", $ichkForceTrCollect)
+
+	IniWrite($config, "Treasury", "chkGoldTrCollect", $ichkGoldTrCollect)
+	IniWrite($config, "Treasury", "chkElxTrCollect", $ichkElxTrCollect)
+	IniWrite($config, "Treasury", "chkDarkTrCollect", $ichkDarkTrCollect)
+
+	IniWrite($config, "Treasury", "txtMinGoldTrCollect", GUICtrlRead($txtMinGoldTrCollect))
+	IniWrite($config, "Treasury", "txtMinElxTrCollect", GUICtrlRead($txtMinElxTrCollect))
+	IniWrite($config, "Treasury", "txtMinDarkTrCollect", GUICtrlRead($txtMinDarkTrCollect))
+
+	IniWrite($config, "Treasury", "chkFullGoldTrCollect", $ichkFullGoldTrCollect)
+	IniWrite($config, "Treasury", "chkFullElxTrCollect", $ichkFullElxTrCollect)
+	IniWrite($config, "Treasury", "chkFullDarkTrCollect", $ichkFullDarkTrCollect)
+
+	; ================================================== TREASURY COLLECT END ================================================== ;
 
 	If $hFile <> -1 Then FileClose($hFile)
 

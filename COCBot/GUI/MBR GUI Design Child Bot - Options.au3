@@ -120,8 +120,17 @@ $grpOnStartBot = GUICtrlCreateGroup(GetTranslated(636,12, "When Bot Starts"), $x
 										"DOCK: Integrate Android Screen into bot window.")
 		_GUICtrlSetTip(-1, $txtTip)
 		GUICtrlSetState(-1, $GUI_DISABLE)
+;++++++++ Modified Kychera	+++++++++++	
+	$y += 49
+	$grpOnStartBot = GUICtrlCreateGroup(GetTranslated(636,126, "Decor"), $x - 20, $y - 20, 210, 120)
+	  $y += 65
+	    GUICtrlCreateLabel(GetTranslated(636, 128, "Transperent GUI"), $x, $y - 5, 100, 16)
+       $SldTransLevel = GUICtrlCreateSlider($x, $y + 10, 125, 15, BitOR($TBS_TOOLTIPS, $TBS_AUTOTICKS))
+		GUICtrlSetLimit($SldTransLevel, 8, 0)
+		GUICtrlSetData(-1, 0)
+		GUICtrlSetOnEvent(-1, "Slider")
+;+++++++++++++++++++++++++++++++++++++++        		
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-
 
 Local $x = 240, $y = 45
 $grpAdvanced = GUICtrlCreateGroup(GetTranslated(636,93, "Advanced"), $x - 20, $y - 20, 225, 108)
@@ -194,5 +203,4 @@ $y +=30
 $chkFixClanCastle = GUICtrlCreateCheckbox(GetTranslated(636,104, "Force Clan Castle Detection"), $x-5, $y-5, -1, -1)
 	_GUICtrlSetTip(-1, GetTranslated(636,105, "If clan Castle it is undetected and it is NOT placed in the last slot, force bot to consider the undetected slot as Clan Castle"))
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
-
 GUICtrlCreateGroup("", -99, -99, 1, 1)

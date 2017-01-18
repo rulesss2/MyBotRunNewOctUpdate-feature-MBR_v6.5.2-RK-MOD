@@ -95,6 +95,11 @@ Global $cmbLang
 Global $icmbLang
 ;==========;Russian Languages by Kychera==========
 
+;Transparent Gui - by Kychera
+Global $iSldTransLevel
+Global $SldTransLevel  
+;~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ;Forecast Added by rulesss
 Global Const $COLOR_DEEPPINK = 0xFF1493
 Global Const $COLOR_DARKGREEN = 0x006400
@@ -117,8 +122,10 @@ Global $ichkLaunchWatchdog = 1
 ;~ Global $iUseLaunchWatchdog
 Global $chkLaunchWatchdog
 
-Global $ThemeConfig ;Theme
+;Theme -  modified Kychera
+Global $ThemeConfig 
 Global $ThemeName = StringRegExpReplace(IniRead(@ScriptDir & "\Themes\skin.ini", "skin", "skin", @ScriptDir & "\Themes\Themes\MyBot Default Skin.msstyles"), '^(?:.*\\)([^\\]*?)(?:\.[^.]+)?$', '\1')
+
 ; Check Collector Outside - Added by rulesss
 #region Check Collectors Outside
 ; collectors outside filter

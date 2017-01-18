@@ -151,3 +151,7 @@ EndIf
 		IniWriteS($config, "search", "DBMeetCollOutside", 0)
 	EndIf
 	IniWriteS($config, "search", "DBMinCollOutsidePercent", GUICtrlRead($txtDBMinCollOutsidePercent))
+	;Transparent Gui (Modified Kychera)
+	$iSldTransLevel = GUICtrlRead($SldTransLevel) 
+	IniWrites($config, "TransLevel", "Level", $iSldTransLevel)
+	  

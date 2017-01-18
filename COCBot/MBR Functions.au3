@@ -24,6 +24,7 @@
 #include "functions\Config\saveConfig.au3"
 
 #include "MOD\LoadTheme.au3"
+#include "MOD\TransLevel.au3"
 
 #include "functions\Attack\AttackReport.au3"
 #include "functions\Attack\BuildingSide.au3"

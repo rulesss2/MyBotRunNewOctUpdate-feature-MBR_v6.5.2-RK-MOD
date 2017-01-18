@@ -161,3 +161,6 @@ GUICtrlSetData($chkchatdelay, $ichkchatdelay)
 	EndIf
 	chkDBMeetCollOutside()
 	GUICtrlSetData($txtDBMinCollOutsidePercent, $iDBMinCollOutsidePercent)
+	;Transparent Gui (Modified Kychera)
+	GUICtrlSetData($SldTransLevel, $iSldTransLevel)	
+	Slider() 

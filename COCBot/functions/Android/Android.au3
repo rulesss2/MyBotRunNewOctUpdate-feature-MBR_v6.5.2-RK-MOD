@@ -160,7 +160,6 @@ Func WinGetAndroidHandle($bInitAndroid = Default, $bTestPid = False)
 			EndIf
 			Local $instance = ($AndroidInstance = "" ? "" : " (" & $AndroidInstance & ")")
 			SetLog($Android & $instance & " running in window mode", $COLOR_ACTION)			
-			SetLog(GetTranslated(601, 29, "Theme used") & ":" & " " & $ThemeName, $COLOR_BLACK)
 			If $currHWnD <> 0 And $currHWnD <> $HWnD Then
 				$InitAndroid = True
 				If $bInitAndroid = True Then InitAndroid(True)

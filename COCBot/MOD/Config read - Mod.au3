@@ -71,3 +71,5 @@ $ichkLaunchWatchdog = IniRead($config, "Other", "chkLaunchWatchdog", "1")
 ; Check Collectors Outside - Added By NguyenAnhHD
 $ichkDBMeetCollOutside = IniRead($config, "search", "DBMeetCollOutside", "0")
 $iDBMinCollOutsidePercent = IniRead($config, "search", "DBMinCollOutsidePercent", "50")
+;Transparent Gui (Modified Kychera)
+$iSldTransLevel = IniRead($config, "TransLevel", "Level", "0")

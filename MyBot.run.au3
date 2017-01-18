@@ -200,7 +200,7 @@ If $FoundInstalledAndroid Then
 	SetLog("Found installed " & $Android & " " & $AndroidVersion, $COLOR_SUCCESS)
 EndIf
 SetLog(GetTranslated(500, 8, "Android Emulator Configuration: %s", $sAndroidInfo), $COLOR_SUCCESS)
-
+SetLog(GetTranslated(601, 29, "Theme used") & ":" & " " & $ThemeName, $COLOR_BLACK)
 ;AdlibRegister("PushBulletRemoteControl", $PBRemoteControlInterval)
 ;AdlibRegister("PushBulletDeleteOldPushes", $PBDeleteOldPushesInterval)
 

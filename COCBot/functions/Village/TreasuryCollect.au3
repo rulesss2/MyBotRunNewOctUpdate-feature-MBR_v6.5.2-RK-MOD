@@ -125,7 +125,7 @@ Func OpenTreasuryMenu()
 	Else
 
 		Click($aCCPos[0], $aCCPos[1])
-;~ 		randomSleep(1500)
+		randomSleep(1500)
 
 		If QuickMIS("BC1", @ScriptDir & "\imgxml\Resources\Treasury", 480, 610, 650, 710) Then ; search for treasury button
 

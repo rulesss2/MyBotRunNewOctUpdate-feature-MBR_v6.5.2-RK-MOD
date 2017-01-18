@@ -1,6 +1,5 @@
 ; ==========================================================
 ; Chatbot script fixed by rulesss, kychera
-; Bot version: 1.6.4
 ; Made for MyBot <http://mybot.run>
 ; I cannot be held responsible for what this chatbot says
 ; See bottom of file for more info
@@ -9,7 +8,9 @@
 #include <Process.au3>
 #include <Array.au3>
 #include <WinAPIEx.au3>
+
 $chatIni = ""
+
 Global  $chatIni = $sProfilePath & "\" & $sCurrProfile & "\chat.ini"
 ; SETTINGS =================================================
 Global $ChatbotChatGlobal = False
@@ -97,7 +98,6 @@ EndFunc   ;==>ChatbotReadSettings
 
 Func ChatbotCreateGui()
 	ChatbotReadSettings()
-	;   $tabChat = GUICtrlCreateTabItem(GetTranslated(106, 1,"Chat"))
 
 	Global $x = 25, $y = 45
 
@@ -158,8 +158,8 @@ Func ChatbotCreateGui()
 	GUICtrlSetOnEvent(-1, "ChatGuiCheckboxUpdate")
 	GUICtrlCreateLabel(GetTranslated(106, 16, "Chat in clan chat") & ":", $x + 17, $y, -1, -1)
 	$chkRusLang = GUICtrlCreateCheckbox(GetTranslated(106, 52, "Russian"), $x + 120, $y - 5)
-   GUICtrlSetState(-1, $GUI_UNCHECKED)
-   _GUICtrlSetTip(-1, GetTranslated(106,51, "On. Russian send text. Note: The input language in the Android emulator must be RUSSIAN."))
+    GUICtrlSetState(-1, $GUI_UNCHECKED)
+    _GUICtrlSetTip(-1, GetTranslated(106,51, "On. Russian send text. Note: The input language in the Android emulator must be RUSSIAN."))
 	$y += 18
 	$chkUseResponses = GUICtrlCreateCheckbox(GetTranslated(106, 18, "Use custom responses"), $x - 5, $y)
 	_GUICtrlSetTip($chkUseResponses, GetTranslated(106, 19, "Use the keywords and responses defined below"))
@@ -403,39 +403,6 @@ Func ChatbotIsInterval()
 		Return False
 	EndIf
 EndFunc   ;==>ChatbotIsInterval
-
-; Returns the response from cleverbot or simsimi, if any
-Func runHelper($msg, $isCleverbot) ; run a script to get a response from cleverbot.com or simsimi.com
-	Dim $DOS, $message = ''
-
-	$command = '" /c' & @ScriptDir & '\lib\phantomjs.exe phantom-cleverbot-helper.js'
-	If Not $isCleverbot Then
-		$command = '" /c' & @ScriptDir & '\lib\phantomjs.exe phantom-simsimi-helper.js'
-	EndIf
-
-	$DOS = Run(@ComSpec & $command & $msg & '"', "", @SW_HIDE, 8)
-	$HelperStartTime = TimerInit()
-	SetLog(GetTranslated(106, 32, "Waiting for chatbot helper...")
-	While ProcessExists($DOS)
-		ProcessWaitClose($DOS, 10)
-		SetLog(GetTranslated(106, 33, "Still waiting for chatbot helper...")
-		$Time_Difference = TimerDiff($HelperStartTime)
-		If $Time_Difference > 50000 Then
-			SetLog(GetTranslated(106, 34, "Chatbot helper is taking too long!", $COLOR_RED)
-			ProcessClose($DOS)
-			_RunDos("taskkill -f -im phantomjs.exe") ; force kill
-			Return ""
-		EndIf
-	WEnd
-	$message = ''
-	While 1
-		$message &= StdoutRead($DOS)
-		If @error Then
-			ExitLoop
-		EndIf
-	WEnd
-	Return StringStripWS($message, 7)
-EndFunc   ;==>runHelper
 
 Func ChatbotIsLastChatNew() ; returns true if the last chat was not by you, false otherwise
 	_CaptureRegion()
@@ -764,23 +731,6 @@ Func ChatbotMessage() ; run the chatbot
 						ExitLoop
 					EndIf
 				Next
-			EndIf
-
-			If ($ChatbotClanUseCleverbot Or $ChatbotClanUseSimsimi) And Not $SentMessage Then
-				$ChatResponse = runHelper($ChatMsg, $ChatbotClanUseCleverbot)
-				SetLog(GetTranslated(106, 48, "Got cleverbot response: ") & $ChatResponse, $COLOR_GREEN)
-				If StringInStr($ChatResponse, "No response") Or $ChatResponse = "" Or $ChatResponse = " " Then
-					If $ChatbotClanAlwaysMsg Then
-						If Not ChatbotChatClanInput() Then Return
-						If Not ChatbotChatInput($ClanMessages[Random(0, UBound($ClanMessages) - 1, 1)]) Then Return
-						If Not ChatbotChatSendClan() Then Return
-						$SentMessage = True
-					EndIf
-				Else
-					If Not ChatbotChatClanInput() Then Return
-					If Not ChatbotChatInput($ChatResponse) Then Return
-					If Not ChatbotChatSendClan() Then Return
-				EndIf
 			EndIf
 
 			If Not $SentMessage Then

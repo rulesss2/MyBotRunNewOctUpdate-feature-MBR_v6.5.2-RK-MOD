@@ -524,7 +524,7 @@ EndFunc   ;==>IsFullCastleSpells
 
 Func RemoveCastleSpell($Slots)
 
-	If $Slots[0]= 0 and $Slots[1] = 0 then return
+	If $Slots[0]= 0 and $Slots[1] = 0 Then Return
 
 	If _ColorCheck(_GetPixelColor(806, 472, True), Hex(0xD0E878, 6), 25) = False Then ; If no 'Edit Army' Button found in army tab to edit troops
 		SetLog("Cannot find/verify 'Edit Army' Button in Army tab", $COLOR_ORANGE)
@@ -606,7 +606,7 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2, $CastleCapacity)
 	Local $aShouldRemove[2] = [0, 0]
 
 	; IF exist any error on parameter: Castle Capacity!!
-	If $CastleCapacity = 0 or $CastleCapacity = "" then return $aShouldRemove
+	If $CastleCapacity = 0 or $CastleCapacity = "" Then Return $aShouldRemove
 
 	; Correct Set log and flag a Variable to use $bCheckDBCCSpell For dead bases
 	If $iDBcheck = 1 And $iChkWaitForCastleSpell[$DB] = 1 Then
@@ -621,14 +621,14 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2, $CastleCapacity)
 	EndIf
 
 	; Just In case !!! how knows ...
-	If $bCheckDBCCSpell = False and $bCheckABCCSpell = False then Return $aShouldRemove
+	If $bCheckDBCCSpell = False and $bCheckABCCSpell = False Then Return $aShouldRemove
 
 	For $Mode = $DB to $LB
 		; Why check spells if is 'ANY' on Both , Will return [0,0]
 		If BitOR($iCmbWaitForCastleSpell[$Mode],$iCmbWaitForCastleSpell2[$Mode]) > 0 Then
 			Local $txt = "DB"
 			$txt = ($Mode = $LB)?("LB"):("DB")
-			If $Mode = $DB and $bCheckDBCCSpell = false then ContinueLoop ; If the DE is not selected let's go to next loop
+			If $Mode = $DB And $bCheckDBCCSpell = False Then ContinueLoop ; If the DE is not selected let's go to next loop
 			Switch $iCmbWaitForCastleSpell[$Mode]
 				Case 0
 					$sCCSpell = "Any"
@@ -653,7 +653,7 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2, $CastleCapacity)
 			EndSwitch
 
 			; Will only proceeds with 'second slot check' IF the Castle capacity is 2 and was selected a Dark Spell on Slot1
-			If $iCmbWaitForCastleSpell[$Mode] > 5 and $CastleCapacity = 2 then $bCheckCCSpell2 = True
+			If $iCmbWaitForCastleSpell[$Mode] > 5 And $CastleCapacity = 2 Then $bCheckCCSpell2 = True
 
 			; Debug
 			If $debugsetlogTrain Then Setlog("[1][" & $txt & "] GUI Spell is " & $sCCSpell, $COLOR_DEBUG)
@@ -680,7 +680,7 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2, $CastleCapacity)
 				EndSwitch
 
 				; If exist 2 Spells on Slot1 , But Slot2 needs different Spell
-				If $CCSpell1[0][3] = 2 and $sCCSpell2 <> $sCCSpell and $bCheckCCSpell2 = True then
+				If $CCSpell1[0][3] = 2 And $sCCSpell2 <> $sCCSpell And $bCheckCCSpell2 = True Then
 					Setlog("One more Dark Spell on Slot 1 than is needed!")
 					$aShouldRemove[0] = 1 ; remove ONE Dark Spell of 2
 				EndIf
@@ -689,7 +689,7 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2, $CastleCapacity)
 				If $debugsetlogTrain Then Setlog("[2][" & $txt & "] GUI Spell is " & $sCCSpell2, $COLOR_DEBUG)
 
 				; If the Spell2 Match with ANY or with GUI Name than return 0 to remove
-				If $sCCSpell2 = $CCSpell2[0][0] Or $sCCSpell2 = "Any" or ($sCCSpell2 = $sCCSpell and $CCSpell1[0][3] = $CastleCapacity) Then ; If the spell on Slot 1 is = and have 2
+				If $sCCSpell2 = $CCSpell2[0][0] Or $sCCSpell2 = "Any" Or ($sCCSpell2 = $sCCSpell And $CCSpell1[0][3] = $CastleCapacity) Then ; If the spell on Slot 1 is = and have 2
 					$aShouldRemove[1] = 0 ; Is not to remove [0,0] Slot 2
 				Else
 					$aShouldRemove[1] = $CCSpell2[0][3] ; is to remove coz doesn't match the name of the Spells on Slot 1 ($aShouldRemove[0]) $CCSpell1[0][3] is the quantity , 1 or 2

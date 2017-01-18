@@ -118,7 +118,7 @@ Global $ichkLaunchWatchdog = 1
 Global $chkLaunchWatchdog
 
 Global $ThemeConfig ;Theme
-Global $ThemeName
+Global $ThemeName = StringRegExpReplace(IniRead(@ScriptDir & "\Themes\skin.ini", "skin", "skin", @ScriptDir & "\Themes\Themes\MyBot Default Skin.msstyles"), '^(?:.*\\)([^\\]*?)(?:\.[^.]+)?$', '\1')
 ; Check Collector Outside - Added by rulesss
 #region Check Collectors Outside
 ; collectors outside filter

@@ -266,13 +266,13 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		IniReadS($icmbMinimumTimeClose, $config, "other", "MinimumTimeToClose", 2, "int")
 
 		IniReadS($ichkTroopOrder, $config, "troop", "chkTroopOrder", 0, "int")
-		For $z = 0 To UBound($DefaultTroopGroup) -1
+		For $z = 0 To UBound($DefaultTroopGroup) - 1
 			IniReadS($icmbTroopOrder[$z], $config, "troop", "cmbTroopOrder" & $z, $z)
 		Next
 
 		; IniReadS($ichkDarkTroopOrder, $config, "troop", "chkDarkTroopOrder", 0, "int")
 		; For $z = 0 To UBound($DefaultTroopGroupDark) -1
-			; IniReadS($icmbDarkTroopOrder[$z], $config, "troop", "cmbDarkTroopOrder" & $z, -1, "int")
+		; IniReadS($icmbDarkTroopOrder[$z], $config, "troop", "cmbDarkTroopOrder" & $z, -1, "int")
 		; Next
 
 		;Level Troops
@@ -457,7 +457,7 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 
 		IniReadS($itxtSWTtiles, $config, "search", "SWTtiles", 1, "int")
 
-		IniReadS($iDeadBaseDisableCollectorsFilter,$config, "search", "chkDisableCollectorsFilter", 0, "int")
+		IniReadS($iDeadBaseDisableCollectorsFilter, $config, "search", "chkDisableCollectorsFilter", 0, "int")
 		;======================================================================================================================
 		;Attack Basics Settings-------------------------------------------------------------------------
 		IniReadS($iAtkAlgorithm[$DB], $config, "attack", "DBAtkAlgorithm", 0, "int")
@@ -692,18 +692,18 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		IniReadS($ichkEndTwoStars[$LB], $config, "endbattle", "chkABEndTwoStars", 0, "int")
 		IniReadS($ichkEndNoResources[$LB], $config, "endbattle", "chkABEndNoResources", 0, "int")
 
-#CS
-		IniReadS($sTimeStopAtk[$TS], $config, "endbattle", "txtTSTimeStopAtk", 20, "int")
-		IniReadS($iChkTimeStopAtk[$TS], $config, "endbattle", "chkTSTimeStopAtk", 1, "int")
-		IniReadS($sTimeStopAtk2[$TS], $config, "endbattle", "txtTSTimeStopAtk2", 7, "int")
-		IniReadS($iChkTimeStopAtk2[$TS], $config, "endbattle", "chkTSTimeStopAtk2", 0, "int")
-		IniReadS($stxtMinGoldStopAtk2[$TS], $config, "endbattle", "txtTSMinGoldStopAtk2", 1000, "int")
-		IniReadS($stxtMinElixirStopAtk2[$TS], $config, "endbattle", "txtTSMinElixirStopAtk2", 1000, "int")
-		IniReadS($stxtMinDarkElixirStopAtk2[$TS], $config, "endbattle", "txtTSMinDarkElixirStopAtk2", 50, "int")
-		IniReadS($ichkEndOneStar[$TS], $config, "endbattle", "chkTSEndOneStar", 0, "int")
-		IniReadS($ichkEndTwoStars[$TS], $config, "endbattle", "chkTSEndTwoStars", 0, "int")
-		IniReadS($ichkEndNoResources[$TS], $config, "endbattle", "chkTSEndNoResources", 0, "int")
-#CE
+		#CS
+			IniReadS($sTimeStopAtk[$TS], $config, "endbattle", "txtTSTimeStopAtk", 20, "int")
+			IniReadS($iChkTimeStopAtk[$TS], $config, "endbattle", "chkTSTimeStopAtk", 1, "int")
+			IniReadS($sTimeStopAtk2[$TS], $config, "endbattle", "txtTSTimeStopAtk2", 7, "int")
+			IniReadS($iChkTimeStopAtk2[$TS], $config, "endbattle", "chkTSTimeStopAtk2", 0, "int")
+			IniReadS($stxtMinGoldStopAtk2[$TS], $config, "endbattle", "txtTSMinGoldStopAtk2", 1000, "int")
+			IniReadS($stxtMinElixirStopAtk2[$TS], $config, "endbattle", "txtTSMinElixirStopAtk2", 1000, "int")
+			IniReadS($stxtMinDarkElixirStopAtk2[$TS], $config, "endbattle", "txtTSMinDarkElixirStopAtk2", 50, "int")
+			IniReadS($ichkEndOneStar[$TS], $config, "endbattle", "chkTSEndOneStar", 0, "int")
+			IniReadS($ichkEndTwoStars[$TS], $config, "endbattle", "chkTSEndTwoStars", 0, "int")
+			IniReadS($ichkEndNoResources[$TS], $config, "endbattle", "chkTSEndNoResources", 0, "int")
+		#CE
 		;end battle de side
 		IniReadS($DESideEB, $config, "endbattle", "chkDESideEB", 0, "int")
 		IniReadS($DELowEndMin, $config, "endbattle", "txtDELowEndMin", 25, "int")
@@ -1227,8 +1227,27 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		IniReadS($ichkSXAQ, $config, "attack", "SXAQ", $HERO_NOHERO)
 		IniReadS($ichkSXGW, $config, "attack", "SXGW", $HERO_NOHERO)
 
-   
-#include "..\..\MOD\Config read - Mod.au3"				;	Adding Config Read for SwitchAcc Mode
+
+        ; ================================================== TREASURY COLLECT PART ================================================== ;
+
+		$ichkEnableTrCollect = IniRead($config, "Treasury", "chkEnableTrCollect", "0")
+		$ichkForceTrCollect = IniRead($config, "Treasury", "chkForceTrCollect", "0")
+
+		$ichkGoldTrCollect = IniRead($config, "Treasury", "chkGoldTrCollect", "0")
+		$ichkElxTrCollect = IniRead($config, "Treasury", "chkElxTrCollect", "0")
+		$ichkDarkTrCollect = IniRead($config, "Treasury", "chkDarkTrCollect", "0")
+
+		$itxtMinGoldTrCollect = IniRead($config, "Treasury", "txtMinGoldTrCollect", "200000")
+		$itxtMinElxTrCollect = IniRead($config, "Treasury", "txtMinElxTrCollect", "200000")
+		$itxtMinDarkTrCollect = IniRead($config, "Treasury", "txtMinDarkTrCollect", "50000")
+
+		$ichkFullGoldTrCollect = IniRead($config, "Treasury", "chkFullGoldTrCollect", "0")
+		$ichkFullElxTrCollect = IniRead($config, "Treasury", "chkFullElxTrCollect", "0")
+		$ichkFullDarkTrCollect = IniRead($config, "Treasury", "chkFullDarkTrCollect", "0")
+
+		; ================================================== TREASURY COLLECT END ================================================== ;
+
+         #include "..\..\MOD\Config read - Mod.au3"				;	Adding Config Read for SwitchAcc Mode
 
 	Else
 		Return False

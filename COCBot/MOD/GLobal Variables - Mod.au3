@@ -97,7 +97,7 @@ Global $icmbLang
 
 ;Transparent Gui - by Kychera
 Global $iSldTransLevel
-Global $SldTransLevel  
+Global $SldTransLevel
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ;Forecast Added by rulesss
@@ -123,7 +123,7 @@ Global $ichkLaunchWatchdog = 1
 Global $chkLaunchWatchdog
 
 ;Theme -  modified Kychera
-Global $ThemeConfig 
+Global $ThemeConfig
 Global $ThemeName = StringRegExpReplace(IniRead(@ScriptDir & "\Themes\skin.ini", "skin", "skin", @ScriptDir & "\Themes\Themes\MyBot Default Skin.msstyles"), '^(?:.*\\)([^\\]*?)(?:\.[^.]+)?$', '\1')
 
 ; Check Collector Outside - Added by rulesss

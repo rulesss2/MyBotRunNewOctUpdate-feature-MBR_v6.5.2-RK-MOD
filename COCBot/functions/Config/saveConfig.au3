@@ -810,10 +810,10 @@ If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
 		Else
 			$debugAttackCSV = 0
 		EndIf
-		If GUICtrlRead($chkmakeIMGCSV ) = $GUI_CHECKED Then
-			$makeIMGCSV  = 1
+		If GUICtrlRead($chkmakeIMGCSV) = $GUI_CHECKED Then
+			$makeIMGCSV = 1
 		Else
-			$makeIMGCSV  = 0
+			$makeIMGCSV = 0
 		EndIf
 	EndIf
 
@@ -921,7 +921,7 @@ If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
 		$iChkTrophyHeroes = 1
 	Else
 		$iChkTrophyHeroes = 0
-    EndIf
+	EndIf
 	IniWriteS($config, "search", "cmbTrophyHeroesPriority", _GUICtrlComboBox_GetCurSel($cmbTrophyHeroesPriority))
 
 
@@ -1987,22 +1987,22 @@ If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
 		IniWriteS($config, "endBattle", "chkABEndNoResources", 0)
 	EndIf
 
-#CS
-	IniWriteS($config, "endBattle", "txtTSTimeStopAtk", GUICtrlRead($txtTSTimeStopAtk))
-	IniWriteS($config, "endBattle", "chkTSTimeStopAtk", GUICtrlRead($chkTSTimeStopAtk))
-	IniWriteS($config, "endBattle", "txtTSTimeStopAtk2", GUICtrlRead($txtTSTimeStopAtk2))
-	IniWriteS($config, "endBattle", "chkTSTimeStopAtk2", GUICtrlRead($chkTSTimeStopAtk2))
-	IniWriteS($config, "endBattle", "txtTSMinGoldStopAtk2", GUICtrlRead($txtTSMinGoldStopAtk2))
-	IniWriteS($config, "endBattle", "txtTSMinElixirStopAtk2", GUICtrlRead($txtTSMinElixirStopAtk2))
-	IniWriteS($config, "endBattle", "txtTSMinDarkElixirStopAtk2", GUICtrlRead($txtTSMinDarkElixirStopAtk2))
-	IniWriteS($config, "endBattle", "chkTSEndOneStar", GUICtrlRead($chkTSEndOneStar))
-	IniWriteS($config, "endBattle", "chkTSEndTwoStars", GUICtrlRead($chkTSEndTwoStars))
-	If GUICtrlRead($chkTSEndNoResources) = $GUI_CHECKED Then
+	#CS
+		IniWriteS($config, "endBattle", "txtTSTimeStopAtk", GUICtrlRead($txtTSTimeStopAtk))
+		IniWriteS($config, "endBattle", "chkTSTimeStopAtk", GUICtrlRead($chkTSTimeStopAtk))
+		IniWriteS($config, "endBattle", "txtTSTimeStopAtk2", GUICtrlRead($txtTSTimeStopAtk2))
+		IniWriteS($config, "endBattle", "chkTSTimeStopAtk2", GUICtrlRead($chkTSTimeStopAtk2))
+		IniWriteS($config, "endBattle", "txtTSMinGoldStopAtk2", GUICtrlRead($txtTSMinGoldStopAtk2))
+		IniWriteS($config, "endBattle", "txtTSMinElixirStopAtk2", GUICtrlRead($txtTSMinElixirStopAtk2))
+		IniWriteS($config, "endBattle", "txtTSMinDarkElixirStopAtk2", GUICtrlRead($txtTSMinDarkElixirStopAtk2))
+		IniWriteS($config, "endBattle", "chkTSEndOneStar", GUICtrlRead($chkTSEndOneStar))
+		IniWriteS($config, "endBattle", "chkTSEndTwoStars", GUICtrlRead($chkTSEndTwoStars))
+		If GUICtrlRead($chkTSEndNoResources) = $GUI_CHECKED Then
 		IniWriteS($config, "endBattle", "chkTSEndNoResources", 1)
-	Else
+		Else
 		IniWriteS($config, "endBattle", "chkTSEndNoResources", 0)
-	EndIf
-#CE
+		EndIf
+	#CE
 
 	; end battle de side
 	IniWriteS($config, "endbattle", "chkDESideEB", $DESideEB)
@@ -2077,7 +2077,7 @@ If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
 	Else
 		IniWriteS($config, "donate", "SkipDonateNearFulLTroopsEnable", 0)
 	EndIf
-	IniWriteS($config, "donate", "SkipDonateNearFulLTroopsPercentual", number(GUICtrlRead($txtSkipDonateNearFulLTroopsPercentual)))
+	IniWriteS($config, "donate", "SkipDonateNearFulLTroopsPercentual", Number(GUICtrlRead($txtSkipDonateNearFulLTroopsPercentual)))
 	IniWriteS($config, "donate", "chkDonateBarbarians", $ichkDonateBarbarians)
 	IniWriteS($config, "donate", "chkDonateAllBarbarians", $ichkDonateAllBarbarians)
 	IniWriteS($config, "donate", "txtDonateBarbarians", StringReplace($sTxtDonateBarbarians, @CRLF, "|"))
@@ -2267,35 +2267,35 @@ If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
 	IniWriteS($config, "other", "MinimumTimeToClose", GUICtrlRead($cmbMinimumTimeClose))
 
 	IniWriteS($config, "troop", "chkTroopOrder", $ichkTroopOrder)
-	For $z = 0 To UBound($DefaultTroopGroup) -1
+	For $z = 0 To UBound($DefaultTroopGroup) - 1
 		IniWriteS($config, "troop", "cmbTroopOrder" & $z, _GUICtrlComboBox_GetCurSel($cmbTroopOrder[$z]))
 	Next
 
 	; IniWriteS($config, "troop", "chkDarkTroopOrder", $ichkDarkTroopOrder)
 	; For $z = 0 To UBound($DefaultTroopGroupDark) -1
-		; IniWriteS($config, "troop", "cmbDarkTroopOrder" & $z, _GUICtrlComboBox_GetCurSel($cmbDarkTroopOrder[$z]))
+	; IniWriteS($config, "troop", "cmbDarkTroopOrder" & $z, _GUICtrlComboBox_GetCurSel($cmbDarkTroopOrder[$z]))
 	; Next
 
 	;Level Troops
-		; IniWriteS($config, "LevelTroop", "Barb", $itxtLevBarb)
-		; IniWriteS($config, "LevelTroop", "Arch", $itxtLevArch)
-		; IniWriteS($config, "LevelTroop", "Gobl", $itxtLevGobl)
-		; IniWriteS($config, "LevelTroop", "Giant", $itxtLevGiant)
-		; IniWriteS($config, "LevelTroop", "Wall", $itxtLevWall)
-		; IniWriteS($config, "LevelTroop", "Heal", $itxtLevHeal)
-		; IniWriteS($config, "LevelTroop", "Pekk", $itxtLevPekk)
-		; IniWriteS($config, "LevelTroop", "Ball", $itxtLevBall)
-		; IniWriteS($config, "LevelTroop", "Wiza", $itxtLevWiza)
-		; IniWriteS($config, "LevelTroop", "Drag", $itxtLevDrag)
-		; IniWriteS($config, "LevelTroop", "BabyD", $itxtLevBabyD)
-		; IniWriteS($config, "LevelTroop", "Mine", $itxtLevMine)
-		; IniWriteS($config, "LevelTroop", "Mini", $itxtLevMini)
-		; IniWriteS($config, "LevelTroop", "Hogs", $itxtLevHogs)
-		; IniWriteS($config, "LevelTroop", "Valk", $itxtLevValk)
-		; IniWriteS($config, "LevelTroop", "Gole", $itxtLevGole)
-		; IniWriteS($config, "LevelTroop", "Witc", $itxtLevWitc)
-		; IniWriteS($config, "LevelTroop", "Lava", $itxtLevLava)
-		; IniWriteS($config, "LevelTroop", "Bowl", $itxtLevBowl)
+	; IniWriteS($config, "LevelTroop", "Barb", $itxtLevBarb)
+	; IniWriteS($config, "LevelTroop", "Arch", $itxtLevArch)
+	; IniWriteS($config, "LevelTroop", "Gobl", $itxtLevGobl)
+	; IniWriteS($config, "LevelTroop", "Giant", $itxtLevGiant)
+	; IniWriteS($config, "LevelTroop", "Wall", $itxtLevWall)
+	; IniWriteS($config, "LevelTroop", "Heal", $itxtLevHeal)
+	; IniWriteS($config, "LevelTroop", "Pekk", $itxtLevPekk)
+	; IniWriteS($config, "LevelTroop", "Ball", $itxtLevBall)
+	; IniWriteS($config, "LevelTroop", "Wiza", $itxtLevWiza)
+	; IniWriteS($config, "LevelTroop", "Drag", $itxtLevDrag)
+	; IniWriteS($config, "LevelTroop", "BabyD", $itxtLevBabyD)
+	; IniWriteS($config, "LevelTroop", "Mine", $itxtLevMine)
+	; IniWriteS($config, "LevelTroop", "Mini", $itxtLevMini)
+	; IniWriteS($config, "LevelTroop", "Hogs", $itxtLevHogs)
+	; IniWriteS($config, "LevelTroop", "Valk", $itxtLevValk)
+	; IniWriteS($config, "LevelTroop", "Gole", $itxtLevGole)
+	; IniWriteS($config, "LevelTroop", "Witc", $itxtLevWitc)
+	; IniWriteS($config, "LevelTroop", "Lava", $itxtLevLava)
+	; IniWriteS($config, "LevelTroop", "Bowl", $itxtLevBowl)
 	;barracks boost not saved (no use)
 
 	; Spells Creation  ---------------------------------------------------------------------

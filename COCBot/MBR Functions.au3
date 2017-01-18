@@ -326,3 +326,4 @@
 
 #include "MOD\AreCollectorsOutside.au3"
 #include "functions\Android\modifyAndroid.au3"
+#include "MOD\TreasuryCollect.au3"

@@ -713,7 +713,6 @@ $iCmbWeakWizTower[$LB] = 4
 Global $iChkSearchReduction = 0
 Global $ReduceCount = 20, $ReduceGold = 2000, $ReduceElixir = 2000, $ReduceGoldPlusElixir = 4000, $ReduceDark = 100, $ReduceTrophy = 2 ; Reducing values
 
-
 Global $iChkEnableAfter[$iModeCount], $iCmbMeetGE[$iModeCount], $iChkMeetDE[$iModeCount], $iChkMeetTrophy[$iModeCount], $iChkMeetTH[$iModeCount], $iChkMeetTHO[$iModeCount], $iChkMeetOne[$iModeCount], $iCmbTH[$iModeCount]
 Global $chkDBMeetTHO, $chkABMeetTHO
 Global $THLocation
@@ -739,7 +738,6 @@ Global $OptBullyMode = 0
 Global $ATBullyMode = 150
 Global $YourTH
 Global $iTHBullyAttackMode
-
 
 Global $scmbAttackTHType = "Bam"
 Global $txtAttackTHType
@@ -779,7 +777,6 @@ Global $WallCosts[8] = [30000, 75000, 200000, 500000, 1000000, 2000000, 3000000,
 Global $WallX = 0, $WallY = 0
 Global $Wall[8]
 Global $iMaxNbWall = 4
-
 
 ;Attack Settings [Dec 2016]
 Global $TopLeft[5][2] = [[62, 306], [156, 238], [221, 188], [288, 142], [383, 76]]
@@ -870,7 +867,6 @@ Global $iActivateKQCondition
 Global $iActivateWardenCondition
 Global $delayActivateKQ ; = 9000 ;Delay before activating KQ
 Global $delayActivateW ; Delay before activating Grand Warden Ability
-
 
 Global $iDropCC[$iModeCount] ; Use Clan Castle settings
 Global $iChkUseCCBalanced ; Use Clan Castle Balanced settings
@@ -1733,7 +1729,6 @@ Global $itxtMinDE = 350
 Global $fDarkStealFactor = 0.75
 Global $fDarkFillLevel = 0.70
 
-
 ; NoobZap
 Global $ichkNoobZap = 0
 Global $itxtExpectedDE = 320
@@ -1766,8 +1761,6 @@ Global Const $aDrillLevelHold[6] = [120, 225, 405, 630, 960, 1350]
 ; SmartZap Array to hold Amount of DE available to steal per zap from Drills at each level (1-6)
 ; = $aDrillLevelHold/$aDrillLevelHP * $aLSpellDmg (different Lvls, with old values)
 Global Const $aDrillLevelSteal[6] = [59, 102, 172, 251, 343, 479]
-
-
 
 ;Wait for Castle
 Global $iChkWaitForCastleSpell[$iModeCount]
@@ -1840,6 +1833,19 @@ Global $lblDonQ[29] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
 Global $isSantaSpellAvailable = -1	; -1 Means not Set
 Global $_CheckIceWizardSlot = True ; Check if Ice Wizard changes normal troop layout (reset to true in readConfig!)
+
+Global $CurBaseRedLine[2] = ["", ""]
+Global $DCD = "440,70|825,344|440,640|55,344"
+Global $ECD = "440,22|860,344|440,670|2,344"
+
+; ================================================== TREASURY COLLECT PART ================================================== ;
+
+Global $ichkGoldTrCollect, $ichkElxTrCollect, $ichkDarkTrCollect
+Global $ichkFullGoldTrCollect, $ichkFullElxTrCollect, $ichkFullDarkTrCollect
+Global $itxtMinGoldTrCollect, $itxtMinElxTrCollect, $itxtMinDarkTrCollect
+Global $ichkEnableTrCollect, $ichkForceTrCollect
+
+; ================================================== TREASURY COLLECT END ================================================== ;
 
 Local $HeroesTimerActivation[3] ; to use of Heroes Activation Habilities , Timer  , each Hero
 

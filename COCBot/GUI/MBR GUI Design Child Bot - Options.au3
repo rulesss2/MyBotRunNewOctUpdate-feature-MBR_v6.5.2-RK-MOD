@@ -120,7 +120,7 @@ $grpOnStartBot = GUICtrlCreateGroup(GetTranslated(636,12, "When Bot Starts"), $x
 										"DOCK: Integrate Android Screen into bot window.")
 		_GUICtrlSetTip(-1, $txtTip)
 		GUICtrlSetState(-1, $GUI_DISABLE)
-;++++++++ Modified Kychera	+++++++++++	
+;++++++++ Modified Kychera	+++++++++++
 	$y += 49
 	$grpOnStartBot = GUICtrlCreateGroup(GetTranslated(636,126, "Decor"), $x - 20, $y - 20, 210, 120)
 	  $y += 65
@@ -129,7 +129,7 @@ $grpOnStartBot = GUICtrlCreateGroup(GetTranslated(636,12, "When Bot Starts"), $x
 		GUICtrlSetLimit($SldTransLevel, 8, 0)
 		GUICtrlSetData(-1, 0)
 		GUICtrlSetOnEvent(-1, "Slider")
-;+++++++++++++++++++++++++++++++++++++++        		
+;+++++++++++++++++++++++++++++++++++++++
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 Local $x = 240, $y = 45
@@ -148,6 +148,7 @@ $grpAdvanced = GUICtrlCreateGroup(GetTranslated(636,93, "Advanced"), $x - 20, $y
     $y += 19
 	$chkLaunchWatchdog = GUICtrlCreateCheckbox(GetTranslated(2000,1, "Disabled Watchdog"), $x, $y, -1, -1)
         GUICtrlSetState(-1, $GUI_CHECKED)
+	    GUICtrlSetOnEvent(-1, "chkLaunchWatchdog")
 
 ;~  useless, allready exist this option, restored original
 ;~ 	$y += 19

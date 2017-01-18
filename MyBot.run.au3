@@ -379,6 +379,7 @@ Func runBot() ;Bot that runs everything in order
 				EndIf
 				If checkAndroidReboot() = True Then ContinueLoop 2 ; must be level 2 due to loop-in-loop
 			WEnd
+			clanHop()
 			If $RunState = False Then Return
 			If $Restart = True Then ContinueLoop
 			If IsSearchAttackEnabled() Then ; If attack scheduled has attack disabled now, stop wall upgrades, and attack.

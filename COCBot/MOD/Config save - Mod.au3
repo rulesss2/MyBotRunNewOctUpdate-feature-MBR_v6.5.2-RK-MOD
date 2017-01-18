@@ -152,6 +152,12 @@ EndIf
 	EndIf
 	IniWriteS($config, "search", "DBMinCollOutsidePercent", GUICtrlRead($txtDBMinCollOutsidePercent))
 	;Transparent Gui (Modified Kychera)
-	$iSldTransLevel = GUICtrlRead($SldTransLevel) 
+	$iSldTransLevel = GUICtrlRead($SldTransLevel)
 	IniWrites($config, "TransLevel", "Level", $iSldTransLevel)
-	  
+
+    ; Clan Hop Setting - Added by rulesss
+    If GUICtrlRead($chkClanHop) = $GUI_CHECKED Then
+	    IniWrite($config, "Others", "ClanHop", 1)
+    Else
+	    IniWrite($config, "Others", "ClanHop", 0)
+    EndIf

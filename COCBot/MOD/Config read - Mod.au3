@@ -68,8 +68,11 @@ $icmbSwLang = IniRead($config, "Lang", "cmbSwLang", "0")
 
 $ichkLaunchWatchdog = IniRead($config, "Other", "chkLaunchWatchdog", "1")
 
-; Check Collectors Outside - Added By NguyenAnhHD
+; Check Collectors Outside - Added by rulesss
 $ichkDBMeetCollOutside = IniRead($config, "search", "DBMeetCollOutside", "0")
 $iDBMinCollOutsidePercent = IniRead($config, "search", "DBMinCollOutsidePercent", "50")
 ;Transparent Gui (Modified Kychera)
 $iSldTransLevel = IniRead($config, "TransLevel", "Level", "0")
+
+; Clan Hop Setting - Added by rulesss
+$ichkClanHop = IniRead($config, "Others", "ClanHop", "0")

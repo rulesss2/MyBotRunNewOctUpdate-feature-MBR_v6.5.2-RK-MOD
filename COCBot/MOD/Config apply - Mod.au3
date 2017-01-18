@@ -162,5 +162,12 @@ GUICtrlSetData($chkchatdelay, $ichkchatdelay)
 	chkDBMeetCollOutside()
 	GUICtrlSetData($txtDBMinCollOutsidePercent, $iDBMinCollOutsidePercent)
 	;Transparent Gui (Modified Kychera)
-	GUICtrlSetData($SldTransLevel, $iSldTransLevel)	
-	Slider() 
+	GUICtrlSetData($SldTransLevel, $iSldTransLevel)
+	Slider()
+
+	; Clan Hop Setting - Added By NguyenAnhHD
+    If $ichkClanHop = 1 Then
+	    GUICtrlSetState($chkClanHop, $GUI_CHECKED)
+    Else
+	    GUICtrlSetState($chkClanHop, $GUI_UNCHECKED)
+    EndIf

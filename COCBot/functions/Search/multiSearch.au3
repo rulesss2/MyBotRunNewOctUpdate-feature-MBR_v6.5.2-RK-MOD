@@ -238,6 +238,7 @@ Func CloneAreaToSearch($x, $y, $x1, $y1)
 
 	_GDIPlus_BitmapDispose($hImage)
 	_GDIPlus_BitmapDispose($hClone)
+    _WinAPI_DeleteObject($hHBitmap2)
 
 	Return $hBMP
 EndFunc   ;==>CloneAreaToSearch

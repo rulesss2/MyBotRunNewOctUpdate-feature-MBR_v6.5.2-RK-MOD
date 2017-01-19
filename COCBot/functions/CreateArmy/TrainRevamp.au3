@@ -2420,7 +2420,7 @@ Func CheckValuesCost($txt = "RegularTroops", $Troop = "Arch", $troopQuantity = 1
 	If $debugsetlogTrain = 1 Or $DebugLogs Then Setlog(" » Current costs:")
 	If ($debugsetlogTrain = 1 Or $DebugLogs) And $ElixirCostCamp <> 0 Then Setlog(" - Elixir Cost Camp: " & _NumberFormat($ElixirCostCamp))
 	If ($debugsetlogTrain = 1 Or $DebugLogs) And $DarkCostCamp <> 0 Then  Setlog(" - DE Cost Camp: " & _NumberFormat($DarkCostCamp))
-	If ($debugsetlogTrain = 1 Or $DebugLogs) And $ElixirCostSpell <> 0 Then  Setlog(" - Elixir Cost Spell: " & _NumberFormat($ElixirCostSpell))
+	If ($debugsetlogTrain = 1 Or $DebugLogs) And $ElixirCostSpell <> 0 Then Setlog(" - Elixir Cost Spell: " & _NumberFormat($ElixirCostSpell))
 	If ($debugsetlogTrain = 1 Or $DebugLogs) And $DarkCostSpell <> 0 Then  Setlog(" - DE Cost Spell: " & _NumberFormat($DarkCostSpell))
 
 	If $txt <> "" Then

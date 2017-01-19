@@ -2972,6 +2972,55 @@ If $NotifyAlertBOTSleep = 1 Then
 	; ================================= SmartZap =================================
 	; ============================================================================
 
+	; ================================================== BOT HUMANIZATION PART ================================================== ;
+
+	If $ichkUseBotHumanization = 1 Then
+		GUICtrlSetState($chkUseBotHumanization, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkUseBotHumanization, $GUI_UNCHECKED)
+	EndIf
+
+	If $ichkUseAltRClick = 1 Then
+		GUICtrlSetState($chkUseAltRClick, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkUseAltRClick, $GUI_UNCHECKED)
+	EndIf
+
+	If $ichkCollectAchievements = 1 Then
+		GUICtrlSetState($chkCollectAchievements, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkCollectAchievements, $GUI_UNCHECKED)
+	EndIf
+
+	If $ichkLookAtRedNotifications = 1 Then
+		GUICtrlSetState($chkLookAtRedNotifications, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkLookAtRedNotifications, $GUI_UNCHECKED)
+	EndIf
+
+	chkUseBotHumanization()
+
+	For $i = 0 To 12
+		_GUICtrlComboBox_SetCurSel($cmbPriority[$i], $icmbPriority[$i])
+	Next
+	For $i = 0 To 1
+		_GUICtrlComboBox_SetCurSel($cmbMaxSpeed[$i], $icmbMaxSpeed[$i])
+	Next
+	For $i = 0 To 1
+		_GUICtrlComboBox_SetCurSel($cmbPause[$i], $icmbPause[$i])
+	Next
+
+	For $i = 0 To 1
+		GUICtrlSetData($humanMessage[$i], $ihumanMessage[$i])
+	Next
+
+	_GUICtrlComboBox_SetCurSel($cmbMaxActionsNumber, $icmbMaxActionsNumber)
+
+	cmbStandardReplay()
+	cmbWarReplay()
+
+	; ================================================== BOT HUMANIZATION END ================================================== ;
+
 	; ================================================== TREASURY COLLECT PART ================================================== ;
 
 	If $ichkEnableTrCollect = 1 Then

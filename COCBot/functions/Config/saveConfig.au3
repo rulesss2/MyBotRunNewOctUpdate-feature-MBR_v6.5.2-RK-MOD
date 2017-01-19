@@ -2924,6 +2924,30 @@ If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
 ; ================================= SmartZap =================================
 ; ============================================================================
 
+   ; ================================================== BOT HUMANIZATION PART ================================================== ;
+
+	IniWrite($config, "Humanization", "chkUseBotHumanization", $ichkUseBotHumanization)
+	IniWrite($config, "Humanization", "chkUseAltRClick", $ichkUseAltRClick)
+	IniWrite($config, "Humanization", "chkCollectAchievements", $ichkCollectAchievements)
+	IniWrite($config, "Humanization", "chkLookAtRedNotifications", $ichkLookAtRedNotifications)
+
+	For $i = 0 To 12
+		IniWrite($config, "Humanization", "cmbPriority[" & $i & "]", _GUICtrlComboBox_GetCurSel($cmbPriority[$i]))
+	Next
+	For $i = 0 To 1
+		IniWrite($config, "Humanization", "cmbMaxSpeed[" & $i & "]", _GUICtrlComboBox_GetCurSel($cmbMaxSpeed[$i]))
+	Next
+	For $i = 0 To 1
+		IniWrite($config, "Humanization", "cmbPause[" & $i & "]", _GUICtrlComboBox_GetCurSel($cmbPause[$i]))
+	Next
+
+	For $i = 0 To 1
+		IniWrite($config, "Humanization", "humanMessage[" & $i & "]", GUICtrlRead($humanMessage[$i]))
+	Next
+
+	IniWrite($config, "Humanization", "cmbMaxActionsNumber", _GUICtrlComboBox_GetCurSel($cmbMaxActionsNumber))
+
+	; ================================================== BOT HUMANIZATION END ================================================== ;
 
    ; ================================================== TREASURY COLLECT PART ================================================== ;
 

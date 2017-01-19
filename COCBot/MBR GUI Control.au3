@@ -630,7 +630,7 @@ Func GUIControl_WM_NOTIFY($hWind, $iMsg, $wParam, $lParam)
 							GUICtrlSetState($hGUI_MOD_TAB_ITEM4, $GUI_SHOW)
 							sleep(100)
 							If TimerDiff($TimerForecast) > (1 * 10000) Then ; 1 Refresh Graphique toutes les 5 mn maxi, faut pas abuser
-						cmbSwLang() ;Added Multi Switch Language by rulesss and kychera		                      
+						cmbSwLang() ;Added Multi Switch Language by rulesss and kychera
 							$TimerForecast = TimerInit()
 							EndIf
 						EndIf
@@ -679,7 +679,7 @@ Func GUIControl_WM_NOTIFY($hWind, $iMsg, $wParam, $lParam)
 							GUICtrlSetState($hGUI_MOD_TAB_ITEM4, $GUI_SHOW)
 							sleep(100)
 							If TimerDiff($TimerForecast) > (1 * 10000) Then ; 1 Refresh Graphique toutes les 5 mn maxi, faut pas abuser
-						cmbSwLang()			            
+						cmbSwLang()
                             $TimerForecast = TimerInit()
 							EndIf
 						EndIf
@@ -1089,7 +1089,7 @@ Func tabMain()
 				GUISetState(@SW_HIDE, $hGUI_ATTACK)
 				GUISetState(@SW_HIDE, $hGUI_BOT)
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_MOD)
-			Case ELSE
+			Case Else
 				GUISetState(@SW_HIDE, $hGUI_LOG)
 				GUISetState(@SW_HIDE, $hGUI_VILLAGE)
 				GUISetState(@SW_HIDE, $hGUI_ATTACK)
@@ -1114,7 +1114,7 @@ Func tabVillage()
 				GUISetState(@SW_HIDE, $hGUI_DONATE)
 				GUISetState(@SW_HIDE, $hGUI_UPGRADE)
 				GUISetState(@SW_SHOWNOACTIVATE, $hGUI_NOTIFY)
-			Case ELSE
+			Case Else
 				GUISetState(@SW_HIDE, $hGUI_DONATE)
 				GUISetState(@SW_HIDE, $hGUI_UPGRADE)
 				GUISetState(@SW_HIDE, $hGUI_NOTIFY)
@@ -1584,9 +1584,9 @@ EndFunc   ;==>Bind_ImageList
 
 Func AddImageToTab($nCtrl, $nTabIndex, $nItem, $pIconLib, $nIconID)
 	$hIcon = DllStructCreate("int")
-	$result = DllCall("shell32.dll", "int", "ExtractIconEx", "str", $pIconLib, "int", $nIconID, "hwnd", 0, "ptr", DllStructGetPtr($hIcon), "int", 1)
-	$result = $result[0]
-	If $result > 0 Then
+	$Result = DllCall("shell32.dll", "int", "ExtractIconEx", "str", $pIconLib, "int", $nIconID, "hwnd", 0, "ptr", DllStructGetPtr($hIcon), "int", 1)
+	$Result = $Result[0]
+	If $Result > 0 Then
 		DllCall("comctl32.dll", "int", "ImageList_AddIcon", "hwnd", $hImageList, "hwnd", DllStructGetData($hIcon, 1))
 		DllCall("user32.dll", "int", "SendMessage", "hwnd", ControlGetHandle($frmBot, "", $nCtrl), "int", $TCM_SETITEM, "int", $nTabIndex, "ptr", DllStructGetPtr($nItem))
 		DllCall("user32.dll", "int", "DestroyIcon", "hwnd", $hIcon)

@@ -524,7 +524,8 @@ Global Enum $eIcnArcher = 1, $eIcnDonArcher, $eIcnBalloon, $eIcnDonBalloon, $eIc
 			$eHdV11, $eUnranked, $eBronze, $eSilver, $eGold, $eCrystal, $eMaster, $eChampion, $eTitan, $eLegend, _
 			$eWall04, $eWall05, $eWall06, $eWall07, $eWall08, $eWall09, $eWall10, $eWall11, $eIcnPBNotify, $eIcnCCTroops, _
 			$eIcnCCSpells, $eIcnSpellsGroup, $eBahasaIND, $eChinese_S, $eChinese_T, $eEnglish, $eFrench, $eGerman, $eItalian, $ePersian, _
-			$eRussian, $eSpanish, $eTurkish, $eMissingLangIcon, $eWall12, $ePortuguese, $eIcnDonPoisonSpell, $eIcnDonEarthQuakeSpell, $eIcnDonHasteSpell, $eIcnDonSkeletonSpell
+			$eRussian, $eSpanish, $eTurkish, $eMissingLangIcon, $eWall12, $ePortuguese, $eIcnDonPoisonSpell, $eIcnDonEarthQuakeSpell, $eIcnDonHasteSpell, $eIcnDonSkeletonSpell, _
+			$eIcnBrain, $eIcnChat, $eIcnSwords, $eIcnLoop, $eIcnRepeat, $eIcnClan
 
 Global $eIcnDonBlank = $eIcnDonBlacklist
 Global $eIcnOptions = $eIcnDonBlacklist
@@ -1833,6 +1834,33 @@ Global $lblDonQ[29] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
 Global $isSantaSpellAvailable = -1	; -1 Means not Set
 Global $_CheckIceWizardSlot = True ; Check if Ice Wizard changes normal troop layout (reset to true in readConfig!)
+
+; ================================================== BOT HUMANIZATION PART ================================================== ;
+
+Global $MinimumPriority, $MaxActionsNumber, $ActionToDo
+Global $SetActionPriority[13] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+Global $FrequenceChain = GetTranslated(42, 100, "Never|Sometimes|Frequently|Often|Very Often")
+Global $ReplayChain = "1|2|4"
+Global $ichkUseBotHumanization, $ichkUseAltRClick, $icmbMaxActionsNumber, $ichkCollectAchievements, $ichkLookAtRedNotifications
+
+Global $icmbPriority[13] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Global $icmbMaxSpeed[2] = [0, 0]
+Global $icmbPause[2] = [0, 0]
+Global $ihumanMessage[2] = ["", ""]
+
+Global $cmbPriority[13] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Global $cmbMaxSpeed[2] = [0, 0]
+Global $cmbPause[2] = [0, 0]
+Global $humanMessage[2] = ["", ""]
+
+Global $ReplayDuration[2] = [0, 0] ; An array, [0] = Minute | [1] = Seconds
+Global $OnReplayWindow, $ReplayToPause
+
+Global $QuickMISX = 0, $QuickMISY = 0
+Global $LastLayout = 0
+
+; ================================================== BOT HUMANIZATION END ================================================== ;
 
 Global $CurBaseRedLine[2] = ["", ""]
 Global $DCD = "440,70|825,344|440,640|55,344"

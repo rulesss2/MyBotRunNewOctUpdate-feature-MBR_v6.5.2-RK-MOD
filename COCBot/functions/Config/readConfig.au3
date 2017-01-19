@@ -1227,6 +1227,30 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		IniReadS($ichkSXAQ, $config, "attack", "SXAQ", $HERO_NOHERO)
 		IniReadS($ichkSXGW, $config, "attack", "SXGW", $HERO_NOHERO)
 
+        ; ================================================== BOT HUMANIZATION PART ================================================== ;
+
+		$ichkUseBotHumanization = IniRead($config, "Humanization", "chkUseBotHumanization", "0")
+		$ichkUseAltRClick = IniRead($config, "Humanization", "chkUseAltRClick", "0")
+		$ichkCollectAchievements = IniRead($config, "Humanization", "chkCollectAchievements", "0")
+		$ichkLookAtRedNotifications = IniRead($config, "Humanization", "chkLookAtRedNotifications", "0")
+
+		For $i = 0 To 12
+			$icmbPriority[$i] = IniRead($config, "Humanization", "cmbPriority[" & $i & "]", "0")
+		Next
+		For $i = 0 To 1
+			$icmbMaxSpeed[$i] = IniRead($config, "Humanization", "cmbMaxSpeed[" & $i & "]", "1")
+		Next
+		For $i = 0 To 1
+			$icmbPause[$i] = IniRead($config, "Humanization", "cmbPause[" & $i & "]", "0")
+		Next
+
+		For $i = 0 To 1
+			$ihumanMessage[$i] = IniRead($config, "Humanization", "humanMessage[" & $i & "]", "")
+		Next
+
+		$icmbMaxActionsNumber = IniRead($config, "Humanization", "cmbMaxActionsNumber", "1")
+
+		; ================================================== BOT HUMANIZATION END ================================================== ;
 
         ; ================================================== TREASURY COLLECT PART ================================================== ;
 

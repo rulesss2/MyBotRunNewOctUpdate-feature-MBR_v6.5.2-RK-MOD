@@ -229,3 +229,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
              GUICtrlSetData(-1, "EN|RU|FR|DE|ES|IT|PT|IN", "RU")
 			 GUICtrlSetOnEvent(-1, "cmbSwLang")
 GUICtrlCreateTabItem("")
+
+$hGUI_BOT_TAB_ITEM5 = GUICtrlCreateTabItem("Humanization")
+#include "MBR GUI Design Child Bot - Humanization.au3"
+GUICtrlCreateTabItem("")

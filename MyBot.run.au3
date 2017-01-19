@@ -232,7 +232,7 @@ EndIf
 
 ;~ Remember time in Milliseconds bot launched
 $iBotLaunchTime = TimerDiff($hBotLaunchTime)
-SetDebugLog("MyBot.run launch time " & Round($iBotLaunchTime) & " ms.")
+Setlog("MyBot.run launch time " & Round($iBotLaunchTime) & " ms.", $COLOR_INFO)
 
 ;AutoStart Bot if request
 AutoStart()
@@ -461,6 +461,8 @@ Func Idle() ;Sequence that runs until Full Army
 		Local $hTimer = TimerInit()
 		Local $iReHere = 0
 		;PrepareDonateCC()
+
+		BotHumanization()
 
 		;If $iSkipDonateNearFulLTroopsEnable = 1 Then getArmyCapacity(true,true)
 		If $bActiveDonate = True Then

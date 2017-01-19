@@ -666,9 +666,9 @@ Global $BSrpos[2] ; Inside Android window positions relative to the window, [x,y
 ;Stats
 Global $iFreeBuilderCount, $iTotalBuilderCount, $iGemAmount ; builder and gem amounts
 Global $iTestFreeBuilderCount = -1 ; used for test cases, -1 = disabled
-Global $iGoldStart, $iElixirStart, $iDarkStart, $iTrophyStart ; stats at the start
+Global $iGoldStart, $iElixirStart, $iDarkStart, $iTrophyStart, $iXPStart, $iLevelXPStart ; stats at the start
 Global $iGoldTotal, $iElixirTotal, $iDarkTotal, $iTrophyTotal ; total stats
-Global $iGoldCurrent, $iElixirCurrent, $iDarkCurrent, $iTrophyCurrent ; current stats
+Global $iGoldCurrent, $iElixirCurrent, $iDarkCurrent, $iTrophyCurrent, $iXPCurrent, $iLevelXPCurrent ; current stats
 Global $iGoldLast, $iElixirLast, $iDarkLast, $iTrophyLast ; loot and trophy gain from last raid
 Global $iGoldLastBonus, $iElixirLastBonus, $iDarkLastBonus ; bonus loot from last raid
 Global $iBonusLast = 0 ; last attack Bonus percentage

@@ -353,6 +353,23 @@ $hGUI_STATS_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,38,"Gain"))
 		_GUICtrlSetTip(-1, $txtTip)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
+    ; CoCStats by rulesss
+    Local $x = 28, $y = 330
+       $grpCoCStats = GUICtrlCreateGroup("", $x - 20, $y, 423, 35)
+    $y += 10
+	$x+= -10
+        $chkCoCStats = GUICtrlCreateCheckbox(GetTranslated(110,1,"CoCStats Activate"), $x , $y , -1, -1)
+            $txtTip = GetTranslated(110,2,"Activate sending raid results to CoCStats.com")
+            GUICtrlSetTip(-1, $txtTip)
+            GUICtrlSetOnEvent(-1, "chkCoCStats")
+    $x += 130
+        $lblAPIKey = GUICtrlCreateLabel(GetTranslated(110,3,"API Key:"), $x-23, $y+5 , -1, 21, $SS_LEFT)
+            $txtAPIKey = GUICtrlCreateInput("", $x + 30, $y , 250, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
+            $txtTip = GetTranslated(110,4,"Join in CoCStats.com and input API Key here")
+            GUICtrlSetTip(-1, $txtTip)
+            GUICtrlSetOnEvent(-1, "txtAPIKey")
+	     GUICtrlCreateGroup("", -99, -99, 1, 1)
+      GUICtrlCreateGroup("", -99, -99, 1, 1)
 ;-->TAB Gain
 
 ;TAB Misc

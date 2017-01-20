@@ -2403,9 +2403,9 @@ Func CheckValuesCost($txt = "RegularTroops", $Troop = "Arch", $troopQuantity = 1
 	Local $String = ""
 
 	If _sleep(1000) then return
-	Local $TempColorToCheck = _GetPixelColor(368, 617, True)
+	Local $TempColorToCheck = _GetPixelColor(223, 594, True)
 	If $debugsetlogTrain = 1 Or $DebugLogs Then Setlog ( "CheckValuesCost|ColorToCheck: " & $TempColorToCheck)
-	If _ColorCheck(_GetPixelColor(368, 617, True), Hex(0xE8E8E0, 6), 30) Then ; Dark drop from DE position
+	If _ColorCheck(_GetPixelColor(223, 594, True), Hex(0xE8E8E0, 6), 20) Then ; Gray background window color
 		; Village without DE
 		If ISArmyWindow(False, $TrainTroopsTAB) Then $iElixirCurrent = getResourcesValueTrainPage(315,594) ; Elixir - Bottom train Window Page
 	Else

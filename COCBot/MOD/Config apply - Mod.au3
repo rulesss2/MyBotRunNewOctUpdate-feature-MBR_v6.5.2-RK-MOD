@@ -165,9 +165,18 @@ GUICtrlSetData($chkchatdelay, $ichkchatdelay)
 	GUICtrlSetData($SldTransLevel, $iSldTransLevel)
 	Slider()
 
-	; Clan Hop Setting - Added By NguyenAnhHD
+	; Clan Hop Setting - Added By rulesss
     If $ichkClanHop = 1 Then
 	    GUICtrlSetState($chkClanHop, $GUI_CHECKED)
     Else
 	    GUICtrlSetState($chkClanHop, $GUI_UNCHECKED)
     EndIf
+
+    ; CoCStats by rulesss
+	If $ichkCoCStats = 1 Then
+		GUICtrlSetState($chkCoCStats, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkCoCStats, $GUI_UNCHECKED)
+	EndIf
+	GUICtrlSetData($txtAPIKey, $MyApiKey)
+	chkCoCStats()

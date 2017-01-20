@@ -138,3 +138,8 @@ Global $hBitmapFirst
 
 ; Clan Hop Setting - Added by rulesss
 Global $ichkClanHop
+
+; CoCStats by rulesss
+Global $ichkCoCStats = 0
+Global $stxtAPIKey = ""
+Global $MyApiKey = ""

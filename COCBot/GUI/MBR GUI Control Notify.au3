@@ -14,6 +14,7 @@
 ; ===============================================================================================================================
 
 Func chkPBTGenabled()
+
 	If GUICtrlRead($chkNotifyPBEnabled) = $GUI_CHECKED Then
 		$NotifyPBEnabled = 1
 		GUICtrlSetState($txbNotifyPBToken, $GUI_ENABLE)
@@ -30,10 +31,12 @@ Func chkPBTGenabled()
 		$NotifyPBEnabled = 0
 		GUICtrlSetState($chkTGenabled, $GUI_ENABLE)
 		GUICtrlSetState($txbNotifyPBToken, $GUI_DISABLE)
+		GUICtrlSetState($chkNotifyDeleteAllPBPushes, $GUI_DISABLE)
+		GUICtrlSetState($chkNotifyDeleteOldPBPushes, $GUI_DISABLE)
 		GUICtrlSetState($btnNotifyDeleteMessages, $GUI_DISABLE)
-		GUICtrlSetState($chkNotifyDeleteAllPBPushes, $GUI_ENABLE)
-		GUICtrlSetState($chkNotifyDeleteOldPBPushes, $GUI_ENABLE)
-		GUICtrlSetState($btnNotifyDeleteMessages, $GUI_ENABLE)
+		GUICtrlSetState($btnNotifyDeleteMessages, $GUI_UNCHECKED)
+		GUICtrlSetState($chkNotifyDeleteAllPBPushes, $GUI_UNCHECKED)
+		GUICtrlSetState($chkNotifyDeleteOldPBPushes, $GUI_UNCHECKED)
 		GUICtrlSetState($cmbNotifyPushHours, $GUI_DISABLE)
 	EndIf
 
@@ -80,10 +83,6 @@ Func chkPBTGenabled()
 		GUICtrlSetState($chkNotifyAlertMaintenance, $GUI_DISABLE)
 		GUICtrlSetState($chkNotifyAlertBAN, $GUI_DISABLE)
 		GUICtrlSetState($chkNotifyBOTUpdate, $GUI_DISABLE)
-		GUICtrlSetState($cmbNotifyPushHours, $GUI_DISABLE)
-		GUICtrlSetState($chkNotifyDeleteAllPBPushes, $GUI_DISABLE)
-		GUICtrlSetState($chkNotifyDeleteOldPBPushes, $GUI_DISABLE)
-		GUICtrlSetState($btnNotifyDeleteMessages, $GUI_DISABLE)
 		GUICtrlSetState($chkNotifyBOTSleep, $GUI_DISABLE)
 	EndIf
 EndFunc   ;==>chkPBTGenabled

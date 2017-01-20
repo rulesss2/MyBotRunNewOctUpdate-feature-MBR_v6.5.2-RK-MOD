@@ -96,16 +96,16 @@ IniWrite($config, "global", "chdelay", GUICtrlRead($chkchatdelay))
 
 	;==========;Russian Languages by Kychera==========
 
-; Android Settings
-IniWrite($config, "Android", "Emulator", GUICtrlRead($cmbAndroid))
-IniWrite($config, "Android", "Instance", GUICtrlRead($txtAndroidInstance))
+    ; Android Settings
+    IniWrite($config, "Android", "Emulator", GUICtrlRead($cmbAndroid))
+    IniWrite($config, "Android", "Instance", GUICtrlRead($txtAndroidInstance))
 
-; Misc Battle Settings - - Added by rulesss
-If GUICtrlRead($chkFastADBClicks) = $GUI_CHECKED Then
-	IniWrite($config, "Fast Clicks", "UseADBFastClicks", 1)
-Else
-	IniWrite($config, "Fast Clicks", "UseADBFastClicks", 0)
-EndIf
+    ; Misc Battle Settings - - Added by rulesss
+    If GUICtrlRead($chkFastADBClicks) = $GUI_CHECKED Then
+	    IniWrite($config, "Fast Clicks", "UseADBFastClicks", 1)
+    Else
+	    IniWrite($config, "Fast Clicks", "UseADBFastClicks", 0)
+    EndIf
 
     ;forecast Added by rulesss
 	IniWrite($config, "forecast", "txtForecastBoost", GUICtrlRead($txtForecastBoost))
@@ -131,6 +131,7 @@ EndIf
 	EndIf
 	IniWrite($config, "profiles", "cmbForecastHopingSwitchMin", _GUICtrlComboBox_GetCurSel($cmbForecastHopingSwitchMin))
 	IniWrite($config, "profiles", "txtForecastHopingSwitchMin", GUICtrlRead($txtForecastHopingSwitchMin))
+
 	;Added Multi Switch Language by rulesss and Kychera
 	$icmbSwLang = _GUICtrlComboBox_GetCurSel($cmbSwLang)
     IniWriteS($config, "Lang", "cmbSwLang", $icmbSwLang)
@@ -151,6 +152,7 @@ EndIf
 		IniWriteS($config, "search", "DBMeetCollOutside", 0)
 	EndIf
 	IniWriteS($config, "search", "DBMinCollOutsidePercent", GUICtrlRead($txtDBMinCollOutsidePercent))
+
 	;Transparent Gui (Modified Kychera)
 	$iSldTransLevel = GUICtrlRead($SldTransLevel)
 	IniWrites($config, "TransLevel", "Level", $iSldTransLevel)
@@ -161,3 +163,11 @@ EndIf
     Else
 	    IniWrite($config, "Others", "ClanHop", 0)
     EndIf
+
+    ; CoCStats by rulesss
+	If GUICtrlRead($chkCoCStats) = $GUI_CHECKED Then
+		IniWrite($config, "Stats", "chkCoCStats", "1")
+	Else
+		IniWrite($config, "Stats", "chkCoCStats", "0")
+	EndIf
+	    IniWrite($config, "Stats", "txtAPIKey", GUICtrlRead($txtAPIKey))

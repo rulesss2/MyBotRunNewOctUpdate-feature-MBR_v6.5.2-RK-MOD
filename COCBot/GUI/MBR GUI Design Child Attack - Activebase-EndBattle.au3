@@ -16,7 +16,7 @@
 Local $x = 10, $y = 45
 	$grpABEndBattle = GUICtrlCreateGroup(GetTranslated(606,1, -1),  $x - 5, $y - 20, 155, 305)
 	$y -=5
-		$chkABTimeStopAtk = GUICtrlCreateCheckbox(GetTranslated(606,2, -1) ,$x, $y, -1, -1)
+		$chkABTimeStopAtk = _GUICtrlCreateCheckbox(GetTranslated(606,2, -1) ,$x, $y, -1, -1)
 			$txtTip = GetTranslated(606,3, -1) & @CRLF & GetTranslated(606,4, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkABTimeStopAtk")
@@ -28,7 +28,7 @@ Local $x = 10, $y = 45
 			GUICtrlSetLimit(-1, 2)
 		$lblABTimeStopAtk = GUICtrlCreateLabel(GetTranslated(603,6, -1), $x + 120, $y + 3, -1, -1)
    $y += 20
-		$chkABTimeStopAtk2 = GUICtrlCreateCheckbox(GetTranslated(606,2, -1) ,$x, $y, -1, -1)
+		$chkABTimeStopAtk2 = _GUICtrlCreateCheckbox(GetTranslated(606,2, -1) ,$x, $y, -1, -1)
 			$txtTip = GetTranslated(606,3, -1) & @CRLF & GetTranslated(606,4, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkABTimeStopAtk2")
@@ -67,17 +67,17 @@ Local $x = 10, $y = 45
 		$picABMinDarkElixirStopAtk2 = GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 117, $y, 16, 16)
 			_GUICtrlSetTip(-1, $txtTip)
 	$y += 21
-		$chkABEndNoResources = GUICtrlCreateCheckbox(GetTranslated(606,9, -1), $x , $y , -1, -1)
+		$chkABEndNoResources = _GUICtrlCreateCheckbox(GetTranslated(606,9, -1), $x , $y , -1, -1)
 			$txtTip = GetTranslated(606,10, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_ENABLE)
 	$y += 21
-		$chkABEndOneStar = GUICtrlCreateCheckbox(GetTranslated(606,11, -1) , $x, $y , -1, -1)
+		$chkABEndOneStar = _GUICtrlCreateCheckbox(GetTranslated(606,11, -1) , $x, $y , -1, -1)
 			$txtTip = GetTranslated(606,12, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_ENABLE)
 	$y += 21
-		$chkABEndTwoStars = GUICtrlCreateCheckbox(GetTranslated(606,13,-1) , $x, $y, -1, -1)
+		$chkABEndTwoStars = _GUICtrlCreateCheckbox(GetTranslated(606,13,-1) , $x, $y, -1, -1)
 			$txtTip = GetTranslated(606,14, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_ENABLE)
@@ -92,7 +92,7 @@ Global $grpDEside , $chkDESideEB ,$txtDELowEndMin  , $lblDELowEndMin , $chkDisab
 				_GUICtrlSetTip(-1, $txtTip)
 		$y += 15
 		$x -= 10
-			$chkDESideEB = GUICtrlCreateCheckbox(GetTranslated(606,18, "When below") & ":", $x , $y , -1, -1)
+			$chkDESideEB = _GUICtrlCreateCheckbox(GetTranslated(606,18, "When below") & ":", $x , $y , -1, -1)
 				$txtTip = GetTranslated(606,19, "Enables Special conditions for Dark Elixir side attack.") & @CRLF & GetTranslated(606,20, "If no additional filters are selected will end battle when below Total Dark Elixir Percent.")
 				_GUICtrlSetTip(-1, $txtTip)
 				GUICtrlSetOnEvent(-1, "chkDESideEB")
@@ -104,19 +104,19 @@ Global $grpDEside , $chkDESideEB ,$txtDELowEndMin  , $lblDELowEndMin , $chkDisab
 			GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 147, $y, 16, 16)
 				_GUICtrlSetTip(-1, $txtTip)
 		$y += 20
-			$chkDisableOtherEBO = GUICtrlCreateCheckbox(GetTranslated(606,21, "Disable Normal End Battle Options"), $x, $y, -1, -1)
+			$chkDisableOtherEBO = _GUICtrlCreateCheckbox(GetTranslated(606,21, "Disable Normal End Battle Options"), $x, $y, -1, -1)
 				$txtTip = GetTranslated(606,22, "Disable Normal End Battle Options when DE side attack is found.")
 				_GUICtrlSetTip(-1, $txtTip)
 				GUICtrlSetState(-1, $GUI_DISABLE)
 		$y += 20
-			$chkDEEndOneStar = GUICtrlCreateCheckbox(GetTranslated(606,11, -1) & ":", $x, $y , -1, -1)
+			$chkDEEndOneStar = _GUICtrlCreateCheckbox(GetTranslated(606,11, -1) & ":", $x, $y , -1, -1)
 				$txtTip = GetTranslated(606,23, "Will End the Battle when below min DE and One Star is won.")
 				_GUICtrlSetTip(-1, $txtTip)
 				GUICtrlSetState(-1, $GUI_DISABLE)
 			GUICtrlCreateIcon($pIconLib, $eIcnSilverStar, $x + 135, $y + 2, 16, 16)
 				_GUICtrlSetTip(-1, $txtTip)
 		$y += 20
-			$chkDEEndBk = GUICtrlCreateCheckbox(GetTranslated(606,24, "When"), $x, $y , -1, -1)
+			$chkDEEndBk = _GUICtrlCreateCheckbox(GetTranslated(606,24, "When"), $x, $y , -1, -1)
 				$txtTip = GetTranslated(606,25, "Will End the Battle when below min DE and King is weak")
 				_GUICtrlSetTip(-1, $txtTip)
 				GUICtrlSetState(-1, $GUI_DISABLE)
@@ -125,7 +125,7 @@ Global $grpDEside , $chkDESideEB ,$txtDELowEndMin  , $lblDELowEndMin , $chkDisab
 			$lblDEEndBk = GUICtrlCreateLabel(GetTranslated(606,26, "is weak"), $x + 70, $y + 4, -1, -1)
 				_GUICtrlSetTip(-1, $txtTip)
 		$y += 20
-			$chkDEEndAq = GUICtrlCreateCheckbox(GetTranslated(606,24, -1), $x, $y , -1, -1)
+			$chkDEEndAq = _GUICtrlCreateCheckbox(GetTranslated(606,24, -1), $x, $y , -1, -1)
 				$txtTip = GetTranslated(606,27, "Will End the Battle when below min DE and Queen is weak")
 				_GUICtrlSetTip(-1, $txtTip)
 				GUICtrlSetState(-1, $GUI_DISABLE)

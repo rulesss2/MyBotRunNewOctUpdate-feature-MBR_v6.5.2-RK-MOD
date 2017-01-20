@@ -64,7 +64,7 @@ $grpButtons = GUICtrlCreateGroup("https://mybot.run " & GetTranslated(602,0, "- 
 		_GUICtrlSetTip(-1, $txtTip)
 		IF $btnColor Then GUICtrlSetBkColor(-1, 0x22C4F5)
 		GUICtrlSetState(-1, $GUI_DISABLE)
-	$chkBackground = GUICtrlCreateCheckbox(GetTranslated(602,14, "Background Mode"), $x + 1, $y + 72, 180, 24)
+	$chkBackground = _GUICtrlCreateCheckbox(GetTranslated(602,14, "Background Mode"), $x + 1, $y + 72, 180, 24)
 		$txtTip = GetTranslated(602,16, "Check this to ENABLE the Background Mode of the Bot.") & @CRLF & GetTranslated(602,17, "With this you can also hide the Android Emulator window out of sight.")
 		GUICtrlSetFont(-1, 7)
 		_GUICtrlSetTip(-1, $txtTip)

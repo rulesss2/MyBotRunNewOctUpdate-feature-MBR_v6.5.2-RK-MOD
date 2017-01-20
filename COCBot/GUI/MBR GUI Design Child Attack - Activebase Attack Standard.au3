@@ -47,11 +47,11 @@ $y += 15
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetData(-1, "1|2|3|4|5|6|7|8|9|10", "4")
 		$y += 22
-		$chkRandomSpeedAtkAB = GUICtrlCreateCheckbox(GetTranslated(608,16, -1), $x, $y, -1, -1)
+		$chkRandomSpeedAtkAB = _GUICtrlCreateCheckbox(GetTranslated(608,16, -1), $x, $y, -1, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkRandomSpeedAtkAB")
 	$y +=22
-		$chkSmartAttackRedAreaAB = GUICtrlCreateCheckbox(GetTranslated(608,17, -1), $x, $y, -1, -1)
+		$chkSmartAttackRedAreaAB = _GUICtrlCreateCheckbox(GetTranslated(608,17, -1), $x, $y, -1, -1)
 			$txtTip = GetTranslated(608,18, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_CHECKED)

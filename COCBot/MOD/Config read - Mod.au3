@@ -30,7 +30,6 @@
    IniReadS($iRadio_Army12, $config, "troop", "QuickTrain12", "0")
    IniReadS($iRadio_Army123, $config, "troop", "QuickTrain123", "0")
 
-
    ; Multi Finger - Added by rulesss
    $iMultiFingerStyle = IniRead($config, "MultiFinger", "Select", "2")
 
@@ -71,8 +70,13 @@ $ichkLaunchWatchdog = IniRead($config, "Other", "chkLaunchWatchdog", "1")
 ; Check Collectors Outside - Added by rulesss
 $ichkDBMeetCollOutside = IniRead($config, "search", "DBMeetCollOutside", "0")
 $iDBMinCollOutsidePercent = IniRead($config, "search", "DBMinCollOutsidePercent", "50")
+
 ;Transparent Gui (Modified Kychera)
 $iSldTransLevel = IniRead($config, "TransLevel", "Level", "0")
 
 ; Clan Hop Setting - Added by rulesss
 $ichkClanHop = IniRead($config, "Others", "ClanHop", "0")
+
+; CoCStats by rulesss
+$ichkCoCStats = IniRead($config, "Stats", "chkCoCStats", "0")
+$MyApiKey = IniRead($config, "Stats", "txtAPIKey", "")

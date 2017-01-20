@@ -241,23 +241,36 @@ Func sldSelectedSpeedAB()
 	GUICtrlSetData($lbltxtSelectedSpeedAB, $speedText & " speed")
 EndFunc   ;==>sldSelectedSpeedAB
 
+ ;Added Multi Switch Language by rulesss and kuchera
 Func cmbSwLang()
-Switch GUICtrlRead($cmbSwLang) ;Added Multi Switch Language by rulesss and kuchera
-		                       Case "EN"
-		                                setForecast2()
-							   Case "RU"
-		                                setForecast3()
-							   Case "FR"
-			                            setForecast4()
-		                       Case "DE"
-		                                setForecast5()
-		                       Case "ES"
-		                                setForecast6()
-		                       Case "IT"
-		                                setForecast7()
-							   Case "PT"
-						                setForecast8()
-						       Case "IN"
-						                setForecast9()
-								 EndSwitch
-							EndFunc	 
+     Switch GUICtrlRead($cmbSwLang)
+		 Case "EN"
+				   setForecast2()
+		 Case "RU"
+				   setForecast3()
+		 Case "FR"
+				   setForecast4()
+		 Case "DE"
+				   setForecast5()
+		 Case "ES"
+				   setForecast6()
+		 Case "IT"
+		           setForecast7()
+		 Case "PT"
+				   setForecast8()
+		 Case "IN"
+				   setForecast9()
+     EndSwitch
+EndFunc
+
+; CoCStats by rulesss
+Func chkCoCStats()
+   If GUICtrlRead($chkCoCStats) = $GUI_CHECKED Then
+      $ichkCoCStats = 1
+      GUICtrlSetState($txtAPIKey, $GUI_ENABLE)
+   Else
+      $ichkCoCStats = 0
+      GUICtrlSetState($txtAPIKey, $GUI_DISABLE)
+EndIf
+IniWrite($config, "Stats", "chkCoCStats",$ichkCoCStats)
+EndFunc ;==> chkCoCStats

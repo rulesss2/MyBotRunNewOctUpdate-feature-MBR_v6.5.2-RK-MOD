@@ -16,7 +16,7 @@
 Local $x = 10, $y = 45
 	$grpDBEndBattle = GUICtrlCreateGroup(GetTranslated(606,1, "Exit Battle"),  $x - 5, $y - 20, 420, 305)
 	$y -=5
-		$chkDBTimeStopAtk = GUICtrlCreateCheckbox(GetTranslated(606,2, "When no New loot") ,$x, $y, -1, -1)
+		$chkDBTimeStopAtk = _GUICtrlCreateCheckbox(GetTranslated(606,2, "When no New loot") ,$x, $y, -1, -1)
 			$txtTip = GetTranslated(606,3, "End Battle if there is no extra loot raided within this No. of seconds.") & @CRLF & GetTranslated(606,4, "Countdown is started after all Troops and Royals are deployed in battle.")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBTimeStopAtk")
@@ -28,7 +28,7 @@ Local $x = 10, $y = 45
 			GUICtrlSetLimit(-1, 2)
 		$lblDBTimeStopAtk = GUICtrlCreateLabel(GetTranslated(603,6, "sec."), $x + 120, $y + 3, -1, -1)
    $y += 20
-		$chkDBTimeStopAtk2 = GUICtrlCreateCheckbox(GetTranslated(606,2, -1) ,$x, $y, -1, -1)
+		$chkDBTimeStopAtk2 = _GUICtrlCreateCheckbox(GetTranslated(606,2, -1) ,$x, $y, -1, -1)
 			$txtTip = GetTranslated(606,3, -1) & @CRLF & GetTranslated(606,4, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBTimeStopAtk2")
@@ -67,17 +67,17 @@ Local $x = 10, $y = 45
 		$picDBMinDarkElixirStopAtk2 = GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 117, $y, 16, 16)
 			_GUICtrlSetTip(-1, $txtTip)
 	$y += 21
-		$chkDBEndNoResources = GUICtrlCreateCheckbox(GetTranslated(606,9, "When no Resources left"), $x , $y , -1, -1)
+		$chkDBEndNoResources = _GUICtrlCreateCheckbox(GetTranslated(606,9, "When no Resources left"), $x , $y , -1, -1)
 			$txtTip = GetTranslated(606,10, "End Battle when all Gold, Elixir and Dark Elixir = 0")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_ENABLE)
 	$y += 21
-		$chkDBEndOneStar = GUICtrlCreateCheckbox(GetTranslated(606,11, "When One Star is won") , $x, $y , -1, -1)
+		$chkDBEndOneStar = _GUICtrlCreateCheckbox(GetTranslated(606,11, "When One Star is won") , $x, $y , -1, -1)
 			$txtTip = GetTranslated(606,12, "Will End the Battle if 1 star is won in battle")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_ENABLE)
 	$y += 21
-		$chkDBEndTwoStars = GUICtrlCreateCheckbox(GetTranslated(606,13, "When Two Stars are won") , $x, $y, -1, -1)
+		$chkDBEndTwoStars = _GUICtrlCreateCheckbox(GetTranslated(606,13, "When Two Stars are won") , $x, $y, -1, -1)
 			$txtTip = GetTranslated(606,14, "Will End the Battle if 2 stars are won in battle")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_ENABLE)

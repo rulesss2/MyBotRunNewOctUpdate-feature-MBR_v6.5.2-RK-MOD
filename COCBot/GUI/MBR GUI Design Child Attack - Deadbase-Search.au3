@@ -16,7 +16,7 @@
 Local $x = 25, $y = 45
 	$grpDBActivate = GUICtrlCreateGroup(GetTranslated(625,0, "Start Search IF"), $x - 20, $y - 20, 190, 305)
 		$x -= 15
-		$chkDBActivateSearches = GUICtrlCreateCheckbox(GetTranslated(625,1,"Search"), $x, $y, 68, 18)
+		$chkDBActivateSearches = _GUICtrlCreateCheckbox(GetTranslated(625,1,"Search"), $x, $y, 68, 18)
 			$txtTip = GetTranslated(625,68, "Note - enables SEARCH range for this attack type ONLY.") & @CRLF & _
 				GetTranslated(625,69, "Setting will not set search limit to restart search process!")
 			GUICtrlSetTip(-1, $txtTip)
@@ -35,7 +35,7 @@ Local $x = 25, $y = 45
 			GUICtrlSetLimit(-1, 6)
 		$picDBSearches = GUICtrlCreateIcon($pIconLib, $eIcnMagnifier, $x + 163, $y + 1, 16, 16)
 	$y += 21
-		$chkDBActivateTropies = GUICtrlCreateCheckbox(GetTranslated(625,4,"Trophies"), $x, $y, 68, 18)
+		$chkDBActivateTropies = _GUICtrlCreateCheckbox(GetTranslated(625,4,"Trophies"), $x, $y, 68, 18)
 			$txtTip = GetTranslated(625,68, -1) & @CRLF & GetTranslated(625,70,"This option will NOT adjust tropies to stay in range entered!")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBActivateTropies")
@@ -55,7 +55,7 @@ Local $x = 25, $y = 45
 			GUICtrlSetLimit(-1, 6)
 		$picDBTrophies = GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x + 163, $y + 1, 16, 16)
 	$y +=21
-		$chkDBActivateCamps = GUICtrlCreateCheckbox(GetTranslated(625,7, "Army Camps"), $x, $y, 110, 18)
+		$chkDBActivateCamps = _GUICtrlCreateCheckbox(GetTranslated(625,7, "Army Camps"), $x, $y, 110, 18)
 			$txtTip = GetTranslated(625,8, "Set the % Army camps required to enable this attack option while searching")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBActivateCamps")
@@ -73,7 +73,7 @@ Local $x = 25, $y = 45
 		$txtDBHeroesWait = GUICtrlCreateLabel(GetTranslated(625,9,"Wait for Heroes to be Ready") & ":", $x + 20, $y + 4, 180, 18)
 	$y += 20
 	$x += 20
-		$chkDBKingWait = GUICtrlCreateCheckbox("", $x, $y + 55, 16, 16)
+		$chkDBKingWait = GUICtrlCreateCheckbox("", $x, $y + 55, 13, 13)
 			Local $sTxtKingWait = GetTranslated(625,50, "Wait for Hero option disabled when continuous Upgrade Hero selected!")
 			$txtTip = GetTranslated(625,10, "Wait for King to be ready before attacking...") & @CRLF & $sTxtKingWait & @CRLF & GetTranslated(625,65, "Enabled with TownHall 7 and higher")
 			GUICtrlSetTip(-1, $txtTip)
@@ -84,7 +84,7 @@ Local $x = 25, $y = 45
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1,$GUI_HIDE)
 	$x += 55
-		$chkDBQueenWait = GUICtrlCreateCheckbox("", $x, $y + 55, 16, 16)
+		$chkDBQueenWait = GUICtrlCreateCheckbox("", $x, $y + 55, 13, 13)
 			$txtTip = GetTranslated(625,12, "Wait for Queen to be ready before attacking...") & @CRLF & $sTxtKingWait & @CRLF & GetTranslated(625,66, "Enabled with TownHall 9 and higher")
 			GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetOnEvent(-1, "chkDBQueenWait")
@@ -94,7 +94,7 @@ Local $x = 25, $y = 45
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1,$GUI_HIDE)
 	$x += 55
-		$chkDBWardenWait = GUICtrlCreateCheckbox("", $x, $y + 55, 16, 16)
+		$chkDBWardenWait = GUICtrlCreateCheckbox("", $x, $y + 55, 13, 13)
  			$txtTip = GetTranslated(625,13, "Wait for Warden to be ready before attacking...") & @CRLF & $sTxtKingWait & @CRLF & GetTranslated(625,67, "Enabled with TownHall 11")
  			GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetOnEvent(-1, "chkDBWardenWait")
@@ -115,14 +115,14 @@ Local $x = 25, $y = 45
       $IMGchkDBHasteSpellWait = GUICtrlCreateIcon($pIconLib, $eIcnHasteSpell, $x+161, $y, 22, 22)
 	$y += 22
 	$x = 10
-		$chkDBSpellsWait = GUICtrlCreateCheckbox(GetTranslated(625,71, "Wait for Spells to be Ready"), $x, $y, -1, -1)
+		$chkDBSpellsWait = _GUICtrlCreateCheckbox(GetTranslated(625,71, "Wait for Spells to be Ready"), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,72, "Stop searching for this attack type when Spells are not ready") & @CRLF & _
 			GetTranslated(625,73, "Warning: Do not enable unless you have spell factory or bot will not attack!")
  			GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetOnEvent(-1, "chkDBSpellsWait")
 
 
-		$chkDBWaitForCastleSpell = GUICtrlCreateCheckbox(GetTranslated(625,74, "Wait to get Castle Spell"), $x, $y + 25, -1, -1)
+		$chkDBWaitForCastleSpell = _GUICtrlCreateCheckbox(GetTranslated(625,74, "Wait to get Castle Spell"), $x, $y + 25, -1, -1)
 			$txtTip = GetTranslated(625,75, "Wait until Someone Donate you an Spell")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBWaitForCCSpell")
@@ -137,7 +137,7 @@ Local $x = 25, $y = 45
 			GUICtrlSetData(-1, $sTxtPoisonSpells & "|" & $sTxtEarthquakeSpells & "|" & $sTxtHasteSpells & "|" & $sTxtSkeletonSpells)
 			_GUICtrlSetTip(-1, $txtTip)
 
-		$chkDBWaitForCastleTroops = GUICtrlCreateCheckbox(GetTranslated(625,78, "Wait for Castle troops to be full"), $x, $y + 75, -1, -1)
+		$chkDBWaitForCastleTroops = _GUICtrlCreateCheckbox(GetTranslated(625,78, "Wait for Castle troops to be full"), $x, $y + 75, -1, -1)
 			$txtTip = GetTranslated(625,79, "Wait until your Clan Castle be Full")
 			_GUICtrlSetTip(-1, $txtTip)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
@@ -173,7 +173,7 @@ Local $x = 220, $y = 45
  			_GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetState (-1, $GUI_HIDE)
 		$y += 34
-		$chkDBMeetDE = GUICtrlCreateCheckbox(GetTranslated(625,26, "Dark Elixir"), $x , $y, -1, -1)
+		$chkDBMeetDE = _GUICtrlCreateCheckbox(GetTranslated(625,26, "Dark Elixir"), $x , $y, -1, -1)
 			$txtTip = GetTranslated(625,27, "Search for a base that meets the value set for Min. Dark Elixir.")
 			GUICtrlSetOnEvent(-1, "chkDBMeetDE")
 			_GUICtrlSetTip(-1, $txtTip)
@@ -185,7 +185,7 @@ Local $x = 220, $y = 45
 		$picDBMinDarkElixir = GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 140, $y, 16, 16)
 			_GUICtrlSetTip(-1, $txtTip)
 		$y += 24
-		$chkDBMeetTrophy = GUICtrlCreateCheckbox(GetTranslated(625,4, -1), $x, $y, -1, -1)
+		$chkDBMeetTrophy = _GUICtrlCreateCheckbox(GetTranslated(625,4, -1), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,29, "Search for a base that meets the value set for Min. Trophies.")
 			GUICtrlSetOnEvent(-1, "chkDBMeetTrophy")
 			_GUICtrlSetTip(-1, $txtTip)
@@ -197,7 +197,7 @@ Local $x = 220, $y = 45
 		$picDBMinTrophies = GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x + 140, $y, 16, 16)
 			_GUICtrlSetTip(-1, $txtTip)
 		$y += 24
-		$chkDBMeetTH = GUICtrlCreateCheckbox(GetTranslated(625,31, "Townhall"), $x, $y, -1, -1)
+		$chkDBMeetTH = _GUICtrlCreateCheckbox(GetTranslated(625,31, "Townhall"), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,32, "Search for a base that meets the value set for Max. Townhall Level.")
 			GUICtrlSetOnEvent(-1, "chkDBMeetTH")
 			_GUICtrlSetTip(-1, $txtTip)
@@ -209,7 +209,7 @@ Local $x = 220, $y = 45
 		$picDBMaxTH10 = GUICtrlCreateIcon($pIconLib, $eIcnTH10, $x + 140, $y - 3, 24, 24)
 			_GUICtrlSetTip(-1, $txtTip)
 		$y += 24
-		$chkDBMeetTHO = GUICtrlCreateCheckbox(GetTranslated(625,34, "Townhall Outside"), $x, $y, -1, -1)
+		$chkDBMeetTHO = _GUICtrlCreateCheckbox(GetTranslated(625,34, "Townhall Outside"), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,35, "Search for a base that has an exposed Townhall. (Outside of Walls)")
 			_GUICtrlSetTip(-1, $txtTip)
 		$y += 24
@@ -218,7 +218,7 @@ Local $x = 220, $y = 45
 	$y += 20
 	$xStarColumn = $x
 	$yStartColumn = $y
-		$chkMaxMortar[$DB] = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+		$chkMaxMortar[$DB] = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(625,59, "Search for a base that has Mortar below this level.")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBWeakBase")
@@ -230,7 +230,7 @@ Local $x = 220, $y = 45
 		$picDBWeakMortar = GUICtrlCreateIcon($pIconLib, $eIcnMortar, $x + 75, $y - 2, 24, 24)
 			_GUICtrlSetTip(-1, $txtTip)
 		$y +=24
-		$chkMaxWizTower[$DB] = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+		$chkMaxWizTower[$DB] = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(625,60, "Search for a base that has Wizard Tower below this level")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBWeakBase")
@@ -242,7 +242,7 @@ Local $x = 220, $y = 45
 		$picDBWeakWizTower = GUICtrlCreateIcon($pIconLib, $eIcnWizTower, $x + 75, $y - 2, 24, 24)
 			_GUICtrlSetTip(-1, $txtTip)
 		$y +=24
-		$chkMaxAirDefense[$DB] = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+		$chkMaxAirDefense[$DB] = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(625,64, "Search for a base that has Air Defense below this level")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBWeakBase")
@@ -255,7 +255,7 @@ Local $x = 220, $y = 45
 			_GUICtrlSetTip(-1, $txtTip)
 		$x = $xStarColumn + 104
 		$y = $yStartColumn
-		$chkMaxXBow[$DB] = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+		$chkMaxXBow[$DB] = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(625,61, "Search for a base that has X-Bow below this level")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBWeakBase")
@@ -267,7 +267,7 @@ Local $x = 220, $y = 45
 		$picDBWeakXBow = GUICtrlCreateIcon($pIconLib, $eIcnXBow3, $x + 75, $y - 2, 24, 24)
 			_GUICtrlSetTip(-1, $txtTip)
 		$y +=24
-		$chkMaxInferno[$DB] = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+		$chkMaxInferno[$DB] = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(625,62, "Search for a base that has Inferno below this level")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBWeakBase")
@@ -279,7 +279,7 @@ Local $x = 220, $y = 45
 		$picDBWeakInferno = GUICtrlCreateIcon($pIconLib, $eIcnInferno4, $x + 75, $y - 2, 24, 24)
 			_GUICtrlSetTip(-1, $txtTip)
 		$y +=24
-		$chkMaxEagle[$DB] = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+		$chkMaxEagle[$DB] = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(625,63, "Search for a base that has Eagle Artillery below this level")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBWeakBase")
@@ -292,7 +292,7 @@ Local $x = 220, $y = 45
 			_GUICtrlSetTip(-1, $txtTip)
 		$y += 44
 		$x = $xStarColumn
-		$chkDBMeetOne = GUICtrlCreateCheckbox(GetTranslated(625,40, "Meet One Then Attack"), $x, $y, -1, -1)
+		$chkDBMeetOne = _GUICtrlCreateCheckbox(GetTranslated(625,40, "Meet One Then Attack"), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,41, "Just meet only ONE of the above conditions, then Attack.")
 			_GUICtrlSetTip(-1, $txtTip)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)

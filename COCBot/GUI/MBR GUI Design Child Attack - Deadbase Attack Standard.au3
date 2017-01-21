@@ -47,11 +47,11 @@ Local $x = 25, $y = 20
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetData(-1, "1|2|3|4|5|6|7|8|9|10", "4")
 		$y += 22
-		$chkRandomSpeedAtkDB = GUICtrlCreateCheckbox(GetTranslated(608,16, "Randomize delay for Units && Waves"), $x, $y, -1, -1)
+		$chkRandomSpeedAtkDB = _GUICtrlCreateCheckbox(GetTranslated(608,16, "Randomize delay for Units && Waves"), $x, $y, -1, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkRandomSpeedAtkDB")
 	$y +=22
-		$chkSmartAttackRedAreaDB = GUICtrlCreateCheckbox(GetTranslated(608,17, "Use Smart Attack: Near Red Line."), $x, $y, -1, -1)
+		$chkSmartAttackRedAreaDB = _GUICtrlCreateCheckbox(GetTranslated(608,17, "Use Smart Attack: Near Red Line."), $x, $y, -1, -1)
 			$txtTip = GetTranslated(608,18, "Use Smart Attack to detect the outer 'Red Line' of the village to attack. And drop your troops close to it.")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
@@ -64,19 +64,19 @@ Local $x = 25, $y = 20
 			GUICtrlSetData(-1, GetTranslated(608,23, "Sides, then Troops") & "|" & GetTranslated(608,24, "Troops, then Sides") , GetTranslated(608,23, -1))
 			_GUICtrlSetTip(-1, $txtTip)
 		$y += 26
-		$chkAttackNearGoldMineDB = GUICtrlCreateCheckbox("", $x + 20, $y, 17, 17)
+		$chkAttackNearGoldMineDB = GUICtrlCreateCheckbox("", $x + 20, $y, 13, 13)
 			$txtTip = GetTranslated(608,26, "Drop troops near Gold Mines")
 			_GUICtrlSetTip(-1, $txtTip)
 		$picAttackNearGoldMineDB = GUICtrlCreateIcon($pIconLib, $eIcnMine, $x + 40 , $y - 3 , 24, 24)
 			_GUICtrlSetTip(-1, $txtTip)
 		$x += 75
-		$chkAttackNearElixirCollectorDB = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+		$chkAttackNearElixirCollectorDB = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(608,27, "Drop troops near Elixir Collectors")
 			_GUICtrlSetTip(-1, $txtTip)
 		$picAttackNearElixirCollectorDB = GUICtrlCreateIcon($pIconLib, $eIcnCollector, $x + 20 , $y - 3 , 24, 24)
 			_GUICtrlSetTip(-1, $txtTip)
  		$x += 55
-  		$chkAttackNearDarkElixirDrillDB = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+  		$chkAttackNearDarkElixirDrillDB = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(608,28, "Drop troops near Dark Elixir Drills")
  			_GUICtrlSetTip(-1, $txtTip)
 		$picAttackNearDarkElixirDrillDB = GUICtrlCreateIcon($pIconLib, $eIcnDrill, $x + 20 , $y - 3, 24, 24)

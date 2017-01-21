@@ -16,7 +16,7 @@
 Local $x = 25, $y = 45, $xStart = 25, $yStart = 45
 
 	$grpSuperXP = GUICtrlCreateGroup(GetTranslated(700, 1, "Goblin XP"), $x - 20, $y - 20, 420, 305)
-		$chkEnableSuperXP = GUICtrlCreateCheckbox(GetTranslated(700, 2, "Enable Goblin XP"), $x, $y, 102, 17)
+		$chkEnableSuperXP = _GUICtrlCreateCheckbox(GetTranslated(700, 2, "Enable Goblin XP"), $x, $y, 102, 13)
 		GUICtrlSetOnEvent(-1, "chkEnableSuperXP")
 			$rbSXTraining = GUICtrlCreateRadio(GetTranslated(700, 3, "Farm XP during troops Training"), $x, $y + 23, 176, 17)
 			GUICtrlSetState(-1, $GUI_CHECKED)
@@ -36,9 +36,9 @@ Local $x = 25, $y = 45, $xStart = 25, $yStart = 45
 			GUICtrlCreateIcon($pIconLib, $eIcnWarden, $x + 80, $y, 32, 32)
 		GUICtrlCreateLabel(GetTranslated(700, 6, "to gain XP"), $x + 123, $y + 13, 53, 17)
 	$x += 10
-		$chkSXBK = GUICtrlCreateCheckbox("", $x, $y + 35, 17, 17)
-		$chkSXAQ = GUICtrlCreateCheckbox("", $x + 40, $y + 35, 17, 17)
-		$chkSXGW = GUICtrlCreateCheckbox("", $x + 80, $y + 35, 17, 17)
+		$chkSXBK = GUICtrlCreateCheckbox("", $x, $y + 35, 13, 13)
+		$chkSXAQ = GUICtrlCreateCheckbox("", $x + 40, $y + 35, 13, 13)
+		$chkSXGW = GUICtrlCreateCheckbox("", $x + 80, $y + 35, 13, 13)
 
 	$x = $xStart + 25
 	$y += 73

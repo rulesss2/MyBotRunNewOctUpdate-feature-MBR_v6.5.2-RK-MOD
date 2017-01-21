@@ -17,7 +17,7 @@
 Local $x = 20, $y = 45
 Global $hReplayShareGUI, $txtShareMinGold, $txtShareMinElixir, $txtShareMinDark, $txtShareMessage
 	$grpReplayShare = GUICtrlCreateGroup(GetTranslated(633,1,"Share Replay"), $x-15, $y-20, 420, 204)
-		$chkShareAttack = GUICtrlCreateCheckbox(GetTranslated(633,2, "Share Replays in your clan's chat."), $x, $y-7, -1, -1)
+		$chkShareAttack = _GUICtrlCreateCheckbox(GetTranslated(633,2, "Share Replays in your clan's chat."), $x, $y-7, -1, -1)
 			$TxtTip = GetTranslated(633,3, "Check this to share your battle replay in the clan chat.")
 			_GUICtrlSetTip(-1, $TxtTip)
 			GUICtrlSetOnEvent(-1, "chkShareAttack")
@@ -56,11 +56,11 @@ Global $hReplayShareGUI, $txtShareMinGold, $txtShareMinElixir, $txtShareMinDark,
 	$x = 20
 	$y+=100
 	$grpTakeLootSS = GUICtrlCreateGroup(GetTranslated(633,11,"Take Loot Snapshot"), $x-15, $y-20, 420, 67)
-		$chkTakeLootSS = GUICtrlCreateCheckbox(GetTranslated(633,11, -1), $x, $y, -1, -1)
+		$chkTakeLootSS = _GUICtrlCreateCheckbox(GetTranslated(633,11, -1), $x, $y, -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(633,12, "Check this if you want to save a Loot snapshot of the Village that was attacked."))
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
 			GUICtrlSetOnEvent(-1, "chkTakeLootSS")
 	  $y += 18
-		$chkScreenshotLootInfo = GUICtrlCreateCheckbox(GetTranslated(633,13, "Include loot info in filename"), $x  , $y , -1, -1)
+		$chkScreenshotLootInfo = _GUICtrlCreateCheckbox(GetTranslated(633,13, "Include loot info in filename"), $x  , $y , -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(633,14, "Include loot info in the screenshot filename"))
 			GUICtrlSetState(-1,$GUI_DISABLE)

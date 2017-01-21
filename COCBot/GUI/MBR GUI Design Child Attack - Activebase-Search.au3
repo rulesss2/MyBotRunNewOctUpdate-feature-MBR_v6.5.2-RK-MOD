@@ -16,7 +16,7 @@
 Local $x = 25, $y = 45
 	$grpABActivate = GUICtrlCreateGroup(GetTranslated(625,0, -1), $x - 20, $y - 20, 190, 305)
 		$x -= 15
-		$chkABActivateSearches = GUICtrlCreateCheckbox(GetTranslated(625,1, -1), $x, $y, 68, 18)
+		$chkABActivateSearches = _GUICtrlCreateCheckbox(GetTranslated(625,1, -1), $x, $y, 68, 18)
 			$txtTip = GetTranslated(625,68, -1) & @CRLF & GetTranslated(625,69, -1)
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1,$GUI_UNCHECKED)
@@ -32,7 +32,7 @@ Local $x = 25, $y = 45
 			GUICtrlSetLimit(-1, 6)
 		$picABSearches = GUICtrlCreateIcon($pIconLib, $eIcnMagnifier, $x + 163, $y + 1, 16, 16)
 	$y +=21
-		$chkABActivateTropies = GUICtrlCreateCheckbox(GetTranslated(625,4, -1), $x, $y, 68, 18)
+		$chkABActivateTropies = _GUICtrlCreateCheckbox(GetTranslated(625,4, -1), $x, $y, 68, 18)
 			$txtTip = GetTranslated(625,68, -1) & @CRLF & GetTranslated(625,70,-1)
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkABActivateTropies")
@@ -50,7 +50,7 @@ Local $x = 25, $y = 45
 			GUICtrlSetLimit(-1, 6)
 		$picABTrophies = GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x + 163, $y + 1, 16, 16)
 	$y +=21
-		$chkABActivateCamps = GUICtrlCreateCheckbox(GetTranslated(625,7, -1), $x, $y, 110, 18)
+		$chkABActivateCamps = _GUICtrlCreateCheckbox(GetTranslated(625,7, -1), $x, $y, 110, 18)
 			$txtTip = GetTranslated(625,8, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkABActivateCamps")
@@ -68,7 +68,7 @@ Local $x = 25, $y = 45
 		$txtABHeroesWait = GUICtrlCreateLabel(GetTranslated(625,9, -1) & ":", $x + 20, $y + 4, 180, 18)
 	$y += 20
 	$x += 20
-		$chkABKingWait = GUICtrlCreateCheckbox("", $x , $y + 55, 16, 16)
+		$chkABKingWait = _GUICtrlCreateCheckbox("", $x , $y + 55, 16, 16)
  			$txtTip = GetTranslated(625,10, -1) & @CRLF & GetTranslated(625, 50, -1) & @CRLF & GetTranslated(625, 65, -1)
  			GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetOnEvent(-1, "chkABKingWait")
@@ -78,7 +78,7 @@ Local $x = 25, $y = 45
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1,$GUI_HIDE)
 	$x += 55
-		$chkABQueenWait = GUICtrlCreateCheckbox("", $x , $y + 55, 16, 16)
+		$chkABQueenWait = _GUICtrlCreateCheckbox("", $x , $y + 55, 16, 16)
  			$txtTip = GetTranslated(625,12, -1) & @CRLF & GetTranslated(625, 50, -1) & @CRLF & GetTranslated(625, 66, -1)
  			GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetOnEvent(-1, "chkABQueenWait")
@@ -88,7 +88,7 @@ Local $x = 25, $y = 45
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1,$GUI_HIDE)
 	$x += 55
- 		$chkABWardenWait = GUICtrlCreateCheckbox("", $x , $y + 55, 16, 16)
+ 		$chkABWardenWait = _GUICtrlCreateCheckbox("", $x , $y + 55, 16, 16)
  			$txtTip = GetTranslated(625,13, -1) & @CRLF & GetTranslated(625, 50, -1) & @CRLF & GetTranslated(625, 67, -1)
  			GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetOnEvent(-1, "chkABWardenWait")
@@ -110,13 +110,13 @@ Local $x = 25, $y = 45
 	$y += 22
 	$x = 10
 	$x = 10
-	    $chkABSpellsWait = GUICtrlCreateCheckbox(GetTranslated(625,71, -1), $x, $y, -1, -1)
+	    $chkABSpellsWait = _GUICtrlCreateCheckbox(GetTranslated(625,71, -1), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,72, -1) & @CRLF & _
 			GetTranslated(625,73, -1)
  			GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetOnEvent(-1, "chkABSpellsWait")
 
-		$chkABWaitForCastleSpell = GUICtrlCreateCheckbox(GetTranslated(625,74, -1), $x, $y + 25, -1, -1)
+		$chkABWaitForCastleSpell = _GUICtrlCreateCheckbox(GetTranslated(625,74, -1), $x, $y + 25, -1, -1)
 			$txtTip = GetTranslated(625,75, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkABWaitForCCSpell")
@@ -131,7 +131,7 @@ Local $x = 25, $y = 45
 			GUICtrlSetData(-1, $sTxtPoisonSpells & "|" & $sTxtEarthquakeSpells & "|" & $sTxtHasteSpells & "|" & $sTxtSkeletonSpells)
 			_GUICtrlSetTip(-1, $txtTip)
 
-		$chkABWaitForCastleTroops = GUICtrlCreateCheckbox(GetTranslated(625,78, -1), $x, $y + 75, -1, -1)
+		$chkABWaitForCastleTroops = _GUICtrlCreateCheckbox(GetTranslated(625,78, -1), $x, $y + 75, -1, -1)
 			$txtTip = GetTranslated(625,79, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
@@ -167,7 +167,7 @@ Local $x = 220, $y = 45
  			_GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetState (-1, $GUI_HIDE)
 		$y += 34
-		$chkABMeetDE = GUICtrlCreateCheckbox(GetTranslated(625,26, -1), $x, $y, -1, -1)
+		$chkABMeetDE = _GUICtrlCreateCheckbox(GetTranslated(625,26, -1), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,27, -1)
 			GUICtrlSetOnEvent(-1, "chkABMeetDE")
 			_GUICtrlSetTip(-1, $txtTip)
@@ -179,7 +179,7 @@ Local $x = 220, $y = 45
 		$picABMinDarkElixir = GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 137, $y, 16, 16)
 			_GUICtrlSetTip(-1, $txtTip)
 		$y += 24
-		$chkABMeetTrophy = GUICtrlCreateCheckbox(GetTranslated(625,4, -1), $x, $y, -1, -1)
+		$chkABMeetTrophy = _GUICtrlCreateCheckbox(GetTranslated(625,4, -1), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,29, -1)
 			GUICtrlSetOnEvent(-1, "chkABMeetTrophy")
 			_GUICtrlSetTip(-1, $txtTip)
@@ -203,7 +203,7 @@ Local $x = 220, $y = 45
 		$picABMaxTH10 = GUICtrlCreateIcon($pIconLib, $eIcnTH10, $x + 137, $y - 3, 24, 24)
 			_GUICtrlSetTip(-1, $txtTip)
 		$y += 24
-		$chkABMeetTHO = GUICtrlCreateCheckbox(GetTranslated(625,34, -1), $x, $y, -1, -1)
+		$chkABMeetTHO = _GUICtrlCreateCheckbox(GetTranslated(625,34, -1), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,35, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 		$y += 24
@@ -286,7 +286,7 @@ Local $x = 220, $y = 45
 			_GUICtrlSetTip(-1, $txtTip)
 		$y += 44
 		$x = $xStarColumn
-		$chkABMeetOne = GUICtrlCreateCheckbox(GetTranslated(625,40, -1), $x, $y, -1, -1)
+		$chkABMeetOne = _GUICtrlCreateCheckbox(GetTranslated(625,40, -1), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,41, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)

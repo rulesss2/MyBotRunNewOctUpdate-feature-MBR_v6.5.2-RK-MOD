@@ -14,7 +14,6 @@
 ; ===============================================================================================================================
 ;$hGUI_BotOptions = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 - 28, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_BOT)
 ;GUISwitch($hGUI_BotOptions)
-
 Local $x = 25, $y = 45
 $grpLanguages = GUICtrlCreateGroup(GetTranslated(636,83, "GUI Language"), $x - 20, $y - 20, 210, 47)
 	$y -=2
@@ -30,17 +29,17 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 $y += 54
 $grpOnLoadBot = GUICtrlCreateGroup(GetTranslated(636,2, "When Bot Loads"), $x - 20, $y - 20, 210, 120)
 	$y -= 4
-    $chkDisableSplash = GUICtrlCreateCheckbox(GetTranslated(636,100, "Disable Splash Screen"), $x, $y, -1, -1)
+    $chkDisableSplash = _GUICtrlCreateCheckbox(GetTranslated(636,100, "Disable Splash Screen"), $x, $y, -1, -1)
         $txtTip = GetTranslated(636,101, "Disables the splash screen on startup.")
          _GUICtrlSetTip(-1, $txtTip)
         GUICtrlSetState(-1, $GUI_UNCHECKED)
     $y += 20
-	$chkVersion = GUICtrlCreateCheckbox(GetTranslated(636,3, "Check for Updates"), $x, $y, -1, -1)
+	$chkVersion = _GUICtrlCreateCheckbox(GetTranslated(636,3, "Check for Updates"), $x, $y, -1, -1)
 		$txtTip = GetTranslated(636,4, "Check if you are running the latest version of the bot.")
 		_GUICtrlSetTip(-1, $txtTip)
 		GUICtrlSetState(-1, $GUI_CHECKED)
 	$y += 20
-	$chkDeleteLogs = GUICtrlCreateCheckbox(GetTranslated(636,5, "Delete Log Files")& ":", $x, $y, -1, -1)
+	$chkDeleteLogs = _GUICtrlCreateCheckbox(GetTranslated(636,5, "Delete Log Files")& ":", $x, $y, -1, -1)
 		$txtTip = GetTranslated(636,6, "Delete log files older than this specified No. of days.")
 		GUICtrlSetState(-1, $GUI_CHECKED)
 		_GUICtrlSetTip(-1, $txtTip)
@@ -51,7 +50,7 @@ $grpOnLoadBot = GUICtrlCreateGroup(GetTranslated(636,2, "When Bot Loads"), $x - 
 		GUICtrlSetFont(-1, 8)
 	$lblDeleteLogsDays = GUICtrlCreateLabel(GetTranslated(636,7, "days"), $x + 150, $y + 4, 27, 15)
 	$y += 20
-	$chkDeleteTemp = GUICtrlCreateCheckbox(GetTranslated(636,8, "Delete Temp Files") & ":", $x, $y, -1, -1)
+	$chkDeleteTemp = _GUICtrlCreateCheckbox(GetTranslated(636,8, "Delete Temp Files") & ":", $x, $y, -1, -1)
 		$txtTip = GetTranslated(636,9, "Delete temp files older than this specified No. of days.")
 		GUICtrlSetState(-1, $GUI_CHECKED)
 		_GUICtrlSetTip(-1, $txtTip)
@@ -62,7 +61,7 @@ $grpOnLoadBot = GUICtrlCreateGroup(GetTranslated(636,2, "When Bot Loads"), $x - 
 		GUICtrlSetFont(-1, 8)
 	$lblDeleteTempDays = GUICtrlCreateLabel(GetTranslated(636,7, "days"), $x + 150, $y + 4, 27, 15)
 	$y += 20
-	$chkDeleteLoots = GUICtrlCreateCheckbox(GetTranslated(636,10, "Delete Loot Images"), $x, $y, -1, -1)
+	$chkDeleteLoots = _GUICtrlCreateCheckbox(GetTranslated(636,10, "Delete Loot Images"), $x, $y, -1, -1)
 		$txtTip = GetTranslated(636,11, "Delete loot image files older than this specified No. of days.")
 		GUICtrlSetState(-1, $GUI_CHECKED)
 		_GUICtrlSetTip(-1, $txtTip)
@@ -77,7 +76,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y += 48
 $grpOnStartBot = GUICtrlCreateGroup(GetTranslated(636,12, "When Bot Starts"), $x - 20, $y - 20, 210, 112)
 	$y -= 5
-	$chkAutostart = GUICtrlCreateCheckbox(GetTranslated(636,13, "Auto START after") & ":", $x, $y, -1, -1)
+	$chkAutostart = _GUICtrlCreateCheckbox(GetTranslated(636,13, "Auto START after") & ":", $x, $y, -1, -1)
 		_GUICtrlSetTip(-1, GetTranslated(636,58, "Auto START the Bot after this No. of seconds."))
 		GUICtrlSetOnEvent(-1, "chkAutostart")
 	$txtAutostartDelay = GUICtrlCreateInput("10", $x + 120, $y + 2, 25, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
@@ -85,11 +84,11 @@ $grpOnStartBot = GUICtrlCreateGroup(GetTranslated(636,12, "When Bot Starts"), $x
 		GUICtrlSetState(-1, $GUI_DISABLE)
 	$lblAutostartSeconds = GUICtrlCreateLabel(GetTranslated(603,6, "sec."), $x + 150, $y + 4, 27, 18)
 	$y += 22
-	$chkLanguage = GUICtrlCreateCheckbox(GetTranslated(636,15, "Check Game Language (EN)"), $x, $y, -1, -1)
+	$chkLanguage = _GUICtrlCreateCheckbox(GetTranslated(636,15, "Check Game Language (EN)"), $x, $y, -1, -1)
 		_GUICtrlSetTip(-1, GetTranslated(636,16, "Check if the Game is set to the correct language (Must be set to English)."))
 		GUICtrlSetState(-1, $GUI_CHECKED)
 	$y += 22
-	$chkDisposeWindows = GUICtrlCreateCheckbox(GetTranslated(636,17, "Auto Align"), $x, $y, -1, -1)
+	$chkDisposeWindows = _GUICtrlCreateCheckbox(GetTranslated(636,17, "Auto Align"), $x, $y, -1, -1)
 		$txtTip = GetTranslated(636,18, "Reposition/Align Android Emulator and BOT windows on the screen.")
 		GUICtrlSetOnEvent(-1, "chkDisposeWindows")
 		_GUICtrlSetTip(-1, $txtTip)
@@ -134,19 +133,19 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 Local $x = 240, $y = 45
 $grpAdvanced = GUICtrlCreateGroup(GetTranslated(636,93, "Advanced"), $x - 20, $y - 20, 225, 108)
-	$chkUpdatingWhenMinimized = GUICtrlCreateCheckbox(GetTranslated(636,96, "Updating when minimized"), $x, $y, -1, -1)
+	$chkUpdatingWhenMinimized = _GUICtrlCreateCheckbox(GetTranslated(636,96, "Updating when minimized"), $x, $y, -1, -1)
 		GUICtrlSetState(-1, $GUI_DISABLE) ; must be always enabled
 		GUICtrlSetOnEvent(-1, "chkUpdatingWhenMinimized")
 		_GUICtrlSetTip(-1, GetTranslated(636,97, "Enable different minimize routine for bot window.\r\nWhen bot is minimized, screen updates are shown in taskbar preview."))
 	$y += 19
-	$chkHideWhenMinimized = GUICtrlCreateCheckbox(GetTranslated(636,98, "Hide when minimized"), $x, $y, -1, -1)
+	$chkHideWhenMinimized = _GUICtrlCreateCheckbox(GetTranslated(636,98, "Hide when minimized"), $x, $y, -1, -1)
 		GUICtrlSetOnEvent(-1, "chkHideWhenMinimized")
 		_GUICtrlSetTip(-1, GetTranslated(636,99, "Hide bot window in taskbar when minimized.\r\nUse trayicon 'Show bot' to display bot window again."))
 	$y += 19
-	$chkUseRandomClick = GUICtrlCreateCheckbox(GetTranslated(636,94, "Random Click"), $x, $y, -1, -1)
+	$chkUseRandomClick = _GUICtrlCreateCheckbox(GetTranslated(636,94, "Random Click"), $x, $y, -1, -1)
 		GUICtrlSetOnEvent(-1, "chkUseRandomClick")
     $y += 19
-	$chkLaunchWatchdog = GUICtrlCreateCheckbox(GetTranslated(2000,1, "Disabled Watchdog"), $x, $y, -1, -1)
+	$chkLaunchWatchdog = _GUICtrlCreateCheckbox(GetTranslated(2000,1, "Disabled Watchdog"), $x, $y, -1, -1)
         GUICtrlSetState(-1, $GUI_CHECKED)
 	    GUICtrlSetOnEvent(-1, "chkLaunchWatchdog")
 
@@ -158,11 +157,11 @@ $grpAdvanced = GUICtrlCreateGroup(GetTranslated(636,93, "Advanced"), $x - 20, $y
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y += 47
 $grpPhotoExpert = GUICtrlCreateGroup(GetTranslated(636,55, "Photo Screenshot Options"), $x - 20, $y - 17, 225, 60)
-	$chkScreenshotType = GUICtrlCreateCheckbox(GetTranslated(636,56, "Make in PNG format"), $x, $y, -1, -1)
+	$chkScreenshotType = _GUICtrlCreateCheckbox(GetTranslated(636,56, "Make in PNG format"), $x, $y, -1, -1)
 		GUICtrlSetState(-1, $GUI_CHECKED)
 		GUICtrlSetOnEvent(-1, "chkScreenshotType")
 	$y += 19
-	$chkScreenshotHideName = GUICtrlCreateCheckbox(GetTranslated(636,57, "Hide Village and Clan Castle Name"), $x, $y, -1, -1)
+	$chkScreenshotHideName = _GUICtrlCreateCheckbox(GetTranslated(636,57, "Hide Village and Clan Castle Name"), $x, $y, -1, -1)
 		GUICtrlSetState(-1, $GUI_CHECKED)
 		GUICtrlSetOnEvent(-1, "chkScreenshotHideName")
 GUICtrlCreateGroup("", -99, -99, 1, 1)
@@ -181,7 +180,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 $y+= 51
 $grpOtherExpert = GUICtrlCreateGroup(GetTranslated(636,45, "Other Options"), $x - 20, $y - 20, 225, 90)
-$chkSinglePBTForced = GUICtrlCreateCheckbox(GetTranslated(636,61, "Force Single PB logoff"), $x-5, $y, -1, -1)
+$chkSinglePBTForced = _GUICtrlCreateCheckbox(GetTranslated(636,61, "Force Single PB logoff"), $x-5, $y, -1, -1)
 	GUICtrlSetOnEvent(-1, "chkSinglePBTForced")
 	_GUICtrlSetTip(-1, GetTranslated(636,62, "This forces bot to exit CoC only one time prior to normal start of PB"))
 $txtSinglePBTimeForced = GUICtrlCreateInput("18", $x + 130, $y-1, 30, 16, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
@@ -201,7 +200,7 @@ $txtPBTimeForcedExit = GUICtrlCreateInput("16", $x + 130, $y, 30, 16, BitOR($GUI
 	GUICtrlSetState(-1, $GUI_DISABLE)
 $lblPBTimeForcedExit1 = GUICtrlCreateLabel( GetTranslated(603,10, -1), $x+162, $y+1, 27, 15)
 $y +=30
-$chkFixClanCastle = GUICtrlCreateCheckbox(GetTranslated(636,104, "Force Clan Castle Detection"), $x-5, $y-5, -1, -1)
-	_GUICtrlSetTip(-1, GetTranslated(636,105, "If clan Castle it is undetected and it is NOT placed in the last slot, force bot to consider the undetected slot as Clan Castle"))
+$chkFixClanCastle = _GUICtrlCreateCheckbox(GetTranslated(636,104, "Force Clan Castle Detection"), $x-5, $y-5, -1, -1)
+	_GUICtrlSetTip(-1, GetTranslated(636,105, "If clan Castle it is undetected and it is NOT placed in the last slot, force bot to consider the undetected slot as Clan Castle"))	
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
 GUICtrlCreateGroup("", -99, -99, 1, 1)

@@ -808,6 +808,8 @@ Func NotifyRemoteControlProc($OnlyPB)
 						$txtHelp &= "\n" & GetTranslated(18, 111, "GETCHATS <INTERVAL|NOW|STOP> - to get the latest clan chat as an image")
 						$txtHelp &= "\n" & GetTranslated(18, 112, "SENDCHAT <chat message> - to send a chat to your clan")
 						;=============================>
+						$txtHelp &= '\n' & GetTranslated(620,100,  "BOT <Village Name> SWITCH <New Village Name> - switches Village name")
+
 						NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,100,"Request for Help") & "\n" & $txtHelp)
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,702,"Your request has been received from ") & $NotifyOrigin & ". " & GetTranslated(620,703,"Help has been sent"), $COLOR_GREEN)
 					Case GetTranslated(620,9,"RESTART"), '\UD83D\UDD01 ' & GetTranslated(620,9,"RESTART")
@@ -953,6 +955,43 @@ Func NotifyRemoteControlProc($OnlyPB)
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,702,"Your request has been received from ") & $NotifyOrigin & ". " & GetTranslated(620,723,"Standby PC"), $COLOR_GREEN)
 						NotifyPushToTelegram(GetTranslated(620,52,"PC Standby sequence initiated"))
 						Shutdown(32)
+					;===================================Switch Profile
+				    Case GetTranslated(620,101,"BOT"), GetTranslated(620,102," SWITCH ")
+					   $TGActionMSG = StringLeft($body[$x], StringLen("BOT " & StringUpper($NotifyOrigin) & " SWITCH "))
+						  If $TGActionMSG = "BOT " & StringUpper($NotifyOrigin) & " SWITCH " Then
+							    SetLog("Received request to change profile", $COLOR_GREEN)
+								$switchToProfile = StringRight($body[$x], StringLen($body[$x]) - StringLen("BOT " & StringUpper($NotifyOrigin) & " SWITCH "))
+							    $switchToProfile = StringUpper($switchToProfile)
+								If $switchToProfile = $NotifyOrigin Then
+							    _Push($NotifyOrigin & " | Profile already applied, no action was taken.")
+							    Else
+								    ;Get profile list from the profile comboBox
+			                        Local $comboBoxArray = _GUICtrlComboBox_GetListArray($cmbProfile)
+			                        Local $aProfileList[$comboBoxArray[0]]
+			                        Local $checkProfileExist
+			                        Local $originalPrile = $NotifyOrigin;
+			                        ;Check if the Profile exists
+			                        For $i = 1 to $comboBoxArray[0]
+									    If $comboBoxArray[$i] = $switchToProfile Then
+					                      ;Set to True if found
+					                      $checkProfileExist = True
+					                     ;Set combobox by index deduct 1 to match the expected profile
+									     _GUICtrlComboBox_SetCurSel($cmbProfile,$i-1)
+				                    EndIf
+				                    ExitLoop
+			                    Next
+			                    If $checkProfileExist = True Then
+				                   ;Change profile based on the comboBox index
+								    cmbProfile()
+				                    _Push($NotifyOrigin & " | Bot profile changed from #" & $originalPrile)
+			                    Else
+				                    _Push($NotifyOrigin & " | Profile doesn't exit, no action was taken.")
+			                    EndIf
+							   _DeleteMessage($iden[$x])
+					          EndIf
+						  EndIf
+					;=================================== Switch Profile
+
 					;=================================== "Chat Bot" ===================================addied Kychera 12.2016
 					Case Else
 						If StringInStr($TGActionMSG, "SENDCHAT") Then

@@ -336,3 +336,4 @@
 #include "functions\Village\TreasuryCollect.au3"
 #include "MOD\ClanHop.au3"
 #include "MOD\CoCStats.com.au3"
+#include "MOD\ProfileSwitch.au3"

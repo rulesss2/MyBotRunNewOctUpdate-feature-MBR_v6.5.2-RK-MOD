@@ -36,10 +36,10 @@ GUICtrlCreateTabItem("")
 $hGUI_BOT_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,51,"Debug"))
 #include "MBR GUI Design Child Bot - Debug.au3"
 GUICtrlCreateTabItem("")
-$hGUI_BOT_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600,36,"Profiles"))
+$hGUI_BOT_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslated(600,36,"Profiles"))
 #include "MBR GUI Design Child Bot - Profiles.au3"
 ; this tab will be empty because it is only used to display a child GUI
-$hGUI_BOT_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslated(600,37, "Stats"))
+$hGUI_BOT_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600,37, "Stats"))
 GUICtrlCreateTabItem("")
 ; create stats last because of $LastControlToHide
 #include "MBR GUI Design Child Bot - Stats.au3"

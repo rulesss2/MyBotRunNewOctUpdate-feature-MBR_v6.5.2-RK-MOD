@@ -68,7 +68,7 @@ Local $x = 25, $y = 45
 		$txtABHeroesWait = GUICtrlCreateLabel(GetTranslated(625,9, -1) & ":", $x + 20, $y + 4, 180, 18)
 	$y += 20
 	$x += 20
-		$chkABKingWait = _GUICtrlCreateCheckbox("", $x , $y + 55, 16, 16)
+		$chkABKingWait = _GUICtrlCreateCheckbox("", $x , $y + 55, 13, 13)
  			$txtTip = GetTranslated(625,10, -1) & @CRLF & GetTranslated(625, 50, -1) & @CRLF & GetTranslated(625, 65, -1)
  			GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetOnEvent(-1, "chkABKingWait")
@@ -78,7 +78,7 @@ Local $x = 25, $y = 45
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1,$GUI_HIDE)
 	$x += 55
-		$chkABQueenWait = _GUICtrlCreateCheckbox("", $x , $y + 55, 16, 16)
+		$chkABQueenWait = _GUICtrlCreateCheckbox("", $x , $y + 55, 13, 13)
  			$txtTip = GetTranslated(625,12, -1) & @CRLF & GetTranslated(625, 50, -1) & @CRLF & GetTranslated(625, 66, -1)
  			GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetOnEvent(-1, "chkABQueenWait")
@@ -88,7 +88,7 @@ Local $x = 25, $y = 45
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1,$GUI_HIDE)
 	$x += 55
- 		$chkABWardenWait = _GUICtrlCreateCheckbox("", $x , $y + 55, 16, 16)
+ 		$chkABWardenWait = _GUICtrlCreateCheckbox("", $x , $y + 55, 13, 13)
  			$txtTip = GetTranslated(625,13, -1) & @CRLF & GetTranslated(625, 50, -1) & @CRLF & GetTranslated(625, 67, -1)
  			GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetOnEvent(-1, "chkABWardenWait")
@@ -191,7 +191,7 @@ Local $x = 220, $y = 45
 		$picABMinTrophies = GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x + 137, $y, 16, 16)
 			_GUICtrlSetTip(-1, $txtTip)
 		$y += 24
-		$chkABMeetTH = GUICtrlCreateCheckbox(GetTranslated(625,31, -1), $x, $y, -1, -1)
+		$chkABMeetTH = _GUICtrlCreateCheckbox(GetTranslated(625,31, -1), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,32, -1)
 			GUICtrlSetOnEvent(-1, "chkABMeetTH")
 			_GUICtrlSetTip(-1, $txtTip)
@@ -212,7 +212,7 @@ Local $x = 220, $y = 45
 		$y += 20
 		$xStarColumn = $x
 		$yStartColumn = $y
-		$chkMaxMortar[$LB] = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+		$chkMaxMortar[$LB] = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(625,59, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkABWeakBase")
@@ -224,7 +224,7 @@ Local $x = 220, $y = 45
 		$picABWeakMortar = GUICtrlCreateIcon($pIconLib, $eIcnMortar, $x + 75, $y - 2, 24, 24)
 			_GUICtrlSetTip(-1, $txtTip)
 		$y +=24
-		$chkMaxWizTower[$LB] = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+		$chkMaxWizTower[$LB] = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(625,60, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkABWeakBase")
@@ -236,7 +236,7 @@ Local $x = 220, $y = 45
 		$picABWeakWizTower = GUICtrlCreateIcon($pIconLib, $eIcnWizTower, $x + 75, $y - 2, 24, 24)
 			_GUICtrlSetTip(-1, $txtTip)
 		$y += 24
-		$chkMaxAirDefense[$LB] = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+		$chkMaxAirDefense[$LB] = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(625,64, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkABWeakBase")
@@ -249,7 +249,7 @@ Local $x = 220, $y = 45
 			_GUICtrlSetTip(-1, $txtTip)
 		$x = $xStarColumn + 104
 		$y = $yStartColumn
-		$chkMaxXBow[$LB] = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+		$chkMaxXBow[$LB] = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(625,61, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkABWeakBase")
@@ -261,7 +261,7 @@ Local $x = 220, $y = 45
 		$picABWeakXBow = GUICtrlCreateIcon($pIconLib, $eIcnXBow3, $x + 75, $y - 2, 24, 24)
 			_GUICtrlSetTip(-1, $txtTip)
 		$y +=24
-		$chkMaxInferno[$LB] = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+		$chkMaxInferno[$LB] = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(625,62, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkABWeakBase")
@@ -273,7 +273,7 @@ Local $x = 220, $y = 45
 		$picABWeakInferno = GUICtrlCreateIcon($pIconLib, $eIcnInferno4, $x + 75, $y - 2, 24, 24)
 			_GUICtrlSetTip(-1, $txtTip)
 		$y +=24
-		$chkMaxEagle[$LB] = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+		$chkMaxEagle[$LB] = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(625,63, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkABWeakBase")

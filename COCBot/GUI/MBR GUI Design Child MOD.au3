@@ -230,11 +230,11 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 			 GUICtrlSetOnEvent(-1, "cmbSwLang")
 GUICtrlCreateTabItem("")
 
-$hGUI_BOT_TAB_ITEM5 = GUICtrlCreateTabItem("Humanization")
+$hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem("Humanization")
 #include "MBR GUI Design Child Bot - Humanization.au3"
 GUICtrlCreateTabItem("")
 
-$hGUI_BOT_TAB_ITEM6 = GUICtrlCreateTabItem("Switch Profiles")
+$hGUI_MOD_TAB_ITEM6 = GUICtrlCreateTabItem("Switch Profiles")
 
 Local $x = 25, $y = 60
 	$grpGoldSwitch = GUICtrlCreateGroup(GetTranslated(655,14, "Gold Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ;Gold Switch

@@ -58,7 +58,7 @@ Global $aTabControlsStrategies = [$hGUI_STRATEGIES_TAB, $hGUI_STRATEGIES_TAB_ITE
 
 Global $aTabControlsBot = [$hGUI_BOT_TAB, $hGUI_BOT_TAB_ITEM1, $hGUI_BOT_TAB_ITEM2, $hGUI_BOT_TAB_ITEM3, $hGUI_BOT_TAB_ITEM4, $hGUI_BOT_TAB_ITEM5]
 
-Global $aTabControlsMod = [$hGUI_MOD_TAB, $hGUI_MOD_TAB_ITEM1, $hGUI_MOD_TAB_ITEM2, $hGUI_MOD_TAB_ITEM4]
+Global $aTabControlsMod = [$hGUI_MOD_TAB, $hGUI_MOD_TAB_ITEM1, $hGUI_MOD_TAB_ITEM2, $hGUI_MOD_TAB_ITEM4, $hGUI_MOD_TAB_ITEM5, $hGUI_MOD_TAB_ITEM6]
 Global $aTabControlsStats = [$hGUI_STATS_TAB, $hGUI_STATS_TAB_ITEM1, $hGUI_STATS_TAB_ITEM2, $hGUI_STATS_TAB_ITEM3]
 
 Global $aAlwaysEnabledControls = [$chkUpdatingWhenMinimized, $chkHideWhenMinimized, $chkDebugClick, $chkDebugSetlog, $chkDebugDisableZoomout, $chkDebugDisableVillageCentering, $chkDebugDeadbaseImage, $chkDebugOcr, $chkDebugImageSave, $chkDebugSmartZap, $chkDebugSX, $chkdebugBuildingPos, $chkdebugTrain, $chkdebugOCRDonate,$btnTestTrain, $btnTestDonateCC, $btnTestRequestCC, $btnTestClickDrag, $btnTestVillageSize, $btnTestDeadBase, $btnTestDeadBaseFolder, $btnTestTHimgloc, $btnTestimglocTroopBar, $chkdebugAttackCSV, $chkmakeIMGCSV, $btnTestAttackCSV, $btnTestFindButton, $txtTestFindButton, $btnTestCleanYard, $lblLightningUsed, $lblSmartZap, $lblEarthQuakeUsed, $btnTestConfigSave, $btnTestConfigRead, $btnTestConfigApply]

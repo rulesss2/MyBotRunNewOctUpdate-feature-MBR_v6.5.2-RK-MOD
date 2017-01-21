@@ -19,7 +19,7 @@ Local $x = 10, $y = 45
 	  $lblTSAttackConfigure2=GUICtrlCreateLabel(GetTranslated(606,28,"Switch DB Attack at END") & ":",$x, $y , 143 , 18,$SS_LEFT)
 	  $y += 15
 		 ;chk camps
-		 $chkTSActivateCamps2 = GUICtrlCreateCheckbox("",$x+2,$y+3,16,16)
+		 $chkTSActivateCamps2 = GUICtrlCreateCheckbox("",$x+2,$y+3,13,13)
 		 GUICtrlSetOnEvent(-1, "chkTSActivateCamps2")
 		 ;Army camps %
 		 $lblTSArmyCamps2 = GUICtrlCreateLabel("Camps >=", $x +20 , $y +4 , -1, -1)

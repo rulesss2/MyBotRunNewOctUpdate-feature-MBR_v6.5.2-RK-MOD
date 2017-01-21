@@ -45,7 +45,7 @@ $hGUI_ARMY_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(1010, 1, "Troops/Spell
 Local $xStart = 0, $yStart = 0
 Local $x = $xStart
 Local $y = $yStart + 8
-	$hChk_UseQTrain = GUICtrlCreateCheckbox(GetTranslated(1010,5, "Use Quick Train"), $x + 15, $y + 19, -1, 15)
+	$hChk_UseQTrain = _GUICtrlCreateCheckbox(GetTranslated(1010,5, "Use Quick Train"), $x + 15, $y + 10, -1, 15)
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
 	GUICtrlSetOnEvent(-1, "chkUseQTrain")
 	$hRadio_Army1 = GUICtrlCreateRadio(GetTranslated(621, 37, "Army 1"), $x + 120, $y + 20, 50, 15)
@@ -371,7 +371,7 @@ $Y -= 23
 
 $x -= 195
 $Y += 35
-	$chkTotalCampForced = GUICtrlCreateCheckbox(GetTranslated(636, 46, "Force Total Army Camp") & ":", $x + 3, $y, -1, -1)
+	$chkTotalCampForced = _GUICtrlCreateCheckbox(GetTranslated(636, 46, "Force Total Army Camp") & ":", $x + 3, $y, -1, -1)
 	GUICtrlSetState(-1, $GUI_CHECKED)
 	GUICtrlSetOnEvent(-1, "chkTotalCampForced")
 	_GUICtrlSetTip(-1, GetTranslated(636, 47, "If not detected set army camp values (instead ask)"))
@@ -537,7 +537,7 @@ $x += 38
 
 $y += 56
 Local $x = 17
-	$chkForceBrewBeforeAttack = GUICtrlCreateCheckbox(GetTranslated(1010, 17, "Force Brew Spells"), $x, $y + 12, -1, -1)
+	$chkForceBrewBeforeAttack = _GUICtrlCreateCheckbox(GetTranslated(1010, 17, "Force Brew Spells"), $x, $y + 12, -1, -1)	
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
 
 Local $x = 210
@@ -777,7 +777,7 @@ $hGUI_ARMY_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600, 54, "Train Order"
 $x = $xStart + 25
 $y = $yStart + 45
 	$grpTrainOrder = GUICtrlCreateGroup(GetTranslated(641, 25, "Training Order"), $x - 20, $y - 20, 271, 335)
-	$chkTroopOrder = GUICtrlCreateCheckbox(GetTranslated(641, 26, "Custom Order"), $x - 5, $y, -1, -1)
+	$chkTroopOrder = _GUICtrlCreateCheckbox(GetTranslated(641, 26, "Custom Order"), $x - 5, $y, -1, -1)
 	$txtTip = GetTranslated(641, 27, "Enable to select a custom troop training order") & @CRLF & _
 			GetTranslated(641, 28, "Changing train order can be useful with CSV scripted attack armies!")
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
@@ -887,7 +887,7 @@ $hGUI_ARMY_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(641, 1, "Options"))
 $x = $xStart + 25
 $y = $yStart + 45
 	$grpCloseWaitTrain = GUICtrlCreateGroup(GetTranslated(641, 2, "Training Idle Time"), $x - 20, $y - 20, 151, 266)
-	$chkCloseWaitEnable = GUICtrlCreateCheckbox(GetTranslated(641, 3, "Close While Training"), $x - 12, $y, 140, -1)
+	$chkCloseWaitEnable = _GUICtrlCreateCheckbox(GetTranslated(641, 3, "Close While Training"), $x - 12, $y, 140, -1)
 	$txtTip = GetTranslated(641, 4, "Option will exit CoC game for time required to complete TROOP training when SHIELD IS ACTIVE") & @CRLF & _
 			GetTranslated(641, 5, "Close for Spell creation will be enabled when 'Wait for Spells' is selected on Search tabs") & @CRLF & _
 			GetTranslated(641, 6, "Close for Hero healing will be enabled when 'Wait for Heroes' is enabled on Search tabs")
@@ -896,7 +896,7 @@ $y = $yStart + 45
 	GUICtrlSetOnEvent(-1, "chkCloseWaitEnable")
 
 $y += 28
-	$chkCloseWaitTrain = GUICtrlCreateCheckbox(GetTranslated(641, 7, "Without Shield"), $x + 18, $y + 1, 110, -1)
+	$chkCloseWaitTrain = _GUICtrlCreateCheckbox(GetTranslated(641, 7, "Without Shield"), $x + 18, $y + 1, 110, -1)
 	$txtTip = GetTranslated(641, 8, "Option will ALWAYS close CoC for idle training time and when NO SHIELD IS ACTIVE!") & @CRLF & _
 			GetTranslated(641, 9, "Note - You can be attacked and lose trophies when this option is enabled!")
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
@@ -906,7 +906,7 @@ $y += 28
 	_GUICtrlSetTip(-1, $txtTip)
 
 $y += 28
-	$btnCloseWaitStop = GUICtrlCreateCheckbox(GetTranslated(641, 13, "Close Emulator"), $x + 18, $y + 1, 110, -1)
+	$btnCloseWaitStop = _GUICtrlCreateCheckbox(GetTranslated(641, 13, "Close Emulator"), $x + 18, $y + 1, 110, -1)
 	$txtTip = GetTranslated(641, 14, "Option will close Android Emulator completely when selected") & @CRLF & _
 			GetTranslated(641, 15, "Adding this option may increase offline time slightly due to variable times required for startup")
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
@@ -916,7 +916,7 @@ $y += 28
 	_GUICtrlSetTip(-1, $txtTip)
 
 $y += 28
-	$btnCloseWaitStopRandom = GUICtrlCreateCheckbox(GetTranslated(641, 10, "Random Close"), $x + 18, $y + 1, 110, -1)
+	$btnCloseWaitStopRandom = _GUICtrlCreateCheckbox(GetTranslated(641, 10, "Random Close"), $x + 18, $y + 1, 110, -1)
 	$txtTip = GetTranslated(641, 11, "Option will Randomly choose between time out, close CoC, or Close emulator when selected") & @CRLF & _
 			GetTranslated(641, 15, "Adding this option may increase offline time slightly due to variable times required for startup")
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
@@ -982,14 +982,14 @@ $y += 53
 	_GUICtrlSlider_SetTicFreq(-100, 100)
 	GUICtrlSetLimit(-1, 500, 1) ; change max/min value
 	GUICtrlSetData(-1, 40) ; default value
-	GUICtrlSetBkColor(-1, $COLOR_WHITE)
+	GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 	GUICtrlSetOnEvent(-1, "sldTrainITDelay")
 
 $x = $xStart + 25 + 151 + 5
 $y = $yStart + 45
     $grpAddDelayIdlePhase = GUICtrlCreateGroup(GetTranslated(641,35, "Training Add Random Delay"), $x - 20, $y - 20, 173, 81)
 $y += 15
-	$chkAddDelayIdlePhaseEnable = GUICtrlCreateCheckbox(GetTranslated(641, 36, "Add Random Delay"),$x + 18, $y - 11, 130, -1)
+	$chkAddDelayIdlePhaseEnable = _GUICtrlCreateCheckbox(GetTranslated(641, 36, "Add Random Delay"),$x + 18, $y - 11, 130, -1)
 	$txtTip = GetTranslated(641, 37, "Add random delay between two calls of train army.")& @CRLF & _
 	GetTranslated(641, 38, "This option reduces the calls to the training window  humanizing the bot spacing calls each time with a causal interval chosen between the minimum and maximum values indicated below.")
 	GUICtrlSetState(-1, $GUI_CHECKED)

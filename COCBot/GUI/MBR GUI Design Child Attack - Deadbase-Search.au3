@@ -16,7 +16,7 @@
 Local $x = 25, $y = 45
 	$grpDBActivate = GUICtrlCreateGroup(GetTranslated(625,0, "Start Search IF"), $x - 20, $y - 20, 190, 305)
 		$x -= 15
-		$chkDBActivateSearches = _GUICtrlCreateCheckbox(GetTranslated(625,1,"Search"), $x, $y, 68, 18)
+		$chkDBActivateSearches = _GUICtrlCreateCheckbox(GetTranslated(625,1,"Search"), $x, $y - 10, 68, 18)
 			$txtTip = GetTranslated(625,68, "Note - enables SEARCH range for this attack type ONLY.") & @CRLF & _
 				GetTranslated(625,69, "Setting will not set search limit to restart search process!")
 			GUICtrlSetTip(-1, $txtTip)
@@ -35,7 +35,7 @@ Local $x = 25, $y = 45
 			GUICtrlSetLimit(-1, 6)
 		$picDBSearches = GUICtrlCreateIcon($pIconLib, $eIcnMagnifier, $x + 163, $y + 1, 16, 16)
 	$y += 21
-		$chkDBActivateTropies = _GUICtrlCreateCheckbox(GetTranslated(625,4,"Trophies"), $x, $y, 68, 18)
+		$chkDBActivateTropies = _GUICtrlCreateCheckbox(GetTranslated(625,4,"Trophies"), $x, $y - 10, 68, 18)
 			$txtTip = GetTranslated(625,68, -1) & @CRLF & GetTranslated(625,70,"This option will NOT adjust tropies to stay in range entered!")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBActivateTropies")
@@ -55,7 +55,7 @@ Local $x = 25, $y = 45
 			GUICtrlSetLimit(-1, 6)
 		$picDBTrophies = GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x + 163, $y + 1, 16, 16)
 	$y +=21
-		$chkDBActivateCamps = _GUICtrlCreateCheckbox(GetTranslated(625,7, "Army Camps"), $x, $y, 110, 18)
+		$chkDBActivateCamps = _GUICtrlCreateCheckbox(GetTranslated(625,7, "Army Camps"), $x, $y - 10, 110, 18)
 			$txtTip = GetTranslated(625,8, "Set the % Army camps required to enable this attack option while searching")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBActivateCamps")

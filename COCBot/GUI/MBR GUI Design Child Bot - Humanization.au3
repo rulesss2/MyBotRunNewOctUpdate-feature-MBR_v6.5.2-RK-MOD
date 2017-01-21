@@ -14,11 +14,11 @@
 ; Example .......: No
 ;================================================================================================================================
 
-$chkUseBotHumanization = GUICtrlCreateCheckbox(GetTranslated(42, 0, "Enable Bot Humanization"), 10, 30, 137, 17)
+$chkUseBotHumanization = _GUICtrlCreateCheckbox(GetTranslated(42, 0, "Enable Bot Humanization"), 10, 25, 137, 17)
 	GUICtrlSetOnEvent(-1, "chkUseBotHumanization")
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
 
-$chkUseAltRClick = GUICtrlCreateCheckbox(GetTranslated(42, 1, "Make ALL BOT clicks random"), 280, 30, 162, 17)
+$chkUseAltRClick = _GUICtrlCreateCheckbox(GetTranslated(42, 1, "Make ALL BOT clicks random"), 280, 25, 162, 17)
 	GUICtrlSetOnEvent(-1, "chkUseAltRClick")
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
 
@@ -110,11 +110,11 @@ $y += 56
 
 $y += 25
 
-	$chkCollectAchievements = GUICtrlCreateCheckbox(GetTranslated(42, 23, "Collect achievements automatically"), $x + 40, $y, 182, 17)
+	$chkCollectAchievements = _GUICtrlCreateCheckbox(GetTranslated(42, 23, "Collect achievements automatically"), $x + 40, $y, 182, 17)
 		GUICtrlSetOnEvent(-1, "chkCollectAchievements")
 		GUICtrlSetState(-1, $GUI_UNCHECKED)
 
-	$chkLookAtRedNotifications = GUICtrlCreateCheckbox(GetTranslated(42, 24, "Look at red/purple flags on buttons"), $x + 240, $y, 187, 17)
+	$chkLookAtRedNotifications = _GUICtrlCreateCheckbox(GetTranslated(42, 24, "Look at red/purple flags on buttons"), $x + 240, $y, 187, 17)
 		GUICtrlSetOnEvent(-1, "chkLookAtRedNotifications")
 		GUICtrlSetState(-1, $GUI_UNCHECKED)
 

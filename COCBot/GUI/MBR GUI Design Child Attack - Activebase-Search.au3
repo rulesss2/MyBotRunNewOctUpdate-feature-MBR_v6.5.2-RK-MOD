@@ -16,7 +16,7 @@
 Local $x = 25, $y = 45
 	$grpABActivate = GUICtrlCreateGroup(GetTranslated(625,0, -1), $x - 20, $y - 20, 190, 305)
 		$x -= 15
-		$chkABActivateSearches = _GUICtrlCreateCheckbox(GetTranslated(625,1, -1), $x, $y, 68, 18)
+		$chkABActivateSearches = _GUICtrlCreateCheckbox(GetTranslated(625,1, -1), $x, $y - 10, 68, 18)
 			$txtTip = GetTranslated(625,68, -1) & @CRLF & GetTranslated(625,69, -1)
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1,$GUI_UNCHECKED)
@@ -32,7 +32,7 @@ Local $x = 25, $y = 45
 			GUICtrlSetLimit(-1, 6)
 		$picABSearches = GUICtrlCreateIcon($pIconLib, $eIcnMagnifier, $x + 163, $y + 1, 16, 16)
 	$y +=21
-		$chkABActivateTropies = _GUICtrlCreateCheckbox(GetTranslated(625,4, -1), $x, $y, 68, 18)
+		$chkABActivateTropies = _GUICtrlCreateCheckbox(GetTranslated(625,4, -1), $x, $y - 10, 68, 18)
 			$txtTip = GetTranslated(625,68, -1) & @CRLF & GetTranslated(625,70,-1)
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkABActivateTropies")
@@ -50,7 +50,7 @@ Local $x = 25, $y = 45
 			GUICtrlSetLimit(-1, 6)
 		$picABTrophies = GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x + 163, $y + 1, 16, 16)
 	$y +=21
-		$chkABActivateCamps = _GUICtrlCreateCheckbox(GetTranslated(625,7, -1), $x, $y, 110, 18)
+		$chkABActivateCamps = _GUICtrlCreateCheckbox(GetTranslated(625,7, -1), $x, $y - 10, 110, 18)
 			$txtTip = GetTranslated(625,8, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkABActivateCamps")

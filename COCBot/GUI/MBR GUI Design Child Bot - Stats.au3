@@ -358,7 +358,7 @@ $hGUI_STATS_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,38,"Gain"))
        $grpCoCStats = GUICtrlCreateGroup("", $x - 20, $y, 423, 35)
     $y += 10
 	$x+= -10
-        $chkCoCStats = GUICtrlCreateCheckbox(GetTranslated(110,1,"CoCStats Activate"), $x , $y , -1, -1)
+        $chkCoCStats = _GUICtrlCreateCheckbox(GetTranslated(110,1,"CoCStats Activate"), $x , $y , -1, -1)
             $txtTip = GetTranslated(110,2,"Activate sending raid results to CoCStats.com")
             GUICtrlSetTip(-1, $txtTip)
             GUICtrlSetOnEvent(-1, "chkCoCStats")

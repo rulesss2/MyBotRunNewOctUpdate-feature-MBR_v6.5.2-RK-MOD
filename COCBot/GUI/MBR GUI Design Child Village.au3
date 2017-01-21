@@ -48,7 +48,7 @@ Global $txtUnbreakable, $txtUnBrkMinGold,$txtUnBrkMaxGold,$txtUnBrkMinElixir, $t
    $y = 45
 	$grpDefenseFarming = GUICtrlCreateGroup(GetTranslated(618,1, "Defense Farming"), $x - 20, $y - 20, 440, 150)
 		$y +=10
-			$chkUnbreakable = GUICtrlCreateCheckbox(GetTranslated(618,2, "Enable Unbreakable"), $x - 10, $y, -1, -1)
+			$chkUnbreakable = _GUICtrlCreateCheckbox(GetTranslated(618,2, "Enable Unbreakable"), $x - 10, $y, -1, -1)
 			$TxtTip = GetTranslated(618,3, "Enable farming Defense Wins for Unbreakable achievement.") ;& @CRLF & "TIP: Set your trophy range on the Misc Tab to '600 - 800' for best results. WARNING: Doing so will DROP you Trophies!"
 			_GUICtrlSetTip(-1, $TxtTip)
 			GUICtrlSetOnEvent(-1, "chkUnbreakable")

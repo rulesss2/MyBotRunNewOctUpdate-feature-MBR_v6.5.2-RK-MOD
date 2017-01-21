@@ -51,7 +51,7 @@ $sTxtShowEndTime = GetTranslated(616, 36, "This box is updated with estimate end
 	Local $x = 25, $y = 45
 	$Laboratory = GUICtrlCreateGroup(GetTranslated(614,1, "Laboratory"), $x - 20, $y - 20, 430, 334)
 		GUICtrlCreateIcon($pIconLib, $eIcnLaboratory, $x, $y, 64, 64)
-		$chkLab = GUICtrlCreateCheckbox(GetTranslated(614,2, "Auto Laboratory Upgrades"), $x + 80, $y + 5, -1, -1)
+		$chkLab = _GUICtrlCreateCheckbox(GetTranslated(614,2, "Auto Laboratory Upgrades"), $x + 80, $y + 5, -1, -1)
 			$txtTip = GetTranslated(614,3, "Check box to enable automatically starting Upgrades in laboratory")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkLab")
@@ -87,7 +87,7 @@ $hGUI_UPGRADE_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,15,"Heroes"))
 	$grpHeroes = GUICtrlCreateGroup(GetTranslated(615,1, "Upgrade Heroes Continuously"), $x - 20, $y - 20, 430, 334)
 		$lblUpgradeHeroes = GUICtrlCreateLabel(GetTranslated(615,2, "Auto upgrading of your Heroes"), $x - 10, $y, -1, -1)
 		$y += 20
-		$chkUpgradeKing = GUICtrlCreateCheckbox("", $x, $y + 25, 17, 17)
+		$chkUpgradeKing = GUICtrlCreateCheckbox("", $x, $y + 25, 13, 13)
 			$txtTip = GetTranslated(615,3, "Enable upgrading of your King when you have enough Dark Elixir (Saving Min. Dark Elixir)") & @CRLF & GetTranslated(615,4, "You can manually locate your Kings Altar on Misc Tab") & @CRLF & _
 			GetTranslated(615,5, "Verify your Resume Bot Dark Elixir value at Misc Tab vs Saving Min. Dark Elixir here!") & @CRLF & GetTranslated(615,11, "Enabled with TownHall 7 and higher")
 			_GUICtrlSetTip(-1, $txtTip)
@@ -98,7 +98,7 @@ $hGUI_UPGRADE_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,15,"Heroes"))
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1,$GUI_HIDE)
 		$x += 95
-		$chkUpgradeQueen = GUICtrlCreateCheckbox("", $x, $y + 25, 17, 17)
+		$chkUpgradeQueen = GUICtrlCreateCheckbox("", $x, $y + 25, 13, 13)
 			$txtTip = GetTranslated(615,6, "Enable upgrading of your Queen when you have enough Dark Elixir (Saving Min. Dark Elixir)") & @CRLF & GetTranslated(615,7, "You can manually locate your Queens Altar on Misc Tab") & @CRLF & _
 			GetTranslated(615,5, -1) & @CRLF & GetTranslated(615,12, "Enabled with TownHall 9 and higher")
 			_GUICtrlSetTip(-1, $txtTip)
@@ -109,7 +109,7 @@ $hGUI_UPGRADE_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,15,"Heroes"))
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1,$GUI_HIDE)
 		$x += 95
-		$chkUpgradeWarden = GUICtrlCreateCheckbox("", $x, $y + 25, 17, 17)
+		$chkUpgradeWarden = GUICtrlCreateCheckbox("", $x, $y + 25, 13, 13)
 			$txtTip = GetTranslated(615,8, "Enable upgrading of your Warden when you have enough Elixir (Saving Min. Elixir)") & @CRLF & GetTranslated(615,9, "You can manually locate your Wardens Altar on Misc Tab") & @CRLF & _
 			GetTranslated(615,5, -1) & @CRLF & GetTranslated(615,13, "Enabled with TownHall 11")
 			_GUICtrlSetTip(-1, $txtTip)
@@ -133,9 +133,9 @@ $hGUI_UPGRADE_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,16,"Buildings")
 		$lblUpgradeUp2 = GUICtrlCreateLabel(GetTranslated(616,3,"Lvl"), $x+153, $y, 40, 18)
 		$lblUpgradeUp3 = GUICtrlCreateLabel(GetTranslated(616,4,"Type"), $x+173, $y, 50, 18)
 		$lblUpgradeUp4 = GUICtrlCreateLabel(GetTranslated(616,5,"Cost"), $x+219, $y, 50, 18)
-		$lblUpgradeUp5 = GUICtrlCreateLabel(GetTranslated(616,6,"Time"), $x+270, $y, 50, 18)
-		$lblUpgradeUp6 = GUICtrlCreateLabel(GetTranslated(616,7,"Rep."), $x+392, $y, 50, 18)
+		$lblUpgradeUp5 = GUICtrlCreateLabel(GetTranslated(616,6,"Time"), $x+270, $y, 50, 18)		
 		$lblUpgradeUp7 = GUICtrlCreateLabel(GetTranslated(616,37,"Estimate End"), $x+314, $y, 70, 18)
+		$lblUpgradeUp6 = GUICtrlCreateLabel(GetTranslated(616,7,"Rep."), $x+380, $y, 50, 18)
 	$y+=13
 
 ; Create upgrade GUI slots 0 to $iUpgradeSlots
@@ -143,7 +143,7 @@ $hGUI_UPGRADE_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,16,"Buildings")
 	For $i = 0 To $iUpgradeSlots - 1
 		$picUpgradeStatus[$i]= GUICtrlCreateIcon($pIconLib, $eIcnTroops, $x - 10, $y+1, 14, 14)
 			_GUICtrlSetTip(-1, $sTxtStatus)
-		$chkbxUpgrade[$i] = GUICtrlCreateCheckbox($i+1 &":", $x + 5, $y+1, 34, 15)
+		$chkbxUpgrade[$i] = _GUICtrlCreateCheckbox($i+1 &":", $x + 5, $y-9, 34, 15)
 			_GUICtrlSetTip(-1,  $sTxtCheckBox & " #" & $i+1 & " " & $sTxtAfterUsing)
 ;			GUICtrlSetFont(-1, 8)
 			GUICtrlSetOnEvent(-1, "btnchkbxUpgrade")
@@ -165,7 +165,7 @@ $hGUI_UPGRADE_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,16,"Buildings")
 		$txtUpgradeEndTime[$i] = GUICtrlCreateInput("", $x+305, $y, 85, 17, BitOR($ES_LEFT, $GUI_SS_DEFAULT_INPUT, $ES_READONLY, $ES_NUMBER))
 			GUICtrlSetFont(-1, 7)
 			_GUICtrlSetTip(-1, $sTxtShowEndTime)
-		$chkUpgrdeRepeat[$i] = GUICtrlCreateCheckbox("", $x + 395, $y+1, 15, 15)
+		$chkUpgrdeRepeat[$i] = GUICtrlCreateCheckbox("", $x + 395, $y+1, 13, 13)
 ;			GUICtrlSetFont(-1, 8)
 			_GUICtrlSetTip(-1, $sTxtChkRepeat)
 			GUICtrlSetOnEvent(-1, "btnchkbxRepeat")
@@ -174,7 +174,7 @@ $hGUI_UPGRADE_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,16,"Buildings")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 	$x += 5
-	$y += 8
+	$y += 20
 		GUICtrlCreateIcon ($pIconLib, $eIcnGold, $x - 15, $y, 15, 15)
 		$UpgrMinGold = GUICtrlCreateLabel(GetTranslated(616,14, "Min. Gold")&":", $x + 5, $y + 3, -1, -1)
 		$txtUpgrMinGold = GUICtrlCreateInput("250000", $x + 55, $y, 61, 17, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
@@ -190,7 +190,7 @@ $hGUI_UPGRADE_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,16,"Buildings")
 	$y -= 8
 		GUICtrlCreateIcon ($pIconLib, $eIcnDark, $x + 140, $y, 15, 15)
 		$UpgrMinDark = GUICtrlCreateLabel(GetTranslated(616,20, "Min. Dark") & ":", $x + 160, $y + 3, -1, -1)
-		$txtUpgrMinDark= GUICtrlCreateInput("3000", $x + 210, $y, 61, 17, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+		$txtUpgrMinDark= GUICtrlCreateInput("3000", $x + 220, $y, 61, 17, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 			_GUICtrlSetTip(-1, GetTranslated(616,21, "Save this amount of Dark Elixir after the upgrade completes.") & @CRLF & GetTranslated(616,22, "Set this value higher if you want make war troops."))
 			GUICtrlSetLimit(-1, 6)
 		GUICtrlCreateGroup("", -99, -99, 1, 1)
@@ -219,7 +219,7 @@ Global $lblWallCost, $cmbWalls, $UseGold, $UseElixir, $UseElixirGold, $txtWallMi
 	Local $x = 25, $y = 45
 		$grpWalls = GUICtrlCreateGroup(GetTranslated(617,1, "Walls"), $x - 20, $y - 20, 430, 120)
 		GUICtrlCreateIcon ($pIconLib, $eIcnWall, $x - 12, $y - 6, 24, 24)
-		$chkWalls = GUICtrlCreateCheckbox(GetTranslated(617,2, "Auto Wall Upgrade"), $x + 18, $y-2, -1, -1)
+		$chkWalls = _GUICtrlCreateCheckbox(GetTranslated(617,2, "Auto Wall Upgrade"), $x + 18, $y-2, -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(617,3, "Check this to upgrade Walls if there are enough resources."))
 			GUICtrlSetState(-1, $GUI_ENABLE)
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
@@ -249,7 +249,7 @@ Global $lblWallCost, $cmbWalls, $UseGold, $UseElixir, $UseElixirGold, $txtWallMi
 			_GUICtrlSetTip(-1, GetTranslated(617,14, "Try to use Elixir first. If not enough Elixir try to use Gold second for Walls.") & @CRLF & GetTranslated(617,12, -1))
 			GUICtrlSetState(-1, $GUI_DISABLE)
 		GUICtrlCreateIcon ($pIconLib, $eIcnBuilder, $x - 12, $y + 72, 20, 20)
-		$chkSaveWallBldr = GUICtrlCreateCheckbox(GetTranslated(617,15, "Save ONE builder for Walls"), $x+18, $y + 72, -1, -1)
+		$chkSaveWallBldr = _GUICtrlCreateCheckbox(GetTranslated(617,15, "Save ONE builder for Walls"), $x+18, $y + 77, -1, -1)
 			$TxtTip = GetTranslated(617,16, "Check this to reserve 1 builder exclusively for walls and") & @CRLF &GetTranslated(617,17, "reduce the available builder by 1 for other upgrades")
 			_GUICtrlSetTip(-1, $TxtTip)
 			GUICtrlSetState(-1, $GUI_ENABLE)

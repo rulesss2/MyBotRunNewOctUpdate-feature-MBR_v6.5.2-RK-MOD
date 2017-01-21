@@ -20,25 +20,25 @@ Local $x = 25, $y = 45
 
 	$grpTrophy = GUICtrlCreateGroup(GetTranslated(609,1, "Trophy Settings"), $x - 20, $y - 20, 420, 305)
 		$x += 25
-		$y += 25
+		$y += 20
 		GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x - 15, $y, 64, 64, $BS_ICON)
 		$x += 50
-		$chkTrophyRange = GUICtrlCreateCheckbox(GetTranslated(609,2, "Trophy range") & ":",$x + 20, $y, -1, -1)
+		$chkTrophyRange = _GUICtrlCreateCheckbox(GetTranslated(609,2, "Trophy range") & ":",$x + 20, $y, -1, -1)
 			GUICtrlSetOnEvent(-1, "chkTrophyRange")
-		$txtdropTrophy = GUICtrlCreateInput("5000", $x + 110, $y, 35, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+		$txtdropTrophy = GUICtrlCreateInput("5000", $x + 110, $y, 35, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 			$txtTip = GetTranslated(609,3, "MIN: The Bot will drop trophies until below this value.")
 			GUICtrlSetLimit(-1, 4)
 			_GUICtrlSetTip(-1, $txtTip)
 			GuiCtrlSetState(-1,$GUI_DISABLE)
 		$lblDash = GUICtrlCreateLabel(GetTranslated(603,13, "-"), $x + 148, $y + 4, -1, -1)
-		$txtMaxTrophy = GUICtrlCreateInput("5000", $x + 155, $y, 35, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+		$txtMaxTrophy = GUICtrlCreateInput("5000", $x + 155, $y, 35, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 			$txtTip = GetTranslated(609,4, "MAX: The Bot will drop trophies if your trophy count is greater than this value.")
 			GUICtrlSetLimit(-1, 4)
 			_GUICtrlSetTip(-1, $txtTip)
 			GuiCtrlSetState(-1,$GUI_DISABLE)
 		$y += 24
 		$x += 20
-		$chkTrophyHeroes = GUICtrlCreateCheckbox(GetTranslated(609,5, "Use Heroes To Drop Trophies"), $x, $y, -1, -1)
+		$chkTrophyHeroes = _GUICtrlCreateCheckbox(GetTranslated(609,5, "Use Heroes To Drop Trophies"), $x, $y, -1, -1)
 			$txtTip = GetTranslated(609,6, "Use Heroes to drop Trophies if Heroes are available.")
 			_GUICtrlSetTip(-1, $txtTip)
 			GuiCtrlSetState(-1,$GUI_DISABLE)
@@ -64,7 +64,7 @@ Local $x = 25, $y = 45
  			GUICtrlSetState(-1, $GUI_DISABLE)
 
 		$y += 20
-		$chkTrophyAtkDead = GUICtrlCreateCheckbox(GetTranslated(609,7, "Attack Dead Bases During Drop"), $x  , $y +2, -1, -1)
+		$chkTrophyAtkDead = _GUICtrlCreateCheckbox(GetTranslated(609,7, "Attack Dead Bases During Drop"), $x  , $y +2, -1, -1)
 			$txtTip = GetTranslated(609,8, "Attack a Deadbase found on the first search while dropping Trophies.")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkTrophyAtkDead")

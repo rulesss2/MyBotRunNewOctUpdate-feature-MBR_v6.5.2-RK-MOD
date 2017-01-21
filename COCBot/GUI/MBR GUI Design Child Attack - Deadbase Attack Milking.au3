@@ -124,11 +124,11 @@ $tabMilkingFilters = GUICtrlCreateTabItem(GetTranslated(600,45,"B - Conditions")
 Local $x = 14, $y = 45
 	$grpIfFoundElixir = GUICtrlCreateGroup(GetTranslated(631,56, "Structures to Attack"), $x - 5, $y, 260, 100)
 	$y += 22
-		$chkAtkElixirExtractors = GUICtrlCreateCheckbox(GetTranslated(631,13, "Attack"), $x, $y, -1, 18)
+		$chkAtkElixirExtractors = _GUICtrlCreateCheckbox(GetTranslated(631,13, "Attack"), $x, $y, -1, 18)
 			GUICtrlSetState(-1, $GUI_CHECKED)
 		$picAtkElixirCollectors = GUICtrlCreateIcon($pIconLib, $eIcnCollector, $x + 60, $y - 6, 24, 24)
 		$y += 26
-		$chkAtkGoldMines = GUICtrlCreateCheckbox(GetTranslated(631,13, -1), $x, $y, -1, 18)
+		$chkAtkGoldMines = _GUICtrlCreateCheckbox(GetTranslated(631,13, -1), $x, $y, -1, 18)
 			GUICtrlSetState(-1, $GUI_CHECKED)
 			GUICtrlSetOnEvent(-1, "chkAtkGoldMines")
 		$picAtkGoldMines = GUICtrlCreateIcon($pIconLib, $eIcnMine, $x + 60, $y - 6, 24, 24)
@@ -136,7 +136,7 @@ Local $x = 14, $y = 45
 		$cmbAtkGoldMinesLevel = GUICtrlCreateCombo("", $x + 200, $y - 2, 50, 20, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetData(-1,"1-4|5|6|7|8|9|10|11","5")
 		$y += 26
-		$chkAtkDarkDrills = GUICtrlCreateCheckbox(GetTranslated(631,13, -1), $x, $y, -1, 18)
+		$chkAtkDarkDrills = _GUICtrlCreateCheckbox(GetTranslated(631,13, -1), $x, $y, -1, 18)
 			GUICtrlSetOnEvent(-1, "chkAtkDarkDrills")
 			GUICtrlSetState(-1, $GUI_CHECKED)
 		$picAtkDarkDrills = GUICtrlCreateIcon($pIconLib, $eIcnDrill, $x + 60, $y - 6, 24, 24)
@@ -152,19 +152,19 @@ Local $x = 14, $y = 155
 		$cmbRedlineResDistance = GUICtrlCreateCombo("", $x + 200, $y - 4, 50, 20, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetData(-1, "0 tile|1 tile|2 tiles","0 tile")
 		$y += 21
-		$chkAttackMinesifGold = GUICtrlCreateCheckbox(GetTranslated(631,18, "Attack Gold Mines If Gold Under"), $x, $y)
+		$chkAttackMinesifGold = _GUICtrlCreateCheckbox(GetTranslated(631,18, "Attack Gold Mines If Gold Under"), $x, $y, -1, -1)
 			GUICtrlSetOnEvent(-1, "chkAttackMinesifGold")
 			GUICtrlSetState(-1, $GUI_CHECKED)
 		$txtAttackMinesIfGold = GUICtrlCreateInput("9950000", $x + 200, $y, 50, 18, $SS_CENTER)
 			GUICtrlSetState(-1,$GUI_DISABLE)
 		$y += 21
-		$chkAttackMinesifElixir = GUICtrlCreateCheckbox(GetTranslated(631,19, "Attack Elixir Collectors If Elixir Under"), $x, $y)
+		$chkAttackMinesifElixir = _GUICtrlCreateCheckbox(GetTranslated(631,19, "Attack Elixir Collectors If Elixir Under"), $x, $y, -1, -1)
 			GUICtrlSetOnEvent(-1, "chkAttackMinesifElixir")
 			GUICtrlSetState(-1, $GUI_CHECKED)
 		$txtAttackMinesIfElixir = GUICtrlCreateInput("9950000", $x + 200, $y, 50, 18, $SS_CENTER)
 			GUICtrlSetState(-1,$GUI_DISABLE)
 		$y += 21
-		$chkAttackMinesifDarkElixir = GUICtrlCreateCheckbox(GetTranslated(631,20, "Attack Dark Elixir Drills If Dark Under"), $x, $y)
+		$chkAttackMinesifDarkElixir = _GUICtrlCreateCheckbox(GetTranslated(631,20, "Attack Dark Elixir Drills If Dark Under"), $x, $y, -1, -1)
 			GUICtrlSetOnEvent(-1, "chkAttackMinesifDarkElixir")
 			GUICtrlSetState(-1, $GUI_CHECKED)
 		$txtAttackMinesIfDarkElixir = GUICtrlCreateInput("200000", $x + 200, $y, 50, 18, $SS_CENTER)
@@ -207,11 +207,11 @@ $tabMilkingDrop = GUICtrlCreateTabItem(GetTranslated(600,46,"C - Attack"))
 		$grpCheckStructureDestroyed = GUICtrlCreateGroup(GetTranslated(631,61, "Check Destroyed Structures"), $x,$y, 260,70)
 		$y += 20
 		$x += 5
-		$chkStructureDestroyedBeforeAttack = GUICtrlCreateCheckbox(GetTranslated(631,62, "Check Structure Destruction Before Wave"), $x, $y)
+		$chkStructureDestroyedBeforeAttack = _GUICtrlCreateCheckbox(GetTranslated(631,62, "Check Structure Destruction Before Wave"), $x, $y, -1, -1)
 		 $txtTip = GetTranslated(631,63, "Before attacking a structure, check to see if it has been destroyed by another wave.") & @crlf &  GetTranslated(631,64,"You must have a high delay between waves to use this option")
 		 _GUICtrlSetTip(-1, $txtTip)
 		$y += 20
-		$chkStructureDestroyedAfterAttack = GUICtrlCreateCheckbox(GetTranslated(631,65, "Check Structure Destruction After Wave"), $x, $y)
+		$chkStructureDestroyedAfterAttack = _GUICtrlCreateCheckbox(GetTranslated(631,65, "Check Structure Destruction After Wave"), $x, $y, -1, -1)
 		 $txtTip = GetTranslated(631,66, "After attacking a structure, check to see if it has been destroyed by another wave.") & @crlf & GetTranslated(631,67,"You must have a high delay between waves to use this option")
 		 _GUICtrlSetTip(-1, $txtTip)
 	GUICtrlCreateTabItem("")
@@ -229,7 +229,7 @@ $tabMilkingDrop = GUICtrlCreateTabItem(GetTranslated(600,46,"C - Attack"))
 	 	$y+=15
 
 
-		$chkMilkAfterAttackTHSnipe = GUICtrlCreateCheckbox(GetTranslated(631,82,"Enable TH Snipe"), $x, $y, -1, -1)
+		$chkMilkAfterAttackTHSnipe = _GUICtrlCreateCheckbox(GetTranslated(631,82,"Enable TH Snipe"), $x, $y, -1, -1)
 				_GUICtrlSetTip(-1, $txtTip)
 				GUICtrlSetOnEvent(-1, "chkMilkAfterAttackTHSnipe")
 		$y+=21
@@ -247,7 +247,7 @@ $tabMilkingDrop = GUICtrlCreateTabItem(GetTranslated(600,46,"C - Attack"))
 		PopulateCmbMilkSnipeAlgorithm()
 		_GUICtrlComboBox_SetCurSel($cmbMilkSnipeAlgorithm,_GUICtrlComboBox_FindStringExact($cmbMilkSnipeAlgorithm, "Queen&GobTakeTH"))
 	 	$y+=20
-	 	$chkSnipeIfNoElixir = GUICtrlCreateCheckbox(GetTranslated(631,29, "Snipe Even If No Collectors can be Milked"), $x,$y)
+	 	$chkSnipeIfNoElixir = _GUICtrlCreateCheckbox(GetTranslated(631,29, "Snipe Even If No Collectors can be Milked"), $x,$y, -1, -1)
 	 	GUICtrlSetState(-1, $GUI_DISABLE)
 
 
@@ -256,7 +256,7 @@ $tabMilkingDrop = GUICtrlCreateTabItem(GetTranslated(600,46,"C - Attack"))
 			Local $textnum = "", $groupText = "", $mode = $DB
 		$grpDeploy = GUICtrlCreateGroup(GetTranslated(631,84,"5b. Continue With An Scripted Attack"), $x , $y - 20, 260, 70)
 		$x+=15
-		$chkMilkAfterAttackScripted = GUICtrlCreateCheckbox(GetTranslated(631,83,"Enable Scripted Attack"), $x, $y, -1, -1)
+		$chkMilkAfterAttackScripted = _GUICtrlCreateCheckbox(GetTranslated(631,83,"Enable Scripted Attack"), $x, $y, -1, -1)
 				_GUICtrlSetTip(-1, $txtTip)
 				;GUICtrlSetOnEvent(-1, "chkMilkAfterAttackStandard")
 		$y+=21
@@ -355,7 +355,7 @@ GUICtrlCreateTabItem("")
 		$grpForeTolerance = GUICtrlCreateGroup(GetTranslated(631,68, "Tolerance Settings"), $x,$y, 260,120)
 		$x+=5
 		$y +=21
-		$chkMilkFarmForcetolerance = GUICtrlCreateCheckbox(GetTranslated(631,50, "Force Tolerance"), $x, $y)
+		$chkMilkFarmForcetolerance = _GUICtrlCreateCheckbox(GetTranslated(631,50, "Force Tolerance"), $x, $y, -1, -1)
 		GUICtrlSetOnEvent(-1,"chkMilkFarmForcetolerance")
 		$y +=21
 		$lblMilkFarmForcetolerancenormal = GUICtrlCreateLabel(GetTranslated(631,51, "Tolerance Normal"), $x,$y)
@@ -377,13 +377,13 @@ GUICtrlCreateTabItem("")
 		GUICtrlSetState(-1, $GUI_HIDE)
 		$y += 20
 		$x += 5
-		$chkMilkingDebugIMG = GUICtrlCreateCheckbox(GetTranslated(631,38, "Make Images of each extractor with offset"), $x, $y)
+		$chkMilkingDebugIMG = _GUICtrlCreateCheckbox(GetTranslated(631,38, "Make Images of each extractor with offset"), $x, $y, -1, -1)
 		GUICtrlSetState(-1, $GUI_HIDE)
 		$y += 20
-		$chkMilkingDebugVillage = GUICtrlCreateCheckbox(GetTranslated(631,41, "Make Images of villages"), $x, $y)
+		$chkMilkingDebugVillage = _GUICtrlCreateCheckbox(GetTranslated(631,41, "Make Images of villages"), $x, $y, -1, -1)
 		GUICtrlSetState(-1, $GUI_HIDE)
 		$y += 20
-		$chkMilkingDebugFullSearch = GUICtrlCreateCheckbox(GetTranslated(631,39, "fullsearch, only for debug purpose (very slow)"), $x, $y)
+		$chkMilkingDebugFullSearch = _GUICtrlCreateCheckbox(GetTranslated(631,39, "fullsearch, only for debug purpose (very slow)"), $x, $y, -1, -1)
 		$txtTip = GetTranslated(631,81,"with this options you can detect images of undetected Elixir Extractors")
 		_GUICtrlSetTip(-1, $txtTip)
 		GUICtrlSetState(-1, $GUI_HIDE)

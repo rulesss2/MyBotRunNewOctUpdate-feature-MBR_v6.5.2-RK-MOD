@@ -13,7 +13,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 $hGUI_NewSmartZap = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 - 28, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_ATTACK)
-GUISetBkColor($COLOR_WHITE, $hGUI_NewSmartZap)
+;GUISetBkColor($COLOR_WHITE, $hGUI_NewSmartZap)
 GUISwitch($hGUI_NewSmartZap)
 
 Local $x = 20, $y = 25
@@ -26,7 +26,7 @@ Local $x = 20, $y = 25
 	$y += 50
 		$lblLSpell = GUICtrlCreateLabel(GetTranslated(638, 3, "Use LSpells"), $x + 37, $y + 15, -1, -1)
 		GUICtrlSetOnEvent(-1, "chkSmartLightSpell")
-		$chkSmartLightSpell = GUICtrlCreateCheckbox(" ", $x + 51, $y -3, 16, 16)
+		$chkSmartLightSpell = GUICtrlCreateCheckbox(" ", $x + 51, $y -3, 13, 13)
 		$txtTip = GetTranslated(638, 4, "Check this to drop Lightning Spells on top of Dark Elixir Drills.") & @CRLF & @CRLF & _
 				GetTranslated(638, 5, "Remember to go to the tab 'troops' and put the maximum capacity") & @CRLF & _
 				GetTranslated(638, 6, "of your spell factory and the number of spells so that the bot can function perfectly.")
@@ -35,23 +35,23 @@ Local $x = 20, $y = 25
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
 		$lblEQZap = GUICtrlCreateLabel(GetTranslated(638, 7, "Use EQSpell"), $x + 110, $y + 15, -1, -1)
 		GUICtrlSetOnEvent(-1, "chkEarthQuakeZap")
-		$chkEarthQuakeZap = GUICtrlCreateCheckbox(" ", $x + 131, $y -3, 16, 16)
+		$chkEarthQuakeZap = GUICtrlCreateCheckbox(" ", $x + 131, $y -3, 13, 13)
 		$txtTip = GetTranslated(638, 8, "Check this to drop EarthQuake Castle Spell on any Dark Elixir Drill")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkEarthQuakeZap")
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
-		$chkNoobZap = GUICtrlCreateCheckbox(GetTranslated(638, 9, "Use NoobZap"), $x + 20 + 2, $y + 35, -1, -1)
+		$chkNoobZap = _GUICtrlCreateCheckbox(GetTranslated(638, 9, "Use NoobZap"), $x + 20 + 2, $y + 35, -1, -1)
 			$txtTip = GetTranslated(638, 10, "Check this to drop lightning spells on any Dark Elixir Drills")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkNoobZap")
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
-		$chkSmartZapDB = GUICtrlCreateCheckbox(GetTranslated(638, 11, "Only Zap Drills in Dead Bases"), $x + 20 + 2, $y + 55, -1, -1)
+		$chkSmartZapDB = _GUICtrlCreateCheckbox(GetTranslated(638, 11, "Only Zap Drills in Dead Bases"), $x + 20 + 2, $y + 55, -1, -1)
 		$txtTip = GetTranslated(638, 12, "This will only SmartZap a Dead Base (Recommended)")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkSmartZapDB")
 			GUICtrlSetState(-1, $GUI_CHECKED)
 			GUICtrlSetState(-1, $GUI_DISABLE)
-		$chkSmartZapSaveHeroes = GUICtrlCreateCheckbox(GetTranslated(638, 13, "TH Snipe Not Zap if Heroes Deployed"), $x + 20 + 2, $y + 75, -1, -1)
+		$chkSmartZapSaveHeroes = _GUICtrlCreateCheckbox(GetTranslated(638, 13, "TH Snipe Not Zap if Heroes Deployed"), $x + 20 + 2, $y + 75, -1, -1)
 		$txtTip = GetTranslated(638, 14, "This will stop SmartZap from zapping a base on a Town Hall Snipe if your Heroes were deployed")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkSmartZapSaveHeroes")
@@ -99,7 +99,7 @@ Local $x = 20, $y = 25
 			_GUICtrlSetTip(-1, $txtTip)
 	$x = 320
 	$y = 265
-		$chkDebugSmartZap = GUICtrlCreateCheckbox(GetTranslated(638, 23,"Debug SZ"), $x + 42, $y + 80, -1, -1)
+		$chkDebugSmartZap = _GUICtrlCreateCheckbox(GetTranslated(638, 23,"Debug SZ"), $x + 42, $y + 80, -1, -1)
 		$txtTip = GetTranslated(638, 24, "Use this to debug SmartZap")
 		_GUICtrlSetTip(-1, $txtTip)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)

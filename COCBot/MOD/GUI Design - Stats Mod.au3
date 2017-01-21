@@ -64,7 +64,7 @@ Global $aStartHide[8], $aSecondHide[8],$aEndHide[8]
 
 	   $grpVillageAcc[$i] = GUICtrlCreateGroup(GetTranslated(1111, 4, "Village: "), $x-10, $y + $i * $delY, 425, 75)
 	    GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
-		If $i <= $nTotalProfile - 1 Then GUICtrlSetData(-1, "Village: " & $ProfileList[$i+1])
+;~ 		If $i <= $nTotalProfile - 1 Then GUICtrlSetData(-1, "Village: " & $ProfileList[$i+1])
 
 		 GUICtrlCreateGraphic($x + 295, $y + $i * $delY, 115, 17, $SS_WHITERECT)
 		 $lblResultBuilderNowAcc[$i] = GUICtrlCreateLabel("", $x + 285, $y + $i * $delY, 30, 17, $SS_RIGHT)

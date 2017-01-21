@@ -446,9 +446,10 @@ Func smartZap($minDE = -1)
 		_ArraySort($aDarkDrills, 1, 0, 0, 3)
 
 		If _Sleep($DelaySmartZap1) Then Return
-		
+
+		; Check once again for donated lightning spell, if all own lightning spells are used
 		If $aSpells[0][4] = 0 Then
-			Local $iTroops = PrepareAttack($iMatchMode, True)
+			Local $iTroops = PrepareAttack($iMatchMode, True) ; Check remaining troops
 			If $iTroops > 0 Then
 				For $i = 0 To UBound($atkTroops) - 1
 					If $atkTroops[$i][0] = $eLSpell Then

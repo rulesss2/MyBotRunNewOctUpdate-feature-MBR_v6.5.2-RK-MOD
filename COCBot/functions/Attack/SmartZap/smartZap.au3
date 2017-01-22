@@ -171,27 +171,30 @@ Func smartZap($minDE = -1)
 	EndIf
 
 	; Get the number of lightning/EQ spells
-	For $i = 0 To UBound($atkTroops) - 1
-		If $atkTroops[$i][0] = $eLSpell Then
-			If $aSpells[0][4] = 0 Then
-				If $DebugSmartZap = 1 Then SetLog(NameOfTroop($atkTroops[$i][0], 0) & ": " & $atkTroops[$i][1], $COLOR_DEBUG)
-				$aSpells[0][2] = $i
-				$aSpells[0][3] = Number($GlobalLSpelllevel)		; Get the Level on Attack bar
-				$aSpells[0][4] = $atkTroops[$i][1]
-			Else
-				If $DebugSmartZap = 1 Then SetLog("Donated " & NameOfTroop($atkTroops[$i][0], 0) & ": " & $atkTroops[$i][1], $COLOR_DEBUG)
-				$aSpells[1][2] = $i
-				$aSpells[1][3] = Number($GlobalLSpelllevel)		; Get the Level on Attack bar
-				$aSpells[1][4] = $atkTroops[$i][1]
+	Local $iTroops = PrepareAttack($iMatchMode, True) ; Check remaining troops/spells
+	If $iTroops > 0 Then
+		For $i = 0 To UBound($atkTroops) - 1
+			If $atkTroops[$i][0] = $eLSpell Then
+				If $aSpells[0][4] = 0 Then
+					If $DebugSmartZap = 1 Then SetLog(NameOfTroop($atkTroops[$i][0], 0) & ": " & $atkTroops[$i][1], $COLOR_DEBUG)
+					$aSpells[0][2] = $i
+					$aSpells[0][3] = Number($GlobalLSpelllevel)		; Get the Level on Attack bar
+					$aSpells[0][4] = $atkTroops[$i][1]
+				Else
+					If $DebugSmartZap = 1 Then SetLog("Donated " & NameOfTroop($atkTroops[$i][0], 0) & ": " & $atkTroops[$i][1], $COLOR_DEBUG)
+					$aSpells[1][2] = $i
+					$aSpells[1][3] = Number($GlobalLSpelllevel)		; Get the Level on Attack bar
+					$aSpells[1][4] = $atkTroops[$i][1]
+				EndIf
 			EndIf
-		EndIf
-		If $atkTroops[$i][0] = $eESpell Then
-			If $DebugSmartZap = 1 Then SetLog(NameOfTroop($atkTroops[$i][0], 0) & ": " & $atkTroops[$i][1], $COLOR_DEBUG)
-			$aSpells[2][2] = $i
-			$aSpells[2][3] = Number($GlobalEQSpelllevel)		; Get the Level on Attack bar
-			$aSpells[2][4]= $atkTroops[$i][1]
-		EndIf
-	Next
+			If $atkTroops[$i][0] = $eESpell Then
+				If $DebugSmartZap = 1 Then SetLog(NameOfTroop($atkTroops[$i][0], 0) & ": " & $atkTroops[$i][1], $COLOR_DEBUG)
+				$aSpells[2][2] = $i
+				$aSpells[2][3] = Number($GlobalEQSpelllevel)		; Get the Level on Attack bar
+				$aSpells[2][4]= $atkTroops[$i][1]
+			EndIf
+		Next
+	EndIf
 
 	If $aSpells[0][4] + $aSpells[1][4] = 0 Then
 		SetLog("No lightning spells trained, time to go home!", $COLOR_ERROR)
@@ -446,10 +449,10 @@ Func smartZap($minDE = -1)
 		_ArraySort($aDarkDrills, 1, 0, 0, 3)
 
 		If _Sleep($DelaySmartZap1) Then Return
-
+		
 		; Check once again for donated lightning spell, if all own lightning spells are used
 		If $aSpells[0][4] = 0 Then
-			Local $iTroops = PrepareAttack($iMatchMode, True) ; Check remaining troops
+			Local $iTroops = PrepareAttack($iMatchMode, True) ; Check remaining troops/spells
 			If $iTroops > 0 Then
 				For $i = 0 To UBound($atkTroops) - 1
 					If $atkTroops[$i][0] = $eLSpell Then

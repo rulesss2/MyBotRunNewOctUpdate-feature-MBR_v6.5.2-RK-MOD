@@ -236,7 +236,7 @@ $hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem("Humanization")
 GUICtrlCreateTabItem("")
 
 $hGUI_MOD_TAB_ITEM6 = GUICtrlCreateTabItem("Switch Profiles")
-
+$11 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 410, $WS_CLIPCHILDREN)
 Local $x = 25, $y = 60
 	$grpGoldSwitch = GUICtrlCreateGroup(GetTranslated(655,14, "Gold Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ;Gold Switch
 		$chkGoldSwitchMax = _GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)

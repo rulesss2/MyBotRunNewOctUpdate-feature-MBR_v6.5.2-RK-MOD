@@ -232,7 +232,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 GUICtrlCreateTabItem("")
 
 $hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem("Humanization")
-#include "MBR GUI Design Child Bot - Humanization.au3"
+#include "MBR GUI Design Child MOD - Humanization.au3"
 GUICtrlCreateTabItem("")
 
 $hGUI_MOD_TAB_ITEM6 = GUICtrlCreateTabItem("Switch Profiles")
@@ -348,4 +348,4 @@ Local $x = 25, $y = 60
 		$picProfileTrophy = _GUICtrlCreatePic(@ScriptDir & "\Images\TrophyLeague.png", $x + 350, $y - 40, 60, 60)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 		setupProfileComboBoxswitch()
-
+GUICtrlCreateTabItem("")

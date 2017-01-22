@@ -48,21 +48,22 @@ Local $y = $yStart + 8
 	$hChk_UseQTrain = _GUICtrlCreateCheckbox(GetTranslated(1010,5, "Use Quick Train"), $x + 15, $y + 10, -1, 15)
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
 	GUICtrlSetOnEvent(-1, "chkUseQTrain")
-	$hRadio_Army1 = GUICtrlCreateRadio(GetTranslated(621, 37, "Army 1"), $x + 120, $y + 20, 50, 15)
+	$y -= 10
+	$hRadio_Army1 = _GUICtrlCreateRadio(GetTranslated(621, 37, "Army 1"), $x + 120, $y + 20, 50, 15)
 	GUICtrlSetState(-1, $GUI_DISABLE)
 	GUICtrlSetState(-1, $GUI_CHECKED)
-	$hRadio_Army2 = GUICtrlCreateRadio(GetTranslated(621, 38, "Army 2"), $x + 180, $y + 20, 50, 15)
+	$hRadio_Army2 = _GUICtrlCreateRadio(GetTranslated(621, 38, "Army 2"), $x + 180, $y + 20, 50, 15)
 	GUICtrlSetState(-1, $GUI_DISABLE)
-	$hRadio_Army3 = GUICtrlCreateRadio(GetTranslated(621, 39, "Army 3"), $x + 240, $y + 20, 50, 15)
+	$hRadio_Army3 = _GUICtrlCreateRadio(GetTranslated(621, 39, "Army 3"), $x + 240, $y + 20, 50, 15)
 	GUICtrlSetState(-1, $GUI_DISABLE)
 ;~ 	$LblRemovecamp = GUICtrlCreateLabel(GetTranslated(621, 41, "Remove Army"), $x + 335, $y + 20, -1, 15, $SS_LEFT)
 	$icnRemovecamp = GUICtrlCreateIcon($pIconLib, $eIcnResetButton, $x + 405, $y + 17, 24, 24)
 	GUICtrlSetOnEvent(-1, "Removecamp")
 
     ; ========= Adding QuickTrainCombo - DEMEN
-   $hRadio_Army12 = GUICtrlCreateRadio("Army12", $x + 300, $y + 20, 52, 15)
+   $hRadio_Army12 = _GUICtrlCreateRadio("Army12", $x + 300, $y + 20, 52, 15)
    GUICtrlSetState(-1, $GUI_DISABLE)
-   $hRadio_Army123 = GUICtrlCreateRadio("123", $x + 360, $y + 20, 45, 15)
+   $hRadio_Army123 = _GUICtrlCreateRadio("123", $x + 360, $y + 20, 45, 15)
    GUICtrlSetState(-1, $GUI_DISABLE)
    ; ========= Adding QuickTrainCombo - DEMEN
 Local $x = 10

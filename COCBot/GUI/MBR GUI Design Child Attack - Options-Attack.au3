@@ -21,12 +21,12 @@ Local $x = 25, $y = 45
 
 	$x += 70
 	$y -= 4
-		$radAutoAbilities = GUICtrlCreateRadio(GetTranslated(634,2, "Auto activate (red zone)"), $x, $y-4 , 140, -1)
+		$radAutoAbilities = _GUICtrlCreateRadio(GetTranslated(634,2, "Auto activate (red zone)"), $x, $y-2 , 140, -1)
 		$txtTip = GetTranslated(634,3, "Activate the Ability when the Hero becomes weak.") & @CRLF & GetTranslated(634,4, "ALL are checked and activated individually.")
 		_GUICtrlSetTip(-1, $txtTip)
 		GUICtrlSetState(-1, $GUI_CHECKED)
 	$y += 15
-		$radManAbilities = GUICtrlCreateRadio(GetTranslated(634,5, "Timed after") & ":", $x , $y , -1, -1)
+		$radManAbilities = _GUICtrlCreateRadio(GetTranslated(634,5, "Timed after") & ":", $x , $y + 2 , -1, -1)
 			$txtTip = GetTranslated(634,6, "Activate the Ability on a timer.") & @CRLF & GetTranslated(634,7, "ALL Heroes are activated at the same time.")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_UNCHECKED)

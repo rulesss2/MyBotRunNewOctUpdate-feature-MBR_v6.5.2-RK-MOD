@@ -38,9 +38,9 @@ Local $x = 20, $y = 130 - 105
 		$y += 24
 		GUICtrlCreateLabel(GetTranslated(629,8, "When found, Attack with settings from")&":", $x + 10, $y, -1, -1, $SS_RIGHT)
 		$y += 14
-		$radUseDBAttack = GUICtrlCreateRadio(GetTranslated(629,9, "DeadBase Atk."), $x + 20, $y, -1, -1)
+		$radUseDBAttack = _GUICtrlCreateRadio(GetTranslated(629,9, "DeadBase Atk."), $x + 20, $y, -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(629,10, "Use Dead Base attack settings when attacking a TH Bully match."))
 			GUICtrlSetState(-1, $GUI_CHECKED)
-		$radUseLBAttack = GUICtrlCreateRadio(GetTranslated(629,11, "Active Base Atk."), $x + 115, $y, -1, -1)
+		$radUseLBAttack = _GUICtrlCreateRadio(GetTranslated(629,11, "Active Base Atk."), $x + 115, $y, -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(629,12, "Use Active Base attack settings when attacking a TH Bully match."))
 	GUICtrlCreateGroup("", -99, -99, 1, 1)

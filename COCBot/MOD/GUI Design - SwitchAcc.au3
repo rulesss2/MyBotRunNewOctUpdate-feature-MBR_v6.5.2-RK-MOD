@@ -36,12 +36,12 @@ $grpSwitchAcc = GUICtrlCreateGroup(GetTranslated(637, 30, "Switch Account Mode")
 			GUICtrlSetData(-1, "1 Acc." & "|" & "2 Acc." & "|" & "3 Acc." & "|" & "4 Acc." & "|" & "5 Acc." & "|" & "6 Acc." & "|" & "7 Acc." & "|" & "8 Acc.")
 			GUICtrlSetTip(-1, $txtTip)
 
-		$radNormalSwitch = GUICtrlCreateRadio(GetTranslated(637,36, "Normal switch"), $x + 15, $y + 55, -1, 16)
+		$radNormalSwitch = _GUICtrlCreateRadio(GetTranslated(637,36, "Normal switch"), $x + 15, $y + 50, -1, 16)
 			GUICtrlSetTip(-1, GetTranslated(637,37, "Switching accounts continously"))
 			GUICtrlSetState(-1, $GUI_CHECKED)
 			GUICtrlSetOnEvent(-1, "radNormalSwitch")
 
-		$radSmartSwitch= GUICtrlCreateRadio(GetTranslated(637,34, "Smart switch"), $x + 100 , $y + 55, -1, 16)
+		$radSmartSwitch= _GUICtrlCreateRadio(GetTranslated(637,34, "Smart switch"), $x + 100 , $y + 50, -1, 16)
 			GUICtrlSetTip(-1, GetTranslated(637,35, "Switch to account with the shortest remain training time"))
 			GUICtrlSetOnEvent(-1, "radNormalSwitch")
 
@@ -52,10 +52,10 @@ $grpSwitchAcc = GUICtrlCreateGroup(GetTranslated(637, 30, "Switch Account Mode")
 			GUICtrlSetTip(-1, $txtTip)
 
 		GUIStartGroup()
-		$radCloseCoC= GUICtrlCreateRadio(GetTranslated(637,40, "Close CoC"), $x + 15 , $y + 30, -1, 16)
+		$radCloseCoC= _GUICtrlCreateRadio(GetTranslated(637,40, "Close CoC"), $x + 15 , $y + 25, -1, 16)
 			GUICtrlSetState(-1, $GUI_CHECKED)
 
-		$radCloseAndroid = GUICtrlCreateRadio(GetTranslated(637,41, "Close Android"), $x + 100, $y + 30, -1, 16)
+		$radCloseAndroid = _GUICtrlCreateRadio(GetTranslated(637,41, "Close Android"), $x + 100, $y + 25, -1, 16)
 
 		$y += 60
 

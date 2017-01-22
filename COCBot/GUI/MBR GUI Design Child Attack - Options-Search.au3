@@ -12,7 +12,7 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
-
+$19 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)
 Global $txtSearchReduceCount, $txtSearchReduceGold,$txtSearchReduceElixir, $txtSearchReduceGoldPlusElixir,  $txtSearchReduceDark, $txtSearchReduceTrophy
 
 Local $x = 25, $y = 45

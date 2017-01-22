@@ -15,6 +15,8 @@
 
 $hGUI_BullyMode = GUICreate("", $_GUI_MAIN_WIDTH - 30 - 10, $_GUI_MAIN_HEIGHT - 255 - 30 - 30, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_SEARCH)
 ;GUISetBkColor($COLOR_WHITE, $hGUI_BullyMode)
+;$hGUI_BullyMode = GUICreate("", $_GUI_MAIN_WIDTH - 30 - 10, $_GUI_MAIN_HEIGHT - 255 - 30, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_SEARCH)
+$22 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 0, 442, 363, $WS_CLIPCHILDREN)
 GUISwitch($hGUI_BullyMode)
 
 Local $x = 20, $y = 130 - 105

@@ -16,7 +16,6 @@
 $hGUI_DEADBASE_ATTACK_STANDARD = GUICreate("", $_GUI_MAIN_WIDTH - 195, $_GUI_MAIN_HEIGHT - 344, 150, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_DEADBASE)
 $43 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 0, -5, 280, 335, $WS_CLIPCHILDREN)
 ;GUISetBkColor($COLOR_WHITE, $hGUI_DEADBASE_ATTACK_STANDARD)
-
 Local $x = 25, $y = 20
 	$grpDeployDB = GUICtrlCreateGroup(GetTranslated(608,1,"Deploy"), $x - 20, $y - 20, 270, 306)
 ;	$x -= 15

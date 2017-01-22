@@ -12,7 +12,7 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
-
+$25 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 0, 23, 430, 350, $WS_CLIPCHILDREN)
 Local $x = 25, $y = 45
 	$grpTSActivate = GUICtrlCreateGroup(GetTranslated(625,0, -1), $x - 20, $y - 20, 190, 305)
 		$x -= 15

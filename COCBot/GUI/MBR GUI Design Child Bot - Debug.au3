@@ -14,7 +14,7 @@
 ; ===============================================================================================================================
 ;$hGUI_BotDebug = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 - 28, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_BOT)
 ;GUISwitch($hGUI_BotDebug)
-
+$2 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)
 Local $x = 25, $y = 45
 $grpDebug = GUICtrlCreateGroup(GetTranslated(636, 34, "Debug"), $x - 20, $y - 20, 440, 360)
 $chkDebugClick = _GUICtrlCreateCheckbox(GetTranslated(636, 40, "Click"), $x, $y - 5, -1, -1)

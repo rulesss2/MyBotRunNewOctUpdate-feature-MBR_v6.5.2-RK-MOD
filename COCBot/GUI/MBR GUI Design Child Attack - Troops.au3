@@ -42,6 +42,7 @@ $sTxtNone = GetTranslated(603, 0, "None")
 $hGUI_ARMY_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 30, $_GUI_MAIN_HEIGHT - 255 - 30, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
 
 $hGUI_ARMY_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(1010, 1, "Troops/Spells"))
+$26 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
 Local $xStart = 0, $yStart = 0
 Local $x = $xStart
 Local $y = $yStart + 8
@@ -57,7 +58,7 @@ Local $y = $yStart + 8
 	$hRadio_Army3 = _GUICtrlCreateRadio(GetTranslated(621, 39, "Army 3"), $x + 240, $y + 20, 50, 15)
 	GUICtrlSetState(-1, $GUI_DISABLE)
 ;~ 	$LblRemovecamp = GUICtrlCreateLabel(GetTranslated(621, 41, "Remove Army"), $x + 335, $y + 20, -1, 15, $SS_LEFT)
-	$icnRemovecamp = GUICtrlCreateIcon($pIconLib, $eIcnResetButton, $x + 405, $y + 17, 24, 24)
+	$icnRemovecamp = GUICtrlCreateIcon($pIconLib, $eIcnResetButton, $x + 405, $y + 27, 24, 24)
 	GUICtrlSetOnEvent(-1, "Removecamp")
 
     ; ========= Adding QuickTrainCombo - DEMEN
@@ -563,7 +564,7 @@ Local $x = 10
 Local $y = 330
 
 $hGUI_ARMY_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600, 22, "Boost"))
-
+$28 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
 Global $chkBoostBarracksHours
 Global $chkBoostBarracksHours0, $chkBoostBarracksHours1, $chkBoostBarracksHours2, $chkBoostBarracksHours3, $chkBoostBarracksHours4, $chkBoostBarracksHours5
 Global $chkBoostBarracksHours6, $chkBoostBarracksHours7, $chkBoostBarracksHours8, $chkBoostBarracksHours9, $chkBoostBarracksHours10, $chkBoostBarracksHours11
@@ -885,6 +886,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 
 $hGUI_ARMY_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(641, 1, "Options"))
+	$29 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
 $x = $xStart + 25
 $y = $yStart + 45
 	$grpCloseWaitTrain = GUICtrlCreateGroup(GetTranslated(641, 2, "Training Idle Time"), $x - 20, $y - 20, 151, 266)

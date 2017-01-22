@@ -12,7 +12,7 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
-
+$24 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 0, 23, 430, 350, $WS_CLIPCHILDREN)
 Local $x = 10, $y = 45
 	$grpTSEndBattle = GUICtrlCreateGroup(GetTranslated(606,1, -1),  $x - 5, $y - 20, 420, 305)
 	;Apply to switch Attack Standard after THSnipe End ==>

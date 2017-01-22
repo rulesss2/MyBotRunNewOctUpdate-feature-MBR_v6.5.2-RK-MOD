@@ -12,7 +12,7 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
-
+$13 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)
 Global $chkLvl6, $chkLvl7, $chkLvl8, $chkLvl9, $chkLvl10, $chkLvl11, $chkLvl12
 Global $cmbLvl6, $cmbLvl7, $cmbLvl8, $cmbLvl9, $cmbLvl10, $cmbLvl11, $cmbLvl12
 Global $sldCollectorTolerance

@@ -26,6 +26,7 @@ $hGUI_DEADBASE_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,28,"Search"))
 #include "MBR GUI Design Child Attack - Deadbase-Search.au3"
 
 $hGUI_DEADBASE_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,29,"Attack"))
+$49 = GUICtrlCreatePic (@ScriptDir & "\Images3\1.jpg", 0, 20, 150, 335, $WS_CLIPCHILDREN)
 #include "MBR GUI Design Child Attack - Deadbase-Attack.au3"
 
 $hGUI_DEADBASE_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,30,"End Battle"))

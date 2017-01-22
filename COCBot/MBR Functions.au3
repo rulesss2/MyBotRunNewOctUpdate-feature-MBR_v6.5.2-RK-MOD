@@ -27,6 +27,7 @@
 #include "MOD\TransLevel.au3"
 #include "MOD\_GuiCtrlCreateCheckbox.au3"
 #include "MOD\_GUICtrlCreateRadio.au3"
+#include "MOD\BackgroundCheck.au3"
 
 #include "functions\Attack\AttackReport.au3"
 #include "functions\Attack\BuildingSide.au3"

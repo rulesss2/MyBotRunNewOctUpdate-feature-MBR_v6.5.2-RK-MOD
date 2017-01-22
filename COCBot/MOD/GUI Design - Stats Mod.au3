@@ -15,7 +15,7 @@
 
 ;TAB Profile Stats - SwitchAcc Mode - DEMEN
 $hGUI_STATS_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(1111,3,"Profile Stats"))
-
+$30 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
 
 Local $x = 25, $y = 30
 

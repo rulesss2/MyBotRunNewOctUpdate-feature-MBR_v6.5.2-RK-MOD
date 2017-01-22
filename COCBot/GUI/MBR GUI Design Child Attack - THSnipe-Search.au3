@@ -16,7 +16,7 @@
 Local $x = 25, $y = 45
 	$grpTSActivate = GUICtrlCreateGroup(GetTranslated(625,0, -1), $x - 20, $y - 20, 190, 305)
 		$x -= 15
-		$chkTSActivateSearches = GUICtrlCreateCheckbox(GetTranslated(603,5, -1), $x, $y, 68, 18)
+		$chkTSActivateSearches = _GUICtrlCreateCheckbox(GetTranslated(603,5, -1), $x, $y - 10, 68, 18)
 			$txtTip = GetTranslated(625,68, -1) & @CRLF & GetTranslated(625,69, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1,$GUI_UNCHECKED)
@@ -32,7 +32,7 @@ Local $x = 25, $y = 45
 			GUICtrlSetLimit(-1, 6)
 		$picTSSearches = GUICtrlCreateIcon($pIconLib, $eIcnMagnifier, $x + 163, $y + 1, 16, 16)
 	$y +=21
-		$chkTSActivateTropies = GUICtrlCreateCheckbox(GetTranslated(625,4, -1), $x, $y, 68, 18)
+		$chkTSActivateTropies = _GUICtrlCreateCheckbox(GetTranslated(625,4, -1), $x, $y - 10, 68, 18)
 			$txtTip = GetTranslated(625,68, -1) & @CRLF & GetTranslated(625,70,-1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkTSActivateTropies")
@@ -50,7 +50,7 @@ Local $x = 25, $y = 45
 			GUICtrlSetLimit(-1, 6)
 		$picTSTrophies = GUICtrlCreateIcon($pIconLib, $eIcnTrophy, $x + 163, $y + 1, 16, 16)
 	$y +=21
-		$chkTSActivateCamps = GUICtrlCreateCheckbox(GetTranslated(625,7, -1), $x, $y, 110, 18)
+		$chkTSActivateCamps = _GUICtrlCreateCheckbox(GetTranslated(625,7, -1), $x, $y - 10, 110, 18)
 			$txtTip = GetTranslated(625,8, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkTSActivateCamps")
@@ -96,7 +96,7 @@ Local $x = 220, $y = 45
  			_GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetState (-1, $GUI_HIDE)
 		$y += 34
-		$chkTSMeetDE = GUICtrlCreateCheckbox(GetTranslated(625,26, -1), $x, $y, -1, -1)
+		$chkTSMeetDE = _GUICtrlCreateCheckbox(GetTranslated(625,26, -1), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,27, -1)
 			GUICtrlSetOnEvent(-1, "chkTSMeetDE")
 			_GUICtrlSetTip(-1, $txtTip)

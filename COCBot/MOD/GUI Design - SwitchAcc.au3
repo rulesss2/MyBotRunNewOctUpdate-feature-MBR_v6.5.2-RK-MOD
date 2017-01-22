@@ -24,7 +24,7 @@ Local $x = 25, $y = 45	;	Keep upchanged as original GUI of Profile Tab
 	$y = 100
 
 $grpSwitchAcc = GUICtrlCreateGroup(GetTranslated(637, 30, "Switch Account Mode"), $x - 12, $y - 20, 200, 300)
-		$chkSwitchAcc = GUICtrlCreateCheckbox(GetTranslated(637,31, "Enable Switch Account"), $x , $y, -1, -1)
+		$chkSwitchAcc = _GUICtrlCreateCheckbox(GetTranslated(637,31, "Enable Switch Account"), $x , $y, -1, -1)
 			$txtTip = GetTranslated(637,51,"Switch to another account & profile when troop training time is >= 3 minutes") & @CRLF & GetTranslated(637,52,"This function supports maximum 6 CoC accounts & 6 Bot profiles") & @CRLF & GetTranslated(637,53,"Make sure to create sufficient Profiles equal to number of CoC Accounts, and align the index of accounts order with profiles order")
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkSwitchAcc")
@@ -47,7 +47,7 @@ $grpSwitchAcc = GUICtrlCreateGroup(GetTranslated(637, 30, "Switch Account Mode")
 
 		$y += 80
 
-		$chkUseTrainingClose = GUICtrlCreateCheckbox(GetTranslated(637,38, "Combo Sleep after Switch Account"), $x, $y, -1, -1)
+		$chkUseTrainingClose = _GUICtrlCreateCheckbox(GetTranslated(637,38, "Combo Sleep after Switch Account"), $x, $y, -1, -1)
 			$txtTip = GetTranslated(637,39, "Close CoC combo with Switch Account when there is more than 3 mins remaining on training time of all accounts.")
 			GUICtrlSetTip(-1, $txtTip)
 

@@ -41,7 +41,7 @@ Local $xStart = 0, $yStart = 0
  ; Misc Battle Settings
 	Local $x = 25, $y = 92
 	$grpDontEndBattle = GUICtrlCreateGroup(GetTranslated(91,9, "Miscellaneous Battle Settings"), $x - 20, $y - 20, 440, 45)
-		$chkFastADBClicks = GUICtrlCreateCheckbox("", $x - 10, $y, 13, 13) ;$x - 10, $y - 5, -1, -1)
+		$chkFastADBClicks = _GUICtrlCreateCheckbox("", $x - 10, $y, 13, 13) ;$x - 10, $y - 5, -1, -1)
 			$txtTip = GetTranslated(91,11, "Tick this to enable faster ADB deployment for MEmu and Droid4x in Multi-finger mode.") & @CRLF & @CRLF & _
 		GetTranslated(91,12,      "     WARNING:  This is experimental, if you have issues with deployment, disable it.")
 			GUICtrlSetTip(-1, $txtTip)
@@ -113,9 +113,10 @@ $chatIni = $sProfilePath & "\" & $sCurrProfile & "\chat.ini"
    GUICtrlSetState($chkClanChat, $ChatbotChatClan)
    GUICtrlSetOnEvent(-1, "ChatGuiCheckboxUpdate")
 	GUICtrlCreateLabel(GetTranslated(106, 16, "Chat in clan chat") & ":", $x + 7, $y, -1, -1)
-	$chkRusLang = GUICtrlCreateCheckbox(GetTranslated(106, 52, "Russian"), $x + 125, $y - 5)
+	$chkRusLang = GUICtrlCreateCheckbox("", $x + 125, $y, 13, 13)
    GUICtrlSetState(-1, $GUI_UNCHECKED)
    _GUICtrlSetTip(-1, GetTranslated(106,51, "On. Russian send text. Note: The input language in the Android emulator must be RUSSIAN."))
+   GUICtrlCreateLabel(GetTranslated(106, 52, "Russian"), $x + 142, $y, -1, -1)
    ;GUICtrlSetOnEvent(-1, "chkRusLang")
    $y += 22
    $chkUseResponses = GUICtrlCreateCheckbox("", $x - 10, $y, 13, 13);GUICtrlCreateCheckbox(GetTranslated(106,18,"Use custom responses"), $x - 10, $y)
@@ -238,7 +239,7 @@ $hGUI_MOD_TAB_ITEM6 = GUICtrlCreateTabItem("Switch Profiles")
 
 Local $x = 25, $y = 60
 	$grpGoldSwitch = GUICtrlCreateGroup(GetTranslated(655,14, "Gold Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ;Gold Switch
-		$chkGoldSwitchMax = GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkGoldSwitchMax = _GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
 			$txtTip = GetTranslated(655,16, "Enable this to switch profiles when gold is above amount.")
 			_GUICtrlSetTip(-1, $txtTip)
 		$cmbGoldMaxProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
@@ -251,7 +252,7 @@ Local $x = 25, $y = 60
 			GUICtrlSetLimit(-1, 7)
 
 	$y += 30
-		$chkGoldSwitchMin = GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkGoldSwitchMin = _GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
 			$txtTip = GetTranslated(655,20, "Enable this to switch profiles when gold is below amount.")
 			_GUICtrlSetTip(-1, $txtTip)
 		$cmbGoldMinProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
@@ -266,7 +267,7 @@ Local $x = 25, $y = 60
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y += 48
 	$grpElixirSwitch = GUICtrlCreateGroup(GetTranslated(655,22, "Elixir Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ; Elixir Switch
-		$chkElixirSwitchMax = GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkElixirSwitchMax = _GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
 			$txtTip = GetTranslated(655,23, "Enable this to switch profiles when Elixir is above amount.")
 			_GUICtrlSetTip(-1, $txtTip)
 
@@ -279,7 +280,7 @@ Local $x = 25, $y = 60
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetLimit(-1, 7)
 	$y += 30
-		$chkElixirSwitchMin = GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkElixirSwitchMin = _GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
 			$txtTip = GetTranslated(655,26, "Enable this to switch profiles when Elixir is below amount.")
 			_GUICtrlSetTip(-1, $txtTip)
 		$cmbElixirMinProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
@@ -294,7 +295,7 @@ Local $x = 25, $y = 60
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y += 48
 	$grpDESwitch = GUICtrlCreateGroup(GetTranslated(655,28, "Dark Elixir Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ;DE Switch
-		$chkDESwitchMax = GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkDESwitchMax = _GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
 			$txtTip = GetTranslated(655,29, "Enable this to switch profiles when Dark Elixir is above amount.")
 			_GUICtrlSetTip(-1, $txtTip)
 		$cmbDEMaxProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
@@ -306,7 +307,7 @@ Local $x = 25, $y = 60
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetLimit(-1, 6)
 	$y += 30
-		$chkDESwitchMin = GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkDESwitchMin = _GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
 			$txtTip = GetTranslated(655,32, "Enable this to switch profiles when Dark Elixir is below amount.")
 			_GUICtrlSetTip(-1, $txtTip)
 		$cmbDEMinProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
@@ -321,7 +322,7 @@ Local $x = 25, $y = 60
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y += 48
 	$grpTrophySwitch = GUICtrlCreateGroup(GetTranslated(655,34, "Trophy Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ; Trophy Switch
-		$chkTrophySwitchMax = GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkTrophySwitchMax = _GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
 			$txtTip = GetTranslated(655,35, "Enable this to switch profiles when Trophies are above amount.")
 			_GUICtrlSetTip(-1, $txtTip)
 		$cmbTrophyMaxProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
@@ -333,7 +334,7 @@ Local $x = 25, $y = 60
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetLimit(-1, 4)
 	$y += 30
-		$chkTrophySwitchMin = GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkTrophySwitchMin = _GUICtrlCreateCheckbox(GetTranslated(655,15, "Switch To"), $x - 10, $y - 5, -1, -1)
 			$txtTip = GetTranslated(655,38, "Enable this to switch profiles when Trophies are below amount.")
 			_GUICtrlSetTip(-1, $txtTip)
 		$cmbTrophyMinProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))

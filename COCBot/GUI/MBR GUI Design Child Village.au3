@@ -41,7 +41,7 @@ $hGUI_VILLAGE_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,8,"Upgrade"))
 GUICtrlCreateTabItem("")
 
 $hGUI_VILLAGE_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600,9,"Achievements"))
-
+$42 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 410, $WS_CLIPCHILDREN)
 Global $txtUnbreakable, $txtUnBrkMinGold,$txtUnBrkMaxGold,$txtUnBrkMinElixir, $txtUnBrkMaxElixir,$txtUnBrkMinDark, $txtUnBrkMaxDark ,$chkUnbreakable
 
    $x = 25

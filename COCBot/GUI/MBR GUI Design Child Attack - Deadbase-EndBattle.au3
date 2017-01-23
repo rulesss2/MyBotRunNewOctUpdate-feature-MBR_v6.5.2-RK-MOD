@@ -12,7 +12,7 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
-
+$14 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)
 Local $x = 10, $y = 45
 	$grpDBEndBattle = GUICtrlCreateGroup(GetTranslated(606,1, "Exit Battle"),  $x - 5, $y - 20, 420, 305)
 	$y -=5

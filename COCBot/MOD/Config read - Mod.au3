@@ -109,3 +109,6 @@ $itxtMaxTrophyAmount = IniRead($config, "profiles", "txtMaxTrophyAmount", "3000"
 $ichkTrophySwitchMin = IniRead($config, "profiles", "chkTrophySwitchMin", "0")
 $icmbTrophyMinProfile = IniRead($config, "profiles", "cmbTrophyMinProfile", "0")
 $itxtMinTrophyAmount = IniRead($config, "profiles", "txtMinTrophyAmount", "1000")
+;Background by Kychera
+$iBackGr = IniRead($config, "background", "BackGr", "0")
+$ichkPic = IniRead($config, "background", "chkPic", "1")

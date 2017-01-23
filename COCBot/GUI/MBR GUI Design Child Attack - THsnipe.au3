@@ -25,6 +25,7 @@ $hGUI_THSNIPE_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,28,"Search"))
 #include "MBR GUI Design Child Attack - THSnipe-Search.au3"
 
 $hGUI_THSNIPE_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,29,"Attack"))
+$23 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 0, 23, 430, 350, $WS_CLIPCHILDREN)
 #include "MBR GUI Design Child Attack - THSnipe-Attack.au3"
 
 $hGUI_THSNIPE_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,30,"End Battle"))

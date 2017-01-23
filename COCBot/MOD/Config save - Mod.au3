@@ -236,3 +236,12 @@ IniWrite($config, "global", "chdelay", GUICtrlRead($chkchatdelay))
 	EndIf
 	IniWrite($config, "profiles", "cmbTrophyMinProfile", _GUICtrlComboBox_GetCurSel($cmbTrophyMinProfile))
 	IniWrite($config, "profiles", "txtMinTrophyAmount", GUICtrlRead($txtMinTrophyAmount))
+	;Background by Kychera
+	If GUICtrlRead($chkPic) = $GUI_CHECKED Then
+		$ichkPic = 1
+	Else
+		$ichkPic = 0
+	EndIf
+	IniWriteS($config, "background", "chkPic", $ichkPic)
+	$iBackGr = _GUICtrlComboBox_GetCurSel($BackGr)
+	IniWriteS($config, "background", "BackGr", $iBackGr)

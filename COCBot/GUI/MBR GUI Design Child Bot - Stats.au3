@@ -34,6 +34,7 @@ GUICtrlSetState(-1, $GUI_DISABLE)
 
 ;TAB Gain
 $hGUI_STATS_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,38,"Gain"))
+$32 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
 	Local $xStart = 25, $yStart = 45
 	$x = $xStart
 	$y = $yStart
@@ -374,6 +375,7 @@ $hGUI_STATS_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,38,"Gain"))
 
 ;TAB Misc
 $hGUI_STATS_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,39,"Misc"))
+$33 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
 	Local $xStart = 25, $yStart = 45
 	$x = $xStart + 3
 	$y = $yStart + 20
@@ -634,6 +636,7 @@ $hGUI_STATS_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,39,"Misc"))
 ;--> TAB Misc
 ;TAB Attacks
 $hGUI_STATS_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,40,"Attacks"))
+$34 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
 	Local $xStart = 25, $yStart = 45
 	$x = $xStart + 3
 	$y = $yStart + 20
@@ -953,7 +956,7 @@ $hGUI_STATS_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,40,"Attacks"))
 ;--> TAB Attacks
 ;TAB Attacks
 $hGUI_STATS_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600, 55,"Donations"))
-
+$27 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
 Local $x = 5, $y = 28, $z = 33
 
 $grpElxTr = GUICtrlCreateGroup(GetTranslated(632,118,"Troops"), $x, $y, 427, 220, BitOR($GUI_SS_DEFAULT_GROUP,$BS_CENTER))

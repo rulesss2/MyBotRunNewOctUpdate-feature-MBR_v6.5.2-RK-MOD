@@ -14,6 +14,7 @@
 ; ===============================================================================================================================
 ;$hGUI_BotOptions = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 - 28, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_BOT)
 ;GUISwitch($hGUI_BotOptions)
+$1 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)
 Local $x = 25, $y = 45
 $grpLanguages = GUICtrlCreateGroup(GetTranslated(636,83, "GUI Language"), $x - 20, $y - 20, 210, 47)
 	$y -=2
@@ -118,13 +119,28 @@ $grpOnStartBot = GUICtrlCreateGroup(GetTranslated(636,12, "When Bot Starts"), $x
 				  GetTranslated(636,29, "SNAP: Only reorder windows, Align Bot window to Android Emulator window at Top Right, Top Left, Bottom Right or Bottom Left.\r\n" & _
 										"DOCK: Integrate Android Screen into bot window.")
 		_GUICtrlSetTip(-1, $txtTip)
-		GUICtrlSetState(-1, $GUI_DISABLE)
+		GUICtrlSetState(-1, $GUI_DISABLE)	 
+      ;  $grpPic = GUICtrlCreateGroup(GetTranslated(636,109, "Options Backgroung"), $x - 20, $y - 20 , 210, 70)
+		
 ;++++++++ Modified Kychera	+++++++++++
 	$y += 49
 	$grpOnStartBot = GUICtrlCreateGroup(GetTranslated(636,126, "Decor"), $x - 20, $y - 20, 210, 120)
+	$y += -5
+		$chkPic = GUICtrlCreateCheckbox("", $x, $y + 2, 13, 13)
+        $txtTip = GetTranslated(636,127, "Enable Background.")
+        GUICtrlSetTip(-1, $txtTip)
+        GUICtrlSetState(-1, $GUI_CHECKED)
+		GUICtrlSetOnEvent(-1, "chkPic")
+		GUICtrlCreateLabel(GetTranslated(636,127, "Enable Backgroung"), $x + 17, $y + 2, -1, -1)
+		;$y += 25
+		$x += 120
+	$BackGr = GUICtrlCreateCombo("", $x, $y, 60, 45, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+		;_GUICtrlSetTip(-1, "Fish" & @CRLF & "Ship")
+		GUICtrlSetData(-1, GetTranslated(1010,100, "Key1|Key2|Key3|Key4|Key5|Key6|Key7|Key8", "Key1"))
+		GUICtrlSetOnEvent(-1,"BackGr")	
 	  $y += 65
-	    GUICtrlCreateLabel(GetTranslated(636, 128, "Transperent GUI"), $x, $y - 5, 100, 16)
-       $SldTransLevel = GUICtrlCreateSlider($x, $y + 10, 125, 15, BitOR($TBS_TOOLTIPS, $TBS_AUTOTICKS))
+	    GUICtrlCreateLabel(GetTranslated(636, 128, "Transperent GUI"), $x - 120, $y - 5, 100, 16)
+       $SldTransLevel = GUICtrlCreateSlider($x - 120, $y + 10, 125, 15, BitOR($TBS_TOOLTIPS, $TBS_AUTOTICKS))
 		GUICtrlSetLimit($SldTransLevel, 8, 0)
 		GUICtrlSetData(-1, 0)
 		GUICtrlSetOnEvent(-1, "Slider")

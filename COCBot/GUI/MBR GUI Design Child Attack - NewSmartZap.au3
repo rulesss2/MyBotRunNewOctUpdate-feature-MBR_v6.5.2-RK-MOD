@@ -15,7 +15,7 @@
 $hGUI_NewSmartZap = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 - 28, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_ATTACK)
 ;GUISetBkColor($COLOR_WHITE, $hGUI_NewSmartZap)
 GUISwitch($hGUI_NewSmartZap)
-
+$16 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 0, 0, 442, 367, $WS_CLIPCHILDREN)
 Local $x = 20, $y = 25
 	$grpStatsMisc = GUICtrlCreateGroup(GetTranslated(638, 1, "SmartZap/NoobZap"), $x - 20, $y - 20, 437, 293)
 		GUICtrlCreateLabel(GetTranslated(638, 2, "Use This Spell to Zap Dark Drills"), $x + 20, $y, -1, -1)

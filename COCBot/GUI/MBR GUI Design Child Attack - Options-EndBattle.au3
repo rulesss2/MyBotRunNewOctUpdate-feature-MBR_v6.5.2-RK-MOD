@@ -13,7 +13,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
-
+$18 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)
 Local $x = 20, $y = 45
 Global $hReplayShareGUI, $txtShareMinGold, $txtShareMinElixir, $txtShareMinDark, $txtShareMessage
 	$grpReplayShare = GUICtrlCreateGroup(GetTranslated(633,1,"Share Replay"), $x-15, $y-20, 420, 204)

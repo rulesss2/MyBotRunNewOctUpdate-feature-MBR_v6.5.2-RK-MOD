@@ -13,7 +13,7 @@
 ; Link ..........: https://www.mybot.run
 ; Example .......: No
 ;================================================================================================================================
-
+$3 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)
 $chkUseBotHumanization = _GUICtrlCreateCheckbox(GetTranslated(42, 0, "Enable Bot Humanization"), 10, 25, 137, 17)
 	GUICtrlSetOnEvent(-1, "chkUseBotHumanization")
 	GUICtrlSetState(-1, $GUI_UNCHECKED)

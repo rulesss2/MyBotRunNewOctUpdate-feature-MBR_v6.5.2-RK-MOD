@@ -20,7 +20,7 @@ $hGUI_STRATEGIES = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 
 ;GUISetBkColor($COLOR_WHITE, $hGUI_STRATEGIES)
 
 GUISwitch($hGUI_STRATEGIES)
-
+$21 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
 Local $xStart = 5, $yStart = 25
 $hGUI_STRATEGIES_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 30, $_GUI_MAIN_HEIGHT - 255 - 30, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
 $hGUI_STRATEGIES_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,33,"Load Strategy"))

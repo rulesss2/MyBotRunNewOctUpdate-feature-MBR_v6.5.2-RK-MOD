@@ -15,7 +15,7 @@
 
 $hGUI_DONATE = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 - 28, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_VILLAGE)
 ;GUISetBkColor($COLOR_WHITE, $hGUI_DONATE)
-
+$38 = GUICtrlCreatePic(@ScriptDir & "\Images2\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
 $hGUI_DONATE_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 30, $_GUI_MAIN_HEIGHT - 255 - 30, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
 $hGUI_DONATE_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,11,"Request Troops"))
 

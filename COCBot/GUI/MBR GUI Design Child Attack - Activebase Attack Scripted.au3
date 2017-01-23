@@ -17,7 +17,7 @@ Global $cmbScriptNameAB, $lblNotesScriptAB
 
 $hGUI_ACTIVEBASE_ATTACK_SCRIPTED = GUICreate("", $_GUI_MAIN_WIDTH - 195, $_GUI_MAIN_HEIGHT - 344, 150, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_ACTIVEBASE)
 ;GUISetBkColor($COLOR_WHITE, $hGUI_ACTIVEBASE_ATTACK_SCRIPTED)
-
+$47 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 0, -5, 280, 335, $WS_CLIPCHILDREN)
 Local $x = 25, $y = 20
 	$grpAttackCSVAB = GUICtrlCreateGroup(GetTranslated(607,1, -1), $x - 20, $y - 20, 270, 306)
 ;	$x -= 15

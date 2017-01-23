@@ -241,3 +241,17 @@ GUICtrlSetData($chkchatdelay, $ichkchatdelay)
 	EndIf
 	_GUICtrlComboBox_SetCurSel($cmbTrophyMinProfile, $icmbTrophyMinProfile)
 	GUICtrlSetData($txtMinTrophyAmount, $itxtMinTrophyAmount)
+	;Background by Kychera
+	;=========================================
+    _GUICtrlComboBox_SetCurSel($BackGr, $iBackGr)
+	$iBackGr = _GUICtrlComboBox_GetCurSel($BackGr)
+	 BackGr()
+	If $ichkPic = 1 Then
+		GUICtrlSetState($chkPic, $GUI_CHECKED)
+
+	ElseIf $ichkPic = 0 Then
+		GUICtrlSetState($chkPic, $GUI_UNCHECKED)
+
+	EndIf
+	chkPic()
+;=========================================

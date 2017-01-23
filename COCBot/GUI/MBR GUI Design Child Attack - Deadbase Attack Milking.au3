@@ -31,7 +31,7 @@ Global $chkMilkAfterAttackTHSnipe, $chkMilkAfterAttackScripted, $cmbMilkingCSVSc
 
 $hGUI_DEADBASE_ATTACK_MILKING = GUICreate("", $_GUI_MAIN_WIDTH - 195, $_GUI_MAIN_HEIGHT - 344, 150, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_DEADBASE)
 ;GUISetBkColor($COLOR_WHITE, $hGUI_DEADBASE_ATTACK_MILKING)
-
+$44 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 0, 35, 280, 287, $WS_CLIPCHILDREN)
 Local $sTxtDisable = GetTranslated(631,79,"DIS.")
 
 Local $x = 5, $y = 0

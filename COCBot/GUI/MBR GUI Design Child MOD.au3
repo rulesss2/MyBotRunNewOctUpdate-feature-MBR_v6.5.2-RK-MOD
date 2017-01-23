@@ -19,7 +19,7 @@ GUISwitch($hGUI_MOD)
 
 $hGUI_MOD_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 20, $_GUI_MAIN_HEIGHT - 255, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
 $hGUI_MOD_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(91,1,"Mod Option"))
-
+$35 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 410, $WS_CLIPCHILDREN)
 Local $xStart = 0, $yStart = 0
 
 
@@ -41,7 +41,7 @@ Local $xStart = 0, $yStart = 0
  ; Misc Battle Settings
 	Local $x = 25, $y = 92
 	$grpDontEndBattle = GUICtrlCreateGroup(GetTranslated(91,9, "Miscellaneous Battle Settings"), $x - 20, $y - 20, 440, 45)
-		$chkFastADBClicks = _GUICtrlCreateCheckbox("", $x - 10, $y, 13, 13) ;$x - 10, $y - 5, -1, -1)
+		$chkFastADBClicks = GUICtrlCreateCheckbox("", $x - 10, $y, 13, 13) ;$x - 10, $y - 5, -1, -1)
 			$txtTip = GetTranslated(91,11, "Tick this to enable faster ADB deployment for MEmu and Droid4x in Multi-finger mode.") & @CRLF & @CRLF & _
 		GetTranslated(91,12,      "     WARNING:  This is experimental, if you have issues with deployment, disable it.")
 			GUICtrlSetTip(-1, $txtTip)
@@ -50,7 +50,7 @@ Local $xStart = 0, $yStart = 0
 GUICtrlCreateTabItem("")
 
 $hGUI_MOD_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(106,1,"Chat"))
-
+   $36 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 410, $WS_CLIPCHILDREN)
 $chatIni = $sProfilePath & "\" & $sCurrProfile & "\chat.ini"
    ChatbotReadSettings()
 
@@ -163,7 +163,7 @@ Global $iPrevState[$LastControlToHideMOD + 1]
 GUICtrlCreateTabItem("")
 
 $hGUI_MOD_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(107,1,"Forecast"))
-
+$37 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 410, $WS_CLIPCHILDREN)
 Global $grpForecast
 Global $ieForecast
 

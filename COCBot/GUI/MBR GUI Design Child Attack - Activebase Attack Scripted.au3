@@ -17,7 +17,7 @@ Global $cmbScriptNameAB, $lblNotesScriptAB
 
 $hGUI_ACTIVEBASE_ATTACK_SCRIPTED = GUICreate("", $_GUI_MAIN_WIDTH - 195, $_GUI_MAIN_HEIGHT - 344, 150, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_ACTIVEBASE)
 ;GUISetBkColor($COLOR_WHITE, $hGUI_ACTIVEBASE_ATTACK_SCRIPTED)
-$47 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 0, -5, 280, 335, $WS_CLIPCHILDREN)
+$47 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 0, -5, 280, 352, $WS_CLIPCHILDREN)
 Local $x = 25, $y = 20
 	$grpAttackCSVAB = GUICtrlCreateGroup(GetTranslated(607,1, -1), $x - 20, $y - 20, 270, 306)
 ;	$x -= 15
@@ -38,6 +38,7 @@ Local $x = 25, $y = 20
 			GUICtrlSetOnEvent(-1, 'UpdateComboScriptNameAB') ; Run this function when the secondary GUI [X] is clicked
 		$y +=25
 		$lblNotesScriptAB =  GUICtrlCreateEdit("", $x, $y + 5, 200, 120, $ES_WANTRETURN+$WS_VSCROLL+$ES_AUTOVSCROLL+$ES_MULTILINE+$ES_READONLY)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 		$cmbScriptRedlineImplAB = GUICtrlCreateCombo("", $x, $y + 195, 230, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetData(-1, GetTranslated(607,9, "ImgLoc Raw Redline (default)|ImgLoc Redline Drop Points|Original Redline|External Edges"))
 			_GUICtrlComboBox_SetCurSel(-1, $iRedlineRoutine[$LB])
@@ -71,6 +72,7 @@ Local $x = 25, $y = 20
 		$y += 80
 		$grpScriptSpeedAB = GUICtrlCreateGroup(GetTranslated(607,30, -1), $x-1, $y, 230, 50)
 			$lbltxtSelectedSpeedAB = GUICtrlCreateLabel(GetTranslated(607,31, -1), $x + 20, $y+20, 75, 25)
+			GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 				_GUICtrlSetTip(-1, GetTranslated(607,32, -1))
 			$sldSelectedSpeedAB = GUICtrlCreateSlider($x + 100, $y + 20, 125, 25, BitOR($TBS_TOOLTIPS, $TBS_AUTOTICKS))
 				_GUICtrlSetTip(-1, GetTranslated(607,33, -1))

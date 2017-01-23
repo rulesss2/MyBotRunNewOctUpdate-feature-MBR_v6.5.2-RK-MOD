@@ -31,7 +31,7 @@ Global $chkMilkAfterAttackTHSnipe, $chkMilkAfterAttackScripted, $cmbMilkingCSVSc
 
 $hGUI_DEADBASE_ATTACK_MILKING = GUICreate("", $_GUI_MAIN_WIDTH - 195, $_GUI_MAIN_HEIGHT - 344, 150, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_DEADBASE)
 ;GUISetBkColor($COLOR_WHITE, $hGUI_DEADBASE_ATTACK_MILKING)
-$44 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 0, 35, 280, 287, $WS_CLIPCHILDREN)
+$44 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 0, 35, 280, 313, $WS_CLIPCHILDREN)
 Local $sTxtDisable = GetTranslated(631,79,"DIS.")
 
 Local $x = 5, $y = 0
@@ -377,13 +377,13 @@ GUICtrlCreateTabItem("")
 		GUICtrlSetState(-1, $GUI_HIDE)
 		$y += 20
 		$x += 5
-		$chkMilkingDebugIMG = _GUICtrlCreateCheckbox(GetTranslated(631,38, "Make Images of each extractor with offset"), $x, $y, -1, -1)
+		$chkMilkingDebugIMG = GUICtrlCreateCheckbox(GetTranslated(631,38, "Make Images of each extractor with offset"), $x, $y, -1, -1)
 		GUICtrlSetState(-1, $GUI_HIDE)
 		$y += 20
-		$chkMilkingDebugVillage = _GUICtrlCreateCheckbox(GetTranslated(631,41, "Make Images of villages"), $x, $y, -1, -1)
+		$chkMilkingDebugVillage = GUICtrlCreateCheckbox(GetTranslated(631,41, "Make Images of villages"), $x, $y, -1, -1)
 		GUICtrlSetState(-1, $GUI_HIDE)
 		$y += 20
-		$chkMilkingDebugFullSearch = _GUICtrlCreateCheckbox(GetTranslated(631,39, "fullsearch, only for debug purpose (very slow)"), $x, $y, -1, -1)
+		$chkMilkingDebugFullSearch = GUICtrlCreateCheckbox(GetTranslated(631,39, "fullsearch, only for debug purpose (very slow)"), $x, $y, -1, -1)
 		$txtTip = GetTranslated(631,81,"with this options you can detect images of undetected Elixir Extractors")
 		_GUICtrlSetTip(-1, $txtTip)
 		GUICtrlSetState(-1, $GUI_HIDE)

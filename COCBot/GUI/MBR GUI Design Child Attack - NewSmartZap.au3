@@ -19,12 +19,14 @@ $16 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 0, 0, 442, 367, $WS_CLIPCH
 Local $x = 20, $y = 25
 	$grpStatsMisc = GUICtrlCreateGroup(GetTranslated(638, 1, "SmartZap/NoobZap"), $x - 20, $y - 20, 437, 293)
 		GUICtrlCreateLabel(GetTranslated(638, 2, "Use This Spell to Zap Dark Drills"), $x + 20, $y, -1, -1)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 		GUICtrlCreateIcon($pIconLib, $eIcnNewSmartZap, $x - 10, $y, 25, 25)
 		GUICtrlCreateIcon($pIconLib, $eIcnLightSpell, $x + 45, $y + 20, 25, 25)
 		GUICtrlCreateIcon($pIconLib, $eIcnEarthQuakeSpell, $x + 125, $y + 20, 25, 25)
 		GUICtrlCreateIcon($pIconLib, $eIcnDrill, $x - 10, $y + 90, 25, 25)
 	$y += 50
 		$lblLSpell = GUICtrlCreateLabel(GetTranslated(638, 3, "Use LSpells"), $x + 37, $y + 15, -1, -1)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 		GUICtrlSetOnEvent(-1, "chkSmartLightSpell")
 		$chkSmartLightSpell = GUICtrlCreateCheckbox(" ", $x + 51, $y -3, 13, 13)
 		$txtTip = GetTranslated(638, 4, "Check this to drop Lightning Spells on top of Dark Elixir Drills.") & @CRLF & @CRLF & _
@@ -34,6 +36,7 @@ Local $x = 20, $y = 25
 			GUICtrlSetOnEvent(-1, "chkSmartLightSpell")
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
 		$lblEQZap = GUICtrlCreateLabel(GetTranslated(638, 7, "Use EQSpell"), $x + 110, $y + 15, -1, -1)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 		GUICtrlSetOnEvent(-1, "chkEarthQuakeZap")
 		$chkEarthQuakeZap = GUICtrlCreateCheckbox(" ", $x + 131, $y -3, 13, 13)
 		$txtTip = GetTranslated(638, 8, "Check this to drop EarthQuake Castle Spell on any Dark Elixir Drill")
@@ -61,6 +64,7 @@ Local $x = 20, $y = 25
 			GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 220 + 9, $y + 11, 24, 24)
 	$grpNewSmartZap = GUICtrlCreateGroup("", $x + 219, $y - 1, 192, 106)
 		$lblSmartZap = GUICtrlCreateLabel(GetTranslated(638, 15, "Min. amount of Dark Elixir") & ":", $x + 180 + 79, $y + 12, -1, -1)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 		$txtMinDark = GUICtrlCreateInput("350", $x + 309, $y + 32, 90, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 		$txtTip = GetTranslated(638, 16, "Set the Value of the minimum amount of Dark Elixir in the Drills")
 			_GUICtrlSetTip(-1, $txtTip)
@@ -69,6 +73,7 @@ Local $x = 20, $y = 25
 			GUICtrlSetState(-1, $GUI_DISABLE)
 			GUICtrlCreateIcon($pIconLib, $eIcnDark, $x + 220 + 9, $y + 57, 24, 24)
 		$lblNoobZap = GUICtrlCreateLabel(GetTranslated(638, 17, "Expected gain of Dark Drills") & ":", $x + 180 + 79, $y + 58, -1, -1)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 		$txtExpectedDE = GUICtrlCreateInput("320", $x + 309, $y + 78, 90, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 		$txtTip = GetTranslated(638, 18, "Set value for expected gain every dark drill") & @CRLF & _
 				GetTranslated(638, 19, "NoobZap will be stopped if the last zap gained less DE than expected")

@@ -15,11 +15,12 @@
 
 $hGUI_ACTIVEBASE_ATTACK_STANDARD = GUICreate("", $_GUI_MAIN_WIDTH - 195, $_GUI_MAIN_HEIGHT - 344, 150, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_ACTIVEBASE)
 ;GUISetBkColor($COLOR_WHITE, $hGUI_ACTIVEBASE_ATTACK_STANDARD)
-$46 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 0, -5, 280, 335, $WS_CLIPCHILDREN)
+$46 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 0, -5, 280, 352, $WS_CLIPCHILDREN)
 Local $x = 25, $y = 20
 $grpDeployAB = GUICtrlCreateGroup(GetTranslated(608,1, -1), $x - 20, $y - 20, 270, 306)
 ;$x -= 15
    $lblABmode = GUICtrlCreateLabel(GetTranslated(608,2, -1),$x, $y, 143,18,$SS_LEFT)
+   GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 $y += 15
 	$cmbStandardAlgorithmAB = GUICtrlCreateCombo("", $x, $y, 150, Default, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetData(-1, GetTranslated(608,25, -1)&"|Barch/BAM/BAG|GiBarch", GetTranslated(608,25, -1))
@@ -27,6 +28,7 @@ $y += 15
 	$y += 25
 	;95)
 		$lblDeployAB = GUICtrlCreateLabel(GetTranslated(608,3, "Attack on")&":", $x, $y + 5, -1, -1)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 		$cmbDeployAB = GUICtrlCreateCombo("", $x + 55, $y, 120, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			_GUICtrlSetTip(-1, GetTranslated(608,4, -1) & @CRLF & GetTranslated(608,5, -1) & @CRLF & GetTranslated(608,6, -1) & @CRLF & GetTranslated(608,29, "Attack on the single side closest to the Dark Elixir Storage") & @CRLF & GetTranslated(608,30, "Attack on the single side closest to the Townhall"), GetTranslated(608,7, -1))
 ; Adding Classic FourFinger
@@ -36,12 +38,14 @@ $y += 15
 
 		$y += 25
 		$lblUnitDelayAB = GUICtrlCreateLabel(GetTranslated(608,12, -1) & ":", $x, $y + 5, -1, -1)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 			$txtTip = GetTranslated(608,13, -1) & @CRLF & GetTranslated(608,14, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 		$cmbUnitDelayAB = GUICtrlCreateCombo("", $x + 55, $y, 36, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetData(-1, "1|2|3|4|5|6|7|8|9|10", "4")
 		$lblWaveDelayAB = GUICtrlCreateLabel(GetTranslated(608,15, -1) & ":", $x + 100, $y + 5, -1, -1)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 			_GUICtrlSetTip(-1, $txtTip)
 		$cmbWaveDelayAB = GUICtrlCreateCombo("", $x + 140, $y, 36, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			_GUICtrlSetTip(-1, $txtTip)
@@ -58,25 +62,26 @@ $y += 15
 			GUICtrlSetOnEvent(-1, "chkSmartAttackRedAreaAB")
 		$y += 22
 		$lblSmartDeployAB = GUICtrlCreateLabel(GetTranslated(608,19, -1) & ":", $x, $y + 5, -1, -1)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 			$txtTip = GetTranslated(608,20, -1) & @CRLF & GetTranslated(608,21, -1) & @CRLF & GetTranslated(608,22, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 		$cmbSmartDeployAB = GUICtrlCreateCombo("", $x + 55, $y, 120, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetData(-1, GetTranslated(608,23, -1) & "|" & GetTranslated(608,24, -1) , GetTranslated(608,23, -1))
 			_GUICtrlSetTip(-1, $txtTip)
 		$y += 26
-		$chkAttackNearGoldMineAB = GUICtrlCreateCheckbox("", $x + 20, $y, 17, 17)
+		$chkAttackNearGoldMineAB = GUICtrlCreateCheckbox("", $x + 20, $y, 13, 13)
 			$txtTip = GetTranslated(608,26, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 		$picAttackNearGoldMineAB = GUICtrlCreateIcon($pIconLib, $eIcnMine, $x + 40 , $y - 3 , 24, 24)
 			_GUICtrlSetTip(-1, $txtTip)
 		$x += 75
-		$chkAttackNearElixirCollectorAB = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+		$chkAttackNearElixirCollectorAB = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(608,27, -1)
 			_GUICtrlSetTip(-1, $txtTip)
 		$picAttackNearElixirCollectorAB = GUICtrlCreateIcon($pIconLib, $eIcnCollector, $x + 20 , $y - 3 , 24, 24)
 			_GUICtrlSetTip(-1, $txtTip)
  		$x += 55
-  		$chkAttackNearDarkElixirDrillAB = GUICtrlCreateCheckbox("", $x, $y, 17, 17)
+  		$chkAttackNearDarkElixirDrillAB = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			$txtTip = GetTranslated(608,28, -1)
  			_GUICtrlSetTip(-1, $txtTip)
 		$picAttackNearDarkElixirDrillAB = GUICtrlCreateIcon($pIconLib, $eIcnDrill, $x + 20 , $y - 3, 24, 24)

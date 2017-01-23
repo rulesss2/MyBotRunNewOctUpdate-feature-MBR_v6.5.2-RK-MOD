@@ -27,7 +27,7 @@ $7 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 0, 20, 150, 335, $WS_CLIPCH
 #include "MBR GUI Design Child Attack - Activebase-Search.au3"
 
 $hGUI_ACTIVEBASE_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,29,"Attack"))
-$50 = GUICtrlCreatePic (@ScriptDir & "\Images3\1.jpg", 0, 20, 150, 335, $WS_CLIPCHILDREN)
+$50 = GUICtrlCreatePic (@ScriptDir & "\Images3\1.jpg", 0, 20, 150, 352, $WS_CLIPCHILDREN)
 #include "MBR GUI Design Child Attack - Activebase-Attack.au3"
 
 $hGUI_ACTIVEBASE_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,30,"End Battle"))

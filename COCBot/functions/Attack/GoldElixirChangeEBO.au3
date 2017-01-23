@@ -204,16 +204,14 @@ EndFunc   ;==>GoldElixirChangeEBO
 
 Func OverallDamage($OverallDamage = 30, $SetLog = True)
 
-	Local $Damage = Number(getOcrOverAllDamage(780, 527 + $bottomOffsetY))
+	Local $nDamage = 0
 
-	If $SetLog = True Then
-		SetLog("Overall Damage: " & $Damage & "%")
+	$nDamage = Number(getOcrOverAllDamage(780, 527 + $bottomOffsetY))
+
+	If $SetLog = True or $OverallDamage = $nDamage Then
+		SetLog("Overall Damage: " & $nDamage & "%")
 	EndIf
 
-	If $Damage >= $OverallDamage Then
-		Return True
-	Else
-		Return False
-	EndIf
+	Return $nDamage
 
 EndFunc   ;==>OverallDamage

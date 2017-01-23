@@ -32,10 +32,19 @@ Func CheckHeroesHealth()
 			Local $WardenPixelColor = _GetPixelColor($aWardenHealthCopy[0], $aWardenHealthCopy[1], $bCapturePixel)
 		EndIf
 
+		; Will detect the Health bar OR force if the village damage is 90%
+		Local $nDamage = 0, $log = ""
+		$nDamage = Number(OverallDamage(90,False))
+		local $txt = "Overall damage is 90%, Activating "
+		local $txt2 = "Hero is getting weak, Activating "
+		local $txt3 = "'s power"
+
 		If $checkKPower And $iActivateKQCondition = "Auto" Then
 			If $debugSetlog = 1 Then Setlog(" King _GetPixelColor(" & $aKingHealthCopy[0] & "," & $aKingHealthCopy[1] & "): " & $KingPixelColor, $COLOR_DEBUG)
-			If _CheckPixel($aKingHealthCopy, $bCapturePixel, "Red") Then
-				SetLog("King is getting weak, Activating King's power", $COLOR_INFO)
+			If _CheckPixel($aKingHealthCopy, $bCapturePixel, "Red") Or $nDamage > 90 Then
+				$log = ""
+				$log = ($nDamage > 90)?($txt):($txt2)
+				SetLog($log & NameOfTroop($eKing) & $txt3, $COLOR_INFO)
 				SelectDropTroop($King)
 				$checkKPower = False
 				$HeroesTimerActivation[0] = 0 ; Reset Timer
@@ -43,8 +52,10 @@ Func CheckHeroesHealth()
 		EndIf
 		If $checkQPower And $iActivateKQCondition = "Auto" Then
 			If $debugSetlog = 1 Then Setlog(" Queen _GetPixelColor(" & $aQueenHealthCopy[0] & "," & $aQueenHealthCopy[1] & "): " & $QueenPixelColor, $COLOR_DEBUG)
-			If _CheckPixel($aQueenHealthCopy, $bCapturePixel, "Red") Then
-				SetLog("Queen is getting weak, Activating Queen's power", $COLOR_INFO)
+			If _CheckPixel($aQueenHealthCopy, $bCapturePixel, "Red") Or $nDamage > 90 Then
+				$log = ""
+				$log = ($nDamage > 90)?($txt):($txt2)
+				SetLog($log & NameOfTroop($eQueen) & $txt3, $COLOR_INFO)
 				SelectDropTroop($Queen)
 				$checkQPower = False
 				$HeroesTimerActivation[1] = 0 ; Reset Timer
@@ -52,8 +63,10 @@ Func CheckHeroesHealth()
 		EndIf
 		If $checkWPower And $iActivateWardenCondition = 0 And $iActivateKQCondition = "Auto" Then
 			If $debugSetlog = 1 Then Setlog(" Grand Warden _GetPixelColor(" & $aWardenHealthCopy[0] & "," & $aWardenHealthCopy[1] & "): " & $WardenPixelColor, $COLOR_DEBUG)
-			If _CheckPixel($aWardenHealthCopy, $bCapturePixel, "Red") Then
-				SetLog("Grand Warden is getting weak, Activating Warden's power", $COLOR_INFO)
+			If _CheckPixel($aWardenHealthCopy, $bCapturePixel, "Red") Or $nDamage > 90 Then
+				$log = ""
+				$log = ($nDamage > 90)?($txt):($txt2)
+				SetLog($log & NameOfTroop($eWarden) & $txt3, $COLOR_INFO)
 				SelectDropTroop($Warden)
 				$checkWPower = False
 				$HeroesTimerActivation[2] = 0 ; Reset Timer

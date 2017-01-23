@@ -524,7 +524,7 @@ EndFunc   ;==>IsFullCastleSpells
 
 Func RemoveCastleSpell($Slots)
 
-	If $Slots[0]= 0 and $Slots[1] = 0 Then Return
+	If $Slots[0]= 0 and $Slots[1] = 0 then return
 
 	If _ColorCheck(_GetPixelColor(806, 472, True), Hex(0xD0E878, 6), 25) = False Then ; If no 'Edit Army' Button found in army tab to edit troops
 		SetLog("Cannot find/verify 'Edit Army' Button in Army tab", $COLOR_ORANGE)
@@ -573,7 +573,7 @@ Func RemoveCastleSpell($Slots)
 	Return True
 EndFunc   ;==>RemoveCastleSpell
 
-Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2, $CastleCapacity)
+Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2, $iMaxCCSpell)
 
 	; $CCSpells are an array with the Detected Spell :
 	; $CCSpell1[0][0] = Name , [0][1] = X , [0][2] = Y , [0][3] = Quantities
@@ -583,7 +583,7 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2, $CastleCapacity)
 		For $i = 0 To UBound($CCSpell1, $UBOUND_COLUMNS) - 1
 			Setlog("$CCSpell1[0][" & $i & "]: " & $CCSpell1[0][$i])
 		Next
-		If $CCSpell2 <> "" And $CastleCapacity = 2 And $CCSpell1[0][3] < 2 Then ; IF the Castle is = 2 and the previous Spell quantity was only 1
+		If $CCSpell2 <> "" And $iMaxCCSpell = 2 And $CCSpell1[0][3] < 2 Then ; IF the Castle is = 2 and the previous Spell quantity was only 1
 			For $i = 0 To UBound($CCSpell2, $UBOUND_COLUMNS) - 1
 				Setlog("$CCSpell2[0][" & $i & "]: " & $CCSpell2[0][$i])
 			Next
@@ -606,7 +606,7 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2, $CastleCapacity)
 	Local $aShouldRemove[2] = [0, 0]
 
 	; IF exist any error on parameter: Castle Capacity!!
-	If $CastleCapacity = 0 or $CastleCapacity = "" Then Return $aShouldRemove
+	If $iMaxCCSpell = 0 or $iMaxCCSpell = "" then return $aShouldRemove
 
 	; Correct Set log and flag a Variable to use $bCheckDBCCSpell For dead bases
 	If $iDBcheck = 1 And $iChkWaitForCastleSpell[$DB] = 1 Then
@@ -621,14 +621,14 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2, $CastleCapacity)
 	EndIf
 
 	; Just In case !!! how knows ...
-	If $bCheckDBCCSpell = False and $bCheckABCCSpell = False Then Return $aShouldRemove
+	If $bCheckDBCCSpell = False and $bCheckABCCSpell = False then Return $aShouldRemove
 
 	For $Mode = $DB to $LB
 		; Why check spells if is 'ANY' on Both , Will return [0,0]
 		If BitOR($iCmbWaitForCastleSpell[$Mode],$iCmbWaitForCastleSpell2[$Mode]) > 0 Then
 			Local $txt = "DB"
 			$txt = ($Mode = $LB)?("LB"):("DB")
-			If $Mode = $DB And $bCheckDBCCSpell = False Then ContinueLoop ; If the DE is not selected let's go to next loop
+			If $Mode = $DB and $bCheckDBCCSpell = false then ContinueLoop ; If the DB is not selected let's go to next loop
 			Switch $iCmbWaitForCastleSpell[$Mode]
 				Case 0
 					$sCCSpell = "Any"
@@ -653,16 +653,22 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2, $CastleCapacity)
 			EndSwitch
 
 			; Will only proceeds with 'second slot check' IF the Castle capacity is 2 and was selected a Dark Spell on Slot1
-			If $iCmbWaitForCastleSpell[$Mode] > 5 And $CastleCapacity = 2 Then $bCheckCCSpell2 = True
+			If $iCmbWaitForCastleSpell[$Mode] > 5 and $iMaxCCSpell = 2 then $bCheckCCSpell2 = True
 
 			; Debug
 			If $debugsetlogTrain Then Setlog("[1][" & $txt & "] GUI Spell is " & $sCCSpell, $COLOR_DEBUG)
 
 			; If the Spell1 Match with ANY or with GUI Name than return 0 to remove
-			If ($sCCSpell = $CCSpell1[0][0] Or $sCCSpell = "Any") And $CCSpell1[0][3] >= $CastleCapacity Then
-				$aShouldRemove[0] = 0 ; Is not to remove [0,0] Slot 1
+			If ($sCCSpell = $CCSpell1[0][0] Or $sCCSpell = "Any") And $CCSpell1[0][3] = 1 Then
+				; Is not to remove [0,0] Slot 1
+				$aShouldRemove[0] = 0
+			ElseIf ($sCCSpell = $CCSpell1[0][0] Or $sCCSpell = "Any") And $CCSpell1[0][3] = 2 And ($CCSpell1[0][0] <> $CCSpell2[0][0] or $CCSpell2[0][0] <> "Any") then
+				; Spell is the correct BUT exist 2 and doesn't match with Slot 2
+				; Remove one Spell from Slot 1
+				$aShouldRemove[0] = 1
 			Else
-				$aShouldRemove[0] = $CCSpell1[0][3] ; is to remove coz doesn't match the name of the Spells on Slot 1 ($aShouldRemove[0]) $CCSpell1[0][3] is the quantity , 1 or 2
+				; Is to remove all coz doesn't match the name of the Spells on Slot 1
+				$aShouldRemove[0] = $CCSpell1[0][3] ; $CCSpell1[0][3] is the quantity , 1 or 2
 			EndIf
 
 			If $bCheckCCSpell2 Then ; Castle Spells capacity is 2
@@ -680,7 +686,7 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2, $CastleCapacity)
 				EndSwitch
 
 				; If exist 2 Spells on Slot1 , But Slot2 needs different Spell
-				If $CCSpell1[0][3] = 2 And $sCCSpell2 <> $sCCSpell And $bCheckCCSpell2 = True Then
+				If $CCSpell1[0][3] = 2 and $sCCSpell2 <> $sCCSpell and $bCheckCCSpell2 = True then
 					Setlog("One more Dark Spell on Slot 1 than is needed!")
 					$aShouldRemove[0] = 1 ; remove ONE Dark Spell of 2
 				EndIf
@@ -689,7 +695,7 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2, $CastleCapacity)
 				If $debugsetlogTrain Then Setlog("[2][" & $txt & "] GUI Spell is " & $sCCSpell2, $COLOR_DEBUG)
 
 				; If the Spell2 Match with ANY or with GUI Name than return 0 to remove
-				If $sCCSpell2 = $CCSpell2[0][0] Or $sCCSpell2 = "Any" Or ($sCCSpell2 = $sCCSpell And $CCSpell1[0][3] = $CastleCapacity) Then ; If the spell on Slot 1 is = and have 2
+				If $sCCSpell2 = $CCSpell2[0][0] Or $sCCSpell2 = "Any" or ($sCCSpell2 = $sCCSpell and $CCSpell1[0][3] = $iMaxCCSpell) Then ; If the spell on Slot 1 is = and have 2
 					$aShouldRemove[1] = 0 ; Is not to remove [0,0] Slot 2
 				Else
 					$aShouldRemove[1] = $CCSpell2[0][3] ; is to remove coz doesn't match the name of the Spells on Slot 1 ($aShouldRemove[0]) $CCSpell1[0][3] is the quantity , 1 or 2
@@ -2405,23 +2411,24 @@ Func CheckValuesCost($txt = "RegularTroops", $Troop = "Arch", $troopQuantity = 1
 	If _sleep(1000) then return
 	Local $TempColorToCheck = _GetPixelColor(223, 594, True)
 	If $debugsetlogTrain = 1 Or $DebugLogs Then Setlog ( "CheckValuesCost|ColorToCheck: " & $TempColorToCheck)
+
 	If _ColorCheck(_GetPixelColor(223, 594, True), Hex(0xE8E8E0, 6), 20) Then ; Gray background window color
 		; Village without DE
-		If ISArmyWindow(False, $TrainTroopsTAB) Then $iElixirCurrent = getResourcesValueTrainPage(315,594) ; Elixir - Bottom train Window Page
+		If ISArmyWindow(False, $TrainTroopsTAB) then $iElixirCurrent = getResourcesValueTrainPage(315,594) ; Elixir - Bottom train Window Page
 	Else
 		; Village with Elixir and Dark Elixir
-		If ISArmyWindow(False, $TrainTroopsTAB) Then $iElixirCurrent = getResourcesValueTrainPage(245,594) ; Elixir - Bottom train Window Page
-		If ISArmyWindow(False, $TrainTroopsTAB) Then $iDarkCurrent = getResourcesValueTrainPage(400,594) ; DE - Bottom train Window Page
+		If ISArmyWindow(False, $TrainTroopsTAB) then $iElixirCurrent = getResourcesValueTrainPage(230,594) ; Elixir - Bottom train Window Page
+		If ISArmyWindow(False, $TrainTroopsTAB) then $iDarkCurrent = getResourcesValueTrainPage(382,594) ; DE - Bottom train Window Page
 	EndIf
 
 	If $debugsetlogTrain = 1 Or $DebugLogs Then Setlog(" » Current resources:")
 	If $debugsetlogTrain = 1 Or $DebugLogs Then Setlog (" - Elixir: " & _NumberFormat($iElixirCurrent) & " / Dark Elixir: " & _NumberFormat($iDarkCurrent), $COLOR_INFO)
 
 	If $debugsetlogTrain = 1 Or $DebugLogs Then Setlog(" » Current costs:")
-	If ($debugsetlogTrain = 1 Or $DebugLogs) And $ElixirCostCamp <> 0 Then Setlog(" - Elixir Cost Camp: " & _NumberFormat($ElixirCostCamp))
-	If ($debugsetlogTrain = 1 Or $DebugLogs) And $DarkCostCamp <> 0 Then  Setlog(" - DE Cost Camp: " & _NumberFormat($DarkCostCamp))
-	If ($debugsetlogTrain = 1 Or $DebugLogs) And $ElixirCostSpell <> 0 Then Setlog(" - Elixir Cost Spell: " & _NumberFormat($ElixirCostSpell))
-	If ($debugsetlogTrain = 1 Or $DebugLogs) And $DarkCostSpell <> 0 Then  Setlog(" - DE Cost Spell: " & _NumberFormat($DarkCostSpell))
+	If ($debugsetlogTrain = 1 Or $DebugLogs) and $ElixirCostCamp <> 0 then Setlog(" - Elixir Cost Camp: " & _NumberFormat($ElixirCostCamp))
+	If ($debugsetlogTrain = 1 Or $DebugLogs) and $DarkCostCamp <> 0 then  Setlog(" - DE Cost Camp: " & _NumberFormat($DarkCostCamp))
+	If ($debugsetlogTrain = 1 Or $DebugLogs) and $ElixirCostSpell <> 0 then  Setlog(" - Elixir Cost Spell: " & _NumberFormat($ElixirCostSpell))
+	If ($debugsetlogTrain = 1 Or $DebugLogs) and $DarkCostSpell <> 0 then  Setlog(" - DE Cost Spell: " & _NumberFormat($DarkCostSpell))
 
 	If $txt <> "" Then
 		If $txt = "RegularTroops" Then

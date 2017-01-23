@@ -775,6 +775,7 @@ GUICtrlCreateTabItem("")
 
 
 $hGUI_ARMY_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600, 54, "Train Order"))
+$10 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
 ;~ $x = $xStart + 182
 $x = $xStart + 25
 $y = $yStart + 45

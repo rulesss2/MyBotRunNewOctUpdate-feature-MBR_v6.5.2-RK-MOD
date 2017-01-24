@@ -18,8 +18,8 @@ Global $aTownHall[4] = [-1, -1, -1, -1] ; [LocX, LocY, BldgLvl, Quantity]
 Func imglocTHSearch($bReTest = False, $myVillage = False, $bForceCapture = True)
 	;set THSearch Values for multisearch
 	;Local $xdirectory = @ScriptDir & "\imgxml\ImgLocTH"
-	Local $xdirectory = "imglocth-bundle"
-	Local $xdirectoryb = "imglocth2-bundle"
+	Local $xdirectory = @ScriptDir & "\imgxml\Resources\TH"
+	Local $xdirectoryb = @ScriptDir & "\imgxml\Resources\TH2"
 	Local $sCocDiamond = "ECD"
 	Local $redLines = ""
 	Local $minLevel = 6 ; We only support TH6+
@@ -43,12 +43,14 @@ Func imglocTHSearch($bReTest = False, $myVillage = False, $bForceCapture = True)
 	Local $numRetry = 2 ; try to find TH twice
 
 	For $retry = 0 To $numRetry
-		if $retry > 0 then  $xdirectory = $xdirectoryb
 		
 		IF $iDetectedImageType = 1 Then ;Snow theme on
-			$xdirectory = "snow-" & $xdirectory  
+			$xdirectory = "snow-imglocth-bundle" 
+			$xdirectoryb = "snow-imglocth2-bundle"		
 			$strpredebug = "snow_"
 		EndIF
+		
+		if $retry > 0 then  $xdirectory = $xdirectoryb
 		
 		if $retry > 0 and $IMGLOCREDLINE <> "" then ; on retry IMGLOCREDLNE is already populated
 			$redLines = $IMGLOCREDLINE

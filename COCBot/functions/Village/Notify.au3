@@ -866,7 +866,7 @@ Func NotifyRemoteControlProc($OnlyPB)
 							$DarkGainPerHour = _NumberFormat(Round($iDarkTotal / (Int(TimerDiff($sTimer) + $iTimePassed)) * 3600 * 1000)) & " / h"
 						EndIf
 						$TrophyGainPerHour = _NumberFormat(Round($iTrophyTotal / (Int(TimerDiff($sTimer) + $iTimePassed)) * 3600 * 1000)) & " / h"
-						Local $txtStats = " | " & GetTranslated(620,108,"Stats Village Report") & "\n"
+						Local $txtStats = " | " & GetTranslated(620, 108, "Stats Village Report") & " | Run Time: " & GUICtrlRead($lblResultRuntimeNow)& "\n"
 							  $txtStats &= GetTranslated(620,148,"At Start") & "\n[" & GetTranslated(620,109, "G") & "]: " & _NumberFormat($iGoldStart) & " [" & GetTranslated(620,110, "E") & "]: "
 							  $txtStats &= _NumberFormat($iElixirStart) & " [D]: " & _NumberFormat($iDarkStart) & " [" & GetTranslated(620,112, "T") & "]: " & $iTrophyStart
 							  $txtStats &= "\n\n" & GetTranslated(620,114,"Now (Current Resources)") & "\n[" & GetTranslated(620,109, "G") & "]: " & _NumberFormat($iGoldCurrent) & " [" & GetTranslated(620,110, "E") & "]: " & _NumberFormat($iElixirCurrent)

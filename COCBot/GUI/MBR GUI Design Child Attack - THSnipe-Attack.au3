@@ -111,7 +111,7 @@ Local $x = 25, $y = 40
 			_GUICtrlSetTip(-1, $txtTip)
 		$y += 30
 		$x = 30
-	 		$chkAttackTH = _GUICtrlCreateCheckbox(GetTranslated(624,38, "Attack Townhall Outside"), $x, $y, -1, -1)
+	 		$chkAttackTH = GUICtrlCreateCheckbox(GetTranslated(624,38, "Attack Townhall Outside"), $x, $y, -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(624,39, "Check this to Attack an exposed Townhall first. (Townhall outside of Walls)") & @CRLF & GetTranslated(624,40, "TIP: Also tick 'Meet Townhall Outside' on the Search tab if you only want to search for bases with exposed Townhalls."))
 			GUICtrlSetState(-1,$GUI_HIDE)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)

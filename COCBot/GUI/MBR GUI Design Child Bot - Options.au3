@@ -134,9 +134,16 @@ $grpOnStartBot = GUICtrlCreateGroup(GetTranslated(636,12, "When Bot Starts"), $x
 		GUICtrlCreateLabel(GetTranslated(636,127, "Enable Backgroung"), $x + 17, $y + 2, -1, -1)
 		;$y += 25
 		$x += 120
-	$BackGr = GUICtrlCreateCombo("", $x, $y, 60, 45, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-		;_GUICtrlSetTip(-1, "Fish" & @CRLF & "Ship")
-		GUICtrlSetData(-1, GetTranslated(1010,100, "Key1|Key2|Key3|Key4|Key5|Key6|Key7|Key8", "Key1"))
+	$BackGr = GUICtrlCreateCombo("", $x, $y, 60, 45, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))		
+		GUICtrlSetData(-1, GetTranslated(1000,101, "Key1") & "|" & _
+		                   GetTranslated(1000,102, "Key2") & "|" & _
+						   GetTranslated(1000,103, "Key3") & "|" & _
+						   GetTranslated(1000,104, "Key4") & "|" & _
+						   GetTranslated(1000,105, "Key5") & "|" & _
+						   GetTranslated(1000,106, "Key6") & "|" & _
+						   GetTranslated(1000,107, "Key7") & "|" & _
+						   GetTranslated(1000,108, "Key8"), _
+						   GetTranslated(1000,101, "Key1"))
 		GUICtrlSetOnEvent(-1,"BackGr")	
 	  $y += 65
 	    GUICtrlCreateLabel(GetTranslated(636, 128, "Transperent GUI"), $x - 120, $y - 5, 100, 16)

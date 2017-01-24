@@ -761,8 +761,8 @@ Func _RunFunction($action)
 					$troops_maked_after_fullarmy = False
 				EndIf
 				CheckOverviewFullArmy(True, False) ; use true parameter to open train overview window
-				If ISArmyWindow(False, $ArmyTAB) then CheckExistentArmy("Spells") ; Imgloc Method
-				getArmyHeroCount(False, True)
+				getArmyHeroCount(False, False)
+				getArmySpellCount(False, True) ; use true parameter to close train overview window
 			EndIf
 		Case "BoostBarracks"
 			BoostBarracks()

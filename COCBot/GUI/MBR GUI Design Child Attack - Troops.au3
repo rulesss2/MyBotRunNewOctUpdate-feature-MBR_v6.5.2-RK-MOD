@@ -928,7 +928,7 @@ $y += 28
 	GUICtrlSetOnEvent(-1, "btnCloseWaitStopRandom")
 
 $y += 28
-	$btnCloseWaitExact = GUICtrlCreateRadio(GetTranslated(641, 16, "Exact Time"), $x + 18, $y + 1, 110, -1)
+	$btnCloseWaitExact = _GUICtrlCreateRadio(GetTranslated(641, 16, "Exact Time"), $x + 18, $y + 1, 110, -1)
 	$txtTip = GetTranslated(641, 17, "Select to wait exact time required for troops to complete training")
 	_GUICtrlSetTip(-1, $txtTip)
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
@@ -938,7 +938,7 @@ $y += 28
 	_GUICtrlSetTip(-1, $txtTip)
 
 $y += 24
-	$btnCloseWaitRandom = GUICtrlCreateRadio(GetTranslated(641, 19, "Random Time"), $x + 18, $y + 1, 110, -1)
+	$btnCloseWaitRandom = _GUICtrlCreateRadio(GetTranslated(641, 19, "Random Time"), $x + 18, $y + 1, 110, -1)
 	$txtTip = GetTranslated(641, 20, "Select to ADD a random extra wait time like human who forgets to clash")
 	_GUICtrlSetTip(-1, $txtTip)
 	GUICtrlSetState(-1, $GUI_CHECKED)

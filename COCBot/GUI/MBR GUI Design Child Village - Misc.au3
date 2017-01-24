@@ -119,7 +119,7 @@ $Group1 = GUICtrlCreateGroup("Treasury Collect", $x, $y, 440, 105)
 
 	$x -= 2
 
-	GUICtrlCreatePic(@ScriptDir & "\images\Treasury.jpg", $x + 12, $y + 25, 70, 38.6)
+	_GUICtrlCreatePic(@ScriptDir & "\images\Treasury.png", $x + 12, $y + 25, 70, 38.6)
 	$chkEnableTrCollect = _GUICtrlCreateCheckbox(GetTranslated(800, 1, "Enable"), $x + 93, $y + 25, 52, 17)
 	GUICtrlSetOnEvent(-1, "chkEnableTrCollect")
 	_GUICtrlSetTip(-1, GetTranslated(800, 50, "Check to enable automatic Treasury collecion"))

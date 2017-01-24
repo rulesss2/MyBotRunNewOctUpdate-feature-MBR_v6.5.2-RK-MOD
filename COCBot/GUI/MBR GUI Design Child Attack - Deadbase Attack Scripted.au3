@@ -17,7 +17,7 @@ Global $cmbScriptNameDB, $lblNotesScriptAB
 
 $hGUI_DEADBASE_ATTACK_SCRIPTED = GUICreate("", $_GUI_MAIN_WIDTH - 195, $_GUI_MAIN_HEIGHT - 344, 150, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_DEADBASE)
 ;GUISetBkColor($COLOR_WHITE, $hGUI_DEADBASE_ATTACK_SCRIPTED)
-$45 = GUICtrlCreatePic(@ScriptDir & "\Images2\1.jpg", 0, -5, 280, 335, $WS_CLIPCHILDREN)
+$45 = GUICtrlCreatePic(@ScriptDir & "\Images2\1.jpg", 0, -5, 280, 352, $WS_CLIPCHILDREN)
 Local $x = 25, $y = 20
 	$grpAttackCSVDB = GUICtrlCreateGroup(GetTranslated(607,1,"Deploy"), $x - 20, $y - 20, 270, 306)
 ;	 $x -= 15
@@ -38,6 +38,7 @@ Local $x = 25, $y = 20
 			GUICtrlSetOnEvent(-1, 'UpdateComboScriptNameDB') ; Run this function when the secondary GUI [X] is clicked
 		$y +=25
 		$lblNotesScriptDB =  GUICtrlCreateEdit("", $x, $y + 5, 200, 120, $ES_WANTRETURN+$WS_VSCROLL+$ES_AUTOVSCROLL+$ES_MULTILINE+$ES_READONLY)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 		$cmbScriptRedlineImplDB = GUICtrlCreateCombo("", $x, $y + 195, 230, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetData(-1, GetTranslated(607,9, "ImgLoc Raw Redline (default)|ImgLoc Redline Drop Points|Original Redline|External Edges"))
 			_GUICtrlComboBox_SetCurSel(-1, $iRedlineRoutine[$DB])
@@ -71,6 +72,7 @@ Local $x = 25, $y = 20
 
 		$grpScriptSpeedDB = GUICtrlCreateGroup(GetTranslated(607,30, "CSV Deployment Speed"), $x-1, $y, 230, 50)
 			$lbltxtSelectedSpeedDB = GUICtrlCreateLabel(GetTranslated(607,31, "Normal speed"), $x + 20, $y+20, 75, 25)
+			    GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 				_GUICtrlSetTip(-1, GetTranslated(607,32, "Increase or decrease the speed at which the CSV attack script deploys troops and waves."))
 			$sldSelectedSpeedDB = GUICtrlCreateSlider($x + 108, $y + 20, 125, 25, BitOR($TBS_TOOLTIPS, $TBS_AUTOTICKS))
 				_GUICtrlSetTip(-1, GetTranslated(607,33, "Increase or decrease the speed at which the CSV attack script deploys troops and waves."))

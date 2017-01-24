@@ -14,18 +14,20 @@
 ; ===============================================================================================================================
 
 $hGUI_DEADBASE_ATTACK_STANDARD = GUICreate("", $_GUI_MAIN_WIDTH - 195, $_GUI_MAIN_HEIGHT - 344, 150, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_DEADBASE)
-$43 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 0, -5, 280, 335, $WS_CLIPCHILDREN)
+$43 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 0, -5, 280, 352, $WS_CLIPCHILDREN)
 ;GUISetBkColor($COLOR_WHITE, $hGUI_DEADBASE_ATTACK_STANDARD)
 Local $x = 25, $y = 20
 	$grpDeployDB = GUICtrlCreateGroup(GetTranslated(608,1,"Deploy"), $x - 20, $y - 20, 270, 306)
 ;	$x -= 15
 		$lblDBmode = GUICtrlCreateLabel(GetTranslated(608,2,"Troop Drop Order"),$x, $y, 143,18,$SS_LEFT)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 	$y += 15
 		$cmbStandardAlgorithmDB = GUICtrlCreateCombo("", $x, $y, 163, Default, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetData(-1, GetTranslated(608,25,"Default(All Troops)")&"|Barch/BAM/BAG|GiBarch", GetTranslated(608,25, -1))
 			_GUICtrlSetTip(-1, GetTranslated(608,33,"Select a preset troop drop order.")&@CRLF&GetTranslated(608,34,"Each option deploys troops in a different order and in different waves")&@CRLF&GetTranslated(608,35,"Only the troops selected in the ""Only drop these troops"" option will be dropped"))
 	$y += 25
 		$lblDeployDB = GUICtrlCreateLabel(GetTranslated(608,3, "Attack on")&":", $x, $y + 5, -1, -1)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 		$cmbDeployDB = GUICtrlCreateCombo("", $x + 35, $y, 140, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 		 _GUICtrlSetTip(-1, GetTranslated(608,4, "Attack on a single side, penetrates through base") & @CRLF & GetTranslated(608,5, "Attack on two sides, penetrates through base") & @CRLF & GetTranslated(608,6, "Attack on three sides, gets outer and some inside of base"), GetTranslated(608,7,"Select the No. of sides to attack on."))
 
@@ -35,12 +37,14 @@ Local $x = 25, $y = 20
 
 		$y += 25
 		$lblUnitDelayDB = GUICtrlCreateLabel(GetTranslated(608,12, "Delay Unit") & ":", $x, $y + 5, -1, -1)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 			$txtTip = GetTranslated(608,13, "This delays the deployment of troops, 1 (fast) = like a Bot, 10 (slow) = Like a Human.") & @CRLF & GetTranslated(608,14, "Random will make bot more varied and closer to a person.")
 			_GUICtrlSetTip(-1, $txtTip)
 		$cmbUnitDelayDB = GUICtrlCreateCombo("", $x + 55, $y, 36, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetData(-1, "1|2|3|4|5|6|7|8|9|10", "4")
 		$lblWaveDelayDB = GUICtrlCreateLabel(GetTranslated(608,15, "Wave") & ":", $x + 100, $y + 5, -1, -1)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 			_GUICtrlSetTip(-1, $txtTip)
 		$cmbWaveDelayDB = GUICtrlCreateCombo("", $x + 140, $y, 36, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			_GUICtrlSetTip(-1, $txtTip)
@@ -57,6 +61,7 @@ Local $x = 25, $y = 20
 			GUICtrlSetOnEvent(-1, "chkSmartAttackRedAreaDB")
 		$y += 22
 		$lblSmartDeployDB = GUICtrlCreateLabel(GetTranslated(608,19, "Drop Type") & ":", $x, $y + 5, -1, -1)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 			$txtTip = GetTranslated(608,20, "Select the Deploy Mode for the waves of Troops.") & @CRLF & GetTranslated(608,21, "Type 1: Drop a single wave of troops on each side then switch troops, OR") & @CRLF & GetTranslated(608,22, "Type 2: Drop a full wave of all troops (e.g. giants, barbs and archers) on each side then switch sides.")
 			_GUICtrlSetTip(-1, $txtTip)
 		$cmbSmartDeployDB = GUICtrlCreateCombo("", $x + 55, $y, 120, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
@@ -85,6 +90,7 @@ Local $x = 25, $y = 20
     $x = 25
 	$y += 60
 	$lblDBMultiFinger = GUICtrlCreateLabel(GetTranslated(671,51,"Style:"), $x - 5, $y + 3, 35, -1, $SS_RIGHT)
+	GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 	$cmbDBMultiFinger = GUICtrlCreateCombo("", $x + 35, $y, 175, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 		$txtTip = GetTranslated(671,52,"Select which multi finger attack style you would like.") & @CRLF & @CRLF & _
 			GetTranslated(671,53,	  "     Random will chose one of the attacks at random.") & @CRLF & _

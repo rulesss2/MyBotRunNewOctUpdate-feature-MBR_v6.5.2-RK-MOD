@@ -1483,10 +1483,10 @@ Func DonatedSpell($Type, $iDonSpellsQuantity)
 		Case $ePSpell
 			$TroopsDonQ[25] += $iDonSpellsQuantity
 			$TroopsDonXP[25] += $iDonSpellsQuantity * 5
-		Case $eESpell
+		Case $eHaSpell
 			$TroopsDonQ[26] += $iDonSpellsQuantity
 			$TroopsDonXP[26] += $iDonSpellsQuantity * 5
-		Case $eHaSpell
+		Case $eESpell
 			$TroopsDonQ[27] += $iDonSpellsQuantity
 			$TroopsDonXP[27] += $iDonSpellsQuantity * 5
 		Case $eSkSpell

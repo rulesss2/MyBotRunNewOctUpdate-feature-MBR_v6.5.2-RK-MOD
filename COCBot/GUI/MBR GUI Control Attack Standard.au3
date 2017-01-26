@@ -37,6 +37,7 @@ Func chkSmartAttackRedAreaAB()
 		Next
 	EndIf
 EndFunc   ;==>chkSmartAttackRedAreaAB
+
 Func chkRandomSpeedAtkDB()
 	If GUICtrlRead($chkRandomSpeedAtkDB) = $GUI_CHECKED Then
 		;$iChkDBRandomSpeedAtk = 1
@@ -61,4 +62,26 @@ Func chkSmartAttackRedAreaDB()
 			GUICtrlSetState($i, $GUI_HIDE)
 		Next
 	EndIf
-EndFunc   ;==>chkSmartAttackRedAreaDB
+ EndFunc   ;==>chkSmartAttackRedAreaDB
+
+Func chkUnitFactor()
+	If GUICtrlRead($chkUnitFactor) = $GUI_CHECKED Then
+		$ichkUnitFactor = 1
+		GUICtrlSetState($txtUnitFactor, $GUI_ENABLE)
+	Else
+		$ichkUnitFactor = 0
+		GUICtrlSetState($txtUnitFactor, $GUI_DISABLE)
+	EndIf
+	$itxtUnitFactor = GUICtrlRead($txtUnitFactor)
+EndFunc
+
+Func chkWaveFactor()
+	If GUICtrlRead($chkWaveFactor) = $GUI_CHECKED Then
+		$ichkWaveFactor = 1
+		GUICtrlSetState($txtWaveFactor, $GUI_ENABLE)
+	Else
+		$ichkWaveFactor = 0
+		GUICtrlSetState($txtWaveFactor, $GUI_DISABLE)
+	EndIf
+	$itxtWaveFactor = GUICtrlRead($txtWaveFactor)
+EndFunc

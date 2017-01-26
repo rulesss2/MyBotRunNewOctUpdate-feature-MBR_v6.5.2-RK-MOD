@@ -33,6 +33,14 @@
    ; Multi Finger - Added by rulesss
    $iMultiFingerStyle = IniRead($config, "MultiFinger", "Select", "2")
 
+   ; Unit Wave Factor
+
+   IniReadS($ichkUnitFactor, $config, "SetSleep", "EnableUnitFactor", "1", "Int")
+   IniReadS($itxtUnitFactor, $config, "SetSleep", "UnitFactor", "10","Int")
+
+   IniReadS($ichkWaveFactor, $config, "SetSleep", "EnableWaveFactor", "1", "Int")
+   IniReadS($itxtWaveFactor, $config, "SetSleep", "WaveFactor", "100","Int")
+
    ; CSV Deployment Speed Mod-- Added by rulesss
    IniReadS($isldSelectedCSVSpeed[$DB], $config, "attack", "CSVSpeedDB", 3)
    IniReadS($isldSelectedCSVSpeed[$LB], $config, "attack", "CSVSpeedAB", 3)

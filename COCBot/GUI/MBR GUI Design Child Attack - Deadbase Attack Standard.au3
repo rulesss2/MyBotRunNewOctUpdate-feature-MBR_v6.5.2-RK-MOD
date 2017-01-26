@@ -17,7 +17,7 @@ $hGUI_DEADBASE_ATTACK_STANDARD = GUICreate("", $_GUI_MAIN_WIDTH - 195, $_GUI_MAI
 $43 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 0, -5, 280, 352, $WS_CLIPCHILDREN)
 ;GUISetBkColor($COLOR_WHITE, $hGUI_DEADBASE_ATTACK_STANDARD)
 Local $x = 25, $y = 20
-	$grpDeployDB = GUICtrlCreateGroup(GetTranslated(608,1,"Deploy"), $x - 20, $y - 20, 270, 306)
+	$grpDeployDB = GUICtrlCreateGroup(GetTranslated(608,1,"Deploy"), $x - 20, $y - 20, 270, 345)
 ;	$x -= 15
 		$lblDBmode = GUICtrlCreateLabel(GetTranslated(608,2,"Troop Drop Order"),$x, $y, 143,18,$SS_LEFT)
 		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
@@ -88,7 +88,7 @@ Local $x = 25, $y = 20
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
     $x = 25
-	$y += 60
+	$y += 15
 	$lblDBMultiFinger = GUICtrlCreateLabel(GetTranslated(671,51,"Style:"), $x - 5, $y + 3, 35, -1, $SS_RIGHT)
 	GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 	$cmbDBMultiFinger = GUICtrlCreateCombo("", $x + 35, $y, 175, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
@@ -105,4 +105,38 @@ Local $x = 25, $y = 20
 						GetTranslated(671,49,"Eight Finger Pin Wheel Spiral Left") & "|" & _
 						GetTranslated(671,50,"Eight Finger Pin Wheel Spiral Right"), GetTranslated(671,44,"Four Finger Standard"))
 	GUICtrlSetOnEvent(-1, "cmbDBMultiFinger")
+GUICtrlCreateGroup("", -99, -99, 1, 1)
+
+; Unit Wave Factor
+$x = 20
+$y = 230
+
+GUICtrlCreateGroup(GetTranslated(671, 107, "Deploy speed for all standard attack mode."), $x, $y, 230, 90)
+
+$chkUnitFactor = GUICtrlCreateCheckbox(GetTranslated(671, 108, "Modify Unit Factor"), $x+10, $y + 20, 130, 25)
+	$txtTip = GetTranslated(671, 109, "Unit deploy delay = Unit setting x Unit Factor (millisecond)")
+	_GUICtrlSetTip(-1, $txtTip)
+	GUICtrlSetOnEvent(-1, "chkUnitFactor")
+	GUICtrlSetState(-1, $GUI_UNCHECKED)
+
+$txtUnitFactor = GUICtrlCreateInput("10", $x + 180, $y + 20, 31, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+	$txtTip = GetTranslated(671, 109, "Unit deploy delay = Unit setting x Unit Factor (millisecond)")
+	_GUICtrlSetTip(-1, $txtTip)
+	GUICtrlSetState(-1, $GUI_DISABLE)
+	GUICtrlSetData(-1, 10)
+	GUICtrlSetOnEvent(-1, "chkUnitFactor")
+$y += 30
+$chkWaveFactor = GUICtrlCreateCheckbox(GetTranslated(671, 110, "Modify Wave Factor"), $x+10, $y + 20, 130, 25)
+	$txtTip = GetTranslated(671, 111, "Switch troop delay = Wave setting x Wave Factor (millisecond)")
+	_GUICtrlSetTip(-1, $txtTip)
+	GUICtrlSetOnEvent(-1, "chkWaveFactor")
+	GUICtrlSetState(-1, $GUI_UNCHECKED)
+
+$txtWaveFactor = GUICtrlCreateInput("100", $x + 180, $y + 20, 31, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+	$txtTip = GetTranslated(671, 111, "Switch troop delay = Wave setting x Wave Factor (millisecond)")
+	_GUICtrlSetTip(-1, $txtTip)
+	GUICtrlSetState(-1, $GUI_DISABLE)
+	GUICtrlSetData(-1, 100)
+	GUICtrlSetOnEvent(-1, "chkWaveFactor")
+
 GUICtrlCreateGroup("", -99, -99, 1, 1)

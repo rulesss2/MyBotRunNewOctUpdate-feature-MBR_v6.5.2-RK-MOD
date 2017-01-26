@@ -99,7 +99,6 @@ Func launchMultiFinger($listInfoDeploy, $CC, $King, $Queen, $Warden, $overrideSm
 			$unitCount[$kind] -= $dropAmount
 
 			If $dropAmount > 0 Then
-				;SetLog("Dropping " & getWaveName($waveNumber, $waveCount) & " wave of " & $dropAmount & " " & getTranslatedTroopName($kind), $COLOR_GREEN)
 
 				multiFingerDropOnEdge($multiStyle, $dropVectors, $i, $barPosition, $dropAmount, $position)
 				If _SleepAttack(SetSleep(1)) Then Return

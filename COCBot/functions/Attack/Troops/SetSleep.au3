@@ -21,6 +21,11 @@ Func SetSleep($type)
 	   $factor0 = 10
 	   $factor1 = 100
     EndIf
+
+	;Unit Wave Factor MOD
+	If $ichkUnitFactor = 1 Then $factor0 = $itxtUnitFactor
+	If $ichkWaveFactor = 1 Then $factor1 = $itxtWaveFactor
+
 	Switch $type
 		Case 0
 			If $iChkRandomspeedatk[$iMatchMode] = 1 Then

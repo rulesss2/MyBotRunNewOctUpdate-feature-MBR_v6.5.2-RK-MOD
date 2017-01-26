@@ -69,6 +69,24 @@ cmbDBMultiFinger()
 cmbDeployAB()
 cmbDeployDB()
 
+; Unit Wave Factor
+If $ichkUnitFactor = 1 Then
+	GUICtrlSetState($chkUnitFactor, $GUI_CHECKED)
+Else
+	GUICtrlSetState($chkUnitFactor, $GUI_UNCHECKED)
+EndIf
+GUICtrlSetData($txtUnitFactor, $itxtUnitFactor)
+
+If $ichkWaveFactor = 1 Then
+	GUICtrlSetState($chkWaveFactor, $GUI_CHECKED)
+Else
+	GUICtrlSetState($chkWaveFactor, $GUI_UNCHECKED)
+EndIf
+GUICtrlSetData($txtWaveFactor, $itxtWaveFactor)
+
+chkUnitFactor()
+chkWaveFactor()
+
 ; CSV Deployment Speed Mod
 GUICtrlSetData($sldSelectedSpeedDB, $isldSelectedCSVSpeed[$DB])
 GUICtrlSetData($sldSelectedSpeedAB, $isldSelectedCSVSpeed[$LB])

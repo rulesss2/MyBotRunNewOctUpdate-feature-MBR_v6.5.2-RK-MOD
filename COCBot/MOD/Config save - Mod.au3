@@ -69,6 +69,21 @@
 ; Multi Finger - Added by rulesss
 IniWrite($config, "MultiFinger", "Select", $iMultiFingerStyle)
 
+; Unit Wave Factor
+If GUICtrlRead($chkUnitFactor) = $GUI_CHECKED Then
+	IniWriteS($config, "SetSleep", "EnableUnitFactor", 1)
+Else
+	IniWriteS($config, "SetSleep", "EnableUnitFactor", 0)
+EndIf
+IniWriteS($config, "SetSleep", "UnitFactor", GUICtrlRead($txtUnitFactor))
+
+If GUICtrlRead($chkWaveFactor) = $GUI_CHECKED Then
+	IniWriteS($config, "SetSleep", "EnableWaveFactor", 1)
+Else
+	IniWriteS($config, "SetSleep", "EnableWaveFactor", 0)
+EndIf
+IniWriteS($config, "SetSleep", "WaveFactor", GUICtrlRead($txtWaveFactor))
+
 ; CSV Deployment Speed Mod
 IniWriteS($config, "attack", "CSVSpeedDB", $isldSelectedCSVSpeed[$DB])
 IniWriteS($config, "attack", "CSVSpeedAB", $isldSelectedCSVSpeed[$LB])
@@ -236,6 +251,7 @@ IniWrite($config, "global", "chdelay", GUICtrlRead($chkchatdelay))
 	EndIf
 	IniWrite($config, "profiles", "cmbTrophyMinProfile", _GUICtrlComboBox_GetCurSel($cmbTrophyMinProfile))
 	IniWrite($config, "profiles", "txtMinTrophyAmount", GUICtrlRead($txtMinTrophyAmount))
+
 	;Background by Kychera
 	If GUICtrlRead($chkPic) = $GUI_CHECKED Then
 		$ichkPic = 1

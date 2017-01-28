@@ -296,20 +296,6 @@
 #include "functions\BotHumanization\ClanActions.au3"
 #include "functions\BotHumanization\ClanWarActions.au3"
 
-;OLD CODE
-
-;#include "functions\Image Search\THSearch.au3"
-;#include "functions\Other\MBRFunc.au3"
-;#include "functions\CreateArmy\Train.au3"
-;#include "functions\CreateArmy\Spell.au3"
-;#include "functions\CreateArmy\getArmyTroopCount.au3" we don't use this anymore
-;#include "functions\CreateArmy\_TrainMoveBtn.au3"
-;#include "functions\CreateArmy\isBarrack.au3"
-;#include "functions\CreateArmy\BarracksStatus.au3"
-;#include "functions\Village\LocateBarrack.au3"
-;#include "functions\Village\LocateSpell.au3"
-;#include "functions\Image Search\checkTownhall.au3"
-;#include "functions\Village\ClanLevel.au3"
 
 #include "functions\Village\SuperXP.au3"
 

@@ -95,7 +95,7 @@ Func CheckCamp($NeedOpenArmy = False, $CloseCheckCamp = False)
 	If $iChkQuickArmy1 = 1 Then $Num = 1
 	If $iChkQuickArmy2 = 1 Then $Num = 2
 	If $iChkQuickArmy3 = 1 Then $Num = 3
-    If GUICtrlRead($hRadio_Army12) = $GUI_CHECKED Then			;============= Adding QuickTrainCombo - DEMEN
+	If GUICtrlRead($hRadio_Army12) = $GUI_CHECKED Then			;============= Adding QuickTrainCombo - DEMEN
 		$Num = 1
 		$Num2 = 2
 	EndIf
@@ -105,6 +105,7 @@ Func CheckCamp($NeedOpenArmy = False, $CloseCheckCamp = False)
 		$Num2 = 2
 		$Num3 = 3
 	EndIf
+
 	Local $ReturnCamp = TestMaxCamp()
 
 	If $ReturnCamp = 1 Then
@@ -659,16 +660,10 @@ Func CompareCCSpellWithGUI($CCSpell1, $CCSpell2, $iMaxCCSpell)
 			If $debugsetlogTrain Then Setlog("[1][" & $txt & "] GUI Spell is " & $sCCSpell, $COLOR_DEBUG)
 
 			; If the Spell1 Match with ANY or with GUI Name than return 0 to remove
-			If ($sCCSpell = $CCSpell1[0][0] Or $sCCSpell = "Any") And $CCSpell1[0][3] = 1 Then
-				; Is not to remove [0,0] Slot 1
-				$aShouldRemove[0] = 0
-			ElseIf ($sCCSpell = $CCSpell1[0][0] Or $sCCSpell = "Any") And $CCSpell1[0][3] = 2 And ($CCSpell1[0][0] <> $CCSpell2[0][0] or $CCSpell2[0][0] <> "Any") then
-				; Spell is the correct BUT exist 2 and doesn't match with Slot 2
-				; Remove one Spell from Slot 1
-				$aShouldRemove[0] = 1
+			If ($sCCSpell = $CCSpell1[0][0] Or $sCCSpell = "Any") And $CCSpell1[0][3] >= $iMaxCCSpell Then
+				$aShouldRemove[0] = 0 ; Is not to remove [0,0] Slot 1
 			Else
-				; Is to remove all coz doesn't match the name of the Spells on Slot 1
-				$aShouldRemove[0] = $CCSpell1[0][3] ; $CCSpell1[0][3] is the quantity , 1 or 2
+				$aShouldRemove[0] = $CCSpell1[0][3] ; is to remove coz doesn't match the name of the Spells on Slot 1 ($aShouldRemove[0]) $CCSpell1[0][3] is the quantity , 1 or 2
 			EndIf
 
 			If $bCheckCCSpell2 Then ; Castle Spells capacity is 2

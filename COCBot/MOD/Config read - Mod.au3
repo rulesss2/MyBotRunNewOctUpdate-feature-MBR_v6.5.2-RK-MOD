@@ -120,3 +120,22 @@ $itxtMinTrophyAmount = IniRead($config, "profiles", "txtMinTrophyAmount", "1000"
 ;Background by Kychera
 $iBackGr = IniRead($config, "background", "BackGr", "0")
 $ichkPic = IniRead($config, "background", "chkPic", "1")
+
+; Smart Upgrade
+$ichkSmartUpgrade = IniRead($config, "upgrade", "chkSmartUpgrade", "0")
+$ichkIgnoreTH = IniRead($config, "upgrade", "chkIgnoreTH", "0")
+$ichkIgnoreKing = IniRead($config, "upgrade", "chkIgnoreKing", "0")
+$ichkIgnoreQueen = IniRead($config, "upgrade", "chkIgnoreQueen", "0")
+$ichkIgnoreWarden = IniRead($config, "upgrade", "chkIgnoreWarden", "0")
+$ichkIgnoreCC = IniRead($config, "upgrade", "chkIgnoreCC", "0")
+$ichkIgnoreLab = IniRead($config, "upgrade", "chkIgnoreLab", "0")
+$ichkIgnoreBarrack = IniRead($config, "upgrade", "chkIgnoreBarrack", "0")
+$ichkIgnoreDBarrack = IniRead($config, "upgrade", "chkIgnoreDBarrack", "0")
+$ichkIgnoreFactory = IniRead($config, "upgrade", "chkIgnoreFactory", "0")
+$ichkIgnoreDFactory = IniRead($config, "upgrade", "chkIgnoreDFactory", "0")
+$ichkIgnoreGColl = IniRead($config, "upgrade", "chkIgnoreGColl", "0")
+$ichkIgnoreEColl = IniRead($config, "upgrade", "chkIgnoreEColl", "0")
+$ichkIgnoreDColl = IniRead($config, "upgrade", "chkIgnoreDColl", "0")
+$iSmartMinGold = IniRead($config, "upgrade", "SmartMinGold", "0")
+$iSmartMinElixir = IniRead($config, "upgrade", "SmartMinElixir", "0")
+$iSmartMinDark = IniRead($config, "upgrade", "SmartMinDark", "0")

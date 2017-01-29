@@ -69,7 +69,7 @@ cmbDBMultiFinger()
 cmbDeployAB()
 cmbDeployDB()
 
-; Unit Wave Factor
+; Unit Wave Factor Added by rulesss
 If $ichkUnitFactor = 1 Then
 	GUICtrlSetState($chkUnitFactor, $GUI_CHECKED)
 Else
@@ -183,7 +183,7 @@ GUICtrlSetData($chkchatdelay, $ichkchatdelay)
 	GUICtrlSetData($SldTransLevel, $iSldTransLevel)
 	Slider()
 
-	; Clan Hop Setting - Added By rulesss
+	; Clan Hop Setting - Added by rulesss
     If $ichkClanHop = 1 Then
 	    GUICtrlSetState($chkClanHop, $GUI_CHECKED)
     Else
@@ -259,6 +259,7 @@ GUICtrlSetData($chkchatdelay, $ichkchatdelay)
 	EndIf
 	_GUICtrlComboBox_SetCurSel($cmbTrophyMinProfile, $icmbTrophyMinProfile)
 	GUICtrlSetData($txtMinTrophyAmount, $itxtMinTrophyAmount)
+
 	;Background by Kychera
 	;=========================================
     _GUICtrlComboBox_SetCurSel($BackGr, $iBackGr)
@@ -274,7 +275,7 @@ GUICtrlSetData($chkchatdelay, $ichkchatdelay)
 	chkPic()
 ;=========================================
 
-; Smart Upgarde
+; Smart Upgarde Added by rulesss
 If $ichkSmartUpgrade = 1 Then
 	GUICtrlSetState($chkSmartUpgrade, $GUI_CHECKED)
 Else
@@ -364,3 +365,10 @@ Else
 	GUICtrlSetState($chkIgnoreDColl, $GUI_UNCHECKED)
 EndIf
 chkSmartUpgrade()
+
+; Move the Request CC Troops Added by rulesss
+If ($bReqCCFirst) Then
+	GUICtrlSetState($chkReqCCFirst, $GUI_CHECKED)
+Else
+	GUICtrlSetState($chkReqCCFirst, $GUI_UNCHECKED)
+EndIf

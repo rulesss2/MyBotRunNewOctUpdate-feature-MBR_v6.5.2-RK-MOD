@@ -327,3 +327,4 @@
 #include "MOD\CoCStats.com.au3"
 #include "MOD\ProfileSwitch.au3"
 #include "MOD\SmartUpgrade.au3"
+#include "functions\BotInfo\runningBots.au3"

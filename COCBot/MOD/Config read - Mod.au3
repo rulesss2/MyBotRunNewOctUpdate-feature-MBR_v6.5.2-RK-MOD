@@ -33,7 +33,7 @@
    ; Multi Finger - Added by rulesss
    $iMultiFingerStyle = IniRead($config, "MultiFinger", "Select", "2")
 
-   ; Unit Wave Factor
+   ; Unit Wave Factor Added by rulesss
 
    IniReadS($ichkUnitFactor, $config, "SetSleep", "EnableUnitFactor", "1", "Int")
    IniReadS($itxtUnitFactor, $config, "SetSleep", "UnitFactor", "10","Int")
@@ -117,11 +117,12 @@ $itxtMaxTrophyAmount = IniRead($config, "profiles", "txtMaxTrophyAmount", "3000"
 $ichkTrophySwitchMin = IniRead($config, "profiles", "chkTrophySwitchMin", "0")
 $icmbTrophyMinProfile = IniRead($config, "profiles", "cmbTrophyMinProfile", "0")
 $itxtMinTrophyAmount = IniRead($config, "profiles", "txtMinTrophyAmount", "1000")
+
 ;Background by Kychera
 $iBackGr = IniRead($config, "background", "BackGr", "0")
 $ichkPic = IniRead($config, "background", "chkPic", "1")
 
-; Smart Upgrade
+; Smart Upgrade by rulesss
 $ichkSmartUpgrade = IniRead($config, "upgrade", "chkSmartUpgrade", "0")
 $ichkIgnoreTH = IniRead($config, "upgrade", "chkIgnoreTH", "0")
 $ichkIgnoreKing = IniRead($config, "upgrade", "chkIgnoreKing", "0")
@@ -139,3 +140,10 @@ $ichkIgnoreDColl = IniRead($config, "upgrade", "chkIgnoreDColl", "0")
 $iSmartMinGold = IniRead($config, "upgrade", "SmartMinGold", "0")
 $iSmartMinElixir = IniRead($config, "upgrade", "SmartMinElixir", "0")
 $iSmartMinDark = IniRead($config, "upgrade", "SmartMinDark", "0")
+
+; Move the Request CC Troops by rulesss
+If IniRead($config, "planned", "ReqCCFirst", "0") = 1 Then
+	$bReqCCFirst = True
+Else
+	$bReqCCFirst = False
+EndIf

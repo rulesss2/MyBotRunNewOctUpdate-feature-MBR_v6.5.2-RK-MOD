@@ -159,8 +159,24 @@ Global $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24
 Global $25, $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42, $43, $44, $45, $46, $47, $48, $49, $50, $51, $52, $53, $54, $55
 Global $ichkPic = 1
 
-; unit wave factor
+; unit wave factor Added by rulesss
 Global $ichkUnitFactor
 Global $itxtUnitFactor
 Global $ichkWaveFactor
 Global $itxtWaveFactor
+
+; Smart Upgrade Added by rulesss
+Global $ichkSmartUpgrade
+Global $ichkIgnoreTH, $ichkIgnoreKing, $ichkIgnoreQueen, $ichkIgnoreWarden, $ichkIgnoreCC, $ichkIgnoreLab
+Global $ichkIgnoreBarrack, $ichkIgnoreDBarrack, $ichkIgnoreFactory, $ichkIgnoreDFactory, $ichkIgnoreGColl, $ichkIgnoreEColl, $ichkIgnoreDColl
+Global $iSmartMinGold, $iSmartMinElixir, $iSmartMinDark
+Global $sBldgText, $sBldgLevel, $aString
+Global $upgradeName[3] = ["", "", ""]
+Global $UpgradeCost
+Global $TypeFound = 0
+Global $SmartMinGold, $SmartMinElixir, $SmartMinDark
+Global $UpgradeDuration
+Global $canContinueLoop = True
+
+; move the Request CC Troops Added by rulesss
+Global $bReqCCFirst = False

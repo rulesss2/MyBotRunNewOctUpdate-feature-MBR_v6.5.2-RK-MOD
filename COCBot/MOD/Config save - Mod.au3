@@ -69,7 +69,7 @@
 ; Multi Finger - Added by rulesss
 IniWrite($config, "MultiFinger", "Select", $iMultiFingerStyle)
 
-; Unit Wave Factor
+; Unit Wave Factor Added by rulesss
 If GUICtrlRead($chkUnitFactor) = $GUI_CHECKED Then
 	IniWriteS($config, "SetSleep", "EnableUnitFactor", 1)
 Else
@@ -261,3 +261,29 @@ IniWrite($config, "global", "chdelay", GUICtrlRead($chkchatdelay))
 	IniWriteS($config, "background", "chkPic", $ichkPic)
 	$iBackGr = _GUICtrlComboBox_GetCurSel($BackGr)
 	IniWriteS($config, "background", "BackGr", $iBackGr)
+
+	; Smart Upgrade
+    IniWrite($config, "upgrade", "chkSmartUpgrade", $ichkSmartUpgrade)
+    IniWrite($config, "upgrade", "chkIgnoreTH", $ichkIgnoreTH)
+    IniWrite($config, "upgrade", "chkIgnoreKing", $ichkIgnoreKing)
+    IniWrite($config, "upgrade", "chkIgnoreQueen", $ichkIgnoreQueen)
+    IniWrite($config, "upgrade", "chkIgnoreWarden", $ichkIgnoreWarden)
+    IniWrite($config, "upgrade", "chkIgnoreCC", $ichkIgnoreCC)
+    IniWrite($config, "upgrade", "chkIgnoreLab", $ichkIgnoreLab)
+    IniWrite($config, "upgrade", "chkIgnoreBarrack", $ichkIgnoreBarrack)
+    IniWrite($config, "upgrade", "chkIgnoreDBarrack", $ichkIgnoreDBarrack)
+    IniWrite($config, "upgrade", "chkIgnoreFactory", $ichkIgnoreFactory)
+    IniWrite($config, "upgrade", "chkIgnoreDFactory", $ichkIgnoreDFactory)
+    IniWrite($config, "upgrade", "chkIgnoreGColl", $ichkIgnoreGColl)
+    IniWrite($config, "upgrade", "chkIgnoreEColl", $ichkIgnoreEColl)
+    IniWrite($config, "upgrade", "chkIgnoreDColl", $ichkIgnoreDColl)
+    IniWrite($config, "upgrade", "SmartMinGold", GUICtrlRead($SmartMinGold))
+    IniWrite($config, "upgrade", "SmartMinElixir", GUICtrlRead($SmartMinElixir))
+    IniWrite($config, "upgrade", "SmartMinDark", GUICtrlRead($SmartMinDark))
+
+	; Move the Request CC Troops function to the beginning of the run loop
+    If GUICtrlRead($chkReqCCFirst) = $GUI_CHECKED Then
+	    IniWriteS($config, "planned", "ReqCCFirst", 1)
+    Else
+	    IniWriteS($config, "planned", "ReqCCFirst", 0)
+    EndIf

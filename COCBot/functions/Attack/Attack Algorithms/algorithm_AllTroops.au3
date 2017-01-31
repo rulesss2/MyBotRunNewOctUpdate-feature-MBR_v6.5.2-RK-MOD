@@ -273,6 +273,8 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 	If $iChkDeploySettings[$iMatchMode] = 4 And  $iMatchMode = $DB Then
 		SetLog(_PadStringCenter("Multi Finger Attack", 50, "="), $COLOR_BLUE)
 		launchMultiFinger($listInfoDeploy, $CC, $King, $Queen, $Warden)
+		chkUnitFactor()
+		chkWaveFactor()
 	Else
 		SetLog(_PadStringCenter("Standard Attack", 50, "="), $COLOR_BLUE)
 		LaunchTroop2($listInfoDeploy, $CC, $King, $Queen, $Warden)

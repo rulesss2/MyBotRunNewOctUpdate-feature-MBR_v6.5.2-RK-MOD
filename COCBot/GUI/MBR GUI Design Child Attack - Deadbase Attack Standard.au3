@@ -113,7 +113,7 @@ $y = 230
 
 GUICtrlCreateGroup(GetTranslated(671, 107, "Deploy speed for all standard attack mode."), $x, $y, 230, 90)
 
-$chkUnitFactor = GUICtrlCreateCheckbox(GetTranslated(671, 108, "Modify Unit Factor"), $x+10, $y + 20, 130, 25)
+$chkUnitFactor = _GUICtrlCreateCheckbox(GetTranslated(671, 108, "Modify Unit Factor"), $x+10, $y + 10, 130, 25)
 	$txtTip = GetTranslated(671, 109, "Unit deploy delay = Unit setting x Unit Factor (millisecond)")
 	_GUICtrlSetTip(-1, $txtTip)
 	GUICtrlSetOnEvent(-1, "chkUnitFactor")
@@ -126,7 +126,7 @@ $txtUnitFactor = GUICtrlCreateInput("10", $x + 180, $y + 20, 31, 20, BitOR($GUI_
 	GUICtrlSetData(-1, 10)
 	GUICtrlSetOnEvent(-1, "chkUnitFactor")
 $y += 30
-$chkWaveFactor = GUICtrlCreateCheckbox(GetTranslated(671, 110, "Modify Wave Factor"), $x+10, $y + 20, 130, 25)
+$chkWaveFactor = _GUICtrlCreateCheckbox(GetTranslated(671, 110, "Modify Wave Factor"), $x+10, $y + 10, 130, 25)
 	$txtTip = GetTranslated(671, 111, "Switch troop delay = Wave setting x Wave Factor (millisecond)")
 	_GUICtrlSetTip(-1, $txtTip)
 	GUICtrlSetOnEvent(-1, "chkWaveFactor")

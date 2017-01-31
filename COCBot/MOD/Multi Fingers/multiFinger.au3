@@ -226,11 +226,15 @@ Func cmbDBMultiFinger()
 	$iChkDeploySettings[$DB] = _GUICtrlComboBox_GetCurSel($cmbDeployDB)
 	$iMultiFingerStyle = _GUICtrlComboBox_GetCurSel($cmbDBMultiFinger)
 	If $iChkDeploySettings[$DB] = 4 Then
-		GUICtrlSetState($lblDBMultiFinger, $GUI_SHOW)
-		GUICtrlSetState($cmbDBMultiFinger, $GUI_SHOW)
+	     For $i = $lblDBMultiFinger To $txtWaveFactor
+			GUICtrlSetState($i, $GUI_SHOW)
+	     Next
+		 
 	Else
-		GUICtrlSetState($lblDBMultiFinger, $GUI_HIDE)
-		GUICtrlSetState($cmbDBMultiFinger, $GUI_HIDE)
+	     For $i = $lblDBMultiFinger To $txtWaveFactor
+			GUICtrlSetState($i, $GUI_HIDE)
+	     Next     
+		
 	EndIf
 EndFunc   ;==>cmbDBMultiFinger
 

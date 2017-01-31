@@ -29,8 +29,12 @@ Func ConvertOCRTime($WhereRead, $ToConvert)
 			If $debugsetlogTrain = 1 Or $debugSetlog = 1 Then SetLog($WhereRead & ": Bad OCR string", $COLOR_ERROR)
 		EndIf
 		If $ichkCloseWaitTrain = 1 and GUICtrlRead($DBcheck) = 1 and GUICtrlRead($chkDBActivateCamps) = 1 Then
-		;SetLog($WhereRead & " time: " & StringFormat("%.2f", $iRemainTimer) & " min" & " ( Time full army )", $COLOR_INFO)
-		SetLog($WhereRead & " time: " & (StringFormat("%.2f", $iRemainTimer) - (StringFormat("%.2f", $iRemainTimer)*(100-$iEnableAfterArmyCamps[$DB])/100)) & " min" & " ( Time " & $iEnableAfterArmyCamps[$DB] & "% )", $COLOR_INFO)
+		;getArmyCapacity()
+		If Int($CurCamp / $TotalCamp * 100) <= $iEnableAfterArmyCamps[$DB] Then
+		SetLog($WhereRead & " time: " & StringFormat("%.2f", ($iRemainTimer * $iEnableAfterArmyCamps[$DB]/100 - $iRemainTimer * Int($CurCamp / $TotalCamp * 100)/100)) & " min" & " ( Time full army )", $COLOR_INFO)		
+		Else
+		SetLog("Army 80%", $COLOR_INFO)
+		EndIf
 		Else
 		SetLog($WhereRead & " time: " & StringFormat("%.2f", $iRemainTimer) & " min" & " ( Time full army )", $COLOR_INFO)
 		EndIf

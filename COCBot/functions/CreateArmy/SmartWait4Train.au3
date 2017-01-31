@@ -94,7 +94,7 @@ Func SmartWait4Train()
 		If $aTimeTrain[0] > 0 Then
 			If $ibtnCloseWaitRandom = 1 Then
 				$aTimeTrain[0] += $aTimeTrain[0] * $RandomAddPercent ; add some random percent
-			EndIf
+			EndIf			  
 			$iTrainWaitCloseFlag = BitOR($iTrainWaitCloseFlag, $TRAINWAIT_TROOP)
 		EndIf
 		If $debugsetlogTrain = 1 Or $debugSetlog = 1 Then Setlog("$iTrainWaitCloseFlag:" & $iTrainWaitCloseFlag & ", troop time = " & StringFormat("%.2f", $aTimeTrain[0]), $COLOR_DEBUG)
@@ -212,7 +212,7 @@ Func SmartWait4Train()
 				If _Sleep($iDelaycheckArmyCamp4) Then Return
 				Setlog("No smart troop wait needed", $COLOR_SUCCESS)
 				Return
-			Else
+			Else			 
 				$iTrainWaitTime = $aTimeTrain[0] ; use troop time
 			EndIf
 		Case Else
@@ -269,9 +269,14 @@ Func SmartWait4Train()
 			EndIf
 
 		ElseIf ($ichkCloseWaitTrain = 1 And $aTimeTrain[0] > 0) Or ($ichkCloseWaitSpell = 1 And $aTimeTrain[1] > 0) Or ($ichkCloseWaitHero = 1 And $aTimeTrain[2] > 0) Then
-			;when no shield close game for $iTrainWaitTime time
-			Setlog("Smart Wait time = " & StringFormat("%.2f", $iTrainWaitTime / 60) & " Minutes", $COLOR_INFO)
-			UniversalCloseWaitOpenCoC($iTrainWaitTime * 1000, "SmartWait4TrainNoShield_", $StopEmulator)
+			;when no shield close game for $iTrainWaitTime time			
+			If GUICtrlRead($DBcheck) = 1 and GUICtrlRead($chkDBActivateCamps) = 1 Then
+			  Setlog("Smart Wait time = " & StringFormat("%.2f", ($iTrainWaitTime*$iEnableAfterArmyCamps[$DB]/100 -($iTrainWaitTime*Int($CurCamp / $TotalCamp * 100)/100))/ 60) & " Minutes", $COLOR_INFO)			 
+			  UniversalCloseWaitOpenCoC(($iTrainWaitTime * $iEnableAfterArmyCamps[$DB]/100 - $iTrainWaitTime * Int($CurCamp / $TotalCamp * 100)/100)* 1000, "SmartWait4TrainNoShield_", $StopEmulator)
+			Else
+			  Setlog("Smart Wait time = " & StringFormat("%.2f", $iTrainWaitTime / 60) & " Minutes", $COLOR_INFO)
+			  UniversalCloseWaitOpenCoC($iTrainWaitTime * 1000, "SmartWait4TrainNoShield_", $StopEmulator)
+			EndIf
 			$Restart = True ; Set flag to exit idle loop to deal with potential user changes to GUI
 			For $i = 0 To UBound($aTimeTrain) - 1 ; reset remaining time array
 				$aTimeTrain[$i] = 0
@@ -283,7 +288,7 @@ Func SmartWait4Train()
 		EndIf
 	ElseIf $iTrainWaitTime < $MinimumTimeClose Then
 		Setlog("Smart Wait Time < Minimum Time Required To Close [" & ($MinimumTimeClose / 60) & " Min]", $COLOR_INFO)
-		Setlog("Wait Train Time = " & StringFormat("%.2f", $iTrainWaitTime / 60) & " Minutes", $COLOR_INFO)
+		Setlog("Wait Train Time = " & StringFormat("%.2f", ($iTrainWaitTime*$iEnableAfterArmyCamps[$DB]/100 -($iTrainWaitTime*Int($CurCamp / $TotalCamp * 100)/100))/ 60) & " Minutes", $COLOR_INFO)
 		Setlog("Not Close CoC Just Wait In The Main Screen", $COLOR_INFO)
 		; Just wait without close the CoC
 		_SleepStatus($iTrainWaitTime * 1000)

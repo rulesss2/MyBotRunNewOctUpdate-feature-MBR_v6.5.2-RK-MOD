@@ -32,7 +32,7 @@ Func getArmyTroopTime($bOpenArmyWindow = False, $bCloseArmyWindow = False)
 	EndIf
 	Local $sResultTroops = getRemainTrainTimer(756, 169) ;Get time via OCR.
 	$aTimeTrain[0] = ConvertOCRTime("Troops", $sResultTroops)  ; update global array
-
+	
 	If $bCloseArmyWindow = True Then
 		ClickP($aAway, 1, 0, "#0000") ;Click Away
 		If _Sleep($iDelaycheckArmyCamp4) Then Return

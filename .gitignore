@@ -2,13 +2,9 @@
 
 # Global Files
 /.project
-*.ini
 *.log
 *.orig
-*.png
-*.jpg
 *.exe
-*.bmp
 *.zip
 
 # Global Folders

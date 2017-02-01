@@ -271,8 +271,8 @@ Func SmartWait4Train()
 		ElseIf ($ichkCloseWaitTrain = 1 And $aTimeTrain[0] > 0) Or ($ichkCloseWaitSpell = 1 And $aTimeTrain[1] > 0) Or ($ichkCloseWaitHero = 1 And $aTimeTrain[2] > 0) Then
 			;when no shield close game for $iTrainWaitTime time			
 			If GUICtrlRead($DBcheck) = 1 and GUICtrlRead($chkDBActivateCamps) = 1 Then
-			  Setlog("Smart Wait time = " & StringFormat("%.2f", ($iTrainWaitTime*$iEnableAfterArmyCamps[$DB]/100 -($iTrainWaitTime*Int($CurCamp / $TotalCamp * 100)/100))/ 60) & " Minutes", $COLOR_INFO)			 
-			  UniversalCloseWaitOpenCoC(($iTrainWaitTime * $iEnableAfterArmyCamps[$DB]/100 - $iTrainWaitTime * Int($CurCamp / $TotalCamp * 100)/100)* 1000, "SmartWait4TrainNoShield_", $StopEmulator)
+			  Setlog("Smart Wait time = " & StringFormat("%.2f", ($iTrainWaitTime*$iEnableAfterArmyCamps[$DB]/100 -(($iTrainWaitTime*$iEnableAfterArmyCamps[$DB]/100)*$CurCamp / $TotalCamp * 100/100))/ 60) & " Minutes", $COLOR_INFO)			 
+			  UniversalCloseWaitOpenCoC(($iTrainWaitTime * $iEnableAfterArmyCamps[$DB]/100 - ($iTrainWaitTime * $iEnableAfterArmyCamps[$DB]/100) * $CurCamp / $TotalCamp * 100/100)* 1000, "SmartWait4TrainNoShield_", $StopEmulator)
 			Else
 			  Setlog("Smart Wait time = " & StringFormat("%.2f", $iTrainWaitTime / 60) & " Minutes", $COLOR_INFO)
 			  UniversalCloseWaitOpenCoC($iTrainWaitTime * 1000, "SmartWait4TrainNoShield_", $StopEmulator)
@@ -288,7 +288,7 @@ Func SmartWait4Train()
 		EndIf
 	ElseIf $iTrainWaitTime < $MinimumTimeClose Then
 		Setlog("Smart Wait Time < Minimum Time Required To Close [" & ($MinimumTimeClose / 60) & " Min]", $COLOR_INFO)
-		Setlog("Wait Train Time = " & StringFormat("%.2f", ($iTrainWaitTime*$iEnableAfterArmyCamps[$DB]/100 -($iTrainWaitTime*Int($CurCamp / $TotalCamp * 100)/100))/ 60) & " Minutes", $COLOR_INFO)
+		Setlog("Wait Train Time = " & StringFormat("%.2f", ($iTrainWaitTime*$iEnableAfterArmyCamps[$DB]/100 -(($iTrainWaitTime*$iEnableAfterArmyCamps[$DB]/100)*$CurCamp / $TotalCamp * 100/100))/ 60) & " Minutes", $COLOR_INFO)
 		Setlog("Not Close CoC Just Wait In The Main Screen", $COLOR_INFO)
 		; Just wait without close the CoC
 		_SleepStatus($iTrainWaitTime * 1000)

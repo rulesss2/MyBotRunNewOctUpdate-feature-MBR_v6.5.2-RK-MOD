@@ -211,8 +211,6 @@ $iGUIEnabled = 1
 ;~ InitializeVariables();initialize variables used in extrawindows
 ;~ CheckVersion() ; check latest version on mybot.run site
 
-;~ Update profile to write config for SwitchAcc Mode - DEMEN
-btnUpdateProfile()
 
 
 $sMsg = GetTranslated(500, 9, "Android Shield not available for %s", @OSVersion)
@@ -259,9 +257,9 @@ WEnd
 
 Func runBot() ;Bot that runs everything in order
 
-	If $ichkSwitchAcc = 1 And $bReMatchAcc = True Then 				; SwitchAcc
-		$nCurProfile = _GUICtrlCombobox_GetCurSel($cmbProfile) + 1
-		Setlog("Rematching Profile [" & $nCurProfile &"] - " & $ProfileList[$nCurProfile] & " (CoC Acc. " & $aMatchProfileAcc[$nCurProfile-1] & ")")
+	If $ichkSwitchAcc = 1 And $bReMatchAcc = True Then ; SwitchAcc - DEMEN
+		$nCurProfile = _GUICtrlComboBox_GetCurSel($cmbProfile) + 1
+		Setlog("Rematching Profile [" & $nCurProfile & "] - " & $ProfileList[$nCurProfile] & " (CoC Acc. " & $aMatchProfileAcc[$nCurProfile - 1] & ")")
 		SwitchCoCAcc()
 		$bReMatchAcc = False
 	EndIf
@@ -397,7 +395,8 @@ Func runBot() ;Bot that runs everything in order
 				If _Sleep($iDelayRunBot3) Then Return
 				If $Restart = True Then ContinueLoop
 
-				If $ichkSwitchAcc = 1 And $aProfileType[$nCurProfile-1] = 2 Then checkSwitchAcc()  		;  Switching to active account after donation - SwitchAcc
+				If $ichkSwitchAcc = 1 And $aProfileType[$nCurProfile - 1] = 2 Then checkSwitchAcc() ;  Switching to active account after donation - SwitchAcc for  - DEMEN
+
 
 				Idle()
 				;$fullArmy1 = $fullArmy
@@ -597,15 +596,21 @@ Func Idle() ;Sequence that runs until Full Army
 		If $iChkSnipeWhileTrain = 1 Then SnipeWhileTrain() ;snipe while train
 
 		If $CommandStop = -1 Then ; Check if closing bot/emulator while training and not in halt mode
-			If $ichkSwitchAcc = 1 Then				; SwitchAcc - DEMEN
-				checkSwitchAcc()					; SwitchAcc - DEMEN
-			Else									; SwitchAcc - DEMEN
+			If $ichkSwitchAcc = 1 Then ; SwitchAcc - DEMEN
+				checkSwitchAcc() ; SwitchAcc - DEMEN
+			Else ; SwitchAcc - DEMEN									
 				SmartWait4Train()
 			EndIf
 			If $Restart = True Then ExitLoop ; if smart wait activated, exit to runbot in case user adjusted GUI or left emulator/bot in bad state
 		EndIf
 
 	WEnd
+    
+    If $ichkSwitchAcc = 1 Then	;	Force switching account when reach attacklimit - SwitchAcc - DEMEN
+		$bReachAttackLimit = ($iAttackedCountSwitch <= $iAttackedVillageCount[0] + $iAttackedVillageCount[1] + $iAttackedVillageCount[2] +$iAttackedVillageCount[3] - 2)
+		If $bReachAttackLimit Then CheckSwitchAcc()
+	EndIf
+
 EndFunc   ;==>Idle
 
 Func AttackMain() ;Main control for attack functions

@@ -36,11 +36,9 @@
 				For $j = $aStartHide[$i] To $aEndHide[$i]
 				   GUICtrlSetState($j, $GUI_SHOW)
 				Next
-
 				Switch $aProfileType[$i]
 					Case 1
 						GUICtrlSetData($grpVillageAcc[$i], "Village: " & $ProfileList[$i+1] & " (Active)")
-
 					Case 2
 						GUICtrlSetData($grpVillageAcc[$i], "Village: " & $ProfileList[$i+1] & " (Donate)")
 						For $j = $aSecondHide[$i] To $aEndHide[$i]
@@ -60,6 +58,14 @@
 			For $j = $lblProfileNo[$i] To $cmbProfileType[$i]
 				GUICtrlSetState($j, $GUI_HIDE)
 			Next
+
+			; Update stats GUI
+			If $i <= 3 Then
+				For $j = $aStartHide[$i] To $aEndHide[$i]
+				   GUICtrlSetState($j, $GUI_HIDE)
+				Next
+			EndIf
+
 		EndIf
 	Next
 
@@ -123,23 +129,24 @@ Func MatchProfileAcc($Num)
 	   MsgBox($MB_OK, "SwitchAcc Mode", "Account [" & _GUICtrlComboBox_GetCurSel($cmbAccountNo[$Num]) & "] exceeds Total Account declared" ,30, $hGUI_BOT)
 	   _GUICtrlComboBox_SetCurSel($cmbAccountNo[$Num], -1)
 	   _GUICtrlComboBox_SetCurSel($cmbProfileType[$Num], -1)
-	   saveConfig()
+	   btnUpdateProfile()
 	EndIf
 
 	If _GUICtrlComboBox_GetCurSel($cmbAccountNo[$Num]) >= 0 Then
 		If _ArraySearch($aMatchProfileAcc,_GUICtrlComboBox_GetCurSel($cmbAccountNo[$Num])+1) <> -1 Then
-		   MsgBox($MB_OK, "SwitchAcc Mode", "Account [" & _GUICtrlComboBox_GetCurSel($cmbAccountNo[$Num])+1 & "] has been assigned to Profile ["_
+		   MsgBox($MB_OK, "SwitchAcc Mode", "Account [" & _GUICtrlComboBox_GetCurSel($cmbAccountNo[$Num])+1 & "] has been assigned to Profile [" _
 				& _ArraySearch($aMatchProfileAcc,_GUICtrlComboBox_GetCurSel($cmbAccountNo[$Num])+1) + 1 & "]" ,30, $hGUI_BOT)
 		   _GUICtrlComboBox_SetCurSel($cmbAccountNo[$Num], -1)
 		   _GUICtrlComboBox_SetCurSel($cmbProfileType[$Num], -1)
-		   saveConfig()
+		   btnUpdateProfile()
 		ElseIf UBound(_ArrayFindAll($aMatchProfileAcc,_GUICtrlComboBox_GetCurSel($cmbAccountNo[$Num])+1)) > 1 Then
 		   MsgBox($MB_OK, "SwitchAcc Mode", "Account [" & _GUICtrlComboBox_GetCurSel($cmbAccountNo[$Num]) & "] has been assigned to another profile" ,30, $hGUI_BOT)
 		   _GUICtrlComboBox_SetCurSel($cmbAccountNo[$Num], -1)
 		   _GUICtrlComboBox_SetCurSel($cmbProfileType[$Num], -1)
-		   saveConfig()
+		   btnUpdateProfile()
 		Else
 			_GUICtrlComboBox_SetCurSel($cmbProfileType[$Num], 0)
+			btnUpdateProfile()
 		EndIf
 
 	EndIf
@@ -150,6 +157,9 @@ Func btnLocateAcc()
 
 	Local $AccNo = _GUICtrlComboBox_GetCurSel($cmbLocateAcc) + 1
 	Local $stext, $MsgBox
+
+	Local $wasRunState = $RunState
+	$RunState = True
 
 	SetLog("Locating Y-Coordinate of CoC Account No. " & $AccNo & ", please wait...", $COLOR_BLUE)
 	WinGetAndroidHandle()
@@ -180,8 +190,9 @@ Func btnLocateAcc()
 		ExitLoop
 	WEnd
 	Clickp($aAway, 2, 0, "#0207")
-	saveConfig()
-
+	IniWriteS($profile, "Switch Account", "AccLocation." & $AccNo, $aLocateAccConfig[$AccNo-1])
+    $RunState = $wasRunState
+	AndroidShield("LocateAcc") ; Update shield status due to manual $RunState
 
 EndFunc   ;==>LocateAcc
 

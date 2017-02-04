@@ -237,14 +237,14 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 					SetLog("Collectors are not outside, skipping search !", $COLOR_RED, "Lucida Console", 7.5)
 				EndIf
 			Else
-				$iMatchMode = $DB				
+				$iMatchMode = $DB
 				ExitLoop
 			EndIf
 		ElseIf $match[$LB] And Not $dbBase Then
 			SetLog($GetResourcesTXT, $COLOR_SUCCESS, "Lucida Console", 7.5)
 			SetLog("      " & "Live Base Found!", $COLOR_SUCCESS, "Lucida Console", 7.5)
 			$logwrited = True
-			$iMatchMode = $LB			
+			$iMatchMode = $LB
 			ExitLoop
 		ElseIf $match[$LB] And $iDeadBaseDisableCollectorsFilter = 1 Then
 			SetLog($GetResourcesTXT, $COLOR_SUCCESS, "Lucida Console", 7.5)
@@ -373,9 +373,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 
 		$iSkipped = $iSkipped + 1
 		$iSkippedVillageCount += 1
-
 		If $ichkSwitchAcc = 1 Then $aSkippedVillageCountAcc[$nCurProfile - 1] += 1 							; Separate Stats per Each Account - SwitchAcc Mode - DEMEN
-
 		If $iTownHallLevel <> "" And $iTownHallLevel > 0 Then
 			$iSearchCost += $aSearchCost[$iTownHallLevel - 1]
 			$iGoldTotal -= $aSearchCost[$iTownHallLevel - 1]

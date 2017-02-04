@@ -231,7 +231,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 			 GUICtrlSetOnEvent(-1, "cmbSwLang")
 GUICtrlCreateTabItem("")
 
-$hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem("Humanization")
+$hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslated(698,0, "Humanization"))
 #include "MBR GUI Design Child MOD - Humanization.au3"
 GUICtrlCreateTabItem("")
 

@@ -13,24 +13,24 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
-Func _SendExEx($sKeys, $iFlag=0)
-    If @KBLayout = 0419 Then
-        Local $sANSI_Chars = "ёйцукенгшщзхъфывапролджэячсмитьбю.?"
-        Local $sASCII_Chars = "`qwertyuiop[]asdfghjkl;'zxcvbnm,./&"
+Func _SendExEx($sKeys, $iFlag = 0)
+	If @KBLayout = 0419 Then
+		Local $sANSI_Chars = "С‘Р№С†СѓРєРµРЅРіС€С‰Р·С…СЉС„С‹РІР°РїСЂРѕР»РґР¶СЌСЏС‡СЃРјРёС‚СЊР±СЋ.?"
+		Local $sASCII_Chars = "`qwertyuiop[]asdfghjkl;'zxcvbnm,./&"
 
-        Local $aSplit_Keys = StringSplit($sKeys, "")
-        Local $sKey
-        $sKeys = ""
+		Local $aSplit_Keys = StringSplit($sKeys, "")
+		Local $sKey
+		$sKeys = ""
 
-        For $i = 1 To $aSplit_Keys[0]
-            $sKey = StringMid($sANSI_Chars, StringInStr($sASCII_Chars, $aSplit_Keys[$i]), 1)
+		For $i = 1 To $aSplit_Keys[0]
+			$sKey = StringMid($sANSI_Chars, StringInStr($sASCII_Chars, $aSplit_Keys[$i]), 1)
 
-            If $sKey <> "" Then
-                $sKeys &= $sKey
-            Else
-                $sKeys &= $aSplit_Keys[$i]
-            EndIf
-        Next
-    EndIf
-    Return Send($sKeys, $iFlag)
-EndFunc ;==> Multy Lang
+			If $sKey <> "" Then
+				$sKeys &= $sKey
+			Else
+				$sKeys &= $aSplit_Keys[$i]
+			EndIf
+		Next
+	EndIf
+	Return Send($sKeys, $iFlag)
+EndFunc   ;==>_SendExEx

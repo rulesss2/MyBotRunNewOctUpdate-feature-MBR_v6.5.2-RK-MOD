@@ -115,7 +115,7 @@ Local $x = 15, $y = 150
 
 Local $x = 5, $y = 258
 
-$Group1 = GUICtrlCreateGroup("Treasury Collect", $x, $y, 440, 105)
+$Group1 = GUICtrlCreateGroup(GetTranslated(800, 0, "Treasury Collect"), $x, $y, 440, 105)
 
 	$x -= 2
 

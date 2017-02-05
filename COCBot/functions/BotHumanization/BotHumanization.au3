@@ -333,9 +333,7 @@ EndFunc   ;==>chkUseBotHumanization
 Func chkUseAltRClick()
 
 	If GUICtrlRead($chkUseAltRClick) = $GUI_CHECKED Then
-		$UserChoice = MsgBox(4 + 48, "Warning !!!", "Full random click is a good feature to be as less BOT-Like as possible because it makes ALL BOT clicks random..." & _
-				@CRLF & "" & @CRLF & "The crazy @RoroTiti use it all the time an he says there is no problem with it... BUT, it still an experimental feature which may cause unpredictable problems..." & _
-				@CRLF & "" & @CRLF & "So, do you want to use it ? :)" & @CRLF & "" & @CRLF & "PS : No support will be provided to you if you use this function...")
+		$UserChoice = MsgBox(4 + 48, "Warning !!!", "Full random click is a good feature to be as less BOT-Like as possible because it makes ALL BOT clicks random..." & @CRLF & "" & @CRLF & "The crazy @RoroTiti use it all the time an he says there is no problem with it... BUT, it still an experimental feature which may cause unpredictable problems..." & @CRLF & "" & @CRLF & "So, do you want to use it ? :)" & @CRLF & "" & @CRLF & "PS : No support will be provided to you if you use this function..." & @CRLF & "" & @CRLF & "===============================================" & @CRLF & "" & @CRLF & "Рандомные клики хорошая функция, чтобы быть как можно больше похожим на человека ..." & @CRLF & "" & @CRLF & "Сумасшедший автор использовал это всё время и он говорит, что нет проблем с этим... но, это всё ещё экспериментальная функция, которая может вызвать непредсказуемые проблемы..." & @CRLF & "" & @CRLF & "Так, вы действительно хотите его использовать ? :)" & @CRLF & "" & @CRLF & "PS : Поддержка не будет оказана, если вы используете эту функцию...")
 		If $UserChoice = 6 Then
 			$ichkUseAltRClick = 1
 		Else

@@ -14,7 +14,6 @@
 ; Example .......: No
 ; ===============================================================================================================================
 ;
-
 Func SmartWait4Train()
 
 	If $debugsetlogTrain = 1 Or $debugSetlog = 1 Then Setlog("Begin SmartWait4Train:", $COLOR_DEBUG1)
@@ -47,6 +46,7 @@ Func SmartWait4Train()
 	Local $iShieldTime = 0, $iDiffDateTime = 0, $iDiffTime = 0
 	Local $RandomAddPercent = Random(0, $icmbCloseWaitRdmPercent / 100) ; generate random percentage between 0 and user set GUI value
 	Local $MinimumTimeClose = Number($icmbMinimumTimeClose * 60) ; Minimum time required to close
+	
 	If $debugsetlogTrain = 1 Or $debugSetlog = 1 Then Setlog("Random add percent = " & StringFormat("%.4f", $RandomAddPercent), $COLOR_DEBUG)
 	If $debugSetlog = 1 Then Setlog("$MinimumTimeClose = " & $MinimumTimeClose & "s", $COLOR_DEBUG)
 
@@ -54,6 +54,7 @@ Func SmartWait4Train()
 	Local $StopEmulator = False
 	If $ibtnCloseWaitStopRandom = 1 Then $StopEmulator = "random"
 	If $ibtnCloseWaitStop = 1 Then $StopEmulator = True
+
 
 	; Determine what wait mode(s) are enabled
 	If IsArray($aShieldStatus) And (StringInStr($aShieldStatus[0], "shield", $STR_NOCASESENSEBASIC) Or StringInStr($aShieldStatus[0], "guard", $STR_NOCASESENSEBASIC)) Then
@@ -83,7 +84,6 @@ Func SmartWait4Train()
 		If $debugimagesave = 1 Or $debugsetlogTrain = 1 Then Debugimagesave("SmartWait4Troop2_")
 	EndIf
 	If _Sleep($iDelayRespond) Then Return
-
 
 	; Get troop training time remaining if enabled
 	If $ichkCloseWaitTrain = 1 Or BitAND($iTrainWaitCloseFlag, $TRAINWAIT_SHIELD) = $TRAINWAIT_SHIELD Then
@@ -270,9 +270,9 @@ Func SmartWait4Train()
 
 		ElseIf ($ichkCloseWaitTrain = 1 And $aTimeTrain[0] > 0) Or ($ichkCloseWaitSpell = 1 And $aTimeTrain[1] > 0) Or ($ichkCloseWaitHero = 1 And $aTimeTrain[2] > 0) Then
 			;when no shield close game for $iTrainWaitTime time			
-			If GUICtrlRead($DBcheck) = 1 and GUICtrlRead($chkDBActivateCamps) = 1 Then
-			  Setlog("Smart Wait time = " & StringFormat("%.2f", ($iTrainWaitTime*$iEnableAfterArmyCamps[$DB]/100 -(($iTrainWaitTime*$iEnableAfterArmyCamps[$DB]/100)*$CurCamp / $TotalCamp * 100/100))/ 60) & " Minutes", $COLOR_INFO)			 
-			  UniversalCloseWaitOpenCoC(($iTrainWaitTime * $iEnableAfterArmyCamps[$DB]/100 - ($iTrainWaitTime * $iEnableAfterArmyCamps[$DB]/100) * $CurCamp / $TotalCamp * 100/100)* 1000, "SmartWait4TrainNoShield_", $StopEmulator)
+			If GUICtrlRead($DBcheck) = 1 and GUICtrlRead($chkDBActivateCamps) = 1 Then			  
+			  Setlog("Smart Wait time = " & StringFormat("%.2f", (($iEnableAfterArmyCamps[$DB] - Int($CurCamp / $TotalCamp * 100)) * (($iTrainWaitTime * 100) / (100 - Int($CurCamp / $TotalCamp * 100)))/100)/60) & " Minutes", $COLOR_INFO)
+			  UniversalCloseWaitOpenCoC((($iEnableAfterArmyCamps[$DB] - Int($CurCamp / $TotalCamp * 100))*(($iTrainWaitTime * 100) / (100 - Int($CurCamp / $TotalCamp * 100)))/100) * 1000, "SmartWait4TrainNoShield_", $StopEmulator)			 
 			Else
 			  Setlog("Smart Wait time = " & StringFormat("%.2f", $iTrainWaitTime / 60) & " Minutes", $COLOR_INFO)
 			  UniversalCloseWaitOpenCoC($iTrainWaitTime * 1000, "SmartWait4TrainNoShield_", $StopEmulator)
@@ -288,7 +288,7 @@ Func SmartWait4Train()
 		EndIf
 	ElseIf $iTrainWaitTime < $MinimumTimeClose Then
 		Setlog("Smart Wait Time < Minimum Time Required To Close [" & ($MinimumTimeClose / 60) & " Min]", $COLOR_INFO)
-		Setlog("Wait Train Time = " & StringFormat("%.2f", ($iTrainWaitTime*$iEnableAfterArmyCamps[$DB]/100 -(($iTrainWaitTime*$iEnableAfterArmyCamps[$DB]/100)*$CurCamp / $TotalCamp * 100/100))/ 60) & " Minutes", $COLOR_INFO)
+		Setlog("Wait Train Time = " & StringFormat("%.2f", (($iEnableAfterArmyCamps[$DB] - ($CurCamp / $TotalCamp * 100)) * (($iTrainWaitTime * 100) / (100 - ($CurCamp / $TotalCamp * 100)))/100)/60) & " Minutes", $COLOR_INFO)
 		Setlog("Not Close CoC Just Wait In The Main Screen", $COLOR_INFO)
 		; Just wait without close the CoC
 		_SleepStatus($iTrainWaitTime * 1000)

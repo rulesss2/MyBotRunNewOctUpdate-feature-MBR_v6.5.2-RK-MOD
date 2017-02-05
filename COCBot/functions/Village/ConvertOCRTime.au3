@@ -31,7 +31,7 @@ Func ConvertOCRTime($WhereRead, $ToConvert)
 		If $ichkCloseWaitTrain = 1 and GUICtrlRead($DBcheck) = 1 and GUICtrlRead($chkDBActivateCamps) = 1 Then
 		;getArmyCapacity()
 		If Int($CurCamp / $TotalCamp * 100) <= $iEnableAfterArmyCamps[$DB] Then		
-		SetLog($WhereRead & " time: " & StringFormat("%.2f", ($iRemainTimer * $iEnableAfterArmyCamps[$DB]/100 - (($iRemainTimer*$iEnableAfterArmyCamps[$DB]/100)* $CurCamp / $TotalCamp * 100)/100)) & " min" & " ( Time " & $iEnableAfterArmyCamps[$DB] & "% army )", $COLOR_INFO)		
+		SetLog($WhereRead & " time: " & StringFormat("%.2f", ($iEnableAfterArmyCamps[$DB] - ($CurCamp / $TotalCamp * 100)) * (($iRemainTimer * 100) / (100 - ($CurCamp / $TotalCamp * 100)))/100) & " min" & " ( Time " & $iEnableAfterArmyCamps[$DB] & "% army )", $COLOR_INFO)		
 		Else
 		SetLog("Army Full " & $iEnableAfterArmyCamps[$DB] &"%", $COLOR_INFO)
 		EndIf

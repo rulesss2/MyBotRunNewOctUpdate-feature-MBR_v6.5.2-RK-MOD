@@ -171,10 +171,10 @@ Func btnLocateAcc()
 
 	While 1
 		_ExtMsgBoxSet(1 + 64, $SS_CENTER, 0x004080, 0xFFFF00, 12, "Comic Sans MS", 600)
-		$stext = "Click Connect/Disconnect on emulator to show the accout list" & @CRLF & @CRLF & _
-				"Click OK then click on your Account No. " & $AccNo & @CRLF & @CRLF & _
+		$stext = GetTranslated(640,85,"Click Connect/Disconnect on emulator to show the accout list") & @CRLF & @CRLF & _
+				GetTranslated(640,86,"Click OK then click on your Account No. ") & $AccNo & @CRLF & @CRLF & _
 				GetTranslated(640,26,"Do not move mouse quickly after clicking location") & @CRLF & @CRLF
-		$MsgBox = _ExtMsgBox(0, GetTranslated(640,1,"Ok|Cancel"), "Locate CoC Account No. " & $AccNo, $stext, 60, $frmBot)
+		$MsgBox = _ExtMsgBox(0, GetTranslated(640,1,"Ok|Cancel"), GetTranslated(640,87,"Locate CoC Account No. ") & $AccNo, $stext, 60, $frmBot)
 		If $MsgBox = 1 Then
 			WinGetAndroidHandle()
 			Local $aPos = FindPos()

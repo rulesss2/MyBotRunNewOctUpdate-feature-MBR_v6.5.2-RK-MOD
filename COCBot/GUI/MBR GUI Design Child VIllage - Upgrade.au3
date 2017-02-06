@@ -326,7 +326,7 @@ Global $lblWallCost, $cmbWalls, $UseGold, $UseElixir, $UseElixirGold, $txtWallMi
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 GUICtrlCreateTabItem("")
 
-$hGUI_UPGRADE_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslated(600,71, "SmartUpgrade"))
+$hGUI_UPGRADE_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslated(671,2, "SmartUpgrade"))
 
 Local $x = 25, $y = 45
 
@@ -395,14 +395,14 @@ Local $x = 15, $y = 45
 
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
-	$SmartMinGold = GUICtrlCreateInput("200000", 162, 37, 57, 17, BitOR($GUI_SS_DEFAULT_INPUT,$ES_CENTER,$ES_NUMBER))
-	GUICtrlCreateLabel(GetTranslated(671,5, "Gold to save"), 224, 40, 64, 17)
-	$SmartMinElixir = GUICtrlCreateInput("200000", 162, 57, 57, 17, BitOR($GUI_SS_DEFAULT_INPUT,$ES_CENTER,$ES_NUMBER))
-	GUICtrlCreateLabel(GetTranslated(671,6, "Elixir to save"), 224, 60, 63, 17)
-	$SmartMinDark = GUICtrlCreateInput("1500", 290, 37, 65, 17, BitOR($GUI_SS_DEFAULT_INPUT,$ES_CENTER,$ES_NUMBER))
-	GUICtrlCreateLabel(GetTranslated(671,7, "Dark to save"), 360, 40, 65, 17)
-	GUICtrlCreateLabel(GetTranslated(671,8, "... after launching upgrade"), 296, 60, 128, 17)
-	$SmartUpgradeLog = GUICtrlCreateEdit("", 10, 232, 420, 124, BitOR($GUI_SS_DEFAULT_EDIT,$ES_READONLY))
+	$SmartMinGold = GUICtrlCreateInput("200000", 142, 37, 57, 17, BitOR($GUI_SS_DEFAULT_INPUT,$ES_CENTER,$ES_NUMBER))
+	GUICtrlCreateLabel(GetTranslated(671,5, "Gold to save"), 204, 40, 64, 17)
+	$SmartMinElixir = GUICtrlCreateInput("200000", 142, 57, 57, 17, BitOR($GUI_SS_DEFAULT_INPUT,$ES_CENTER,$ES_NUMBER))
+	GUICtrlCreateLabel(GetTranslated(671,6, "Elixir to save"), 204, 60, 70, 17)
+	$SmartMinDark = GUICtrlCreateInput("1500", 280, 37, 57, 17, BitOR($GUI_SS_DEFAULT_INPUT,$ES_CENTER,$ES_NUMBER))
+	GUICtrlCreateLabel(GetTranslated(671,7, "Dark to save"), 340, 40, 80, 17)
+	GUICtrlCreateLabel(GetTranslated(671,8, "... after launching upgrade"), 286, 60, 128, 17)
+	$SmartUpgradeLog = GUICtrlCreateEdit("", 10, 232, 420, 124, BitOR($GUI_SS_DEFAULT_EDIT,$ES_READONLY,$SS_CENTER))
 	GUICtrlSetData(-1, GetTranslated(671,9, "                                        ----- SMART UPGRADE LOG -----"))
 
 GUICtrlCreateGroup("", -99, -99, 1, 1)

@@ -106,10 +106,11 @@ Func _makerequest()
 	  SetLog("Request in russian", $COLOR_BLUE)
      AutoItWinSetTitle('MyAutoItTitle')
     _WinAPI_SetKeyboardLayout(WinGetHandle(AutoItWinGetTitle()), 0x0419)
-	 Sleep(1000)
+	 Sleep(500)
 	 ControlFocus($HWnd, "", "")
-	 Sleep(1000)
+	 Sleep(500)
 	 SendKeepActive($HWnd)
+	 AutoItSetOption( "SendKeyDelay", 100)
 	 If _SendExEx($sTxtRequest) = 0 Then
 	            Setlog(" Request text entry failed, try again", $COLOR_RED)
 				  Return

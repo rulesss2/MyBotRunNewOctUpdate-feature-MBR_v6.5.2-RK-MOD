@@ -7,7 +7,7 @@
 
 #include <Process.au3>
 #include <Array.au3>
-#Include <WinAPIEx.au3>
+#include <WinAPIEx.au3>
 $chatIni = ""
 
 Global  $chatIni = $sProfilePath & "\" & $sCurrProfile & "\chat.ini"
@@ -365,8 +365,8 @@ Func ChatbotChatInput($message)
 		SendKeepActive($HWnd)
 		Sleep(500)
 	;Opt("SendKeyDelay", 1000)	
-	AutoItSetOption("SendKeyDelay", 100)  
-	  _SendExEx($message)	  
+	AutoItSetOption("SendKeyDelay", 50)	
+	  _SendExEx($message)	 
 	   SendKeepActive("")	 
     Else
 	  Sleep(500)

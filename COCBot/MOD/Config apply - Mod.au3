@@ -64,11 +64,11 @@
 
 ; Multi Finger (LunaEclipse)
 _GUICtrlComboBox_SetCurSel($cmbDBMultiFinger,$iMultiFingerStyle)
-cmbDBMultiFinger()
+;cmbDBMultiFinger()
 
 cmbDeployAB()
-cmbDeployDB()
-
+;cmbDeployDB()
+Bridge()
 ; Unit Wave Factor Added by rulesss
 If $ichkUnitFactor = 1 Then
 	GUICtrlSetState($chkUnitFactor, $GUI_CHECKED)

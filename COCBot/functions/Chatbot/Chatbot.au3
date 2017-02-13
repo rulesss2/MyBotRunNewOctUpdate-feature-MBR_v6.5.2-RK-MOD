@@ -8,7 +8,6 @@
 #include <Process.au3>
 #include <Array.au3>
 #include <WinAPIEx.au3>
-
 $chatIni = ""
 
 Global  $chatIni = $sProfilePath & "\" & $sCurrProfile & "\chat.ini"
@@ -361,14 +360,16 @@ Func ChatbotChatInput($message)
 	  SetLog("Chat send in russia", $COLOR_BLUE)
 	 AutoItWinSetTitle('MyAutoItTitle')
     _WinAPI_SetKeyboardLayout(WinGetHandle(AutoItWinGetTitle()), 0x0419)
-		Sleep(1000)
+		Sleep(500)
 		ControlFocus($HWnd, "", "")
 		SendKeepActive($HWnd)
-		Sleep(1000)
-	  _SendExEx($message)
-	   SendKeepActive("")
+		Sleep(500)
+	;Opt("SendKeyDelay", 1000)	
+	AutoItSetOption("SendKeyDelay", 50)	
+	  _SendExEx($message)	 
+	   SendKeepActive("")	 
     Else
-	  Sleep(1500)
+	  Sleep(500)
  	 SendText($message)
 	EndIf
 	Return True

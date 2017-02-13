@@ -12,7 +12,7 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
-
+#Include <WinAPIEx.au3>
 $hGUI_DONATE = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 - 28, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_VILLAGE)
 ;GUISetBkColor($COLOR_WHITE, $hGUI_DONATE)
 $38 = GUICtrlCreatePic(@ScriptDir & "\Images2\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)

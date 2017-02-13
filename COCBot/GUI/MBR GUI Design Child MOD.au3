@@ -340,7 +340,7 @@ Local $x = 25, $y = 60
 		$cmbTrophyMinProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			$txtTip = GetTranslated(999,10, "Select which profile to be switched to when conditions met")
 			_GUICtrlSetTip(-1, $txtTip)
-		$lblTrophyMin = GUICtrlCreateLabel(GetTranslated(655,39, "When Trophies are Below"), $x + 145, $y, -1, -1)
+		$lblTrophyMin = GUICtrlCreateLabel(GetTranslated(999,32, "When Trophies are Below"), $x + 145, $y, -1, -1)
 		$txtMinTrophyAmount = GUICtrlCreateInput("1000", $x + 275, $y - 5, 60, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 			$txtTip = GetTranslated(999,30, "Set the amount of Trophies to trigger switching Profile.")
 			_GUICtrlSetTip(-1, $txtTip)

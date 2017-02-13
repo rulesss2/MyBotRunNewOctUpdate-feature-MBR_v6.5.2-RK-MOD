@@ -1108,7 +1108,8 @@ If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
 
 	; standard attack options ----------------------------------------------------------------
 	$iCmbStandardAlgorithm[$DB] = _GUICtrlComboBox_GetCurSel($cmbStandardAlgorithmDB)
-	$iChkDeploySettings[$DB] = _GUICtrlComboBox_GetCurSel($cmbDeployDB)
+	;$iChkDeploySettings[$DB] = _GUICtrlComboBox_GetCurSel($cmbDeployDB)
+	cmbDBMultiFinger()
 	$iCmbUnitDelay[$DB] = _GUICtrlComboBox_GetCurSel($cmbUnitDelayDB)
 	$iCmbWaveDelay[$DB] = _GUICtrlComboBox_GetCurSel($cmbWaveDelayDB)
 	If GUICtrlRead($chkRandomSpeedAtkDB) = $GUI_CHECKED Then

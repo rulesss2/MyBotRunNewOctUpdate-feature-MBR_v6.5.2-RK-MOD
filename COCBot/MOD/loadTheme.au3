@@ -32,7 +32,7 @@ Func btnLoadTheme()
 EndFunc   ;==>btnLoadTheme
 
 Func readThemeConfig()
-    $ThemeConfig = IniRead(@ScriptDir & "\Themes\skin.ini", "skin", "skin", @ScriptDir & "\Themes\Themes\hex.msstyles")
+    $ThemeConfig = IniRead(@ScriptDir & "\Themes\skin.ini", "skin", "skin", @ScriptDir & "\Themes\Themes\MyBot Default Skin.msstyles")
 	_USkin_Init($ThemeConfig)
  EndFunc
 

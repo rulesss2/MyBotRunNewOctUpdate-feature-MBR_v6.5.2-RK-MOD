@@ -258,7 +258,7 @@ IniWrite($config, "global", "chdelay", GUICtrlRead($chkchatdelay))
 	$iBackGr = _GUICtrlComboBox_GetCurSel($BackGr)
 	IniWriteS($config, "background", "BackGr", $iBackGr)
 
-	; Smart Upgrade
+	; Smart Upgrade Added by rulesss
     IniWrite($config, "upgrade", "chkSmartUpgrade", $ichkSmartUpgrade)
     IniWrite($config, "upgrade", "chkIgnoreTH", $ichkIgnoreTH)
     IniWrite($config, "upgrade", "chkIgnoreKing", $ichkIgnoreKing)
@@ -277,9 +277,16 @@ IniWrite($config, "global", "chdelay", GUICtrlRead($chkchatdelay))
     IniWrite($config, "upgrade", "SmartMinElixir", GUICtrlRead($SmartMinElixir))
     IniWrite($config, "upgrade", "SmartMinDark", GUICtrlRead($SmartMinDark))
 
-	; Move the Request CC Troops function to the beginning of the run loop
+	; Move the Request CC Troops Added by rulesss
     If GUICtrlRead($chkReqCCFirst) = $GUI_CHECKED Then
 	    IniWriteS($config, "planned", "ReqCCFirst", 1)
     Else
 	    IniWriteS($config, "planned", "ReqCCFirst", 0)
+    EndIf
+
+    ; Upgrade Management Added by rulesss
+    If GUICtrlRead($chkUpdateNewUpgradesOnly) = $GUI_CHECKED Then
+	    IniWriteS($config, "upgrade", "UpdateNewUpgradesOnly", 1)
+    Else
+	    IniWriteS($config, "upgrade", "UpdateNewUpgradesOnly", 0)
     EndIf

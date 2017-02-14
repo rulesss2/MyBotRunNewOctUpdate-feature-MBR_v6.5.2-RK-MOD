@@ -147,3 +147,10 @@ If IniRead($config, "planned", "ReqCCFirst", "0") = 1 Then
 Else
 	$bReqCCFirst = False
 EndIf
+
+; Upgrade Management by rulesss
+If IniRead($config, "upgrade", "UpdateNewUpgradesOnly", "0") = 1 Then
+	$bUpdateNewUpgradesOnly = True
+Else
+	$bUpdateNewUpgradesOnly = False
+EndIf

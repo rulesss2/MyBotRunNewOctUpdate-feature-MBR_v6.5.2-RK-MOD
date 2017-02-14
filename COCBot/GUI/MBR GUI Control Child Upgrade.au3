@@ -39,6 +39,30 @@ Func btnchkbxRepeat()
 	Next
 EndFunc   ;==>btnchkbxRepeat
 
+Func chkUpdateNewUpgradesOnly()
+	If GUICtrlRead($chkUpdateNewUpgradesOnly) = $GUI_CHECKED Then
+		$bUpdateNewUpgradesOnly = True
+	Else
+		$bUpdateNewUpgradesOnly = False
+	EndIf
+EndFunc   ;==>chkUpdateNewUpgradesOnly
+
+Func btnTop()
+	MoveUpgrades($UP, $TILL_END)
+EndFunc   ;==>btnTop
+
+Func btnUp()
+	MoveUpgrades($UP)
+EndFunc   ;==>btnUp
+
+Func btnDown()
+	MoveUpgrades($DOWN)
+EndFunc   ;==>btnDown
+
+Func btnBottom()
+	MoveUpgrades($DOWN, $TILL_END)
+EndFunc   ;==>btnBottom
+
 Func picUpgradeTypeLocation()
 	Local $wasRunState = $RunState
 	$RunState = True

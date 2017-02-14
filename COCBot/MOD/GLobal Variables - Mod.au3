@@ -180,3 +180,7 @@ Global $canContinueLoop = True
 
 ; move the Request CC Troops Added by rulesss
 Global $bReqCCFirst = False
+
+; Upgrade Management Added by rulesss
+Global Const $UP = True, $DOWN = False, $TILL_END = True
+Global $bUpdateNewUpgradesOnly = False

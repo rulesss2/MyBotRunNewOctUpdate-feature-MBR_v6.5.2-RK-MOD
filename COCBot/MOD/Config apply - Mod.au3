@@ -372,3 +372,10 @@ If ($bReqCCFirst) Then
 Else
 	GUICtrlSetState($chkReqCCFirst, $GUI_UNCHECKED)
 EndIf
+
+; Upgrade Management Added by rulesss
+If $bUpdateNewUpgradesOnly = 1 Then
+	GUICtrlSetState($chkUpdateNewUpgradesOnly, $GUI_CHECKED)
+Else
+	GUICtrlSetState($chkUpdateNewUpgradesOnly, $GUI_UNCHECKED)
+EndIf

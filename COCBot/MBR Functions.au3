@@ -328,3 +328,4 @@
 #include "MOD\ProfileSwitch.au3"
 #include "MOD\SmartUpgrade.au3"
 #include "functions\BotInfo\runningBots.au3"
+#include "MOD\UpgradesMgmt.au3"

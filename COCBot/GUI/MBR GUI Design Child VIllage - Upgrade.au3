@@ -193,18 +193,37 @@ $hGUI_UPGRADE_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,16,"Buildings")
 			_GUICtrlSetTip(-1, GetTranslated(616,21, "Save this amount of Dark Elixir after the upgrade completes.") & @CRLF & GetTranslated(616,22, "Set this value higher if you want make war troops."))
 			GUICtrlSetLimit(-1, 6)
 		GUICtrlCreateGroup("", -99, -99, 1, 1)
+
+		; MOD ; MMHK ; Upgrade Management
+		$chkUpdateNewUpgradesOnly = GUICtrlCreateCheckbox(GetTranslated(699,50, "New Only"), $x + 310 , $y - 30, -1, -1)
+			GUICtrlSetTip(-1,GetTranslated(699,51, "Update NEW upgrades only for speed"))
+			GUICtrlSetOnEvent(-1, "chkUpdateNewUpgradesOnly")
+		$btnTop = GUICtrlCreateButton(GetTranslated(699,53, "Top"), $x + 180, $y - 30, 67, 20, $BS_CENTER)
+			GUICtrlSetTip(-1, GetTranslated(699,54, "Push button to move upgrade-box-checked buildings to the top of the list"))
+			GUICtrlSetOnEvent(-1, "btnTop")
+		$btnUp = GUICtrlCreateButton(GetTranslated(699,55, "Up"), $x + 180, $y - 10, 67, 20, $BS_CENTER)
+			GUICtrlSetTip(-1, GetTranslated(699,56, "Push button to move up upgrade-box-checked buildings a row"))
+			GUICtrlSetOnEvent(-1, "btnUp")
+		$btnDown = GUICtrlCreateButton(GetTranslated(699,57, "Down"), $x + 180, $y + 10, 67, 20, $BS_CENTER)
+			GUICtrlSetTip(-1, GetTranslated(699,58, "Push button to move down upgrade-box-checked buildings a row"))
+			GUICtrlSetOnEvent(-1, "btnDown")
+		$btnBottom = GUICtrlCreateButton(GetTranslated(699,59, "Bottom"), $x + 180, $y + 30, 67, 20, $BS_CENTER)
+			GUICtrlSetTip(-1, GetTranslated(699,60, "Push button to move upgrade-box-checked buildings to the bottom of the list"))
+			GUICtrlSetOnEvent(-1, "btnBottom")
+		 GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y -= 8
 ; Locate/reset buttons
-		$btnLocateUpgrade = GUICtrlCreateButton(GetTranslated(616,8, "Locate Upgrades"), $x + 290, $y - 4, 120, 18, BitOR($BS_MULTILINE, $BS_VCENTER))
+		$btnLocateUpgrade = GUICtrlCreateButton(GetTranslated(616,8, "Locate Upgrades"), $x + 290, $y + 4, 120, 18, BitOR($BS_MULTILINE, $BS_VCENTER))
 			$txtTip = GetTranslated(616,9, "Push button to locate and record information on building/Hero upgrades") & @CRLF & _
 						GetTranslated(616,10, "Any upgrades with repeat enabled are skipped and can not be located again")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "btnLocateUpgrades")
-		$btnResetUpgrade = GUICtrlCreateButton(GetTranslated(616,11, "Reset Upgrades"), $x + 290, $y + 16, 120, 18, BitOR($BS_MULTILINE, $BS_VCENTER))
+		$btnResetUpgrade = GUICtrlCreateButton(GetTranslated(616,11, "Reset Upgrades"), $x + 290, $y + 25, 120, 18, BitOR($BS_MULTILINE, $BS_VCENTER))
 			$txtTip = GetTranslated(616,12, "Push button to reset & remove upgrade information") & @CRLF & _
 						GetTranslated(616,13, "If repeat box is checked, data will not be reset")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "btnResetUpgrade")
+
 GUICtrlCreateTabItem("")
 
 $hGUI_UPGRADE_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600,17,"Walls"))

@@ -982,7 +982,7 @@ Global $icmbFilterDonationsCC = 0 ; 0 no filter, 1 capture only images, 2 white 
 Global $icmbTroopComp ;Troop Composition
 Global $icmbDarkTroopComp = 1
 Global $icmbTroopCap ;Troop Capacity
-Global $BarbComp = 58, $ArchComp = 115, $GoblComp = 19, $GiantComp = 4, $WallComp = 4, $WizaComp = 0, $MiniComp = 0, $HogsComp = 0
+Global $BarbComp = 0, $ArchComp = 0, $GoblComp = 0, $GiantComp = 0, $WallComp = 0, $WizaComp = 0, $MiniComp = 0, $HogsComp = 0
 Global $DragComp = 0, $BallComp = 0, $PekkComp = 0, $HealComp = 0, $ValkComp = 0, $GoleComp = 0, $WitcComp = 0, $LavaComp = 0, $BowlComp = 0
 Global $BabyDComp = 0, $MineComp = 0
 Global $CurBarb = 0, $CurArch = 0, $CurGiant = 0, $CurGobl = 0, $CurWall = 0, $CurBall = 0, $CurWiza = 0, $CurHeal = 0

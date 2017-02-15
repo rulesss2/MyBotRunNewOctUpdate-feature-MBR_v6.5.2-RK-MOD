@@ -132,7 +132,7 @@ $chatIni = $sProfilePath & "\" & $sCurrProfile & "\chat.ini"
    GUICtrlCreateLabel(GetTranslated(106,24,"Use generic chats"), $x + 7, $y, -1, -1)
    $y += 22
    $chkChatPushbullet = GUICtrlCreateCheckbox("", $x - 10, $y, 13, 13)
-   GUICtrlSetTip($chkChatPushbullet, GetTranslated(106,27,"Send and recieve chats via pushbullet or telegram. Use BOT <myvillage> GETCHATS <interval|NOW|STOP> to get the latest clan chat as an image, and BOT <myvillage> SENDCHAT <chat message> to send a chat to your clan"))
+   GUICtrlSetTip($chkChatPushbullet, GetTranslated(106,27,"Send and recieve chats via pushbullet or telegram.") & @CRLF & GetTranslated(106,53, "Use BOT <myvillage> GETCHATS <interval|NOW|STOP> to get the latest clan") & @CRLF & GetTranslated(106,54, "chat as an image, and BOT <myvillage> SENDCHAT <chat message> to send a chat to your clan") & @CRLF & GetTranslated(106, 55, ")"))
    GUICtrlSetState($chkChatPushbullet, $ChatbotUsePushbullet)
    GUICtrlSetOnEvent(-1, "ChatGuiCheckboxUpdate")
    GUICtrlCreateLabel(GetTranslated(106,26,"Use remote for chatting"), $x + 7, $y, -1, -1)

@@ -23,8 +23,10 @@
 
 	If $ichkSmartSwitch = 1 Then
 	   GUICtrlSetState($radSmartSwitch, $GUI_CHECKED)
+	   GUICtrlSetState($radNormalSwitch, $GUI_UNCHECKED)
  	Else
 	   GUICtrlSetState($radNormalSwitch, $GUI_CHECKED)
+	   GUICtrlSetState($radSmartSwitch, $GUI_UNCHECKED)
 	EndIf
 
 	radNormalSwitch()
@@ -37,8 +39,10 @@
 		GUICtrlSetState($chkUseTrainingClose, $GUI_CHECKED)
 		If $ichkCloseTraining = 1 Then
 			GUICtrlSetState($radCloseCoC, $GUI_CHECKED)
+			GUICtrlSetState($radCloseAndroid, $GUI_UNCHECKED)
 		Else
 			GUICtrlSetState($radCloseAndroid, $GUI_CHECKED)
+			GUICtrlSetState($radCloseCoC, $GUI_UNCHECKED)
 		EndIf
 	Else
 		GUICtrlSetState($chkUseTrainingClose, $GUI_UNCHECKED)

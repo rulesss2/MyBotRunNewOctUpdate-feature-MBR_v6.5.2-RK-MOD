@@ -201,40 +201,6 @@ Global $FullESpell[4]   = [-1, -1, -1, -1] ;
 Global $FullHaSpell[4]  = [-1, -1, -1, -1] ;
 Global $FullSkSpell[4]  = [-1, -1, -1, -1] ;
 
-Global $GemLSpell[4] = [25, 340 + $midOffsetY, 0x030300, 1]		; These will never be True! I put wrong Coords/Color, Because i have Gem lol
-Global $GemRSpell[4] = [25, 340 + $midOffsetY, 0x030300, 1]		; These will never be True! I put wrong Coords/Color, Because i have Gem lol
-Global $GemFSpell[4] = [25, 340 + $midOffsetY, 0x030300, 1]		; These will never be True! I put wrong Coords/Color, Because i have Gem lol
-Global $GemHSpell[4] = [25, 340 + $midOffsetY, 0x030300, 1]		; These will never be True! I put wrong Coords/Color, Because i have Gem lol
-Global $GemJSpell[4] = [25, 340 + $midOffsetY, 0x030300, 1]		; These will never be True! I put wrong Coords/Color, Because i have Gem lol
-Global $GemCSpell[4] = [25, 340 + $midOffsetY, 0x030300, 1]		; These will never be True! I put wrong Coords/Color, Because i have Gem lol
-Global $GemPSpell[4] = [25, 340 + $midOffsetY, 0x030300, 1]		; These will never be True! I put wrong Coords/Color, Because i have Gem lol
-Global $GemESpell[4] = [25, 340 + $midOffsetY, 0x030300, 1]		; These will never be True! I put wrong Coords/Color, Because i have Gem lol
-Global $GemHaSpell[4] = [25, 340 + $midOffsetY, 0x030300, 1]		; These will never be True! I put wrong Coords/Color, Because i have Gem lol
-Global $GemSkSpell[4] = [25, 340 + $midOffsetY, 0x030300, 1]		; These will never be True! I put wrong Coords/Color, Because i have Gem lol
-
-Global Const $GemBarb[4] = [187, 372 + $midOffsetY, 0xE70A12, 30] ; Pixel location of middle of right side of zero text for troop training, and color when out of Elixir
-Global Const $GemArch[4] = [290, 372 + $midOffsetY, 0xE70A12, 30]
-Global Const $GemGiant[4] = [392, 372 + $midOffsetY, 0xE70A12, 30]
-Global Const $GemGobl[4] = [495, 372 + $midOffsetY, 0xE70A12, 30]
-Global Const $GemWall[4] = [597, 372 + $midOffsetY, 0xE70A12, 30]
-Global Const $GemBall[4] = [700, 372 + $midOffsetY, 0xE70A12, 30]
-
-Global Const $GemWiza[4] = [346, 478 + $midOffsetY, 0xE70A12, 30]
-Global Const $GemHeal[4] = [453, 478 + $midOffsetY, 0xE70A12, 30]
-Global Const $GemDrag[4] = [559, 478 + $midOffsetY, 0xE70A12, 30]
-Global Const $GemPekk[4] = [666, 478 + $midOffsetY, 0xE70A12, 30]
-Global Const $GemBabyD[4] = [597, 478 + $midOffsetY, 0xE70A12, 30]
-Global Const $GemMine[4] = [700, 478 + $midOffsetY, 0xE70A12, 30]
-
-Global Const $GemMini[4] = [239, 378 + $midOffsetY, 0xE70A12, 30]
-Global Const $GemHogs[4] = [346, 379 + $midOffsetY, 0xE70A12, 30]
-Global Const $GemValk[4] = [453, 372 + $midOffsetY, 0xE70A12, 30]
-Global Const $GemGole[4] = [559, 378 + $midOffsetY, 0xE70A12, 30]
-Global Const $GemWitc[4] = [666, 372 + $midOffsetY, 0xE70A12, 30]
-
-
-Global Const $GemLava[4] = [239, 482 + $midOffsetY, 0xE70A12, 30]
-Global Const $GemBowl[4] = [342, 479 + $midOffsetY, 0xE70A12, 30]
 
 Global $NextBtn[4] = [780, 546 + $bottomOffsetY, 0xD34300, 20] ;  Next Button
 ; Someone asking troops : Color 0xD0E978 in x = 121

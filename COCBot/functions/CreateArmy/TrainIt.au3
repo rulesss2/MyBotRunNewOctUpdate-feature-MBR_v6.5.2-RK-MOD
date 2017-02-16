@@ -21,42 +21,37 @@ Func TrainIt($troopKind, $howMuch = 1, $iSleep = 400)
 	Local $pos = GetTrainPos($troopKind)
 	If IsArray($pos) And $pos[0] <> -1 Then
 		If _ColorCheck(_GetPixelColor($pos[0], $pos[1], $bCapturePixel), Hex($pos[2], 6), $pos[3]) = True Then
-			Local $GemName = GetGemName($troopKind)
-			If IsArray($GemName) Then
-				Local $FullName = GetFullName($troopKind)
-				If IsArray($FullName) Then
-					Local $RNDName = GetRNDName($troopKind)
-					If IsArray($RNDName) Then
-						TrainClickP($pos, $howMuch, $isldTrainITDelay, $FullName, $GemName, "#0266", $RNDName)
-						If _Sleep($iSleep) Then Return False
-						If $OutOfElixir = 1 Then
-							For $i = 0 To UBound($TroopName) - 1
-								If Eval("e" & $TroopName[$i]) = $troopKind Then
-									$bDark = True
-									Setlog("Not enough Dark Elixir to train position " & $troopKind & " troops!", $COLOR_ERROR)
-									ExitLoop
-								EndIf
-							Next
-							If Not $bDark Then Setlog("Not enough Elixir to train position " & $troopKind & " troops!", $COLOR_ERROR)
-							Setlog("Switching to Halt Attack, Stay Online Mode...", $COLOR_ERROR)
-							$ichkBotStop = 1 ; set halt attack variable
-							$icmbBotCond = 18 ; set stay online
-							If Not ($fullarmy = True) Then $Restart = True ;If the army camp is full, If yes then use it to refill storages
-							Return ; We are out of Elixir stop training.
-						EndIf
-						Return True
-					Else
-						Setlog("TrainIt position " & $troopKind & " - RNDName did not return array?", $COLOR_ERROR)
+			Local $FullName = GetFullName($troopKind)
+			If IsArray($FullName) Then
+				Local $RNDName = GetRNDName($troopKind)
+				If IsArray($RNDName) Then
+					TrainClickP($pos, $howMuch, $isldTrainITDelay, $FullName, "#0266", $RNDName)
+					If _Sleep($iSleep) Then Return False
+					If $OutOfElixir = 1 Then
+						For $i = 0 To UBound($TroopName) - 1
+							If Eval("e" & $TroopName[$i]) = $troopKind Then
+								$bDark = True
+								Setlog("Not enough Dark Elixir to train position " & $troopKind & " troops!", $COLOR_ERROR)
+								ExitLoop
+							EndIf
+						Next
+						If Not $bDark Then Setlog("Not enough Elixir to train position " & $troopKind & " troops!", $COLOR_ERROR)
+						Setlog("Switching to Halt Attack, Stay Online Mode...", $COLOR_ERROR)
+						$ichkBotStop = 1 ; set halt attack variable
+						$icmbBotCond = 18 ; set stay online
+						If Not ($fullarmy = True) Then $Restart = True ;If the army camp is full, If yes then use it to refill storages
+						Return ; We are out of Elixir stop training.
 					EndIf
+					Return True
 				Else
-					Setlog("TrainIt " & NameOfTroop($troopKind) & " - FullName did not return array?", $COLOR_ERROR)
+					Setlog("TrainIt position " & $troopKind & " - RNDName did not return array?", $COLOR_ERROR)
 				EndIf
 			Else
-				Setlog("TrainIt " & NameOfTroop($troopKind) & " - GemName did not return array?", $COLOR_ERROR)
+				Setlog("TrainIt " & NameOfTroop($troopKind) & " - FullName did not return array?", $COLOR_ERROR)
 			EndIf
 		Else
 			Local $badPixelColor = _GetPixelColor($pos[0], $pos[1], $bCapturePixel)
-			If $debugsetlogTrain Then Setlog ( "Positon X: " & $pos[0] & "| Y : " & $pos[1] & " |Color get: " & $badPixelColor & " | Need: " & $pos[2])
+			If $debugsetlogTrain Then Setlog("Positon X: " & $pos[0] & "| Y : " & $pos[1] & " |Color get: " & $badPixelColor & " | Need: " & $pos[2])
 			If StringMid($badPixelColor, 1, 2) = StringMid($badPixelColor, 3, 2) And StringMid($badPixelColor, 1, 2) = StringMid($badPixelColor, 5, 2) Then
 				; Pixel is gray, so queue is full -> nothing to inform the user about
 				Setlog("Troop " & NameOfTroop($troopKind) & " is not available due to full queue", $COLOR_DEBUG)
@@ -67,7 +62,7 @@ Func TrainIt($troopKind, $howMuch = 1, $iSleep = 400)
 				; Reset the $Train'troop' and $Full'troop' variable , with this the next train loop will detect again the position and color/slot
 				For $i = 0 To UBound($TroopName) - 1
 					If Eval("e" & $TroopName[$i]) = $troopKind Then
-						For $t = 0 to 3
+						For $t = 0 To 3
 							Assign("Train" & $TroopName[$t], -1)
 							Assign("Full" & $TroopName[$t], -1)
 						Next
@@ -77,7 +72,7 @@ Func TrainIt($troopKind, $howMuch = 1, $iSleep = 400)
 				; Reset the $Train'spell' and $Full'spell' variable , with this the next train loop will detect again the position and color/slot
 				For $i = 0 To UBound($SpellName) - 1
 					If Eval("e" & $SpellName[$i]) = $troopKind Then
-						For $t = 0 to 3
+						For $t = 0 To 3
 							Assign("Train" & $SpellName[$t], -1)
 							Assign("Full" & $SpellName[$t], -1)
 						Next
@@ -107,35 +102,29 @@ Func GetTrainPos($troopKind)
 	; Get the Image path to search
 	For $i = 0 To UBound($TroopName) - 1
 		If Eval("e" & $TroopName[$i]) = $troopKind Then
-			;$TemVar = Eval("Train" & $TroopName[$i])
-			;If $TemVar[0] = -1 Then
-				$directory = @ScriptDir & "\imgxml\Train\Train_Train\"
-				$Filter = String($TroopName[$i]) & "*"
-				$ImageToUse = _FileListToArray($directory, $Filter, $FLTA_FILES, True)
-				If $debugsetlogTrain Then setlog("$ImageToUse Troops: " & $ImageToUse[1])
-				$IsTroop = GetVariable($ImageToUse[1], $troopKind)
-				Assign("Train" & $TroopName[$i], $IsTroop)
-				Return $IsTroop
-;~ 			Else
-;~ 				Return $TemVar
-;~ 			EndIf
+
+			$directory = @ScriptDir & "\imgxml\Train\Train_Train\"
+			$Filter = String($TroopName[$i]) & "*"
+			$ImageToUse = _FileListToArray($directory, $Filter, $FLTA_FILES, True)
+			If $debugsetlogTrain Then setlog("$ImageToUse Troops: " & $ImageToUse[1])
+			$IsTroop = GetVariable($ImageToUse[1], $troopKind)
+			Assign("Train" & $TroopName[$i], $IsTroop)
+			Return $IsTroop
+
 		EndIf
 	Next
 
 	For $i = 0 To UBound($SpellName) - 1
 		If Eval("e" & $SpellName[$i]) = $troopKind Then
-			;$TemVar = Eval("Train" & $SpellName[$i])
-			;If $TemVar[0] = -1 Then
-				$directory = @ScriptDir & "\imgxml\Train\Spell_Train\"
-				$Filter = String($SpellName[$i]) & "*"
-				$ImageToUse = _FileListToArray($directory, $Filter, $FLTA_FILES, True)
-				If $debugsetlogTrain Then setlog("$ImageToUse Spell: " & $ImageToUse[1])
-				$IsSpell = GetVariable($ImageToUse[1], $troopKind)
-				Assign("Train" & $SpellName[$i], $IsSpell)
-				Return $IsSpell
-;~ 			Else
-;~ 				Return $TemVar
-;~ 			EndIf
+
+			$directory = @ScriptDir & "\imgxml\Train\Spell_Train\"
+			$Filter = String($SpellName[$i]) & "*"
+			$ImageToUse = _FileListToArray($directory, $Filter, $FLTA_FILES, True)
+			If $debugsetlogTrain Then setlog("$ImageToUse Spell: " & $ImageToUse[1])
+			$IsSpell = GetVariable($ImageToUse[1], $troopKind)
+			Assign("Train" & $SpellName[$i], $IsSpell)
+			Return $IsSpell
+
 		EndIf
 	Next
 	Return 0
@@ -154,7 +143,7 @@ Func GetFullName($troopKind)
 			Local $Vartemp = Eval("Full" & $TroopName[$i])
 			If $Vartemp[0] = -1 Then
 				If IsDarkTroop($TroopName[$i]) Then $text = "Dark"
-				If $debugsetlogTrain = 1 Then Setlog("Troop Name: "& NameOfTroop(Eval("e" & $TroopName[$i])))
+				If $debugsetlogTrain = 1 Then Setlog("Troop Name: " & NameOfTroop(Eval("e" & $TroopName[$i])))
 				Local $slotTemp = GetFullNameSlot(Eval("Train" & $TroopName[$i]), $text)
 				Assign("Full" & $TroopName[$i], $slotTemp)
 				Return $slotTemp
@@ -180,21 +169,6 @@ Func GetFullName($troopKind)
 	Return $slotTemp
 EndFunc   ;==>GetFullName
 
-Func GetGemName($troopKind)
-	If $debugsetlogTrain = 1 Then SetLog("Func GetGemName " & $troopKind, $COLOR_DEBUG)
-	For $i = 0 To UBound($TroopName) - 1
-		If Eval("e" & $TroopName[$i]) = $troopKind Then
-			Return Eval("Gem" & $TroopName[$i])
-		EndIf
-	Next
-	For $i = 0 To UBound($SpellName) - 1
-		If Eval("e" & $SpellName[$i]) = $troopKind Then
-			Return Eval("Gem" & $SpellName[$i])
-		EndIf
-	Next
-	SetLog("Don't know how to find the troop " & NameOfTroop($troopKind) & " yet")
-	Return 0
-EndFunc   ;==>GetGemName
 
 Func GetRNDName($troopKind)
 	If $debugsetlogTrain = 1 Then SetLog("Func GetRNDName " & $troopKind, $COLOR_DEBUG)
@@ -285,9 +259,9 @@ Func GetFullNameSlot($TrainPos, $Name)
 			Case $TrainPos[0] > 203 And $TrainPos[0] < 297 ; 3 Column
 				$SlotH = 297
 			Case $TrainPos[0] > 302 And $TrainPos[0] < 395 ; 4 Column
-				$SlotH = 395
+				$SlotH = 404
 			Case $TrainPos[0] > 400 And $TrainPos[0] < 498 ; 5 Column
-				$SlotH = 498
+				$SlotH = 502
 			Case $TrainPos[0] > 498 And $TrainPos[0] < 597 ; 6 Column
 				$SlotH = 597
 			Case Else
@@ -295,7 +269,7 @@ Func GetFullNameSlot($TrainPos, $Name)
 					Setlog(" »» This slot is empty!! | Spells", $COLOR_ERROR)
 				EndIf
 		EndSwitch
-		Switch  $TrainPos[1]
+		Switch $TrainPos[1]
 			Case $TrainPos[1] < 445
 				$SlotV = 387 ; First ROW
 			Case $TrainPos[1] > 445 And $TrainPos[1] < 550 ; Second ROW
@@ -329,7 +303,7 @@ Func GetFullNameSlot($TrainPos, $Name)
 					Setlog(" »» This slot is empty!! | Normal Troop", $COLOR_ERROR)
 				EndIf
 		EndSwitch
-		Switch  $TrainPos[1]
+		Switch $TrainPos[1]
 			Case $TrainPos[1] < 445
 				$SlotV = 387 ; First ROW
 			Case $TrainPos[1] > 445 And $TrainPos[1] < 550 ; Second ROW
@@ -357,9 +331,9 @@ Func GetFullNameSlot($TrainPos, $Name)
 					Setlog(" »» This slot is empty!! | Dark Troop", $COLOR_ERROR)
 				EndIf
 		EndSwitch
-		Switch  $TrainPos[1]
+		Switch $TrainPos[1]
 			Case $TrainPos[1] < 445
-				$SlotV = 397	; First ROW
+				$SlotV = 397 ; First ROW
 			Case $TrainPos[1] > 445 And $TrainPos[1] < 550 ; Second ROW
 				$SlotV = 498
 		EndSwitch

@@ -1837,28 +1837,28 @@ Global $_CheckIceWizardSlot = True ; Check if Ice Wizard changes normal troop la
 
 ; ================================================== BOT HUMANIZATION PART ================================================== ;
 
-Global $MinimumPriority, $MaxActionsNumber, $ActionToDo
-Global $SetActionPriority[13] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Global $g_iMinimumPriority, $g_iMaxActionsNumber, $g_iActionToDo
+Global $g_aSetActionPriority[13] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-Global $FrequenceChain = GetTranslated(42, 100, "Never|Sometimes|Frequently|Often|Very Often")
-Global $ReplayChain = "1|2|4"
+Global $g_sFrequenceChain = GetTranslated(42, 100, "Never|Sometimes|Frequently|Often|Very Often")
+Global $g_sReplayChain = "1|2|4"
 Global $ichkUseBotHumanization, $ichkUseAltRClick, $icmbMaxActionsNumber, $ichkCollectAchievements, $ichkLookAtRedNotifications
 
-Global $icmbPriority[13] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-Global $icmbMaxSpeed[2] = [0, 0]
-Global $icmbPause[2] = [0, 0]
-Global $ihumanMessage[2] = ["", ""]
+Global $iacmbPriority[13] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Global $iacmbMaxSpeed[2] = [0, 0]
+Global $iacmbPause[2] = [0, 0]
+Global $iahumanMessage[2] = ["", ""]
 
-Global $cmbPriority[13] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-Global $cmbMaxSpeed[2] = [0, 0]
-Global $cmbPause[2] = [0, 0]
-Global $humanMessage[2] = ["", ""]
+Global $acmbPriority[13] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Global $acmbMaxSpeed[2] = [0, 0]
+Global $acmbPause[2] = [0, 0]
+Global $ahumanMessage[2] = ["", ""]
 
-Global $ReplayDuration[2] = [0, 0] ; An array, [0] = Minute | [1] = Seconds
-Global $OnReplayWindow, $ReplayToPause
+Global $aReplayDuration[2] = [0, 0] ; An array, [0] = Minute | [1] = Seconds
+Global $g_bOnReplayWindow, $g_iReplayToPause
 
-Global $QuickMISX = 0, $QuickMISY = 0
-Global $LastLayout = 0
+Global $g_iQuickMISX = 0, $g_iQuickMISY = 0
+Global $g_iLastLayout = 0
 
 ; ================================================== BOT HUMANIZATION END ================================================== ;
 

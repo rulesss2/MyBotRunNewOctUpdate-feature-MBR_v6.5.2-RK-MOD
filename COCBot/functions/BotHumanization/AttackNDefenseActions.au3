@@ -39,7 +39,7 @@ Func WatchDefense()
 					AccelerateReplay(0)
 				EndIf
 
-				randomSleep($ReplayDuration[1] / 3)
+				randomSleep($aReplayDuration[1] / 3)
 
 				Local $IsBoring = Random(1, 5, 1)
 				If $IsBoring >= 4 Then
@@ -55,9 +55,9 @@ Func WatchDefense()
 						DoAPauseDuringReplay(0)
 					EndIf
 
-					randomSleep($ReplayDuration[1] / 3)
+					randomSleep($aReplayDuration[1] / 3)
 
-					If IsReplayWindow() And $ReplayDuration[0] <> 0 Then
+					If IsReplayWindow() And $aReplayDuration[0] <> 0 Then
 						DoAPauseDuringReplay(0)
 					EndIf
 
@@ -108,7 +108,7 @@ Func WatchAttack()
 					AccelerateReplay(0)
 				EndIf
 
-				randomSleep($ReplayDuration[1] / 3)
+				randomSleep($aReplayDuration[1] / 3)
 
 				Local $IsBoring = Random(1, 5, 1)
 				If $IsBoring >= 4 Then
@@ -125,9 +125,9 @@ Func WatchAttack()
 						DoAPauseDuringReplay(0)
 					EndIf
 
-					randomSleep($ReplayDuration[1] / 3)
+					randomSleep($aReplayDuration[1] / 3)
 
-					If IsReplayWindow() And $ReplayDuration[0] <> 0 Then
+					If IsReplayWindow() And $aReplayDuration[0] <> 0 Then
 						DoAPauseDuringReplay(0)
 					EndIf
 

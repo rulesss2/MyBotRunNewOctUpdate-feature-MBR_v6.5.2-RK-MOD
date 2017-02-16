@@ -1235,17 +1235,17 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		$ichkLookAtRedNotifications = IniRead($config, "Humanization", "chkLookAtRedNotifications", "0")
 
 		For $i = 0 To 12
-			$icmbPriority[$i] = IniRead($config, "Humanization", "cmbPriority[" & $i & "]", "0")
+			$iacmbPriority[$i] = IniRead($config, "Humanization", "cmbPriority[" & $i & "]", "0")
 		Next
 		For $i = 0 To 1
-			$icmbMaxSpeed[$i] = IniRead($config, "Humanization", "cmbMaxSpeed[" & $i & "]", "1")
+			$iacmbMaxSpeed[$i] = IniRead($config, "Humanization", "cmbMaxSpeed[" & $i & "]", "1")
 		Next
 		For $i = 0 To 1
-			$icmbPause[$i] = IniRead($config, "Humanization", "cmbPause[" & $i & "]", "0")
+			$iacmbPause[$i] = IniRead($config, "Humanization", "cmbPause[" & $i & "]", "0")
 		Next
 
 		For $i = 0 To 1
-			$ihumanMessage[$i] = IniRead($config, "Humanization", "humanMessage[" & $i & "]", "")
+			$iahumanMessage[$i] = IniRead($config, "Humanization", "humanMessage[" & $i & "]", "")
 		Next
 
 		$icmbMaxActionsNumber = IniRead($config, "Humanization", "cmbMaxActionsNumber", "1")

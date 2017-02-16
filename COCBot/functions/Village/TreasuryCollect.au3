@@ -129,7 +129,7 @@ Func OpenTreasuryMenu()
 
 		If QuickMIS("BC1", @ScriptDir & "\imgxml\Resources\Treasury", 480, 610, 650, 710) Then ; search for treasury button
 
-			Click($QuickMISX + 480, $QuickMISY + 610)
+			Click($g_iQuickMISX + 480, $g_iQuickMISY + 610)
 			randomSleep(1500)
 
 		Else

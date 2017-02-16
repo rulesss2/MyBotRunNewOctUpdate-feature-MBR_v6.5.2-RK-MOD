@@ -195,7 +195,7 @@ $hGUI_UPGRADE_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,16,"Buildings")
 		GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 		; MOD ; MMHK ; Upgrade Management
-		$chkUpdateNewUpgradesOnly = GUICtrlCreateCheckbox(GetTranslated(699,50, "New Only"), $x + 310 , $y - 30, -1, -1)
+		$chkUpdateNewUpgradesOnly = _GUICtrlCreateCheckbox(GetTranslated(699,50, "New Only"), $x + 310 , $y - 30, -1, -1)
 			GUICtrlSetTip(-1,GetTranslated(699,51, "Update NEW upgrades only for speed"))
 			GUICtrlSetOnEvent(-1, "chkUpdateNewUpgradesOnly")
 		$btnTop = GUICtrlCreateButton(GetTranslated(699,53, "Top"), $x + 180, $y - 30, 67, 20, $BS_CENTER)

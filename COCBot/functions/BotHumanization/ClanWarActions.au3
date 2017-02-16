@@ -126,15 +126,15 @@ Func WatchWarReplays()
 							AccelerateReplay(0)
 						EndIf
 
-						randomSleep($ReplayDuration[1] / 3)
+						randomSleep($aReplayDuration[1] / 3)
 
 						If IsReplayWindow() Then
 							DoAPauseDuringReplay(0)
 						EndIf
 
-						randomSleep($ReplayDuration[1] / 3)
+						randomSleep($aReplayDuration[1] / 3)
 
-						If IsReplayWindow() And $ReplayDuration[0] <> 0 Then
+						If IsReplayWindow() And $aReplayDuration[0] <> 0 Then
 							DoAPauseDuringReplay(0)
 						EndIf
 

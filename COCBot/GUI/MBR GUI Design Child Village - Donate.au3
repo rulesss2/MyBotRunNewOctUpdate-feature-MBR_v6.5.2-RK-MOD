@@ -517,7 +517,8 @@ $x += $Offx
 	Local $yDon = 231
 	$x = 25
 	$y = $yDon
-	$chkClanHop = _GUICtrlCreateCheckbox(GetTranslated(611,9, "Hop Clans"),$x + 275, $y - 5, -1, -1)
+	$chkClanHop = _GUICtrlCreateCheckbox(GetTranslated(3,1, "Hop Clans"),$x + 275, $y - 5, -1, -1)
+	GUICtrlSetTip($chkClanHop, GetTranslated(3,4, "Donat in open clans . CAUTION: BOT WITHDRAWS FROM THE CLAN!"))
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
 	$chkExtraAlphabets = _GUICtrlCreateCheckbox(GetTranslated(612,25, "Enable Cyrillic Alphabet"), $x - 15 , $y +149, -1, -1)
 		_GUICtrlSetTip(-1, GetTranslated(612,26, "Check this to enable the Cyrillic Alphabet Recognition."))

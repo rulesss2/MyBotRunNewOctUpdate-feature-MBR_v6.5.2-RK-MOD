@@ -81,10 +81,10 @@ $chatIni = $sProfilePath & "\" & $sCurrProfile & "\chat.ini"
    GUICtrlSetData(-1, "FR|DE|ES|IT|NL|NO|PR|TR|RU", "RU")
    ;==========================
    $y += 22
-  $ChatbotChatDelayLabel = GUICtrlCreateLabel(GetTranslated(106,9,"Chat Delay"), $x - 10, $y)
-   GUICtrlSetTip($ChatbotChatDelayLabel, GetTranslated(106,10,"Delay chat between number of bot cycles"))
-   $chkchatdelay = GUICtrlCreateInput("0", $x + 50, $y - 1, 35, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-   GUICtrlSetLimit(-1, 2)
+  ;$ChatbotChatDelayLabel = GUICtrlCreateLabel(GetTranslated(106,9,"Chat Delay"), $x - 10, $y)
+  ; GUICtrlSetTip($ChatbotChatDelayLabel, GetTranslated(106,10,"Delay chat between number of bot cycles"))
+   ;$chkchatdelay = GUICtrlCreateInput("0", $x + 50, $y - 1, 35, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+  ; GUICtrlSetLimit(-1, 2)
    $y += 20
    $editGlobalMessages1 = GUICtrlCreateEdit(_ArrayToString($GlobalMessages1, @CRLF), $x - 15, $y, 202, 65)
    GUICtrlSetTip($editGlobalMessages1, GetTranslated(106,11,"Take one item randomly from this list (one per line) and add it to create a message to send to global"))
@@ -132,7 +132,7 @@ $chatIni = $sProfilePath & "\" & $sCurrProfile & "\chat.ini"
    GUICtrlCreateLabel(GetTranslated(106,24,"Use generic chats"), $x + 7, $y, -1, -1)
    $y += 22
    $chkChatPushbullet = GUICtrlCreateCheckbox("", $x - 10, $y, 13, 13)
-   GUICtrlSetTip($chkChatPushbullet, GetTranslated(106,27,"Send and recieve chats via pushbullet or telegram. Use BOT <myvillage> GETCHATS <interval|NOW|STOP> to get the latest clan chat as an image, and BOT <myvillage> SENDCHAT <chat message> to send a chat to your clan"))
+   GUICtrlSetTip($chkChatPushbullet, GetTranslated(106,27,"Send and recieve chats via pushbullet or telegram.") & @CRLF & GetTranslated(106,53, "Use BOT <myvillage> GETCHATS <interval|NOW|STOP> to get the latest clan") & @CRLF & GetTranslated(106,54, "chat as an image, and BOT <myvillage> SENDCHAT <chat message> to send a chat to your clan") & @CRLF & GetTranslated(106, 55, ")"))
    GUICtrlSetState($chkChatPushbullet, $ChatbotUsePushbullet)
    GUICtrlSetOnEvent(-1, "ChatGuiCheckboxUpdate")
    GUICtrlCreateLabel(GetTranslated(106,26,"Use remote for chatting"), $x + 7, $y, -1, -1)

@@ -134,8 +134,8 @@ Func QuickMIS($ValueReturned, $directory, $Left = 0, $Top = 0, $Right = $GAME_WI
 					Next
 					If StringRight($Result, 1) = "|" Then $Result = StringLeft($Result, (StringLen($Result) - 1))
 					$CoordsInArray = StringSplit($Result, ",", $STR_NOCOUNT)
-					$QuickMISX = $CoordsInArray[0]
-					$QuickMISY = $CoordsInArray[1]
+					$g_iQuickMISX = $CoordsInArray[0]
+					$g_iQuickMISY = $CoordsInArray[1]
 					Return True
 
 				Case "CX" ; coordinates of each image found - eg: $Array[0] = [X1, Y1] ; $Array[1] = [X2, Y2]
@@ -206,17 +206,17 @@ Func BotHumanization()
 		ReturnAtHome()
 
 		For $i = 0 To 12
-			$ActionEnabled = _GUICtrlComboBox_GetCurSel($cmbPriority[$i])
+			$ActionEnabled = _GUICtrlComboBox_GetCurSel($acmbPriority[$i])
 			If $ActionEnabled = 0 Then $NoActionsToDo += 1
 		Next
 
 		If $NoActionsToDo <> 13 Then
 
-			$MaxActionsNumber = Random(1, _GUICtrlComboBox_GetCurSel($cmbMaxActionsNumber) + 1, 1)
+			$g_iMaxActionsNumber = Random(1, _GUICtrlComboBox_GetCurSel($cmbMaxActionsNumber) + 1, 1)
 
-			SetLog("DocOc will do " & $MaxActionsNumber & " human actions during this loop...", $COLOR_INFO)
+			SetLog("DocOc will do " & $g_iMaxActionsNumber & " human actions during this loop...", $COLOR_INFO)
 
-			For $i = 1 To $MaxActionsNumber
+			For $i = 1 To $g_iMaxActionsNumber
 				Sleep(4000)
 				ReturnAtHome()
 				RandomHumanAction()
@@ -238,9 +238,9 @@ Func RandomHumanAction()
 		SetActionPriority($i)
 	Next
 
-	$ActionToDo = _ArrayMaxIndex($SetActionPriority)
+	$g_iActionToDo = _ArrayMaxIndex($g_aSetActionPriority)
 
-	Switch $ActionToDo
+	Switch $g_iActionToDo
 		Case 0
 			SetLog("The spirit of DocOc chose to read Clan Chat... Let's go !!! :)", $COLOR_INFO)
 			ReadClanChat()
@@ -286,26 +286,26 @@ EndFunc   ;==>RandomHumanAction
 
 Func SetActionPriority($ActionNumber)
 
-	If _GUICtrlComboBox_GetCurSel($cmbPriority[$ActionNumber]) <> 0 Then
+	If _GUICtrlComboBox_GetCurSel($acmbPriority[$ActionNumber]) <> 0 Then
 		MatchPriorityNValue($ActionNumber)
-		$SetActionPriority[$ActionNumber] = Random($MinimumPriority, 100, 1)
+		$g_aSetActionPriority[$ActionNumber] = Random($g_iMinimumPriority, 100, 1)
 	Else
-		$SetActionPriority[$ActionNumber] = 0
+		$g_aSetActionPriority[$ActionNumber] = 0
 	EndIf
 
 EndFunc   ;==>SetActionPriority
 
 Func MatchPriorityNValue($ActionNumber)
 
-	Switch _GUICtrlComboBox_GetCurSel($cmbPriority[$ActionNumber])
+	Switch _GUICtrlComboBox_GetCurSel($acmbPriority[$ActionNumber])
 		Case 1
-			$MinimumPriority = 0
+			$g_iMinimumPriority = 0
 		Case 2
-			$MinimumPriority = 25
+			$g_iMinimumPriority = 25
 		Case 3
-			$MinimumPriority = 50
+			$g_iMinimumPriority = 50
 		Case 4
-			$MinimumPriority = 75
+			$g_iMinimumPriority = 75
 	EndSwitch
 
 EndFunc   ;==>MatchPriorityNValue
@@ -333,7 +333,9 @@ EndFunc   ;==>chkUseBotHumanization
 Func chkUseAltRClick()
 
 	If GUICtrlRead($chkUseAltRClick) = $GUI_CHECKED Then
-		$UserChoice = MsgBox(4 + 48, "Warning !!!", "Full random click is a good feature to be as less BOT-Like as possible because it makes ALL BOT clicks random..." & @CRLF & "" & @CRLF & "The crazy @RoroTiti use it all the time an he says there is no problem with it... BUT, it still an experimental feature which may cause unpredictable problems..." & @CRLF & "" & @CRLF & "So, do you want to use it ? :)" & @CRLF & "" & @CRLF & "PS : No support will be provided to you if you use this function..." & @CRLF & "" & @CRLF & "===============================================" & @CRLF & "" & @CRLF & "Рандомные клики хорошая функция, чтобы быть как можно больше похожим на человека ..." & @CRLF & "" & @CRLF & "Сумасшедший автор использовал это всё время и он говорит, что нет проблем с этим... но, это всё ещё экспериментальная функция, которая может вызвать непредсказуемые проблемы..." & @CRLF & "" & @CRLF & "Так, вы действительно хотите его использовать ? :)" & @CRLF & "" & @CRLF & "PS : Поддержка не будет оказана, если вы используете эту функцию...")
+		$UserChoice = MsgBox(4 + 48, "Warning !!!", "Full random click is a good feature to be as less BOT-Like as possible because it makes ALL BOT clicks random..." & _
+				@CRLF & "" & @CRLF & "The crazy @RoroTiti use it all the time an he says there is no problem with it... BUT, it still an experimental feature which may cause unpredictable problems..." & _
+				@CRLF & "" & @CRLF & "So, do you want to use it ? :)" & @CRLF & "" & @CRLF & "PS : No support will be provided to you if you use this function...")
 		If $UserChoice = 6 Then
 			$ichkUseAltRClick = 1
 		Else
@@ -368,23 +370,23 @@ EndFunc   ;==>chkLookAtRedNotifications
 
 Func cmbStandardReplay()
 
-	If _GUICtrlComboBox_GetCurSel($cmbPriority[3]) = 0 Then
-		If _GUICtrlComboBox_GetCurSel($cmbPriority[4]) = 0 Then
-			For $i = $Label7 To $cmbPause[0]
+	If _GUICtrlComboBox_GetCurSel($acmbPriority[3]) = 0 Then
+		If _GUICtrlComboBox_GetCurSel($acmbPriority[4]) = 0 Then
+			For $i = $Label7 To $acmbPause[0]
 				GUICtrlSetState($i, $GUI_DISABLE)
 			Next
 		Else
-			For $i = $Label7 To $cmbPause[0]
+			For $i = $Label7 To $acmbPause[0]
 				GUICtrlSetState($i, $GUI_ENABLE)
 			Next
 		EndIf
-	ElseIf _GUICtrlComboBox_GetCurSel($cmbPriority[4]) = 0 Then
-		If _GUICtrlComboBox_GetCurSel($cmbPriority[3]) = 0 Then
-			For $i = $Label7 To $cmbPause[0]
+	ElseIf _GUICtrlComboBox_GetCurSel($acmbPriority[4]) = 0 Then
+		If _GUICtrlComboBox_GetCurSel($acmbPriority[3]) = 0 Then
+			For $i = $Label7 To $acmbPause[0]
 				GUICtrlSetState($i, $GUI_DISABLE)
 			Next
 		Else
-			For $i = $Label7 To $cmbPause[0]
+			For $i = $Label7 To $acmbPause[0]
 				GUICtrlSetState($i, $GUI_ENABLE)
 			Next
 		EndIf
@@ -394,12 +396,12 @@ EndFunc   ;==>cmbStandardReplay
 
 Func cmbWarReplay()
 
-	If _GUICtrlComboBox_GetCurSel($cmbPriority[10]) = 0 Then
-		For $i = $Label13 To $cmbPause[1]
+	If _GUICtrlComboBox_GetCurSel($acmbPriority[10]) = 0 Then
+		For $i = $Label13 To $acmbPause[1]
 			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
 	Else
-		For $i = $Label13 To $cmbPause[1]
+		For $i = $Label13 To $acmbPause[1]
 			GUICtrlSetState($i, $GUI_ENABLE)
 		Next
 	EndIf
@@ -419,51 +421,51 @@ Func WaitForReplayWindow()
 		$CheckStep += 1
 	WEnd
 
-	Return $OnReplayWindow
+	Return $g_bOnReplayWindow
 
 EndFunc   ;==>WaitForReplayWindow
 
 Func IsReplayWindow()
 
-	$OnReplayWindow = _ColorCheck(_GetPixelColor(799, 619, True), "FF5151", 20)
-	Return $OnReplayWindow
+	$g_bOnReplayWindow = _ColorCheck(_GetPixelColor(799, 619, True), "FF5151", 20)
+	Return $g_bOnReplayWindow
 
 EndFunc   ;==>IsReplayWindow
 
 Func GetReplayDuration()
 
-	$MaxSpeed = _GUICtrlComboBox_GetCurSel($cmbMaxSpeed[$ReplayToPause])
+	$MaxSpeed = _GUICtrlComboBox_GetCurSel($acmbMaxSpeed[$g_iReplayToPause])
 	$Result = QuickMIS("N1", @ScriptDir & "\imgxml\Resources\Humanization Pics\Duration", 380, 600, 490, 630)
 
 	If $Result = "OneMinute" Then
-		$ReplayDuration[0] = 1
-		$ReplayDuration[1] = 90000
+		$aReplayDuration[0] = 1
+		$aReplayDuration[1] = 90000
 	ElseIf $Result = "TwoMinutes" Then
-		$ReplayDuration[0] = 2
-		$ReplayDuration[1] = 150000
+		$aReplayDuration[0] = 2
+		$aReplayDuration[1] = 150000
 	ElseIf $Result = "ThreeMinutes" Then
-		$ReplayDuration[0] = 3
-		$ReplayDuration[1] = 180000
+		$aReplayDuration[0] = 3
+		$aReplayDuration[1] = 180000
 	Else
-		$ReplayDuration[0] = 0
-		$ReplayDuration[1] = 45000
+		$aReplayDuration[0] = 0
+		$aReplayDuration[1] = 45000
 	EndIf
 
 	Switch $MaxSpeed
 		Case 1
-			$ReplayDuration[1] /= 2
+			$aReplayDuration[1] /= 2
 		Case 2
-			$ReplayDuration[1] /= 4
+			$aReplayDuration[1] /= 4
 	EndSwitch
 
-	SetLog("Estimated Replay Duration : " & $ReplayDuration[1] / 1000 & " second(s)", $COLOR_INFO)
+	SetLog("Estimated Replay Duration : " & $aReplayDuration[1] / 1000 & " second(s)", $COLOR_INFO)
 
 EndFunc   ;==>GetReplayDuration
 
-Func AccelerateReplay($ReplayToPause)
+Func AccelerateReplay($g_iReplayToPause)
 
 	$CurrentSpeed = 0
-	$MaxSpeed = _GUICtrlComboBox_GetCurSel($cmbMaxSpeed[$ReplayToPause])
+	$MaxSpeed = _GUICtrlComboBox_GetCurSel($acmbMaxSpeed[$g_iReplayToPause])
 
 	If $CurrentSpeed <> $MaxSpeed Then SetLog("Let's make the replay faster...", $COLOR_ACTION1)
 
@@ -475,10 +477,10 @@ Func AccelerateReplay($ReplayToPause)
 
 EndFunc   ;==>AccelerateReplay
 
-Func DoAPauseDuringReplay($ReplayToPause)
+Func DoAPauseDuringReplay($g_iReplayToPause)
 
 	Local $MinimumToPause = 0, $PauseScore = 0
-	$Pause = _GUICtrlComboBox_GetCurSel($cmbPause[0])
+	$Pause = _GUICtrlComboBox_GetCurSel($acmbPause[0])
 
 	If $Pause <> 0 Then
 		Switch $Pause
@@ -510,7 +512,7 @@ Func VisitAPlayer()
 
 	If QuickMIS("BC1", @ScriptDir & "\imgxml\Resources\Humanization Pics\Visit") Then
 
-		Click($QuickMISX, $QuickMISY)
+		Click($g_iQuickMISX, $g_iQuickMISY)
 		randomSleep(8000)
 
 		For $i = 0 To Random(1, 4, 1)
@@ -651,10 +653,10 @@ Func LookAtRedNotifications()
 				Click(700, 80)
 				randomSleep(2000)
 				If QuickMIS("BC1", @ScriptDir & "\imgxml\Resources\Humanization Pics\Friend", 720, 165, 780, 600) Then
-					Click($QuickMISX + 720, $QuickMISY + 165)
+					Click($g_iQuickMISX + 720, $g_iQuickMISY + 165)
 					randomSleep(1500)
 					If QuickMIS("BC1", @ScriptDir & "\imgxml\Resources\Humanization Pics\Friend", 440, 380, 590, 470) Then
-						Click($QuickMISX + 440, $QuickMISY + 380)
+						Click($g_iQuickMISX + 440, $g_iQuickMISY + 380)
 					Else
 						SetLog("Error when trying to find Okay button... skipping...", $COLOR_WARNING)
 					EndIf
@@ -689,13 +691,13 @@ Func CollectAchievements()
 		If IsClanOverview() Then
 
 			If QuickMIS("BC1", @ScriptDir & "\imgxml\Resources\Humanization Pics\ClaimReward", 680) Then
-				Click($QuickMISX + 680, $QuickMISY)
+				Click($g_iQuickMISX + 680, $g_iQuickMISY)
 				SetLog("Reward collected !!! Good Job Chief :D !!!", $COLOR_SUCCESS)
 				randomSleep(3000)
 			Else
 				SetLog('No "Claim Reward" button found... Lemme retry...', $COLOR_ERROR)
 				If QuickMIS("BC1", @ScriptDir & "\imgxml\Resources\Humanization Pics\ClaimReward", 680) Then
-					Click($QuickMISX + 680, $QuickMISY)
+					Click($g_iQuickMISX + 680, $g_iQuickMISY)
 					SetLog("Reward collected !!! Good Job Chief :D !!!", $COLOR_SUCCESS)
 					randomSleep(3000)
 				Else

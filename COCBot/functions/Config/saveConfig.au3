@@ -2925,7 +2925,7 @@ If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
 ; ================================= SmartZap =================================
 ; ============================================================================
 
-   ; ================================================== BOT HUMANIZATION PART ================================================== ;
+  ; ================================================== BOT HUMANIZATION PART ================================================== ;
 
 	IniWrite($config, "Humanization", "chkUseBotHumanization", $ichkUseBotHumanization)
 	IniWrite($config, "Humanization", "chkUseAltRClick", $ichkUseAltRClick)
@@ -2933,17 +2933,17 @@ If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
 	IniWrite($config, "Humanization", "chkLookAtRedNotifications", $ichkLookAtRedNotifications)
 
 	For $i = 0 To 12
-		IniWrite($config, "Humanization", "cmbPriority[" & $i & "]", _GUICtrlComboBox_GetCurSel($cmbPriority[$i]))
+		IniWrite($config, "Humanization", "cmbPriority[" & $i & "]", _GUICtrlComboBox_GetCurSel($acmbPriority[$i]))
 	Next
 	For $i = 0 To 1
-		IniWrite($config, "Humanization", "cmbMaxSpeed[" & $i & "]", _GUICtrlComboBox_GetCurSel($cmbMaxSpeed[$i]))
+		IniWrite($config, "Humanization", "cmbMaxSpeed[" & $i & "]", _GUICtrlComboBox_GetCurSel($acmbMaxSpeed[$i]))
 	Next
 	For $i = 0 To 1
-		IniWrite($config, "Humanization", "cmbPause[" & $i & "]", _GUICtrlComboBox_GetCurSel($cmbPause[$i]))
+		IniWrite($config, "Humanization", "cmbPause[" & $i & "]", _GUICtrlComboBox_GetCurSel($acmbPause[$i]))
 	Next
 
 	For $i = 0 To 1
-		IniWrite($config, "Humanization", "humanMessage[" & $i & "]", GUICtrlRead($humanMessage[$i]))
+		IniWrite($config, "Humanization", "humanMessage[" & $i & "]", GUICtrlRead($ahumanMessage[$i]))
 	Next
 
 	IniWrite($config, "Humanization", "cmbMaxActionsNumber", _GUICtrlComboBox_GetCurSel($cmbMaxActionsNumber))

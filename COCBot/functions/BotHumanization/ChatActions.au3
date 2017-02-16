@@ -92,7 +92,7 @@ Func SaySomeChat()
 		If IsTextBox() Then
 
 			$ChatToSay = Random(0, 1, 1)
-			$CleanMessage = SecureMessage(GUICtrlRead($humanMessage[$ChatToSay]))
+			$CleanMessage = SecureMessage(GUICtrlRead($ahumanMessage[$ChatToSay]))
 			SetLog("Writing """ & $CleanMessage & """ to the chat box...", $COLOR_ACTION1)
 			SendText($CleanMessage)
 
@@ -134,7 +134,7 @@ Func LaunchChallenges()
 				randomSleep(1500)
 
 				$Layout = Random(1, 2, 1) ; choose a layout between normal or war base
-				If $Layout <> $LastLayout Then
+				If $Layout <> $g_iLastLayout Then
 					Click(240, 250) ; click choose layout button
 					randomSleep(1000)
 
@@ -142,13 +142,13 @@ Func LaunchChallenges()
 
 						Switch $Layout
 							Case 1
-								$LastLayout = 1
+								$g_iLastLayout = 1
 								$y = Random(190 - 10, 190 + 10, 1)
 								$xStart = Random(170 - 10, 170 + 10, 1)
 								$xEnd = Random(830 - 10, 830 + 10, 1)
 								ClickDrag($xStart, $y, $xEnd, $y) ; scroll the layout bar to see normal bases
 							Case 2
-								$LastLayout = 2
+								$g_iLastLayout = 2
 								$y = Random(190 - 10, 190 + 10, 1)
 								$xStart = Random(690 - 10, 690 + 10, 1)
 								$xEnd = Random(20 - 10, 20 + 10, 1)

@@ -3001,17 +3001,17 @@ If $NotifyAlertBOTSleep = 1 Then
 	chkUseBotHumanization()
 
 	For $i = 0 To 12
-		_GUICtrlComboBox_SetCurSel($cmbPriority[$i], $icmbPriority[$i])
+		_GUICtrlComboBox_SetCurSel($acmbPriority[$i], $iacmbPriority[$i])
 	Next
 	For $i = 0 To 1
-		_GUICtrlComboBox_SetCurSel($cmbMaxSpeed[$i], $icmbMaxSpeed[$i])
+		_GUICtrlComboBox_SetCurSel($acmbMaxSpeed[$i], $iacmbMaxSpeed[$i])
 	Next
 	For $i = 0 To 1
-		_GUICtrlComboBox_SetCurSel($cmbPause[$i], $icmbPause[$i])
+		_GUICtrlComboBox_SetCurSel($acmbPause[$i], $iacmbPause[$i])
 	Next
 
 	For $i = 0 To 1
-		GUICtrlSetData($humanMessage[$i], $ihumanMessage[$i])
+		GUICtrlSetData($ahumanMessage[$i], $iahumanMessage[$i])
 	Next
 
 	_GUICtrlComboBox_SetCurSel($cmbMaxActionsNumber, $icmbMaxActionsNumber)

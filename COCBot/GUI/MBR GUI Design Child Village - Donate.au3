@@ -1695,7 +1695,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
    $y += 60
    	$grpskipDonateNearFulLTroops = GUICtrlCreateGroup(GetTranslated(613,15,"Skip donation near full troops"), $x - 20, $y - 20, 430, 45)
 
-	  $chkskipDonateNearFulLTroopsEnable = _GUICtrlCreateCheckbox(GetTranslated(613,13,"Skip donation near full troops"), $x, $y-4, -1, -1)
+	  $chkskipDonateNearFulLTroopsEnable = _GUICtrlCreateCheckbox(GetTranslated(613,13,"Skip donation near full troops"), $x, $y-2, -1, -1)
 			GUICtrlSetState(-1, $GUI_CHECKED )
 			GUICtrlSetOnEvent(-1, "chkskipDonateNearFulLTroopsEnable")
 

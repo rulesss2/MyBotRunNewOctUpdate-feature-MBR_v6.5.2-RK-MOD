@@ -1840,7 +1840,7 @@ Global $_CheckIceWizardSlot = True ; Check if Ice Wizard changes normal troop la
 Global $g_iMinimumPriority, $g_iMaxActionsNumber, $g_iActionToDo
 Global $g_aSetActionPriority[13] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-Global $g_sFrequenceChain = GetTranslated(42, 100, "Never|Sometimes|Frequently|Often|Very Often")
+Global $g_sFrequenceChain = GetTranslated(698, 26, "Never|Sometimes|Frequently|Often|Very Often")
 Global $g_sReplayChain = "1|2|4"
 Global $ichkUseBotHumanization, $ichkUseAltRClick, $icmbMaxActionsNumber, $ichkCollectAchievements, $ichkLookAtRedNotifications
 

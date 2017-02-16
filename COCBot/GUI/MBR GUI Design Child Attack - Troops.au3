@@ -996,7 +996,7 @@ $y += 15
 	$chkAddDelayIdlePhaseEnable = _GUICtrlCreateCheckbox(GetTranslated(641, 36, "Add Random Delay"),$x + 18, $y - 11, 130, -1)
 	$txtTip = GetTranslated(641, 37, "Add random delay between two calls of train army.")& @CRLF & _
 	GetTranslated(641, 38, "This option reduces the calls to the training window  humanizing the bot spacing calls each time with a causal interval chosen between the minimum and maximum values indicated below.")
-	GUICtrlSetState(-1, $GUI_CHECKED)
+	;GUICtrlSetState(-1, $GUI_UNCHECKED)
 	_GUICtrlSetTip(-1, $txtTip)
 	GUICtrlSetOnEvent(-1, "chkAddDelayIdlePhaseEnable")
 	$picAddDelayIdlePhaseEnable = GUICtrlCreateIcon($pIconLib, $eIcnDelay, $x - 13, $y - 13, 24, 24)

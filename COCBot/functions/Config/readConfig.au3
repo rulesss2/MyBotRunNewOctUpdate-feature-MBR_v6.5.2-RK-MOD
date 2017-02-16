@@ -861,7 +861,7 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		$iUseRandomClick = Int(IniRead($config, "other", "UseRandomClick", 0))
 
 		;Add idle phase during training read variables from ini file
-		$ichkAddIdleTime = Int(IniRead($config, "other", "chkAddIdleTime", 1))
+		$ichkAddIdleTime = Int(IniRead($config, "other", "chkAddIdleTime", 0))
 		IniReadS($iAddIdleTimeMin, $config, "other", "txtAddDelayIdlePhaseTimeMin", $iAddIdleTimeMin)
 		IniReadS($iAddIdleTimeMax, $config, "other", "txtAddDelayIdlePhaseTimeMax", $iAddIdleTimeMax)
 

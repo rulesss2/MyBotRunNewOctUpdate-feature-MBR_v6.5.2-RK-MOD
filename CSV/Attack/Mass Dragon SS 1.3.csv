@@ -1,0 +1,64 @@
+NOTE  |Author: Ahsan - ver. 1.3-
+NOTE  |Attack: Mass Dragon SS
+NOTE  |Make Troops: All Dragon
+NOTE  |Make Spells: 4 LightSpell , 2 Eq, 3-5 rage
+ 
+      |-----------------------------------------------------------------------------------------------|
+      |                                                                                               |
+      |                                                                                               |
+
+      |EXTR. GOLD |EXTR.ELIXIR|EXTR. DARK |DEPO. GOLD |DEPO.ELIXIR|DEPO. DARK |TOWNHALL   |FORCED SIDE|
+SIDE  |0          |0          |0          |0          |0          |0          |10         |ADefense   |
+
+ 
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|
+MAKE  |A          |FRONT-LEFT |10         |1          |EXT-INT    |0          |2          |           |
+MAKE  |B          |FRONT-RIGHT|10         |1          |EXT-INT    |0          |2          |           |
+MAKE  |C          |FRONT-LEFT |10         |1          |INT-EXT    |0          |2          |           |
+MAKE  |D          |FRONT-LEFT |10         |-7         |INT-EXT    |0          |0          |           |
+MAKE  |E          |FRONT-RIGHT|10         |-7         |INT-EXT    |0          |0          |           |
+MAKE  |F          |FRONT-LEFT |10         |-13        |INT-EXT    |0          |0          |           |
+MAKE  |G          |FRONT-Right|10         |-13        |INT-EXT    |0          |0          |           |
+
+      |DEFENSE____|OPTIONS_____|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|____________|
+DROPS |ADefense   |R:T,B:F,S:S |2          |LSpell     |10-20      |0          |0          |            |
+DROPS |ADefense   |R:T,B:F,S:S |1          |Espell     |10-20      |0          |0          |            |
+
+WAIT  |3500-4500   |           |           |           |           |           |           |            |
+
+RECALC|           |            |           |           |           |           |           |            |
+
+      |DEFENSE____|OPTIONS_____|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|____________|
+DROPS |ADefense   |R:T,B:F,S:S |2          |LSpell     |10-20      |0          |0          |            |
+DROPS |ADefense   |R:T,B:F,S:S |1          |Espell     |10-20      |0          |0          |            |
+
+WAIT  |3500-4500   |           |           |           |           |           |           |            |
+
+      |DEFENSE____|OPTIONS_____|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|____________| Just In case,
+DROPS |ADefense   |R:T,B:F,S:A |2          |LSpell     |10-20      |0          |0          |            |
+DROPS |ADefense   |R:T,B:F,S:A |1          |Espell     |10-20      |0          |0          |            |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|           |
+DROP  |A-B        |1-10       |6          |Drag       |30-50      |0          |1000-1200  |           |
+DROP  |A-B        |1-10       |7          |ball       |30-50      |0          |1000-1200  |           |
+DROP  |A-B        |1-10       |7          |mini       |30-50      |0          |1000-1200  |           |
+DROP  |C          |1          |1          |castle     |0          |0          |100-300    |           |
+DROP  |C          |1          |1          |warden     |0          |0          |500        |           |
+DROP  |C          |1          |8          |wall       |0          |0          |50-100     |           |
+DROP  |C          |1          |1          |queen      |0          |0          |100-300    |           |
+DROP  |C          |1          |1          |king       |0          |0          |100-300    |           |
+DROP  |D          |1          |1          |HaSpell    |0          |0          |100        |           |
+DROP  |D-E        |5          |1          |HaSpell    |0          |0          |100        |           |
+DROP  |D-E        |6          |1          |RSpell     |0          |0          |500-700    |           |
+DROP  |D          |1          |1          |RSpell     |0          |0          |100        |           |
+DROP  |A          |1          |1          |warden     |0          |0          |50-100     |           |
+WAIT  |3500-4500  |           |           |           |           |           |           |           |
+DROP  |F-G        |4          |1          |RSpell     |0          |0          |100        |           |
+
+WAIT  |3000-4000   |           |           |           |           |           |           |            |
+
+      |DEFENSE____|OPTIONS________|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|____________|
+DROPS |EAGLE      |R:T,B:F,S:A,L:T|1          |FSpell     |0          |0          |0          |            |
+
+      |DEFENSE____|OPTIONS________|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|____________|
+DROPS |INFERNO    |R:T,B:T,S:A,L:T|1          |FSpell     |0          |0          |0          |            |

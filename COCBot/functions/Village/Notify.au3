@@ -492,16 +492,6 @@ Func NotifyRemoteControlProc($OnlyPB)
 							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " <" & $NotifyOrigin & "> " & GetTranslated(620,25,"SCREENSHOT") & GetTranslated(620,26, " - send a screenshot of") & " <" & $NotifyOrigin & ">"
 							;======addied kychera====== sendchat
 							$txtHelp &= '\n' & GetTranslated(620, 1, -1) & " <" & $NotifyOrigin & "> SENDCHAT <TEXT> - send TEXT in clan chat of <Village Name>"
-							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,21,"ACC <account list>") & GetTranslated(638,26, " - set new play list")
-							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,22,"ADD <acc number>") & GetTranslated(638,27, " - add an account to play list")
-							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,23,"REM <acc number>") & GetTranslated(638,28, " - remove an account from play list")
-							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,24,"MAP <acc number>-<profile number>") & GetTranslated(638,29, " - set profile to an account. eg: BOT MAP 1-3")
-							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,25,"MODE <mode ID>") & GetTranslated(638,30, " - set switching mode. Eg: BOT MODE 0")
-							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,2,"PRO <profile number>") & GetTranslated(638,12, " - set new bot profiles")
-							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,3,"GETORDER") & GetTranslated(638,13, " - get current CoC account and bot profile")
-							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,4,"STOPSTART") & GetTranslated(638,14, " - stop then start bot again")
-							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,5,"ALLPRO <all profile number>") & GetTranslated(638,15, " - set up profiles correspond to all exists accounts")
-							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,10,"ATKP 1/0") & GetTranslated(638,20, " - 1-enable/0-disable attack plan")
 							$txtHelp &= '\n' & GetTranslated(620, 1, -1) & " <" & $NotifyOrigin & "> GETCHATS <STOP|NOW|INTERVAL> - select any of this three option to do")
 							;======>
 							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " <" & $NotifyOrigin & "> " & GetTranslated(620,27,"SCREENSHOTHD") & GetTranslated(620,28, " - send a screenshot in high resolution of") & " <" & $NotifyOrigin & ">"
@@ -667,61 +657,6 @@ Func NotifyRemoteControlProc($OnlyPB)
 									NotifyDeleteMessageFromPushBullet($iden[$x])
 								EndIf
 						;=================================== "Chat Bot" ===================================	addied kychera 12.2016===
-						    Local $lsNewOrd
-						    If StringLeft($body[$x], 7) = "BOT ACC" Then		;Chalicucu order switch COC Account
-							   $lsNewOrd = ReorderAcc(StringMid($body[$x], 9))
-							   NotifyPushToPushBullet("Reordered COC account: " & $lsNewOrd & " (" & AccGetStep() & ")")
-							   NotifyDeleteMessageFromPushBullet($iden[$x])
-						    ElseIf StringLeft($body[$x], 7) = "BOT PRO" Then		;Chalicucu order switch bot profile
-							   $lsNewOrd = ReorderCurPro(StringMid($body[$x], 9))
-							   NotifyPushToPushBullet("Reordered bot profile: " & $lsNewOrd )
-							   NotifyDeleteMessageFromPushBullet($iden[$x])
-						    ElseIf StringLeft($body[$x], 10) = "BOT ALLPRO" Then		;Chalicucu order switch bot profile
-							   $lsNewOrd = ReorderAllPro(StringMid($body[$x], 12))
-							   NotifyPushToPushBullet("Reordered bot profile for all acc: " & $lsNewOrd )
-							   NotifyDeleteMessageFromPushBullet($iden[$x])
-						    ElseIf StringLeft($body[$x], 7) = "BOT MAP" Then		;Chalicucu Mapping Account & Profile
-							   MapAccPro(StringMid($body[$x], 9))
-							  NotifyPushToPushBullet("Mapping success: " & StringMid($body[$x], 9) )
-							   NotifyDeleteMessageFromPushBullet($iden[$x])
-						    ElseIf $body[$x] = "BOT GETORDER" Then		;Chalicucu inquiry acc order
-							   SetLog("Get order: [" & $body[$x] & "]", $COLOR_RED)
-							   NotifyPushToPushBullet("Ordered COC acc: " & AccGetOrder() & " (" & AccGetStep() _
-												   & ")\nCurrent:  " & $nCurCOCAcc _
-												   & "\nBot profile: " & ProGetOrderName() _
-												   & "\nSwitch Mode: " & $iSwitchMode & " - " & GUICtrlRead($cmbSwitchMode))
-							   NotifyDeleteMessageFromPushBullet($iden[$x])
-						    ElseIf StringLeft($body[$x], 7) = "BOT ADD" Then		;Chalicucu Add Account to Playing list
-							   $lsNewOrd = AddAcc(StringMid($body[$x], 9))
-							   NotifyPushToPushBullet($lsNewOrd)
-							   NotifyDeleteMessageFromPushBullet($iden[$x])
-						    ElseIf StringLeft($body[$x], 7) = "BOT REM" Then		;Chalicucu Remove Account from Playing list
-							   $lsNewOrd = RemAcc(StringMid($body[$x], 9))
-							   NotifyPushToPushBullet($lsNewOrd)
-							   NotifyDeleteMessageFromPushBullet($iden[$x])
-						    ElseIf StringLeft($body[$x], 8) = "BOT MODE" Then		;Chalicucu Change Switching Mode
-							   $lsNewOrd = SwitchMode(StringMid($body[$x], 10))
-							   SetLog($lsNewOrd, $COLOR_RED)
-							   NotifyPushToPushBullet($lsNewOrd)
-							   NotifyDeleteMessageFromPushBullet($iden[$x])
-						    ElseIf $body[$x] = "BOT STOPSTART" Then		;Chalicucu Stop then start again
-							   btnStop()
-							   btnStart()
-							   SetLog("Receive STOPSTART", $COLOR_RED)
-							  NotifyPushToPushBullet("Received STOPSTART")
-							   NotifyDeleteMessageFromPushBullet($iden[$x])
-						    ElseIf StringLeft($body[$x],8) = "BOT ATKP" Then	;Chalicucu Option to enable/disable Attack Plan
-							   $iChkAtkPln = (Number(StringMid($body[$x],10))=1)
-							   IniWrite($profile, "switchcocacc" , "CheckAtkPln" , Number(StringMid($body[$x],10)))
-							   If $iChkAtkPln Then
-								   GUICtrlSetState($chkAtkPln, $GUI_CHECKED)
-								   NotifyPushToPushBullet("Enabled attack scheduler!")
-							   Else
-								   GUICtrlSetState($chkAtkPln, $GUI_UNCHECKED)
-								   NotifyPushToPushBullet("Disabled attack scheduler!")
-							   EndIf
-							   NotifyDeleteMessageFromPushBullet($iden[$x])
-						    EndIf
 							If StringInStr($body[$x], StringUpper($NotifyOrigin) & " SENDCHAT ") Then
 								$FoundChatMessage = 1
 								$chatMessage = StringRight($body[$x], StringLen($body[$x]) - StringLen("BOT " & StringUpper($NotifyOrigin) & " SENDCHAT "))
@@ -804,11 +739,10 @@ Func NotifyRemoteControlProc($OnlyPB)
 						$txtHelp &= "\n" & GetTranslated(620,46,"SHUTDOWN") & GetTranslated(620,48, " - Shut down host PC")
 						$txtHelp &= "\n" & GetTranslated(620,50,"STANDBY") & GetTranslated(620,51, " - Standby host PC")
                         ;==========addied kychera=====
-						$txtHelp &= "\n" & GetTranslated(18, 110, "SWITCHPROFILE <PROFILENAME> - Swap Profile Village and restart bot")
 						$txtHelp &= "\n" & GetTranslated(18, 111, "GETCHATS <INTERVAL|NOW|STOP> - to get the latest clan chat as an image")
 						$txtHelp &= "\n" & GetTranslated(18, 112, "SENDCHAT <chat message> - to send a chat to your clan")
 						;=============================>
-						$txtHelp &= '\n' & GetTranslated(620,100,  "BOT <Village Name> SWITCH <New Village Name> - switches Village name")
+
 
 						NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,100,"Request for Help") & "\n" & $txtHelp)
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,702,"Your request has been received from ") & $NotifyOrigin & ". " & GetTranslated(620,703,"Help has been sent"), $COLOR_GREEN)
@@ -955,42 +889,6 @@ Func NotifyRemoteControlProc($OnlyPB)
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,702,"Your request has been received from ") & $NotifyOrigin & ". " & GetTranslated(620,723,"Standby PC"), $COLOR_GREEN)
 						NotifyPushToTelegram(GetTranslated(620,52,"PC Standby sequence initiated"))
 						Shutdown(32)
-					;===================================Switch Profile
-				    Case GetTranslated(620,101,"BOT"), GetTranslated(620,102," SWITCH ")
-					   $TGActionMSG = StringLeft($body[$x], StringLen("BOT " & StringUpper($NotifyOrigin) & " SWITCH "))
-						  If $TGActionMSG = "BOT " & StringUpper($NotifyOrigin) & " SWITCH " Then
-							    SetLog("Received request to change profile", $COLOR_GREEN)
-								$switchToProfile = StringRight($body[$x], StringLen($body[$x]) - StringLen("BOT " & StringUpper($NotifyOrigin) & " SWITCH "))
-							    $switchToProfile = StringUpper($switchToProfile)
-								If $switchToProfile = $NotifyOrigin Then
-							    _Push($NotifyOrigin & " | Profile already applied, no action was taken.")
-							    Else
-								    ;Get profile list from the profile comboBox
-			                        Local $comboBoxArray = _GUICtrlComboBox_GetListArray($cmbProfile)
-			                        Local $aProfileList[$comboBoxArray[0]]
-			                        Local $checkProfileExist
-			                        Local $originalPrile = $NotifyOrigin;
-			                        ;Check if the Profile exists
-			                        For $i = 1 to $comboBoxArray[0]
-									    If $comboBoxArray[$i] = $switchToProfile Then
-					                      ;Set to True if found
-					                      $checkProfileExist = True
-					                     ;Set combobox by index deduct 1 to match the expected profile
-									     _GUICtrlComboBox_SetCurSel($cmbProfile,$i-1)
-				                    EndIf
-				                    ExitLoop
-			                    Next
-			                    If $checkProfileExist = True Then
-				                   ;Change profile based on the comboBox index
-								    cmbProfile()
-				                    _Push($NotifyOrigin & " | Bot profile changed from #" & $originalPrile)
-			                    Else
-				                    _Push($NotifyOrigin & " | Profile doesn't exit, no action was taken.")
-			                    EndIf
-							   _DeleteMessage($iden[$x])
-					          EndIf
-						  EndIf
-					;=================================== Switch Profile
 
 					;=================================== "Chat Bot" ===================================addied Kychera 12.2016
 					Case Else

@@ -36,7 +36,7 @@ Global $iBotLaunchTime = 0
 Global $hBotLaunchTime = TimerInit()
 
 $sBotVersion = "v6.5.3" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it is also use on Checkversion()
-$sBotTitle = "My Bot " & $sBotVersion & " @RK MOD v 2.0 " ;~ Don't use any non file name supported characters like \ / : * ? " < > |
+$sBotTitle = "My Bot " & $sBotVersion & " @RK MOD v 2.1 " ;~ Don't use any non file name supported characters like \ / : * ? " < > |
 
 #include "COCBot\functions\Config\DelayTimes.au3"
 #include "COCBot\MBR Global Variables.au3"
@@ -598,14 +598,14 @@ Func Idle() ;Sequence that runs until Full Army
 		If $CommandStop = -1 Then ; Check if closing bot/emulator while training and not in halt mode
 			If $ichkSwitchAcc = 1 Then ; SwitchAcc - DEMEN
 				checkSwitchAcc() ; SwitchAcc - DEMEN
-			Else ; SwitchAcc - DEMEN									
+			Else ; SwitchAcc - DEMEN
 				SmartWait4Train()
 			EndIf
 			If $Restart = True Then ExitLoop ; if smart wait activated, exit to runbot in case user adjusted GUI or left emulator/bot in bad state
 		EndIf
 
 	WEnd
-    
+
     If $ichkSwitchAcc = 1 Then	;	Force switching account when reach attacklimit - SwitchAcc - DEMEN
 		$bReachAttackLimit = ($iAttackedCountSwitch <= $iAttackedVillageCount[0] + $iAttackedVillageCount[1] + $iAttackedVillageCount[2] +$iAttackedVillageCount[3] - 2)
 		If $bReachAttackLimit Then CheckSwitchAcc()

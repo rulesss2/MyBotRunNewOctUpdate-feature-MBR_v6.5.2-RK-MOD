@@ -275,7 +275,7 @@ Func GetFullNameSlot($TrainPos, $Name)
 			Case $TrainPos[1] > 445 And $TrainPos[1] < 550 ; Second ROW
 				$SlotV = 488
 		EndSwitch
-		Local $ToReturn[4] = [$SlotH, $SlotV, 0x9d9d9d, 35] ; Gray [i] icon
+		Local $ToReturn[4] = [$SlotH, $SlotV, 0x9d9d9d, 20] ; Gray [i] icon
 		If $debugsetlogTrain Then SetLog(" » GetFullNameSlot Spell Icon found!", $COLOR_SUCCESS)
 		If $debugsetlogTrain Then SetLog("Full Train Found: [" & $SlotH & "," & $SlotV & "]", $COLOR_SUCCESS)
 		Return $ToReturn
@@ -309,7 +309,7 @@ Func GetFullNameSlot($TrainPos, $Name)
 			Case $TrainPos[1] > 445 And $TrainPos[1] < 550 ; Second ROW
 				$SlotV = 488
 		EndSwitch
-		Local $ToReturn[4] = [$SlotH, $SlotV, 0x9f9f9f, 35] ; Gray [i] icon
+		Local $ToReturn[4] = [$SlotH, $SlotV, 0x9f9f9f, 20] ; Gray [i] icon
 		If $debugsetlogTrain Then SetLog(" » GetFullNameSlot Normal Icon found!", $COLOR_SUCCESS)
 		If $debugsetlogTrain Then SetLog("Full Train Found: [" & $SlotH & "," & $SlotV & "]", $COLOR_SUCCESS)
 		Return $ToReturn
@@ -337,7 +337,7 @@ Func GetFullNameSlot($TrainPos, $Name)
 			Case $TrainPos[1] > 445 And $TrainPos[1] < 550 ; Second ROW
 				$SlotV = 498
 		EndSwitch
-		Local $ToReturn[4] = [$SlotH, $SlotV, 0x9f9f9f, 35] ; Gray [i] icon
+		Local $ToReturn[4] = [$SlotH, $SlotV, 0x9f9f9f, 20] ; Gray [i] icon
 		If $debugsetlogTrain Then SetLog(" » GetFullNameSlot Dark Icon found!", $COLOR_SUCCESS)
 		If $debugsetlogTrain Then SetLog("Full Train Found: [" & $SlotH & "," & $SlotV & "]", $COLOR_SUCCESS)
 		Return $ToReturn

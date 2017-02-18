@@ -581,7 +581,7 @@ Global $iAtkAlgorithm[$iModeCount]
 ; Notify PushBullet/Telegram variables -  by RK Team
 ;-------------------------------------------------------------------------
 ;PushBullet---------------------------------------------------------------
-Global $NotifyVersion = " MOD v 1.6.0 "
+Global $NotifyVersion = " MOD v 1.6.1 "
 Global $NotifyPBEnabled = 0
 Global $NotifyPBToken = ""
 
@@ -1717,7 +1717,6 @@ Global $IMGLOCTHFAR
 Global $IMGLOCTHRDISTANCE
 
 ;QuickTrain Radio Buttons
-
 Global $ichkUseQTrain = 0
 Global $iRadio_Army1, $iRadio_Army2, $iRadio_Army3
 

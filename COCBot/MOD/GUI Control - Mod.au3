@@ -328,3 +328,26 @@ Func setupProfileComboBoxswitch()
 		; Set the new data of available profiles
 		GUICtrlSetData($cmbTrophyMinProfile, $profileString, "<No Profiles>")
 EndFunc   ;==>setupProfileComboBox
+
+
+Func chkUnitFactor()
+	If GUICtrlRead($chkUnitFactor) = $GUI_CHECKED Then
+		$ichkUnitFactor = 1
+		GUICtrlSetState($txtUnitFactor, $GUI_ENABLE)
+	Else
+		$ichkUnitFactor = 0
+		GUICtrlSetState($txtUnitFactor, $GUI_DISABLE)
+	EndIf
+	$itxtUnitFactor = GUICtrlRead($txtUnitFactor)
+EndFunc
+
+Func chkWaveFactor()
+	If GUICtrlRead($chkWaveFactor) = $GUI_CHECKED Then
+		$ichkWaveFactor = 1
+		GUICtrlSetState($txtWaveFactor, $GUI_ENABLE)
+	Else
+		$ichkWaveFactor = 0
+		GUICtrlSetState($txtWaveFactor, $GUI_DISABLE)
+	EndIf
+	$itxtWaveFactor = GUICtrlRead($txtWaveFactor)
+EndFunc

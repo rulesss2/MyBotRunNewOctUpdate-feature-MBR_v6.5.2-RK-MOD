@@ -69,7 +69,7 @@ Func _ArryRemoveBlanks(ByRef $Array)
 			Next
 			ReDim $Array[$Counter][$2DBound]
 		Case Else
-			$Counter = 0
+			Local $Counter = 0
 			For $i = 0 To (UBound($Array) - 1)
 				If $Array[$i] <> "" Then
 					$Array[$Counter] = $Array[$i]

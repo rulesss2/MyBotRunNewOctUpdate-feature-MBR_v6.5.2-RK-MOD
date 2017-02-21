@@ -55,10 +55,14 @@ Func UpgradeWall()
 					EndIf
 			EndSwitch
 
+			; Check Builder/Shop if open by accident
+			If _CheckPixel($g_aShopWindowOpen, $g_bCapturePixel, Default, "ChkShopOpen", $COLOR_DEBUG) = True Then
+				Click(820, 40, 1, 0, "#0315") ; Close it
+			EndIf
+
 			ClickP($aAway, 1, 0, "#0314") ; click away
 			If _Sleep(100) Then Return
 
-			Click(820, 40, 1, 0, "#0315") ; Close Builder/Shop if open by accident
 		Else
 			SetLog("No free builder, Upgrade Walls skipped..", $COLOR_ERROR)
 		EndIf

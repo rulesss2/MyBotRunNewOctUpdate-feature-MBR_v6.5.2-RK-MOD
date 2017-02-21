@@ -230,14 +230,17 @@ Func GoblinXPGUI()
 		GUICtrlSetOnEvent(-1, "chkEnableSuperXP")
 			$rbSXTraining = GUICtrlCreateRadio(GetTranslated(700, 3, "Farm XP during troops Training"), $x, $y + 23, 165, 17)
 			GUICtrlSetState(-1, $GUI_CHECKED)
+			GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
 			$lblLOCKEDSX = GUICtrlCreateLabel(GetTranslated(700, 13, "LOCKED"), $x + 210, $y + 23, 173, 50)
 			GUICtrlSetFont(-1, 30, 800, 0, "Arial")
 			GUICtrlSetColor(-1, 0xFF0000)
 			GUICtrlSetState(-1, $GUI_HIDE)
 			$rbSXIAttacking = GUICtrlCreateRadio(GetTranslated(700, 4, "Farm XP instead of Attacking"), $x, $y + 46, 158, 17)
 			GUICtrlCreateLabel (GetTranslated(700, 14, "Max XP to Gain") & ":", $x, $y + 69, -1, 17)
+			GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
 			$txtMaxXPtoGain = GUICtrlCreateInput("500", $x + 85, $y + 67, 70, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 			GUICtrlSetLimit(-1, 8)
+			GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
 	$x += 129
 	$y += 100
 		GUICtrlCreateLabel(GetTranslated(700, 5, "Use"), $x - 35, $y + 13, 23, 17)
@@ -247,8 +250,11 @@ Func GoblinXPGUI()
 		GUICtrlCreateLabel(GetTranslated(700, 6, "to gain XP"), $x + 123, $y + 13, 53, 17)
 	$x += 10
 		$chkSXBK = GUICtrlCreateCheckbox("", $x, $y + 35, 17, 17)
+		GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
 		$chkSXAQ = GUICtrlCreateCheckbox("", $x + 40, $y + 35, 17, 17)
+		GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
 		$chkSXGW = GUICtrlCreateCheckbox("", $x + 80, $y + 35, 17, 17)
+		GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
 
 	$x = $xStart + 25
 	$y += 73

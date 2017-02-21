@@ -94,6 +94,7 @@ Global $aRtnHomeCloud2[4]	  = [72, 592 + $g_iBottomOffsetY, 0x103F7E, 15]  ; Clo
 Global $aDetectLang[2]	= [16, 634 + $g_iBottomOffsetY] ; Detect Language, bottom left Attack button must read "Attack"
 Global $aGreenArrowTrainTroops[2] = [388, 124]
 Global $aGreenArrowBrewSpells[2] = [586, 124]
+Global $g_aShopWindowOpen[4]	  = [804, 54, 0xC00508, 15]  ; Red pixel in lower right corner of RED X to close shop window
 
 ;Global $aKingHealth          = [ -1, 572 + $g_iBottomOffsetY, 0x4FD404,110] ; Attack Screen, Check King's Health, X coordinate is dynamic, not used from array
 ;Global $aQueenHealth         = [ -1, 573 + $g_iBottomOffsetY, 0x4FD404,110] ; Attack Screen, Check Queen's Health, X coordinate is dynamic, not used from array

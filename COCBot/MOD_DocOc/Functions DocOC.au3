@@ -22,6 +22,13 @@
 #include "functions\Village\TreasuryCollect.au3"
 #include "functions\Village\SuperXP.au3"
 
+#include "functions\Attack\Attack Algorithms\algorithm_AllTroops.au3"
+#include "functions\Attack\RedArea\DropTroop.au3"
+#include "functions\Attack\Troops\DropOnEdge.au3"
+#include "functions\Attack\Troops\DropOnEdges.au3"
+#include "functions\Attack\Troops\LauchTroop.au3"
+#include "functions\Attack\AttackCSV\ParseAttackCSV.au3"
+
 #include "functions\BotHumanization\BotHumanization.au3"
 #include "functions\BotHumanization\AttackNDefenseActions.au3"
 #include "functions\BotHumanization\BestClansNPlayersActions.au3"

@@ -62,11 +62,6 @@ Func DonateCC($Check = False)
 
 	Local $ClanString = ""
 
-	If $g_bChkDonate = False Then
-		If $g_iDebugSetlog = 1 Then Setlog("Donate Clan Castle troops skip", $COLOR_DEBUG)
-		Return ; exit func if no donate checkmarks
-	EndIf
-
 	If $bDonate = False Or $bDonationEnabled = False Then
 		If $g_iDebugSetlog = 1 Then Setlog("Donate Clan Castle troops skip", $COLOR_DEBUG)
 		Return ; exit func if no donate checkmarks

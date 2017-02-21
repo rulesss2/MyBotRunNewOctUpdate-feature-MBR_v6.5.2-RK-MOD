@@ -30,7 +30,7 @@
 #include "functions\Attack\SnipeWhileTrain.au3"
 #include "functions\Attack\Unbreakable.au3"
 
-#include "functions\Attack\Attack Algorithms\algorithm_AllTroops.au3"
+; #include "functions\Attack\Attack Algorithms\algorithm_AllTroops.au3" --- > DocOc Mod
 #include "functions\Attack\Attack Algorithms\algorithm_Barch.au3"
 #include "functions\Attack\Attack Algorithms\algorithmTH.au3"
 #include "functions\Attack\Attack Algorithms\THAttackTypes.au3"
@@ -45,7 +45,7 @@
 #include "functions\Attack\AttackCSV\Line2Points.au3"
 #include "functions\Attack\AttackCSV\MakeDropLine.au3"
 #include "functions\Attack\AttackCSV\MakeDropPoints.au3"
-#include "functions\Attack\AttackCSV\ParseAttackCSV.au3"
+; #include "functions\Attack\AttackCSV\ParseAttackCSV.au3"  --- > DocOc Mod
 #include "functions\Attack\AttackCSV\ParseAttackCSV_Read_SIDE_variables.au3"
 #include "functions\Attack\AttackCSV\Slice8.au3"
 #include "functions\Attack\AttackCSV\CleanRedArea.au3"
@@ -74,7 +74,7 @@
 #include "functions\Attack\RedArea\_GetVectorOutZone.au3"
 #include "functions\Attack\RedArea\DebugRedArea.au3"
 #include "functions\Attack\RedArea\DropOnPixel.au3"
-#include "functions\Attack\RedArea\DropTroop.au3"
+; #include "functions\Attack\RedArea\DropTroop.au3" --- > DocOc Mod
 #include "functions\Attack\RedArea\GetLocation.au3"
 #include "functions\Attack\RedArea\GetOffestPixelRedArea2.au3"
 #include "functions\Attack\RedArea\GetPixelDropTroop.au3"
@@ -86,11 +86,11 @@
 #include "functions\Attack\Troops\CheckHeroesHealth.au3"
 #include "functions\Attack\Troops\dropCC.au3"
 #include "functions\Attack\Troops\dropHeroes.au3"
-#include "functions\Attack\Troops\DropOnEdge.au3"
-#include "functions\Attack\Troops\DropOnEdges.au3"
+; #include "functions\Attack\Troops\DropOnEdge.au3"  --- > DocOc Mod
+; #include "functions\Attack\Troops\DropOnEdges.au3" --- > DocOc Mod
 #include "functions\Attack\Troops\GetXPosOfArmySlot.au3"
 #include "functions\Attack\Troops\GetSlotIndexFromXPos.au3"
-#include "functions\Attack\Troops\LauchTroop.au3"
+; #include "functions\Attack\Troops\LauchTroop.au3" --- > DocOc Mod
 #include "functions\Attack\Troops\NameOfTroop.au3"
 #include "functions\Attack\Troops\OldDropTroop.au3"
 #include "functions\Attack\Troops\ReadTroopQuantity.au3"

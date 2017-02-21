@@ -41,13 +41,26 @@ Func CreateAttackSearchDeadBaseStandard()
 		   $y += 25
 		   GUICtrlCreateLabel(GetTranslated(608,3, "Attack on")&":", $x, $y + 5, -1, -1)
 		   $g_hCmbStandardDropSidesDB = GUICtrlCreateCombo("", $x + 55, $y, 120, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+
+
 			   _GUICtrlSetTip(-1, GetTranslated(608,4, "Attack on a single side, penetrates through base") & @CRLF & _
 								  GetTranslated(608,5, "Attack on two sides, penetrates through base") & @CRLF & _
-								  GetTranslated(608,6, "Attack on three sides, gets outer and some inside of base"), _
-								  GetTranslated(608,7,"Select the No. of sides to attack on."))
+								  GetTranslated(608,6, "Attack on three sides, gets outer and some inside of base") & @CRLF & _
+								  "Attack on Classic Four Fingers", GetTranslated(608,7,"Select the No. of sides to attack on."))
+
+;~ 			   _GUICtrlSetTip(-1, GetTranslated(608,4, "Attack on a single side, penetrates through base") & @CRLF & _
+;~ 								  GetTranslated(608,5, "Attack on two sides, penetrates through base") & @CRLF & _
+;~ 								  GetTranslated(608,6, "Attack on three sides, gets outer and some inside of base"), _
+;~ 								  GetTranslated(608,7,"Select the No. of sides to attack on."))
+
 			   GUICtrlSetData(-1, GetTranslated(608,8, "one side") & "|" & GetTranslated(608,9, "two sides") & "|" & _
-								  GetTranslated(608,10, "three sides") &"|" & GetTranslated(608,11,"all sides equally" ), _
-								  GetTranslated(608,11, -1))
+								  GetTranslated(608,10, "three sides") &"|" & GetTranslated(608,11,"all sides equally" ) &"|" & _
+								  "Classic Four Fingers", GetTranslated(608,11, -1))
+
+;~ 			   GUICtrlSetData(-1, GetTranslated(608,8, "one side") & "|" & GetTranslated(608,9, "two sides") & "|" & _
+;~ 								  GetTranslated(608,10, "three sides") &"|" & GetTranslated(608,11,"all sides equally" ), _
+;~ 								  GetTranslated(608,11, -1))
+			   GUICtrlSetOnEvent(-1,"cmbDeployDB") ; Uncheck SmartAttack Red Area when enable FourFinger to avoid conflict
 
 		   $y += 25
 		   GUICtrlCreateLabel(GetTranslated(608,12, "Delay Unit") & ":", $x, $y + 5, -1, -1)
@@ -73,7 +86,6 @@ Func CreateAttackSearchDeadBaseStandard()
 			   _GUICtrlSetTip(-1, GetTranslated(608,18, "Use Smart Attack to detect the outer 'Red Line' of the village to attack. And drop your troops close to it."))
 			   GUICtrlSetState(-1, $GUI_CHECKED)
 			   GUICtrlSetOnEvent(-1, "chkSmartAttackRedAreaDB")
-
 		   $y += 22
 		   $g_hLblSmartDeployDB = GUICtrlCreateLabel(GetTranslated(608,19, "Drop Type") & ":", $x, $y + 5, -1, -1)
 			   $sTxtTip = GetTranslated(608,20, "Select the Deploy Mode for the waves of Troops.") & @CRLF & GetTranslated(608,21, "Type 1: Drop a single wave of troops on each side then switch troops, OR") & @CRLF & GetTranslated(608,22, "Type 2: Drop a full wave of all troops (e.g. giants, barbs and archers) on each side then switch sides.")

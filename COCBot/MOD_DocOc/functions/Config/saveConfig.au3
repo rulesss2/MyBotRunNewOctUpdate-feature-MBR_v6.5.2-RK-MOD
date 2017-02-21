@@ -47,4 +47,13 @@ Func SaveConfig_DocOc()
 	IniWriteS($g_sProfileConfigPath, "Treasury", "chkFullElxTrCollect", $g_ichkFullElxTrCollect)
 	IniWriteS($g_sProfileConfigPath, "Treasury", "chkFullDarkTrCollect", $g_ichkFullDarkTrCollect)
 	; ================================================== TREASURY COLLECT END ================================================== ;
+
+	; ================================================== GOBLINXP PART ================================================== ;
+	IniWriteS($g_sProfileConfigPath, "attack", "EnableSuperXP", $ichkEnableSuperXP)
+	IniWriteS($g_sProfileConfigPath, "attack", "SXTraining", $irbSXTraining)
+	IniWriteS($g_sProfileConfigPath, "attack", "SXBK", $ichkSXBK)
+	IniWriteS($g_sProfileConfigPath, "attack", "SXAQ", $ichkSXAQ)
+	IniWriteS($g_sProfileConfigPath, "attack", "SXGW", $ichkSXGW)
+	IniWriteS($g_sProfileConfigPath, "attack", "MaxXptoGain", GUICtrlRead($txtMaxXPtoGain))
+	; ================================================== GOBLINXP END =================================================== ;
 EndFunc   ;==>SaveConfig_DocOc

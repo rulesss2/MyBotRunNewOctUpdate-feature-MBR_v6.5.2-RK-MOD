@@ -31,10 +31,12 @@ Func SXSetXP($toSet = "")
 	If $toSet = "W" Or $toSet = "" Then GUICtrlSetData($lblXPSXWon, $iGainedXP)
 	$iGainedXPHour = Round($iGainedXP / (Int(TimerDiff($g_hTimerSinceStarted) + $g_iTimePassed)) * 3600 * 1000)
 	If $toSet = "H" Or $toSet = "" Then GUICtrlSetData($lblXPSXWonHour, _NumberFormat($iGainedXPHour))
+
 EndFunc   ;==>SXSetXP
 
 
 Func chkEnableSuperXP()
+
 	If GUICtrlRead($chkEnableSuperXP) = $GUI_CHECKED Then
 		GUICtrlSetState($rbSXTraining, $GUI_ENABLE)
 		GUICtrlSetState($rbSXIAttacking, $GUI_ENABLE)
@@ -50,4 +52,46 @@ Func chkEnableSuperXP()
 		GUICtrlSetState($chkSXGW, $GUI_DISABLE)
 		GUICtrlSetState($txtMaxXPtoGain, $GUI_DISABLE)
 	EndIf
+
 EndFunc   ;==>chkEnableSuperXP
+
+
+Func chkEnableSuperXP2()
+
+	$ichkEnableSuperXP = GUICtrlRead($chkEnableSuperXP) = $GUI_CHECKED ? 1 : 0
+	$irbSXTraining = GUICtrlRead($rbSXTraining) = $GUI_CHECKED ? 1 : 2
+	$ichkSXBK = (GUICtrlRead($chkSXBK) = $GUI_CHECKED) ? $eHeroKing : $eHeroNone
+	$ichkSXAQ = (GUICtrlRead($chkSXAQ) = $GUI_CHECKED) ? $eHeroQueen : $eHeroNone
+	$ichkSXGW = (GUICtrlRead($chkSXGW) = $GUI_CHECKED) ? $eHeroWarden : $eHeroNone
+	$itxtMaxXPtoGain = Int(GUICtrlRead($txtMaxXPtoGain))
+
+EndFunc   ;==>chkEnableSuperXP2
+
+
+; DOC OC ADD - CLASSIC FFF
+Func cmbDeployDB() ; avoid conflict between FourFinger and SmartAttack
+	If _GUICtrlComboBox_GetCurSel($g_hCmbStandardDropSidesDB) = 4 Then
+		For $i = $g_hChkSmartAttackRedAreaDB To $g_hPicAttackNearDarkElixirDrillDB
+			GUICtrlSetState($g_hChkSmartAttackRedAreaDB, $GUI_UNCHECKED)
+			GUICtrlSetState($i, $GUI_DISABLE)
+		Next
+	Else
+		For $i = $g_hChkSmartAttackRedAreaDB To $g_hPicAttackNearDarkElixirDrillDB
+			GUICtrlSetState($i, $GUI_ENABLE)
+		Next
+		GUICtrlSetState($g_hChkSmartAttackRedAreaDB, $GUI_ENABLE)
+	EndIf
+EndFunc   ;==>cmbDeployDB
+
+Func cmbDeployAB() ; avoid conflict between FourFinger and SmartAttack
+	If _GUICtrlComboBox_GetCurSel($g_hCmbStandardDropSidesAB) = 4 Then
+		For $i = $g_hChkSmartAttackRedAreaAB To $g_hPicAttackNearDarkElixirDrillAB
+			GUICtrlSetState($g_hChkSmartAttackRedAreaAB, $GUI_UNCHECKED)
+			GUICtrlSetState($i, $GUI_DISABLE)
+		Next
+	Else
+		For $i = $g_hChkSmartAttackRedAreaAB To $g_hPicAttackNearDarkElixirDrillAB
+			GUICtrlSetState($i, $GUI_ENABLE)
+		Next
+	EndIf
+EndFunc   ;==>cmbDeployAB

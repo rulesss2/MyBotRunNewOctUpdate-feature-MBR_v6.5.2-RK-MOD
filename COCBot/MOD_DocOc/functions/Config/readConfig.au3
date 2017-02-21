@@ -47,4 +47,15 @@ Func ReadConfig_DocOc()
 	IniReadS($g_ichkFullElxTrCollect, $g_sProfileConfigPath, "Treasury", "chkFullElxTrCollect", 0, "int")
 	IniReadS($g_ichkFullDarkTrCollect, $g_sProfileConfigPath, "Treasury", "chkFullDarkTrCollect", 0, "int")
 	; ================================================== TREASURY COLLECT END ================================================== ;
+
+	; ================================================== GOBLINXP PART ================================================== ;
+
+	IniReadS($ichkEnableSuperXP, $g_sProfileConfigPath, "attack", "EnableSuperXP", "0")
+	IniReadS($irbSXTraining, $g_sProfileConfigPath, "attack", "SXTraining", "1")
+	IniReadS($itxtMaxXPtoGain, $g_sProfileConfigPath, "attack", "MaxXptoGain", "500")
+	IniReadS($ichkSXBK, $g_sProfileConfigPath, "attack", "SXBK", $eHeroNone)
+	IniReadS($ichkSXAQ, $g_sProfileConfigPath, "attack", "SXAQ", $eHeroNone)
+	IniReadS($ichkSXGW, $g_sProfileConfigPath, "attack", "SXGW", $eHeroNone)
+
+	; ================================================== GOBLINXP END =================================================== ;
 EndFunc   ;==>ReadConfig_DocOc

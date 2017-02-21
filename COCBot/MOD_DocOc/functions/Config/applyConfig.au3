@@ -49,6 +49,18 @@ Func ApplyConfig_DocOc($TypeReadSave)
 			$g_itxtMinElxTrCollect = GUICtrlRead($txtMinElxTrCollect)
 			$g_itxtMinDarkTrCollect = GUICtrlRead($txtMinDarkTrCollect)
 			; ================================================== TREASURY COLLECT END ================================================== ;
+
+			; ================================================== GOBLINXP PART ================================================== ;
+
+			$ichkEnableSuperXP = GUICtrlRead($chkEnableSuperXP) = $GUI_CHECKED ? 1 : 0
+			$irbSXTraining = GUICtrlRead($rbSXTraining) = $GUI_CHECKED ? 1 : 2
+			$ichkSXBK = (GUICtrlRead($chkSXBK) = $GUI_CHECKED) ? $eHeroKing : $eHeroNone
+			$ichkSXAQ = (GUICtrlRead($chkSXAQ) = $GUI_CHECKED) ? $eHeroQueen : $eHeroNone
+			$ichkSXGW = (GUICtrlRead($chkSXGW) = $GUI_CHECKED) ? $eHeroWarden : $eHeroNone
+			$itxtMaxXPtoGain = String(GUICtrlRead($txtMaxXPtoGain))
+
+			; ================================================== GOBLINXP END =================================================== ;
+
 		Case "Read"
 			; ================================================== BOT HUMANIZATION PART ================================================== ;
 			GUICtrlSetState($chkUseBotHumanization, $g_ichkUseBotHumanization = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
@@ -87,6 +99,23 @@ Func ApplyConfig_DocOc($TypeReadSave)
 			GUICtrlSetData($txtMinDarkTrCollect, $g_itxtMinDarkTrCollect)
 			chkEnableTrCollect()
 			; ================================================== TREASURY COLLECT END ================================================== ;
+
+			; ================================================== GOBLINXP PART ================================================== ;
+
+			GUICtrlSetState($chkEnableSuperXP, $ichkEnableSuperXP = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+
+			chkEnableSuperXP()
+
+			GUICtrlSetState($rbSXTraining, ($irbSXTraining = 1) ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($rbSXIAttacking, ($irbSXTraining = 2) ? $GUI_CHECKED : $GUI_UNCHECKED)
+
+			GUICtrlSetData($txtMaxXPtoGain, $itxtMaxXPtoGain)
+
+			GUICtrlSetState($chkSXBK, $ichkSXBK = $eHeroKing ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($chkSXAQ, $ichkSXAQ = $eHeroQueen ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($chkSXGW, $ichkSXGW = $eHeroWarden ? $GUI_CHECKED : $GUI_UNCHECKED)
+
+			; ================================================== GOBLINXP END =================================================== ;
 
 	EndSwitch
 EndFunc   ;==>ApplyConfig_DocOc

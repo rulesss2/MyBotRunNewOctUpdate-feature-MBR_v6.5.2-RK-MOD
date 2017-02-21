@@ -623,6 +623,7 @@ Func runBot() ;Bot that runs everything in order
 					If Unbreakable() = True Then ContinueLoop
 				EndIf
 			EndIf
+			MainSuperXPHandler()
 			Local $aRndFuncList = ['Laboratory', 'UpgradeHeroes', 'UpgradeBuilding']
 			While 1
 				If $g_bRunState = False Then Return
@@ -716,7 +717,7 @@ Func Idle() ;Sequence that runs until Full Army
 		BotHumanization()
 
 		;If $g_bDonateSkipNearFullEnable = True Then getArmyCapacity(true,true)
-		If $bActiveDonate = True Then
+		If $bActiveDonate And $g_bChkDonate Then
 			Local $aHeroResult = CheckArmyCamp(True, True, True)
 			While $iReHere < 7
 				$iReHere += 1
@@ -771,6 +772,7 @@ Func Idle() ;Sequence that runs until Full Army
 		If $g_iCommandStop = -1 Then
 			If $actual_train_skip < $max_train_skip Then
 				If CheckNeedOpenTrain($g_iTimeBeforeTrain) Then TrainRevamp()
+				MainSuperXPHandler()
 				If $g_bRestart = True Then ExitLoop
 				If _Sleep($iDelayIdle1) Then ExitLoop
 				checkMainScreen(False)
@@ -798,6 +800,7 @@ Func Idle() ;Sequence that runs until Full Army
 					EndIf
 					CheckArmyCamp(True, True)
 				EndIf
+				MainSuperXPHandler()
 			EndIf
 			If $fullArmy Then
 				SetLog("Army Camp and Barracks are full, stop Training...", $COLOR_ACTION)
@@ -835,6 +838,11 @@ Func Idle() ;Sequence that runs until Full Army
 EndFunc   ;==>Idle
 
 Func AttackMain() ;Main control for attack functions
+	If $ichkEnableSuperXP = 1 And $irbSXTraining = 2 Then
+		MainSuperXPHandler()
+		Return
+	EndIf
+
 	;LoadAmountOfResourcesImages() ; for debug
 	getArmyCapacity(True, True)
 	If IsSearchAttackEnabled() Then
@@ -958,13 +966,13 @@ Func _RunFunction($action)
 			NotifyReport()
 			_Sleep($iDelayRunBot3)
 		Case "DonateCC"
-			If $bActiveDonate = True Then
+			If $bActiveDonate And $g_bChkDonate Then
 				;If $g_bDonateSkipNearFullEnable = True and $g_bFirstStart = False Then getArmyCapacity(True, True)
 				If SkipDonateNearFullTroops(True) = False And BalanceDonRec(True) Then DonateCC()
 				If _Sleep($iDelayRunBot1) = False Then checkMainScreen(False)
 			EndIF
 		Case "DonateCC,Train"
-			If $bActiveDonate = True Then
+			If $bActiveDonate And $g_bChkDonate Then
 				If $g_bFirstStart Then
 					getArmyCapacity(True, False)
 					getArmySpellCapacity(False, True)
@@ -1007,6 +1015,9 @@ Func _RunFunction($action)
 			_Sleep($iDelayRunBot3)
 		Case "UpgradeBuilding"
 			UpgradeBuilding()
+			_Sleep($iDelayRunBot3)
+		Case "SuperXP"
+			MainSuperXPHandler()
 			_Sleep($iDelayRunBot3)
 		Case ""
 			SetDebugLog("Function call doesn't support empty string, please review array size", $COLOR_ERROR)

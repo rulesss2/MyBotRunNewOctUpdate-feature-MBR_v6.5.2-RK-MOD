@@ -1268,13 +1268,13 @@ Func tabBot()
 			Case $tabidx = 1 ; Debug tab
 				GUISetState(@SW_HIDE, $g_hGUI_STATS)
 				ControlHide("","",$g_hCmbGUILanguage)
-			Case $tabidx = 2 ; Profiles tab
+;			Case $tabidx = 2 ; Profiles tab
+;				GUISetState(@SW_HIDE, $g_hGUI_STATS)
+;				ControlHide("","",$g_hCmbGUILanguage)
+			Case $tabidx = 2 ; Android tab
 				GUISetState(@SW_HIDE, $g_hGUI_STATS)
 				ControlHide("","",$g_hCmbGUILanguage)
-			Case $tabidx = 3 ; Android tab
-				GUISetState(@SW_HIDE, $g_hGUI_STATS)
-				ControlHide("","",$g_hCmbGUILanguage)
-			Case $tabidx = 4 ; Stats tab
+			Case $tabidx = 3 ; Stats tab
 				GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_STATS)
 				ControlHide("","",$g_hCmbGUILanguage)
 		EndSelect
@@ -1476,7 +1476,7 @@ Func Bind_ImageList($nCtrl)
 
 		Case $g_hGUI_BOT_TAB
 			; the icons for Bot tab
-			Local $aIconIndex[5] = [$eIcnOptions, $eIcnAndroid, $eIcnProfile, $eIcnProfile, $eIcnGold]
+			Local $aIconIndex[4] = [$eIcnOptions, $eIcnAndroid, $eBug, $eStats]
 			; The Android Robot is a Google Trademark and follows Creative Common Attribution 3.0
 
 		Case $g_hGUI_STRATEGIES_TAB
@@ -1489,7 +1489,7 @@ Func Bind_ImageList($nCtrl)
 
 		Case $g_hGUI_MOD_TAB
 			; the icons for stats tab
-			Local $aIconIndex[3] = [$eIcnGoldElixir, $eIcnBrain, $eIcnOptions]
+			Local $aIconIndex[5] = [$eIcnInfo, $eIcnBrain, $eIcnOptions, $eIcnProfile, $eMultiStat]
 
 		Case Else
 			;do nothing

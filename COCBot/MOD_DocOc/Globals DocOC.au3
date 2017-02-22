@@ -65,3 +65,12 @@ Global Const $iDelayPrepareSearchSuperXP = 500
 Global $CurBaseRedLine[2] = ["", ""]
 Global $DCD = "440,70|825,344|440,640|55,344"
 Global $ECD = "440,22|860,344|440,670|2,344"
+
+
+; Persian OCR to danateCC
+Global $ichkExtraPersian = 0
+
+; Warden Forced Ability
+Global $iActivateWardenCondition = 0
+Global $delayActivateW = 9
+Global $HeroesTimerActivation[3] = [0,0,0]

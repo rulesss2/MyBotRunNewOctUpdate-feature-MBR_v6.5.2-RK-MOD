@@ -32,50 +32,7 @@ Global $g_ahChkDropCCHoursE1 = 0, $g_ahChkDropCCHoursE2 = 0
 
 Func CreateAttackSearchOptionsAttack()
 
-   Local $sTxtTip = ""
-   Local $x = 25, $y = 45
-	GUICtrlCreateGroup(GetTranslated(634,1, "Hero Abilities"), $x - 20, $y - 20, 420, 60)
-		GUICtrlCreateIcon($g_sLibIconPath, $eIcnKing, $x-10, $y, 24, 24)
-		GUICtrlCreateIcon($g_sLibIconPath, $eIcnQueen, $x+ 15, $y, 24, 24)
-		GUICtrlCreateIcon($g_sLibIconPath, $eIcnWarden, $x+ 40, $y, 24, 24)
-
-	   $x += 70
-	   $y -= 4
-		   $g_hRadAutoAbilities = GUICtrlCreateRadio(GetTranslated(634,2, "Auto activate (red zone)"), $x, $y-4 , -1, -1)
-		   $sTxtTip = GetTranslated(634,3, "Activate the Ability when the Hero becomes weak.") & @CRLF & GetTranslated(634,4, "Heroes are checked and activated individually.")
-		   _GUICtrlSetTip(-1, $sTxtTip)
-		   GUICtrlSetState(-1, $GUI_CHECKED)
-
-	   $y += 15
-		   $g_hRadManAbilities = GUICtrlCreateRadio(GetTranslated(634,5, "Timed after") & ":", $x , $y , -1, -1)
-			   $sTxtTip = GetTranslated(634,6, "Activate the Ability on a timer.") & @CRLF & GetTranslated(634,7, "All Heroes are activated at the same time.")
-			   _GUICtrlSetTip(-1, $sTxtTip)
-			   GUICtrlSetState(-1, $GUI_UNCHECKED)
-
-		   $g_hTxtManAbilities = GUICtrlCreateInput("9", $x + 80, $y+3, 30, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-			   $sTxtTip = GetTranslated(634,8, "Set the time in seconds for Timed Activation of Hero Abilities.")
-			   _GUICtrlSetTip(-1, $sTxtTip)
-			   GUICtrlSetLimit(-1, 2)
-		   GUICtrlCreateLabel(GetTranslated(603,6, "sec."), $x + 115, $y + 4, -1, -1)
-
-	  $y += 40
-		   $g_hChkUseWardenAbility = GUICtrlCreateCheckbox(GetTranslated(634,9, "Timed activation of Warden Ability after") & ":", $x, $y, -1, -1)
-			   $sTxtTip = GetTranslated(634,10, "Use the ability of the Grand Warden on a timer.")
-			   _GUICtrlSetTip(-1, $sTxtTip)
-			   GUICtrlSetState(-1, $GUI_UNCHECKED+$GUI_DISABLE+$GUI_HIDE)
-			   GUICtrlSetColor (-1,$COLOR_ERROR)
-		   $g_hTxtWardenAbility = GUICtrlCreateInput("25", $x + 260, $y, 30, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-			   $sTxtTip = GetTranslated(634,11, "Set the time in seconds for Timed Activation of Grand Warden Ability.")
-			   _GUICtrlSetTip(-1, $sTxtTip)
-			   GUICtrlSetState(-1, $GUI_DISABLE+$GUI_HIDE)
-			   GUICtrlSetLimit(-1, 2)
-			   GUICtrlSetColor (-1,$COLOR_ERROR)
-		   GUICtrlCreateLabel(GetTranslated(603,6, -1), $x + 293, $y, -1, -1)
-			   GUICtrlSetState(-1, $GUI_DISABLE+$GUI_HIDE)
-			   GUICtrlSetColor (-1,$COLOR_ERROR)
-	GUICtrlCreateGroup("", -99, -99, 1, 1)
-
-    Local $x = 25, $y = 110
+    Local $x = 25, $y = 45
     GUICtrlCreateGroup(GetTranslated(634,20, "Attack Schedule"), $x - 20, $y - 20, 420, 130)
 	$x -= 5
 		$g_hChkAttackPlannerEnable = GUICtrlCreateCheckbox(GetTranslated(634,21, "Enable Schedule"), $x, $y-5, -1, -1)
@@ -181,6 +138,7 @@ Func CreateAttackSearchOptionsAttack()
 
 	$x -= 25
 	$y += 17
+	Local $sTxtTip = ""
 		GUICtrlCreateLabel(GetTranslated(603,15,"Hour") & ":", $x , $y, -1, 15)
 			$sTxtTip = GetTranslated(603,30, "Only during these hours of each day")
 			_GUICtrlSetTip(-1, $sTxtTip)
@@ -327,7 +285,7 @@ Func CreateAttackSearchOptionsAttack()
 
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
-    Local $x = 25, $y = 245
+    Local $x = 25, $y = 180
     GUICtrlCreateGroup(GetTranslated(634,12, "ClanCastle"), $x - 20, $y - 20, 420, 100)
 		GUICtrlCreateIcon($g_sLibIconPath, $eIcnCC, $x -10 , $y + 4, 24, 24)
 
@@ -359,7 +317,7 @@ Func CreateAttackSearchOptionsAttack()
 			GUICtrlSetOnEvent(-1, "cmbBalanceDR")
 
 	$x += 188
-	$y = 245
+	$y = 180
 		GUICtrlCreateLabel(GetTranslated(603,30, -1), $x+8, $y)
 
     $y += 14

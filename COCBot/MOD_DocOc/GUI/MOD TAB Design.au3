@@ -15,7 +15,7 @@
 #include-once
 
 Global $g_hGUI_MOD = 0
-Global $g_hGUI_MOD_TAB = 0, $g_hGUI_MOD_TAB_ITEM1 = 0 , $g_hGUI_MOD_TAB_ITEM2 = 0 ,$g_hGUI_MOD_TAB_ITEM3 = 0
+Global $g_hGUI_MOD_TAB = 0, $g_hGUI_MOD_TAB_ITEM1 = 0 , $g_hGUI_MOD_TAB_ITEM2 = 0 ,$g_hGUI_MOD_TAB_ITEM3 = 0, $g_hGUI_MOD_TAB_ITEM4 = 0, $g_hGUI_MOD_TAB_ITEM5 = 0
 
 ; TreasuryGUI
 Global $chkEnableTrCollect = 0, $chkForceTrCollect = 0, $chkGoldTrCollect = 0, $txtMinGoldTrCollect = 0, $txtMinElxTrCollect = 0, $chkFullElxTrCollect = 0, $chkDarkTrCollect = 0, $txtMinDarkTrCollect = 0
@@ -35,18 +35,26 @@ Global $chkSXBK = 0 , $chkSXAQ = 0 , $chkSXGW = 0
 Global $DocXP1 = 0 , $DocXP2 = 0 , $DocXP3 = 0 ,$DocXP4 = 0
 Global $lblXPatStart = 0 , $lblXPCurrent = 0 , $lblXPSXWon = 0 , $lblXPSXWonHour = 0
 
+; Persian DonateCC
+
+Global $chkExtraPersian = 0
+
 Func CreateMODTab()
 
 	$g_hGUI_MOD = GUICreate("", $_GUI_MAIN_WIDTH - 20, $_GUI_MAIN_HEIGHT - 255, $_GUI_CHILD_LEFT, $_GUI_CHILD_TOP, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hFrmBotEx)
 
 	GUISwitch($g_hGUI_MOD)
 	$g_hGUI_MOD_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 20, $_GUI_MAIN_HEIGHT - 255, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
-		$g_hGUI_MOD_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600, 58, "Treasury"))
-			TreasuryGUI()
+		$g_hGUI_MOD_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600, 58, "Misc MODs"))
+			OptionsGUI()
 		$g_hGUI_MOD_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600, 59, "Humanization"))
 			HumanizationGUI()
 		$g_hGUI_MOD_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600, 60, "Goblin XP"))
 			GoblinXPGUI()
+		$g_hGUI_MOD_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600, 36, "Profiles"))
+			CreateBotProfiles()
+		$g_hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem("MultiStat's")
+			CreateMultiStatsGUI()
 		$g_hLastControlToHide = GUICtrlCreateDummy()
 		ReDim $g_aiControlPrevState[$g_hLastControlToHide + 1]
 
@@ -54,8 +62,12 @@ Func CreateMODTab()
 
 EndFunc   ;==>CreateMODTab
 
-Func TreasuryGUI()
+Func CreateMultiStatsGUI()
+	Return
+EndFunc
 
+
+Func OptionsGUI()
 	Local $x = 5, $y = 30
 
 	Local $Group1 = GUICtrlCreateGroup("Treasury Collect", $x, $y, 440, 105)
@@ -101,6 +113,64 @@ Func TreasuryGUI()
 
 	chkEnableTrCollect()
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
+
+	$y += 110
+	$x = 5
+	Local $Group2 = GUICtrlCreateGroup("Donate Options", $x, $y, 440, 40)
+		$chkExtraPersian = GUICtrlCreateCheckbox(GetTranslated(800,100, "Enable Persian Alphabet Recognition for Donations"), $x + 12, $y + 15 , -1, -1)
+			_GUICtrlSetTip(-1, GetTranslated(800,101, "Check this to enable the Persian Alphabet Recognition."))
+			GUICtrlSetOnEvent(-1, "Donatelang")
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+
+	Local $sTxtTip = ""
+    $x = 25
+	$y = 205
+	Local $Group3 = GUICtrlCreateGroup(GetTranslated(634,1, "Hero Abilities"), $x - 20, $y - 20, 440, 60)
+		GUICtrlCreateIcon($g_sLibIconPath, $eIcnKing, $x-10, $y, 24, 24)
+		GUICtrlCreateIcon($g_sLibIconPath, $eIcnQueen, $x+ 15, $y, 24, 24)
+		GUICtrlCreateIcon($g_sLibIconPath, $eIcnWarden, $x+ 40, $y, 24, 24)
+
+	   $x += 70
+	   $y -= 4
+		   $g_hRadAutoAbilities = GUICtrlCreateRadio(GetTranslated(634,2, "Auto activate (red zone)"), $x, $y-4 , -1, -1)
+		   $sTxtTip = GetTranslated(634,3, "Activate the Ability when the Hero becomes weak.") & @CRLF & GetTranslated(634,4, "Heroes are checked and activated individually.")
+		   _GUICtrlSetTip(-1, $sTxtTip)
+		   GUICtrlSetState(-1, $GUI_CHECKED)
+
+	   $y += 15
+		   $g_hRadManAbilities = GUICtrlCreateRadio(GetTranslated(634,5, "Timed after") & ":", $x , $y , -1, -1)
+			   $sTxtTip = GetTranslated(634,6, "Activate the Ability on a timer.") & @CRLF & GetTranslated(634,7, "All Heroes are activated at the same time.")
+			   _GUICtrlSetTip(-1, $sTxtTip)
+			   GUICtrlSetState(-1, $GUI_UNCHECKED)
+
+		   $g_hTxtManAbilities = GUICtrlCreateInput("9", $x + 80, $y+3, 30, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			   $sTxtTip = GetTranslated(634,8, "Set the time in seconds for Timed Activation of Hero Abilities.")
+			   _GUICtrlSetTip(-1, $sTxtTip)
+			   GUICtrlSetLimit(-1, 2)
+		   GUICtrlCreateLabel(GetTranslated(603,6, "sec."), $x + 115, $y + 4, -1, -1)
+
+		$x += 150
+		$y -= 15
+
+		GUICtrlCreateIcon($g_sLibIconPath, $eIcnWarden, $x - 7, $y + 2, 32, 32)
+
+		$y += 12
+		   $g_hChkUseWardenAbility = GUICtrlCreateCheckbox(GetTranslated(634,9, "Force after") & ":", $x + 30, $y, -1, -1)
+			   $sTxtTip = GetTranslated(634,10, "Use the ability of the Grand Warden on a timer.")
+			   GUICtrlSetOnEvent(-1, "CheckWardenTimer")
+			   _GUICtrlSetTip(-1, $sTxtTip)
+
+			CheckWardenTimer()
+
+		   $g_hTxtWardenAbility = GUICtrlCreateInput("9", $x + 110, $y+3, 30, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			   $sTxtTip = GetTranslated(634,11, "Set the time in seconds for Timed Activation of Grand Warden Ability.")
+			   GUICtrlSetOnEvent(-1, "delayWardenTimer")
+			   _GUICtrlSetTip(-1, $sTxtTip)
+
+		   GUICtrlCreateLabel(GetTranslated(603,6, "sec."), $x + 145, $y + 4, -1, -1)
+
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+
 EndFunc   ;==>TreasuryGUI
 
 Func HumanizationGUI()

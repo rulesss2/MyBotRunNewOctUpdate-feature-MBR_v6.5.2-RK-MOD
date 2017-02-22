@@ -56,4 +56,8 @@ Func SaveConfig_DocOc()
 	IniWriteS($g_sProfileConfigPath, "attack", "SXGW", $ichkSXGW)
 	IniWriteS($g_sProfileConfigPath, "attack", "MaxXptoGain", GUICtrlRead($txtMaxXPtoGain))
 	; ================================================== GOBLINXP END =================================================== ;
+
+	; Extra Persian language on Donate
+	IniWriteS($g_sProfileConfigPath, "donate", "chkExtraPersian", $ichkExtraPersian)
+
 EndFunc   ;==>SaveConfig_DocOc

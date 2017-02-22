@@ -249,6 +249,19 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 
 	LaunchTroop2($listInfoDeploy, $CC, $King, $Queen, $Warden)
 
+	Setlog("- Activate Heroes Condition: " & $iActivateKQCondition, $COLOR_INFO)
+	If $iActivateWardenCondition = 1 Then Setlog(" » Timed Warden in: " & $delayActivateW & "´s", $COLOR_INFO)
+
+	If $iActivateKQCondition = "Manual" Or $iActivateWardenCondition = 1 Then
+		$HeroesTimerActivation[0] = 0
+		$HeroesTimerActivation[1] = 0
+		$HeroesTimerActivation[2] = 0
+		Setlog(" - Initial Timer from Heroes")
+		If $checkKPower Then $HeroesTimerActivation[0] = TimerInit() ; will be use for Timed Activation Habilities
+		If $checkQPower Then $HeroesTimerActivation[1] = TimerInit() ; will be use for Timed Activation Habilities
+		If $checkWPower Then $HeroesTimerActivation[2] = TimerInit() ; will be use for Timed Activation Habilities
+	EndIf
+
 	If _Sleep($iDelayalgorithm_AllTroops4) Then Return
 	SetLog("Dropping left over troops", $COLOR_INFO)
 	For $x = 0 To 1
@@ -259,7 +272,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		For $i = $eBarb To $eBowl ; lauch all remaining troops
 			;If $i = $eBarb Or $i = $eArch Then
 			LauchTroop($i, $nbSides, 0, 1)
-			If $iActivateKQCondition = "Auto" Then CheckHeroesHealth()
+			CheckHeroesHealth()
 			;Else
 			;	 LauchTroop($i, $nbSides, 0, 1, 2)
 			;EndIf
@@ -267,27 +280,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		Next
 	Next
 
-	;Activate Heroe's power Manual after X seconds
-	If ($checkKPower Or $checkQPower Or $checkWPower) And $iActivateKQCondition = "Manual" Then
-		SetLog("Waiting " & $delayActivateKQ / 1000 & " seconds before activating Hero abilities", $COLOR_INFO)
-		If _Sleep($delayActivateKQ) Then Return
-		If $checkKPower Then
-			SetLog("Activating King's power", $COLOR_INFO)
-			SelectDropTroop($King)
-			$checkKPower = False
-		EndIf
-		If $checkQPower Then
-			SetLog("Activating Queen's power", $COLOR_INFO)
-			SelectDropTroop($Queen)
-			$checkQPower = False
-		EndIf
-		If $checkWPower Then
-			SetLog("Activating Warden's power", $COLOR_INFO)
-			SelectDropTroop($Warden)
-			$checkWPower = False
-		EndIf
-	EndIf
-
+	CheckHeroesHealth()
 	SetLog("Finished Attacking, waiting for the battle to end")
 EndFunc   ;==>algorithm_AllTroops
 

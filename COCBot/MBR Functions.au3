@@ -26,7 +26,7 @@
 #include "functions\Attack\GoldElixirChangeThSnipes.au3"
 #include "functions\Attack\GoldElixirChangeEBO.au3"
 #include "functions\Attack\PrepareAttack.au3"
-#include "functions\Attack\ReturnHome.au3"
+; #include "functions\Attack\ReturnHome.au3"  --- > DocOc Mod
 #include "functions\Attack\SnipeWhileTrain.au3"
 #include "functions\Attack\Unbreakable.au3"
 
@@ -39,7 +39,7 @@
 #include "functions\Attack\AttackCSV\AttackCSVDebugImage.au3"
 #include "functions\Attack\AttackCSV\CheckCSVValues.au3"
 #include "functions\Attack\AttackCSV\DebugAttackCSV.au3"
-#include "functions\Attack\AttackCSV\DropTroopFromINI.au3"
+; #include "functions\Attack\AttackCSV\DropTroopFromINI.au3" --- > DocOc Mod
 #include "functions\Attack\AttackCSV\GetListPixel3.au3"
 #include "functions\Attack\AttackCSV\IsInsideDiamondRedArea.au3"
 #include "functions\Attack\AttackCSV\Line2Points.au3"
@@ -83,7 +83,7 @@
 #include "functions\Attack\RedArea\GetVectorPixelOnEachSide.au3"
 #include "functions\Attack\RedArea\GetVectorPixelToDeploy.au3"
 
-#include "functions\Attack\Troops\CheckHeroesHealth.au3"
+; #include "functions\Attack\Troops\CheckHeroesHealth.au3" --- > DocOc Mod
 #include "functions\Attack\Troops\dropCC.au3"
 #include "functions\Attack\Troops\dropHeroes.au3"
 ; #include "functions\Attack\Troops\DropOnEdge.au3"  --- > DocOc Mod
@@ -241,7 +241,7 @@
 #include "functions\Village\CheckBaseQuick.au3"
 #include "functions\Village\chkShieldStatus.au3"
 #include "functions\Village\Collect.au3"
-#include "functions\Village\DonateCC.au3"
+; #include "functions\Village\DonateCC.au3" --- > DocOc Mod
 #include "functions\Village\DonateCCWBL.au3"
 #include "functions\Village\DropTrophy.au3"
 #include "functions\Village\GetTownHallLevel.au3"

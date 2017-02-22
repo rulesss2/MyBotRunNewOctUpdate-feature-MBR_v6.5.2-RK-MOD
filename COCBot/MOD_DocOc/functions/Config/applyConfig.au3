@@ -57,9 +57,12 @@ Func ApplyConfig_DocOc($TypeReadSave)
 			$ichkSXBK = (GUICtrlRead($chkSXBK) = $GUI_CHECKED) ? $eHeroKing : $eHeroNone
 			$ichkSXAQ = (GUICtrlRead($chkSXAQ) = $GUI_CHECKED) ? $eHeroQueen : $eHeroNone
 			$ichkSXGW = (GUICtrlRead($chkSXGW) = $GUI_CHECKED) ? $eHeroWarden : $eHeroNone
-			$itxtMaxXPtoGain = String(GUICtrlRead($txtMaxXPtoGain))
+			$itxtMaxXPtoGain = Int(GUICtrlRead($txtMaxXPtoGain))
 
 			; ================================================== GOBLINXP END =================================================== ;
+
+			; Extra Persian language on Donate
+			$ichkExtraPersian = (GUICtrlRead($chkExtraPersian) = $GUI_CHECKED) ? 1 : 0
 
 		Case "Read"
 			; ================================================== BOT HUMANIZATION PART ================================================== ;
@@ -116,6 +119,9 @@ Func ApplyConfig_DocOc($TypeReadSave)
 			GUICtrlSetState($chkSXGW, $ichkSXGW = $eHeroWarden ? $GUI_CHECKED : $GUI_UNCHECKED)
 
 			; ================================================== GOBLINXP END =================================================== ;
+
+			; Extra Persian language on Donate
+			GUICtrlSetState($chkExtraPersian, ($ichkExtraPersian = 1) ? $GUI_CHECKED : $GUI_UNCHECKED)
 
 	EndSwitch
 EndFunc   ;==>ApplyConfig_DocOc

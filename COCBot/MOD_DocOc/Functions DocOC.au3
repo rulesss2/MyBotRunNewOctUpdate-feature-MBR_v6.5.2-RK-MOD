@@ -22,12 +22,19 @@
 #include "functions\Village\TreasuryCollect.au3"
 #include "functions\Village\SuperXP.au3"
 
+#include "functions\Attack\ReturnHome.au3"
+
 #include "functions\Attack\Attack Algorithms\algorithm_AllTroops.au3"
+
 #include "functions\Attack\RedArea\DropTroop.au3"
+
 #include "functions\Attack\Troops\DropOnEdge.au3"
 #include "functions\Attack\Troops\DropOnEdges.au3"
 #include "functions\Attack\Troops\LauchTroop.au3"
+#include "functions\Attack\Troops\CheckHeroesHealth.au3"
+
 #include "functions\Attack\AttackCSV\ParseAttackCSV.au3"
+#include "functions\Attack\AttackCSV\DropTroopFromINI.au3"
 
 #include "functions\BotHumanization\BotHumanization.au3"
 #include "functions\BotHumanization\AttackNDefenseActions.au3"
@@ -39,3 +46,5 @@
 #include "functions\Config\saveConfig.au3"
 #include "functions\Config\readConfig.au3"
 #include "functions\Config\applyConfig.au3"
+
+#include "functions\Village\DonateCC.au3"

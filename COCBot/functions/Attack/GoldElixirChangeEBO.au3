@@ -82,7 +82,7 @@ Func GoldElixirChangeEBO()
 	Local $iBegin = TimerInit()
 	While TimerDiff($iBegin) < $z
 		;HEALTH HEROES
-		If $iActivateKQCondition = "Auto" then CheckHeroesHealth()
+		CheckHeroesHealth()
 
 		;DE SPECIAL END EARLY
 		If $g_iMatchMode = $LB And $g_aiAttackStdDropSides[$LB] = 4 And $g_bDESideEndEnable Then
@@ -101,10 +101,10 @@ Func GoldElixirChangeEBO()
 			If _Sleep($iDelayGoldElixirChangeEBO1) Then Return
 			$Gold2 = getGoldVillageSearch(48, 69)
 		EndIf
-		If $iActivateKQCondition = "Auto" then CheckHeroesHealth()
+		CheckHeroesHealth()
 		$Elixir2 = getElixirVillageSearch(48, 69 + 29)
 		$Trophies = getTrophyVillageSearch(48, 69 + 99)
-		If $iActivateKQCondition = "Auto" then CheckHeroesHealth()
+		CheckHeroesHealth()
 		If $Trophies <> "" Then ; If trophy value found, then base has Dark Elixir
 			If _Sleep($iDelayGoldElixirChangeEBO1) Then Return
 			$DarkElixir2 = getDarkElixirVillageSearch(48, 69 + 57)
@@ -115,7 +115,7 @@ Func GoldElixirChangeEBO()
 		$CurDamage = getOcrOverAllDamage(780, 527 + $g_iBottomOffsetY)
 		;--> Read Ressources #2
 
-		If $iActivateKQCondition = "Auto" then CheckHeroesHealth()
+		CheckHeroesHealth()
 
 		;WRITE LOG
 		$txtDiff = Round(($z - TimerDiff($iBegin)) / 1000, 1)

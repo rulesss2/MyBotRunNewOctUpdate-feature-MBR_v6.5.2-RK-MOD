@@ -95,3 +95,28 @@ Func cmbDeployAB() ; avoid conflict between FourFinger and SmartAttack
 		Next
 	EndIf
 EndFunc   ;==>cmbDeployAB
+
+
+; Extra PErsian language to Donate
+Func Donatelang()
+	$ichkExtraPersian = (GUICtrlRead($chkExtraPersian) = $GUI_CHECKED) ? 1 : 0
+EndFunc
+
+; Warden Force ability
+Func CheckWardenTimer()
+
+	If GUICtrlRead($g_hChkUseWardenAbility) = $GUI_CHECKED Then
+		GUICtrlSetState($g_hTxtWardenAbility, $GUI_ENABLE)
+		$iActivateWardenCondition = 1
+	Else
+		GUICtrlSetState($g_hTxtWardenAbility, $GUI_DISABLE)
+		$iActivateWardenCondition = 0
+	EndIf
+
+EndFunc
+
+Func delayWardenTimer()
+
+	$delayActivateW = Int(GUICtrlRead($g_hTxtWardenAbility)) * 1000
+
+EndFunc

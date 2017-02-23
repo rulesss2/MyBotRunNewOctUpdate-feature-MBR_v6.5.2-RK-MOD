@@ -173,24 +173,24 @@ Func DropTroopFromINI($vectors, $indexStart, $indexEnd, $indexArray, $qtaMin, $q
 								Setlog("dropHeroes(" & $pixel[0] & ", " & $pixel[1] & ", " & $King & ", -1, -1) ")
 							Else
 								dropHeroes($pixel[0], $pixel[1], $King, -1, -1)
-								$HeroesTimerActivation[0] = 0
-								If $checkKPower Then $HeroesTimerActivation[0] = TimerInit() ; will be use for Timed Activation Habilities
+								$HeroesTimerActivation[$eHeroBarbarianKing] = 0
+								If $checkKPower Then $HeroesTimerActivation[$eHeroBarbarianKing] = TimerInit() ; will be use for Timed Activation Habilities
 							EndIf
 						Case $eQueen
 							If $debug = True Then
 								Setlog("dropHeroes(" & $pixel[0] & ", " & $pixel[1] & ",-1," & $Queen & ", -1) ")
 							Else
 								dropHeroes($pixel[0], $pixel[1], -1, $Queen, -1)
-								$HeroesTimerActivation[1] = 0
-								If $checkQPower Then $HeroesTimerActivation[1] = TimerInit() ; will be use for Timed Activation Habilities
+								$HeroesTimerActivation[$eHeroArcherQueen] = 0
+								If $checkQPower Then $HeroesTimerActivation[$eHeroArcherQueen] = TimerInit() ; will be use for Timed Activation Habilities
 							EndIf
 						Case $eWarden
 							If $debug = True Then
 								Setlog("dropHeroes(" & $pixel[0] & ", " & $pixel[1] & ", -1, -1," & $Warden & ") ")
 							Else
 								dropHeroes($pixel[0], $pixel[1], -1, -1, $Warden)
-								$HeroesTimerActivation[2] = 0
-								If $checkWPower Then $HeroesTimerActivation[2] = TimerInit() ; will be use for Timed Activation Habilities
+								$HeroesTimerActivation[$eHeroGrandWarden] = 0
+								If $checkWPower Then $HeroesTimerActivation[$eHeroGrandWarden] = TimerInit() ; will be use for Timed Activation Habilities
 							EndIf
 						Case $eCastle
 							If $debug = True Then

@@ -73,4 +73,18 @@ Global $ichkExtraPersian = 0
 ; Warden Forced Ability
 Global $iActivateWardenCondition = 0
 Global $delayActivateW = 9
-Global $HeroesTimerActivation[3] = [0,0,0]
+Global $HeroesTimerActivation[$eHeroCount] = [0, 0, 0] ; $eHeroBarbarianKing | $eHeroArcherQueen | $eHeroGrandWarden
+
+; Attack Settings [Dec 2016] used on Classic Attack
+Global Const $TopLeft[5][2] = [[62, 306], [156, 238], [221, 188], [288, 142], [383, 76]]
+Global Const $TopRight[5][2] = [[486, 59], [586, 134], [652, 184], [720, 231], [817, 308]]
+Global Const $BottomLeft[5][2] = [[20, 373], [101, 430], [171, 481], [244, 535], [346, 615]]
+Global Const $BottomRight[5][2] = [[530, 615], [632, 535], [704, 481], [781, 430], [848, 373]]
+Global Const $Edges[4] = [$BottomRight, $TopLeft, $BottomLeft, $TopRight]
+
+; TH detection
+Global $aTownHall[4] = [-1, -1, -1, -1] ; [LocX, LocY, BldgLvl, Quantity]
+Global $IMGLOCTHLOCATION
+Global $IMGLOCTHNEAR
+Global $IMGLOCTHFAR
+Global $IMGLOCTHRDISTANCE

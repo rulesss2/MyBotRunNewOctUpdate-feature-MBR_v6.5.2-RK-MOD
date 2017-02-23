@@ -1351,16 +1351,16 @@ Func IsQueueEmpty($Tab = -1, $bSkipTabCheck = False, $removeExtraTroopsQueue = T
 	If $g_bRunState = False Then Return
 
 	If $Tab = $TrainTroopsTAB Or $Tab = -1  Then
-		$iArrowX = $aGreenArrowTrainTroops[0]
+		$iArrowX = $aGreenArrowTrainTroops[0]  ; aada82  170 218 130    | y + 3 = 6ab320 106 179 32
 		$iArrowY = $aGreenArrowTrainTroops[1]
 	ElseIf $Tab = $BrewSpellsTAB Then
-		$iArrowX = $aGreenArrowBrewSpells[0]
+		$iArrowX = $aGreenArrowBrewSpells[0]   ; a0d077  160 208 119    | y + 3 = 74be2c 116 190 44
 		$iArrowY = $aGreenArrowBrewSpells[1]
 	EndIf
 
-	If Not _ColorCheck(_GetPixelColor($iArrowX, $iArrowY, True), Hex(0xAADA82, 6), 30) And Not _ColorCheck(_GetPixelColor($iArrowX, $iArrowY + 6, True), Hex(0x78BE29, 6), 30) Then
+	If Not _ColorCheck(_GetPixelColor($iArrowX, $iArrowY, True), Hex(0xAADA82, 6), 30) And Not _ColorCheck(_GetPixelColor($iArrowX, $iArrowY + 3, True), Hex(0x6ab320, 6), 30) Then
 		Return True ; Check Green Arrows at top first, if not there -> Return
-	ElseIf _ColorCheck(_GetPixelColor($iArrowX, $iArrowY, True), Hex(0xAADA82, 6), 30) And _ColorCheck(_GetPixelColor($iArrowX, $iArrowY + 6, True), Hex(0x78BE29, 6), 30) And Not $removeExtraTroopsQueue Then
+	ElseIf _ColorCheck(_GetPixelColor($iArrowX, $iArrowY, True), Hex(0xAADA82, 6), 30) And _ColorCheck(_GetPixelColor($iArrowX, $iArrowY + 3, True), Hex(0x74be2c, 6), 30) And Not $removeExtraTroopsQueue Then
 		Return False
 	EndIf
 
@@ -2054,20 +2054,25 @@ Func TrainArmyNumber($Num)
 EndFunc   ;==>TrainArmyNumber
 
 Func DeleteQueued($TypeQueued, $OffsetQueued = 802)
+
+	Local $Slot2Use = -1
 	If $TypeQueued = "Troops" Then
 		If ISArmyWindow(False, $TrainTroopsTAB) = False Then OpenTrainTabNumber($TrainTroopsTAB, "DeleteQueued()")
 		If _Sleep(1500) Then Return
 		If ISArmyWindow(True, $TrainTroopsTAB) = False Then Return
+		$Slot2Use = $TrainTroopsTAB
 	ElseIf $TypeQueued = "Spells" Then
 		OpenTrainTabNumber($BrewSpellsTAB, "DeleteQueued()")
 		If _Sleep(1500) Then Return
 		If ISArmyWindow(True, $BrewSpellsTAB) = False Then Return
+		$Slot2Use = $BrewSpellsTAB
 	Else
 		Return
 	EndIf
 	If _Sleep(500) Then Return
 	Local $x = 0
-	While Not IsQueueEmpty(-1, True, False)
+
+	While Not IsQueueEmpty($Slot2Use, True, False)
 		If $x = 0 Then SetLog(" - Delete " & $TypeQueued & " Queued!", $COLOR_ACTION)
 		If _Sleep(20) Then Return
 		If $g_bRunState = False Then Return

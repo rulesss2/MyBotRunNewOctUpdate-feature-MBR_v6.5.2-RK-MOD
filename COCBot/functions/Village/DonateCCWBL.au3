@@ -100,10 +100,10 @@ Func donateCCWBLUserImageCollect($x, $y)
 				If $reshidden = "" Then
 					If $g_iDebugSetlog = 1 Then SetLog("No Chat divider hidden found", $COLOR_ERROR)
 				Else
+					Local $xfound = Int(StringSplit($reshidden, ",", 2)[0])
+					Local $yfound = Int(StringSplit($reshidden, ",", 2)[1])
 					If $g_iDebugSetlog = 1 Then
-					   Local $xfound = Int(StringSplit($reshidden, ",", 2)[0])
-					   Local $yfound = Int(StringSplit($reshidden, ",", 2)[1])
-					   SetLog("ChatDivider hidden found (" & $xfound & "," & $yfound & ")", $COLOR_SUCCESS)
+						SetLog("ChatDivider hidden found (" & $xfound & "," & $yfound & ")", $COLOR_SUCCESS)
 					EndIf
 
 					; now crop image to have only request village name and put in $hClone
@@ -125,11 +125,12 @@ Func donateCCWBLUserImageCollect($x, $y)
 					_GDIPlus_BitmapDispose($oBitmap)
 				EndIf
 			Else
+
+				Local $xfound = Int(StringSplit($reshidden, ",", 2)[0])
+				Local $yfound = Int(StringSplit($reshidden, ",", 2)[1])
 				If $g_iDebugSetlog = 1 Then
-				   Local $xfound = Int(StringSplit($res, ",", 2)[0])
-				   Local $yfound = Int(StringSplit($res, ",", 2)[1])
-				   SetLog("ChatDivider found (" & $xfound & "," & $yfound & ")", $COLOR_SUCCESS)
-			    EndIf
+					SetLog("ChatDivider found (" & $xfound & "," & $yfound & ")", $COLOR_SUCCESS)
+				EndIf
 
 				; now crop image to have only request village name and put in $hClone
 				Local $oBitmap = _GDIPlus_BitmapCreateFromHBITMAP($hHBitmap2)

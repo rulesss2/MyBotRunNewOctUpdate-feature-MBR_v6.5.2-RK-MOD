@@ -493,9 +493,9 @@ Global Const $g_asTroopShortNames[$eTroopCount] = [ _
    "Mini", "Hogs", "Valk", "Gole", "Witc", "Lava", "Bowl"]
 Global Const $g_aiTroopSpace[$eTroopCount] = [ _
    1, 1, 5, 1, 2, 5, 4, 14, 20, 25, 10, 5, _
-   2, 5, 8, 30, 12, 30, 8 ]
+   2, 5, 8, 30, 12, 30, 6 ]
 Global Const $g_aiTroopTrainTime[$eTroopCount] = [ _
-   20, 25, 120, 30, 60, 300, 300, 600, 900, 900, 600, 300, _
+   20, 24, 120, 30, 60, 300, 300, 600, 900, 900, 600, 300, _
    45, 120, 300, 900, 600, 900, 300 ]
 ; Zero element contains number of levels, elements 1 thru n contain cost of that level troop
 Global Const $g_aiTroopCostPerLevel[$eTroopCount][9] = [ _
@@ -1061,11 +1061,11 @@ Global $IMGLOCTHLEVEL
 Global $THusedKing = 0
 Global $THusedQueen = 0
 Global $THusedWarden = 0
-Global Const $TopLeft[5][2] = [[83, 306], [174, 238], [240, 188], [303, 142], [390, 76]]
-Global Const $TopRight[5][2] = [[466, 66], [556, 134], [622, 184], [684, 231], [775, 300]]
-Global Const $BottomLeft[5][2] = [[81, 363], [174, 434], [235, 481], [299, 530], [390, 600]]
-Global Const $BottomRight[5][2] = [[466, 590], [554, 523], [615, 477], [678, 430], [765, 364]]
-Global Const $Edges[4] = [$BottomRight, $TopLeft, $BottomLeft, $TopRight]
+;Global Const $TopLeft[5][2] = [[83, 306], [174, 238], [240, 188], [303, 142], [390, 76]]
+;Global Const $TopRight[5][2] = [[466, 66], [556, 134], [622, 184], [684, 231], [775, 300]]
+;Global Const $BottomLeft[5][2] = [[81, 363], [174, 434], [235, 481], [299, 530], [390, 600]]
+;Global Const $BottomRight[5][2] = [[466, 590], [554, 523], [615, 477], [678, 430], [765, 364]]
+;Global Const $Edges[4] = [$BottomRight, $TopLeft, $BottomLeft, $TopRight]
 Global $atkTroops[12][2] ;11 Slots of troops -  Name, Amount
 Global $fullArmy ;Check for full army or not
 Global Const $useAllTroops[33] = [$eBarb, $eArch, $eGiant, $eGobl, $eWall, $eBall, $eWiza, $eHeal, $eDrag, $ePekk, $eBabyD, $eMine, $eMini, $eHogs, $eValk, $eGole, $eWitc, $eLava, $eBowl, $eKing, $eQueen, $eWarden, $eCastle, $eLSpell, $eHSpell, $eRSpell, $eJSpell, $eFSpell, $eCSpell, $ePSpell, $eESpell, $eHaSpell]

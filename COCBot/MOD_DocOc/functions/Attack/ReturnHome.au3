@@ -62,9 +62,9 @@ Func ReturnHome($TakeSS = 1, $GoldChangeCheck = True) ;Return main screen
 	$checkQPower = False
 	$checkWPower = False
 
-	$HeroesTimerActivation[0] = 0
-	$HeroesTimerActivation[1] = 0
-	$HeroesTimerActivation[2] = 0
+	$HeroesTimerActivation[$eHeroBarbarianKing] = 0
+	$HeroesTimerActivation[$eHeroArcherQueen] = 0
+	$HeroesTimerActivation[$eHeroGrandWarden] = 0
 
 	If $g_abAttackTypeEnable[$TS] = 1 And $g_iMatchMode = $TS Then $g_bFirstStart = True ;reset barracks upon return when TH sniping w/custom army
 

@@ -59,41 +59,41 @@ Func CheckHeroesHealth()
 
 		If $iActivateKQCondition = "Manual" Or $iActivateWardenCondition = 1 Then
 
-			Local $CorrectTimer[3] = [0, 0, 0] ; seconds
+			Local $CorrectTimer[$eHeroCount] = [0, 0, 0] ; seconds
 
-			If $HeroesTimerActivation[0] <> 0 Then $CorrectTimer[0] = Ceiling(TimerDiff($HeroesTimerActivation[0]) / 1000) ; seconds
-			If $HeroesTimerActivation[1] <> 0 Then $CorrectTimer[1] = Ceiling(TimerDiff($HeroesTimerActivation[1]) / 1000) ; seconds
-			If $HeroesTimerActivation[2] <> 0 Then $CorrectTimer[2] = Ceiling(TimerDiff($HeroesTimerActivation[2]) / 1000) ; seconds
+			If $HeroesTimerActivation[$eHeroBarbarianKing] <> 0 Then $CorrectTimer[$eHeroBarbarianKing] = Ceiling(TimerDiff($HeroesTimerActivation[$eHeroBarbarianKing]) / 1000) ; seconds
+			If $HeroesTimerActivation[$eHeroArcherQueen] <> 0 Then $CorrectTimer[$eHeroArcherQueen] = Ceiling(TimerDiff($HeroesTimerActivation[$eHeroArcherQueen]) / 1000) ; seconds
+			If $HeroesTimerActivation[$eHeroGrandWarden] <> 0 Then $CorrectTimer[$eHeroGrandWarden] = Ceiling(TimerDiff($HeroesTimerActivation[$eHeroGrandWarden]) / 1000) ; seconds
 
 
 			If $checkKPower And $iActivateKQCondition = "Manual" Then
-				If $delayActivateKQ / 1000 <= $CorrectTimer[0] Then
+				If $delayActivateKQ / 1000 <= $CorrectTimer[$eHeroBarbarianKing] Then
 					SetLog("Activating King's power", $COLOR_INFO)
-					SetLog("Activating after " & $CorrectTimer[0] & "'s", $COLOR_INFO)
+					SetLog("Activating after " & $CorrectTimer[$eHeroBarbarianKing] & "'s", $COLOR_INFO)
 					SelectDropTroop($King)
 					$checkKPower = False
-					$HeroesTimerActivation[0] = 0 ; Reset Timer
+					$HeroesTimerActivation[$eHeroBarbarianKing] = 0 ; Reset Timer
 				EndIf
 			EndIf
 
 			If $checkQPower And $iActivateKQCondition = "Manual" Then
-				If $delayActivateKQ / 1000 <= $CorrectTimer[1] Then
+				If $delayActivateKQ / 1000 <= $CorrectTimer[$eHeroArcherQueen] Then
 					SetLog("Activating Queen's power", $COLOR_INFO)
-					SetLog("Activating after " & $CorrectTimer[1] & "'s", $COLOR_INFO)
+					SetLog("Activating after " & $CorrectTimer[$eHeroArcherQueen] & "'s", $COLOR_INFO)
 					SelectDropTroop($Queen)
 					$checkQPower = False
-					$HeroesTimerActivation[1] = 0 ; Reset Timer
+					$HeroesTimerActivation[$eHeroArcherQueen] = 0 ; Reset Timer
 				EndIf
 			EndIf
 
 			If $checkWPower And ($iActivateKQCondition = "Manual" Or $iActivateWardenCondition = 1) Then
-				If ($iActivateWardenCondition = 1 And $delayActivateW / 1000 <= $CorrectTimer[2]) Or _  	; check the forced timer just for Warden
-					($iActivateKQCondition = "Manual" And $delayActivateKQ / 1000 <= $CorrectTimer[2]) Then ; check regulat timer from ALL heroes
+				If ($iActivateWardenCondition = 1 And $delayActivateW / 1000 <= $CorrectTimer[$eHeroGrandWarden]) Or _  	; check the forced timer just for Warden
+					($iActivateKQCondition = "Manual" And $delayActivateKQ / 1000 <= $CorrectTimer[$eHeroGrandWarden]) Then ; check regulat timer from ALL heroes
 					SetLog("Activating Warden's power", $COLOR_INFO)
-					SetLog("Activating after " & $CorrectTimer[2] & "'s", $COLOR_INFO)
+					SetLog("Activating after " & $CorrectTimer[$eHeroGrandWarden] & "'s", $COLOR_INFO)
 					SelectDropTroop($Warden)
 					$checkWPower = False
-					$HeroesTimerActivation[2] = 0 ; Reset Timer
+					$HeroesTimerActivation[$eHeroGrandWarden] = 0 ; Reset Timer
 				EndIf
 			EndIf
 		EndIf

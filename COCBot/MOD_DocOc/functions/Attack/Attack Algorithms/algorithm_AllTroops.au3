@@ -253,13 +253,13 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 	If $iActivateWardenCondition = 1 Then Setlog(" » Timed Warden in: " & $delayActivateW & "´s", $COLOR_INFO)
 
 	If $iActivateKQCondition = "Manual" Or $iActivateWardenCondition = 1 Then
-		$HeroesTimerActivation[0] = 0
-		$HeroesTimerActivation[1] = 0
-		$HeroesTimerActivation[2] = 0
+		$HeroesTimerActivation[$eHeroBarbarianKing] = 0
+		$HeroesTimerActivation[$eHeroArcherQueen] = 0
+		$HeroesTimerActivation[$eHeroGrandWarden] = 0
 		Setlog(" - Initial Timer from Heroes")
-		If $checkKPower Then $HeroesTimerActivation[0] = TimerInit() ; will be use for Timed Activation Habilities
-		If $checkQPower Then $HeroesTimerActivation[1] = TimerInit() ; will be use for Timed Activation Habilities
-		If $checkWPower Then $HeroesTimerActivation[2] = TimerInit() ; will be use for Timed Activation Habilities
+		If $checkKPower Then $HeroesTimerActivation[$eHeroBarbarianKing] = TimerInit() ; will be use for Timed Activation Habilities
+		If $checkQPower Then $HeroesTimerActivation[$eHeroArcherQueen] = TimerInit() ; will be use for Timed Activation Habilities
+		If $checkWPower Then $HeroesTimerActivation[$eHeroGrandWarden] = TimerInit() ; will be use for Timed Activation Habilities
 	EndIf
 
 	If _Sleep($iDelayalgorithm_AllTroops4) Then Return

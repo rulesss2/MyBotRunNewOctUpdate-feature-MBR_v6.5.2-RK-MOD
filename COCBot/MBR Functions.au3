@@ -75,7 +75,7 @@
 #include "functions\Attack\RedArea\DebugRedArea.au3"
 #include "functions\Attack\RedArea\DropOnPixel.au3"
 ; #include "functions\Attack\RedArea\DropTroop.au3" --- > DocOc Mod
-#include "functions\Attack\RedArea\GetLocation.au3"
+; #include "functions\Attack\RedArea\GetLocation.au3" --- > DocOc Mod
 #include "functions\Attack\RedArea\GetOffestPixelRedArea2.au3"
 #include "functions\Attack\RedArea\GetPixelDropTroop.au3"
 #include "functions\Attack\RedArea\GetPixelSide.au3"
@@ -98,7 +98,7 @@
 #include "functions\Attack\Troops\SetSleep.au3"
 
 #include "functions\Attack\SmartZap\drillSearch.au3"
-#include "functions\Attack\SmartZap\smartZap.au3"
+; #include "functions\Attack\SmartZap\smartZap.au3" --- > DocOc Mod
 
 #include "functions\CreateArmy\CheckFullArmy.au3"
 #include "functions\CreateArmy\CheckArmyCamp.au3"
@@ -124,7 +124,7 @@
 #include "functions\Image Search\imglocScreens.au3"
 #include "functions\Image Search\imglocTrainHelper.au3"
 #include "functions\Image Search\imglocCheckWall.au3"
-#include "functions\Image Search\imglocTHSearch.au3"
+; #include "functions\Image Search\imglocTHSearch.au3" --- > DocOc Mod
 #include "functions\Image Search\imglocAttackBar.au3"
 
 
@@ -189,7 +189,7 @@
 #include "functions\Other\ClickDrag.au3"
 #include "functions\Other\TestLanguage.au3"
 #include "functions\Other\DeleteFiles.au3"
-#include "functions\Other\UpdateStats.au3"
+; #include "functions\Other\UpdateStats.au3"  --- > DocOc Mod
 #include "functions\Other\CloseRunningBot.au3"
 #include "functions\Other\RestartBot.au3"
 #include "functions\Other\WindowSystemMenu.au3"

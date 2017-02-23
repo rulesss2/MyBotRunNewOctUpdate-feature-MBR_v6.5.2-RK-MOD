@@ -27,11 +27,14 @@
 #include "functions\Attack\Attack Algorithms\algorithm_AllTroops.au3"
 
 #include "functions\Attack\RedArea\DropTroop.au3"
+#include "functions\Attack\RedArea\GetLocation.au3"
 
 #include "functions\Attack\Troops\DropOnEdge.au3"
 #include "functions\Attack\Troops\DropOnEdges.au3"
 #include "functions\Attack\Troops\LauchTroop.au3"
 #include "functions\Attack\Troops\CheckHeroesHealth.au3"
+
+#include "functions\Attack\SmartZap\smartZap.au3"
 
 #include "functions\Attack\AttackCSV\ParseAttackCSV.au3"
 #include "functions\Attack\AttackCSV\DropTroopFromINI.au3"
@@ -48,3 +51,7 @@
 #include "functions\Config\applyConfig.au3"
 
 #include "functions\Village\DonateCC.au3"
+
+#include "functions\Image Search\imglocTHSearch.au3"
+
+#include "functions\Other\UpdateStats.au3"

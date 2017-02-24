@@ -92,7 +92,7 @@ Func CreateBotDebug()
 	  Local $x = 300
 	  $y = 52
 	  Local $yNext = 30
-	  $g_hBtnTestTrain = GUICtrlCreateButton(GetTranslated(636, 88, "Test Train"), $x, $y, 140, 25)
+	  $g_hBtnTestTrain = GUICtrlCreateButton(GetTranslated(636, 88, "Test wallUpg"), $x, $y, 140, 25)
 	  $y += $yNext
 
 	  $g_hBtnTestDonateCC = GUICtrlCreateButton(GetTranslated(636, 89, "Test Donate"), $x, $y, 140, 25)

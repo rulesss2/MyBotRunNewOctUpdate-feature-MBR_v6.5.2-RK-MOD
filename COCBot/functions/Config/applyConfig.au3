@@ -1014,7 +1014,7 @@ Func ApplyConfig_600_29($TypeReadSave)
 			$iActivateKQCondition = GUICtrlRead($g_hRadManAbilities) = $GUI_CHECKED ? "Manual" : "Auto"
 			$delayActivateKQ = GUICtrlRead($g_hTxtManAbilities) * 1000
 			$iActivateWardenCondition = GUICtrlRead($g_hChkUseWardenAbility) = $GUI_CHECKED ? 1 : 0
-			$g_hTxtWardenAbility = GUICtrlRead($g_hTxtWardenAbility) * 1000
+			$delayActivateW = GUICtrlRead($g_hTxtWardenAbility) * 1000
 			$ichkAttackPlannerEnable = GUICtrlRead($g_hChkAttackPlannerEnable) = $GUI_CHECKED ? 1 : 0
 			$ichkAttackPlannerCloseCoC = GUICtrlRead($g_hChkAttackPlannerCloseCoC) = $GUI_CHECKED ? 1 : 0
 			$ichkAttackPlannerCloseAll = GUICtrlRead($g_hChkAttackPlannerCloseAll) = $GUI_CHECKED ? 1 : 0

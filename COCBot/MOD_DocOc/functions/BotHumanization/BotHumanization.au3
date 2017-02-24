@@ -22,13 +22,11 @@ Func Click($x, $y, $times = 1, $speed = 0, $debugtxt = "")
 	; !!! Still compatible with all original function parameters !!!
 
 	If $g_ichkUseAltRClick = 1 Then
-
 		Local $xclick = Random($x - 5, $x, 1)
 		Local $yclick = Random($y, $y + 5, 1)
 		If $xclick <= 0 Or $xclick >= 860 Then $xclick = $x ; Out Of Screen protection
 		If $yclick <= 0 Or $yclick >= 680 + ($g_ibottomOffsetY) Then $yclick = $y ; Out Of Screen protection
 		FClick($xclick, $yclick, $times, $speed, $debugtxt)
-
 	Else
 		FClick($x, $y, $times, $speed, $debugtxt)
 	EndIf
@@ -41,13 +39,11 @@ Func PureClick($x, $y, $times = 1, $speed = 0, $debugtxt = "")
 	; !!! Still compatible with all original function parameters !!!
 
 	If $g_ichkUseAltRClick = 1 Then
-
 		Local $xclick = Random($x - 5, $x, 1)
 		Local $yclick = Random($y, $y + 5, 1)
 		If $xclick <= 0 Or $xclick >= 860 Then $xclick = $x ; Out Of Screen protection
 		If $yclick <= 0 Or $yclick >= 680 + ($g_ibottomOffsetY) Then $yclick = $y ; Out Of Screen protection
 		FPureClick($xclick, $yclick, $times, $speed, $debugtxt)
-
 	Else
 		FPureClick($x, $y, $times, $speed, $debugtxt)
 	EndIf
@@ -60,13 +56,11 @@ Func GemClick($x, $y, $times = 1, $speed = 0, $debugtxt = "")
 	; !!! Still compatible with all original function parameters !!!
 
 	If $g_ichkUseAltRClick = 1 Then
-
 		Local $xclick = Random($x - 5, $x, 1)
 		Local $yclick = Random($y, $y + 5, 1)
 		If $xclick <= 0 Or $xclick >= 860 Then $xclick = $x ; Out Of Screen protection
 		If $yclick <= 0 Or $yclick >= 680 + ($g_iBottomOffsetY) Then $yclick = $y ; Out Of Screen protection
 		FGemClick($xclick, $yclick, $times, $speed, $debugtxt)
-
 	Else
 		FGemClick($x, $y, $times, $speed, $debugtxt)
 	EndIf
@@ -74,19 +68,16 @@ Func GemClick($x, $y, $times = 1, $speed = 0, $debugtxt = "")
 EndFunc   ;==>GemClick
 
 Func randomSleep($SleepTime, $Range = 0)
-
 	If $g_bRunState = False Then Return
 	If $Range = 0 Then $Range = Round($SleepTime / 5)
 	Local $SleepTimeF = Random($SleepTime - $Range, $SleepTime + $Range, 1)
 	If $g_iDebugClick = 1 Then Setlog("Default sleep : " & $SleepTime & " - Random sleep : " & $SleepTimeF, $COLOR_ORANGE)
 	If _Sleep($SleepTimeF) Then Return
-
 EndFunc   ;==>randomSleep
 
 ; ================================================== QuickMIS PART ================================================== ;
 
 Func QuickMIS($ValueReturned, $directory, $Left = 0, $Top = 0, $Right = $g_iGAME_WIDTH, $Bottom = $g_iGAME_HEIGHT, $Debug = False)
-
 	If ($ValueReturned <> "BC1") And ($ValueReturned <> "CX") And ($ValueReturned <> "N1") And ($ValueReturned <> "NX") And ($ValueReturned <> "Q1") And ($ValueReturned <> "QX") Then
 		SetLog("Error of parameters settings during QuickMIS call for MultiSearch...", $COLOR_RED)
 		Return
@@ -188,17 +179,13 @@ Func QuickMIS($ValueReturned, $directory, $Left = 0, $Top = 0, $Right = $g_iGAME
 			EndSwitch
 		EndIf
 	EndIf
-
 EndFunc   ;==>QuickMIS
 
 ; ================================================== HUMAN FUNCTIONS PART ================================================== ;
 
 Func BotHumanization()
-
 	If $g_ichkUseBotHumanization = 1 Then
-
 		Local $NoActionsToDo = 0
-
 		SetLog("Now, let the DocOc Team make your BOT more human ... :)", $COLOR_SUCCESS1)
 
 		If $g_ichkLookAtRedNotifications = 1 Then LookAtRedNotifications()
@@ -211,35 +198,25 @@ Func BotHumanization()
 		Next
 
 		If $NoActionsToDo <> 13 Then
-
 			$g_iMaxActionsNumber = Random(1, _GUICtrlComboBox_GetCurSel($cmbMaxActionsNumber) + 1, 1)
-
 			SetLog("DocOc will do " & $g_iMaxActionsNumber & " human actions during this loop...", $COLOR_INFO)
-
 			For $i = 1 To $g_iMaxActionsNumber
-				Sleep(4000)
+				randomSleep(4000)
 				ReturnAtHome()
 				RandomHumanAction()
 			Next
-
 		Else
 			SetLog("All actions disabled, skipping...", $COLOR_WARNING)
 		EndIf
-
 		SetLog("Bot Humanization finished !!! :)", $COLOR_SUCCESS1)
-
 	EndIf
-
 EndFunc   ;==>BotHumanization
 
 Func RandomHumanAction()
-
 	For $i = 0 To 12
 		SetActionPriority($i)
 	Next
-
 	$g_iActionToDo = _ArrayMaxIndex($g_aSetActionPriority)
-
 	Switch $g_iActionToDo
 		Case 0
 			SetLog("The spirit of DocOc chose to read Clan Chat... Let's go !!! :)", $COLOR_INFO)
@@ -281,22 +258,18 @@ Func RandomHumanAction()
 			SetLog("The spirit of DocOc chose to launch Challenges... Let's go !!! :)", $COLOR_INFO)
 			LaunchChallenges()
 	EndSwitch
-
 EndFunc   ;==>RandomHumanAction
 
 Func SetActionPriority($ActionNumber)
-
 	If _GUICtrlComboBox_GetCurSel($g_acmbPriority[$ActionNumber]) <> 0 Then
 		MatchPriorityNValue($ActionNumber)
 		$g_aSetActionPriority[$ActionNumber] = Random($g_iMinimumPriority, 100, 1)
 	Else
 		$g_aSetActionPriority[$ActionNumber] = 0
 	EndIf
-
 EndFunc   ;==>SetActionPriority
 
 Func MatchPriorityNValue($ActionNumber)
-
 	Switch _GUICtrlComboBox_GetCurSel($g_acmbPriority[$ActionNumber])
 		Case 1
 			$g_iMinimumPriority = 0
@@ -307,13 +280,11 @@ Func MatchPriorityNValue($ActionNumber)
 		Case 4
 			$g_iMinimumPriority = 75
 	EndSwitch
-
 EndFunc   ;==>MatchPriorityNValue
 
 ; ================================================== GUI FUNCTIONS PART ================================================== ;
 
 Func chkUseBotHumanization()
-
 	If GUICtrlRead($chkUseBotHumanization) = $GUI_CHECKED Then
 		$g_ichkUseBotHumanization = 1
 		For $i = $Icon1 To $chkLookAtRedNotifications
@@ -327,11 +298,9 @@ Func chkUseBotHumanization()
 			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
 	EndIf
-
 EndFunc   ;==>chkUseBotHumanization
 
 Func chkUseAltRClick()
-
 	If GUICtrlRead($chkUseAltRClick) = $GUI_CHECKED Then
 		Local $UserChoice = MsgBox(4 + 48, "Warning !!!", "Full random click is a good feature to be as less BOT-Like as possible because it makes ALL BOT clicks random..." & _
 				@CRLF & "" & @CRLF & "The crazy @RoroTiti use it all the time an he says there is no problem with it... BUT, it still an experimental feature which may cause unpredictable problems..." & _
@@ -345,31 +314,25 @@ Func chkUseAltRClick()
 	Else
 		$g_ichkUseAltRClick = 0
 	EndIf
-
 EndFunc   ;==>chkUseAltRClick
 
 Func chkCollectAchievements()
-
 	If GUICtrlRead($chkCollectAchievements) = $GUI_CHECKED Then
 		$g_ichkCollectAchievements = 1
 	Else
 		$g_ichkCollectAchievements = 0
 	EndIf
-
 EndFunc   ;==>chkCollectAchievements
 
 Func chkLookAtRedNotifications()
-
 	If GUICtrlRead($chkLookAtRedNotifications) = $GUI_CHECKED Then
 		$g_ichkLookAtRedNotifications = 1
 	Else
 		$g_ichkLookAtRedNotifications = 0
 	EndIf
-
 EndFunc   ;==>chkLookAtRedNotifications
 
 Func cmbStandardReplay()
-
 	If _GUICtrlComboBox_GetCurSel($g_acmbPriority[3]) = 0 Then
 		If _GUICtrlComboBox_GetCurSel($g_acmbPriority[4]) = 0 Then
 			For $i = $Label7 To $g_acmbPause[0]
@@ -391,11 +354,9 @@ Func cmbStandardReplay()
 			Next
 		EndIf
 	EndIf
-
 EndFunc   ;==>cmbStandardReplay
 
 Func cmbWarReplay()
-
 	If _GUICtrlComboBox_GetCurSel($g_acmbPriority[10]) = 0 Then
 		For $i = $Label13 To $g_acmbPause[1]
 			GUICtrlSetState($i, $GUI_DISABLE)
@@ -405,38 +366,28 @@ Func cmbWarReplay()
 			GUICtrlSetState($i, $GUI_ENABLE)
 		Next
 	EndIf
-
 EndFunc   ;==>cmbWarReplay
 
 ; ================================================== ADDITIONAL FUNCTIONS PART ================================================== ;
 
 Func WaitForReplayWindow()
-
 	SetLog("Waiting for Replay screen...", $COLOR_ACTION)
-
 	Local $CheckStep = 0
-
 	While Not IsReplayWindow() And $CheckStep < 30
 		Sleep(1000)
 		$CheckStep += 1
 	WEnd
-
 	Return $g_bOnReplayWindow
-
 EndFunc   ;==>WaitForReplayWindow
 
 Func IsReplayWindow()
-
 	$g_bOnReplayWindow = _ColorCheck(_GetPixelColor(799, 619, True), "FF5151", 20)
 	Return $g_bOnReplayWindow
-
 EndFunc   ;==>IsReplayWindow
 
 Func GetReplayDuration()
-
 	Local $MaxSpeed = _GUICtrlComboBox_GetCurSel($g_acmbMaxSpeed[$g_iReplayToPause])
 	LOcal $Result = QuickMIS("N1", @ScriptDir & "\imgxml\Resources\Humanization Pics\Duration", 380, 600, 490, 630)
-
 	If $Result = "OneMinute" Then
 		$g_aReplayDuration[0] = 1
 		$g_aReplayDuration[1] = 90000
@@ -450,38 +401,29 @@ Func GetReplayDuration()
 		$g_aReplayDuration[0] = 0
 		$g_aReplayDuration[1] = 45000
 	EndIf
-
 	Switch $MaxSpeed
 		Case 1
 			$g_aReplayDuration[1] /= 2
 		Case 2
 			$g_aReplayDuration[1] /= 4
 	EndSwitch
-
 	SetLog("Estimated Replay Duration : " & $g_aReplayDuration[1] / 1000 & " second(s)", $COLOR_INFO)
-
 EndFunc   ;==>GetReplayDuration
 
 Func AccelerateReplay($g_iReplayToPause)
-
 	Local $CurrentSpeed = 0
 	Local $MaxSpeed = _GUICtrlComboBox_GetCurSel($g_acmbMaxSpeed[$g_iReplayToPause])
-
 	If $CurrentSpeed <> $MaxSpeed Then SetLog("Let's make the replay faster...", $COLOR_ACTION1)
-
 	While $CurrentSpeed < $MaxSpeed
 		Click(820, 690) ; click on the speed button
 		randomSleep(500)
 		$CurrentSpeed += 1
 	WEnd
-
 EndFunc   ;==>AccelerateReplay
 
 Func DoAPauseDuringReplay($g_iReplayToPause)
-
 	Local $MinimumToPause = 0, $PauseScore = 0
 	Local $Pause = _GUICtrlComboBox_GetCurSel($g_acmbPause[0])
-
 	If $Pause <> 0 Then
 		Switch $Pause
 			Case 1
@@ -493,7 +435,6 @@ Func DoAPauseDuringReplay($g_iReplayToPause)
 			Case 4
 				$MinimumToPause = 20
 		EndSwitch
-
 		$PauseScore = Random(0, 100, 1)
 		If $PauseScore > $MinimumToPause Then
 			SetLog("Let's do a small pause to see what happens...", $COLOR_ACTION1)
@@ -503,18 +444,13 @@ Func DoAPauseDuringReplay($g_iReplayToPause)
 			Click(750, 690) ; click play button
 		EndIf
 	EndIf
-
 EndFunc   ;==>DoAPauseDuringReplay
 
 Func VisitAPlayer()
-
 	SetLog("Let's visit player...", $COLOR_INFO)
-
 	If QuickMIS("BC1", @ScriptDir & "\imgxml\Resources\Humanization Pics\Visit") Then
-
 		Click($g_iQuickMISX, $g_iQuickMISY)
 		randomSleep(8000)
-
 		For $i = 0 To Random(1, 4, 1)
 			SetLog("We will click on a random builing...", $COLOR_ACTION1)
 			Local $xInfo = Random(300, 500, 1)
@@ -527,25 +463,19 @@ Func VisitAPlayer()
 			Click(685, 175) ;Click Away
 			randomSleep(3000)
 		Next
-
 	Else
 		SetLog("Error when trying to find Visit button... skipping...", $COLOR_WARNING)
 	EndIf
-
 EndFunc   ;==>VisitAPlayer
 
 Func DoNothing()
-
 	SetLog("Let the BOT wait a little before continue...", $COLOR_ACTION1)
 	randomSleep(8000, 3000)
-
 EndFunc   ;==>DoNothing
 
 Func LookAtRedNotifications()
-
 	SetLog("Looking for notifications...", $COLOR_INFO)
 	Local $NoNotif = 0
-
 	ReturnAtHome()
 	If _ColorCheck(_GetPixelColor(55, 142, True), "D00818", 20) Then
 		SetLog("You have a new message...", $COLOR_ACTION1)
@@ -556,7 +486,6 @@ Func LookAtRedNotifications()
 	Else
 		$NoNotif += 1
 	EndIf
-
 	ReturnAtHome()
 	If _ColorCheck(_GetPixelColor(54, 83, True), "D00818", 20) Then
 		SetLog("You changed of league...", $COLOR_ACTION1)
@@ -569,7 +498,6 @@ Func LookAtRedNotifications()
 	Else
 		$NoNotif += 1
 	EndIf
-
 	ReturnAtHome()
 	If _ColorCheck(_GetPixelColor(56, 511, True), "D00818", 20) Then
 		SetLog("Current War to look at...", $COLOR_ACTION1)
@@ -580,7 +508,6 @@ Func LookAtRedNotifications()
 	Else
 		$NoNotif += 1
 	EndIf
-
 	ReturnAtHome()
 	If _ColorCheck(_GetPixelColor(28, 353, True), "D00818", 20) Then
 		SetLog("New messages on the chat room...", $COLOR_ACTION1)
@@ -591,7 +518,6 @@ Func LookAtRedNotifications()
 	Else
 		$NoNotif += 1
 	EndIf
-
 	ReturnAtHome()
 	If _ColorCheck(_GetPixelColor(834, 512, True), "D00818", 20) Then
 		SetLog("New messages or events from SC to read...", $COLOR_ACTION1)
@@ -611,13 +537,11 @@ Func LookAtRedNotifications()
 	Else
 		$NoNotif += 1
 	EndIf
-
 	ReturnAtHome()
 	If _ColorCheck(_GetPixelColor(832, 638, True), "683072", 20) Or _ColorCheck(_GetPixelColor(832, 637, True), "D00818", 20) Then
 		SetLog("There is something new on the shop...", $COLOR_ACTION1)
 		Click(800, 670) ; open Shop
 		randomSleep(2000)
-
 		Local $NeedScroll = Random(0, 1, 1)
 		Local $NeedScroll2 = Random(0, 1, 1)
 		If $NeedScroll = 1 Then
@@ -640,7 +564,6 @@ Func LookAtRedNotifications()
 	Else
 		$NoNotif += 1
 	EndIf
-
 	ReturnAtHome()
 	If _ColorCheck(_GetPixelColor(53, 24, True), "D00818", 20) Then
 		SetLog("Maybe you have a new friend request, lemme check...", $COLOR_ACTION1)
@@ -673,15 +596,11 @@ Func LookAtRedNotifications()
 	Else
 		$NoNotif += 1
 	EndIf
-
 	If $NoNotif = 7 Then SetLog("No notification found, nothing to look at...", $COLOR_ACTION1)
-
 EndFunc   ;==>LookAtRedNotifications
 
 Func CollectAchievements()
-
 	SetLog("Looking for achievement to collect...", $COLOR_INFO)
-
 	ReturnAtHome()
 	If _ColorCheck(_GetPixelColor(53, 24, True), "D00818", 20) Then
 		SetLog("WoW, maybe an achievement to collect !!!", $COLOR_ACTION1)
@@ -689,7 +608,6 @@ Func CollectAchievements()
 		randomSleep(4000)
 
 		If IsClanOverview() Then
-
 			If QuickMIS("BC1", @ScriptDir & "\imgxml\Resources\Humanization Pics\ClaimReward", 680) Then
 				Click($g_iQuickMISX + 680, $g_iQuickMISY)
 				SetLog("Reward collected !!! Good Job Chief :D !!!", $COLOR_SUCCESS)
@@ -704,18 +622,15 @@ Func CollectAchievements()
 					SetLog('No "Claim Reward" button found... skipping...', $COLOR_ERROR)
 				EndIf
 			EndIf
-
 		Else
 			SetLog("Error when trying to open Profile tab... skipping...", $COLOR_WARNING)
 		EndIf
 	Else
 		SetLog("No achievement to collect...", $COLOR_ACTION1)
 	EndIf
-
 EndFunc   ;==>CollectAchievements
 
 Func Scroll($MaxScroll)
-
 	For $i = 0 To $MaxScroll
 		Local $x = Random(430 - 20, 430 + 20, 1)
 		Local $yStart = Random(600 - 20, 600 + 20, 1)
@@ -723,19 +638,15 @@ Func Scroll($MaxScroll)
 		ClickDrag($x, $yStart, $x, $yEnd) ; generic random scroll
 		randomSleep(4000)
 	Next
-
 EndFunc   ;==>Scroll
 
 ; ================================================== SECURITY PART ================================================== ;
 
 Func SecureMessage($TextToClean)
-
 	Return StringRegExpReplace($TextToClean, "[^\w \-\,\?\!\:]", "") ; delete dangerous characters
-
 EndFunc   ;==>SecureMessage
 
 Func ReturnAtHome()
-
 	Local $CheckStep = 0
 	While Not IsMainScreen() And $CheckStep <= 5
 		AndroidBackButton()
@@ -747,103 +658,74 @@ Func ReturnAtHome()
 		RestartAndroidCoC()
 		waitMainScreen()
 	EndIf
-
 EndFunc   ;==>ReturnAtHome
 
 Func IsMainScreen()
-
 	Local $Result = _ColorCheck(_GetPixelColor(22, 49, True), "04579A", 20)
 	Return $Result
-
 EndFunc   ;==>IsMainScreen
 
 Func IsMessagesReplayWindow()
-
 	Local $Result = _ColorCheck(_GetPixelColor(760, 112, True), "FFFFFF", 20)
 	Return $Result
-
 EndFunc   ;==>IsMessagesReplayWindow
 
 Func IsDefensesTab()
-
 	Local $Result = _ColorCheck(_GetPixelColor(180, 110, True), "F0F4F0", 20)
 	Return $Result
-
 EndFunc   ;==>IsDefensesTab
 
 Func IsAttacksTab()
-
 	Local $Result = _ColorCheck(_GetPixelColor(380, 110, True), "F0F4F0", 20)
 	Return $Result
-
 EndFunc   ;==>IsAttacksTab
 
 Func IsBestPlayers()
-
 	Local $Result = _ColorCheck(_GetPixelColor(530, 60, True), "F0F4F0", 20)
 	Return $Result
-
 EndFunc   ;==>IsBestPlayers
 
 Func IsBestClans()
-
 	Local $Result = _ColorCheck(_GetPixelColor(350, 60, True), "F0F4F0", 20)
 	Return $Result
-
 EndFunc   ;==>IsBestClans
 
 Func ChatOpen()
-
 	Local $Result = _ColorCheck(_GetPixelColor(330, 382, True), "FFFFFF", 20)
 	Return $Result
-
 EndFunc   ;==>ChatOpen
 
 Func IsClanChat()
-
 	Local $Result = _ColorCheck(_GetPixelColor(220, 10, True), "787458", 20)
 	Return $Result
-
 EndFunc   ;==>IsClanChat
 
 Func IsGlobalChat()
-
 	Local $Result = _ColorCheck(_GetPixelColor(80, 10, True), "787458", 20)
 	Return $Result
-
 EndFunc   ;==>IsGlobalChat
 
 Func IsTextBox()
-
 	Local $Result = _ColorCheck(_GetPixelColor(190, 710, True), "FFFFFF", 20)
 	Return $Result
-
 EndFunc   ;==>IsTextBox
 
 Func IsChallengeWindow()
-
 	Local $Result = _ColorCheck(_GetPixelColor(698, 56, True), "FFFFFF", 20)
 	Return $Result
-
 EndFunc   ;==>IsChallengeWindow
 
 Func IsChangeLayoutMenu()
-
 	Local $Result = _ColorCheck(_GetPixelColor(184, 58, True), "FFFFFF", 20)
 	Return $Result
-
 EndFunc   ;==>IsChangeLayoutMenu
 
 Func IsClanOverview()
-
 	Local $Result = _ColorCheck(_GetPixelColor(822, 70, True), "FFFFFF", 20)
 	Return $Result
-
 EndFunc   ;==>IsClanOverview
 
 Func IsWarMenu()
-
 	Local $Result = _ColorCheck(_GetPixelColor(826, 34, True), "FFFFFF", 20)
 	Return $Result
-
 EndFunc   ;==>IsWarMenu

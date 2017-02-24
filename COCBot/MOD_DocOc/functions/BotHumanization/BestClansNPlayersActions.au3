@@ -15,17 +15,14 @@
 ;================================================================================================================================
 
 Func VisitBestPlayers()
-
 	Click(40, 80) ; open the cup menu
 	randomSleep(1500)
 
 	If IsClanOverview() Then
-
 		Click(540, 80) ; open best players menu
 		randomSleep(3000)
 
 		If IsBestPlayers() Then
-
 			Local $PlayerList = Random(1, 2, 1)
 			Switch $PlayerList
 				Case 1
@@ -41,29 +38,23 @@ Func VisitBestPlayers()
 					VisitAPlayer()
 					Click(70, 680) ; return home
 			EndSwitch
-
 		Else
 			SetLog("Error when trying to open Best Players menu... skipping...", $COLOR_WARNING)
 		EndIf
-
 	Else
 		SetLog("Error when trying to open League menu... skipping...", $COLOR_WARNING)
 	EndIf
-
 EndFunc   ;==>VisitBestPlayers
 
 Func LookAtBestClans()
-
 	Click(40, 80) ; open the cup menu
 	randomSleep(1500)
 
 	If IsClanOverview() Then
-
 		Click(360, 80) ; open best clans menu
 		randomSleep(3000)
 
 		If IsBestClans() Then
-
 			Local $PlayerList = Random(1, 2, 1)
 			Switch $PlayerList
 				Case 1
@@ -76,7 +67,6 @@ Func LookAtBestClans()
 			randomSleep(1500)
 
 			If QuickMIS("BC1", @ScriptDir & "\imgxml\Resources\Humanization Pics\WarLog") Then
-
 				SetLog("We have found a War log button, let's look at it...", $COLOR_ACTION1)
 				Click(100, 340) ; open war log if available
 				randomSleep(1500)
@@ -84,7 +74,6 @@ Func LookAtBestClans()
 				Scroll(Random(0, 2, 1)) ; scroll the war log
 				SetLog("Exiting War log window...", $COLOR_ACTION1)
 				Click(50, 80) ; click Return
-
 			EndIf
 
 			randomSleep(1500)
@@ -96,9 +85,7 @@ Func LookAtBestClans()
 		Else
 			SetLog("Error when trying to open Best Players menu... skipping...", $COLOR_WARNING)
 		EndIf
-
 	Else
 		SetLog("Error when trying to open League menu... skipping...", $COLOR_WARNING)
 	EndIf
-
 EndFunc   ;==>LookAtBestClans

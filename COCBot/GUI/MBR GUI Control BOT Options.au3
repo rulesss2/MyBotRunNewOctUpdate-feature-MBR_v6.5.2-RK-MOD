@@ -217,37 +217,17 @@ EndFunc   ;==>chkmakeIMGCSV
 Func btnTestTrain()
 	Local $currentOCR = $g_iDebugOcr
 	Local $currentRunState = $g_bRunState
-	#cs
-	_GUICtrlTab_ClickTab($g_hTabMain, 0)
-	$g_iDebugOcr = 1
 	$g_bRunState = True
-	ForceCaptureRegion()
-	DebugImageSave("train_")
-	SetLog(_PadStringCenter(" Test Train begin (" & $g_sBotVersion & ")", 54, "="), $COLOR_INFO)
-	getArmyTroopCount(False, False, True)
-	getArmyHeroCount(False, False)
-	SetLog(_PadStringCenter(" Test Train end ", 54, "="), $COLOR_INFO)
-	Run("Explorer.exe " & $g_sLibPath & "\debug\ocr\")
-	Run("Explorer.exe " & $g_sProfileTempDebugPath & "train_")
-	#ce
+	$g_iDebugSetlog = 1
 
-	$g_bRunState = True
-	BeginImageTest()
+	Setlog("VillageReport...")
+	VillageReport()
+	ZoomOut()
+	ApplyConfig_600_17("Read") ; read the values on GUI
+	Setlog("UpgradeWall...")
+	UpgradeWall()
 
-	Local $result
-	SetLog("Testing checkArmyCamp()", $COLOR_INFO)
-	$result = checkArmyCamp()
-	If @error Then $result = "Error " & @error & ", " & @extended & ", " & ((IsArray($result)) ? (_ArrayToString($result, ",")) : ($result))
-	SetLog("Result checkArmyCamp() = " & $result, $COLOR_INFO)
-
-	SetLog("Testing getArmyHeroTime()", $COLOR_INFO)
-	$result = getArmyHeroTime()
-	If @error Then $result = "Error " & @error & ", " & @extended & ", " & ((IsArray($result)) ? (_ArrayToString($result, ",")) : ($result))
-	SetLog("Result getArmyHeroTime() = " & $result, $COLOR_INFO)
-	SetLog("Testing Train DONE" , $COLOR_INFO)
-
-	EndImageTest()
-
+	$g_iDebugSetlog = 0
 	$g_iDebugOcr = $currentOCR
 	$g_bRunState = $currentRunState
 EndFunc   ;==>btnTestTrain
@@ -343,7 +323,6 @@ Func btnTestAttackBar()
 	$g_iDebugOcr = $currentOCR
 	$g_bRunState = $currentRunState
 EndFunc   ;==>btnTestAttackBar
-
 
 Func btnTestClickDrag()
 

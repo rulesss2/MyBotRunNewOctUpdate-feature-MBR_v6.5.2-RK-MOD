@@ -15,23 +15,18 @@
 ;================================================================================================================================
 
 Func WatchDefense()
-
 	Click(40, 150) ; open messages tab - defenses tab
 	randomSleep(1500)
 
 	If IsMessagesReplayWindow() Then
-
 		Click(190, 130) ; open defenses tab
 		randomSleep(1500)
 
 		If IsDefensesTab() Then
-
 			Click(710, (230 + 145 * Random(0, 2, 1))) ; click on a random replay
-
 			WaitForReplayWindow()
 
 			If IsReplayWindow() Then
-
 				GetReplayDuration()
 				randomSleep(1000)
 
@@ -43,14 +38,11 @@ Func WatchDefense()
 
 				Local $IsBoring = Random(1, 5, 1)
 				If $IsBoring >= 4 Then
-
 					If IsReplayWindow() Then
 						SetLog("This replay is boring, let me go out... ;)", $COLOR_ACTION1)
 						Click(70, 680) ; return home
 					EndIf
-
 				Else
-
 					If IsReplayWindow() Then
 						DoAPauseDuringReplay(0)
 					EndIf
@@ -69,38 +61,29 @@ Func WatchDefense()
 
 					randomSleep(1000)
 					Click(70, 680) ; return home
-
 				EndIf
 			EndIf
-
 		Else
 			SetLog("Error when trying to open Defenses menu... skipping...", $COLOR_WARNING)
 		EndIf
-
 	Else
 		SetLog("Error when trying to open Replays menu... skipping...", $COLOR_WARNING)
 	EndIf
-
 EndFunc   ;==>WatchDefense
 
 Func WatchAttack()
-
 	Click(40, 150) ; open messages tab - defenses tab
 	randomSleep(1500)
 
 	If IsMessagesReplayWindow() Then
-
 		Click(380, 130) ; open attacks tab
 		randomSleep(1500)
 
 		If IsAttacksTab() Then
-
 			Click(710, (230 + 145 * Random(0, 2, 1))) ; click on a random replay
-
 			WaitForReplayWindow()
 
 			If IsReplayWindow() Then
-
 				GetReplayDuration()
 				randomSleep(1000)
 
@@ -112,15 +95,12 @@ Func WatchAttack()
 
 				Local $IsBoring = Random(1, 5, 1)
 				If $IsBoring >= 4 Then
-
 					If IsReplayWindow() Then
 						SetLog("This replay is boring, let me go out... ;)", $COLOR_ACTION1)
 						randomSleep(1000)
 						Click(70, 680) ; return home
 					EndIf
-
 				Else
-
 					If IsReplayWindow() Then
 						DoAPauseDuringReplay(0)
 					EndIf
@@ -139,16 +119,12 @@ Func WatchAttack()
 
 					randomSleep(1000)
 					Click(70, 680) ; return home
-
 				EndIf
 			EndIf
-
 		Else
 			SetLog("Error when trying to open Defenses menu... skipping...", $COLOR_WARNING)
 		EndIf
-
 	Else
 		SetLog("Error when trying to open Replays menu... skipping...", $COLOR_WARNING)
 	EndIf
-
 EndFunc   ;==>WatchAttack

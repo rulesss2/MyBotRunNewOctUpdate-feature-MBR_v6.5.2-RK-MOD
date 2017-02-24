@@ -495,13 +495,13 @@ Global Const $g_aiTroopSpace[$eTroopCount] = [ _
    1, 1, 5, 1, 2, 5, 4, 14, 20, 25, 10, 5, _
    2, 5, 8, 30, 12, 30, 6 ]
 Global Const $g_aiTroopTrainTime[$eTroopCount] = [ _
-   20, 24, 120, 30, 60, 300, 300, 600, 900, 900, 600, 300, _
-   45, 120, 300, 900, 600, 900, 300 ]
+   20, 24, 120, 28, 60, 120, 120, 480, 720, 720, 360, 120, _
+   36, 90, 180, 600, 360, 600, 120 ]
 ; Zero element contains number of levels, elements 1 thru n contain cost of that level troop
 Global Const $g_aiTroopCostPerLevel[$eTroopCount][9] = [ _
    [7, 25, 40, 60, 100, 150, 200, 250], _ 				; Archer
    [7, 50, 80, 120, 200, 300, 400, 500], _ 				;Barbarian
-   [8, 500, 750, 1250, 1750, 2250, 3000, 3500, 4000], _ ; Giant
+   [8, 250, 750, 1250, 1750, 2250, 3000, 3500, 4000], _ ; Giant
    [7, 25, 40, 60, 80, 100, 150, 200], _ 				; Goblin
    [6, 1000, 1500, 2000, 2500, 3000, 3500], _ 			; WallBreaker
    [7, 2000, 2500, 3000, 3500, 4000, 4500, 5000], _ 	; Balloon
@@ -526,7 +526,7 @@ Global Enum $eSpellLightning, $eSpellHeal, $eSpellRage, $eSpellJump, $eSpellFree
 Global Const $g_asSpellNames[$eSpellCount] = ["Lightning", "Heal", "Rage", "Jump", "Freeze", "Clone", "Poison", "Earthquake", "Haste", "Skeleton"]
 Global Const $g_asSpellShortNames[$eSpellCount] = ["LSpell", "HSpell", "RSpell", "JSpell", "FSpell", "CSpell", "PSpell", "ESpell", "HaSpell", "SkSpell"]
 Global Const $g_aiSpellSpace[$eSpellCount] = [ 2, 2, 2, 2, 2, 4, 1, 1, 1, 1 ]
-Global Const $g_aiSpellTrainTime[$eSpellCount] = [ 360, 360, 360, 360, 360, 360, 180, 180, 180, 180 ]
+Global Const $g_aiSpellTrainTime[$eSpellCount] = [ 360, 360, 360, 360, 360, 720, 180, 180, 180, 180 ]
 ; Zero element contains number of levels, elements 1 thru n contain cost of that level spell
 Global Const $g_aiSpellCostPerLevel[$eSpellCount][8] = [ _
    [7, 15000, 16500, 18000, 20000, 22000, 24000, 26000], _ ;LightningSpell

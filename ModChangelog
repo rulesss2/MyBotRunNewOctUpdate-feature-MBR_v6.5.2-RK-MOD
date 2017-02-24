@@ -33,6 +33,8 @@
 	https://mybot.run/forums/index.php?/topic/28788-force-and-time-false-for-troops/
 	- Fix SmartZap update statistics on early exit, when DE in attacked base reaches 0
 	- Fix the Wall Upgrade issue on GemClick and the stats.
+	- Fix small issues on GUI
+	https://mybot.run/forums/index.php?/topic/28820-some-bug-gui-issues/
  
  				 Doc Oc v3.5.5                                                        
 	- Fix GDI issue on SuperXP

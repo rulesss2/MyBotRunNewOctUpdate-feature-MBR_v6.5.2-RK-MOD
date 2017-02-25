@@ -276,3 +276,17 @@ Func returnSingleMatch($directory, $redLines = "DCD", $statFile = "", $minLevel 
 
 	Return $aResult
 EndFunc   ;==>returnSingleMatch
+
+Func returnAllMatchesDefense($directory, $statFile = "", $minLevel = 0, $maxLevel = 1000, $x1 = 0, $y1 = 0, $x2 = $g_iGAME_WIDTH, $y2 = $g_iGAME_HEIGHT, $bCaptureNew = True, $xDiff = Default, $yDiff = Default)
+	; This is simple, just do a multiMatches search with 0 for the Max return points parameter
+
+	;Local $aResult = multiMatches2($directory, 0, $DCD, $CurBaseRedLine, $statFile, $minLevel, $maxLevel)
+	Local $aResult = multiMatchesPixelOnly($directory, 0, $DCD, $CurBaseRedLine, $statFile, $minLevel, $maxLevel, $x1, $y1, $x2, $y2, $bCaptureNew, $xDiff, $yDiff, True, False)
+
+	Return $aResult
+EndFunc   ;==>returnAllMatchesDefense
+
+Func VerifyMMPOResult($Result)
+	If StringLen($Result) > 2 And StringInStr($Result, ",") > 0 Then Return True
+	Return False
+EndFunc   ;==>VerifyMMPOResult

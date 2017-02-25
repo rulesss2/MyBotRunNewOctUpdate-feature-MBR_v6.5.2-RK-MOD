@@ -26,7 +26,9 @@
 	- Added Warden forced timer Activation, separated from King and Queen
 	- Added TH images from DocOC
 	- Added Use imgloc on all detections : Resources
+	- Added CSV commmnads , DropS , SideP , Zap, Remain
 	- Allow Earthquake for NoobZap too
+	- Make Attack Script Dropdown scrollable
 	- Fixed Issue on variable declared DonateCC
 	https://mybot.run/forums/index.php?/topic/28786-line-50696-crash-when-checking-donate-requests/
 	- Fixed force and time false for troops

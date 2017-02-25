@@ -28,16 +28,24 @@
 
 #include "functions\Attack\RedArea\DropTroop.au3"
 #include "functions\Attack\RedArea\GetLocation.au3"
+#include "functions\Attack\RedArea\_GetRedArea.au3"
 
 #include "functions\Attack\Troops\DropOnEdge.au3"
 #include "functions\Attack\Troops\DropOnEdges.au3"
 #include "functions\Attack\Troops\LauchTroop.au3"
 #include "functions\Attack\Troops\CheckHeroesHealth.au3"
+#include "functions\Attack\Troops\GetXPosOfArmySlot.au3"
+#include "functions\Attack\Troops\ReadTroopQuantity.au3"
 
 #include "functions\Attack\SmartZap\smartZap.au3"
 
 #include "functions\Attack\AttackCSV\ParseAttackCSV.au3"
 #include "functions\Attack\AttackCSV\DropTroopFromINI.au3"
+#include "functions\Attack\AttackCSV\ZapCmd.au3"
+#include "functions\Attack\AttackCSV\SideP.au3"
+#include "functions\Attack\AttackCSV\UpdateTroopQuantity.au3"
+#include "functions\Attack\AttackCSV\DropSpellFromINIOnDefense.au3"
+#include "functions\Attack\AttackCSV\ParseAttackCSV_Read_SIDE_variables.au3"
 
 #include "functions\BotHumanization\BotHumanization.au3"
 #include "functions\BotHumanization\AttackNDefenseActions.au3"
@@ -53,5 +61,6 @@
 #include "functions\Village\DonateCC.au3"
 
 #include "functions\Image Search\imglocTHSearch.au3"
+#include "functions\Image Search\imglocAuxiliary.au3"
 
 #include "functions\Other\UpdateStats.au3"

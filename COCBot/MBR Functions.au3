@@ -46,7 +46,7 @@
 #include "functions\Attack\AttackCSV\MakeDropLine.au3"
 #include "functions\Attack\AttackCSV\MakeDropPoints.au3"
 ; #include "functions\Attack\AttackCSV\ParseAttackCSV.au3"  --- > DocOc Mod
-#include "functions\Attack\AttackCSV\ParseAttackCSV_Read_SIDE_variables.au3"
+; #include "functions\Attack\AttackCSV\ParseAttackCSV_Read_SIDE_variables.au3" --- > DocOc Mod
 #include "functions\Attack\AttackCSV\Slice8.au3"
 #include "functions\Attack\AttackCSV\CleanRedArea.au3"
 #include "functions\Attack\AttackCSV\ChkAttackCSVConfig.au3"
@@ -70,7 +70,7 @@
 
 #include "functions\Attack\RedArea\_FindPixelCloser.au3"
 #include "functions\Attack\RedArea\_GetOffsetTroopFurther.au3"
-#include "functions\Attack\RedArea\_GetRedArea.au3"
+; #include "functions\Attack\RedArea\_GetRedArea.au3" --- > DocOc Mod
 #include "functions\Attack\RedArea\_GetVectorOutZone.au3"
 #include "functions\Attack\RedArea\DebugRedArea.au3"
 #include "functions\Attack\RedArea\DropOnPixel.au3"
@@ -88,12 +88,12 @@
 #include "functions\Attack\Troops\dropHeroes.au3"
 ; #include "functions\Attack\Troops\DropOnEdge.au3"  --- > DocOc Mod
 ; #include "functions\Attack\Troops\DropOnEdges.au3" --- > DocOc Mod
-#include "functions\Attack\Troops\GetXPosOfArmySlot.au3"
+; #include "functions\Attack\Troops\GetXPosOfArmySlot.au3"
 #include "functions\Attack\Troops\GetSlotIndexFromXPos.au3"
 ; #include "functions\Attack\Troops\LauchTroop.au3" --- > DocOc Mod
 #include "functions\Attack\Troops\NameOfTroop.au3"
 #include "functions\Attack\Troops\OldDropTroop.au3"
-#include "functions\Attack\Troops\ReadTroopQuantity.au3"
+; #include "functions\Attack\Troops\ReadTroopQuantity.au3" --- > DocOc Mod
 #include "functions\Attack\Troops\SelectDropTroop.au3"
 #include "functions\Attack\Troops\SetSleep.au3"
 
@@ -120,7 +120,7 @@
 #include "functions\Image Search\ImageSearch.au3"
 #include "functions\Image Search\checkDeadBase.au3"
 #include "functions\Image Search\CheckTombs.au3"
-#include "functions\Image Search\imglocAuxiliary.au3"
+; #include "functions\Image Search\imglocAuxiliary.au3" --- > DocOc Mod
 #include "functions\Image Search\imglocScreens.au3"
 #include "functions\Image Search\imglocTrainHelper.au3"
 #include "functions\Image Search\imglocCheckWall.au3"

@@ -88,3 +88,18 @@ Global $IMGLOCTHLOCATION
 Global $IMGLOCTHNEAR
 Global $IMGLOCTHFAR
 Global $IMGLOCTHRDISTANCE
+
+;: Viper CMD CSV
+
+Global $debugDropSCommand = 0, $LocateMode = 1 ; Can be 1 OR 2, CURRENTLY 2 is not completed
+
+Global $PixelEaglePos[2] = [-2, -2] ; -2 Means Not Changed still/First value,  -1 Means Changed But Reseted
+Global $PixelInfernoPos[2] = [-2, -2] ; -2 Means Not Changed still/First value,  -1 Means Changed But Reseted
+Global $PixelADefensePos[2] = [-2, -2] ; -2 Means Not Changed still/First value,  -1 Means Changed But Reseted
+Global $storedEaglePos = ""
+Global $storedInfernoPos = ""
+Global $storedADefensePos = ""
+
+Global $DebugSideP = 0
+Global $dGoldMines = @ScriptDir & "\imgxml\Storages\SideP\GoldMines", $dDarkDrills = @ScriptDir & "\imgxml\Storages\SideP\Drills", $dElixirCollectors = @ScriptDir & "\imgxml\Storages\SideP\Collectors"
+Global $allMinesFound[7][3], $allCollectorsFound[7][3], $allDrillsFound[3][3]

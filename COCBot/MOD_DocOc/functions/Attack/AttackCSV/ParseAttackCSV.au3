@@ -31,7 +31,7 @@ Func ParseAttackCSV($debug = False)
 	EndIf
 	Setlog("execute " & $filename)
 
-	Local $f, $line, $acommand, $command , $hTimer = 0
+	Local $f, $line, $acommand, $command, $hTimer = 0
 	Local $value1 = "", $value2 = "", $value3 = "", $value4 = "", $value5 = "", $value6 = "", $value7 = "", $value8 = "", $value9 = ""
 	If FileExists($g_sCSVAttacksPath & "\" & $filename & ".csv") Then
 		checkForSidePInCSV($g_sCSVAttacksPath & "\" & $filename & ".csv")
@@ -144,16 +144,26 @@ Func ParseAttackCSV($debug = False)
 								Local $iPercentage = $qtyvect[0]
 								If UBound($qtyvect) > 1 Then $bUpdateQuantity = (($qtyvect[1] = "U") ? True : False)
 								Local $theTroopPosition = -2
+
+
+								; Get the integer index of the troop name specified
+								Local $troopName = $value4
+								Local $iTroopIndex = TroopIndexLookup($troopName)
+								If $iTroopIndex = -1 Then
+									Setlog("CSV CMD '%' troop name '" & $troopName & "' is unrecognized.")
+									Return
+								EndIf
+
 								For $i = 0 To UBound($atkTroops) - 1
-									If $atkTroops[$i][0] = Eval("e" & $value4) Then
+									If $atkTroops[$i][0] = $iTroopIndex Then
 										$theTroopPosition = $i
 										ExitLoop
 									EndIf
 								Next
 								If $bUpdateQuantity = True Then
 									If $theTroopPosition >= 0 Then
-										SetLog("Updating Available " & NameOfTroop(Eval("e" & $value4), 1) & " Quantities", $COLOR_INFO)
-										$theTroopPosition = UpdateTroopQuantity($value4)
+										SetLog("Updating Available " & NameOfTroop($iTroopIndex, 1) & " Quantities", $COLOR_INFO)
+										$theTroopPosition = UpdateTroopQuantity($troopName)
 									EndIf
 								EndIf
 								If $theTroopPosition >= 0 And UBound($atkTroops) > $theTroopPosition Then

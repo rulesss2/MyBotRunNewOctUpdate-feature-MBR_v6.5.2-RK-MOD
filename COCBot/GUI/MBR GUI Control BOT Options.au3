@@ -237,14 +237,14 @@ Func btnTestDonateCC()
 	Local $currentRunState = $g_bRunState
 	Local $currentSetlog = $g_iDebugSetlog
 	_GUICtrlTab_ClickTab($g_hTabMain, 0)
-	$g_iDebugOcr = 1
+
 	$g_bRunState = True
 	$g_iDebugSetlog = 1
 	ForceCaptureRegion()
 	DebugImageSave("donateCC_")
 
 	SetLog(_PadStringCenter(" Test DonateCC begin (" & $g_sBotVersion & ")", 54, "="), $COLOR_INFO)
-	Local $DonationWindowY = 0
+	$DonationWindowY = 0
 	Local $aDonWinOffColors[2][3] = [[0xFFFFFF, 0, 2], [0xc7c5bc, 0, 209]]
 	Local $aDonationWindow = _MultiPixelSearch(409, 0, 410, $g_iDEFAULT_HEIGHT, 1, 1, Hex(0xFFFFFF, 6), $aDonWinOffColors, 10)
 
@@ -259,7 +259,7 @@ Func btnTestDonateCC()
 	Setlog("Detecting Troops...")
 	DetectSlotTroop($eBowl)
 	Setlog("Detecting Spells...")
-	DetectSlotTroop($eSkSpell)
+	DetectSlotSpell($eSkSpell)
 	SetLog(_PadStringCenter(" Test DonateCC end ", 54, "="), $COLOR_INFO)
 	ShellExecute($g_sProfileTempDebugPath & "donateCC_")
 

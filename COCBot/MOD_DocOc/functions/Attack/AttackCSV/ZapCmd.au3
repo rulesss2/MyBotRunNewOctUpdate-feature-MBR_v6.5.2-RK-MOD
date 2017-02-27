@@ -21,6 +21,16 @@ Global $iIndexDrillToZapOn = -1
 Global $CanZap = True
 
 Func ZapCmd($DeploySide, $bLightning, $iLightning, $bEarthQuake, $iEarthQuake, $bCheck, $iMinDE, $DelayEachDrop)
+	debugAttackCSV("Ini ZapCmd")
+	debugAttackCSV("Parameter $DeploySide: " & $DeploySide)
+	debugAttackCSV("Parameter $bLightning: " & $bLightning)
+	debugAttackCSV("Parameter $iLightning: " & $iLightning)
+	debugAttackCSV("Parameter $bEarthQuake: " & $bEarthQuake)
+	debugAttackCSV("Parameter $iEarthQuake: " & $iEarthQuake)
+	debugAttackCSV("Parameter $iEarthQuake: " & $iEarthQuake)
+	debugAttackCSV("Parameter $bCheck: " & $bCheck)
+	debugAttackCSV("Parameter $iMinDE: " & $iMinDE)
+	debugAttackCSV("Parameter $DelayEachDrop: " & $DelayEachDrop)
 	If $CanZap = False Then Return True
 
 	If $bLightning = False And $bEarthQuake = False Then
@@ -109,6 +119,10 @@ Func ZapCmd($DeploySide, $bLightning, $iLightning, $bEarthQuake, $iEarthQuake, $
 EndFunc   ;==>ZapCmd
 
 Func Zapped($iDrillIndex, $bIsEarthQuake, $Quantity = 1)
+	debugAttackCSV("Ini Zapped")
+	debugAttackCSV("Parameter $iDrillIndex: " & $iDrillIndex)
+	debugAttackCSV("Parameter $bIsEarthQuake: " & $bIsEarthQuake)
+	debugAttackCSV("Parameter $Quantity: " & $Quantity)
 	If $iDrillIndex < 0 Then Return True
 	If $ZDrillsDroppedSpells[$iDrillIndex][0] < 0 Then $ZDrillsDroppedSpells[$iDrillIndex][0] = 0
 	If $ZDrillsDroppedSpells[$iDrillIndex][1] < 0 Then $ZDrillsDroppedSpells[$iDrillIndex][1] = 0
@@ -124,6 +138,8 @@ Func Zapped($iDrillIndex, $bIsEarthQuake, $Quantity = 1)
 EndFunc   ;==>Zapped
 
 Func ZInit($Values)
+	debugAttackCSV("Ini ZInit")
+	debugAttackCSV("Parameter $Values: " & $Values)
 	ResetZapCmd()
 	Local $SplitedValues = StringSplit($Values, "|", 2)
 	Local $Locate = $SplitedValues[0]
@@ -136,6 +152,8 @@ Func ZInit($Values)
 EndFunc   ;==>ZInit
 
 Func ParseZapCommand($Values)
+	debugAttackCSV("Ini ParseZapCommand")
+	debugAttackCSV("Parameter $Values: " & $Values)
 	Local $SplitedValues = StringSplit($Values, "|", 2)
 	Local $DeploySide = $SplitedValues[0]
 	Local $bLightning = $SplitedValues[1] = "TRUE" Or $SplitedValues[1] = "T" Or $SplitedValues[1] = "1"
@@ -150,6 +168,8 @@ Func ParseZapCommand($Values)
 EndFunc   ;==>ParseZapCommand
 
 Func GetNumOrdinal($iNum)
+	debugAttackCSV("Ini GetNumOrdinal")
+	debugAttackCSV("Parameter $iNum: " & $iNum)
 	Switch $iNum
 		Case 1
 			Return "1st"
@@ -163,12 +183,24 @@ Func GetNumOrdinal($iNum)
 EndFunc   ;==>GetNumOrdinal
 
 Func FindTroopInAttBar($troopName)
+	debugAttackCSV("Ini FindTroopInAttBar")
+	debugAttackCSV("Parameter $troopName: " & $troopName)
+
+	; Get the integer index of the troop name specified
+	Local $iTroopIndex = TroopIndexLookup($troopName)
+	If $iTroopIndex = -1 Then
+	   Setlog("CSV troop name '" & $troopName & "' is unrecognized.")
+	   Return
+	EndIf
+
+	;search slot where is the troop...
 	Local $troopPosition = -1
 	For $i = 0 To UBound($atkTroops) - 1
-		If $atkTroops[$i][0] = Eval("e" & $troopName) Then
+		If $atkTroops[$i][0] = $iTroopIndex Then
 			$troopPosition = $i
 		EndIf
 	Next
+
 	If $troopPosition = -1 Then
 		Setlog("No troop found in your attack troops list")
 		debugAttackCSV("No troop found in your attack troops list")
@@ -178,6 +210,9 @@ Func FindTroopInAttBar($troopName)
 EndFunc   ;==>FindTroopInAttBar
 
 Func CheckMinDE($iMinDE, $showlog = False)
+	debugAttackCSV("Ini CheckMinDE")
+	debugAttackCSV("Parameter $iMinDE: " & $iMinDE)
+	debugAttackCSV("Parameter $showlog: " & $showlog)
 	Local $iAvailableDark
 	_CaptureRegion()
 	If _ColorCheck(_GetPixelColor(31, 144, True), Hex(0x282020, 6), 10) Or _ColorCheck(_GetPixelColor(31, 144, True), Hex(0x0F0617, 6), 5) Then ; check if the village have a Dark Elixir Storage/Drill
@@ -191,6 +226,9 @@ Func CheckMinDE($iMinDE, $showlog = False)
 EndFunc   ;==>CheckMinDE
 
 Func EndDropCommand($sleepafterMin, $sleepAfterMax = Default)
+	debugAttackCSV("Ini EndDropCommand")
+	debugAttackCSV("Parameter $sleepafterMin: " & $sleepafterMin)
+	debugAttackCSV("Parameter $sleepAfterMax: " & $sleepAfterMax)
 	If $sleepAfterMax = Default Then $sleepAfterMax = $sleepafterMin
 	ReleaseClicks()
 	;SuspendAndroid($SuspendMode)
@@ -219,6 +257,14 @@ Func EndDropCommand($sleepafterMin, $sleepAfterMax = Default)
 EndFunc   ;==>EndDropCommand
 
 Func GetZDrillToDrop($Side, $bReLocate, $bLightning, $iLightning, $bEarthQuake, $iEarthQuake)
+	debugAttackCSV("Ini GetZDrillToDrop")
+	debugAttackCSV("Parameter $Side: " & $Side)
+	debugAttackCSV("Parameter $bReLocate: " & $bReLocate)
+	debugAttackCSV("Parameter $bLightning: " & $bLightning)
+	debugAttackCSV("Parameter $iLightning: " & $iLightning)
+	debugAttackCSV("Parameter $bEarthQuake: " & $bEarthQuake)
+	debugAttackCSV("Parameter $iEarthQuake: " & $iEarthQuake)
+
 	Local $ToReturn[4] = [-1, -1, -1, -1] ;[0]=X , [1]=Y , [2]=Possible Lightning Count To Drop, [3]=Possible EQ Count To Drop
 	If $Side = 1 Or $Side = 2 Or $Side = 3 Then
 		; If Side was just a number for the Drill Index
@@ -288,6 +334,12 @@ Func GetZDrillToDrop($Side, $bReLocate, $bLightning, $iLightning, $bEarthQuake, 
 EndFunc   ;==>GetZDrillToDrop
 
 Func CheckZDrillResult($rGetZDrillToDrop, $showlog = True)
+	debugAttackCSV("Ini CheckZDrillResult")
+	For $i = 0 To UBound($rGetZDrillToDrop) -1
+		debugAttackCSV("Parameter $rGetZDrillToDrop[" & $i & "]: " & $rGetZDrillToDrop[$i])
+	Next
+	debugAttackCSV("Parameter $showlog: " & $showlog)
+
 	If $rGetZDrillToDrop[0] < 1 Then
 		If $showlog Then SetLog("No Drills Found With Conditions", $COLOR_ORANGE)
 		If $showlog Then EndDropCommand(50, 150)
@@ -302,6 +354,7 @@ Func CheckZDrillResult($rGetZDrillToDrop, $showlog = True)
 EndFunc   ;==>CheckZDrillResult
 
 Func IsFirstZDetect()
+	debugAttackCSV("Ini IsFirstZDetect")
 	For $i = 0 To ($ZMaxDrills - 1)
 		If $ZDrillsPos[$i][0] > 0 And $ZDrillsPos[$i][1] > 0 Then Return False
 	Next
@@ -309,6 +362,8 @@ Func IsFirstZDetect()
 EndFunc   ;==>IsFirstZDetect
 
 Func AssignZDrills($iDrillToUpdate = -1)
+	debugAttackCSV("Ini AssignZDrills")
+	debugAttackCSV("Parameter $iDrillToUpdate: " & $iDrillToUpdate)
 	Local $bIsFirstDetect = IsFirstZDetect()
 	Switch $bIsFirstDetect
 		Case True
@@ -434,17 +489,23 @@ Func AssignZDrills($iDrillToUpdate = -1)
 EndFunc   ;==>AssignZDrills
 
 Func VerifyDrillLoc($filePath, $X, $Y)
+	debugAttackCSV("Ini VerifyDrillLoc")
+	debugAttackCSV("Parameter $filePath: " & $filePath)
+	debugAttackCSV("Parameter $X: " & $X)
+	debugAttackCSV("Parameter $Y: " & $Y)
 	Local $searchResult = ""
 	$searchResult = ReCheckTile($filePath, String($X & "," & $Y), False)
 	Return $searchResult
 EndFunc   ;==>VerifyDrillLoc
 
 Func GetLocDrills()
+	debugAttackCSV("Ini GetLocDrills")
 	Local $cDiamondImgLoc = "ECD", $rdImgLoc = "ECD"
 	Return findMultiple($dDarkDrills, $cDiamondImgLoc, $rdImgLoc, 0, 1000, 0, "objectpoints,filepath")
 EndFunc   ;==>GetLocDrills
 
 Func ResetZapCmd()
+	debugAttackCSV("Ini ResetZapCmd")
 	$ZMaxDrills = 3 ; Reset Max Drills To Find/Drop On
 	$ZMaxLSpell = 2 ; Reset Max Possible Lightning Spells To Drop On Each Drill
 	$ZMaxESpell = 1 ; Reset Max Possible EarthQuake Spells To Drop On Each Drill

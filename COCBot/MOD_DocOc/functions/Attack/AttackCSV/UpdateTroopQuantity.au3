@@ -18,19 +18,29 @@ Func UpdateTroopQuantity($sTroop, $bNeedNewCapture = Default)
 	If $bNeedNewCapture = True Then
 		_CaptureRegion2()
 	EndIf
+
+	; Get the integer index of the troop name specified
+	Local $troopName = $sTroop
+	Local $iTroopIndex = TroopIndexLookup($troopName)
+	If $iTroopIndex = -1 Then
+		Setlog("'UpdateTroopQuantity' troop name '" & $troopName & "' is unrecognized.")
+		Return
+	EndIf
+
 	Local $troopPosition = -1
 	For $i = 0 To UBound($atkTroops) - 1
-		If $atkTroops[$i][0] = Eval("e" & $sTroop) Then
+		If $atkTroops[$i][0] = $iTroopIndex Then
 			$troopPosition = $i
 			ExitLoop
 		EndIf
 	Next
+
 	If $g_bRunState = False Then Return
 	If $troopPosition <> -1 Then
 		Local $iQuantity = ReadTroopQuantity($troopPosition, True, Not $bNeedNewCapture)
 		$atkTroops[$troopPosition][1] = $iQuantity
 	EndIf
-	Return $troopPosition	; Return Troop Position in the Array, will be the slot of Troop in Attack bar
+	Return $troopPosition ; Return Troop Position in the Array, will be the slot of Troop in Attack bar
 EndFunc   ;==>UpdateTroopQuantity
 
 Func IsSlotSelected($iSlotIndex, $bNeedNewCapture = Default)
@@ -54,7 +64,7 @@ Func IsSlotSelected($iSlotIndex, $bNeedNewCapture = Default)
 				Hex(0xFFFFFF, 6), _ ; compare to Color #2 from screencode
 				20)
 	EndIf
-EndFunc
+EndFunc   ;==>IsSlotSelected
 
 Func GetSelectedSlotIndex($bNeedNewCapture = Default)
 	If $bNeedNewCapture = Default Then $bNeedNewCapture = True

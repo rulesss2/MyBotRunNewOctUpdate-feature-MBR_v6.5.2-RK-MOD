@@ -117,10 +117,10 @@ Func QuickMIS($ValueReturned, $directory, $Left = 0, $Top = 0, $Right = $g_iGAME
 
 				Case "BC1" ; coordinates of first/one image found + boolean value
 
-					Local $Result = ""
+					Local $Result = "", $DLLRes = Null
 					Local $KeyValue = StringSplit($Res[0], "|", $STR_NOCOUNT)
 					For $i = 0 To UBound($KeyValue) - 1
-						Local $DLLRes = DllCall($g_sLibImgLocPath, "str", "GetProperty", "str", $KeyValue[$i], "str", "objectpoints")
+						$DLLRes = DllCall($g_sLibImgLocPath, "str", "GetProperty", "str", $KeyValue[$i], "str", "objectpoints")
 						$Result &= $DLLRes[0] & "|"
 					Next
 					If StringRight($Result, 1) = "|" Then $Result = StringLeft($Result, (StringLen($Result) - 1))
@@ -131,7 +131,7 @@ Func QuickMIS($ValueReturned, $directory, $Left = 0, $Top = 0, $Right = $g_iGAME
 
 				Case "CX" ; coordinates of each image found - eg: $Array[0] = [X1, Y1] ; $Array[1] = [X2, Y2]
 
-					Local $Result = ""
+					Local $Result = "", $DLLRes = Null
 					Local $KeyValue = StringSplit($Res[0], "|", $STR_NOCOUNT)
 					For $i = 0 To UBound($KeyValue) - 1
 						$DLLRes = DllCall($g_sLibImgLocPath, "str", "GetProperty", "str", $KeyValue[$i], "str", "objectpoints")
@@ -150,7 +150,7 @@ Func QuickMIS($ValueReturned, $directory, $Left = 0, $Top = 0, $Right = $g_iGAME
 
 				Case "NX" ; names of all files found
 
-					Local $AllFilenamesFound = ""
+					Local $AllFilenamesFound = "", $FilenameFound = Null
 					Local $MultiImageSearchResult = StringSplit($Res[0], "|")
 					For $i = 1 To $MultiImageSearchResult[0]
 						$FilenameFound = StringSplit($MultiImageSearchResult[$i], "_")
@@ -161,7 +161,7 @@ Func QuickMIS($ValueReturned, $directory, $Left = 0, $Top = 0, $Right = $g_iGAME
 
 				Case "Q1" ; quantity of first/one tiles found
 
-					Local $Result = ""
+					Local $Result = "", $DLLRes = Null
 					Local $KeyValue = StringSplit($Res[0], "|", $STR_NOCOUNT)
 					For $i = 0 To UBound($KeyValue) - 1
 						$DLLRes = DllCall($g_sLibImgLocPath, "str", "GetProperty", "str", $KeyValue[$i], "str", "totalobjects")
@@ -387,7 +387,7 @@ EndFunc   ;==>IsReplayWindow
 
 Func GetReplayDuration()
 	Local $MaxSpeed = _GUICtrlComboBox_GetCurSel($g_acmbMaxSpeed[$g_iReplayToPause])
-	LOcal $Result = QuickMIS("N1", @ScriptDir & "\imgxml\Resources\Humanization Pics\Duration", 380, 600, 490, 630)
+	Local $Result = QuickMIS("N1", @ScriptDir & "\imgxml\Resources\Humanization Pics\Duration", 380, 600, 490, 630)
 	If $Result = "OneMinute" Then
 		$g_aReplayDuration[0] = 1
 		$g_aReplayDuration[1] = 90000

@@ -43,16 +43,24 @@ Func DropSpellFromINIOnDefense($Defense, $options, $qtaMin, $qtaMax, $troopName,
 	;number of troop to drop in one point...
 	Local $qtyxpoint = Int($qty)
 	debugAttackCSV(">> qty x point: " & $qtyxpoint)
+
+	; Get the integer index of the troop name specified
+	Local $iTroopIndex = TroopIndexLookup($troopName)
+	If $iTroopIndex = -1 Then
+	   Setlog("DropSpellFromINIOnDefense » troop name '" & $troopName & "' is unrecognized.")
+	   Return
+    EndIf
+
 	;search slot where is the troop...
 	Local $troopPosition = -1
 	For $i = 0 To UBound($atkTroops) - 1
-		If $atkTroops[$i][0] = Eval("e" & $troopName) Then
+		If $atkTroops[$i][0] = $iTroopIndex Then
 			$troopPosition = $i
 		EndIf
 	Next
 
 	Local $usespell = True
-	Switch Eval("e" & $troopName)
+	Switch $iTroopIndex
 		Case $eLSpell
 			If $g_abAttackUseLightSpell[$g_iMatchMode] = 0 Then $usespell = False
 		Case $eHSpell
@@ -133,13 +141,13 @@ Func DropSpellFromINIOnDefense($Defense, $options, $qtaMin, $qtaMax, $troopName,
 		Local $plural = 0
 		If $qty2 > 1 Then $plural = 1
 
-		Switch Eval("e" & $troopName)
+		Switch $iTroopIndex
 			Case $eLSpell To $eSkSpell
 				If $debug = True Then
 					Setlog("Drop Spell AttackClick( " & $pixel[0] & ", " & $pixel[1] & " , " & $qty2 & ", " & $delayPoint & ",#0666)")
 				Else
 					AttackClick($pixel[0], $pixel[1], $qty2, $delayPoint, $delayDropLast, "#0667")
-					If $qty2 > 0 And $DefenseResult[1] = True Then Setlog(" » Dropping " & $qty2 & " of " & NameOfTroop(Eval("e" & $troopName), $plural) & _
+					If $qty2 > 0 And $DefenseResult[1] = True Then Setlog(" » Dropping " & $qty2 & " of " & NameOfTroop($iTroopIndex, $plural) & _
 							IIf($DefenseResult[2] = True, " Between ", "") & IIf($DefenseResult[2] = True, $FullDefenseName, " On " & $FullDefenseName) & IIf($DefenseResult[2] = True, "(s)", ""))
 				EndIf
 			Case Else

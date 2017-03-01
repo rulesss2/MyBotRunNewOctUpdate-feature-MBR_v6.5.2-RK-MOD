@@ -344,6 +344,9 @@ Func ApplyConfig_600_12($TypeReadSave)
 			GUICtrlSetState($g_hChkExtraAlphabets, $g_bChkExtraAlphabets ? $GUI_CHECKED : $GUI_UNCHECKED)
 			GUICtrlSetState($g_hChkExtraChinese, $g_bChkExtraChinese ? $GUI_CHECKED : $GUI_UNCHECKED)
 			GUICtrlSetState($g_hChkExtraKorean, $g_bChkExtraKorean ? $GUI_CHECKED : $GUI_UNCHECKED)
+
+			GUICtrlSetData($g_hTxtGeneralBlacklist, $g_sTxtGeneralBlacklist)
+
 		Case "Save"
 			$g_bChkDonate = (GUICtrlRead($g_hChkDonate) = $GUI_CHECKED)
 			For $i = 0 To $eTroopCount-1 + $g_iCustomDonateConfigs
@@ -1784,7 +1787,7 @@ Func ApplyConfig_600_54($TypeReadSave)
 					GUICtrlSetState($g_hChkCustomTrainOrderEnable, $GUI_UNCHECKED)
 					$g_bCustomTrainOrderEnable = False
 					GUICtrlSetState($g_hBtnTroopOrderSet, $GUI_DISABLE) ; disable button
-					For $i = 0 To UBound($g_asTroopOrderTrainTab) - 2
+					For $i = 0 To UBound($g_ahCmbTroopOrder) - 1
 						GUICtrlSetState($g_ahCmbTroopOrder[$i], $GUI_DISABLE) ; disable combo boxes
 					Next
 				EndIf

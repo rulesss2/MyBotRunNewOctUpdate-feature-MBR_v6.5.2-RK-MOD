@@ -126,8 +126,8 @@ Func donateCCWBLUserImageCollect($x, $y)
 				EndIf
 			Else
 
-				Local $xfound = Int(StringSplit($reshidden, ",", 2)[0])
-				Local $yfound = Int(StringSplit($reshidden, ",", 2)[1])
+				Local $xfound = Int(StringSplit($res, ",", 2)[0])
+				Local $yfound = Int(StringSplit($res, ",", 2)[1])
 				If $g_iDebugSetlog = 1 Then
 					SetLog("ChatDivider found (" & $xfound & "," & $yfound & ")", $COLOR_SUCCESS)
 				EndIf

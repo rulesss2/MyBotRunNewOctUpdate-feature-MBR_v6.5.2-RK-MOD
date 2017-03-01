@@ -25,8 +25,7 @@ Global $g_ahChkAttackWeekdays[7] = [0,0,0,0,0,0,0], $g_ahChkAttackHours[24] = [0
 Global $g_hLbAttackPlannerRandom = 0, $g_hLbAttackPlannerDayLimit = 0, $g_ahChkAttackWeekdaysE = 0, $g_ahChkAttackHoursE1 = 0, $g_ahChkAttackHoursE2 = 0
 
 ; Clan castle
-Global $g_hChkDropCCHoursEnable = 0, $g_hChkUseCCBalanced = 0, $g_hCmbCCDonated = 0, $g_hCmbCCReceived = 0, _
-	   $g_ahChkDropCCHours[24] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+Global $g_hChkDropCCHoursEnable = 0, $g_ahChkDropCCHours[24] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
 Global $g_ahChkDropCCHoursE1 = 0, $g_ahChkDropCCHoursE2 = 0
 

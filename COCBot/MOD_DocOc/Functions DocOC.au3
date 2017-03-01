@@ -64,3 +64,24 @@
 #include "functions\Image Search\imglocAuxiliary.au3"
 
 #include "functions\Other\UpdateStats.au3"
+
+;Files With Switch Account Changes
+#include "functions\Village\SmartSwitchAcc.au3"
+#include "functions\Config\profileFunctions.au3"
+#include "functions\Other\CheckPrerequisites.au3"
+#include "functions\Village\VillageReport.au3"
+#include "functions\Other\CheckDisplay.au3"
+#include "functions\Attack\AttackReport.au3"
+#include "functions\Other\SetLog.au3"
+#include "functions\Main Screen\checkObstacles.au3"
+#include "functions\Other\Update Stats SwitchMode.au3"
+#include "functions\Village\Notify.au3"
+#include "functions\Village\GainCost.au3"
+#include "functions\Search\PrepareSearch.au3" 
+#include "functions\Search\VillageSearch.au3" 
+#include "functions\Village\DropTrophy.au3"
+#include "functions\Village\UpgradeWall.au3"
+#include "functions\Village\UpgradeBuilding.au3"
+#include "functions\Village\UpgradeHeroes.au3"
+#include "functions\CreateArmy\getArmyHeroStatus.au3"
+

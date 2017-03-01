@@ -14,7 +14,6 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
-Global $DonationWindowY
 Global $PrepDon[4] = [False, False, False, False]
 Global $iTotalDonateCapacity, $iTotalDonateSpellCapacity
 Global $iDonTroopsLimit = 8, $iDonSpellsLimit = 1, $iDonTroopsAv = 0, $iDonSpellsAv = 0

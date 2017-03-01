@@ -13,6 +13,10 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
+; AutoIt includes
+#include <WindowsConstants.au3>
+#include <WinAPI.au3>
+#include <Process.au3>
 #include <Math.au3> ; Added for Weak Base
 #include <ButtonConstants.au3>
 #include <ComboConstants.au3>
@@ -30,7 +34,6 @@
 #include <ProgressConstants.au3> ; Added for Splash
 #include <StaticConstants.au3>
 #include <TabConstants.au3>
-;#include <WindowsConstants.au3> ; included on MBR Bot.au3
 #include <WinAPIProc.au3>
 #include <WinAPIRes.au3>
 #include <ScreenCapture.au3>
@@ -46,8 +49,6 @@
 #include <INet.au3>
 #include <GuiTab.au3>
 #include <String.au3>
-;#include <IE.au3>
-#include <Process.au3>
 #include <GuiListView.au3>
 #include <GUIToolTip.au3>
 #include <Crypt.au3>
@@ -418,7 +419,7 @@ Global Enum $eIcnArcher = 1, $eIcnDonArcher, $eIcnBalloon, $eIcnDonBalloon, $eIc
 			$eWall04, $eWall05, $eWall06, $eWall07, $eWall08, $eWall09, $eWall10, $eWall11, $eIcnPBNotify, $eIcnCCTroops, _
 			$eIcnCCSpells, $eIcnSpellsGroup, $eBahasaIND, $eChinese_S, $eChinese_T, $eEnglish, $eFrench, $eGerman, $eItalian, $ePersian, _
 			$eRussian, $eSpanish, $eTurkish, $eMissingLangIcon, $eWall12, $ePortuguese, $eIcnDonPoisonSpell, $eIcnDonEarthQuakeSpell, $eIcnDonHasteSpell, $eIcnDonSkeletonSpell, $eVietnamese, $eKorean, $eModIcon, _
-			$eIcnBrain, $eIcnChat, $eIcnSwords, $eIcnLoop, $eIcnRepeat, $eIcnClan, $eBug, $eDelete, $eMultiStat, $eMove, $eStats
+			$eIcnBrain, $eIcnChat, $eIcnSwords, $eIcnLoop, $eIcnRepeat, $eIcnClan, $eIcnBug, $eIcnDelete, $eIcnMultiStat, $eIcnMove, $eIcnStats
 
 Global $eIcnDonBlank = $eIcnDonBlacklist
 Global $eIcnOptions = $eIcnDonBlacklist
@@ -554,16 +555,6 @@ Global Enum $eLeagueUnranked, $eLeagueBronze, $eLeagueSilver, $eLeagueGold, $eLe
 
 ; Loot types
 Global Enum $eLootGold, $eLootElixir, $eLootDarkElixir, $eLootTrophy, $eLootCount
-
-; notes $g_avDefaultTroopGroup[19][0] = TroopName | [1] = TroopNamePosition | [2] = TroopHeight | [3] = Times | [4] = qty | [5] = marker for DarkTroop or ElixerTroop]
-Global $g_avDefaultTroopGroup[19][6]  = [ ["Arch", 1, 1, 25, 0, "e"], ["Giant", 2, 5, 120, 0, "e"], ["Wall", 4, 2, 60, 0, "e"], ["Barb", 0, 1, 20, 0, "e"], ["Gobl", 3, 1, 30, 0, "e"], ["Heal", 7, 14, 600, 0, "e"], ["Pekk", 9, 25, 900, 0, "e"],  _
-									 ["Ball", 5, 5, 300, 0, "e"], ["Wiza", 6, 4, 300, 0, "e"], ["Drag", 8, 20, 900, 0, "e"], ["BabyD", 10, 10, 600, 0, "e"],["Mine", 11, 5, 300, 0, "e"], _
-									 ["Mini", 0, 2, 45, 0, "d"], ["Hogs", 1, 5, 120, 0, "d"], ["Valk", 2, 8, 300, 0, "d"], ["Gole", 3, 30, 900, 0, "d"], ["Witc", 4, 12, 600, 0, "d"], ["Lava", 5, 30, 900, 0, "d"], ["Bowl", 6, 6, 300, 0, "d"]]
-Global $g_asTroopName[UBound($g_avDefaultTroopGroup, 1)]
-For $i = 0 To UBound($g_avDefaultTroopGroup, 1) - 1
-   $g_asTroopName[$i] = $g_avDefaultTroopGroup[$i][0]
-Next
-
 
 ;--------------------------------------------------------------------------
 ; END: Attacks, Troops, Spells, Leagues, Loot Types
@@ -753,7 +744,21 @@ Global Const $g_aiTroopOrderIcon[21] = [ _
    $eIcnOptions, $eIcnBarbarian, $eIcnArcher, $eIcnGiant, $eIcnGoblin, $eIcnWallBreaker, $eIcnBalloon, _
    $eIcnWizard, $eIcnHealer, $eIcnDragon, $eIcnPekka, $eIcnBabyDragon, $eIcnMiner, $eIcnMinion, _
    $eIcnHogRider, $eIcnValkyrie, $eIcnGolem, $eIcnWitch, $eIcnLavaHound, $eIcnBowler]
-Global $g_bCustomTrainOrderEnable = False, $g_aiCmbCustomTrainOrder[UBound($g_aiTroopOrderIcon)] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+Global $g_bCustomTrainOrderEnable = False, $g_aiCmbCustomTrainOrder[$eTroopCount] = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+
+#cs
+Global Const $g_aiTrainOrderDefault[] = [ _
+   $eTroopArcher, $eTroopGiant, $eTroopWallBreaker, $eTroopBarbarian, $eTroopGoblin, $eTroopHealer, _
+   $eTroopPekka, $eTroopBalloon, $eTroopWizard, $eTroopDragon, $eTroopBabyDragon, $eTroopMiner, _
+   $eTroopMinion, $eTroopHogRider, $eTroopValkyrie, $eTroopGolem, $eTroopWitch, $eTroopLavaHound, _
+   $eTroopBowler ]
+#ce
+
+Global $g_aiTrainOrder[$eTroopCount] = [ _
+   $eTroopArcher, $eTroopGiant, $eTroopWallBreaker, $eTroopBarbarian, $eTroopGoblin, $eTroopHealer, _
+   $eTroopPekka, $eTroopBalloon, $eTroopWizard, $eTroopDragon, $eTroopBabyDragon, $eTroopMiner, _
+   $eTroopMinion, $eTroopHogRider, $eTroopValkyrie, $eTroopGolem, $eTroopWitch, $eTroopLavaHound, _
+   $eTroopBowler ]
 
 ; <><><><> Attack Plan / Train Army / Options <><><><>
 Global $g_bCloseWhileTrainingEnable = True, $g_bCloseWithoutShield = False, $g_bCloseEmulator = False, $g_bCloseRandom = False, $g_bCloseExactTime = False, _
@@ -966,25 +971,29 @@ Global $LootFileName = ""
 ; Stats
 Global $iFreeBuilderCount = 0, $iTotalBuilderCount = 0, $iGemAmount = 0 ; builder and gem amounts
 Global $iTestFreeBuilderCount = -1 ; used for test cases, -1 = disabled
-Global $g_iStatsStartedWith[$eLootCount] = [0,0,0,0]
-Global $g_iStatsTotalGain[$eLootCount] = [0,0,0,0]
-Global $g_iStatsLastAttack[$eLootCount] = [0,0,0,0]
-Global $g_iStatsBonusLast[$eLootCount] = [0,0,0,0]
-Global $iSkippedVillageCount, $iDroppedTrophyCount ; skipped village and dropped trophy counts
-Global $iCostGoldWall, $iCostElixirWall, $iCostGoldBuilding, $iCostElixirBuilding, $iCostDElixirHero ; wall, building and hero upgrade costs
-Global $iNbrOfWallsUppedGold, $iNbrOfWallsUppedElixir, $iNbrOfBuildingsUppedGold, $iNbrOfBuildingsUppedElixir, $iNbrOfHeroesUpped ; number of wall, building, hero upgrades with gold, elixir, delixir
-Global $iSearchCost, $iTrainCostElixir, $iTrainCostDElixir ; search and train troops cost
 Global $iNbrOfOoS ; number of Out of Sync occurred
-Global $iNbrOfTHSnipeFails, $iNbrOfTHSnipeSuccess ; number of fails and success while TH Sniping
-Global $iGoldFromMines, $iElixirFromCollectors, $iDElixirFromDrills ; number of resources gain by collecting mines, collectors, drills
-Global $iAttackedVillageCount[$g_iModeCount + 3] ; number of attack villages for DB, LB, TB, TS
-Global $iTotalGoldGain[$g_iModeCount + 3], $iTotalElixirGain[$g_iModeCount + 3], $iTotalDarkGain[$g_iModeCount + 3], $iTotalTrophyGain[$g_iModeCount + 3] ; total resource gains for DB, LB, TB, TS
-Global $iNbrOfDetectedMines[$g_iModeCount + 3], $iNbrOfDetectedCollectors[$g_iModeCount + 3], $iNbrOfDetectedDrills[$g_iModeCount + 3] ; number of mines, collectors, drills detected for DB, LB, TB
 Global $iAttackedCount = 0 ; convert to global from UpdateStats to enable daily attack limits
+
+
+;Global $g_iStatsStartedWith[$eLootCount] = [0,0,0,0] ; < - - - DocOc Mod
+;Global $g_iStatsTotalGain[$eLootCount] = [0,0,0,0] ; < - - - DocOc Mod
+;Global $g_iStatsLastAttack[$eLootCount] = [0,0,0,0] ; < - - - DocOc Mod
+;Global $g_iStatsBonusLast[$eLootCount] = [0,0,0,0] ; < - - - DocOc Mod
+;Global $iSkippedVillageCount, $iDroppedTrophyCount ; < - - - DocOc Mod ; skipped village and dropped trophy counts
+;Global $iSearchCost, $iTrainCostElixir, $iTrainCostDElixir  ; < - - - DocOc Mod ; search and train troops cost
+;Global $iGoldFromMines, $iElixirFromCollectors, $iDElixirFromDrills ; < - - - DocOc Mod; number of resources gain by collecting mines, collectors, drills
+;Global $iNbrOfWallsUppedGold, $iNbrOfWallsUppedElixir, $iNbrOfBuildingsUppedGold, $iNbrOfBuildingsUppedElixir, $iNbrOfHeroesUpped ; < - - - DocOc Mod ; number of wall, building, hero upgrades with gold, elixir, delixir
+;Global $iCostGoldWall, $iCostElixirWall, $iCostGoldBuilding, $iCostElixirBuilding, $iCostDElixirHero ; < - - - DocOc Mod ; wall, building and hero upgrade costs
+;Global $iAttackedVillageCount[$g_iModeCount + 3] ; < - - - DocOc Mod ; number of attack villages for DB, LB, TB, TS
+;Global $iTotalGoldGain[$g_iModeCount + 3], $iTotalElixirGain[$g_iModeCount + 3], $iTotalDarkGain[$g_iModeCount + 3], $iTotalTrophyGain[$g_iModeCount + 3] ; < - - - DocOc Mod ; total resource gains for DB, LB, TB, TS
+;Global $iNbrOfDetectedMines[$g_iModeCount + 3], $iNbrOfDetectedCollectors[$g_iModeCount + 3], $iNbrOfDetectedDrills[$g_iModeCount + 3] ; < - - - DocOc Mod ; number of mines, collectors, drills detected for DB, LB, TB
+;Global $iNbrOfTHSnipeFails, $iNbrOfTHSnipeSuccess ; < - - - DocOc Mod ; number of fails and success while TH Sniping
+;Global $g_iSmartZapGain = 0, $g_iNumEQSpellsUsed = 0, $g_iNumLSpellsUsed = 0 ; < - - - DocOc Mod ; smart zap
+
+
 Global $SearchCount = 0 ;Number of searches
 Global Const $max_train_skip = 40
 Global $actual_train_skip = 0
-Global $g_iSmartZapGain = 0, $g_iNumEQSpellsUsed = 0, $g_iNumLSpellsUsed = 0 ; smart zap
 
 ; My village
 Global $iGoldCurrent = 0, $iElixirCurrent = 0, $iDarkCurrent = 0, $iTrophyCurrent = 0 ; current stats

@@ -64,6 +64,16 @@ Func ApplyConfig_DocOc($TypeReadSave)
 			; Extra Persian language on Donate
 			$ichkExtraPersian = (GUICtrlRead($chkExtraPersian) = $GUI_CHECKED) ? 1 : 0
 
+
+			;SWITCH ACCOUNT
+			$ichkSwitchAccount = (GUICtrlRead($chkEnableSwitchAccount) = $GUI_CHECKED) ? 1 : 0
+			$icmbAccountsQuantity = _GUICtrlComboBox_GetCurSel($cmbAccountsQuantity)
+			For $i = 1 To 8
+				$ichkCanUse[$i] = (GUICtrlRead($chkCanUse) = $GUI_CHECKED) ? 1 : 0
+				$ichkDonateAccount[$i] = (GUICtrlRead($chkDonateAccount) = $GUI_CHECKED) ? 1 : 0
+				$icmbAccount[$i] = _GUICtrlComboBox_GetCurSel($cmbAccount[$i])
+			Next
+
 		Case "Read"
 			; ================================================== BOT HUMANIZATION PART ================================================== ;
 			GUICtrlSetState($chkUseBotHumanization, $g_ichkUseBotHumanization = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
@@ -123,5 +133,16 @@ Func ApplyConfig_DocOc($TypeReadSave)
 			; Extra Persian language on Donate
 			GUICtrlSetState($chkExtraPersian, ($ichkExtraPersian = 1) ? $GUI_CHECKED : $GUI_UNCHECKED)
 
+
+	; Smart Switch Account
+			GUICtrlSetState($chkEnableSwitchAccount, ($ichkSwitchAccount = 1) ? $GUI_CHECKED : $GUI_UNCHECKED)
+			_GUICtrlComboBox_SetCurSel($cmbAccountsQuantity, $icmbAccountsQuantity)
+
+			For $i = 1 To 8
+				GUICtrlSetState($chkCanUse[$i], ($ichkCanUse[$i] = 1) ? $GUI_CHECKED : $GUI_UNCHECKED)
+				GUICtrlSetState($chkDonateAccount[$i], ($ichkDonateAccount[$i] = 1) ? $GUI_CHECKED : $GUI_UNCHECKED)
+				_GUICtrlComboBox_SetCurSel($cmbAccount[$i], $icmbAccount[$i])
+			Next
+			chkSwitchAccount()
 	EndSwitch
 EndFunc   ;==>ApplyConfig_DocOc

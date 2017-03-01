@@ -17,13 +17,14 @@ Func chkSmartLightSpell()
 	If GUICtrlRead($g_hChkSmartLightSpell) = $GUI_CHECKED Then
 		GUICtrlSetState($g_hChkSmartZapDB, $GUI_ENABLE)
 		GUICtrlSetState($g_hChkSmartZapSaveHeroes, $GUI_ENABLE)
-		GUICtrlSetState($g_hTxtSmartMinDark, $GUI_ENABLE)
 		GUICtrlSetState($g_hChkNoobZap, $GUI_ENABLE)
 		GUICtrlSetState($g_hChkSmartEQSpell, $GUI_ENABLE)
 		GUICtrlSetState($g_hLblSmartUseLSpell, $GUI_SHOW)
 		If GUICtrlRead($g_hChkNoobZap) = $GUI_CHECKED Then
+			GUICtrlSetState($g_hTxtSmartMinDark, $GUI_ENABLE)
 			GUICtrlSetState($g_hTxtSmartExpectedDE, $GUI_ENABLE)
 		Else
+			GUICtrlSetState($g_hTxtSmartMinDark, $GUI_DISABLE)
 			GUICtrlSetState($g_hTxtSmartExpectedDE, $GUI_DISABLE)
 		EndIf
 		$ichkSmartZap = 1
@@ -41,9 +42,11 @@ EndFunc   ;==>chkSmartLightSpell
 
 Func chkNoobZap()
 	If GUICtrlRead($g_hChkNoobZap) = $GUI_CHECKED Then
+		GUICtrlSetState($g_hTxtSmartMinDark, $GUI_ENABLE)
 		GUICtrlSetState($g_hTxtSmartExpectedDE, $GUI_ENABLE)
 		$ichkNoobZap = 1
 	Else
+		GUICtrlSetState($g_hTxtSmartMinDark, $GUI_DISABLE)
 		GUICtrlSetState($g_hTxtSmartExpectedDE, $GUI_DISABLE)
 		$ichkNoobZap = 0
 	EndIf

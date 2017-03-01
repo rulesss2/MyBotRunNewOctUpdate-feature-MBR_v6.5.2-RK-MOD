@@ -60,4 +60,17 @@ Func SaveConfig_DocOc()
 	; Extra Persian language on Donate
 	IniWriteS($g_sProfileConfigPath, "donate", "chkExtraPersian", $ichkExtraPersian)
 
+
+	; Smart Switch Account
+	IniWrite($SSAConfig, "SwitchAccount", "chkEnableSwitchAccount", $ichkSwitchAccount)
+	IniWrite($SSAConfig, "SwitchAccount", "cmbAccountsQuantity", _GUICtrlComboBox_GetCurSel($cmbAccountsQuantity))
+	For $i = 1 To 8
+		IniWrite($SSAConfig, "SwitchAccount", "chkCanUse[" & $i & "]", $ichkCanUse[$i])
+		IniWrite($SSAConfig, "SwitchAccount", "chkDonateAccount[" & $i & "]", $ichkDonateAccount[$i])
+		IniWrite($SSAConfig, "SwitchAccount", "cmbAccount[" & $i & "]", _GUICtrlComboBox_GetCurSel($cmbAccount[$i]))
+	Next
+
+
+
+
 EndFunc   ;==>SaveConfig_DocOc

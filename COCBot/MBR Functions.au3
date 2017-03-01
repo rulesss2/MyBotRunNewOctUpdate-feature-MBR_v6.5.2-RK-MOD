@@ -16,12 +16,12 @@
 #include "functions\Other\Synchronization.au3"
 #include "functions\Other\OnAutoItErrorRegisterBot.au3"
 
-#include "functions\Config\profileFunctions.au3"
+;#include "functions\Config\profileFunctions.au3" ; --- > DocOc Mod
 #include "functions\Config\applyConfig.au3"
 #include "functions\Config\readConfig.au3"
 #include "functions\Config\saveConfig.au3"
 
-#include "functions\Attack\AttackReport.au3"
+;#include "functions\Attack\AttackReport.au3" --- > DocOc Mod
 #include "functions\Attack\BuildingSide.au3"
 #include "functions\Attack\GoldElixirChangeThSnipes.au3"
 #include "functions\Attack\GoldElixirChangeEBO.au3"
@@ -106,7 +106,7 @@
 #include "functions\CreateArmy\getArmyCCStatus.au3"
 #include "functions\CreateArmy\getArmyHeroCount.au3"
 #include "functions\CreateArmy\getArmyHeroTime.au3"
-#include "functions\CreateArmy\getArmyHeroStatus.au3"
+;#include "functions\CreateArmy\getArmyHeroStatus.au3" ; --- > DocOc Mod
 #include "functions\CreateArmy\getArmySpellCapacity.au3"
 #include "functions\CreateArmy\getArmySpellCount.au3"
 #include "functions\CreateArmy\getArmySpellTime.au3"
@@ -129,7 +129,7 @@
 
 
 #include "functions\Main Screen\checkMainScreen.au3"
-#include "functions\Main Screen\checkObstacles.au3"
+;#include "functions\Main Screen\checkObstacles.au3" --- > DocOc Mod
 #include "functions\Main Screen\GetDPI_Ratio.au3"
 #include "functions\Main Screen\isGemOpen.au3"
 #include "functions\Main Screen\isNoUpgradeLoot.au3"
@@ -158,7 +158,6 @@
 #include "functions\Android\AndroidEmbed.au3"
 
 #include "functions\Other\WerFaultClose.au3"
-#include "functions\Other\_ArraySortEx.au3"
 #include "functions\Other\_NumberFormat.au3"
 #include "functions\Other\_PadStringCenter.au3"
 #include "functions\Other\_ReduceMemory.au3"
@@ -176,13 +175,13 @@
 #include "functions\Other\ExtendedErrorInfo.au3"
 #include "functions\Other\FindPos.au3"
 #include "functions\Other\StringSize.au3"
-#include "functions\Other\SetLog.au3"
+;#include "functions\Other\SetLog.au3" ; --- > DocOc Mod
 #include "functions\Other\Tab.au3"
 #include "functions\Other\Time.au3"
 #include "functions\Other\BlockInputEx.au3"
 #include "functions\Other\TogglePause.au3"
-#include "functions\Other\CheckPrerequisites.au3"
-#include "functions\Other\CheckDisplay.au3"
+;#include "functions\Other\CheckPrerequisites.au3" ; --- > DocOc Mod
+;#include "functions\Other\CheckDisplay.au3" ; --- > DocOc Mod
 #include "functions\Other\AutoStart.au3"
 #include "functions\Other\WindowsArrange.au3"
 #include "functions\Other\MakeScreenshot.au3"
@@ -223,8 +222,8 @@
 #include "functions\Search\WeakBase.au3"
 #include "functions\Search\CompareResources.au3"
 #include "functions\Search\GetResources.au3"
-#include "functions\Search\PrepareSearch.au3"
-#include "functions\Search\VillageSearch.au3"
+;#include "functions\Search\PrepareSearch.au3" ;--- > DocOc Mod
+;#include "functions\Search\VillageSearch.au3" ;--- > DocOc Mod
 #include "functions\Search\CheckZoomOut.au3"
 #include "functions\Search\SearchTownHallloc.au3"
 #include "functions\Search\FindTownHall.au3"
@@ -243,7 +242,7 @@
 #include "functions\Village\Collect.au3"
 ; #include "functions\Village\DonateCC.au3" --- > DocOc Mod
 #include "functions\Village\DonateCCWBL.au3"
-#include "functions\Village\DropTrophy.au3"
+;#include "functions\Village\DropTrophy.au3" --- > DocOc Mod
 #include "functions\Village\GetTownHallLevel.au3"
 #include "functions\Village\isDarkElixirFull.au3"
 #include "functions\Village\isGoldFull.au3"
@@ -256,18 +255,18 @@
 #include "functions\Village\ProfileReport.au3"
 #include "functions\Village\ReArm.au3"
 #include "functions\Village\RequestCC.au3"
-#include "functions\Village\VillageReport.au3"
-#include "functions\Village\UpgradeBuilding.au3"
-#include "functions\Village\UpgradeWall.au3"
-#include "functions\Village\Notify.au3"
+;#include "functions\Village\VillageReport.au3" ; --- > DocOc Mod
+;#include "functions\Village\UpgradeBuilding.au3" ; --- > DocOc Mod
+;#include "functions\Village\UpgradeWall.au3" ; --- > DocOc Mod
+;#include "functions\Village\Notify.au3" ; --- > DocOc Mod
 #include "functions\Village\Laboratory.au3"
 #include "functions\Village\ReplayShare.au3"
 #include "functions\Village\BoostHeroes.au3"
-#include "functions\Village\UpgradeHeroes.au3"
+;#include "functions\Village\UpgradeHeroes.au3" ; --- > DocOc Mod
 #include "functions\Village\StarBonus.au3"
 #include "functions\Village\AddIdleTime.au3"
 #include "functions\Village\GetVillageSize.au3"
-#include "functions\Village\GainCost.au3"
+;#include "functions\Village\GainCost.au3" ; --- > DocOc Mod
 #include "functions\Village\ConvertOCRTime.au3"
 #include "functions\Other\ClickZoneR.au3"
 #include "functions\Village\CheckNeedOpenTrain.au3"

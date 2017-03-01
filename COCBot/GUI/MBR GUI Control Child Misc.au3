@@ -15,6 +15,15 @@
 Func cmbProfile()
 	saveConfig()
 
+;===============\/Switch Account\/=============
+	If $ichkSwitchAccount = 1 Then
+		If $ichkDeleteLogs = 1 Then DeleteFiles($g_sProfileLogsPath, "*.*", $iDeleteLogsDays, 0)
+		If $ichkDeleteLoots = 1 Then DeleteFiles($g_sProfileLootsPath, "*.*", $iDeleteLootsDays, 0)
+		If $ichkDeleteTemp = 1 Then DeleteFiles($g_sProfileTempPath, "*.*", $iDeleteTempDays, 0)
+		If $ichkDeleteTemp = 1 Then DeleteFiles($g_sProfileTempDebugPath, "*.*", $iDeleteTempDays, 0)
+	EndIf
+;===============/\Switch Account/\==============
+
 	If $g_hLogFile <> 0 Then
 	   FileClose($g_hLogFile)
 	   $g_hLogFile = 0

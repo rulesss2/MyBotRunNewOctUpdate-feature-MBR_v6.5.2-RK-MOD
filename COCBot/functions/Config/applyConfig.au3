@@ -1106,6 +1106,7 @@ Func ApplyConfig_600_29_DB($TypeReadSave)
 	ApplyConfig_600_29_DB_Standard($TypeReadSave)
 	ApplyConfig_600_29_DB_Scripted($TypeReadSave)
 	ApplyConfig_600_29_DB_Milking($TypeReadSave)
+	ApplyConfig_RK_MOD_multifinger($TypeReadSave)
 EndFunc
 
 Func ApplyConfig_600_29_DB_Standard($TypeReadSave)
@@ -1136,7 +1137,7 @@ Func ApplyConfig_600_29_DB_Standard($TypeReadSave)
 			$g_abAttackStdSmartNearCollectors[$DB][1] = (GUICtrlRead($g_hChkAttackNearElixirCollectorDB) = $GUI_CHECKED)
 			$g_abAttackStdSmartNearCollectors[$DB][2] = (GUICtrlRead($g_hChkAttackNearDarkElixirDrillDB) = $GUI_CHECKED)
 	EndSwitch
-	cmbDeployDB()
+	Bridge()
 EndFunc
 
 Func ApplyConfig_600_29_DB_Scripted($TypeReadSave)

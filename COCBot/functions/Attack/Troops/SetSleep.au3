@@ -23,8 +23,8 @@ Func SetSleep($type)
     EndIf
 
 	;Unit Wave Factor MOD
-	If $iChkUnitFactor = 1 Then $factor0 = $iTxtUnitFactor
-	If $iChkWaveFactor = 1 Then $factor1 = $iTxtWaveFactor
+	If  _GUICtrlComboBox_GetCurSel($g_hCmbStandardDropSidesDB) = 5 and $iChkUnitFactor = 1 Then $factor0 = $iTxtUnitFactor
+	If  _GUICtrlComboBox_GetCurSel($g_hCmbStandardDropSidesDB) = 5 and $iChkWaveFactor = 1 Then $factor1 = $iTxtWaveFactor
 
 	Switch $type
 		Case 0

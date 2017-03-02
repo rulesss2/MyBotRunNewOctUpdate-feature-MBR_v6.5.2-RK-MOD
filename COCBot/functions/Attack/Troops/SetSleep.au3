@@ -21,6 +21,11 @@ Func SetSleep($type)
 	   $factor0 = 10
 	   $factor1 = 100
     EndIf
+
+	;Unit Wave Factor MOD
+	If $iChkUnitFactor = 1 Then $factor0 = $iTxtUnitFactor
+	If $iChkWaveFactor = 1 Then $factor1 = $iTxtWaveFactor
+
 	Switch $type
 		Case 0
 			If $g_abAttackStdRandomizeDelay[$g_iMatchMode] Then
@@ -59,3 +64,4 @@ Func _SleepAttack($iDelay, $iSleep = True)
 	If IsKeepClicksActive() = True Then Return False
 	Return _Sleep($iDelay, $iSleep)
 EndFunc   ;==>_SleepAttack
+

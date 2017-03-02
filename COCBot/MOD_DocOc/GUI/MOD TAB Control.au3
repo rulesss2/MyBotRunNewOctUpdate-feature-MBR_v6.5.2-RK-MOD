@@ -73,7 +73,7 @@ Func cmbDeployDB() ; avoid conflict between FourFinger and SmartAttack
 	If _GUICtrlComboBox_GetCurSel($g_hCmbStandardDropSidesDB) = 4 Then
 		For $i = $g_hChkSmartAttackRedAreaDB To $g_hPicAttackNearDarkElixirDrillDB
 			GUICtrlSetState($g_hChkSmartAttackRedAreaDB, $GUI_UNCHECKED)
-			GUICtrlSetState($i, $GUI_DISABLE)
+			GUICtrlSetState($i, $GUI_DISABLE + $GUI_HIDE)
 		Next
 	Else
 		For $i = $g_hChkSmartAttackRedAreaDB To $g_hPicAttackNearDarkElixirDrillDB

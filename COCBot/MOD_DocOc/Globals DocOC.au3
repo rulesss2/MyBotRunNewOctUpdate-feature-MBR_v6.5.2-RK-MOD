@@ -73,7 +73,7 @@ Global $ichkExtraPersian = 0
 ; Warden Forced Ability
 Global $iActivateWardenCondition = 0
 Global $delayActivateW = 9
-Global $HeroesTimerActivation[$eHeroCount] = [0, 0, 0] ; $eHeroBarbarianKing | $eHeroArcherQueen | $eHeroGrandWarden
+Global $HeroesTimerActivation[$eHeroCount] = [0,0,0]; $eHeroBarbarianKing | $eHeroArcherQueen | $eHeroGrandWarden
 
 ; Attack Settings [Dec 2016] used on Classic Attack
 Global Const $TopLeft[5][2] = [[62, 306], [156, 238], [221, 188], [288, 142], [383, 76]]
@@ -103,3 +103,80 @@ Global $storedADefensePos = ""
 Global $DebugSideP = 0
 Global $dGoldMines = @ScriptDir & "\imgxml\Storages\SideP\GoldMines", $dDarkDrills = @ScriptDir & "\imgxml\Storages\SideP\Drills", $dElixirCollectors = @ScriptDir & "\imgxml\Storages\SideP\Collectors"
 Global $allMinesFound[7][3], $allCollectorsFound[7][3], $allDrillsFound[3][3]
+
+Global $isModeActive[$g_iModeCount] ; From Vilage Search in Middle of code. Moved here
+
+;=================Multi Stat's GUI==========================================
+Global $g_grpVillageSW[9], $g_icnPopOutSW[9]										;Static
+
+Global $g_lblGoldNowSW[9], $g_lblElixirNowSW[9], $g_lblDarkNowSW[9]							; Values get Updated
+Global $g_lblHrStatsGoldSW[9], $g_lblHrStatsElixirSW[9], $g_lblHrStatsDarkSW[9]				; Values get Updated
+
+Global $g_icnGoldSW[9], $g_icnElixirSW[9], $g_icnDarkSW[9]							;Static
+Global $g_lblUnitMeasureSW1[9], $g_lblUnitMeasureSW2[9], $g_lblUnitMeasureSW3[9]	;Static
+Global $g_icnGemSW[9], $g_icnBuliderSW[9], $g_icnHourGlassSW[9]						;Static
+
+Global $g_lblKingStatus[9], $g_lblQueenStatus[9], $g_lblWardenStatus[9]						; Values get Updated
+Global $g_lblLabStatus[9],$g_lblGemNowSW[9], $g_lblBuilderNowSW[9], $g_lblTimeNowSW[9]		; Values get Updated
+
+;================== POP - OUTS ==============================
+Global $g_grpVillagePO[9], $g_icnPopOutEX[9]										;Static  -- declare for eval
+
+Global $g_lblGoldNowPO[9], $g_lblElixirNowPO[9], $g_lblDarkNowPO[9]							; Values get Updated
+Global $g_lblHrStatsGoldPO[9], $g_lblHrStatsElixirPO[9], $g_lblHrStatsDarkPO[9]				; Values get Updated
+
+Global $g_icnGoldPO[9], $g_icnElixirPO[9], $g_icnDarkPO[9]							;Static
+Global $g_lblUnitMeasurePO1[9], $g_lblUnitMeasurePO2[9], $g_lblUnitMeasurePO3[9]	;Static
+Global $g_icnGemPO[9], $g_icnBuliderPO[9], $g_icnHourGlassPO[9]						;Static
+
+Global $g_lblKingStatusPO[9], $g_lblQueenStatusPO[9], $g_lblWardenStatusPO[9]				; Values get Updated
+Global $g_lblLabStatusPO[9],$g_lblGemNowPO[9], $g_lblBuilderNowPO[9], $g_lblTimeNowPO[9]	; Values get Updated
+Global $hGuiPopOut , $hGuiPopOut0, $hGuiPopOut1, $hGuiPopOut2, $hGuiPopOut3
+Global $hGuiPopOut4, $hGuiPopOut5, $hGuiPopOut6, $hGuiPopOut7, $hGuiPopOut8
+Global $g_iMonitorX, $g_iMonitorY
+;======================== STATS ====================================================
+Global $g_iFreeBuilderCount[9], $g_iTotalBuilderCount[9], $g_iGemAmount[9] ; builder and gem amounts
+
+Global $g_iStatsCurrent[9][$eLootCount] = [[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]]
+Global $g_iStatsStartedWith[9][$eLootCount] = [[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]]
+Global $g_iStatsLastAttack[9][$eLootCount] = [[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]]
+Global $g_iStatsBonusLast[9][$eLootCount] = [[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]]
+Global $g_iStatsTotalGain[9][$eLootCount] = [[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]]
+Global $g_iSkippedVillageCount[9], $g_iDroppedTrophyCount[9] ; skipped village and dropped trophy counts
+Global $g_iSearchCost[9], $g_iTrainCostElixir[9], $g_iTrainCostDElixir[9] ; search and train troops cost
+Global $g_iGoldFromMines[9], $g_iElixirFromCollectors[9], $g_iDElixirFromDrills[9] ; number of resources gain by collecting mines, collectors, drills
+Global $g_iNbrOfWallsUppedGold[9], $g_iNbrOfWallsUppedElixir[9], $g_iNbrOfBuildingsUppedGold[9], $g_iNbrOfBuildingsUppedElixir[9], $g_iNbrOfHeroesUpped[9] ; number of wall, building, hero upgrades with gold, elixir, delixir
+Global $g_iCostGoldWall[9], $g_iCostElixirWall[9], $g_iCostGoldBuilding[9], $g_iCostElixirBuilding[9], $g_iCostDElixirHero[9] ; wall, building and hero upgrade costs
+Global $g_iAttackedVillageCount[9][$g_iModeCount + 3] ; number of attack villages for DB, LB, TB, TS
+Global $g_iTotalGoldGain[9][$g_iModeCount + 3], $g_iTotalElixirGain[9][$g_iModeCount + 3], $g_iTotalDarkGain[9][$g_iModeCount + 3], $g_iTotalTrophyGain[9][$g_iModeCount + 3] ; total resource gains for DB, LB, TB, TS
+Global $g_iNbrOfDetectedMines[9][$g_iModeCount + 3], $g_iNbrOfDetectedCollectors[9][$g_iModeCount + 3], $g_iNbrOfDetectedDrills[9][$g_iModeCount + 3] ; number of mines, collectors, drills detected for DB, LB, TB
+Global $g_iNbrOfTHSnipeFails[9], $g_iNbrOfTHSnipeSuccess[9] ; number of fails and success while TH Sniping
+Global $g_iSmartZapGain[9], $g_iNumEQSpellsUsed[9], $g_iNumLSpellsUsed[9]
+
+Global $Init = False, $FirstInit = True, $ichkSwitchAccount
+Global $SSAConfig = $g_sProfilePath & "\Profile.ini"
+Global $SSAAtkLog = $g_sProfilePath & "\SmartSwitchAccount_Attack_Report.txt"
+Global $ichkCanUse[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+Global $ichkDonateAccount[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+Global $icmbAccount[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+Global $isModeActive[$g_iModeCount] ; From Vilage Search in Middle of code. Moved here
+
+; DOnateCC debug Button
+
+Global $DonationWindowY = 0
+
+
+; Switch account
+Global $g_bSwitchAcctPrereq = False
+Global $AllAccountsWaitTimeDiff[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0] ; stored as Milli sec ;Updated time left to train
+Global $AllAccountsWaitTime[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0]  ; Stored as min time ;reported as time needed to train troops
+Global $TimerDiffStart[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0] ;the start and stop timer counters
+Global $TimerDiffEnd[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0] ;the start and stop timer counters
+
+Global $CurrentAccountWaitTime = 0
+
+Global $TotalAccountsOnEmu = 0, $CurrentDAccount = 1, $FirstLoop = 0
+Global $MustGoToDonateAccount = 0
+Global $yCoord, $HeroesRemainingWait, $TotalAccountsInUse, $TotalDAccountsInUse,  $NextAccount, $NextProfile
+Global $AlreadyConnected, $IsLoadButton, $NextStep, $LastDate = ""

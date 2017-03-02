@@ -235,7 +235,8 @@ Func ReadRegularConfig()
 
    ; <><><> Attack Plan / Train Army / Options <><><>
    ReadConfig_DocOc()
-   
+   ;@<<>>@<<>>@<<>>@<<>>@<<>>@<<>>@
+   ReadConfig_RK_MOD()
 EndFunc
 
 Func ReadConfig_Debug()

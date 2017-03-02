@@ -102,6 +102,9 @@ Func getSpellOffset()
 EndFunc   ;==>getSpellOffset
 
 Func smartZap($minDE = -1)
+	Local $strikeOffsets = [0, 14] ; Adjust according to drill locate pictures in "imgxml\Storages\Drills"
+	Local $drillLvlOffset, $spellAdjust, $numDrills, $testX, $testY, $tempTestX, $tempTestY, $strikeGain, $expectedDE
+	Local $error = 5 ; 5 pixel error margin for DE drill search
 	Local $searchDark, $oldSearchDark = 0, $performedZap = False, $dropPoint
 	Local $aSpells [3][5] = [["Own", $eLSpell, -1, -1, 0 ] _		; Own/Donated, SpellType, AttackbarPosition, Level, Count
 							, ["Donated", $eLSpell, -1, -1, 0] _
@@ -139,26 +142,17 @@ Func smartZap($minDE = -1)
 	EndIf
 
 	; Check to make sure the account is high enough level to store DE.
-	If $iTownHallLevel < 7 Then
+	If $iTownHallLevel < 2 Then
+		SetLog("Your Townhalllevel has yet to be determined.", $COLOR_ERROR)
+		SetLog("It reads as TH" & $iTownHallLevel & ".", $COLOR_ERROR)
+		SetLog("Locate your Townhall manually at Village->Misc.", $COLOR_ERROR)
+		Return $performedZap
+	ElseIf $iTownHallLevel < 7 Then
 		SetLog("You do not have the ability to store Dark Elixir, time to go home!", $COLOR_ERROR)
 		If $DebugSmartZap = 1 Then SetLog("Your Town Hall Lvl: " & Number($iTownHallLevel), $COLOR_DEBUG)
 		Return $performedZap
 	Else
 		If $DebugSmartZap = 1 Then SetLog("Your Town Hall Lvl: " & Number($iTownHallLevel), $COLOR_DEBUG)
-	EndIf
-
-	; Check to ensure there is at least the minimum amount of DE available.
-	If (Number($searchDark) < Number($minDE)) Then
-		SetLog("Dark Elixir is below minimum value [" & Number($itxtMinDE) & "], Exiting Now!", $COLOR_INFO)
-		If $DebugSmartZap = 1 Then SetLog("$searchDark|Current DE value: " & Number($searchDark), $COLOR_DEBUG)
-		Return $performedZap
-	Else
-		If $DebugSmartZap = 1 Then SetLog("$searchDark = " & Number($searchDark) & " | $itxtMinDE = " & Number($itxtMinDE), $COLOR_DEBUG)
-	EndIf
-
-	If $DebugSmartZap = 1 Then
-		SetLog("$itxtExpectedDE| Expected DE value:" & Number($itxtExpectedDE), $COLOR_DEBUG)
-		SetLog("$g_abStopAtkNoLoot1Enable[$DB] = " & $g_abStopAtkNoLoot1Enable[$DB] & ", $txtDBTimeStopAtk = " & $g_aiStopAtkNoLoot1Time[$DB] & "s", $COLOR_DEBUG)
 	EndIf
 
 	; Check match mode
@@ -167,6 +161,14 @@ Func smartZap($minDE = -1)
 		SetLog("Not a dead base so lets just go home!", $COLOR_INFO)
 		Return $performedZap
 	EndIf
+
+	; Offset the drill level based on town hall level
+	$drillLvlOffset = getDrillOffset()
+	If $DebugSmartZap = 1 Then SetLog("Drill Level Offset is: " & Number($drillLvlOffset), $COLOR_DEBUG)
+
+	; Offset the number of spells based on town hall level
+	$spellAdjust = getSpellOffset()
+	If $DebugSmartZap = 1 Then SetLog("Spell Adjust is: " & Number($spellAdjust), $COLOR_DEBUG)
 
 	; Get the number of lightning/EQ spells
 	Local $iTroops = PrepareAttack($g_iMatchMode, True) ; Check remaining troops/spells
@@ -212,12 +214,27 @@ Func smartZap($minDE = -1)
 		$aSpells[2][4] = 0 ; remove the EQ , is not to use it
 	EndIf
 
+	; Check to ensure there is at least the minimum amount of DE available.
+	If (Number($searchDark) < Number($minDE)) And $ichkNoobZap = 1 Then
+		SetLog("Dark Elixir is below minimum value [" & Number($itxtMinDE) & "], Exiting Now!", $COLOR_INFO)
+		If $DebugSmartZap = 1 Then SetLog("$searchDark|Current DE value: " & Number($searchDark), $COLOR_DEBUG)
+		Return $performedZap
+	ElseIf Number($searchDark) < ($g_aDrillLevelTotal[3 - $drillLvlOffset] / $g_aDrillLevelHP[3 - $drillLvlOffset] * $g_fDarkStealFactor * $g_aLSpellDmg[$aSpells[0][3] - 1] * $g_fDarkFillLevel) Then
+		SetLog("There is less Dark Elixir(" & Number($searchDark) & ") than gain per zap for a single Lvl " & 3 - Number($drillLvlOffset) & " drill(" _
+		& Ceiling($g_aDrillLevelTotal[3 - $drillLvlOffset] / $g_aDrillLevelHP[3 - $drillLvlOffset] * $g_fDarkStealFactor * $g_aLSpellDmg[$aSpells[0][3] - 1] * $g_fDarkFillLevel) & ").", $COLOR_INFO)
+		SetLog("Base is not worth a Zap, Exiting Now!", $COLOR_INFO)
+		Return $performedZap
+	Else
+		If $DebugSmartZap = 1 Then SetLog("$searchDark = " & Number($searchDark) & " | $itxtMinDE = " & Number($itxtMinDE), $COLOR_DEBUG)
+	EndIf
+
+	If $DebugSmartZap = 1 Then
+		SetLog("$itxtExpectedDE| Expected DE value:" & Number($itxtExpectedDE), $COLOR_DEBUG)
+		SetLog("$g_abStopAtkNoLoot1Enable[$DB] = " & $g_abStopAtkNoLoot1Enable[$DB] & ", $txtDBTimeStopAtk = " & $g_aiStopAtkNoLoot1Time[$DB] & "s", $COLOR_DEBUG)
+	EndIf
+
 	; Get Drill locations and info
 	Local $aDarkDrills = drillSearch()
-
-	Local $strikeOffsets = [0, 14] ; Adjust according to drill locate pictures in "imgxml\Storages\Drills"
-	Local $drillLvlOffset, $spellAdjust, $numDrills, $testX, $testY, $tempTestX, $tempTestY, $strikeGain, $expectedDE
-	Local $error = 5 ; 5 pixel error margin for DE drill search
 
 	; Get the number of drills
 	If UBound($aDarkDrills) = 0 Then
@@ -229,14 +246,6 @@ Func smartZap($minDE = -1)
 
 	_ArraySort($aDarkDrills, 1, 0, 0, 3)
 
-	; Offset the drill level based on town hall level
-	$drillLvlOffset = getDrillOffset()
-	If $DebugSmartZap = 1 Then SetLog("Drill Level Offset is: " & Number($drillLvlOffset), $COLOR_DEBUG)
-
-	; Offset the number of spells based on town hall level
-	$spellAdjust = getSpellOffset()
-	If $DebugSmartZap = 1 Then SetLog("Spell Adjust is: " & Number($spellAdjust), $COLOR_DEBUG)
-
 	Local $itotalStrikeGain = 0
 
 	; Loop while you still have spells and the first drill in the array has Dark Elixir, if you are town hall 7 or higher
@@ -247,7 +256,7 @@ Func smartZap($minDE = -1)
 		Local $oldSearchDark = $searchDark
 		CheckHeroesHealth()
 
-		If ($searchDark < Number($itxtMinDE)) Then
+		If ($searchDark < Number($itxtMinDE)) And $ichkNoobZap = 1 Then
 			SetLog("Dark Elixir is below minimum value [" & Number($itxtMinDE) & "], Exiting Now!", $COLOR_INFO)
 			Return $performedZap
 		EndIf
@@ -340,11 +349,11 @@ Func smartZap($minDE = -1)
 			; Update statistics, if we zapped
 			If $skippedZap = False Then
 				If $Spellused = $eESpell  Then
-					$g_iNumEQSpellsUsed += 1
+					$g_iNumEQSpellsUsed[$CurrentAccount] += 1
 				Else
-					$g_iNumLSpellsUsed += 1
+					$g_iNumLSpellsUsed[$CurrentAccount] += 1
 				EndIf
-				$g_iSmartZapGain += $oldSearchDark
+				$g_iSmartZapGain[$CurrentAccount] += $oldSearchDark
 			EndIf
 			Return $performedZap
 		Else
@@ -360,7 +369,7 @@ Func smartZap($minDE = -1)
 			$expectedDE = -1
 
 			If $Spellused = $eESpell  Then
-				$g_iNumEQSpellsUsed += 1
+				$g_iNumEQSpellsUsed[$CurrentAccount] += 1
 				If $aCluster <> -1 Then
 					For $i = 0 To UBound($aCluster[3]) - 1
 						$expectedDE = _Max(Number($expectedDE), Ceiling(Number($g_aDrillLevelTotal[$aDarkDrills[($aCluster[3])[$i]][2] - 1] * $g_fDarkStealFactor * $g_aEQSpellDmg[$aSpells[2][3] - 1] * $g_fDarkFillLevel)))
@@ -369,7 +378,7 @@ Func smartZap($minDE = -1)
 					$expectedDE = Ceiling(Number($g_aDrillLevelTotal[$aDarkDrills[0][2] - 1] * $g_fDarkStealFactor * $g_aEQSpellDmg[$aSpells[2][3] - 1] * $g_fDarkFillLevel))
 				EndIf
 			Else
-				$g_iNumLSpellsUsed += 1
+				$g_iNumLSpellsUsed[$CurrentAccount] += 1
 				If $ichkNoobZap = 0 Then
 					If $aCluster <> -1 Then
 						For $i = 0 To UBound($aCluster[3]) - 1
@@ -447,7 +456,7 @@ Func smartZap($minDE = -1)
 			EndIf
 
 			$itotalStrikeGain += $strikeGain
-			$g_iSmartZapGain += $strikeGain
+			$g_iSmartZapGain[$CurrentAccount] += $strikeGain
 			SetLog("Total DE from SmartZap/NoobZap: " & Number($itotalStrikeGain), $COLOR_INFO)
 
 		EndIf
@@ -456,7 +465,7 @@ Func smartZap($minDE = -1)
 		_ArraySort($aDarkDrills, 1, 0, 0, 3)
 
 		If _Sleep($DelaySmartZap1) Then Return
-		
+
 		; Check once again for donated lightning spell, if all own lightning spells are used
 		If $aSpells[0][4] = 0 Then
 			Local $iTroops = PrepareAttack($g_iMatchMode, True) ; Check remaining troops/spells

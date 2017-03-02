@@ -95,7 +95,6 @@ Func CollectTreasury()
 
 	ClickP($aAway, 2, 0, "#0346") ;Click Away
 	If _sleep(500) then return
-
 EndFunc   ;==>CollectTreasury
 
 Func CollectTreasuryStand()

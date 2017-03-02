@@ -171,7 +171,9 @@ Func SaveRegularConfig()
 
    ; <><><><> DocOc MOD <><><><>
    SaveConfig_DocOc()
-
+   ;@<<>>@<<>>@<<>> RK_MOD <<>>@<<>>@<<>>@
+   SaveConfig_RK_MOD()
+   ;@<<>>@<<>>@<<>>--------<<>>@<<>>@<<>>@
 	If $hFile <> -1 Then FileClose($hFile)
 
 EndFunc

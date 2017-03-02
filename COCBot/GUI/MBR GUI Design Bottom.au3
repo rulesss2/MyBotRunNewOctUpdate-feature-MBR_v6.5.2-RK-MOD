@@ -109,6 +109,7 @@ Func CreateBottomPanel()
    ;~ Village
    Local $x = 295, $y = $y_bottom + 20
    $g_hGrpVillage = GUICtrlCreateGroup(GetTranslated(603,32, "Village"), $x - 20, $y - 20, 180, 85)
+
 	   $g_hLblResultGoldNow = GUICtrlCreateLabel("", $x - 5, $y + 2, 60, 15, $SS_RIGHT)
 	   $g_hLblResultGoldHourNow = GUICtrlCreateLabel("", $x, $y + 2, 60, 15, $SS_RIGHT)
 		   GUICtrlSetState(-1, $GUI_HIDE)
@@ -131,6 +132,12 @@ Func CreateBottomPanel()
 	   $x += 75
 	   ;trophy / runtime
 	   $g_hLblResultTrophyNow = GUICtrlCreateLabel("", $x, $y + 2, 55, 15, $SS_RIGHT)
+	   
+; ====Small mod change for pop out Move Icon======	   
+	   $g_icnPopOutSW[0] 		= GUICtrlCreateIcon($g_sLibIconPath, $eIcnMove, $x + 60,  $y - 12, 12, 12)
+		   GUICtrlSetOnEvent($g_icnPopOutSW[0],"PopOut0")	   
+; ================================================	 
+  
 	   $g_hPicResultTrophyNow = GUICtrlCreateIcon ($g_sLibIconPath, $eIcnTrophy, $x + 59, $y , 16, 16)
 	   $g_hLblResultRuntimeNow = GUICtrlCreateLabel("00:00:00", $x, $y + 2, 50, 15, $SS_RIGHT)
 	   GUICtrlSetState(-1, $GUI_HIDE)

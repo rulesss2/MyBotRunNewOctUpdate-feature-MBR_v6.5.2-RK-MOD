@@ -38,6 +38,8 @@ Global $lblXPatStart = 0 , $lblXPCurrent = 0 , $lblXPSXWon = 0 , $lblXPSXWonHour
 ; Persian DonateCC
 
 Global $chkExtraPersian = 0
+#include "MOD - Profiles.au3"
+#include "MBR GUI Design Child Stats - Multi.au3"
 
 Func CreateMODTab()
 
@@ -52,20 +54,19 @@ Func CreateMODTab()
 		$g_hGUI_MOD_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600, 60, "Goblin XP"))
 			GoblinXPGUI()
 		$g_hGUI_MOD_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600, 36, "Profiles"))
-			CreateBotProfiles()
-		$g_hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem("MultiStat's")
+			CreateModProfiles()
+		$g_hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem("MultiStat's") ; Has to be outside of the Last Control to hide
+			$g_hLastControlToHide = GUICtrlCreateDummy()
+			ReDim $g_aiControlPrevState[$g_hLastControlToHide + 1]
 			CreateMultiStatsGUI()
-		$g_hLastControlToHide = GUICtrlCreateDummy()
-		ReDim $g_aiControlPrevState[$g_hLastControlToHide + 1]
-
 	GUICtrlCreateTabItem("")
 
+	GUISwitch($g_hGUI_BOT)
+		$g_hGUI_BOT_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslated(600, 37, "Stats"))
+		; This dummy is used in btnStart and btnStop to disable/enable all labels, text, buttons etc. on all tabs.
+		CreateBotStats()
+		GUICtrlCreateTabItem("")
 EndFunc   ;==>CreateMODTab
-
-Func CreateMultiStatsGUI()
-	Return
-EndFunc
-
 
 Func OptionsGUI()
 	Local $x = 5, $y = 30

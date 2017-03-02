@@ -13,7 +13,7 @@
  | |__| | (_) | (__ | |__| | (__   \ V /___) | (_) |
  |_____/ \___/ \___(_)____/ \___|   \_/|____(_)___/ 
    
-	- MBR Official v7
+	- MBR Official v7.0.1
 	- Organize files for DocOC
 	- Added DocOC Logo
 	- Added Mod version check 
@@ -26,18 +26,12 @@
 	- Added Warden forced timer Activation, separated from King and Queen
 	- Added TH images from DocOC
 	- Added Use imgloc on all detections : Resources
-	- Added CSV commmnads , DropS , SideP , Zap, Remain
+	- Added CSV commands , DropS , SideP , Zap, Remain
+	- Added Switch Account Tab
 	- Allow Earthquake for NoobZap too
 	- Make Attack Script Dropdown scrollable
-	- Fixed Issue on variable declared DonateCC
-	https://mybot.run/forums/index.php?/topic/28786-line-50696-crash-when-checking-donate-requests/
-	- Fixed force and time false for troops
-	https://mybot.run/forums/index.php?/topic/28788-force-and-time-false-for-troops/
 	- Fix SmartZap update statistics on early exit, when DE in attacked base reaches 0
-	- Fix the Wall Upgrade issue on GemClick and the stats.
-	- Fix small issues on GUI
-	https://mybot.run/forums/index.php?/topic/28820-some-bug-gui-issues/
- 
+	
  				 Doc Oc v3.5.5                                                        
 	- Fix GDI issue on SuperXP
 	- Fix Notify v1.5.8

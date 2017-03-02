@@ -62,4 +62,13 @@ Func ReadConfig_DocOc()
 	; Extra Persian language on Donate
 	IniReadS($ichkExtraPersian, $g_sProfileConfigPath, "donate", "chkExtraPersian", 0, "int")
 
+	; Smart Switch Account
+	IniReadS($ichkSwitchAccount, $SSAConfig, "SwitchAccount", "chkEnableSwitchAccount", "0")
+	IniReadS($icmbAccountsQuantity, $SSAConfig, "SwitchAccount", "cmbAccountsQuantity", "0")
+	For $i = 1 To 8
+		IniReadS($ichkCanUse[$i], $SSAConfig, "SwitchAccount", "chkCanUse[" & $i & "]", "0")
+		IniReadS($ichkDonateAccount[$i], $SSAConfig, "SwitchAccount", "chkDonateAccount[" & $i & "]", "0")
+		IniReadS($icmbAccount[$i], $SSAConfig, "SwitchAccount", "cmbAccount[" & $i & "]", "0")
+		If $icmbAccount[$i] = -1 Then $icmbAccount[$i] = 0
+	Next
 EndFunc   ;==>ReadConfig_DocOc

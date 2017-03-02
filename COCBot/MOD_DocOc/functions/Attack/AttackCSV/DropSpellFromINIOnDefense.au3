@@ -47,7 +47,7 @@ Func DropSpellFromINIOnDefense($Defense, $options, $qtaMin, $qtaMax, $troopName,
 	; Get the integer index of the troop name specified
 	Local $iTroopIndex = TroopIndexLookup($troopName)
 	If $iTroopIndex = -1 Then
-	   Setlog("DropSpellFromINIOnDefense » troop name '" & $troopName & "' is unrecognized.")
+	   Setlog("CSV troop name '" & $troopName & "' is unrecognized.")
 	   Return
     EndIf
 

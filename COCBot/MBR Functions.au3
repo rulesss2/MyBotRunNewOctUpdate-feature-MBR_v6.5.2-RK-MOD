@@ -276,7 +276,8 @@
 
 ; MOD DocOC | Modified Originals Files
 #include "MOD_DocOc\Functions DocOC.au3"
-
+; MOD_RK
+#include "MOD_RK\Functions MOD_RK.au3"
 ; OLD CODE
 
 ;#include "functions\Image Search\checkWall.au3"

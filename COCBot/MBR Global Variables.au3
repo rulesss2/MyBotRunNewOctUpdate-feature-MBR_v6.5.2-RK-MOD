@@ -1322,3 +1322,5 @@ Global Const $g_aEQSpellDmg[4] = [0.14, 0.17, 0.21, 0.25]
 ; #######################################################################
 ; Doc Oc MOD
 #include "MOD_DocOc\Globals DocOC.au3"
+; RK_MOD
+#include "MOD_RK\Globals MOD_RK.au3"

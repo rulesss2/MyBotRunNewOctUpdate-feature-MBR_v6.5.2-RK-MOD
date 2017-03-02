@@ -123,7 +123,9 @@ Func applyConfig($bRedrawAtExit = True, $TypeReadSave = "Read") ;Applies the dat
 
     ; <><><> DocOc <><><>
     ApplyConfig_DocOc($TypeReadSave)
-
+    ;@<<>>@<<>>@<<>>@<<>>@<<>>@<<>>@
+	ApplyConfig_RK_MOD($TypeReadSave)
+	;@<<>>@<<>>@<<>>@<<>>@<<>>@<<>>@
     ; <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 

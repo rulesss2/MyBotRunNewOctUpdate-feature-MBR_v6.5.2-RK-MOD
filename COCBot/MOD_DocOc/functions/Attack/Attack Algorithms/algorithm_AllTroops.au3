@@ -81,11 +81,14 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		Case 4 ;Classic Four Finger ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			SetLog("Attacking four finger fight style", $COLOR_BLUE)
 			$nbSides = 5
-		Case 5 ;DE Side - Live Base only ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	    Case 5 ;Multi Finger Attack~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~rulesss
+			SetLog("Attacking Multi Finger Attack style RK MOD", $COLOR_INFO)
+			$nbSides = 6
+		Case 6 ;DE Side - Live Base only ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			SetLog("Attacking on Dark Elixir Side.", $COLOR_INFO)
 			$nbSides = 1
 			If Not ($g_abAttackStdSmartAttack[$g_iMatchMode]) Then GetBuildingEdge($eSideBuildingDES) ; Get DE Storage side when Redline is not used.
-		Case 6 ;TH Side - Live Base only ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		Case 7 ;TH Side - Live Base only ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			SetLog("Attacking on Town Hall Side.", $COLOR_INFO)
 			$nbSides = 1
 			If Not ($g_abAttackStdSmartAttack[$g_iMatchMode]) Then GetBuildingEdge($eSideBuildingTH) ; Get Townhall side when Redline is not used.
@@ -151,6 +154,29 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		EndSwitch
 	; Classic Four Fingers
 	ElseIf $nbSides = 5 Then
+		Local $listInfoDeploy[21][5] = [[$eGiant, $nbSides, 1, 1, $SlotsGiants], _
+				[$eGole, $nbSides, 1, 1, 2], _
+				[$eLava, $nbSides, 1, 1, 2], _
+				[$eBarb, $nbSides, 1, 1, 0], _
+				[$eWall, $nbSides, 1, 1, 2], _
+				[$eHogs, $nbSides, 1, 1, 2], _
+				[$eValk, $nbSides, 1, 1, 2], _
+				[$eBowl, $nbSides, 1, 1, 0], _
+				[$eArch, $nbSides, 1, 1, 0], _
+				[$eGobl, $nbSides, 1, 1, 0], _
+				[$eMine, $nbSides, 1, 1, 0], _
+				[$ePekk, $nbSides, 1, 1, 2], _
+				[$eDrag, $nbSides, 1, 1, 2], _
+				[$eBall, $nbSides, 1, 1, 2], _
+				[$eBabyD, $nbSides, 1, 1, 1], _
+				[$eWiza, $nbSides, 1, 1, 2], _
+				[$eWitc, $nbSides, 1, 1, 2], _
+				[$eMini, $nbSides, 1, 1, 0], _
+				["CC", 1, 1, 1, 1], _
+				["HEROES", 1, 2, 1, 1]]
+
+   ; Multi Finger Attack by rulesss
+	ElseIf $nbSides = 6 Then
 		Local $listInfoDeploy[21][5] = [[$eGiant, $nbSides, 1, 1, $SlotsGiants], _
 				[$eGole, $nbSides, 1, 1, 2], _
 				[$eLava, $nbSides, 1, 1, 2], _
@@ -247,7 +273,15 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 	$DeployHeroesPosition[0] = -1
 	$DeployHeroesPosition[1] = -1
 
-	LaunchTroop2($listInfoDeploy, $CC, $King, $Queen, $Warden)
+	If $g_aiAttackStdDropSides[$g_iMatchMode] = 5 And $g_iMatchMode = $DB Then
+		SetLog(_PadStringCenter("Multi Finger Attack", 50, "="), $COLOR_BLUE)
+		launchMultiFinger($listInfoDeploy, $CC, $King, $Queen, $Warden)
+ 		chkUnitFactor()
+		chkWaveFactor()
+	Else
+		SetLog(_PadStringCenter("Standard Attack", 50, "="), $COLOR_BLUE)
+		LaunchTroop2($listInfoDeploy, $CC, $King, $Queen, $Warden)
+	EndIf
 
 	Setlog("- Activate Heroes Condition: " & $iActivateKQCondition, $COLOR_INFO)
 	If $iActivateWardenCondition = 1 Then Setlog(" » Timed Warden in: " & $delayActivateW & "´s", $COLOR_INFO)

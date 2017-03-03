@@ -195,7 +195,7 @@ Func InitializeControlVariables()
    Dim $aTabControlsBot = [$g_hGUI_BOT_TAB, $g_hGUI_BOT_TAB_ITEM1, $g_hGUI_BOT_TAB_ITEM2, $g_hGUI_BOT_TAB_ITEM3, $g_hGUI_BOT_TAB_ITEM4, $g_hGUI_BOT_TAB_ITEM5]
    Dim $aTabControlsStats = [$g_hGUI_STATS_TAB, $g_hGUI_STATS_TAB_ITEM1, $g_hGUI_STATS_TAB_ITEM2, $g_hGUI_STATS_TAB_ITEM3]
    Dim $aTabControlsMOD = [$g_hGUI_MOD_TAB, $g_hGUI_MOD_TAB_ITEM1, $g_hGUI_MOD_TAB_ITEM2, $g_hGUI_MOD_TAB_ITEM3]
-   Dim $aTabControlsRK = [$g_hGUI_RK_TAB]
+   Dim $aTabControlsRK = [$g_hGUI_RK_TAB, $g_hGUI_RK_TAB_ITEM1, $g_hGUI_RK_TAB_ITEM2, $g_hGUI_RK_TAB_ITEM4]
 
 	; always enabled / unchanged controls during enabling/disabling all GUI controls function
 	$oAlwaysEnabledControls($g_hChkUpdatingWhenMinimized) = 1

@@ -16,7 +16,7 @@
 
 Global $g_hGUI_RK = 0
 
-Global $g_hGUI_RK_TAB = 0
+Global $g_hGUI_RK_TAB = 0,  $g_hGUI_RK_TAB_ITEM1 = 0 , $g_hGUI_RK_TAB_ITEM2 = 0 , $g_hGUI_RK_TAB_ITEM4 = 0
 
 
 Func CreateRKTab()
@@ -25,9 +25,16 @@ Func CreateRKTab()
 
 	GUISwitch($g_hGUI_RK)
 	   $g_hGUI_RK_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 20, $_GUI_MAIN_HEIGHT - 255, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
+            $g_hGUI_MOD_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(91,1, "Mod Option"))
+
+			$g_hGUI_MOD_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(106,1,"Chat"))
+
+
 
    $g_hLastControlToHide = GUICtrlCreateDummy()
    ReDim $g_aiControlPrevState[$g_hLastControlToHide + 1]
+
+			$g_hGUI_MOD_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(107,1,"Forecast"))
 
    GUICtrlCreateTabItem("")
 

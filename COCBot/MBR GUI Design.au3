@@ -85,7 +85,7 @@ Global Const $g_bBtnColor = False; True
 Global $hImageList = 0
 Global $g_hFrmBotEx = 0, $g_hFrmBotBottom = 0, $g_hFrmBotEmbeddedShield = 0, $g_hFrmBotEmbeddedShieldInput = 0, $g_hFrmBotEmbeddedGraphics = 0
 Global $g_hFrmBot_MAIN_PIC = 0, $g_hFrmBot_URL_PIC = 0
-Global $g_hTabMain = 0, $g_hTabLog = 0, $g_hTabVillage = 0, $g_hTabAttack = 0, $g_hTabBot = 0, $g_hTabMOD = 0 , $g_hTabAbout = 0
+Global $g_hTabMain = 0, $g_hTabLog = 0, $g_hTabVillage = 0, $g_hTabAttack = 0, $g_hTabBot = 0, $g_hTabMOD = 0 ,$g_hTabRK = 0 , $g_hTabAbout = 0
 Global $g_hStatusBar = 0
 Global $g_hTiShow = 0, $g_hTiHide = 0, $g_hTiDonate = 0, $g_hTiAbout = 0, $g_hTiExit = 0
 Global $g_aFrmBotPosInit[7] = [0, 0, 0, 0, 0, 0, 0]
@@ -99,7 +99,8 @@ Global $g_bFrmBotMinimized = False ; prevents bot flickering
 #include "GUI\MBR GUI Design Bot.au3"
 ; MOD DOC OC
 #include "MOD_DocOc\GUI\MOD TAB Design.au3"
-
+; MOD RK
+#include "GUI\MBR GUI Design Child RK.au3"
 #include "GUI\MBR GUI Design About.au3"
 
 Func CreateMainGUI()
@@ -177,6 +178,9 @@ Func CreateMainGUI()
    SplashStep(GetTranslated(500, 37, "Loading MOD tab..."))
    CreateMODTab()
 
+   SplashStep(GetTranslated(500, 62, "Loading RK tab..."))
+   CreateRKTab()
+
    SplashStep(GetTranslated(500, 29, "Loading About Us tab..."))
    CreateAboutTab()
 
@@ -192,6 +196,7 @@ Func CreateMainGUI()
    $g_hTabAttack = GUICtrlCreateTabItem(GetTranslated(600,3,"Attack Plan"))
    $g_hTabBot = GUICtrlCreateTabItem(GetTranslated(600,4,"Bot"))
    $g_hTabMOD = GUICtrlCreateTabItem(GetTranslated(600,57,"DocOC"))
+   $g_hTabRK = GUICtrlCreateTabItem(GetTranslated(600,61,"RK"))
    $g_hTabAbout = GUICtrlCreateTabItem(GetTranslated(600, 5, "About Us"))
    GUICtrlCreateTabItem("")
    GUICtrlSetResizing(-1, $GUI_DOCKBORDERS)
@@ -218,7 +223,7 @@ Func CreateMainGUI()
 
    Bind_ImageList($g_hGUI_BOT_TAB)
    Bind_ImageList($g_hGUI_MOD_TAB)
-
+   Bind_ImageList($g_hGUI_RK_TAB)
    Bind_ImageList($g_hGUI_STATS_TAB)
 
    ; Show Tab LOG

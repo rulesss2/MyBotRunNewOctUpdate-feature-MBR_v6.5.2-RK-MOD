@@ -1119,6 +1119,7 @@ Func tabMain()
 			GUISetState(@SW_HIDE, $g_hGUI_BOT)
 			GUISetState(@SW_HIDE, $g_hGUI_ABOUT)
 			GUISetState(@SW_HIDE, $g_hGUI_MOD)
+			GUISetState(@SW_HIDE, $g_hGUI_RK)
 			GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_LOG)
 
 		Case $tabidx = 1 ; Village
@@ -1127,6 +1128,7 @@ Func tabMain()
 			GUISetState(@SW_HIDE, $g_hGUI_BOT)
 			GUISetState(@SW_HIDE, $g_hGUI_ABOUT)
 			GUISetState(@SW_HIDE, $g_hGUI_MOD)
+			GUISetState(@SW_HIDE, $g_hGUI_RK)
 			GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_VILLAGE)
 			tabVillage()
 
@@ -1136,6 +1138,7 @@ Func tabMain()
 			GUISetState(@SW_HIDE, $g_hGUI_BOT)
 			GUISetState(@SW_HIDE, $g_hGUI_ABOUT)
 			GUISetState(@SW_HIDE, $g_hGUI_MOD)
+			GUISetState(@SW_HIDE, $g_hGUI_RK)
 			GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_ATTACK)
 			tabAttack()
 
@@ -1145,6 +1148,7 @@ Func tabMain()
 			GUISetState(@SW_HIDE, $g_hGUI_ATTACK)
 			GUISetState(@SW_HIDE, $g_hGUI_ABOUT)
 			GUISetState(@SW_HIDE, $g_hGUI_MOD)
+			GUISetState(@SW_HIDE, $g_hGUI_RK)
 			GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_BOT)
 			tabBot()
 
@@ -1153,15 +1157,26 @@ Func tabMain()
 			GUISetState(@SW_HIDE, $g_hGUI_VILLAGE)
 			GUISetState(@SW_HIDE, $g_hGUI_ATTACK)
 			GUISetState(@SW_HIDE, $g_hGUI_BOT)
+			GUISetState(@SW_HIDE, $g_hGUI_RK)
 			GUISetState(@SW_HIDE, $g_hGUI_ABOUT)
 			GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_MOD)
 
-		Case $tabidx = 5 ; About
+		Case $tabidx = 5 ; MOD RK
+			GUISetState(@SW_HIDE, $g_hGUI_LOG)
+			GUISetState(@SW_HIDE, $g_hGUI_VILLAGE)
+			GUISetState(@SW_HIDE, $g_hGUI_ATTACK)
+			GUISetState(@SW_HIDE, $g_hGUI_BOT)
+			GUISetState(@SW_HIDE, $g_hGUI_ABOUT)
+			GUISetState(@SW_HIDE, $g_hGUI_MOD)
+			GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_RK)
+
+		Case $tabidx = 6 ; About
 			GUISetState(@SW_HIDE, $g_hGUI_LOG)
 			GUISetState(@SW_HIDE, $g_hGUI_VILLAGE)
 			GUISetState(@SW_HIDE, $g_hGUI_ATTACK)
 			GUISetState(@SW_HIDE, $g_hGUI_BOT)
 			GUISetState(@SW_HIDE, $g_hGUI_MOD)
+			GUISetState(@SW_HIDE, $g_hGUI_RK)
 			GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_ABOUT)
 
 		Case Else

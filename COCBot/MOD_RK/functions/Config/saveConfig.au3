@@ -23,6 +23,10 @@ Func SaveConfig_RK_MOD()
 	
     IniWriteS($g_sProfileConfigPath, "SetSleep", "UnitFactor", GUICtrlRead($TxtUnitFactor))
 	IniWriteS($g_sProfileConfigPath, "SetSleep", "WaveFactor", GUICtrlRead($TxtWaveFactor))
-	
+	;Background by Kychera
+	IniWriteS($g_sProfileConfigPath, "background", "chkPic", $ichkPic ? 1 : 0) 
+	IniWriteS($g_sProfileConfigPath, "background", "BackGr", $iBackGr)
+    ;Transparent Gui (Modified Kychera)
+	IniWrites($g_sProfileConfigPath, "TransLevel", "Level", $iSldTransLevel)
 	
 EndFunc   ;==>SaveConfig_RK_MOD

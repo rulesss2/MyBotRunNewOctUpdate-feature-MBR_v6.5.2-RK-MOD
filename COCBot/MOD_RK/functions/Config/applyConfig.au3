@@ -12,33 +12,51 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
-
+;------------  Multi Finger ----------- (LunaEclipse)
 Func ApplyConfig_RK_MOD_multifinger($TypeReadSave)
 	Switch $TypeReadSave
 		Case "Read"
-		; Multi Finger (LunaEclipse)
+		
             _GUICtrlComboBox_SetCurSel($cmbDBMultiFinger,$iMultiFingerStyle)
 		Case "Save"
 		; Multi Finger
 		    $iMultiFingerStyle = _GUICtrlComboBox_GetCurSel($CmbDBMultiFinger)
 	EndSwitch
 EndFunc   ;==>ApplyConfig_RK_MOD_multifinger
+;---------------------------------------------------
 
 Func ApplyConfig_RK_MOD($TypeReadSave)
 	Switch $TypeReadSave
 		Case "Read"
+		; unit wave factor mod
 		GUICtrlSetState($ChkUnitFactor, $iChkUnitFactor ? $GUI_CHECKED : $GUI_UNCHECKED)
 		GUICtrlSetData($TxtUnitFactor, $iTxtUnitFactor)
-
 		chkUnitFactor()
 		GUICtrlSetState($ChkWaveFactor, $iChkWaveFactor ? $GUI_CHECKED : $GUI_UNCHECKED)
 		GUICtrlSetData($TxtWaveFactor, $iTxtWaveFactor)
 		chkWaveFactor()
+		;Disable background
+		GUICtrlSetState($chkPic, $ichkPic = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+		chkPic()		
+		;Transparent Gui (Modified Kychera)
+	    GUICtrlSetData($SldTransLevel, $iSldTransLevel)	    
 		Case "Save"
         $iChkUnitFactor = (GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED)
 		$iChkWaveFactor = (GUICtrlRead($ChkWaveFactor) = $GUI_CHECKED)
 		$iTxtUnitFactor = GUICtrlRead($TxtUnitFactor)
 		$iTxtWaveFactor = GUICtrlRead($TxtWaveFactor)
-
+		$ichkPic = (GUICtrlRead($chkPic) = $GUI_CHECKED)		
+        $iSldTransLevel = GUICtrlRead($SldTransLevel)		
 	EndSwitch
 EndFunc   ;==>ApplyConfig_RK_MOD
+;----------------- Background  -------------
+Func ApplyConfig_decor_RK($TypeReadSave)
+  Switch $TypeReadSave
+		Case "Read"		
+            _GUICtrlComboBox_SetCurSel($BackGr, $iBackGr)			
+			BackGr()
+		Case "Save"		    
+			$iBackGr = _GUICtrlComboBox_GetCurSel($BackGr)
+	EndSwitch
+EndFunc  ;==> ApplyConfig_decor_RK
+;--------------------------------------------------

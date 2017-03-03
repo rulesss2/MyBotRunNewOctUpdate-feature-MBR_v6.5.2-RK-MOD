@@ -153,7 +153,8 @@ Func InitializeBot()
    ; Some final setup steps and checks
    FinalInitialization($hBotLaunchTime, $sAndroidInfo)
    ProcessSetPriority(@AutoItPID, $iBotProcessPriority) ;~ Restore process priority
-
+   ;transparent gui
+   Slider()
    ; Ensure watchdog is launched
    LaunchWatchdog()
 

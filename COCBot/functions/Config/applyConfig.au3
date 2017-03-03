@@ -1701,6 +1701,8 @@ Func ApplyConfig_600_35($TypeReadSave)
 			$iAutoResumeTime = GUICtrlRead($g_hTxtAutoResumeTime)
 			$ichkFixClanCastle = GUICtrlRead($g_hChkFixClanCastle) = $GUI_CHECKED ? 1 : 0
 	EndSwitch
+	; background RK mod
+	ApplyConfig_decor_RK($TypeReadSave)	
 EndFunc
 
 Func ApplyConfig_600_52_1($TypeReadSave)

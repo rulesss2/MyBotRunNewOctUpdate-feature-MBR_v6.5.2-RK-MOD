@@ -545,7 +545,7 @@ Func ParseAttackCSV($debug = False)
 
 							If $MAINSIDE = "" Then $MAINSIDE = "TOP-RIGHT" ; Just in csae of any error
 							If $attackcsv_locate_townhall = 1 And $NotdetectedEagle = True Then
-								$pixel = StringSplit($thx & "-" & $thy, "-", 2)
+								Local $pixel = StringSplit($thx & "-" & $thy, "-", 2)
 								Switch StringLeft(Slice8($pixel), 1)
 									Case 1, 2
 										$MAINSIDE = "BOTTOM-RIGHT"
@@ -613,7 +613,7 @@ Func ParseAttackCSV($debug = False)
 								SetLog("No Air Defenses found to determine Main Side", $COLOR_BLUE)
 								$MAINSIDE = "TOP-RIGHT"
 								If $attackcsv_locate_townhall = 1 Then
-									$pixel = StringSplit($thx & "-" & $thy, "-", 2)
+									Local $pixel = StringSplit($thx & "-" & $thy, "-", 2)
 									Switch StringLeft(Slice8($pixel), 1)
 										Case 1, 2
 											$MAINSIDE = "BOTTOM-RIGHT"

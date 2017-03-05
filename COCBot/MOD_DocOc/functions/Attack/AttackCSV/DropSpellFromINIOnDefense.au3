@@ -98,10 +98,10 @@ Func DropSpellFromINIOnDefense($Defense, $options, $qtaMin, $qtaMax, $troopName,
 		SelectDropTroop($troopPosition) ; select the troop...
 		;drop
 
-		Local $tempquant = 0
+		Local $tempquant = 0 , $delayDrop = 0
 
 		If $delayDropMin <> $delayDropMax Then
-			Local $delayDrop = Random($delayDropMin, $delayDropMax, 1)
+			$delayDrop = Random($delayDropMin, $delayDropMax, 1)
 		Else
 			$delayDrop = $delayDropMin
 		EndIf

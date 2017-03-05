@@ -42,3 +42,6 @@ Global $ichkPic = 1
 Global $iSldTransLevel = 0
 Global $SldTransLevel = 0
 ;-------------------------------------------------------
+Global $chatIni = ""
+Global $cmblang = 0,  $icmblang = 0
+Global $chkRusLang = 0, $ichkRusLang = 0

@@ -273,6 +273,7 @@ EndFunc   ;==>InitializeAndroid
 ; ===============================================================================================================================
 Func SetupProfileFolder()
    $g_sProfileConfigPath = $g_sProfilePath & "\" & $g_sProfileCurrentName & "\config.ini"
+   $chatIni = $g_sProfilePath & "\" & $g_sProfileCurrentName &  "\chat.ini"
    $g_sProfileWeakBasePath = $g_sProfilePath & "\" & $g_sProfileCurrentName & "\stats_chkweakbase.INI"
    $g_sProfileBuildingPath = $g_sProfilePath & "\" & $g_sProfileCurrentName & "\building.ini"
    $g_sProfileLogsPath = $g_sProfilePath & "\" & $g_sProfileCurrentName & "\Logs\"
@@ -510,7 +511,10 @@ EndFunc   ;==>FinalInitialization
 Func MainLoop()
    While 1
 	   _Sleep($iDelaySleep, True, False)
-
+	   
+      If $g_bRunState = False and $g_bNotifyRemoteEnable = True Then
+	      NotifyRemoteControl2(); remote control when stopped the bot by kechera
+	  EndIf
 	   Switch $g_iBotAction
 		   Case $eBotStart
 			   BotStart()
@@ -733,6 +737,11 @@ Func Idle() ;Sequence that runs until Full Army
 		NotifyPendingActions()
 		If _Sleep($iDelayIdle1) Then Return
 		If $g_iCommandStop = -1 Then SetLog("====== Waiting for full army ======", $COLOR_SUCCESS)
+		
+		If $ChatbotChatGlobal = True Or $ChatbotChatClan = True Then
+              ChatbotMessage()		   
+		EndIf
+		
 		Local $hTimer = TimerInit()
 		Local $iReHere = 0
 		BotHumanization()

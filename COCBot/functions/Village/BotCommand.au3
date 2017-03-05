@@ -94,6 +94,9 @@ Func BotCommand()
 			EndIf
 			Switch $g_iCmbBotCommand
 				Case 0
+				    If $ChatbotChatGlobal = True Or $ChatbotChatClan = True Then
+					   ChatbotMessage()			   
+		            EndIf  ; modification by rulesss
 					If $bDonationEnabled = False Then
 						SetLog("Halt Attack, Stay Online/Collect...", $COLOR_INFO)
 					ElseIf $bTrainEnabled = False Then

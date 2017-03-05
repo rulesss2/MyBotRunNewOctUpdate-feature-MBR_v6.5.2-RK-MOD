@@ -220,8 +220,8 @@ Func smartZap($minDE = -1)
 		If $DebugSmartZap = 1 Then SetLog("$searchDark|Current DE value: " & Number($searchDark), $COLOR_DEBUG)
 		Return $performedZap
 	ElseIf Number($searchDark) < ($g_aDrillLevelTotal[3 - $drillLvlOffset] / $g_aDrillLevelHP[3 - $drillLvlOffset] * $g_fDarkStealFactor * $g_aLSpellDmg[$aSpells[0][3] - 1] * $g_fDarkFillLevel) Then
-		SetLog("There is less Dark Elixir(" & Number($searchDark) & ") than gain per zap for a single Lvl " & 3 - Number($drillLvlOffset) & " drill(" _
-		& Ceiling($g_aDrillLevelTotal[3 - $drillLvlOffset] / $g_aDrillLevelHP[3 - $drillLvlOffset] * $g_fDarkStealFactor * $g_aLSpellDmg[$aSpells[0][3] - 1] * $g_fDarkFillLevel) & ").", $COLOR_INFO)
+		SetLog("There is less Dark Elixir(" & Number($searchDark) & ") than", $COLOR_INFO)
+		SetLog("gain per zap for a single Lvl " & 3 - Number($drillLvlOffset) & " drill(" & Ceiling($g_aDrillLevelTotal[3 - $drillLvlOffset] / $g_aDrillLevelHP[3 - $drillLvlOffset] * $g_fDarkStealFactor * $g_aLSpellDmg[$aSpells[0][3] - 1] * $g_fDarkFillLevel) & ").", $COLOR_INFO)
 		SetLog("Base is not worth a Zap, Exiting Now!", $COLOR_INFO)
 		Return $performedZap
 	Else

@@ -156,7 +156,9 @@ Func InitializeBot()
    ;transparent gui
    Slider()
    ; Ensure watchdog is launched
-   LaunchWatchdog()
+   If $iСhkLaunchWatchdog = 0 Then
+     LaunchWatchdog()
+   EndIf
 
    ; AutoStart Bot if requested
    AutoStart()
@@ -511,7 +513,7 @@ EndFunc   ;==>FinalInitialization
 Func MainLoop()
    While 1
 	   _Sleep($iDelaySleep, True, False)
-	   
+
       If $g_bRunState = False and $g_bNotifyRemoteEnable = True Then
 	      NotifyRemoteControl2(); remote control when stopped the bot by kechera
 	  EndIf
@@ -737,11 +739,11 @@ Func Idle() ;Sequence that runs until Full Army
 		NotifyPendingActions()
 		If _Sleep($iDelayIdle1) Then Return
 		If $g_iCommandStop = -1 Then SetLog("====== Waiting for full army ======", $COLOR_SUCCESS)
-		
+
 		If $ChatbotChatGlobal = True Or $ChatbotChatClan = True Then
-              ChatbotMessage()		   
+              ChatbotMessage()
 		EndIf
-		
+
 		Local $hTimer = TimerInit()
 		Local $iReHere = 0
 		BotHumanization()

@@ -16,7 +16,7 @@
 Func ApplyConfig_RK_MOD_multifinger($TypeReadSave)
 	Switch $TypeReadSave
 		Case "Read"
-		
+
             _GUICtrlComboBox_SetCurSel($cmbDBMultiFinger,$iMultiFingerStyle)
 		Case "Save"
 		; Multi Finger
@@ -37,26 +37,29 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		chkWaveFactor()
 		;Disable background
 		GUICtrlSetState($chkPic, $ichkPic = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-		chkPic()		
+		chkPic()
 		;Transparent Gui (Modified Kychera)
-	    GUICtrlSetData($SldTransLevel, $iSldTransLevel)	    
+	    GUICtrlSetData($SldTransLevel, $iSldTransLevel)
+
+	    GUICtrlSetState($ChkLaunchWatchdog,$iChkLaunchWatchdog = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 		Case "Save"
         $iChkUnitFactor = (GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED)
 		$iChkWaveFactor = (GUICtrlRead($ChkWaveFactor) = $GUI_CHECKED)
 		$iTxtUnitFactor = GUICtrlRead($TxtUnitFactor)
 		$iTxtWaveFactor = GUICtrlRead($TxtWaveFactor)
-		$ichkPic = (GUICtrlRead($chkPic) = $GUI_CHECKED)		
-        $iSldTransLevel = GUICtrlRead($SldTransLevel)		
+		$ichkPic = (GUICtrlRead($chkPic) = $GUI_CHECKED)
+        $iSldTransLevel = GUICtrlRead($SldTransLevel)
+		$iСhkLaunchWatchdog = GUICtrlRead($СhkLaunchWatchdog)
 	EndSwitch
 	ApplyConfig_RK_Forecast($TypeReadSave)
 EndFunc   ;==>ApplyConfig_RK_MOD
 ;----------------- Background  -------------
 Func ApplyConfig_decor_RK($TypeReadSave)
   Switch $TypeReadSave
-		Case "Read"		
-            _GUICtrlComboBox_SetCurSel($BackGr, $iBackGr)			
+		Case "Read"
+            _GUICtrlComboBox_SetCurSel($BackGr, $iBackGr)
 			BackGr()
-		Case "Save"		    
+		Case "Save"
 			$iBackGr = _GUICtrlComboBox_GetCurSel($BackGr)
 	EndSwitch
 EndFunc  ;==> ApplyConfig_decor_RK

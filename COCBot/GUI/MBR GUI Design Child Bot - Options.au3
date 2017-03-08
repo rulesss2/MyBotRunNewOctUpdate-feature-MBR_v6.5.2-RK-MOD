@@ -148,7 +148,7 @@ $1 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHI
 		GUICtrlCreateLabel(GetTranslated(636,127, "Enable Backgroung"), $x + 17, $y + 2, -1, -1)
 		;$y += 25
 		$x += 120
-	    $BackGr = GUICtrlCreateCombo("", $x, $y, 60, 45, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))		
+	    $BackGr = GUICtrlCreateCombo("", $x, $y, 60, 45, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 		GUICtrlSetData(-1, GetTranslated(1000,101, "Key1") & "|" & _
 		                   GetTranslated(1000,102, "Key2") & "|" & _
 						   GetTranslated(1000,103, "Key3") & "|" & _
@@ -158,7 +158,7 @@ $1 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHI
 						   GetTranslated(1000,107, "Key7") & "|" & _
 						   GetTranslated(1000,108, "Key8"), _
 						   GetTranslated(1000,101, "Key1"))
-		GUICtrlSetOnEvent(-1,"BackGr")	
+		GUICtrlSetOnEvent(-1,"BackGr")
 	  $y += 65
 	    GUICtrlCreateLabel(GetTranslated(636, 128, "Transperent GUI"), $x - 120, $y - 5, 100, 16)
        $SldTransLevel = GUICtrlCreateSlider($x - 120, $y + 10, 125, 15, BitOR($TBS_TOOLTIPS, $TBS_AUTOTICKS))
@@ -168,7 +168,7 @@ $1 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHI
 ;+++++++++++++++++++++++++++++++++++++++
 GUICtrlCreateGroup("", -99, -99, 1, 1)
    Local $x = 240, $y = 45
-   GUICtrlCreateGroup(GetTranslated(636,93, "Advanced"), $x - 20, $y - 20, 225, 102)
+   GUICtrlCreateGroup(GetTranslated(636,93, "Advanced"), $x - 20, $y - 20, 225, 108)
 	   $g_hChkUpdatingWhenMinimized = GUICtrlCreateCheckbox(GetTranslated(636,96, "Updating when minimized"), $x, $y, -1, -1)
 		   GUICtrlSetState(-1, $GUI_DISABLE) ; must be always enabled
 		   GUICtrlSetOnEvent(-1, "chkUpdatingWhenMinimized")
@@ -186,6 +186,10 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 		$y += 19
 	   $g_hChkUseRandomClick = GUICtrlCreateCheckbox(GetTranslated(636,94, "Random Click"), $x, $y, -1, -1)
 		   GUICtrlSetOnEvent(-1, "chkUseRandomClick")
+       $y += 19
+	  $g_hСhkLaunchWatchdog = _GUICtrlCreateCheckbox(GetTranslated(2000,1, "Disabled Watchdog"), $x, $y, -1, -1)
+          GUICtrlSetState(-1, $GUI_CHECKED)
+	     GUICtrlSetOnEvent(-1, "chkLaunchWatchdog")
    GUICtrlCreateGroup("", -99, -99, 1, 1)
 
    $y += 47

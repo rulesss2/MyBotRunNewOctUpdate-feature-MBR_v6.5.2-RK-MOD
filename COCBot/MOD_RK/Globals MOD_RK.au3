@@ -45,6 +45,7 @@ Global $SldTransLevel = 0
 Global $chatIni = ""
 Global $cmblang = 0,  $icmblang = 0
 Global $chkRusLang = 0, $ichkRusLang = 0
+
 ;--------------------------------------------------------
 ;Forecast Added by rulesss
 Global Const $COLOR_DEEPPINK = 0xFF1493
@@ -67,3 +68,7 @@ Global $ichkForecastHopingSwitchMax, $icmbForecastHopingSwitchMax , $itxtForecas
 Global $icmbSwLang = 0
 Global $cmbSwLang = 0
 ;--------------------------------------------------------------------
+
+Global $iChkLaunchWatchdog = 1
+Global $ChkLaunchWatchdog = 0
+

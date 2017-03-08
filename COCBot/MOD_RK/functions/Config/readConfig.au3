@@ -22,11 +22,12 @@ Func ReadConfig_RK_MOD()
 
    IniReadS($iChkWaveFactor, $g_sProfileConfigPath, "SetSleep", "EnableWaveFactor", 0, "Int")
    IniReadS($iTxtWaveFactor, $g_sProfileConfigPath, "SetSleep", "WaveFactor", 100 ,"Int")
-   ;Background by Kychera   
+   ;Background by Kychera
    IniReadS($iBackGr, $g_sProfileConfigPath, "background", "BackGr", 1, "Int")
    IniReadS($ichkPic, $g_sProfileConfigPath, "background", "chkPic", 1, "Int")
-   ;Transparent Gui by Kychera   
+   ;Transparent Gui by Kychera
    IniReadS($iSldTransLevel, $g_sProfileConfigPath, "TransLevel", "Level", 0, "Int")
+
    ;Forecast
  IniReadS($iChkForecastBoost, $g_sProfileConfigPath, "forecast", "chkForecastBoost", 0, "Int")
  IniReadS($iTxtForecastBoost, $g_sProfileConfigPath, "forecast", "txtForecastBoost", 6, "Int")
@@ -39,4 +40,8 @@ Func ReadConfig_RK_MOD()
  IniReadS($itxtForecastHopingSwitchMin, $g_sProfileConfigPath, "profiles", "txtForecastHopingSwitchMin", 2, "Int")
  IniReadS($icmbSwLang, $g_sProfileConfigPath, "Lang", "cmbSwLang", 1, "int")
  
+
+
+   IniReadS($iChkLaunchWatchdog, $g_sProfileConfigPath, "Other", "chkLaunchWatchdog", 1, "Int")
+
 EndFunc   ;==>ReadConfig_RK_MOD

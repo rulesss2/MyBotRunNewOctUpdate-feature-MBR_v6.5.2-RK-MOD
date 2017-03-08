@@ -624,6 +624,15 @@ Func FixClanCastle($inputString)
 			$OutputFinal &= $troopData[0] & "#" & $troopData[1] & "#" & $troopData[2]
 		Next
 	EndIf
-	Return $OutputFinal
+	Return $OutputFinal  
 
 EndFunc   ;==>FixClanCastle
+Func chkLaunchWatchdog()
+	If GUICtrlRead($ChkLaunchWatchdog) = $GUI_CHECKED Then
+	$iChkLaunchWatchdog = 1
+		
+	Else
+	$iChkLaunchWatchdog = 0
+		
+	EndIf
+EndFunc

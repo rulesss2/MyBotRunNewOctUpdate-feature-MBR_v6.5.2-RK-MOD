@@ -41,7 +41,7 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		;Transparent Gui (Modified Kychera)
 	    GUICtrlSetData($SldTransLevel, $iSldTransLevel)
 
-	    GUICtrlSetState($ChkLaunchWatchdog,$iChkLaunchWatchdog = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+	    
 		Case "Save"
         $iChkUnitFactor = (GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED)
 		$iChkWaveFactor = (GUICtrlRead($ChkWaveFactor) = $GUI_CHECKED)
@@ -49,7 +49,7 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		$iTxtWaveFactor = GUICtrlRead($TxtWaveFactor)
 		$ichkPic = (GUICtrlRead($chkPic) = $GUI_CHECKED)
         $iSldTransLevel = GUICtrlRead($SldTransLevel)
-		$iСhkLaunchWatchdog = GUICtrlRead($СhkLaunchWatchdog)
+		
 	EndSwitch
 	ApplyConfig_RK_Forecast($TypeReadSave)
 EndFunc   ;==>ApplyConfig_RK_MOD
@@ -59,8 +59,11 @@ Func ApplyConfig_decor_RK($TypeReadSave)
 		Case "Read"
             _GUICtrlComboBox_SetCurSel($BackGr, $iBackGr)
 			BackGr()
+			GUICtrlSetState($ChkLaunchWatchdog, $iChkLaunchWatchdog = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			chkLaunchWatchdog()
 		Case "Save"
 			$iBackGr = _GUICtrlComboBox_GetCurSel($BackGr)
+			$iChkLaunchWatchdog = (GUICtrlRead($ChkLaunchWatchdog) = $GUI_CHECKED)
 	EndSwitch
 EndFunc  ;==> ApplyConfig_decor_RK
 ;--------------------------------------------------

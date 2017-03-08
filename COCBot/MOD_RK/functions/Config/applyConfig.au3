@@ -41,7 +41,7 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		;Transparent Gui (Modified Kychera)
 	    GUICtrlSetData($SldTransLevel, $iSldTransLevel)
 
-	    GUICtrlSetState($ChkLaunchWatchdog,$iChkLaunchWatchdog = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+	    
 		Case "Save"
         $iChkUnitFactor = (GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED)
 		$iChkWaveFactor = (GUICtrlRead($ChkWaveFactor) = $GUI_CHECKED)
@@ -49,8 +49,9 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		$iTxtWaveFactor = GUICtrlRead($TxtWaveFactor)
 		$ichkPic = (GUICtrlRead($chkPic) = $GUI_CHECKED)
         $iSldTransLevel = GUICtrlRead($SldTransLevel)
-		$iСhkLaunchWatchdog = GUICtrlRead($СhkLaunchWatchdog)
+		
 	EndSwitch
+	ApplyConfig_RK_Forecast($TypeReadSave)
 EndFunc   ;==>ApplyConfig_RK_MOD
 ;----------------- Background  -------------
 Func ApplyConfig_decor_RK($TypeReadSave)
@@ -58,8 +59,39 @@ Func ApplyConfig_decor_RK($TypeReadSave)
 		Case "Read"
             _GUICtrlComboBox_SetCurSel($BackGr, $iBackGr)
 			BackGr()
+			GUICtrlSetState($ChkLaunchWatchdog, $iChkLaunchWatchdog = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			chkLaunchWatchdog()
 		Case "Save"
 			$iBackGr = _GUICtrlComboBox_GetCurSel($BackGr)
+			$iChkLaunchWatchdog = (GUICtrlRead($ChkLaunchWatchdog) = $GUI_CHECKED)
 	EndSwitch
 EndFunc  ;==> ApplyConfig_decor_RK
 ;--------------------------------------------------
+Func ApplyConfig_RK_Forecast($TypeReadSave)
+    Switch $TypeReadSave
+		Case "Read"
+		GUICtrlSetState($chkForecastBoost, $iChkForecastBoost ? $GUI_CHECKED : $GUI_UNCHECKED)
+		GUICtrlSetData($txtForecastBoost, $iTxtForecastBoost)
+		chkForecastBoost()
+		GUICtrlSetState($chkForecastHopingSwitchMax, $ichkForecastHopingSwitchMax ? $GUI_CHECKED : $GUI_UNCHECKED)
+		_GUICtrlComboBox_SetCurSel($cmbForecastHopingSwitchMax, $icmbForecastHopingSwitchMax)
+		GUICtrlSetData($txtForecastHopingSwitchMax, $itxtForecastHopingSwitchMax)
+		chkForecastHopingSwitchMax()
+		GUICtrlSetState($chkForecastHopingSwitchMin, $ichkForecastHopingSwitchMin ? $GUI_CHECKED : $GUI_UNCHECKED)
+		_GUICtrlComboBox_SetCurSel($cmbForecastHopingSwitchMin, $icmbForecastHopingSwitchMin)
+		GUICtrlSetData($txtForecastHopingSwitchMin, $itxtForecastHopingSwitchMin)
+		chkForecastHopingSwitchMin()
+		_GUICtrlComboBox_SetCurSel($cmbSwLang, $icmbSwLang)
+		;cmbSwLang()
+		Case "Save"
+		$iChkForecastBoost = (GUICtrlRead($chkForecastBoost) = $GUI_UNCHECKED)
+		$iTxtForecastBoost = GUICtrlRead($txtForecastBoost)
+		$ichkForecastHopingSwitchMax = (GUICtrlRead($chkForecastHopingSwitchMax) = $GUI_UNCHECKED)
+		$icmbForecastHopingSwitchMax = _GUICtrlComboBox_GetCurSel($cmbForecastHopingSwitchMax)
+		$itxtForecastHopingSwitchMax = GUICtrlRead($txtForecastHopingSwitchMax)
+		$ichkForecastHopingSwitchMin = (GUICtrlRead($chkForecastHopingSwitchMin) = $GUI_UNCHECKED)
+		$icmbForecastHopingSwitchMin = _GUICtrlComboBox_GetCurSel($cmbForecastHopingSwitchMin)
+		$itxtForecastHopingSwitchMin = GUICtrlRead($txtForecastHopingSwitchMin)
+		$icmbSwLang = _GUICtrlComboBox_GetCurSel($cmbSwLang)		
+	EndSwitch		
+EndFunc   ;==>ApplyConfig_RK_Forecast

@@ -187,7 +187,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 	   $g_hChkUseRandomClick = GUICtrlCreateCheckbox(GetTranslated(636,94, "Random Click"), $x, $y, -1, -1)
 		   GUICtrlSetOnEvent(-1, "chkUseRandomClick")
        $y += 19
-	  $g_hСhkLaunchWatchdog = _GUICtrlCreateCheckbox(GetTranslated(2000,1, "Disabled Watchdog"), $x, $y, -1, -1)
+	  $ChkLaunchWatchdog = GUICtrlCreateCheckbox(GetTranslated(2000,1, "Disabled Watchdog"), $x, $y, -1, -1)
           GUICtrlSetState(-1, $GUI_CHECKED)
 	     GUICtrlSetOnEvent(-1, "chkLaunchWatchdog")
    GUICtrlCreateGroup("", -99, -99, 1, 1)

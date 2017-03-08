@@ -156,7 +156,7 @@ Func InitializeBot()
    ;transparent gui
    Slider()
    ; Ensure watchdog is launched
-   If $iСhkLaunchWatchdog = 0 Then
+   If $iChkLaunchWatchdog = 0 Then
      LaunchWatchdog()
    EndIf
 

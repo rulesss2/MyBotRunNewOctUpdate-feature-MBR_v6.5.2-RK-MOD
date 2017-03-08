@@ -45,3 +45,25 @@ Global $SldTransLevel = 0
 Global $chatIni = ""
 Global $cmblang = 0,  $icmblang = 0
 Global $chkRusLang = 0, $ichkRusLang = 0
+;--------------------------------------------------------
+;Forecast Added by rulesss
+Global Const $COLOR_DEEPPINK = 0xFF1493
+Global Const $COLOR_DARKGREEN = 0x006400
+Global $oIE = ObjCreate("Shell.Explorer.2")
+Global $grpForecast
+Global $ieForecast = 0
+Global $dtStamps[0]
+Global $lootMinutes[0]
+Global $timeOffset = 0
+Global $TimerForecast = 0
+Global $lootIndexScaleMarkers
+Global $currentForecast
+Global $chkForecastBoost = 0, $txtForecastBoost = 0
+Global $iChkForecastBoost, $iTxtForecastBoost = 6
+Global $cmbForecastHopingSwitchMax, $cmbForecastHopingSwitchMin
+Global $chkForecastHopingSwitchMax = 0, $lblForecastHopingSwitchMax = 0, $txtForecastHopingSwitchMax = 2, $chkForecastHopingSwitchMin = 0, $lblForecastHopingSwitchMin = 0, $txtForecastHopingSwitchMin = 0
+Global $ichkForecastHopingSwitchMax, $icmbForecastHopingSwitchMax , $itxtForecastHopingSwitchMax = 2, $ichkForecastHopingSwitchMin, $icmbForecastHopingSwitchMin, $itxtForecastHopingSwitchMin = 2
+;Added Multi Switch Language by rulesss and Kychera
+Global $icmbSwLang = 0
+Global $cmbSwLang = 0
+;--------------------------------------------------------------------

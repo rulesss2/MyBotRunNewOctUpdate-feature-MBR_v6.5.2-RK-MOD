@@ -28,5 +28,16 @@ Func SaveConfig_RK_MOD()
 	IniWriteS($g_sProfileConfigPath, "background", "BackGr", $iBackGr)
     ;Transparent Gui (Modified Kychera)
 	IniWrites($g_sProfileConfigPath, "TransLevel", "Level", $iSldTransLevel)
-	
+		IniWriteS($g_sProfileConfigPath, "TransLevel", "Level", $iSldTransLevel)
+	 ;forecast
+	 IniWriteS($g_sProfileConfigPath, "forecast", "txtForecastBoost", GUICtrlRead($txtForecastBoost))	 
+	 IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMax", $icmbForecastHopingSwitchMax)
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtForecastHopingSwitchMax", GUICtrlRead($txtForecastHopingSwitchMax))
+	IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMin", $icmbForecastHopingSwitchMin)	
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtForecastHopingSwitchMin", GUICtrlRead($txtForecastHopingSwitchMin))
+	IniWriteS($g_sProfileConfigPath, "forecast", "chkForecastBoost", $iChkForecastBoost ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkForecastHopingSwitchMax", $ichkForecastHopingSwitchMax ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkForecastHopingSwitchMin", $ichkForecastHopingSwitchMin ? 1 : 0)
+	;Added Multi Switch Language by rulesss and Kychera
+	IniWriteS($g_sProfileConfigPath, "Lang", "cmbSwLang", _GUICtrlComboBox_GetCurSel($cmbSwLang))
 EndFunc   ;==>SaveConfig_RK_MOD

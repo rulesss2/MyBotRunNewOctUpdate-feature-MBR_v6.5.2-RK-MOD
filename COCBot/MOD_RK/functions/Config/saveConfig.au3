@@ -31,10 +31,10 @@ Func SaveConfig_RK_MOD()
 
 		IniWriteS($g_sProfileConfigPath, "TransLevel", "Level", $iSldTransLevel)
 	 ;forecast
-	 IniWriteS($g_sProfileConfigPath, "forecast", "txtForecastBoost", GUICtrlRead($txtForecastBoost))	 
+	 IniWriteS($g_sProfileConfigPath, "forecast", "txtForecastBoost", GUICtrlRead($txtForecastBoost))
 	 IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMax", $icmbForecastHopingSwitchMax)
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtForecastHopingSwitchMax", GUICtrlRead($txtForecastHopingSwitchMax))
-	IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMin", $icmbForecastHopingSwitchMin)	
+	IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMin", $icmbForecastHopingSwitchMin)
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtForecastHopingSwitchMin", GUICtrlRead($txtForecastHopingSwitchMin))
 	IniWriteS($g_sProfileConfigPath, "forecast", "chkForecastBoost", $iChkForecastBoost ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkForecastHopingSwitchMax", $ichkForecastHopingSwitchMax ? 1 : 0)
@@ -45,5 +45,9 @@ Func SaveConfig_RK_MOD()
 
 	IniWriteS($g_sProfileConfigPath, "Other", "chkLaunchWatchdog", $iChkLaunchWatchdog ? 1 : 0)
 
+	; Check Collectors Outside - Added by rulesss
+;~    GUICtrlRead($chkDBMeetCollOutside) = $GUI_CHECKED Then
+   IniWriteS($g_sProfileConfigPath, "search", "DBMeetCollOutside",$ichkDBMeetCollOutside ? 1 : 0)
+   IniWriteS($g_sProfileConfigPath, "search", "DBMinCollOutsidePercent", GUICtrlRead($txtDBMinCollOutsidePercent))
 
 EndFunc   ;==>SaveConfig_RK_MOD

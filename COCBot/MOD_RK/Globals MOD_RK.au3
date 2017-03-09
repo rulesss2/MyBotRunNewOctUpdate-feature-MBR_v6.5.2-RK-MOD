@@ -72,3 +72,13 @@ Global $cmbSwLang = 0
 Global $iChkLaunchWatchdog = 1
 Global $ChkLaunchWatchdog = 0
 
+; Check Collector Outside - Added by rulesss
+#region Check Collectors Outside
+; collectors outside filter
+Global $ichkDBMeetCollOutside, $iDBMinCollOutsidePercent, $iCollOutsidePercent ; check later if $iCollOutsidePercent obsolete
+
+; constants
+Global Const $THEllipseWidth = 200, $THEllipseHeigth = 150, $CollectorsEllipseWidth = 130, $CollectorsEllipseHeigth = 97.5
+Global Const $centerX = 430, $centerY = 335 ; check later if $THEllipseWidth, $THEllipseHeigth obsolete
+Global $hBitmapFirst
+#endregion

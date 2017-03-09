@@ -27,6 +27,7 @@
 #include "functions\Config\readConfig.au3"
 #include "functions\Config\applyConfig.au3"
 #include "functions\Chatbot\Chatbot.au3"
+#include "functions\Collectors Outside\AreCollectorsOutside.au3"
 
 #include "other/BackgroundCheck.au3"
 #include "other/TransLevel.au3"

@@ -25,7 +25,7 @@ Func CreateAttackSearchDeadBaseCollectors()
    Local $g_hTxtFull = GetTranslated(626,30, "Full")
    Local $sTxtTip = ""
 
-   GUICtrlCreateGroup(GetTranslated(626,1,"Collectors"), $x - 5, $y - 20, 420, 305)
+   GUICtrlCreateGroup(GetTranslated(626,1,"Collectors"), $x - 5, $y - 20, 420, 335)
 		GUICtrlCreateLabel(GetTranslated(626,2, "Choose which collectors to search for while looking for a dead base. Also, choose how full they must be."), $x, $y, 250, 28)
 		$g_hChkDBDisableCollectorsFilter = GUICtrlCreateCheckbox(GetTranslated(626,32,"Disable Collector Filter"), $x+250, $y+60, 150, 18)
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
@@ -153,6 +153,23 @@ Func CreateAttackSearchDeadBaseCollectors()
 			_GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetData(-1, "1|2|3|4|5|6", "3")
 			GUICtrlSetOnEvent(-1, "cmbMinCollectorMatches")
+
+		 $x = 40
+    $y = -15
+         $СhkDBMeetCollOutside = GUICtrlCreateCheckbox(GetTranslated(2,107, "Check Collectors Outside"), $x+250, $y+90, -1, -1)
+ 			$stxtTip = GetTranslated(2,108, "Search for bases that has their collectors outside.")
+ 			GUICtrlSetOnEvent(-1, "chkDBMeetCollOutside")
+ 			GUICtrlSetTip(-1, $stxtTip)
+ 			GUICtrlSetState(-1, $GUI_UNCHECKED)
+ 			GUICtrlCreateLabel(GetTranslated(2,109, "Min: "), $x+270, $y+120, -1, -1)
+ 		$txtDBMinCollOutsidePercent = GUICtrlCreateInput("50", $x+300, $y+115, 31, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+ 			$stxtTip = GetTranslated(2,110, "Set the Min. % of collectors outside to search for on a village to attack.")
+ 			GUICtrlSetTip(-1, $stxtTip)
+ 			GUICtrlSetState(-1, $GUI_DISABLE)
+ 			GUICtrlSetLimit(-1, 3)
+ 			GUICtrlSetData(-1, 50)
+ 			GUICtrlCreateLabel("%", $x+335, $y+120, -1, -1)
+ 			GUICtrlSetTip(-1, $stxtTip)
 
 	    $y += 25
 		GUICtrlCreateLabel("-15" & _PadStringCenter(GetTranslated(626,11, "Tolerance"), 66, " ") & "15", $x, $y)

@@ -41,7 +41,7 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		;Transparent Gui (Modified Kychera)
 	    GUICtrlSetData($SldTransLevel, $iSldTransLevel)
 
-	    
+
 		Case "Save"
         $iChkUnitFactor = (GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED)
 		$iChkWaveFactor = (GUICtrlRead($ChkWaveFactor) = $GUI_CHECKED)
@@ -49,7 +49,7 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		$iTxtWaveFactor = GUICtrlRead($TxtWaveFactor)
 		$ichkPic = (GUICtrlRead($chkPic) = $GUI_CHECKED)
         $iSldTransLevel = GUICtrlRead($SldTransLevel)
-		
+
 	EndSwitch
 	ApplyConfig_RK_Forecast($TypeReadSave)
 EndFunc   ;==>ApplyConfig_RK_MOD
@@ -92,6 +92,17 @@ Func ApplyConfig_RK_Forecast($TypeReadSave)
 		$ichkForecastHopingSwitchMin = (GUICtrlRead($chkForecastHopingSwitchMin) = $GUI_UNCHECKED)
 		$icmbForecastHopingSwitchMin = _GUICtrlComboBox_GetCurSel($cmbForecastHopingSwitchMin)
 		$itxtForecastHopingSwitchMin = GUICtrlRead($txtForecastHopingSwitchMin)
-		$icmbSwLang = _GUICtrlComboBox_GetCurSel($cmbSwLang)		
-	EndSwitch		
+		$icmbSwLang = _GUICtrlComboBox_GetCurSel($cmbSwLang)
+	EndSwitch
 EndFunc   ;==>ApplyConfig_RK_Forecast
+
+Func ApplyConfig_RK_CollOutside($TypeReadSave)
+    Switch $TypeReadSave
+	Case "Read"
+	GUICtrlSetState ($ichkDBMeetCollOutside, $chkDBMeetCollOutside) ? $GUI_CHECKED : $GUI_UNCHECKED)
+	chkDBMeetCollOutside()
+	GUICtrlSetData($txtDBMinCollOutsidePercent, $iDBMinCollOutsidePercent)
+    Case "Save"
+	$ichkDBMeetCollOutside = (GUICtrlRead($chkDBMeetCollOutside) = $GUI_UNCHECKED)
+    EndSwitch
+EndFunc   ;==>ApplyConfig_RK_CollOutside

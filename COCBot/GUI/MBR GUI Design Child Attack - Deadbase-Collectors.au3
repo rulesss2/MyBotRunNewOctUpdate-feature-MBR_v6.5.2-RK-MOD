@@ -157,9 +157,9 @@ Func CreateAttackSearchDeadBaseCollectors()
 		 $x = 40
     $y = -15
 	   $СhkDBMeetCollOutside = GUICtrlCreateCheckbox(GetTranslated(2,107, "Check Collectors Outside"), $x + 250, $y + 90, -1, -1)
- 			$stxtTip = GetTranslated(2,108, "Search for bases that has their collectors outside.")
+ 			$sTxtTip = GetTranslated(2,108, "Search for bases that has their collectors outside.")
  			GUICtrlSetOnEvent(-1, "chkDBMeetCollOutside")
- 			GUICtrlSetTip(-1, $stxtTip)
+ 			GUICtrlSetTip(-1, $sTxtTip)
  			GUICtrlSetState(-1, $GUI_UNCHECKED)
  			GUICtrlCreateLabel(GetTranslated(2,109, "Min: "), $x+270, $y+120, -1, -1)
  		$txtDBMinCollOutsidePercent = GUICtrlCreateInput("50", $x+300, $y+115, 31, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))

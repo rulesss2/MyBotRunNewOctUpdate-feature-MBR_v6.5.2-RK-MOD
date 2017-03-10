@@ -101,10 +101,10 @@ EndFunc   ;==>isOutsideEllipse
 ; Check Collectors Outside
 Func chkDBMeetCollOutside()
 	If GUICtrlRead($g_hChkDBMeetCollOutside) = $GUI_CHECKED Then
-	    $g_iСhkDBMeetCollOutside = 1
+	    $g_iChkDBMeetCollOutside = 1
 		GUICtrlSetState($g_hTxtDBMinCollOutsidePercent, $GUI_ENABLE)
 	Else
-		$g_iСhkDBMeetCollOutside = 0
-		GUICtrlSetState($g_hTxtDBMinCollOutsidePercent,  $GUI_DISABLE)
+		$g_iChkDBMeetCollOutside = 0
+		GUICtrlSetState($g_hTxtDBMinCollOutsidePercent, $GUI_DISABLE)
 	EndIf
 EndFunc   ;==>chkDBMeetCollOutside

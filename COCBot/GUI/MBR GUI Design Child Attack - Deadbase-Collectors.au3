@@ -14,7 +14,7 @@
 ; ===============================================================================================================================
 #include-once
 Global $g_hChkDBMeetCollOutside = 0
-Global $g_hTxtDBMinCollOutsidePercent
+Global $g_hTxtDBMinCollOutsidePercent = 50
 Global $g_hChkDBDisableCollectorsFilter = 0
 Global $g_ahChkDBCollectorLevel[13] = [-1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0] ; elements 0 thru 5 are never referenced
 Global $g_ahCmbDBCollectorLevel[13] = [-1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0] ; elements 0 thru 5 are never referenced
@@ -155,8 +155,8 @@ Func CreateAttackSearchDeadBaseCollectors()
 			GUICtrlSetData(-1, "1|2|3|4|5|6", "4")
 			GUICtrlSetOnEvent(-1, "cmbMinCollectorMatches")
 
-		$x = 40
-        $y = -2
+		$x = 35
+        $y = + 45
         $g_hChkDBMeetCollOutside = GUICtrlCreateCheckbox(GetTranslated(2,107, "Check Collectors Outside"), $x + 250, $y + 90, -1, -1)
 			$sTxtTip = GetTranslated(2,108, "Search for bases that has their collectors outside.")
 			GUICtrlSetOnEvent(-1, "chkDBMeetCollOutside")

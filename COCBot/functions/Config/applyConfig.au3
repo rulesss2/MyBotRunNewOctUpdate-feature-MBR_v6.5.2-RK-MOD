@@ -1606,6 +1606,7 @@ Func ApplyConfig_600_31($TypeReadSave)
 			$g_iCollectorMatchesMin = _GUICtrlComboBox_GetCurSel($g_hCmbMinCollectorMatches) + 1
 			$g_iCollectorToleranceOffset = GUICtrlRead($g_hSldCollectorTolerance)
 	EndSwitch
+    ApplyConfig_RK_CollOutside($TypeReadSave)
 EndFunc
 
 Func ApplyConfig_600_32($TypeReadSave)
@@ -1702,7 +1703,7 @@ Func ApplyConfig_600_35($TypeReadSave)
 			$ichkFixClanCastle = GUICtrlRead($g_hChkFixClanCastle) = $GUI_CHECKED ? 1 : 0
 	EndSwitch
 	; background RK mod
-	ApplyConfig_decor_RK($TypeReadSave)	
+	ApplyConfig_decor_RK($TypeReadSave)
 EndFunc
 
 Func ApplyConfig_600_52_1($TypeReadSave)

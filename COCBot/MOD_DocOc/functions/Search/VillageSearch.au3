@@ -230,8 +230,8 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			SetLog($GetResourcesTXT, $COLOR_SUCCESS, "Lucida Console", 7.5)
 			SetLog("      " & "Dead Base Found!", $COLOR_SUCCESS, "Lucida Console", 7.5)
 			$logwrited = True
-			If $ichkDBMeetCollOutside = 1 Then
-				If AreCollectorsOutside($iDBMinCollOutsidePercent) Then
+			If $g_iChkDBMeetCollOutside = 1 Then
+				If AreCollectorsOutside($g_iDBMinCollOutsidePercent) Then
 					SetLog("Collectors are outside, match found !", $COLOR_GREEN, "Lucida Console", 7.5)
 					$g_iMatchMode = $DB
 					ExitLoop

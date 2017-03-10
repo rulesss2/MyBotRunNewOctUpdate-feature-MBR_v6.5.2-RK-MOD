@@ -75,7 +75,7 @@ Global $ChkLaunchWatchdog = 0
 ; Check Collector Outside - Added by rulesss
 #region Check Collectors Outside
 ; collectors outside filter
-Global $ichkDBMeetCollOutside, $iDBMinCollOutsidePercent, $iCollOutsidePercent ; check later if $iCollOutsidePercent obsolete
+Global $g_iСhkDBMeetCollOutside, $g_iDBMinCollOutsidePercent, $g_iCollOutsidePercent; check later if $iCollOutsidePercent obsolete
 
 ; constants
 Global Const $THEllipseWidth = 200, $THEllipseHeigth = 150, $CollectorsEllipseWidth = 130, $CollectorsEllipseHeigth = 97.5

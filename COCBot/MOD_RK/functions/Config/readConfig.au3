@@ -45,7 +45,7 @@ Func ReadConfig_RK_MOD()
  IniReadS($iChkLaunchWatchdog, $g_sProfileConfigPath, "Other", "chkLaunchWatchdog", 1, "Int")
 
  ; Check Collectors Outside - Added by rulesss
-IniReadS($ichkDBMeetCollOutside, $g_sProfileConfigPath, "search", "DBMeetCollOutside", 0, "Int")
-IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollOutsidePercent", 50, "Int")
+IniReadS($g_iСhkDBMeetCollOutside, $g_sProfileConfigPath, "search", "DBMeetCollOutside", 0, "Int")
+IniReadS($g_iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollOutsidePercent", 50, "Int")
 
 EndFunc   ;==>ReadConfig_RK_MOD

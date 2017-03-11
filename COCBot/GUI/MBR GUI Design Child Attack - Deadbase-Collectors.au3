@@ -13,12 +13,12 @@
 ; Example .......: No
 ; ===============================================================================================================================
 #include-once
-Global $g_hChkDBMeetCollOutside = 0
-Global $g_hTxtDBMinCollOutsidePercent = 50
+
 Global $g_hChkDBDisableCollectorsFilter = 0
 Global $g_ahChkDBCollectorLevel[13] = [-1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0] ; elements 0 thru 5 are never referenced
 Global $g_ahCmbDBCollectorLevel[13] = [-1, -1, -1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0] ; elements 0 thru 5 are never referenced
 Global $g_hCmbMinCollectorMatches = 0, $g_hSldCollectorTolerance = 0, $g_hLblCollectorWarning = 0
+Global $g_hChkDBMeetCollOutside = 0, $g_hTxtDBMinCollOutsidePercent
 
 Func CreateAttackSearchDeadBaseCollectors()
    Local $x = 10, $y = 45
@@ -157,19 +157,19 @@ Func CreateAttackSearchDeadBaseCollectors()
 
 		$x = 35
         $y = + 45
-        $g_hChkDBMeetCollOutside = GUICtrlCreateCheckbox(GetTranslated(2,107, "Check Collectors Outside"), $x + 250, $y + 90, -1, -1)
-			$sTxtTip = GetTranslated(2,108, "Search for bases that has their collectors outside.")
+        $g_hChkDBMeetCollOutside = GUICtrlCreateCheckbox(GetTranslated(626,40, "Check Collectors Outside"), $x+250, $y+90, -1, -1)
+			$sTxtTip = GetTranslated(626,41, "Search for bases that has their collectors outside.")
 			GUICtrlSetOnEvent(-1, "chkDBMeetCollOutside")
 			GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
-			GUICtrlCreateLabel(GetTranslated(2,109, "Min: "), $x+270, $y+120, -1, -1)
+			GUICtrlCreateLabel("Min: ", $x+270, $y+120, -1, -1)
 		$g_hTxtDBMinCollOutsidePercent = GUICtrlCreateInput("50", $x+300, $y+115, 31, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-			$sTxtTip = GetTranslated(2,110, "Set the Min. % of collectors outside to search for on a village to attack.")
+			$sTxtTip = GetTranslated(626,42, "Set the Min. % of collectors outside to search for on a village to attack.")
 			GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetState(-1, $GUI_DISABLE)
 			GUICtrlSetLimit(-1, 3)
 			GUICtrlSetData(-1, 50)
-			GUICtrlCreateLabel("%", $x + 335, $y + 120, -1, -1)
+			GUICtrlCreateLabel("%", $x+335, $y+120, -1, -1)
 			GUICtrlSetTip(-1, $sTxtTip)
 
 	    $y += 25

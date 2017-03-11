@@ -37,8 +37,8 @@ Func AreCollectorsOutside($percent)
 	SetLog("Located collectors in " & Round(TimerDiff($hTimer) / 1000, 2) & " seconds:")
 	SetLog("[" & UBound($PixelMine) & "] Gold Mines")
 	SetLog("[" & UBound($PixelElixir) & "] Elixir Collectors")
-	$iNbrOfDetectedMines[$DB] += UBound($PixelMine)
-	$iNbrOfDetectedCollectors[$DB] += UBound($PixelElixir)
+	$g_iNbrOfDetectedMines[$CurrentAccount][$DB] += UBound($PixelMine)
+	$g_iNbrOfDetectedCollectors[$CurrentAccount][$DB] += UBound($PixelElixir)
 	UpdateStats()
 
 	Global $minColOutside = Round($colNbr * $percent / 100)
@@ -51,16 +51,16 @@ Func AreCollectorsOutside($percent)
 		Global $arrPixel = $PixelNearCollector[$i]
 		If UBound($arrPixel) > 0 Then
 			If isOutsideEllipse($arrPixel[0], $arrPixel[1], $CollectorsEllipseWidth * $radiusAdjustment, $CollectorsEllipseHeigth * $radiusAdjustment) Then
-				If $debugsetlog = 1 Then SetLog("Collector (" & $arrPixel[0] & ", " & $arrPixel[1] & ") is outside", $COLOR_PURPLE)
+				If $g_iDebugSetlog = 1 Then SetLog("Collector (" & $arrPixel[0] & ", " & $arrPixel[1] & ") is outside", $COLOR_PURPLE)
 				$colOutside += 1
 			EndIf
 		EndIf
 		If $colOutside >= $minColOutside Then
-			If $debugsetlog = 1 Then SetLog("More than " & $percent & "% of the collectors are outside", $COLOR_PURPLE)
+			If $g_iDebugSetlog = 1 Then SetLog("More than " & $percent & "% of the collectors are outside", $COLOR_PURPLE)
 			Return True
 		EndIf
 	Next
-	If $debugsetlog = 1 Then SetLog($colOutside & " collectors found outside (out of " & $colNbr & ")", $COLOR_PURPLE)
+	If $g_iDebugSetlog = 1 Then SetLog($colOutside & " collectors found outside (out of " & $colNbr & ")", $COLOR_PURPLE)
 	Return False
 EndFunc   ;==>AreCollectorsOutside
 
@@ -86,7 +86,7 @@ Func isOutsideEllipse($coordX, $coordY, $ellipseWidth = 200, $ellipseHeigth = 15
 	Global $normalizedY = $coordY - $centerY
 	Local $result = ($normalizedX * $normalizedX) / ($ellipseWidth * $ellipseWidth) + ($normalizedY * $normalizedY) / ($ellipseHeigth * $ellipseHeigth) > 1
 
-	If $debugsetlog = 1 Then
+	If $g_iDebugSetlog = 1 Then
 		If $result Then
 			Setlog("Coordinate Outside Ellipse (" & $ellipseWidth & ", " & $ellipseHeigth & ")", $COLOR_PURPLE)
 		Else
@@ -100,11 +100,5 @@ EndFunc   ;==>isOutsideEllipse
 
 ; Check Collectors Outside
 Func chkDBMeetCollOutside()
-	If GUICtrlRead($g_hChkDBMeetCollOutside) = $GUI_CHECKED Then
-	    $g_iChkDBMeetCollOutside = 1
-		GUICtrlSetState($g_hTxtDBMinCollOutsidePercent, $GUI_ENABLE)
-	Else
-		$g_iChkDBMeetCollOutside = 0
-		GUICtrlSetState($g_hTxtDBMinCollOutsidePercent, $GUI_DISABLE)
-	EndIf
+	GUICtrlSetState($g_hTxtDBMinCollOutsidePercent, GUICtrlRead($g_hChkDBMeetCollOutside) = $GUI_CHECKED ? $GUI_ENABLE : $GUI_DISABLE)
 EndFunc   ;==>chkDBMeetCollOutside

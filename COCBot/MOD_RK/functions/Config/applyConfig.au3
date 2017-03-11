@@ -99,11 +99,11 @@ EndFunc   ;==>ApplyConfig_RK_Forecast
 Func ApplyConfig_RK_CollOutside($TypeReadSave)
     Switch $TypeReadSave
 	Case "Read"
-	GUICtrlSetState($g_hChkDBMeetCollOutside, $g_iChkDBMeetCollOutside = 0 ? $GUI_CHECKED : $GUI_UNCHECKED)
+	GUICtrlSetState($g_hChkDBMeetCollOutside, $ichkDBMeetCollOutside = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+	GUICtrlSetData($g_hTxtDBMinCollOutsidePercent, $iDBMinCollOutsidePercent)
 	chkDBMeetCollOutside()
-	GUICtrlSetData($g_hTxtDBMinCollOutsidePercent, $g_iDBMinCollOutsidePercent)
     Case "Save"
-	$g_iChkDBMeetCollOutside = (GUICtrlRead($g_hChkDBMeetCollOutside) = $GUI_UNCHECKED)
-	$g_iDBMinCollOutsidePercent = GUICtrlRead($g_hTxtDBMinCollOutsidePercent) 
+	$ichkDBMeetCollOutside = GUICtrlRead($g_hChkDBMeetCollOutside) = $GUI_CHECKED ? 1 : 0
+	$iDBMinCollOutsidePercent = GUICtrlRead($g_hTxtDBMinCollOutsidePercent) 
     EndSwitch
 EndFunc   ;==>ApplyConfig_RK_CollOutside

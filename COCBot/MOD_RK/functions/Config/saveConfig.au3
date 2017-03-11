@@ -46,7 +46,7 @@ Func SaveConfig_RK_MOD()
 	IniWriteS($g_sProfileConfigPath, "Other", "chkLaunchWatchdog", $iChkLaunchWatchdog ? 1 : 0)
 
 	; Check Collectors Outside - Added by rulesss
-   IniWriteS($g_sProfileConfigPath, "search", "DBMeetCollOutside", $g_iChkDBMeetCollOutside ? 1 : 0)
-   IniWriteS($g_sProfileConfigPath, "search", "DBMinCollOutsidePercent", GUICtrlRead($g_hTxtDBMinCollOutsidePercent))
+    IniWriteS($g_sProfileConfigPath, "search", "DBMeetCollOutside", $ichkDBMeetCollOutside ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "search", "DBMinCollOutsidePercent", $iDBMinCollOutsidePercent)
 
 EndFunc   ;==>SaveConfig_RK_MOD

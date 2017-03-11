@@ -87,3 +87,15 @@ Global $hBitmapFirst
  Global $g_hCmbCSVSpeed[2] = [$LB, $DB]
  Global $g_iCmbCSVSpeed[2] = [$LB, $DB]
  Global $g_hDivider
+ 
+ ; SmartUpgrade 
+Global $ichkSmartUpgrade
+Global $ichkIgnoreTH, $ichkIgnoreKing, $ichkIgnoreQueen, $ichkIgnoreWarden, $ichkIgnoreCC, $ichkIgnoreLab
+Global $ichkIgnoreBarrack, $ichkIgnoreDBarrack, $ichkIgnoreFactory, $ichkIgnoreDFactory, $ichkIgnoreGColl, $ichkIgnoreEColl, $ichkIgnoreDColl
+Global $iSmartMinGold, $iSmartMinElixir, $iSmartMinDark
+Global $sBldgText, $sBldgLevel, $aString
+Global $upgradeName[3] = ["", "", ""]
+Global $UpgradeCost
+Global $TypeFound = 0
+Global $UpgradeDuration
+Global $canContinueLoop = True

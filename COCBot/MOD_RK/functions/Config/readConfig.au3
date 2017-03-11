@@ -27,7 +27,7 @@ Func ReadConfig_RK_MOD()
    IniReadS($ichkPic, $g_sProfileConfigPath, "background", "chkPic", 1, "Int")
    ;Transparent Gui by Kychera
    IniReadS($iSldTransLevel, $g_sProfileConfigPath, "TransLevel", "Level", 0, "Int")
-
+  
    ;Forecast
  IniReadS($iChkForecastBoost, $g_sProfileConfigPath, "forecast", "chkForecastBoost", 0, "Int")
  IniReadS($iTxtForecastBoost, $g_sProfileConfigPath, "forecast", "txtForecastBoost", 6, "Int")
@@ -40,12 +40,14 @@ Func ReadConfig_RK_MOD()
  IniReadS($itxtForecastHopingSwitchMin, $g_sProfileConfigPath, "profiles", "txtForecastHopingSwitchMin", 2, "Int")
  IniReadS($icmbSwLang, $g_sProfileConfigPath, "Lang", "cmbSwLang", 1, "int")
 
-
-
  IniReadS($iChkLaunchWatchdog, $g_sProfileConfigPath, "Other", "chkLaunchWatchdog", 1, "Int")
 
- ; Check Collectors Outside - Added by rulesss
+ ; Check Collectors Outside 
 IniReadS($ichkDBMeetCollOutside, $g_sProfileConfigPath, "search", "DBMeetCollOutside", 0, "int")
 IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollOutsidePercent", 50, "int")
+
+; CSV Deploy Speed 
+$g_iCmbCSVSpeed[$DB] = Int(IniRead($g_sProfileConfigPath, "DeploymentSpeed", "DB", 2))
+$g_iCmbCSVSpeed[$LB] = Int(IniRead($g_sProfileConfigPath, "DeploymentSpeed", "LB", 2))
 
 EndFunc   ;==>ReadConfig_RK_MOD

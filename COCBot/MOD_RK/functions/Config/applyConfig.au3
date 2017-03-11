@@ -40,7 +40,9 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		chkPic()
 		;Transparent Gui (Modified Kychera)
 	    GUICtrlSetData($SldTransLevel, $iSldTransLevel)
-
+        ; CSV Deploy Speed 
+		_GUICtrlComboBox_SetCurSel($g_hCmbCSVSpeed[$DB], $g_iCmbCSVSpeed[$DB])
+		_GUICtrlComboBox_SetCurSel($g_hCmbCSVSpeed[$LB], $g_iCmbCSVSpeed[$LB])
 
 		Case "Save"
         $iChkUnitFactor = (GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED)
@@ -49,7 +51,9 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		$iTxtWaveFactor = GUICtrlRead($TxtWaveFactor)
 		$ichkPic = (GUICtrlRead($chkPic) = $GUI_CHECKED)
         $iSldTransLevel = GUICtrlRead($SldTransLevel)
-
+        ; CSV Deploy Speed 
+		$g_iCmbCSVSpeed[$DB] = _GUICtrlComboBox_GetCurSel($g_hCmbCSVSpeed[$DB])
+		$g_iCmbCSVSpeed[$LB] = _GUICtrlComboBox_GetCurSel($g_hCmbCSVSpeed[$LB])
 	EndSwitch
 	ApplyConfig_RK_Forecast($TypeReadSave)
 EndFunc   ;==>ApplyConfig_RK_MOD

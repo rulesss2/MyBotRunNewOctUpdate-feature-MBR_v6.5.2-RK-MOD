@@ -29,7 +29,7 @@ Func SaveConfig_RK_MOD()
     ;Transparent Gui (Modified Kychera)
 	IniWrites($g_sProfileConfigPath, "TransLevel", "Level", $iSldTransLevel)
 
-		IniWriteS($g_sProfileConfigPath, "TransLevel", "Level", $iSldTransLevel)
+	IniWriteS($g_sProfileConfigPath, "TransLevel", "Level", $iSldTransLevel)
 	 ;forecast
 	 IniWriteS($g_sProfileConfigPath, "forecast", "txtForecastBoost", GUICtrlRead($txtForecastBoost))
 	 IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMax", $icmbForecastHopingSwitchMax)
@@ -45,8 +45,12 @@ Func SaveConfig_RK_MOD()
 
 	IniWriteS($g_sProfileConfigPath, "Other", "chkLaunchWatchdog", $iChkLaunchWatchdog ? 1 : 0)
 
-	; Check Collectors Outside - Added by rulesss
+	; Check Collectors Outside 
     IniWriteS($g_sProfileConfigPath, "search", "DBMeetCollOutside", $ichkDBMeetCollOutside ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "search", "DBMinCollOutsidePercent", $iDBMinCollOutsidePercent)
+	
+	; CSV Deploy Speed 
+	IniWriteS($g_sProfileConfigPath, "DeploymentSpeed", "DB", $g_iCmbCSVSpeed[$DB])
+	IniWriteS($g_sProfileConfigPath, "DeploymentSpeed", "LB", $g_iCmbCSVSpeed[$LB])
 
 EndFunc   ;==>SaveConfig_RK_MOD

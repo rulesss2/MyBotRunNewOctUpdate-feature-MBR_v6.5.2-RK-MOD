@@ -87,8 +87,8 @@ Global $hBitmapFirst
  Global $g_hCmbCSVSpeed[2] = [$LB, $DB]
  Global $g_iCmbCSVSpeed[2] = [$LB, $DB]
  Global $g_hDivider
- 
- ; SmartUpgrade 
+
+; SmartUpgrade
 Global $ichkSmartUpgrade
 Global $ichkIgnoreTH, $ichkIgnoreKing, $ichkIgnoreQueen, $ichkIgnoreWarden, $ichkIgnoreCC, $ichkIgnoreLab
 Global $ichkIgnoreBarrack, $ichkIgnoreDBarrack, $ichkIgnoreFactory, $ichkIgnoreDFactory, $ichkIgnoreGColl, $ichkIgnoreEColl, $ichkIgnoreDColl

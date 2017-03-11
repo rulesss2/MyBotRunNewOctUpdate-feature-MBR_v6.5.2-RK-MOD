@@ -44,7 +44,7 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		_GUICtrlComboBox_SetCurSel($g_hCmbCSVSpeed[$DB], $g_iCmbCSVSpeed[$DB])
 		_GUICtrlComboBox_SetCurSel($g_hCmbCSVSpeed[$LB], $g_iCmbCSVSpeed[$LB])
 		
-		    ; Smart Upgarde (Roro-Titi) - Added by NguyenAnhHD
+		    ; Smart Upgarde 
 			GUICtrlSetState($g_hChkSmartUpgrade, $ichkSmartUpgrade = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			chkSmartUpgrade()
 

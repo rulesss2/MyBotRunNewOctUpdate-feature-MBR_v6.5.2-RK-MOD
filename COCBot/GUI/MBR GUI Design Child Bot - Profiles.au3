@@ -21,7 +21,7 @@ Global $g_hCmbProfile = 0, $g_hTxtVillageName = 0, $g_hBtnAddProfile = 0, $g_hBt
 ;GUISwitch($hGUI_Profiles)
 
 Func CreateBotProfiles()
-
+   
     Local $x = 25, $y = 45
 	GUICtrlCreateGroup(GetTranslated(637,1, "Switch Profiles"), $x - 20, $y - 20, 440, 360)
 		;$y -= 5

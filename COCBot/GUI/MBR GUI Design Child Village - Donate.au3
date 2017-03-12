@@ -66,6 +66,7 @@ Global $g_hChkUseCCBalanced = 0, $g_hCmbCCDonated = 0, $g_hCmbCCReceived = 0
 Func CreateVillageDonate()
    $g_hGUI_DONATE = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 - 28, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hGUI_VILLAGE)
    ;GUISetBkColor($COLOR_WHITE, $g_hGUI_DONATE)
+   $38 = GUICtrlCreatePic(@ScriptDir & "\Images2\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
 	Local $x = 82
 	$g_hChkDonate = GUICtrlCreateCheckbox("", $x + 131, 6, 13, 13)
 		GUICtrlSetState(-1,$GUI_CHECKED)

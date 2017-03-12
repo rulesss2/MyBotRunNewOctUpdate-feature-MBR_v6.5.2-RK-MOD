@@ -34,7 +34,7 @@ Global $g_hLblNotifyWeekdays[7] = [0,0,0,0,0,0,0], $g_ahLblNotifyWeekdaysE = 0, 
 Func CreateVillageNotify()
    $g_hGUI_NOTIFY = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 - 28, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hGUI_VILLAGE)
    ;GUISetBkColor($COLOR_WHITE, $g_hGUI_NOTIFY)
-
+   $40 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
    GUISwitch($g_hGUI_NOTIFY)
    $g_hGUI_NOTIFY_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 30, $_GUI_MAIN_HEIGHT - 255 - 30, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
    $g_hGUI_NOTIFY_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,18,"PushBullet/Telegram"))

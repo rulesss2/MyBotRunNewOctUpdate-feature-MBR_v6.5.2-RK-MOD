@@ -16,7 +16,7 @@
 
 ;$hGUI_Settings = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 - 28, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hGUI_VILLAGE)
 ;GUISetBkColor($COLOR_WHITE, $hGUI_Settings)
-
+$39 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 2, 23, 442, 410, $WS_CLIPCHILDREN)
 Global $g_hChkBotStop = 0, $g_hCmbBotCommand = 0, $g_hCmbBotCond = 0, $g_hCmbHoursStop = 0
 Global $g_hTxtRestartGold = 0, $g_hTxtRestartElixir = 0, $g_hTxtRestartDark = 0
 Global $g_hChkTrap = 1, $g_hChkCollect = 1, $g_hChkTombstones = 1, $g_hChkCleanYard = 0, $g_hChkGemsBox = 0

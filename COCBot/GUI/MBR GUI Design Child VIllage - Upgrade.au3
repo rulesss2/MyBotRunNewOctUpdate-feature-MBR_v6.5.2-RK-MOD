@@ -47,7 +47,7 @@ Global $g_ahPicWallsLevel[13] = [-1,-1,-1,-1,0,0,0,0,0,0,0,0,0] ; elements 0 to 
 Func CreateVillageUpgrade()
    $g_hGUI_UPGRADE = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 - 28, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hGUI_VILLAGE)
    ;GUISetBkColor($COLOR_WHITE, $g_hGUI_UPGRADE)
-
+   $41 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
    GUISwitch($g_hGUI_UPGRADE)
    $g_hGUI_UPGRADE_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 30, $_GUI_MAIN_HEIGHT - 255 - 30, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
    $g_hGUI_UPGRADE_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,14,"Laboratory"))

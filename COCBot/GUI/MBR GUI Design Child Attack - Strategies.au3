@@ -26,7 +26,7 @@ Func CreateAttackStrategies()
    ;GUISetBkColor($COLOR_WHITE, $g_hGUI_STRATEGIES)
 
    GUISwitch($g_hGUI_STRATEGIES)
-
+   $21 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
    Local $xStart = 5, $yStart = 25
    $g_hGUI_STRATEGIES_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 30, $_GUI_MAIN_HEIGHT - 255 - 30, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
    $g_hGUI_STRATEGIES_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,33,"Load Strategy"))

@@ -26,6 +26,7 @@ Global $g_hBtnTestFindButton = 0, $g_hBtnTestDeadBaseFolder = 0, $g_hBtnTestClea
 Global $g_hBtnTestConfigSave = 0, $g_hBtnTestConfigApply = 0, $g_hBtnTestConfigRead = 0
 
 Func CreateBotDebug()
+   $2 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)
    Local $x = 25, $y = 45
    GUICtrlCreateGroup(GetTranslated(636, 34, "Debug"), $x - 20, $y - 20, 440, 360)
 	  $g_hChkDebugClick = GUICtrlCreateCheckbox(GetTranslated(636, 40, "Click"), $x, $y - 5, -1, -1)

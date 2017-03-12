@@ -144,5 +144,5 @@ Func ApplyConfig_DocOc($TypeReadSave)
 				_GUICtrlComboBox_SetCurSel($cmbAccount[$i], $icmbAccount[$i])
 			Next
 			chkSwitchAccount()
-	EndSwitch
+	EndSwitch	
 EndFunc   ;==>ApplyConfig_DocOc

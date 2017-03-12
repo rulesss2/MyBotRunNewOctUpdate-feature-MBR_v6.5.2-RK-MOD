@@ -102,7 +102,7 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			$ichkIgnoreDColl = GUICtrlRead($g_hChkIgnoreDColl) = $GUI_CHECKED ? 1 : 0
 	EndSwitch
 	ApplyConfig_RK_Forecast($TypeReadSave)
-	ApplyConfig_RK_Switch_Profiles($TypeReadSave)
+	ApplyConfig_RK_Switch_Profiles($TypeReadSave)	
 EndFunc   ;==>ApplyConfig_RK_MOD
 ;----------------- Background  -------------
 Func ApplyConfig_decor_RK($TypeReadSave)

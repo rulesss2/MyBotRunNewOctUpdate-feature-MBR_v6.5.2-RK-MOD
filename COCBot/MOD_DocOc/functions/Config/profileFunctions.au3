@@ -9,7 +9,7 @@
 
 Func setupProfileComboBox()
 	; Array to store Profile names to add to ComboBox
-	Local $profileString = ""
+	$profileString = ""
 	Local $aProfiles = _FileListToArray($g_sProfilePath, "*", $FLTA_FOLDERS)
 	If @error Then
 		; No folders for profiles so lets set the combo box to a generic entry
@@ -27,9 +27,13 @@ Func setupProfileComboBox()
 
 	; Clear the combo box current data in case profiles were deleted
 	GUICtrlSetData($g_hCmbProfile, "", "")
+	GUICtrlSetData($cmbForecastHopingSwitchMin, "", "")
+	GUICtrlSetData($cmbForecastHopingSwitchMax, "", "")
 	; Set the new data of available profiles
 	GUICtrlSetData($g_hCmbProfile, $profileString, "<No Profiles>")
-
+    GUICtrlSetData($cmbForecastHopingSwitchMax, $profileString, "<No Profiles>")
+	GUICtrlSetData($cmbForecastHopingSwitchMin, $profileString, "<No Profiles>")
+	
 	For $x = 1 To 8
 		GUICtrlSetData($cmbAccount[$x], "", "")
 		GUICtrlSetData($cmbAccount[$x], $profileString, "<No Profiles>")

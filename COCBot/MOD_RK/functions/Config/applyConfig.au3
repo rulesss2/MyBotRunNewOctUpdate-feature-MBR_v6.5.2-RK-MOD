@@ -102,6 +102,7 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			$ichkIgnoreDColl = GUICtrlRead($g_hChkIgnoreDColl) = $GUI_CHECKED ? 1 : 0
 	EndSwitch
 	ApplyConfig_RK_Forecast($TypeReadSave)
+	ApplyConfig_RK_Switch_Profiles($TypeReadSave)
 EndFunc   ;==>ApplyConfig_RK_MOD
 ;----------------- Background  -------------
 Func ApplyConfig_decor_RK($TypeReadSave)
@@ -209,3 +210,73 @@ Func ApplyConfig_SwitchAcc($TypeReadSave, $SwitchAcc_Style = False)
 			EndIf
 	EndSwitch
 EndFunc
+Func ApplyConfig_RK_Switch_Profiles($TypeReadSave)
+    Switch $TypeReadSave
+		Case "Read"
+		GUICtrlSetState($chkGoldSwitchMax, $ichkGoldSwitchMax = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+		_GUICtrlComboBox_SetCurSel($cmbGoldMaxProfile, $icmbGoldMaxProfile)
+		GUICtrlSetData($txtMaxGoldAmount, $itxtMaxGoldAmount)
+		
+		GUICtrlSetState($chkGoldSwitchMin, $ichkGoldSwitchMin = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+		_GUICtrlComboBox_SetCurSel($cmbGoldMinProfile, $icmbGoldMinProfile)
+		GUICtrlSetData($txtMinGoldAmount, $itxtMinGoldAmount)
+		
+		GUICtrlSetState($chkElixirSwitchMax, $ichkElixirSwitchMax = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+		_GUICtrlComboBox_SetCurSel($cmbElixirMaxProfile, $icmbElixirMaxProfile)
+	     GUICtrlSetData($txtMaxElixirAmount, $itxtMaxElixirAmount)
+		 
+		 GUICtrlSetState($chkElixirSwitchMin, $ichkElixirSwitchMin = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+		 _GUICtrlComboBox_SetCurSel($cmbElixirMinProfile, $icmbElixirMinProfile)
+	     GUICtrlSetData($txtMinElixirAmount, $itxtMinElixirAmount)
+		 
+		 GUICtrlSetState($chkDESwitchMax, $ichkDESwitchMax = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+		 _GUICtrlComboBox_SetCurSel($cmbDEMaxProfile, $icmbDEMaxProfile)
+	     GUICtrlSetData($txtMaxDEAmount, $itxtMaxDEAmount)
+		 
+		 GUICtrlSetState($chkDESwitchMin, $ichkDESwitchMin = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+		 _GUICtrlComboBox_SetCurSel($cmbDEMinProfile, $icmbDEMinProfile)
+	     GUICtrlSetData($txtMinDEAmount, $itxtMinDEAmount)
+		 
+		 GUICtrlSetState($chkTrophySwitchMax, $ichkTrophySwitchMax = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+		 _GUICtrlComboBox_SetCurSel($cmbTrophyMaxProfile, $icmbTrophyMaxProfile)
+	     GUICtrlSetData($txtMaxTrophyAmount, $itxtMaxTrophyAmount)
+		 
+		 GUICtrlSetState($chkTrophySwitchMin, $ichkTrophySwitchMin = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+		 _GUICtrlComboBox_SetCurSel($cmbTrophyMinProfile, $icmbTrophyMinProfile)
+	     GUICtrlSetData($txtMinTrophyAmount, $itxtMinTrophyAmount)
+		 ProfileSwitchCheck()		 
+		Case "Save"
+		$ichkGoldSwitchMax = GUICtrlRead($chkGoldSwitchMax) = $GUI_CHECKED ? 1 : 0
+		$icmbGoldMaxProfile = _GUICtrlComboBox_GetCurSel($cmbGoldMaxProfile)
+		$itxtMaxGoldAmount = GUICtrlRead($txtMaxGoldAmount)
+		
+		$ichkGoldSwitchMin = GUICtrlRead($chkGoldSwitchMin) = $GUI_CHECKED ? 1 : 0
+		$icmbGoldMinProfile = _GUICtrlComboBox_GetCurSel($cmbGoldMinProfile)
+		$itxtMinGoldAmount = GUICtrlRead($txtMinGoldAmount)
+		
+		$ichkElixirSwitchMax = GUICtrlRead($chkElixirSwitchMax) = $GUI_CHECKED ? 1 : 0
+		$icmbElixirMaxProfile = _GUICtrlComboBox_GetCurSel($cmbElixirMaxProfile)
+		$itxtMaxElixirAmount = GUICtrlRead($txtMaxElixirAmount)
+		
+		$ichkElixirSwitchMin = GUICtrlRead($chkElixirSwitchMin) = $GUI_CHECKED ? 1 : 0
+		$icmbElixirMinProfile = _GUICtrlComboBox_GetCurSel($cmbElixirMinProfile)
+		$itxtMinElixirAmount = GUICtrlRead($txtMinElixirAmount)
+		
+		$ichkDESwitchMax = GUICtrlRead($chkDESwitchMax) = $GUI_CHECKED ? 1 : 0
+		$icmbDEMinProfile = _GUICtrlComboBox_GetCurSel($cmbDEMinProfile)
+		$itxtMaxDEAmount = GUICtrlRead($txtMaxDEAmount)
+		
+		$ichkDESwitchMin = GUICtrlRead($chkDESwitchMin) = $GUI_CHECKED ? 1 : 0
+		$icmbDEMaxProfile = _GUICtrlComboBox_GetCurSel($cmbDEMaxProfile)
+		$itxtMinDEAmount = GUICtrlRead($txtMinDEAmount)
+		
+		$ichkTrophySwitchMax = GUICtrlRead($chkTrophySwitchMax) = $GUI_CHECKED ? 1 : 0
+		$icmbTrophyMaxProfile = _GUICtrlComboBox_GetCurSel($cmbTrophyMaxProfile)
+		$itxtMaxTrophyAmount = GUICtrlRead($txtMaxTrophyAmount)
+		
+		$ichkTrophySwitchMin = GUICtrlRead($chkTrophySwitchMin) = $GUI_CHECKED ? 1 : 0
+		$icmbTrophyMinProfile = _GUICtrlComboBox_GetCurSel($cmbTrophyMinProfile)
+		$itxtMinTrophyAmount = GUICtrlRead($txtMinTrophyAmount)
+		
+	EndSwitch	
+EndFunc  ;==> ApplyConfig_RK_Switch_Profiles

@@ -636,6 +636,14 @@ Func runBot() ;Bot that runs everything in order
 			AddIdleTime()
 			If $g_bRunState = False Then Return
 			If $g_bRestart = True Then ContinueLoop
+			If $iChkForecastBoost = 1 Then;-------- forecast boost -----
+ 				$currentForecast = readCurrentForecast()
+ 					If $currentForecast >= Number($iTxtForecastBoost, 3) Then
+ 					SetLog("Boost Time !", $COLOR_GREEN)
+ 					Else
+ 					SetLog("Forecast index is below the required value, no boost !", $COLOR_RED)
+ 					EndIf
+ 			EndIf ;------------------------------------------------------
 			If IsSearchAttackEnabled() Then ; if attack is disabled skip reporting, requesting, donating, training, and boosting
 				Local $aRndFuncList = ['ReplayShare', 'NotifyReport', 'DonateCC,Train', 'BoostBarracks', 'BoostSpellFactory', 'BoostKing', 'BoostQueen', 'BoostWarden', 'RequestCC']
 				While 1
@@ -740,6 +748,7 @@ Func Idle() ;Sequence that runs until Full Army
     Static $iCollectCounter = 0 ; Collect counter, when reaches $g_iCollectAtCount, it will collect
 
 	Local $TimeIdle = 0 ;In Seconds
+	ForecastSwitch()
 	If $g_iDebugSetlog = 1 Then SetLog("Func Idle ", $COLOR_DEBUG)
 
 	While $IsFullArmywithHeroesAndSpells = False

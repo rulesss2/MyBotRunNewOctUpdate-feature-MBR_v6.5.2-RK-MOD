@@ -50,6 +50,7 @@ Global $g_hFrmBot_WNDPROC_ptr = 0
 #include "GUI\MBR GUI Control Android.au3"
 #include "MBR GUI Action.au3"
 #include "GUI\MBR GUI Control Tab Meteo.au3"
+#include "MOD_RK\GUI Control RK.au3"
 ; MOD DOC OC
 #include "MOD_DocOc\GUI\MOD TAB Control.au3"
 
@@ -69,6 +70,7 @@ Func InitializeMainGUI()
 		saveConfig()
 		;applyConfig()
 		setupProfileComboBox()
+		setupProfileComboBoxswitch()
 	EndIf
 
 	selectProfile() ; Choose the profile

@@ -35,3 +35,5 @@
 #include "other/BackgroundCheck.au3"
 #include "other/TransLevel.au3"
 #include "other/Multy Lang.au3"
+
+#include "functions\ProfileSwitch.au3"

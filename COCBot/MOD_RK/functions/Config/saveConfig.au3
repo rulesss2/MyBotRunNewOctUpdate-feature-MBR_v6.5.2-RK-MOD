@@ -31,10 +31,10 @@ Func SaveConfig_RK_MOD()
 
 	IniWriteS($g_sProfileConfigPath, "TransLevel", "Level", $iSldTransLevel)
 	 ;forecast
-	 IniWriteS($g_sProfileConfigPath, "forecast", "txtForecastBoost", GUICtrlRead($txtForecastBoost))
-	 IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMax", $icmbForecastHopingSwitchMax)
+	 IniWriteS($g_sProfileConfigPath, "forecast", "txtForecastBoost", GUICtrlRead($txtForecastBoost))	 
+	 IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMax", _GUICtrlComboBox_GetCurSel($cmbForecastHopingSwitchMax))
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtForecastHopingSwitchMax", GUICtrlRead($txtForecastHopingSwitchMax))
-	IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMin", $icmbForecastHopingSwitchMin)
+	IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMin", _GUICtrlComboBox_GetCurSel($cmbForecastHopingSwitchMin))	
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtForecastHopingSwitchMin", GUICtrlRead($txtForecastHopingSwitchMin))
 	IniWriteS($g_sProfileConfigPath, "forecast", "chkForecastBoost", $iChkForecastBoost ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkForecastHopingSwitchMax", $ichkForecastHopingSwitchMax ? 1 : 0)
@@ -42,7 +42,7 @@ Func SaveConfig_RK_MOD()
 	;Added Multi Switch Language by rulesss and Kychera
 	IniWriteS($g_sProfileConfigPath, "Lang", "cmbSwLang", _GUICtrlComboBox_GetCurSel($cmbSwLang))
 
-
+    ;Watchdog disable
 	IniWriteS($g_sProfileConfigPath, "Other", "chkLaunchWatchdog", $iChkLaunchWatchdog ? 1 : 0)
 
 	; Check Collectors Outside 
@@ -88,4 +88,39 @@ Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)
 		IniWriteS($profile, "SwitchAcc_Demen_Style", "MatchProfileAcc." & $i, _GUICtrlCombobox_GetCurSel($cmbAccountNo[$i-1])+1)		; 1 = Acc 1, 2 = Acc 2, etc.
 		IniWriteS($profile, "SwitchAcc_Demen_Style", "ProfileType." & $i, _GUICtrlCombobox_GetCurSel($cmbProfileType[$i-1])+1)			; 1 = Active, 2 = Donate, 3 = Idle
 	Next
-EndFunc
+; Profile Switch
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkGoldSwitchMax", $ichkGoldSwitchMax ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "cmbGoldMaxProfile", _GUICtrlComboBox_GetCurSel($cmbGoldMaxProfile))
+	
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxGoldAmount", GUICtrlRead($txtMaxGoldAmount))	
+	
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkGoldSwitchMin", $ichkGoldSwitchMin ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "cmbGoldMinProfile", _GUICtrlComboBox_GetCurSel($cmbGoldMinProfile))
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinGoldAmount", GUICtrlRead($txtMinGoldAmount))
+    
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkElixirSwitchMax", $ichkElixirSwitchMax ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "cmbElixirMaxProfile", _GUICtrlComboBox_GetCurSel($cmbElixirMaxProfile))
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxElixirAmount", GUICtrlRead($txtMaxElixirAmount))
+	
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkElixirSwitchMin", $ichkElixirSwitchMin ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "cmbElixirMinProfile", _GUICtrlComboBox_GetCurSel($cmbElixirMinProfile))
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinElixirAmount", GUICtrlRead($txtMinElixirAmount))
+	
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkDESwitchMax", $ichkDESwitchMax ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "cmbDEMaxProfile", _GUICtrlComboBox_GetCurSel($cmbDEMaxProfile))
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxDEAmount", GUICtrlRead($txtMaxDEAmount))
+	
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkDESwitchMin", $ichkDESwitchMin ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "cmbDEMinProfile", _GUICtrlComboBox_GetCurSel($cmbDEMinProfile))
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinDEAmount", GUICtrlRead($txtMinDEAmount))
+	
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkTrophySwitchMax", $ichkTrophySwitchMax ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "cmbTrophyMaxProfile", _GUICtrlComboBox_GetCurSel($cmbTrophyMaxProfile))
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxTrophyAmount", GUICtrlRead($txtMaxTrophyAmount))
+	
+	IniWriteS($g_sProfileConfigPath, "profiles", "chkTrophySwitchMin", $ichkTrophySwitchMin ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "profiles", "cmbTrophyMinProfile", _GUICtrlComboBox_GetCurSel($cmbTrophyMinProfile))
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinTrophyAmount", GUICtrlRead($txtMinTrophyAmount))
+	
+
+EndFunc   ;==>SaveConfig_RK_MOD

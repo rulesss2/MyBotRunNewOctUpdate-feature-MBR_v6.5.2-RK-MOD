@@ -68,7 +68,7 @@ Global $ichkForecastHopingSwitchMax, $icmbForecastHopingSwitchMax , $itxtForecas
 Global $icmbSwLang = 0
 Global $cmbSwLang = 0
 ;--------------------------------------------------------------------
-
+;Disable Watchdog
 Global $iChkLaunchWatchdog = 1
 Global $ChkLaunchWatchdog = 0
 
@@ -114,3 +114,19 @@ Global $bReMatchAcc = False
 Global $aTimerStart[8], $aTimerEnd[8]
 Global $aRemainTrainTime[8], $aUpdateRemainTrainTime[8], $nMinRemainTrain
 Global $aLocateAccConfig[8], $aAccPosY[8]
+
+; Profile Switch 
+Global $profileString
+Global $ichkGoldSwitchMax = 0, $itxtMaxGoldAmount = 6000000, $icmbGoldMaxProfile = 0, $ichkGoldSwitchMin = 0, $itxtMinGoldAmount = 500000, $icmbGoldMinProfile = 0
+Global $ichkElixirSwitchMax = 0, $itxtMaxElixirAmount = 6000000, $icmbElixirMaxProfile = 0, $ichkElixirSwitchMin = 0, $itxtMinElixirAmount = 500000, $icmbElixirMinProfile = 0
+Global $ichkDESwitchMax = 0, $itxtMaxDEAmount = 200000, $icmbDEMaxProfile = 0, $ichkDESwitchMin = 0, $itxtMinDEAmount = 10000, $icmbDEMinProfile = 0
+Global $ichkTrophySwitchMax = 0, $itxtMaxTrophyAmount = 3000, $icmbTrophyMaxProfile = 0, $ichkTrophySwitchMin = 0, $itxtMinTrophyAmount = 1000, $icmbTrophyMinProfile = 0
+
+Global $chkGoldSwitchMax = 0, $cmbGoldMaxProfile = 0, $lblGoldMax = 0, $txtMaxGoldAmount = 0
+Global $chkGoldSwitchMin = 0, $cmbGoldMinProfile = 0, $lblGoldMin = 0, $txtMinGoldAmount = 0, $picProfileGold = 0
+Global $chkElixirSwitchMax = 0, $cmbElixirMaxProfile = 0, $lblElixirMax = 0, $txtMaxElixirAmount = 0
+Global $chkElixirSwitchMin = 0, $cmbElixirMinProfile = 0, $lblElixirMin = 0, $txtMinElixirAmount = 0, $picProfileElixir = 0
+Global $chkDESwitchMax = 0, $cmbDEMaxProfile = 0, $lblDEMax = 0, $txtMaxDEAmount = 0
+Global $chkDESwitchMin = 0, $cmbDEMinProfile = 0, $lblDEMin = 0, $txtMinDEAmount = 0, $picProfileDE = 0
+Global $chkTrophySwitchMax = 0, $cmbTrophyMaxProfile = 0, $lblTrophyMax = 0, $txtMaxTrophyAmount = 0
+Global $chkTrophySwitchMin = 0, $cmbTrophyMinProfile = 0, $lblTrophyMin = 0, $txtMinTrophyAmount = 0, $picProfileTrophy = 0

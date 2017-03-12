@@ -16,7 +16,7 @@
 
 Global $g_hGUI_RK = 0
 
-Global $g_hGUI_RK_TAB = 0,  $g_hGUI_RK_TAB_ITEM1 = 0 , $g_hGUI_RK_TAB_ITEM2 = 0 , $g_hGUI_RK_TAB_ITEM4 = 0
+Global $g_hGUI_RK_TAB = 0,  $g_hGUI_RK_TAB_ITEM1 = 0 , $g_hGUI_RK_TAB_ITEM2 = 0 , $g_hGUI_RK_TAB_ITEM4 = 0, $g_hGUI_RK_TAB_ITEM5 = 0
 Global $g_hRKTab = 0
 
 
@@ -36,7 +36,9 @@ Func CreateRKTab()
    ReDim $g_aiControlPrevState[$g_hLastControlToHide + 1]
 
 			$g_hGUI_RK_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(107,1,"Forecast"))
-ForecastGUI()
+              ForecastGUI()
+            $g_hGUI_RK_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslated(999,1, "Switch Profiles"))
+              SwitchProfilesGUI()
    GUICtrlCreateTabItem("")
 
 EndFunc
@@ -212,8 +214,133 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 setupProfileComboBox()
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$cmbSwLang = GUICtrlCreateCombo("", $x, $y + 50, 45, 45, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-             GUICtrlSetData(-1, "EN" & "|" & "RU" & "|" & "FR" & "|" & "DE" & "|" & "ES" & "|" & "IT" & "|" & "PT" & "|" & "IN", "RU")
+             GUICtrlSetData(-1, "EN" & "|" & "RU" & "|" & "FR" & "|" & "DE" & "|" & "ES" & "|" & "IT" & "|" & "PT" & "|" & "IN", "EN")
 			 GUICtrlSetOnEvent(-1, "cmbSwLang")
 GUICtrlCreateTabItem("")
 
+EndFunc
+
+Func SwitchProfilesGUI()
+$11 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 410, $WS_CLIPCHILDREN)
+Local $sTxtTip = ""
+Local $x = 25, $y = 60
+	GUICtrlCreateGroup(GetTranslated(999,7, "Gold Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ;Gold Switch
+		$chkGoldSwitchMax = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
+			$sTxtTip = GetTranslated(999,9, "Enable this to switch profiles when gold is above amount.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+		$cmbGoldMaxProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			$sTxtTip = GetTranslated(999,10, "Select which profile to be switched to when conditions met")
+			_GUICtrlSetTip(-1, $sTxtTip)
+		$lblGoldMax = GUICtrlCreateLabel(GetTranslated(999,11, "When Gold is Above"), $x + 145, $y, -1, -1)
+		$txtMaxGoldAmount = GUICtrlCreateInput("6000000", $x + 275, $y - 5, 60, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			$sTxtTip = GetTranslated(999,12, "Set the amount of Gold to trigger switching Profile.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetLimit(-1, 7)
+
+	$y += 30
+		$chkGoldSwitchMin = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
+			$sTxtTip = GetTranslated(999,13, "Enable this to switch profiles when gold is below amount.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+		$cmbGoldMinProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			$sTxtTip = GetTranslated(999,10, "Select which profile to be switched to when conditions met")
+			_GUICtrlSetTip(-1, $sTxtTip)
+		$lblGoldMin = GUICtrlCreateLabel(GetTranslated(999,14, "When Gold is Below"), $x + 145, $y, -1, -1)
+		$txtMinGoldAmount = GUICtrlCreateInput("500000", $x + 275, $y - 5, 60, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			$sTxtTip = GetTranslated(999,12, "Set the amount of Gold to trigger switching Profile.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetLimit(-1, 7)
+		$picProfileGold = _GUICtrlCreatePic(@ScriptDir & "\Images\GoldStorage.png", $x + 350, $y - 40, 60, 60)
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+	$y += 48
+	GUICtrlCreateGroup(GetTranslated(999,15, "Elixir Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ; Elixir Switch
+		$chkElixirSwitchMax = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
+			$sTxtTip = GetTranslated(999,16, "Enable this to switch profiles when Elixir is above amount.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+
+		$cmbElixirMaxProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			$sTxtTip = GetTranslated(999,10, "Select which profile to be switched to when conditions met")
+			_GUICtrlSetTip(-1, $sTxtTip)
+		$lblElixirMax = GUICtrlCreateLabel(GetTranslated(999,17, "When Elixir is Above"), $x + 145, $y, -1, -1)
+		$txtMaxElixirAmount = GUICtrlCreateInput("6000000", $x + 275, $y - 5, 60, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			$sTxtTip = GetTranslated(999,18, "Set the amount of Elixir to trigger switching Profile.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetLimit(-1, 7)
+	$y += 30
+		$chkElixirSwitchMin = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
+			$sTxtTip = GetTranslated(999,19, "Enable this to switch profiles when Elixir is below amount.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+		$cmbElixirMinProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			$sTxtTip = GetTranslated(999,10, "Select which profile to be switched to when conditions met")
+			_GUICtrlSetTip(-1, $sTxtTip)
+		$lblElixirMin = GUICtrlCreateLabel(GetTranslated(999,20, "When Elixir is Below"), $x + 145, $y, -1, -1)
+		$txtMinElixirAmount = GUICtrlCreateInput("500000", $x + 275, $y - 5, 60, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			$sTxtTip = GetTranslated(999,18, "Set the amount of Elixir to trigger switching Profile.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetLimit(-1, 7)
+		$picProfileElixir = _GUICtrlCreatePic(@ScriptDir & "\Images\ElixirStorage.png", $x + 350, $y - 40, 60, 60)
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+	$y += 48
+	GUICtrlCreateGroup(GetTranslated(999,21, "Dark Elixir Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ;DE Switch
+		$chkDESwitchMax = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
+			$sTxtTip = GetTranslated(999,22, "Enable this to switch profiles when Dark Elixir is above amount.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+		$cmbDEMaxProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			$sTxtTip = GetTranslated(999,10, "Select which profile to be switched to when conditions met")
+			_GUICtrlSetTip(-1, $sTxtTip)
+		$lblDEMax = GUICtrlCreateLabel(GetTranslated(999,23, "When Dark Elixir is Above"), $x + 145, $y, -1, -1)
+		$txtMaxDEAmount = GUICtrlCreateInput("200000", $x + 275, $y - 5, 60, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			$sTxtTip = GetTranslated(999,24, "Set the amount of Dark Elixir to trigger switching Profile.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetLimit(-1, 6)
+	$y += 30
+		$chkDESwitchMin = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
+			$sTxtTip = GetTranslated(999,24, "Enable this to switch profiles when Dark Elixir is below amount.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+		$cmbDEMinProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			$sTxtTip = GetTranslated(999,10, "Select which profile to be switched to when conditions met")
+			_GUICtrlSetTip(-1, $sTxtTip)
+		$lblDEMin = GUICtrlCreateLabel(GetTranslated(999,26, "When Dark Elixir is Below"), $x + 145, $y, -1, -1)
+		$txtMinDEAmount = GUICtrlCreateInput("10000", $x + 275, $y - 5, 60, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			$sTxtTip = GetTranslated(999,25, "Set the amount of Dark Elixir to trigger switching Profile.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetLimit(-1, 6)
+		$picProfileDE = _GUICtrlCreatePic(@ScriptDir & "\Images\DEStorage.png", $x + 350, $y - 40, 60, 60)
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+	$y += 48
+	GUICtrlCreateGroup(GetTranslated(999,27, "Trophy Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ; Trophy Switch
+		$chkTrophySwitchMax = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
+			$sTxtTip = GetTranslated(999,28, "Enable this to switch profiles when Trophies are above amount.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+		$cmbTrophyMaxProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			$sTxtTip = GetTranslated(999,10, "Select which profile to be switched to when conditions met")
+			_GUICtrlSetTip(-1, $sTxtTip)
+		$lblTrophyMax = GUICtrlCreateLabel(GetTranslated(999,29, "When Trophies are Above"), $x + 145, $y, -1, -1)
+		$txtMaxTrophyAmount = GUICtrlCreateInput("3000", $x + 275, $y - 5, 60, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			$sTxtTip = GetTranslated(999,30, "Set the amount of Trophies to trigger switching Profile.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetLimit(-1, 4)
+	$y += 30
+		$chkTrophySwitchMin = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
+			$sTxtTip = GetTranslated(999,31, "Enable this to switch profiles when Trophies are below amount.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+		$cmbTrophyMinProfile = GUICtrlCreateCombo("", $x + 60, $y - 5, 75, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			$sTxtTip = GetTranslated(999,10, "Select which profile to be switched to when conditions met")
+			_GUICtrlSetTip(-1, $sTxtTip)
+		$lblTrophyMin = GUICtrlCreateLabel(GetTranslated(999,32, "When Trophies are Below"), $x + 145, $y, -1, -1)
+		$txtMinTrophyAmount = GUICtrlCreateInput("1000", $x + 275, $y - 5, 60, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			$sTxtTip = GetTranslated(999,30, "Set the amount of Trophies to trigger switching Profile.")
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetLimit(-1, 4)
+		$picProfileTrophy = _GUICtrlCreatePic(@ScriptDir & "\Images\TrophyLeague.png", $x + 350, $y - 40, 60, 60)
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+		setupProfileComboBoxswitch()
+ ;GUICtrlCreateTabItem("")
 EndFunc

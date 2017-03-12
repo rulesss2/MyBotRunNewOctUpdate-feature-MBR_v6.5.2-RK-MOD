@@ -59,9 +59,8 @@ Func chkForecastHopingSwitchMin()
 	EndIf
 EndFunc
 
-Func cmbSwLang()
-;_GUICtrlComboBox_SetCurSel($cmbSwLang, $icmbSwLang)
-;$icmbSwLang = _GUICtrlComboBox_GetCurSel($cmbSwLang)
+Func cmbSwLang() ; Rules and Kychera
+
      Switch GUICtrlRead($cmbSwLang)
 	 ;
 		 Case "EN"
@@ -330,33 +329,33 @@ EndFunc
 Func ForecastSwitch()
 If $ichkForecastHopingSwitchMax	= 1 Or $ichkForecastHopingSwitchMin = 1 And $g_bRunState Then
 	$currentForecast = readCurrentForecast()
-	Local $NextProfile = ""
+	Local $SwitchtoProfile = ""
 	Local $aArray = _FileListToArray($g_sProfilePath, "*", $FLTA_FOLDERS)
 	_ArrayDelete($aArray,0)
 	While True
 		If $ichkForecastHopingSwitchMax = 1 Then
 		If $currentForecast < Number($itxtForecastHopingSwitchMax, 3) And $g_sProfileCurrentName <> $icmbForecastHopingSwitchMax Then
-		$NextProfile = $icmbForecastHopingSwitchMax
-		Local $g_sProfileCurrentName = $aArray[number($icmbForecastHopingSwitchMax)]
+		$SwitchtoProfile = $icmbForecastHopingSwitchMax
+		Local $aNewProfile = $aArray[number($icmbForecastHopingSwitchMax)]
 			SetLog("Weather index < " & $itxtForecastHopingSwitchMax & " !!", $COLOR_ORANGE)
-			SetLog("Switching profile to : " & $g_sProfileCurrentName, $COLOR_BLUE)
+			SetLog("Switching profile to : " & $aNewProfile, $COLOR_BLUE)
 		ExitLoop
 		EndIf
 		EndIf
 		If $ichkForecastHopingSwitchMin = 1 Then
 		If $currentForecast > Number($itxtForecastHopingSwitchMin, 3) And $g_sProfileCurrentName <> $icmbForecastHopingSwitchMin Then
-		$NextProfile = $icmbForecastHopingSwitchMin
-		Local $g_sProfileCurrentName = $aArray[number($icmbForecastHopingSwitchMin)]
+		$SwitchtoProfile = $icmbForecastHopingSwitchMin
+		Local $aNewProfile = $aArray[number($icmbForecastHopingSwitchMin)]
 			SetLog("Weather index > " & $itxtForecastHopingSwitchMin & " !!", $COLOR_ORANGE)
-			SetLog("Switching profile to : " & $g_sProfileCurrentName, $COLOR_BLUE)
+			SetLog("Switching profile to : " & $aNewProfile, $COLOR_BLUE)
 		ExitLoop
 		EndIf
 		EndIf
 	ExitLoop
 	WEnd
-	If $NextProfile <> "" Then
-		If $g_sProfileCurrentName <> $NextProfile Then
-		_GUICtrlComboBox_SetCurSel($g_hCmbProfile, $NextProfile)
+	If $SwitchtoProfile <> "" Then
+		If $g_sProfileCurrentName <> $SwitchtoProfile Then
+		_GUICtrlComboBox_SetCurSel($g_hCmbProfile, $SwitchtoProfile)
 		cmbProfile()
 		EndIf
 	EndIf

@@ -76,11 +76,11 @@ Func CreateBottomPanel()
 		   GUICtrlSetOnEvent(-1, "chkBackground")
 		   GUICtrlSetState(-1, (($g_bAndroidAdbScreencap = True) ? ($GUI_CHECKED) : ($GUI_UNCHECKED)))
 
-		$g_hbtnDebug = GUICtrlCreateButton(GetTranslated(602,100, "Debug"), $x + 100, $y + 72, 80, -1)
-			_GUICtrlSetTip(602,101, "Use this to make a zip with necessary folders to report a issue!.")
-			GUICtrlSetBkColor(-1, 0xf7754e)
-			GUICtrlSetOnEvent($g_hbtnDebug, "btnReport")
-
+		;$g_hbtnDebug = GUICtrlCreateButton(GetTranslated(602,100, "Debug"), $x + 100, $y + 72, 80, -1)
+		;	_GUICtrlSetTip(602,101, "Use this to make a zip with necessary folders to report a issue!.")
+		;	GUICtrlSetBkColor(-1, 0xf7754e)
+		;	GUICtrlSetOnEvent($g_hbtnDebug, "btnReport")
+         
 	   $g_hLblDonate = GUICtrlCreateLabel(GetTranslated(601,19,"Support the development"), $x + 224, $y + 80, 220, 24, $SS_RIGHT)
 		   GUICtrlSetCursor(-1, 0) ; https://www.autoitscript.com/autoit3/docs/functions/MouseGetCursor.htm
 		   GUICtrlSetFont(-1, 8.5, $FW_BOLD) ;, $GUI_FONTITALIC + $GUI_FONTUNDER)

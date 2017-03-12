@@ -22,6 +22,12 @@ Global $chkCanUse[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 Global $chkDonateAccount[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 Global $cmbAccount[9] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
+; SwitchAcc_Demen_Style
+Global $g_hRdoSwitchAcc_DocOc = 0, $g_hRdoSwitchAcc_Demen = 0, $g_StartHideSwitchAcc_DocOc = 0, $g_EndHideSwitchAcc_DocOc = 0
+
+#include "..\..\MOD_RK\GUI\GUI Design SwitchAcc_Demen.au3"
+#include "..\..\MOD_RK\GUI\GUI Design ProfileStats_Demen.au3"
+
 Func CreateModProfiles()
 
     Local $x = 25, $y = 45
@@ -108,6 +114,7 @@ Func CreateModProfiles()
 
 
 	Local $x = 10, $z = 189, $w = 357, $y = 85
+	$g_StartHideSwitchAcc_DocOc = GUICtrlCreateDummy()	; Hide DocOc SwitchAcc to make room for SwitchAcc_Demen_Style
 	GUICtrlCreateGroup(GetTranslated(108,1, "Smart Switch Accounts"), $x, $y, 430, 295)
 		$x += 10
 		$y += 20
@@ -166,9 +173,13 @@ Func CreateModProfiles()
 			$chkDonateAccount[8] = GUICtrlCreateCheckbox(GetTranslated(108,5, "Donate only"), $w, $y, 77, 17)
 				GUICtrlSetOnEvent(-1, "chkAccountsProperties")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
-
+    $g_EndHideSwitchAcc_DocOc = GUICtrlCreateDummy()	; Hide DocOc SwitchAcc to make room for SwitchAcc-Demen-Style
+	
 	setupProfileComboBox()
 	PopulatePresetComboBox()
+	
+	CreateSwitchAcc_Demen(); SwitchAcc_Demen_Style
+	
 EndFunc
 
 

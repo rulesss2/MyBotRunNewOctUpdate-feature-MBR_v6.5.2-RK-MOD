@@ -479,11 +479,12 @@ Func FinalInitialization(Const $hBLT, Const $sAI)
    ;AdlibRegister("PushBulletDeleteOldPushes", $g_iPBDeleteOldPushesInterval)
 
    CheckDisplay() ; verify display size and DPI (Dots Per Inch) setting
+   If $iSwitchAccStyle = 2 Then btnUpdateProfile()	; update profiles & StatsProfile - SwitchAcc_Demen_Style
 
    LoadAmountOfResourcesImages()
 
    ;~ InitializeVariables();initialize variables used in extrawindows
-   CheckVersion() ; check latest version on mybot.run site
+   ;~ CheckVersion() ; check latest version on mybot.run site
 
    ;~ Remember time in Milliseconds bot launched
    $g_iBotLaunchTime = TimerDiff($hBLT)
@@ -537,6 +538,13 @@ Func MainLoop()
 EndFunc   ;==>MainLoop
 
 Func runBot() ;Bot that runs everything in order
+     
+	If $iSwitchAccStyle = 2 And $ichkSwitchAcc = 1 And $bReMatchAcc = True Then ; SwitchAcc_DEMEN_Style
+		$nCurProfile = _GUICtrlComboBox_GetCurSel($g_hCmbProfile) + 1
+		Setlog("Rematching Profile [" & $nCurProfile & "] - " & $ProfileList[$nCurProfile] & " (CoC Acc. " & $aMatchProfileAcc[$nCurProfile - 1] & ")")
+		SwitchCoCAcc()
+		$bReMatchAcc = False
+	EndIf
 
 	If $FirstInit Then SwitchAccount(True)
 	Local $iWaitTime
@@ -674,6 +682,7 @@ Func runBot() ;Bot that runs everything in order
 				UpgradeWall()
 				If _Sleep($iDelayRunBot3) Then Return
 				If $g_bRestart = True Then ContinueLoop
+				If $ichkSwitchAcc = 1 And $aProfileType[$nCurProfile - 1] = 2 Then checkSwitchAcc() ;  Switching to active account after donation - SwitchAcc_DEMEN_Style
 				Idle()
 				;$fullArmy1 = $fullArmy
 				If _Sleep($iDelayRunBot3) Then Return
@@ -865,7 +874,11 @@ Func Idle() ;Sequence that runs until Full Army
 		If $iChkSnipeWhileTrain = 1 Then SnipeWhileTrain() ;snipe while train
 
 		If $g_iCommandStop = -1 Then ; Check if closing bot/emulator while training and not in halt mode
-			SmartWait4Train()
+			If $iSwitchAccStyle = 2 And $ichkSwitchAcc = 1 Then ; SwitchAcc_DEMEN_Style
+				checkSwitchAcc()
+			Else
+				SmartWait4Train()
+			EndIf
 			If $g_bRestart = True Then ExitLoop ; if smart wait activated, exit to runbot in case user adjusted GUI or left emulator/bot in bad state
 		EndIf
 
@@ -915,6 +928,11 @@ Func AttackMain() ;Main control for attack functions
 		Else
 			Setlog("No one of search condition match:", $COLOR_WARNING)
 			Setlog("Waiting on troops, heroes and/or spells according to search settings", $COLOR_WARNING)
+			If $iSwitchAccStyle = 2 And $iSwitchAccStyle = 1 Then ; SwitchAcc_DEMEN_Style
+				checkSwitchAcc()
+			Else
+				SmartWait4Train()
+			EndIf
 			$Is_SearchLimit = False
 			$Is_ClientSyncError = False
 			$g_bQuickAttack = False

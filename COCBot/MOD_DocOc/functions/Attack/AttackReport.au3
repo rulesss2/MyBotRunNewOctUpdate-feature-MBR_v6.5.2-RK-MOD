@@ -184,7 +184,12 @@ Func AttackReport()
 		$AtkLogTxt &= StringFormat("%4d", $g_iStatsBonusLast[$CurrentAccount][$eLootDarkElixir]) & "|"
 		$AtkLogTxt &= $LeagueShort & "|"
 	Else
-		$AtkLogTxt = "" & _NowTime(4) & "|"
+		If $ichkSwitchAcc = 1 Then
+			$AtkLogTxt = String($nCurProfile) & " |" & _NowTime(4) & "|"
+		Else
+			$AtkLogTxt = "" & _NowTime(4) & "|"
+		EndIf
+		
 		$AtkLogTxt &= StringFormat("%5d", $iTrophyCurrent) & "|"
 		$AtkLogTxt &= StringFormat("%6d", $SearchCount) & "|"
 		$AtkLogTxt &= StringFormat("%7d", $g_iStatsLastAttack[$CurrentAccount][$eLootGold]) & "|"
@@ -247,6 +252,17 @@ Func AttackReport()
 		EndIf
 	EndIf
 	$g_iAttackedVillageCount[$CurrentAccount][$g_iMatchMode] += 1
+	
+	If $ichkSwitchAcc = 1 Then 	; SwitchAcc_Demen_style
+		$aGoldTotalAcc[$nCurProfile-1] += $g_iStatsLastAttack[$CurrentAccount][$eLootGold] + $g_iStatsBonusLast[$CurrentAccount][$eLootGold]
+		$aElixirTotalAcc[$nCurProfile-1] += $g_iStatsLastAttack[$CurrentAccount][$eLootElixir] + $g_iStatsBonusLast[$CurrentAccount][$eLootElixir]
+		If $g_iStatsStartedWith[$CurrentAccount][$eLootDarkElixir] <> "" Then
+			$aDarkTotalAcc[$nCurProfile-1] += $g_iStatsLastAttack[$CurrentAccount][$eLootDarkElixir] + $g_iStatsBonusLast[$CurrentAccount][$eLootDarkElixir]
+		EndIf
+		$aTrophyLootAcc[$nCurProfile-1] += $g_iStatsLastAttack[$CurrentAccount][$eLootTrophy]
+		$aAttackedCountAcc[$nCurProfile-1] += 1
+	EndIf
+	
 	UpdateStats()
 	$actual_train_skip = 0 ;
 

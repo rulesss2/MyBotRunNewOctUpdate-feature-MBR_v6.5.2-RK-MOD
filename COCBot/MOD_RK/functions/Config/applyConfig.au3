@@ -66,7 +66,8 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			GUICtrlSetState($g_hChkIgnoreEColl, $ichkIgnoreEColl = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			GUICtrlSetState($g_hChkIgnoreDColl, $ichkIgnoreDColl = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			chkSmartUpgrade()
-
+            
+			
 		Case "Save"
         $iChkUnitFactor = (GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED)
 		$iChkWaveFactor = (GUICtrlRead($ChkWaveFactor) = $GUI_CHECKED)
@@ -156,3 +157,55 @@ Func ApplyConfig_RK_CollOutside($TypeReadSave)
 	$iDBMinCollOutsidePercent = GUICtrlRead($g_hTxtDBMinCollOutsidePercent) 
     EndSwitch
 EndFunc   ;==>ApplyConfig_RK_CollOutside
+
+Func ApplyConfig_SwitchAcc($TypeReadSave, $SwitchAcc_Style = False)
+	; <><><> SwitchAcc_Demen_Style <><><>
+	Switch $TypeReadSave
+		Case "Read"
+			If $SwitchAcc_Style = True Then
+				GUICtrlSetState($g_hRdoSwitchAcc_DocOc, $iSwitchAccStyle = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+				GUICtrlSetState($g_hRdoSwitchAcc_Demen, $iSwitchAccStyle = 2 ? $GUI_CHECKED : $GUI_UNCHECKED)
+				RdoSwitchAcc_Style()
+			EndIf
+			GUICtrlSetState($chkSwitchAcc, $ichkSwitchAcc = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($chkTrain, $ichkTrain = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			If $ichkSmartSwitch = 1 Then
+			   GUICtrlSetState($radSmartSwitch, $GUI_CHECKED)
+			Else
+			   GUICtrlSetState($radNormalSwitch, $GUI_CHECKED)
+			EndIf
+			radNormalSwitch()
+			_GUICtrlCombobox_SetCurSel($cmbTotalAccount, $icmbTotalCoCAcc - 1)
+			If $ichkCloseTraining >= 1 Then
+				GUICtrlSetState($chkUseTrainingClose, $GUI_CHECKED)
+				If $ichkCloseTraining = 1 Then
+					GUICtrlSetState($radCloseCoC, $GUI_CHECKED)
+				Else
+					GUICtrlSetState($radCloseAndroid, $GUI_CHECKED)
+				EndIf
+			Else
+				GUICtrlSetState($chkUseTrainingClose, $GUI_UNCHECKED)
+			EndIf
+			For $i = 0 to 7
+				_GUICtrlCombobox_SetCurSel($cmbAccountNo[$i], $aMatchProfileAcc[$i]-1)
+				_GUICtrlCombobox_SetCurSel($cmbProfileType[$i], $aProfileType[$i]-1)
+			Next
+
+		Case "Save"
+			If $SwitchAcc_Style = True Then
+				If GUICtrlRead($g_hRdoSwitchAcc_DocOc) = $GUI_CHECKED Then
+					$iSwitchAccStyle = 1
+				ElseIf GUICtrlRead($g_hRdoSwitchAcc_Demen) = $GUI_CHECKED Then
+					$iSwitchAccStyle = 2
+				EndIf
+			EndIf
+			$ichkSwitchAcc = GUICtrlRead($chkSwitchAcc) = $GUI_CHECKED ? 1 : 0
+			$ichkTrain = GUICtrlRead($chkTrain) = $GUI_CHECKED ? 1 : 0
+			$icmbTotalCoCAcc = _GUICtrlCombobox_GetCurSel($cmbTotalAccount)+1
+			$ichkSmartSwitch = GUICtrlRead($radSmartSwitch) = $GUI_CHECKED ? 1 : 0
+			$ichkCloseTraining = GUICtrlRead($chkUseTrainingClose) = $GUI_CHECKED ? 1 : 0
+			If $ichkCloseTraining = 1 Then
+				$ichkCloseTraining = GUICtrlRead($radCloseCoC) = $GUI_CHECKED ? 1 : 2
+			EndIf
+	EndSwitch
+EndFunc

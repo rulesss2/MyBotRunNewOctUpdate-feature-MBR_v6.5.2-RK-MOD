@@ -47,6 +47,17 @@ Func VillageReport($bBypass = False, $bSuppressLog = False, $bForceUpdateAll = F
 		If Not $bSuppressLog Then SetLog(" [G]: " & _NumberFormat($iGoldCurrent) & " [E]: " & _NumberFormat($iElixirCurrent) & " [GEM]: " & _NumberFormat($iGemAmount), $COLOR_SUCCESS)
 	EndIf
 	
+	
+	If $ichkSwitchAcc = 1 Then										; SwitchAcc_Demen_Style
+		$aFreeBuilderCountAcc[$nCurProfile -1] = $iFreeBuilderCount
+		$aTotalBuilderCountAcc[$nCurProfile -1] = $iTotalBuilderCount
+		$aTrophyCurrentAcc[$nCurProfile -1] = $iTrophyCurrent
+		$aGoldCurrentAcc[$nCurProfile -1] = $iGoldCurrent
+		$aElixirCurrentAcc[$nCurProfile -1] = $iElixirCurrent
+		$aDarkCurrentAcc[$nCurProfile -1] = $iDarkCurrent
+		$aGemAmountAcc[$nCurProfile -1] = $iGemAmount
+    EndIf															; SwitchAcc_Demen_Style
+	
 	; Have not Ran thru whole bot code to replace all the $iGoldCurrent With its Multi Account Replacement
 	; Of $g_iStatsCurrent[$CurrentAccount][$eLootGold], So Both Variables Co exist, Same is true for
 	; For the Group below This line to the =====End Group==== Line

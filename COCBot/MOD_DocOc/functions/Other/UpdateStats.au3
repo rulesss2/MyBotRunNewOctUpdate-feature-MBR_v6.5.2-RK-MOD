@@ -226,7 +226,7 @@ Func UpdateStats($bForceUpdateAll = False)
 		;Skipped Per Account
 		If $bForceUpdateAll = True Or $iOldSkippedVillageCount[$CurrentAccount] <> $g_iSkippedVillageCount[$CurrentAccount] Then
 			GUICtrlSetData($g_hLblResultVillagesSkipped, _NumberFormat($g_iSkippedVillageCount[$CurrentAccount], True))
-			GUICtrlSetData($g_hLblResultSkippedHourNow, _NumberFormat($g_iSkippedVillageCount[$CurrentAccount], True))
+			If $iSwitchAccStyle <> 2 And $ichkSwitchAcc <> 1 Then GUICtrlSetData($g_hLblResultSkippedHourNow, _NumberFormat($g_iSkippedVillageCount[$CurrentAccount], True))	;	SwitchAcc_Demen_Style
 			$iOldSkippedVillageCount[$CurrentAccount] = $g_iSkippedVillageCount[$CurrentAccount]
 		EndIf
 
@@ -371,7 +371,7 @@ Func UpdateStats($bForceUpdateAll = False)
 	;UPDATED TO MISC STAT TAB
 	If $bForceUpdateAll = True Or $iOldAttackedCount <> $iAttackedCount Then
 		GUICtrlSetData($g_hLblResultVillagesAttacked, _NumberFormat($iAttackedCount, True))
-		GUICtrlSetData($g_hLblResultAttackedHourNow, _NumberFormat($iAttackedCount, True))
+		If $iSwitchAccStyle <> 2 And $ichkSwitchAcc <> 1 Then GUICtrlSetData($g_hLblResultAttackedHourNow, _NumberFormat($iAttackedCount, True));	SwitchAcc_Demen_Style
 		$iOldAttackedCount = $iAttackedCount
 	EndIf
 	;END UPDATED TO MISC STAT TAB
@@ -506,7 +506,11 @@ Func UpdateStats($bForceUpdateAll = False)
 		GUICtrlSetData($g_hLblResultDEHourNow, "") ;GUI BOTTOM
 		$ResetStats = 0
 	EndIf
-
+   
+    If $iSwitchAccStyle = 2 And $iChkSwitchAcc = 1 Then		; ====SwitchAcc_Demen_Style
+		UpdateStatsForSwitchAcc()
+	EndIf
+	
 UpdateStatsSwitchMode($bForceUpdateAll)	; Enable when Function is added.
 
 EndFunc   ;==>UpdateStats
@@ -528,9 +532,9 @@ Func ResetStats()
 	Dim $g_iStatsBonusLast[9][$eLootCount]
 	Dim $g_iSkippedVillageCount[9]
 	Dim $g_iDroppedTrophyCount[9]
-	Dim $g_iSearchCost[9] 
-	Dim $g_iTrainCostElixir[9] 
-	Dim $g_iTrainCostDElixir[9] 
+	Dim $g_iSearchCost[9]
+	Dim $g_iTrainCostElixir[9]
+	Dim $g_iTrainCostDElixir[9]
 	Dim $g_iGoldFromMines[9]
 	Dim $g_iElixirFromCollectors[9]
 	Dim $g_iDElixirFromDrills[9]
@@ -575,7 +579,11 @@ Func ResetStats()
 	$g_iTotalDonateStatsTroopsXP = 0
 	$g_iTotalDonateStatsSpells = 0
 	$g_iTotalDonateStatsSpellsXP = 0
-
+    
+	If $iSwitchAccStyle = 2 And $iChkSwitchAcc = 1 Then	; SwitchAcc_Demen_Style
+		ResetStatsForSwitchAcc()
+	EndIf
+	
 	UpdateStats()
 EndFunc   ;==>ResetStats
 

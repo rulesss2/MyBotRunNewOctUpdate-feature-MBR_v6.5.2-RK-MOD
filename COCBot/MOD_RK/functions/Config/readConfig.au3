@@ -69,4 +69,21 @@ $g_iCmbCSVSpeed[$LB] = Int(IniRead($g_sProfileConfigPath, "DeploymentSpeed", "LB
 	IniReadS($iSmartMinElixir, $g_sProfileConfigPath, "upgrade", "SmartMinElixir", 200000, "int")
 	IniReadS($iSmartMinDark, $g_sProfileConfigPath, "upgrade", "SmartMinDark", 1500, "int")
 	
+	
 EndFunc   ;==>ReadConfig_RK_MOD
+
+Func ReadConfig_SwitchAcc($SwitchAcc_Style = False)
+	; <><><> SwitchAcc_Demen_Style <><><>
+	If $SwitchAcc_Style = True Then IniReadS($iSwitchAccStyle, $Profile, "SwitchAcc_Demen_Style", "SwitchType", 1, "int")
+
+	IniReadS($ichkSwitchAcc, $profile, "SwitchAcc_Demen_Style", "Enable", 0, "int")
+	IniReadS($ichkTrain, $profile, "SwitchAcc_Demen_Style", "Pre-train", 0, "int")
+	IniReadS($icmbTotalCoCAcc, $profile, "SwitchAcc_Demen_Style", "Total Coc Account", -1, "int")
+	IniReadS($ichkSmartSwitch, $profile, "SwitchAcc_Demen_Style", "Smart Switch", 0, "int")
+	IniReads($ichkCloseTraining, $profile, "SwitchAcc_Demen_Style", "Sleep Combo", 0, "int")	; Sleep Combo, 1 = Close CoC, 2 = Close Android, 0 = No sleep
+	For $i = 0 to 7
+		IniReadS($aMatchProfileAcc[$i], $profile, "SwitchAcc_Demen_Style", "MatchProfileAcc." & $i+1, "-1")
+		IniReadS($aProfileType[$i], $profile, "SwitchAcc_Demen_Style", "ProfileType." & $i+1, "-1")
+		IniReadS($aAccPosY[$i], $profile, "SwitchAcc_Demen_Style", "AccLocation." & $i+1, "-1")
+	Next
+EndFunc

@@ -15,6 +15,9 @@
 Global $g_icnGoldSW[9]
 
 func CreateMultiStatsGUI()
+
+CreateProfileStats_Demen()	;	SwitchAcc_Demen_Style
+
 Local $x = -5, $y = 7
 	$g_grpVillageSW[1] 			= GUICtrlCreateGroup("Account 1", $x + 16, $y + 18, 209, 97, BitOR($GUI_SS_DEFAULT_GROUP,$BS_FLAT))
 		$g_lblGoldNowSW[1] 		= GUICtrlCreateLabel("", $x + 40, $y + 36, 68, 17, $SS_RIGHT)

@@ -63,11 +63,13 @@ Func Initiate()
 
 		ZoomOut()
 		If Not $g_bRunState Then Return
+
 ;================Switch Account ReSync =====================
 		If $FirstInit = False And $ichkSwitchAccount = 1 Then
 			SwitchAccount(False, True) ; ReSync If not First time Start, User may changed Profiles etc And $CurrentAccount no longer Matches with Profile
 		EndIf
 ;==========================================================		
+		If $ichkSwitchAcc = 1 Then InitiateSwitchAcc(); SwitchAcc_Demen_Style
 		If Not $bSearchMode Then
 			BotDetectFirstTime()
 			If Not $g_bRunState Then Return

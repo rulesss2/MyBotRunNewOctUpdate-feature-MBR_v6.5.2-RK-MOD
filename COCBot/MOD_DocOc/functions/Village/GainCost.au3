@@ -50,18 +50,21 @@ Func EndGainCost($Type)
 				$tempGoldCollected = $iGoldCurrent - $TempGainCost[0]
 				$g_iGoldFromMines[$CurrentAccount] += $tempGoldCollected
 				$g_iStatsTotalGain[$CurrentAccount][$eLootGold] += $tempGoldCollected
+				If $ichkSwitchAcc = 1 Then $aGoldTotalAcc[$nCurProfile -1] += $tempGoldCollected 		; SwitchAcc_Demen_Style
 			EndIf
 
 			If $TempGainCost[1] <> "" And $iElixirCurrent <> "" And $TempGainCost[1] <> $iElixirCurrent Then
 				$tempElixirCollected = $iElixirCurrent - $TempGainCost[1]
 				$g_iElixirFromCollectors[$CurrentAccount] += $tempElixirCollected
 				$g_iStatsTotalGain[$CurrentAccount][$eLootElixir] += $tempElixirCollected
+				If $ichkSwitchAcc = 1 Then $aElixirTotalAcc[$nCurProfile -1] += $tempElixirCollected 	; SwitchAcc_Demen_Style
 			EndIf
 
 			If $TempGainCost[2] <> "" And $iDarkCurrent <> "" And $TempGainCost[2] <> $iDarkCurrent Then
 				$tempDElixirCollected = $iDarkCurrent - $TempGainCost[2]
 				$g_iDElixirFromDrills[$CurrentAccount] += $tempDElixirCollected
 				$g_iStatsTotalGain[$CurrentAccount][$eLootDarkElixir] += $tempDElixirCollected
+				If $ichkSwitchAcc = 1 Then $aDarkTotalAcc[$nCurProfile -1] += $tempDElixirCollected  	; SwitchAcc_Demen_Style
 			EndIf
 		Case "Train"
 			Local $tempElixirSpent = 0
@@ -70,12 +73,14 @@ Func EndGainCost($Type)
 				$tempElixirSpent = ($TempGainCost[1] - $iElixirCurrent)
 				$g_iTrainCostElixir[$CurrentAccount] += $tempElixirSpent
 				$g_iStatsTotalGain[$CurrentAccount][$eLootElixir] -= $tempElixirSpent
+				If $ichkSwitchAcc = 1 Then $aElixirTotalAcc[$nCurProfile-1] -= $tempElixirSpent 		; SwitchAcc_Demen_Style
 			EndIf
 
 			If $TempGainCost[2] <> "" And $iDarkCurrent <> ""  And $TempGainCost[2] <> $iDarkCurrent Then
 				$tempDElixirSpent = ($TempGainCost[2] - $iDarkCurrent)
 				$g_iTrainCostDElixir[$CurrentAccount] += $tempDElixirSpent
 				$g_iStatsTotalGain[$CurrentAccount][$eLootDarkElixir] -= $tempDElixirSpent
+				If $ichkSwitchAcc = 1 Then $aElixirTotalAcc[$nCurProfile-1] -= $tempElixirSpent 		; SwitchAcc_Demen_Style
 			EndIf
 	EndSwitch
 

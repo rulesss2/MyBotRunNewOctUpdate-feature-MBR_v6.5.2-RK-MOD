@@ -65,7 +65,7 @@ Global $cmbForecastHopingSwitchMax, $cmbForecastHopingSwitchMin
 Global $chkForecastHopingSwitchMax = 0, $lblForecastHopingSwitchMax = 0, $txtForecastHopingSwitchMax = 2, $chkForecastHopingSwitchMin = 0, $lblForecastHopingSwitchMin = 0, $txtForecastHopingSwitchMin = 0
 Global $ichkForecastHopingSwitchMax, $icmbForecastHopingSwitchMax , $itxtForecastHopingSwitchMax = 2, $ichkForecastHopingSwitchMin, $icmbForecastHopingSwitchMin, $itxtForecastHopingSwitchMin = 2
 ;Added Multi Switch Language by rulesss and Kychera
-Global $icmbSwLang = 0
+Global $icmbSwLang = 1
 Global $cmbSwLang = 0
 ;--------------------------------------------------------------------
 ;Disable Watchdog

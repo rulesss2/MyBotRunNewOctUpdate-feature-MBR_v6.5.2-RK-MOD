@@ -36,6 +36,7 @@ Global $g_hChkDBMeetTH = 0, $g_hCmbDBTH = 0, $g_hChkDBMeetTHO = 0
 Global $g_hGrpDBFilter = 0, $g_hPicDBMinGold = 0, $g_hPicDBMinElixir = 0, $g_hPicDBMinGPEGold = 0, $g_hPicDBMinDarkElixir = 0, $g_hPicDBMinTrophies = 0, $g_hPicDBMaxTH10 = 0
 
 Func CreateAttackSearchDeadBaseSearch()
+$15 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)
    Local $sTxtLightningSpells = GetTranslated(605,15,"Lightning")
    Local $sTxtHealSpells = GetTranslated(605,16,"Heal")
    Local $sTxtRageSpells = GetTranslated(605,17,"Rage")

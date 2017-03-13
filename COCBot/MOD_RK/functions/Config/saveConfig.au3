@@ -50,8 +50,8 @@ Func SaveConfig_RK_MOD()
 	IniWriteS($g_sProfileConfigPath, "search", "DBMinCollOutsidePercent", $iDBMinCollOutsidePercent)
 	
 	; CSV Deploy Speed 
-	IniWriteS($g_sProfileConfigPath, "DeploymentSpeed", "DB", $g_iCmbCSVSpeed[$DB])
-	IniWriteS($g_sProfileConfigPath, "DeploymentSpeed", "LB", $g_iCmbCSVSpeed[$LB])
+	IniWriteS($g_sProfileConfigPath, "DeploymentSpeed", "DB", _GUICtrlComboBox_GetCurSel($g_hCmbCSVSpeed[$DB]))
+	IniWriteS($g_sProfileConfigPath, "DeploymentSpeed", "LB", _GUICtrlComboBox_GetCurSel($g_hCmbCSVSpeed[$LB]))
 	
 	; Smart Upgrade 
 	IniWriteS($g_sProfileConfigPath, "upgrade", "chkSmartUpgrade", $ichkSmartUpgrade ? 1 : 0)
@@ -68,25 +68,25 @@ Func SaveConfig_RK_MOD()
 	IniWriteS($g_sProfileConfigPath, "upgrade", "chkIgnoreGColl", $ichkIgnoreGColl ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "upgrade", "chkIgnoreEColl", $ichkIgnoreEColl ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "upgrade", "chkIgnoreDColl", $ichkIgnoreDColl ? 1 : 0)
-	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinGold", $iSmartMinGold)
-	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinElixir", $iSmartMinElixir)
-	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinDark", $iSmartMinDark)
+	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinGold", GUICtrlRead($SmartMinGold))
+	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinElixir", GUICtrlRead($SmartMinElixir))
+	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinDark", GUICtrlRead($SmartMinDark))
 
 EndFunc   ;==>SaveConfig_RK_MOD
 
 Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)
 	; <><><> SwitchAcc_Demen_Style <><><>
 	ApplyConfig_SwitchAcc("Save", $SwitchAcc_Style)
-	If $SwitchAcc_Style = True Then IniWriteS($profile, "SwitchAcc_Demen_Style", "SwitchType", $iSwitchAccStyle)	; 1 = DocOc Style, 2 = Demen Style
+	If $SwitchAcc_Style = True Then IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "SwitchType", $iSwitchAccStyle)	; 1 = DocOc Style, 2 = Demen Style
 
-	IniWriteS($profile, "SwitchAcc_Demen_Style", "Enable", $ichkSwitchAcc ? 1 : 0)
-	IniWriteS($profile, "SwitchAcc_Demen_Style", "Pre-train", $ichkTrain ? 1 : 0)
-	IniWriteS($profile, "SwitchAcc_Demen_Style", "Total Coc Account", $icmbTotalCoCAcc)		; 1 = 1 Acc, 2 = 2 Acc, etc.
-	IniWriteS($profile, "SwitchAcc_Demen_Style", "Smart Switch", $ichkSmartSwitch ? 1 : 0)
-	IniWriteS($profile, "SwitchAcc_Demen_Style", "Sleep Combo", $ichkCloseTraining)			; 0 = No Sleep, 1 = Close CoC, 2 = Close Android
+	IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "Enable", $ichkSwitchAcc ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "Pre-train", $ichkTrain ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "Total Coc Account", $icmbTotalCoCAcc)		; 1 = 1 Acc, 2 = 2 Acc, etc.
+	IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "Smart Switch", $ichkSmartSwitch ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "Sleep Combo", $ichkCloseTraining)			; 0 = No Sleep, 1 = Close CoC, 2 = Close Android
 	For $i = 1 to 8
-		IniWriteS($profile, "SwitchAcc_Demen_Style", "MatchProfileAcc." & $i, _GUICtrlCombobox_GetCurSel($cmbAccountNo[$i-1])+1)		; 1 = Acc 1, 2 = Acc 2, etc.
-		IniWriteS($profile, "SwitchAcc_Demen_Style", "ProfileType." & $i, _GUICtrlCombobox_GetCurSel($cmbProfileType[$i-1])+1)			; 1 = Active, 2 = Donate, 3 = Idle
+		IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "MatchProfileAcc." & $i, _GUICtrlCombobox_GetCurSel($cmbAccountNo[$i-1])+1)		; 1 = Acc 1, 2 = Acc 2, etc.
+		IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "ProfileType." & $i, _GUICtrlCombobox_GetCurSel($cmbProfileType[$i-1])+1)			; 1 = Active, 2 = Donate, 3 = Idle
 	Next
 ; Profile Switch
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkGoldSwitchMax", $ichkGoldSwitchMax ? 1 : 0)

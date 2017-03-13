@@ -29,7 +29,7 @@ Global $g_hRdoSwitchAcc_DocOc = 0, $g_hRdoSwitchAcc_Demen = 0, $g_StartHideSwitc
 #include "..\..\MOD_RK\GUI\GUI Design ProfileStats_Demen.au3"
 
 Func CreateModProfiles()
-
+$31 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)  
     Local $x = 25, $y = 45
 	GUICtrlCreateGroup(GetTranslated(637,1, "Switch Profiles"), $x - 20, $y - 20, 440, 360)
 		;$y -= 5

@@ -175,7 +175,7 @@ Func OptionsGUI()
 EndFunc   ;==>TreasuryGUI
 
 Func HumanizationGUI()
-
+$3 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)
 	Local $x , $y
 
 	$chkUseBotHumanization = GUICtrlCreateCheckbox(GetTranslated(42, 0, "Enable Bot Humanization"), 10, 30, 137, 17)
@@ -293,7 +293,7 @@ Func HumanizationGUI()
 EndFunc
 
 Func GoblinXPGUI()
-
+$12 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)
 	Local $x = 25, $y = 50, $xStart = 25, $yStart = 50
 
 	$grpSuperXP = GUICtrlCreateGroup(GetTranslated(700, 1, "Goblin XP"), $x - 20, $y - 20, 440, 305)

@@ -65,7 +65,7 @@ Global $cmbForecastHopingSwitchMax, $cmbForecastHopingSwitchMin
 Global $chkForecastHopingSwitchMax = 0, $lblForecastHopingSwitchMax = 0, $txtForecastHopingSwitchMax = 2, $chkForecastHopingSwitchMin = 0, $lblForecastHopingSwitchMin = 0, $txtForecastHopingSwitchMin = 0
 Global $ichkForecastHopingSwitchMax, $icmbForecastHopingSwitchMax , $itxtForecastHopingSwitchMax = 2, $ichkForecastHopingSwitchMin, $icmbForecastHopingSwitchMin, $itxtForecastHopingSwitchMin = 2
 ;Added Multi Switch Language by rulesss and Kychera
-Global $icmbSwLang = 0
+Global $icmbSwLang = 1
 Global $cmbSwLang = 0
 ;--------------------------------------------------------------------
 ;Disable Watchdog
@@ -92,7 +92,7 @@ Global $hBitmapFirst
 Global $ichkSmartUpgrade
 Global $ichkIgnoreTH, $ichkIgnoreKing, $ichkIgnoreQueen, $ichkIgnoreWarden, $ichkIgnoreCC, $ichkIgnoreLab
 Global $ichkIgnoreBarrack, $ichkIgnoreDBarrack, $ichkIgnoreFactory, $ichkIgnoreDFactory, $ichkIgnoreGColl, $ichkIgnoreEColl, $ichkIgnoreDColl
-Global $iSmartMinGold, $iSmartMinElixir, $iSmartMinDark
+Global $iSmartMinGold = 200000, $iSmartMinElixir = 200000, $iSmartMinDark = 1500
 Global $sBldgText, $sBldgLevel, $aString
 Global $upgradeName[3] = ["", "", ""]
 Global $UpgradeCost
@@ -114,7 +114,7 @@ Global $bReMatchAcc = False
 Global $aTimerStart[8], $aTimerEnd[8]
 Global $aRemainTrainTime[8], $aUpdateRemainTrainTime[8], $nMinRemainTrain
 Global $aLocateAccConfig[8], $aAccPosY[8]
-
+Global $SwitchAcc_Style
 ; Profile Switch 
 Global $profileString
 Global $ichkGoldSwitchMax = 0, $itxtMaxGoldAmount = 6000000, $icmbGoldMaxProfile = 0, $ichkGoldSwitchMin = 0, $itxtMinGoldAmount = 500000, $icmbGoldMinProfile = 0

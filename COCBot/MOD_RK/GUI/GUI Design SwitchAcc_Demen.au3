@@ -49,7 +49,6 @@ Func CreateSwitchAcc_Demen()
 					@CRLF & GetTranslated(109,11, "This function requires use Quick Train, not Custom Train.") & _
 					@CRLF & GetTranslated(109,12, "Use army 1 for farming troops, army 2 for spells and army 3 for donated troops.")
 				GUICtrlSetTip(-1, $sTxtTip)
-				GUICtrlSetOnEvent(-1, "chkTrain")
 
 			GUICtrlCreateLabel(GetTranslated(109,13, "Total CoC Acc:"), $x + 10, $y + 29, -1, -1)
 				$sTxtTip = GetTranslated(109,14, "Choose number of CoC Accounts pre-logged")

@@ -551,6 +551,8 @@ Func ResetStats()
 	$g_iTotalDonateStatsSpells = 0
 	$g_iTotalDonateStatsSpellsXP = 0
 
+	ResetStatsForSwitchAcc()	;SwitchAcc_Demen_Style
+
 	UpdateStats()
  EndFunc   ;==>ResetStats
 

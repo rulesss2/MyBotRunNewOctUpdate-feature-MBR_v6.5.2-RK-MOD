@@ -20,7 +20,7 @@ Global $grpVillageAcc[8], $lblResultGoldNowAcc[8], $lblResultElixirNowAcc[8], $l
 ;~ Global $lblGoldLootAcc[8], $lblElixirLootAcc[8], $lblDarkLootAcc[8], $lblTrophyLootAcc[8]	; GUI Total Gain
 Global $lblHourlyStatsGoldAcc[8], $lblHourlyStatsElixirAcc[8], $lblHourlyStatsDarkAcc[8], $lblHourlyStatsTrophyAcc[8]	; GUI Gain per Hour
 Global $lblResultAttacked[8]
-Global $g_lblKingStatus_Demen[$i], $g_lblQueenStatus_Demen[$i], $g_lblWardenStatus_Demen[$i]
+Global $g_lblKingStatus_Demen[8], $g_lblQueenStatus_Demen[8], $g_lblWardenStatus_Demen[8], $g_lblTroopsTime[8]
 ;~ Global $lblLabStatus_Demen[8]
 Global $aStartHide[8], $aSecondHide[8],$aEndHide[8]		; GUI support
 
@@ -37,6 +37,11 @@ Func CreateProfileStats_Demen()
 
 		$aStartHide[$i] = GUICtrlCreateDummy()
 		$grpVillageAcc[$i] = GUICtrlCreateGroup("Village name ", $x-8 + $i_X * $delX2, $y + $i_Y * $delY2, 215, 95)
+
+		GUICtrlCreateGraphic($x + 130 + $i_X * $delX2, $y + $i_Y * $delY2, 70, 17, $SS_WHITERECT)
+		$g_lblTroopsTime[$i] = GUICtrlCreateLabel("No Data", $x + 132 + $i_X * $delX2, $y + $i_Y * $delY2, 55, 16, $SS_CENTER)
+			GUICtrlSetColor(-1, $COLOR_GRAY)
+			GUICtrlCreateIcon($g_sLibIconPath, $eIcnHourGlass, 	$x + 185 + $i_X * $delX2, $y + $i_Y * $delY2, 16, 16)
 
 		$lblResultGoldNowAcc[$i] = GUICtrlCreateLabel("", $x + $i_X * $delX2, $y + $delY + $i_Y * $delY2, 60, 17, $SS_RIGHT)
 			GUICtrlCreateIcon ($g_sLibIconPath, $eIcnGold, $x + $delX + $i_X * $delX2, $y + $delY + $i_Y * $delY2, 16, 16)

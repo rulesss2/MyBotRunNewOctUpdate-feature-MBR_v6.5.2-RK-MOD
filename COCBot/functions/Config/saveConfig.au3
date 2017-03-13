@@ -174,6 +174,9 @@ Func SaveRegularConfig()
    ;@<<>>@<<>>@<<>> RK_MOD <<>>@<<>>@<<>>@
    SaveConfig_RK_MOD()
    ;@<<>>@<<>>@<<>>--------<<>>@<<>>@<<>>@
+   ; SwitchAcc_Demen_Style
+	SaveConfig_SwitchAcc(True)
+	
 	If $hFile <> -1 Then FileClose($hFile)
 
 EndFunc
@@ -948,7 +951,9 @@ Func SaveConfig_600_52_1()
 	; <><><> Attack Plan / Train Army / Troops/Spells <><><>
 	ApplyConfig_600_52_1("Save")
 	IniWriteS($g_sProfileConfigPath, "other", "ChkUseQTrain", $g_bQuickTrainEnable ? 1 : 0)
-	IniWriteS($g_sProfileConfigPath, "troop", "QuickTrainArmyNum", $g_iQuickTrainArmyNum)
+	IniWriteS($g_sProfileConfigPath, "troop", "QuickTrainArmy1", $g_bQuickTrainArmy[0] ? 1 : 0)		; QuickTrainCombo (Checkbox) - Demen
+	IniWriteS($g_sProfileConfigPath, "troop", "QuickTrainArmy2", $g_bQuickTrainArmy[1] ? 1 : 0)		; QuickTrainCombo (Checkbox) - Demen
+	IniWriteS($g_sProfileConfigPath, "troop", "QuickTrainArmy3", $g_bQuickTrainArmy[2] ? 1 : 0)		; QuickTrainCombo (Checkbox) - Demen
 EndFunc
 
 Func SaveConfig_600_52_2()

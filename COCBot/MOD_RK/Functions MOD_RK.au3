@@ -30,10 +30,11 @@
 #include "functions\Collectors Outside\AreCollectorsOutside.au3"
 #include "functions\Smart Upgrade\SmartUpgrade.au3"
 #include "functions\SwitchAcc\SwitchAcc.au3"
-#include "functions\SwitchAcc\UpdateProfileStats.au3" 
+#include "functions\SwitchAcc\UpdateProfileStats.au3"
 
 #include "other/BackgroundCheck.au3"
 #include "other/TransLevel.au3"
 #include "other/Multy Lang.au3"
 
 #include "functions\ProfileSwitch.au3"
+#include "functions\SimpleTrain.au3"

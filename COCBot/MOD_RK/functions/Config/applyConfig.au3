@@ -67,6 +67,13 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			GUICtrlSetState($g_hChkIgnoreDColl, $ichkIgnoreDColl = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			chkSmartUpgrade()
             
+			; SimpleTrain 
+			GUICtrlSetState($g_hchkSimpleTrain, $ichkSimpleTrain = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($g_hchkPreciseTroops, $ichkPreciseTroops = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($g_hchkFillArcher, $ichkFillArcher = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetData($g_htxtFillArcher, $iFillArcher)
+			GUICtrlSetState($g_hchkFillEQ, $ichkFillEQ = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			chkSimpleTrain()
 			
 		Case "Save"
         $iChkUnitFactor = (GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED)
@@ -100,6 +107,14 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			$ichkIgnoreGColl = GUICtrlRead($g_hChkIgnoreGColl) = $GUI_CHECKED ? 1 : 0
 			$ichkIgnoreEColl = GUICtrlRead($g_hChkIgnoreEColl) = $GUI_CHECKED ? 1 : 0
 			$ichkIgnoreDColl = GUICtrlRead($g_hChkIgnoreDColl) = $GUI_CHECKED ? 1 : 0
+			
+			;SimpleTrain (Demen) - Added by Demen
+			$ichkSimpleTrain = GUICtrlRead($g_hchkSimpleTrain) = $GUI_CHECKED ? 1 : 0
+			$ichkPreciseTroops = GUICtrlRead($g_hchkPreciseTroops) = $GUI_CHECKED ? 1 : 0
+			$ichkFillArcher = GUICtrlRead($g_hchkFillArcher) = $GUI_CHECKED ? 1 : 0
+			$iFillArcher = GUICtrlRead($g_htxtFillArcher)
+			$ichkFillEQ = GUICtrlRead($g_hchkFillEQ) = $GUI_CHECKED ? 1 : 0
+			
 	EndSwitch
 	ApplyConfig_RK_Forecast($TypeReadSave)
 	ApplyConfig_RK_Switch_Profiles($TypeReadSave)	
@@ -169,13 +184,14 @@ Func ApplyConfig_SwitchAcc($TypeReadSave, $SwitchAcc_Style = False)
 				RdoSwitchAcc_Style()
 			EndIf
 			GUICtrlSetState($chkSwitchAcc, $ichkSwitchAcc = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			chkSwitchAcc()
 			GUICtrlSetState($chkTrain, $ichkTrain = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			If $ichkSmartSwitch = 1 Then
 			   GUICtrlSetState($radSmartSwitch, $GUI_CHECKED)
 			Else
 			   GUICtrlSetState($radNormalSwitch, $GUI_CHECKED)
 			EndIf
-			radNormalSwitch()
+			If GUICtrlRead($chkSwitchAcc) = $GUI_CHECKED Then radNormalSwitch()
 			_GUICtrlCombobox_SetCurSel($cmbTotalAccount, $icmbTotalCoCAcc - 1)
 			If $ichkCloseTraining >= 1 Then
 				GUICtrlSetState($chkUseTrainingClose, $GUI_CHECKED)
@@ -210,6 +226,7 @@ Func ApplyConfig_SwitchAcc($TypeReadSave, $SwitchAcc_Style = False)
 			EndIf
 	EndSwitch
 EndFunc
+
 Func ApplyConfig_RK_Switch_Profiles($TypeReadSave)
     Switch $TypeReadSave
 		Case "Read"

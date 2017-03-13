@@ -26,30 +26,48 @@ Func ArmyHeroStatus($Hero)
 					Case "heal" ; Yellow
 						GUICtrlSetState($g_lblKingStatus[$CurrentAccount], $GUI_SHOW)
 						GUICtrlSetBkColor($g_lblKingStatus[$CurrentAccount], $COLOR_YELLOW)
-						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then 
+
+						GUICtrlSetState($g_lblKingStatus_Demen[$nCurProfile - 1], $GUI_SHOW)
+						GUICtrlSetBkColor($g_lblKingStatus_Demen[$nCurProfile - 1], $COLOR_YELLOW)
+						GUICtrlSetColor($g_lblKingStatus_Demen[$nCurProfile - 1], $COLOR_BLACK)
+
+						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then
 							GUICtrlSetState($g_lblKingStatusPO[$CurrentAccount], $GUI_SHOW)
-							GUICtrlSetBkColor($g_lblKingStatusPO[$CurrentAccount], $COLOR_YELLOW)						
+							GUICtrlSetBkColor($g_lblKingStatusPO[$CurrentAccount], $COLOR_YELLOW)
 						EndIf
 					Case "upgrade" ; Red
 						GUICtrlSetState($g_lblKingStatus[$CurrentAccount], $GUI_SHOW)
 						GUICtrlSetBkColor($g_lblKingStatus[$CurrentAccount], $COLOR_RED)
-						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then 
+
+						GUICtrlSetState($g_lblKingStatus_Demen[$nCurProfile - 1], $GUI_SHOW)
+						GUICtrlSetBkColor($g_lblKingStatus_Demen[$nCurProfile - 1], $COLOR_RED)
+						GUICtrlSetColor($g_lblKingStatus_Demen[$nCurProfile - 1], $COLOR_WHITE)
+
+						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then
 							GUICtrlSetState($g_lblKingStatusPO[$CurrentAccount], $GUI_SHOW)
-							GUICtrlSetBkColor($g_lblKingStatusPO[$CurrentAccount], $COLOR_RED)						
-						EndIf						
+							GUICtrlSetBkColor($g_lblKingStatusPO[$CurrentAccount], $COLOR_RED)
+						EndIf
 					Case "none" ; Hide lbl
 						GUICtrlSetState($g_lblKingStatus[$CurrentAccount], $GUI_HIDE)
-						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then 
+
+						GUICtrlSetState($g_lblKingStatus_Demen[$nCurProfile - 1], $GUI_HIDE)
+
+						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then
 							GUICtrlSetState($g_lblKingStatusPO[$CurrentAccount], $GUI_HIDE)
-						EndIf						
+						EndIf
 					Case Else ; Green
 						GUICtrlSetState($g_lblKingStatus[$CurrentAccount], $GUI_SHOW)
 						GUICtrlSetBkColor($g_lblKingStatus[$CurrentAccount], $COLOR_GREEN)
-						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then 
+
+						GUICtrlSetState($g_lblKingStatus_Demen[$nCurProfile - 1], $GUI_SHOW)
+						GUICtrlSetBkColor($g_lblKingStatus_Demen[$nCurProfile - 1], $COLOR_GREEN)
+						GUICtrlSetColor($g_lblKingStatus_Demen[$nCurProfile - 1], $COLOR_WHITE)
+
+						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then
 							GUICtrlSetState($g_lblKingStatusPO[$CurrentAccount], $GUI_SHOW)
 							GUICtrlSetBkColor($g_lblKingStatusPO[$CurrentAccount], $COLOR_GREEN)
 						EndIF
-				EndSwitch			
+				EndSwitch
 
 			If $Status = "" Then $Status = "king"
 			Return $Status
@@ -60,31 +78,49 @@ Func ArmyHeroStatus($Hero)
 					Case "heal" ; Yellow
 						GUICtrlSetState($g_lblQueenStatus[$CurrentAccount], $GUI_SHOW)
 						GUICtrlSetBkColor($g_lblQueenStatus[$CurrentAccount], $COLOR_YELLOW)
+
+						GUICtrlSetState($g_lblQueenStatus_Demen[$nCurProfile - 1], $GUI_SHOW)
+						GUICtrlSetBkColor($g_lblQueenStatus_Demen[$nCurProfile - 1], $COLOR_YELLOW)
+						GUICtrlSetColor($g_lblQueenStatus_Demen[$nCurProfile - 1], $COLOR_BLACK)
+
 						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then
 							GUICtrlSetState($g_lblQueenStatusPO[$CurrentAccount], $GUI_SHOW)
-							GUICtrlSetBkColor($g_lblQueenStatusPO[$CurrentAccount], $COLOR_YELLOW)						
+							GUICtrlSetBkColor($g_lblQueenStatusPO[$CurrentAccount], $COLOR_YELLOW)
 						EndIf
 					Case "upgrade" ; Red
 						GUICtrlSetState($g_lblQueenStatus[$CurrentAccount], $GUI_SHOW)
 						GUICtrlSetBkColor($g_lblQueenStatus[$CurrentAccount], $COLOR_RED)
+
+						GUICtrlSetState($g_lblQueenStatus_Demen[$nCurProfile - 1], $GUI_SHOW)
+						GUICtrlSetBkColor($g_lblQueenStatus_Demen[$nCurProfile - 1], $COLOR_RED)
+						GUICtrlSetColor($g_lblQueenStatus_Demen[$nCurProfile - 1], $COLOR_WHITE)
+
 						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then
 							GUICtrlSetState($g_lblQueenStatusPO[$CurrentAccount], $GUI_SHOW)
-							GUICtrlSetBkColor($g_lblQueenStatusPO[$CurrentAccount], $COLOR_RED)						
-						EndIf						
+							GUICtrlSetBkColor($g_lblQueenStatusPO[$CurrentAccount], $COLOR_RED)
+						EndIf
 					Case "none" ; Hide lbl
 						GUICtrlSetState($g_lblQueenStatus[$CurrentAccount], $GUI_HIDE)
+
+						GUICtrlSetState($g_lblQueenStatus_Demen[$nCurProfile - 1], $GUI_HIDE)
+
 						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then
 							GUICtrlSetState($g_lblQueenStatusPO[$CurrentAccount], $GUI_HIDE)
-						EndIf						
+						EndIf
 					Case Else ; Green
 						GUICtrlSetState($g_lblQueenStatus[$CurrentAccount], $GUI_SHOW)
 						GUICtrlSetBkColor($g_lblQueenStatus[$CurrentAccount], $COLOR_GREEN)
+
+						GUICtrlSetState($g_lblQueenStatus_Demen[$nCurProfile - 1], $GUI_SHOW)
+						GUICtrlSetBkColor($g_lblQueenStatus_Demen[$nCurProfile - 1], $COLOR_GREEN)
+						GUICtrlSetColor($g_lblQueenStatus_Demen[$nCurProfile - 1], $COLOR_WHITE)
+
 						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then
 							GUICtrlSetState($g_lblQueenStatusPO[$CurrentAccount], $GUI_SHOW)
 							GUICtrlSetBkColor($g_lblQueenStatusPO[$CurrentAccount], $COLOR_GREEN)
 						EndIF
-				EndSwitch			
-			
+				EndSwitch
+
 			If $Status = "" Then $Status = "queen"
 			Return $Status
 		Case $Hero = "Warden" Or $Hero = 2 Or $Hero = $eWarden
@@ -94,31 +130,49 @@ Func ArmyHeroStatus($Hero)
 					Case "heal" ; Yellow
 						GUICtrlSetState($g_lblWardenStatus[$CurrentAccount], $GUI_SHOW)
 						GUICtrlSetBkColor($g_lblWardenStatus[$CurrentAccount], $COLOR_YELLOW)
+
+						GUICtrlSetState($g_lblWardenStatus_Demen[$nCurProfile - 1], $GUI_SHOW)
+						GUICtrlSetBkColor($g_lblWardenStatus_Demen[$nCurProfile - 1], $COLOR_YELLOW)
+						GUICtrlSetColor($g_lblWardenStatus_Demen[$nCurProfile - 1], $COLOR_BLACK)
+
 						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then
 							GUICtrlSetState($g_lblWardenStatusPO[$CurrentAccount], $GUI_SHOW)
-							GUICtrlSetBkColor($g_lblWardenStatusPO[$CurrentAccount], $COLOR_YELLOW)						
+							GUICtrlSetBkColor($g_lblWardenStatusPO[$CurrentAccount], $COLOR_YELLOW)
 						EndIf
 					Case "upgrade" ; Red
 						GUICtrlSetState($g_lblWardenStatus[$CurrentAccount], $GUI_SHOW)
 						GUICtrlSetBkColor($g_lblWardenStatus[$CurrentAccount], $COLOR_RED)
+
+						GUICtrlSetState($g_lblWardenStatus_Demen[$nCurProfile - 1], $GUI_SHOW)
+						GUICtrlSetBkColor($g_lblWardenStatus_Demen[$nCurProfile - 1], $COLOR_RED)
+						GUICtrlSetColor($g_lblWardenStatus_Demen[$nCurProfile - 1], $COLOR_WHITE)
+
 						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then
 							GUICtrlSetState($g_lblWardenStatusPO[$CurrentAccount], $GUI_SHOW)
-							GUICtrlSetBkColor($g_lblWardenStatusPO[$CurrentAccount], $COLOR_RED)						
-						EndIf						
+							GUICtrlSetBkColor($g_lblWardenStatusPO[$CurrentAccount], $COLOR_RED)
+						EndIf
 					Case "none" ; Hide lbl
 						GUICtrlSetState($g_lblWardenStatus[$CurrentAccount], $GUI_HIDE)
+
+						GUICtrlSetState($g_lblWardenStatus_Demen[$nCurProfile - 1], $GUI_HIDE)
+
 						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then
 							GUICtrlSetState($g_lblWardenStatusPO[$CurrentAccount], $GUI_HIDE)
-						EndIf						
+						EndIf
 					Case Else ; Green
 						GUICtrlSetState($g_lblWardenStatus[$CurrentAccount], $GUI_SHOW)
 						GUICtrlSetBkColor($g_lblWardenStatus[$CurrentAccount], $COLOR_GREEN)
+
+						GUICtrlSetState($g_lblWardenStatus_Demen[$nCurProfile - 1], $GUI_SHOW)
+						GUICtrlSetBkColor($g_lblWardenStatus_Demen[$nCurProfile - 1], $COLOR_GREEN)
+						GUICtrlSetColor($g_lblWardenStatus_Demen[$nCurProfile - 1], $COLOR_WHITE)
+
 						If WinGetState(Eval($hGuiPopOut & $CurrentAccount)) <> -1 Then
 							GUICtrlSetState($g_lblWardenStatusPO[$CurrentAccount], $GUI_SHOW)
 							GUICtrlSetBkColor($g_lblWardenStatusPO[$CurrentAccount], $COLOR_GREEN)
 						EndIF
-				EndSwitch			
-			
+				EndSwitch
+
 			If $Status = "" Then $Status = "warden"
 			Return $Status
 	EndSelect

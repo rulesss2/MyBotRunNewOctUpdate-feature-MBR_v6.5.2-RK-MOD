@@ -216,15 +216,9 @@ Func SetAtkLog($String1, $String2 = "", $Color = $COLOR_BLACK, $Font = "Lucida C
 EndFunc   ;==>SetAtkLog
 
 Func AtkLogHead()
-	If $ichkSwitchAccount = 1 Then
-		SetAtkLog(_PadStringCenter(" " & GetTranslated(601, 15, "ATTACK LOG") & " ", 71, "="), "", $COLOR_BLACK, "MS Shell Dlg", 8.5)
-		SetAtkLog(GetTranslated(601, 16, "                    --------  LOOT --------       ----- BONUS ------"), "")
-		SetAtkLog(GetTranslated(601, 17, "Ac| TIME|TROP.| SRC|   GOLD| ELIXIR|DARK EL|TR.|S|  GOLD|ELIXIR|  DE|L."), "")
-	Else
-		SetAtkLog(_PadStringCenter(" " & GetTranslated(601, 15, "ATTACK LOG") & " ", 71, "="), "", $COLOR_BLACK, "MS Shell Dlg", 8.5)
-		SetAtkLog(GetTranslated(601, 16, "                   --------  LOOT --------       ----- BONUS ------"), "")
-		SetAtkLog(GetTranslated(601, 17, " TIME|TROP.|SEARCH|   GOLD| ELIXIR|DARK EL|TR.|S|  GOLD|ELIXIR|  DE|L."), "")
-	EndIf
+	SetAtkLog(_PadStringCenter(" " & GetTranslated(601, 15, "ATTACK LOG") & " ", 71, "="), "", $COLOR_BLACK, "MS Shell Dlg", 8.5)
+	SetAtkLog(GetTranslated(601, 16, "                   --------  LOOT --------       ----- BONUS ------"), "")
+	SetAtkLog(GetTranslated(601, 17, "TIME|TROP.|SEARCH|   GOLD| ELIXIR|DARK EL|TR.|S|  GOLD|ELIXIR|  DE|L."), "")		; SwitchAcc - DEMEN
 EndFunc   ;==>AtkLogHead
 
 Func __FileWriteLog($handle, $text)

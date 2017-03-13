@@ -174,6 +174,9 @@ Func SaveRegularConfig()
    ;@<<>>@<<>>@<<>> RK_MOD <<>>@<<>>@<<>>@
    SaveConfig_RK_MOD()
    ;@<<>>@<<>>@<<>>--------<<>>@<<>>@<<>>@
+   ; SwitchAcc_Demen_Style
+	SaveConfig_SwitchAcc(True)
+	
 	If $hFile <> -1 Then FileClose($hFile)
 
 EndFunc

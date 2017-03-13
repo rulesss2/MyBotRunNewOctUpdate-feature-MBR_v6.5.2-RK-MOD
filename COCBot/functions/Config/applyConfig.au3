@@ -126,6 +126,8 @@ Func applyConfig($bRedrawAtExit = True, $TypeReadSave = "Read") ;Applies the dat
     ;@<<>>@<<>>@<<>>@<<>>@<<>>@<<>>@
 	ApplyConfig_RK_MOD($TypeReadSave)
 	;@<<>>@<<>>@<<>>@<<>>@<<>>@<<>>@
+	; SwitchAcc_Demen_Style
+	ApplyConfig_SwitchAcc($TypeReadSave, True)
     ; <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 
 

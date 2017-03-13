@@ -237,6 +237,9 @@ Func ReadRegularConfig()
    ReadConfig_DocOc()
    ;@<<>>@<<>>@<<>>@<<>>@<<>>@<<>>@
    ReadConfig_RK_MOD()
+   ;@<<>>@<<>>@<<>>@<<>>@<<>>@<<>>@
+   ; SwitchAcc_Demen_Style
+	ReadConfig_SwitchAcc(True)
 EndFunc
 
 Func ReadConfig_Debug()

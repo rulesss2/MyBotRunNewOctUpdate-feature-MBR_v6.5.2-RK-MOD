@@ -75,7 +75,7 @@ Func SaveConfig_RK_MOD()
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinElixir", GUICtrlRead($SmartMinElixir))
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinDark", GUICtrlRead($SmartMinDark))
     
-	; SimpleTrain (Demen) - Added by Demen
+	; SimpleTrain 
 	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "Enable", $ichkSimpleTrain)
 	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "PreciseTroops", $ichkPreciseTroops)
 	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "ChkFillArcher", $ichkFillArcher)

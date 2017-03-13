@@ -15,7 +15,7 @@
 Global $g_icnGoldSW[9]
 
 func CreateMultiStatsGUI()
-
+$8 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)
 CreateProfileStats_Demen()	;	SwitchAcc_Demen_Style
 
 Local $x = -5, $y = 7

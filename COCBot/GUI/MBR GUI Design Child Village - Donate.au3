@@ -208,7 +208,7 @@ Func CreateRequestSubTab()
 		$g_hLblRequestCCHoursPM = GUICtrlCreateLabel(GetTranslated(603,4, "PM"), $x + 5, $y)
 		 GUICtrlSetState(-1, $GUI_DISABLE)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
-	GUICtrlCreateTabItem("")
+	
 EndFunc
 #EndRegion
 
@@ -216,7 +216,7 @@ EndFunc
 Func CreateDonateSubTab()
 	Local $xStart = 25, $yStart = 45
 	$g_hGUI_DONATECC = GUICreate("", $_GUI_MAIN_WIDTH - 30 - 10, $_GUI_MAIN_HEIGHT - 255 - 30 - 30, $xStart - 20, $yStart - 20, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hGUI_DONATE)
-	;$38_1 = GUICtrlCreatePic(@ScriptDir & "\Images2\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
+	$28 = GUICtrlCreatePic(@ScriptDir & "\Images2\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
 	;GUISetBkColor($COLOR_WHITE)
 	Local $xStart = 20, $yStart = 20
   ;~ -------------------------------------------------------------
@@ -1684,7 +1684,7 @@ EndFunc
 Func CreateScheduleSubTab()
 	Local $xStart = 25, $yStart = 45
 	$g_hGUI_ScheduleCC = GUICreate("", $_GUI_MAIN_WIDTH - 30 - 10, $_GUI_MAIN_HEIGHT - 255 - 30 - 30, $xStart - 20, $yStart - 20, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hGUI_DONATE)
-	;$38_2 = GUICtrlCreatePic(@ScriptDir & "\Images2\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
+	$29 = GUICtrlCreatePic(@ScriptDir & "\Images2\1.jpg", 2, 23, 442, 380, $WS_CLIPCHILDREN)
 	;GUISetBkColor($COLOR_WHITE)
 	Local $xStart = 20, $yStart = 20
 	Local $x = $xStart

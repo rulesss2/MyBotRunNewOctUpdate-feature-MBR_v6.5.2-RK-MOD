@@ -20,6 +20,7 @@ Global $g_hChkTrophyRange = 0, $g_hTxtDropTrophy = 0, $g_hTxtMaxTrophy = 0, $g_h
 Global $g_hLblTrophyHeroesPriority = 0, $g_hLblDropTrophyArmyMin = 0, $g_hLblDropTrophyArmyPercent = 0
 
 Func CreateAttackSearchOptionsTrophySettings()
+   $20 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)
    Local $sTxtTip = ""
    Local $x = 25, $y = 45
 

@@ -23,16 +23,19 @@ Func SaveConfig_RK_MOD()
 
     IniWriteS($g_sProfileConfigPath, "SetSleep", "UnitFactor", GUICtrlRead($TxtUnitFactor))
 	IniWriteS($g_sProfileConfigPath, "SetSleep", "WaveFactor", GUICtrlRead($TxtWaveFactor))
+	
 	;Background by Kychera
 	IniWriteS($g_sProfileConfigPath, "background", "chkPic", $ichkPic ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "background", "BackGr", $iBackGr)
+	
     ;Transparent Gui (Modified Kychera)
 	IniWrites($g_sProfileConfigPath, "TransLevel", "Level", $iSldTransLevel)
 
 	IniWriteS($g_sProfileConfigPath, "TransLevel", "Level", $iSldTransLevel)
-	 ;forecast
-	 IniWriteS($g_sProfileConfigPath, "forecast", "txtForecastBoost", GUICtrlRead($txtForecastBoost))	 
-	 IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMax", _GUICtrlComboBox_GetCurSel($cmbForecastHopingSwitchMax))
+	
+	;forecast
+	IniWriteS($g_sProfileConfigPath, "forecast", "txtForecastBoost", GUICtrlRead($txtForecastBoost))	 
+	IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMax", _GUICtrlComboBox_GetCurSel($cmbForecastHopingSwitchMax))
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtForecastHopingSwitchMax", GUICtrlRead($txtForecastHopingSwitchMax))
 	IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMin", _GUICtrlComboBox_GetCurSel($cmbForecastHopingSwitchMin))	
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtForecastHopingSwitchMin", GUICtrlRead($txtForecastHopingSwitchMin))
@@ -71,7 +74,14 @@ Func SaveConfig_RK_MOD()
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinGold", GUICtrlRead($SmartMinGold))
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinElixir", GUICtrlRead($SmartMinElixir))
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinDark", GUICtrlRead($SmartMinDark))
-
+    
+	; SimpleTrain (Demen) - Added by Demen
+	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "Enable", $ichkSimpleTrain)
+	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "PreciseTroops", $ichkPreciseTroops)
+	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "ChkFillArcher", $ichkFillArcher)
+	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "FillArcher", $iFillArcher)
+	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "FillEQ", $ichkFillEQ)
+	
 EndFunc   ;==>SaveConfig_RK_MOD
 
 Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)
@@ -88,7 +98,8 @@ Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)
 		IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "MatchProfileAcc." & $i, _GUICtrlCombobox_GetCurSel($cmbAccountNo[$i-1])+1)		; 1 = Acc 1, 2 = Acc 2, etc.
 		IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "ProfileType." & $i, _GUICtrlCombobox_GetCurSel($cmbProfileType[$i-1])+1)			; 1 = Active, 2 = Donate, 3 = Idle
 	Next
-; Profile Switch
+
+	; Profile Switch
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkGoldSwitchMax", $ichkGoldSwitchMax ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "profiles", "cmbGoldMaxProfile", _GUICtrlComboBox_GetCurSel($cmbGoldMaxProfile))
 	

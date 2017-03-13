@@ -26,7 +26,7 @@ Func TrainRevamp()
 	$g_iTimeBeforeTrain = 0
 	StartGainCost()
 
-	If $g_bQuickTrainEnable = False Then
+	If $g_bQuickTrainEnable = False And $ichkSimpleTrain = 0 Then	; SimpleTrain - Demen
 		TrainRevampOldStyle()
 		Return
 	EndIf
@@ -52,6 +52,13 @@ Func TrainRevamp()
 	$aCurTotalSpell = GetCurTotalSpells() ; needed value for spell donate
 
 	If $g_bRunState = False Then Return
+
+	If $ichkSimpleTrain = 1 Then				;	SimpleTrain - Demen
+		If $bDonationEnabled And $g_bChkDonate Then MakingDonatedTroops()
+		SimpleTrain()
+		EndGainCost("Train")
+		Return
+	EndIf										;	SimpleTrain - Demen
 
 	If ($IsFullArmywithHeroesAndSpells = True) Or ($CurCamp = 0 And $g_bFirstStart) Then
 
@@ -105,7 +112,7 @@ Func CheckCamp($NeedOpenArmy = False, $CloseCheckCamp = False)
 	If $ReturnCamp = 1 Then
 		OpenTrainTabNumber($QuickTrainTAB, "CheckCamp()")
 		If _Sleep(1000) Then Return
-		TrainArmyNumber($g_iQuickTrainArmyNum)
+		TrainArmyNumber($g_bQuickTrainArmy)	; QuickTrainCombo (check box) - Demen
 		If _Sleep(700) Then Return
 	EndIf
 	If $ReturnCamp = 0 Then
@@ -2029,7 +2036,7 @@ Func OpenTrainTabNumber($Num, $WhereFrom)
 
 	If IsTrainPage() Then
 		Click($TabNumber[$Num][0], $TabNumber[$Num][1], 2, 200)
-		If _Sleep(1500) Then Return
+		If _Sleep(700) Then Return			; Too slow with wait time 1.5s. Reduce to 0.7s. - SimpleTrain - Demen
 		If ISArmyWindow(False, $Num) Then
 			If $g_iDebugSetlogTrain = 1 Then $CalledFrom = " (Called from " & $WhereFrom & ")"
 			Setlog(" - Opened the " & $Message[$Num] & $CalledFrom, $COLOR_ACTION1)
@@ -2039,24 +2046,26 @@ Func OpenTrainTabNumber($Num, $WhereFrom)
 	EndIf
 EndFunc   ;==>OpenTrainTabNumber
 
-Func TrainArmyNumber($Num)
+Func TrainArmyNumber($Army)	; QuickTrainCombo (Checkbox) - Demen
 
-	$Num = $Num - 1
+;~	$Num = $Num - 1
 	Local $a_TrainArmy[3][4] = [[817, 366, 0x6bb720, 10], [817, 484, 0x6bb720, 10], [817, 601, 0x6bb720, 10]]
 	Setlog("Using Quick Train Tab.")
 	If $g_bRunState = False Then Return
 
 	If ISArmyWindow(False, $QuickTrainTAB) Then
-		; _ColorCheck($nColor1, $nColor2, $sVari = 5, $Ignore = "")
-		If _ColorCheck(_GetPixelColor($a_TrainArmy[$Num][0], $a_TrainArmy[$Num][1], True), Hex($a_TrainArmy[$Num][2], 6), $a_TrainArmy[$Num][3]) Then
-			Click($a_TrainArmy[$Num][0], $a_TrainArmy[$Num][1], 1)
-			SetLog("Making the Army " & $Num + 1, $COLOR_INFO)
-			If _Sleep(1000) Then Return
-		Else
-			Setlog(" - Error Clicking On Army: " & $Num + 1 & "| Pixel was :" & _GetPixelColor($a_TrainArmy[$Num][0], $a_TrainArmy[$Num][1], True), $COLOR_ORANGE)
-			Setlog(" - Please 'edit' the Army " & $Num + 1 & " before start the BOT!!!", $COLOR_RED)
-			;BotStop()
-		EndIf
+		For $Num = 0 To 2
+			If $Army[$Num] = True Then
+				If _ColorCheck(_GetPixelColor($a_TrainArmy[$Num][0], $a_TrainArmy[$Num][1], True), Hex($a_TrainArmy[$Num][2], 6), $a_TrainArmy[$Num][3]) Then
+					Click($a_TrainArmy[$Num][0], $a_TrainArmy[$Num][1], 1)
+					SetLog("Making the Army " & $Num + 1, $COLOR_INFO)
+					If _Sleep(500) Then Return	; Too slow with wait time 1s. Reduce to 0.5s. - Demen
+				Else
+					Setlog(" - Error Clicking On Army: " & $Num + 1 & "| Pixel was :" & _GetPixelColor($a_TrainArmy[$Num][0], $a_TrainArmy[$Num][1], True), $COLOR_ORANGE)
+					Setlog(" - Please 'edit' the Army " & $Num + 1 & " before start the BOT!!!", $COLOR_RED)
+				EndIf
+			EndIf
+		Next
 	Else
 		Setlog(" - Error Clicking On Army! You are not on Quick Train Window", $COLOR_RED)
 	EndIf
@@ -2416,6 +2425,7 @@ Func CheckValuesCost($Troop = "Arch", $troopQuantity = 1, $DebugLogs = 0)
 	; Local Variables
 	Local $TempColorToCheck = ""
 	Local $nElixirCurrent = 0, $nDarkCurrent = 0, $bLocalDebugOCR = 0
+	Local $iTroopIndex = TroopIndexLookup($Troop)		; Move up here to Bypass checking $TrainTroopsTAB when deal with Spell - SimpleTrain - Demen
 
 	If _sleep(1000) Then Return ; small delay
 	If $g_bRunState = False Then Return
@@ -2431,11 +2441,24 @@ Func CheckValuesCost($Troop = "Arch", $troopQuantity = 1, $DebugLogs = 0)
 	; Let´s UPDATE the current Elixir and Dark elixir each Troop train on 'Bottom train Window Page'
 	If _ColorCheck(_GetPixelColor(223, 594, True), Hex(0xE8E8E0, 6), 20) Then ; Gray background window color
 		; Village without Dark Elixir
-		If ISArmyWindow(False, $TrainTroopsTAB) Or ISArmyWindow(False, $BrewSpellsTAB) Then $nElixirCurrent = getResourcesValueTrainPage(315, 594) ; ELIXIR
+		If $iTroopIndex >= $eBarb And $iTroopIndex <= $eBowl Then		; Bypass checking $TrainTroopsTAB when deal with Spell - Demen
+			If ISArmyWindow(False, $TrainTroopsTAB) Then $nElixirCurrent = getResourcesValueTrainPage(315, 594)  ; ELIXIR
+		ElseIf $iTroopIndex >= $eLSpell And $iTroopIndex <= $eSkSpell Then
+			If ISArmyWindow(False, $BrewSpellsTAB) Then $nElixirCurrent = getResourcesValueTrainPage(315, 594)  ; ELIXIR
+		EndIf
 	Else
 		; Village with Elixir and Dark Elixir
-		If ISArmyWindow(False, $TrainTroopsTAB) Or ISArmyWindow(False, $BrewSpellsTAB) Then $nElixirCurrent = getResourcesValueTrainPage(230, 594) ; ELIXIR
-		If ISArmyWindow(False, $TrainTroopsTAB) Or ISArmyWindow(False, $BrewSpellsTAB) Then $nDarkCurrent = getResourcesValueTrainPage(382, 594) ; DARK ELIXIR
+		If $iTroopIndex >= $eBarb And $iTroopIndex <= $eBowl Then		; Bypass checking $TrainTroopsTAB when deal with Spell - Demen
+			If ISArmyWindow(False, $TrainTroopsTAB) Then
+				$nElixirCurrent = getResourcesValueTrainPage(230, 594)  ; ELIXIR
+				$nDarkCurrent = getResourcesValueTrainPage(382, 594) 	; DARK ELIXIR
+			EndIf
+		ElseIf $iTroopIndex >= $eLSpell And $iTroopIndex <= $eSkSpell Then
+			If ISArmyWindow(False, $BrewSpellsTAB) Then
+				$nElixirCurrent = getResourcesValueTrainPage(230, 594)  ; ELIXIR
+				$nDarkCurrent = getResourcesValueTrainPage(382, 594) 	; DARK ELIXIR
+			EndIf
+		EndIf
 	EndIf
 
 	; 	DEBUG
@@ -2446,7 +2469,7 @@ Func CheckValuesCost($Troop = "Arch", $troopQuantity = 1, $DebugLogs = 0)
 	EndIf
 
 	Local $troopCost = 0
-	Local $iTroopIndex = TroopIndexLookup($Troop)
+;	Local $iTroopIndex = TroopIndexLookup($Troop)
 
 	; Return the Cost of Troops or Spells
 	If $iTroopIndex >= $eBarb And $iTroopIndex <= $eBowl Then

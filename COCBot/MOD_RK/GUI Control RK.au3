@@ -321,3 +321,45 @@ Func btnClearAccLocation()
 	Setlog(GetTranslated(109,57, "Position of all accounts cleared"))
 	SaveConfig_SwitchAcc()
 EndFunc
+
+; QuickTrainCombo 
+Func chkQuickTrainCombo()
+	If GUICtrlRead($g_ahChkArmy[0]) = $GUI_UNCHECKED And GUICtrlRead($g_ahChkArmy[1]) = $GUI_UNCHECKED And GUICtrlRead($g_ahChkArmy[2]) = $GUI_UNCHECKED Then
+		GUICtrlSetState($g_ahChkArmy[0],$GUI_CHECKED)
+		ToolTip("QuickTrainCombo: " & @CRLF & "At least 1 Army Check is required! Default Army1.")
+		Sleep(2000)
+		ToolTip('')
+	EndIf
+EndFunc	;==> QuickTrainCombo
+
+; SimpleTrain 
+Func chkSimpleTrain()
+	If GUICtrlRead($g_hchkSimpleTrain) = $GUI_CHECKED Then
+		_GUI_Value_STATE("ENABLE", $g_hchkPreciseTroops & "#" & $g_hchkFillArcher & "#" & $g_hchkFillEQ)
+		chkPreciseTroops()
+		chkFillArcher()
+	Else
+		_GUI_Value_STATE("DISABLE", $g_hchkPreciseTroops & "#" & $g_hchkFillArcher & "#" & $g_htxtFillArcher & "#" &  $g_hchkFillEQ)
+		_GUI_Value_STATE("UNCHECKED", $g_hchkPreciseTroops & "#" & $g_hchkFillArcher & "#" & $g_hchkFillEQ)
+	EndIf
+EndFunc   ;==>chkSimpleTrain
+
+Func chkPreciseTroops()
+	If GUICtrlRead($g_hchkPreciseTroops) = $GUI_CHECKED Then
+		_GUI_Value_STATE("DISABLE", $g_hchkFillArcher & "#" & $g_hchkFillEQ)
+		_GUI_Value_STATE("UNCHECKED", $g_hchkFillArcher & "#" & $g_hchkFillEQ)
+		chkFillArcher()
+	Else
+		_GUI_Value_STATE("ENABLE", $g_hchkFillArcher & "#" & $g_hchkFillEQ)
+	EndIf
+EndFunc   ;==>chkSimpleTrain
+
+Func chkFillArcher()
+	If GUICtrlRead($g_hchkFillArcher) = $GUI_CHECKED Then
+		_GUI_Value_STATE("ENABLE", $g_htxtFillArcher)
+	Else
+		_GUI_Value_STATE("DISABLE", $g_htxtFillArcher)
+	EndIf
+EndFunc   ;==>chkSimpleTrain
+
+; SwitchAcc_Demen_Style

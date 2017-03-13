@@ -115,6 +115,7 @@ Global $aTimerStart[8], $aTimerEnd[8]
 Global $aRemainTrainTime[8], $aUpdateRemainTrainTime[8], $nMinRemainTrain
 Global $aLocateAccConfig[8], $aAccPosY[8]
 Global $SwitchAcc_Style
+
 ; Profile Switch 
 Global $profileString
 Global $ichkGoldSwitchMax = 0, $itxtMaxGoldAmount = 6000000, $icmbGoldMaxProfile = 0, $ichkGoldSwitchMin = 0, $itxtMinGoldAmount = 500000, $icmbGoldMinProfile = 0
@@ -130,3 +131,6 @@ Global $chkDESwitchMax = 0, $cmbDEMaxProfile = 0, $lblDEMax = 0, $txtMaxDEAmount
 Global $chkDESwitchMin = 0, $cmbDEMinProfile = 0, $lblDEMin = 0, $txtMinDEAmount = 0, $picProfileDE = 0
 Global $chkTrophySwitchMax = 0, $cmbTrophyMaxProfile = 0, $lblTrophyMax = 0, $txtMaxTrophyAmount = 0
 Global $chkTrophySwitchMin = 0, $cmbTrophyMinProfile = 0, $lblTrophyMin = 0, $txtMinTrophyAmount = 0, $picProfileTrophy = 0
+
+; SimpleTrain 
+Global $ichkSimpleTrain,  $ichkPreciseTroops, $ichkFillArcher, $iFillArcher, $ichkFillEQ

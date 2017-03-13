@@ -331,7 +331,7 @@ Func 	HideShowMultiStat($sState = "SHOW")
 	Else
 		$sState = $GUI_HIDE
 	EndIf
-	For $i = $g_grpVillageSW[1] To $g_lblTimeNowSW[8]
+	For $i = $g_grpVillageSW[1] To $g_icnPopOutSW[8]		; fixed minor bug - Demen
 		GUICtrlSetState($i, $sState)
 	Next
 EndFunc ; 	<-HideShowMultiStat($sState = "SHOW")

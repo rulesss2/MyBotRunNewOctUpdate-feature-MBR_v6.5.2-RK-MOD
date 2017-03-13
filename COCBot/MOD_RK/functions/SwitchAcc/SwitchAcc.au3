@@ -72,7 +72,16 @@ Func InitiateSwitchAcc() ; Checking profiles setup in Mybot, First matching CoC 
 	  $aRemainTrainTime[$i] = 0
 	  $aUpdateRemainTrainTime[$i] = 0
    Next
-;~    $iAttackedCountSwitch = $iAttackedVillageCount[0] + $iAttackedVillageCount[1] + $iAttackedVillageCount[2] +$iAttackedVillageCount[3]
+
+	If $aProfileType[$nCurProfile-1] = 1 Then
+		GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Looting")
+		GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_GREEN)
+		GUICtrlSetColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_WHITE)
+	ElseIf $aProfileType[$nCurProfile-1] = 2 Then
+		GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Donating")
+		GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_GREEN)
+		GUICtrlSetColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_WHITE)
+	EndIf
 
    Setlog ("Matching CoC Account with Bot Profile. Trying to Switch Account", $COLOR_BLUE)
 
@@ -279,7 +288,27 @@ Func CheckSwitchAcc(); Switch CoC Account with or without sleep combo - DEMEN
 				Setlog("Try Request troops before switching account", $COLOR_BLUE)
 				RequestCC(true)
 			EndIf
+
+			;Update Stats Label GUI before switching Profile
+			If $aProfileType[$nCurProfile-1] = 2 Then ; Set Gui Label for Donate or Looting CurrentAccount BackGround Color Green
+				GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Donate")
+			ElseIf $aProfileType[$nCurProfile-1] = 1 Then
+				GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], Round($aUpdateRemainTrainTime[$nCurProfile-1], 2))
+			EndIf
+			GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_YELLOW)
+			GUICtrlSetColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_BLACK)
+
 			SwitchProfile($SwitchCase)
+
+			;Update Stats Label GUI of new profile
+			If $aProfileType[$nCurProfile-1] = 2 Then ; Set Gui Label for Donate or Looting CurrentAccount BackGround Color Green
+				GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Donating")
+			ElseIf $aProfileType[$nCurProfile-1] = 1 Then
+				GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Looting")
+			EndIf
+			GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_GREEN)
+			GUICtrlSetColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_WHITE)
+
 			If IsMainPage() = False Then checkMainScreen()
 			SwitchCOCAcc()
 		Else

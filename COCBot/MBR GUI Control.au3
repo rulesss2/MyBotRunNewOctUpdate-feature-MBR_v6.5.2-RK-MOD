@@ -1105,6 +1105,30 @@ Func SetTime($bForceUpdate = False)
 				EndIf
 			Next
 		EndIf
+		
+		;Update Multi Stat Page _ SwitchAcc_Demen_Style
+		If $iSwitchAccStyle = 2 And $ichkSwitchAcc = 1 Then
+			If GUICtrlRead($g_hGUI_BOT_TAB, 1) = $g_hGUI_BOT_TAB_ITEM4 Then		; moved to Bot Tab in NguyenAnh's AIO Mod (edited by Demen)
+				For $i = 0 To $nTotalProfile ; Update time for all Accounts
+					If $aProfileType[$i] = 1 And _
+							$i <> $nCurProfile - 1 And _
+							$aTimerStart[$i] <> 0 Then
+						$aTimerEnd[$i] = TimerDiff($aTimerStart[$i])
+						$aUpdateRemainTrainTime[$i] = Round($aRemainTrainTime[$i] * 60 * 1000 - $aTimerEnd[$i], 2)
+						If $aUpdateRemainTrainTime[$i] < 0 Then
+							GUICtrlSetData($g_lblTroopsTime[$i], Round($aUpdateRemainTrainTime[$i] / 60 / 1000, 2))
+							GUICtrlSetBkColor($g_lblTroopsTime[$i], $COLOR_RED)
+							GUICtrlSetColor($g_lblTroopsTime[$i], $COLOR_WHITE)
+						Else
+							GUICtrlSetData($g_lblTroopsTime[$i], Round($aUpdateRemainTrainTime[$i] / 60 / 1000, 2))
+							GUICtrlSetBkColor($g_lblTroopsTime[$i], $COLOR_YELLOW)
+							GUICtrlSetColor($g_lblTroopsTime[$i], $COLOR_BLACK)
+						EndIf
+					EndIf
+				Next
+			EndIf
+		EndIf
+		
 		;Update PopOut's
 		For $i = 1 To 8
 			If WinGetState(Eval($hGuiPopOut & $i)) <> -1 Then

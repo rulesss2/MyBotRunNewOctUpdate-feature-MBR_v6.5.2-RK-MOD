@@ -169,13 +169,14 @@ Func ApplyConfig_SwitchAcc($TypeReadSave, $SwitchAcc_Style = False)
 				RdoSwitchAcc_Style()
 			EndIf
 			GUICtrlSetState($chkSwitchAcc, $ichkSwitchAcc = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			chkSwitchAcc()
 			GUICtrlSetState($chkTrain, $ichkTrain = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			If $ichkSmartSwitch = 1 Then
 			   GUICtrlSetState($radSmartSwitch, $GUI_CHECKED)
 			Else
 			   GUICtrlSetState($radNormalSwitch, $GUI_CHECKED)
 			EndIf
-			radNormalSwitch()
+			If GUICtrlRead($chkSwitchAcc) = $GUI_CHECKED Then radNormalSwitch()
 			_GUICtrlCombobox_SetCurSel($cmbTotalAccount, $icmbTotalCoCAcc - 1)
 			If $ichkCloseTraining >= 1 Then
 				GUICtrlSetState($chkUseTrainingClose, $GUI_CHECKED)
@@ -210,6 +211,7 @@ Func ApplyConfig_SwitchAcc($TypeReadSave, $SwitchAcc_Style = False)
 			EndIf
 	EndSwitch
 EndFunc
+
 Func ApplyConfig_RK_Switch_Profiles($TypeReadSave)
     Switch $TypeReadSave
 		Case "Read"

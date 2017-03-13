@@ -40,6 +40,7 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		chkPic()
 		;Transparent Gui (Modified Kychera)
 	    GUICtrlSetData($SldTransLevel, $iSldTransLevel)
+		
         ; CSV Deploy Speed 
 		_GUICtrlComboBox_SetCurSel($g_hCmbCSVSpeed[$DB], $g_iCmbCSVSpeed[$DB])
 		_GUICtrlComboBox_SetCurSel($g_hCmbCSVSpeed[$LB], $g_iCmbCSVSpeed[$LB])

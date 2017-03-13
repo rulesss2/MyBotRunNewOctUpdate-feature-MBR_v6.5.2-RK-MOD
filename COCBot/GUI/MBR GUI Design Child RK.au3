@@ -27,7 +27,7 @@ Func CreateRKTab()
 	GUISwitch($g_hGUI_RK)
 	   $g_hGUI_RK_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 20, $_GUI_MAIN_HEIGHT - 255, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
             $g_hGUI_RK_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(91,1, "Mod Option"))
-
+              ModOptionGUI()
 			$g_hGUI_RK_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(106,1,"Chat"))
               ChatbotGUI()
 
@@ -41,6 +41,10 @@ Func CreateRKTab()
               SwitchProfilesGUI()
    GUICtrlCreateTabItem("")
 
+EndFunc
+
+Func ModOptionGUI()
+$35 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 410, $WS_CLIPCHILDREN)
 EndFunc
 
 Func ChatbotGUI()
@@ -216,7 +220,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$cmbSwLang = GUICtrlCreateCombo("", $x, $y + 50, 45, 45, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
              GUICtrlSetData(-1, "EN" & "|" & "RU" & "|" & "FR" & "|" & "DE" & "|" & "ES" & "|" & "IT" & "|" & "PT" & "|" & "IN", "EN")
 			 GUICtrlSetOnEvent(-1, "cmbSwLang")
-GUICtrlCreateTabItem("")
+;GUICtrlCreateTabItem("")
 
 EndFunc
 

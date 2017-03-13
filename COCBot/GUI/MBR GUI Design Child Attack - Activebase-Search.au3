@@ -13,7 +13,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 #include-once
-
+ 
 ; Start search if
 Global $g_hChkABActivateSearches = 0, $g_hTxtABSearchesMin = 0, $g_hTxtABSearchesMax = 0  ; Search count limit
 Global $g_hChkABActivateTropies = 0, $g_hTxtABTropiesMin = 0, $g_hTxtABTropiesMax = 0  ; Trophy limit
@@ -36,6 +36,7 @@ Global $g_hChkABMeetTH = 0, $g_hCmbABTH = 0, $g_hChkABMeetTHO = 0
 Global $g_hGrpABFilter = 0, $g_hPicABMinGold = 0, $g_hPicABMinElixir = 0, $g_hPicABMinGPEGold = 0, $g_hPicABMinDarkElixir = 0, $g_hPicABMinTrophies = 0, $g_hPicABMaxTH10 = 0
 
 Func CreateAttackSearchActiveBaseSearch()
+     $6 = GUICtrlCreatePic(@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)   
    Local $sTxtLightningSpells = GetTranslated(605,15,"Lightning")
    Local $sTxtHealSpells = GetTranslated(605,16,"Heal")
    Local $sTxtRageSpells = GetTranslated(605,17,"Rage")

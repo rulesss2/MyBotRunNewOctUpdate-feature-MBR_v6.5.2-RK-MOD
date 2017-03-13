@@ -69,6 +69,7 @@ Func CreateMODTab()
 EndFunc   ;==>CreateMODTab
 
 Func OptionsGUI()
+	$7 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)
 	Local $x = 5, $y = 30
 
 	Local $Group1 = GUICtrlCreateGroup("Treasury Collect", $x, $y, 440, 105)

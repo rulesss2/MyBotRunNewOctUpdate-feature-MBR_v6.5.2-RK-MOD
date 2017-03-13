@@ -133,4 +133,4 @@ Global $chkTrophySwitchMax = 0, $cmbTrophyMaxProfile = 0, $lblTrophyMax = 0, $tx
 Global $chkTrophySwitchMin = 0, $cmbTrophyMinProfile = 0, $lblTrophyMin = 0, $txtMinTrophyAmount = 0, $picProfileTrophy = 0
 
 ; SimpleTrain 
-Global $ichkSimpleTrain,  $ichkPreciseTroops, $ichkFillArcher, $iFillArcher, $ichkFillEQ
+Global $ichkSimpleTrain,  $ichkPreciseTroops, $ichkFillArcher, $iFillArcher = 5, $ichkFillEQ

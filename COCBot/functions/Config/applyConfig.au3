@@ -1723,6 +1723,7 @@ Func ApplyConfig_600_52_1($TypeReadSave)
 			$g_bQuickTrainArmy[1] = (GUICtrlRead($g_ahChkArmy[1]) = $GUI_CHECKED)							; 	QuickTrainCombo (Checkbox)- Demen
 			$g_bQuickTrainArmy[2] = (GUICtrlRead($g_ahChkArmy[2]) = $GUI_CHECKED)							; 	QuickTrainCombo (Checkbox)- Demen
 	EndSwitch
+	ApplyConfig_RK_MOD($TypeReadSave)
 EndFunc
 
 Func ApplyConfig_600_52_2($TypeReadSave)

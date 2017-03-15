@@ -298,7 +298,10 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 
 		; Return Home on Search limit
 		If SearchLimit($iSkipped + 1) Then Return True
-
+        
+		; Force Switch when long search - DEMEN
+		If $ichkForceSwitch = 1 And $iSkipped >= $iForceSwitch Then ForceSwitchAcc()
+		
 		If checkAndroidReboot() = True Then
 			$g_bRestart = True
 			$Is_ClientSyncError = True

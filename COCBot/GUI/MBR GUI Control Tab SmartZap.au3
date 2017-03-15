@@ -20,7 +20,7 @@ Func chkSmartLightSpell()
 		GUICtrlSetState($g_hChkNoobZap, $GUI_ENABLE)
 		GUICtrlSetState($g_hChkSmartEQSpell, $GUI_ENABLE)
 		GUICtrlSetState($g_hLblSmartUseLSpell, $GUI_SHOW)
-		If GUICtrlRead($g_hChkNoobZap) = $GUI_UNCHECKED Then
+		If GUICtrlRead($g_hChkNoobZap) = $GUI_CHECKED Then
 			GUICtrlSetState($g_hTxtSmartMinDark, $GUI_ENABLE)
 			GUICtrlSetState($g_hTxtSmartExpectedDE, $GUI_ENABLE)
 		Else

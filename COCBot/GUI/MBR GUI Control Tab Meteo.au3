@@ -271,7 +271,7 @@ EndFunc
 Func CalculateIndex($minutes)
 	Local $index = 0
 	Local $iRound1 = 0
-	Local $index25 = 2.5
+	Local $index25 = 2
 	Local $index4 = 4
 	Local $index6 = 6
 	Local $index8 = 8

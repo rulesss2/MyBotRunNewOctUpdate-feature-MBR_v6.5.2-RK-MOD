@@ -25,7 +25,7 @@ Func ReadConfig_RK_MOD()
    IniReadS($iTxtWaveFactor, $g_sProfileConfigPath, "SetSleep", "WaveFactor", 100 ,"Int")
    
    ;Background by Kychera
-   IniReadS($iBackGr, $g_sProfileConfigPath, "background", "BackGr", 1, "Int")
+   IniReadS($iBackGr, $g_sProfileConfigPath, "background", "BackGr", 0, "Int")
    IniReadS($ichkPic, $g_sProfileConfigPath, "background", "chkPic", 1, "Int")
    
    ;Transparent Gui by Kychera

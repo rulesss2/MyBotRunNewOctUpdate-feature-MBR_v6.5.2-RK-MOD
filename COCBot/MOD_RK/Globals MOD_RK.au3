@@ -60,10 +60,10 @@ Global $TimerForecast = 0
 Global $lootIndexScaleMarkers
 Global $currentForecast
 Global $chkForecastBoost = 0, $txtForecastBoost = 0
-Global $iChkForecastBoost, $iTxtForecastBoost = 6
-Global $cmbForecastHopingSwitchMax, $cmbForecastHopingSwitchMin
+Global $iChkForecastBoost = 0, $iTxtForecastBoost = 6
+Global $cmbForecastHopingSwitchMax = 0, $cmbForecastHopingSwitchMin = 0
 Global $chkForecastHopingSwitchMax = 0, $lblForecastHopingSwitchMax = 0, $txtForecastHopingSwitchMax = 2, $chkForecastHopingSwitchMin = 0, $lblForecastHopingSwitchMin = 0, $txtForecastHopingSwitchMin = 0
-Global $ichkForecastHopingSwitchMax, $icmbForecastHopingSwitchMax , $itxtForecastHopingSwitchMax = 2, $ichkForecastHopingSwitchMin, $icmbForecastHopingSwitchMin, $itxtForecastHopingSwitchMin = 2
+Global $ichkForecastHopingSwitchMax = 0, $icmbForecastHopingSwitchMax = 0 , $itxtForecastHopingSwitchMax = 2, $ichkForecastHopingSwitchMin = 0, $icmbForecastHopingSwitchMin = 0, $itxtForecastHopingSwitchMin = 2
 ;Added Multi Switch Language by rulesss and Kychera
 Global $icmbSwLang = 1
 Global $cmbSwLang = 0
@@ -101,7 +101,7 @@ Global $UpgradeDuration
 Global $canContinueLoop = True
 
 ; SwitchAcc_Demen_Style
-Global $profile = $g_sProfilePath & "\Profile.ini"
+;Global $profile = $g_sProfilePath & "\Profile.ini"
 Global $iSwitchAccStyle = 1	; 1 = DocOc, 2 = Demen
 Global $ichkSwitchAcc = 0, $ichkTrain = 0, $icmbTotalCoCAcc, $nTotalCoCAcc = 8, $ichkSmartSwitch, $ichkCloseTraining
 Global $nTotalProfile = 1, $nCurProfile = 1, $nNextProfile

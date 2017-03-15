@@ -25,7 +25,7 @@ Func BoostBarracks()
 			Return ; exit func if no planned Boost Barracks checkmarks
 		EndIf
 	EndIf
-  If $iChkForecastBoost = 1 Then
+  If GUICtrlRead($chkForecastBoost) = $GUI_CHECKED Then
 		If $currentForecast > Number($iTxtForecastBoost, 3) Then
 		Local $hour = StringSplit(_NowTime(4), ":", $STR_NOCOUNT)
 			If $g_abBoostBarracksHours[$hour[0]] = False Then

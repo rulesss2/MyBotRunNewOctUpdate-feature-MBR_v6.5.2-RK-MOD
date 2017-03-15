@@ -82,23 +82,6 @@ Func SaveConfig_RK_MOD()
 	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "FillArcher", $iFillArcher)
 	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "FillEQ", $ichkFillEQ)
 	
-EndFunc   ;==>SaveConfig_RK_MOD
-
-Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)
-	; <><><> SwitchAcc_Demen_Style <><><>
-	ApplyConfig_SwitchAcc("Save", $SwitchAcc_Style)
-	If $SwitchAcc_Style = True Then IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "SwitchType", $iSwitchAccStyle)	; 1 = DocOc Style, 2 = Demen Style
-
-	IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "Enable", $ichkSwitchAcc ? 1 : 0)
-	IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "Pre-train", $ichkTrain ? 1 : 0)
-	IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "Total Coc Account", $icmbTotalCoCAcc)		; 1 = 1 Acc, 2 = 2 Acc, etc.
-	IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "Smart Switch", $ichkSmartSwitch ? 1 : 0)
-	IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "Sleep Combo", $ichkCloseTraining)			; 0 = No Sleep, 1 = Close CoC, 2 = Close Android
-	For $i = 1 to 8
-		IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "MatchProfileAcc." & $i, _GUICtrlCombobox_GetCurSel($cmbAccountNo[$i-1])+1)		; 1 = Acc 1, 2 = Acc 2, etc.
-		IniWriteS($g_sProfileConfigPath, "SwitchAcc_Demen_Style", "ProfileType." & $i, _GUICtrlCombobox_GetCurSel($cmbProfileType[$i-1])+1)			; 1 = Active, 2 = Donate, 3 = Idle
-	Next
-
 	; Profile Switch
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkGoldSwitchMax", $ichkGoldSwitchMax ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "profiles", "cmbGoldMaxProfile", _GUICtrlComboBox_GetCurSel($cmbGoldMaxProfile))
@@ -133,5 +116,20 @@ Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)
 	IniWriteS($g_sProfileConfigPath, "profiles", "cmbTrophyMinProfile", _GUICtrlComboBox_GetCurSel($cmbTrophyMinProfile))
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinTrophyAmount", GUICtrlRead($txtMinTrophyAmount))
 	
+EndFunc   ;==>SaveConfig_RK_MOD
 
+Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)
+	; <><><> SwitchAcc_Demen_Style <><><>
+	ApplyConfig_SwitchAcc("Save", $SwitchAcc_Style)
+	If $SwitchAcc_Style = True Then IniWriteS($SSAConfig, "SwitchAcc_Demen_Style", "SwitchType", $iSwitchAccStyle)	; 1 = DocOc Style, 2 = Demen Style
+
+	IniWriteS($SSAConfig, "SwitchAcc_Demen_Style", "Enable", $ichkSwitchAcc ? 1 : 0)
+	IniWriteS($SSAConfig, "SwitchAcc_Demen_Style", "Pre-train", $ichkTrain ? 1 : 0)
+	IniWriteS($SSAConfig, "SwitchAcc_Demen_Style", "Total Coc Account", $icmbTotalCoCAcc)		; 1 = 1 Acc, 2 = 2 Acc, etc.
+	IniWriteS($SSAConfig, "SwitchAcc_Demen_Style", "Smart Switch", $ichkSmartSwitch ? 1 : 0)
+	IniWriteS($SSAConfig, "SwitchAcc_Demen_Style", "Sleep Combo", $ichkCloseTraining)			; 0 = No Sleep, 1 = Close CoC, 2 = Close Android
+	For $i = 1 to 8
+		IniWriteS($SSAConfig, "SwitchAcc_Demen_Style", "MatchProfileAcc." & $i, _GUICtrlCombobox_GetCurSel($cmbAccountNo[$i-1])+1)		; 1 = Acc 1, 2 = Acc 2, etc.
+		IniWriteS($SSAConfig, "SwitchAcc_Demen_Style", "ProfileType." & $i, _GUICtrlCombobox_GetCurSel($cmbProfileType[$i-1])+1)			; 1 = Active, 2 = Donate, 3 = Idle
+	Next
 EndFunc   ;==>SaveConfig_RK_MOD

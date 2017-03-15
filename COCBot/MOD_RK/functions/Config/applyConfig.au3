@@ -117,8 +117,8 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			$ichkFillEQ = GUICtrlRead($g_hchkFillEQ) = $GUI_CHECKED ? 1 : 0
 			
 	EndSwitch
-	ApplyConfig_RK_Forecast($TypeReadSave)
-	ApplyConfig_RK_Switch_Profiles($TypeReadSave)	
+	;ApplyConfig_RK_Forecast($TypeReadSave)
+	;ApplyConfig_RK_Switch_Profiles($TypeReadSave)	
 EndFunc   ;==>ApplyConfig_RK_MOD
 ;----------------- Background  -------------
 Func ApplyConfig_decor_RK($TypeReadSave)
@@ -137,14 +137,14 @@ EndFunc  ;==> ApplyConfig_decor_RK
 Func ApplyConfig_RK_Forecast($TypeReadSave)
     Switch $TypeReadSave
 		Case "Read"
-		GUICtrlSetState($chkForecastBoost, $iChkForecastBoost ? $GUI_CHECKED : $GUI_UNCHECKED)
+		GUICtrlSetState($chkForecastBoost, $iChkForecastBoost = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 		GUICtrlSetData($txtForecastBoost, $iTxtForecastBoost)
 		chkForecastBoost()
-		GUICtrlSetState($chkForecastHopingSwitchMax, $ichkForecastHopingSwitchMax ? $GUI_CHECKED : $GUI_UNCHECKED)
+		GUICtrlSetState($chkForecastHopingSwitchMax, $ichkForecastHopingSwitchMax = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 		_GUICtrlComboBox_SetCurSel($cmbForecastHopingSwitchMax, $icmbForecastHopingSwitchMax)
 		GUICtrlSetData($txtForecastHopingSwitchMax, $itxtForecastHopingSwitchMax)
 		chkForecastHopingSwitchMax()
-		GUICtrlSetState($chkForecastHopingSwitchMin, $ichkForecastHopingSwitchMin ? $GUI_CHECKED : $GUI_UNCHECKED)
+		GUICtrlSetState($chkForecastHopingSwitchMin, $ichkForecastHopingSwitchMin = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 		_GUICtrlComboBox_SetCurSel($cmbForecastHopingSwitchMin, $icmbForecastHopingSwitchMin)
 		GUICtrlSetData($txtForecastHopingSwitchMin, $itxtForecastHopingSwitchMin)
 		chkForecastHopingSwitchMin()

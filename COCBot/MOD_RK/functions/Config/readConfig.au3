@@ -108,16 +108,16 @@ EndFunc   ;==>ReadConfig_RK_MOD
 
 Func ReadConfig_SwitchAcc($SwitchAcc_Style = False)
 	; <><><> SwitchAcc_Demen_Style <><><>
-	If $SwitchAcc_Style = True Then IniReadS($iSwitchAccStyle, $g_sProfileConfigPath, "SwitchAcc_Demen_Style", "SwitchType", 1, "int")
+	If $SwitchAcc_Style = True Then IniReadS($iSwitchAccStyle, $SSAConfig, "SwitchAcc_Demen_Style", "SwitchType", 1, "int")
 
-	IniReadS($ichkSwitchAcc, $g_sProfileConfigPath, "SwitchAcc_Demen_Style", "Enable", 0, "int")
-	IniReadS($ichkTrain, $g_sProfileConfigPath, "SwitchAcc_Demen_Style", "Pre-train", 0, "int")
-	IniReadS($icmbTotalCoCAcc, $g_sProfileConfigPath, "SwitchAcc_Demen_Style", "Total Coc Account", -1, "int")
-	IniReadS($ichkSmartSwitch, $g_sProfileConfigPath, "SwitchAcc_Demen_Style", "Smart Switch", 0, "int")
-	IniReads($ichkCloseTraining, $g_sProfileConfigPath, "SwitchAcc_Demen_Style", "Sleep Combo", 0, "int")	; Sleep Combo, 1 = Close CoC, 2 = Close Android, 0 = No sleep
+	IniReadS($ichkSwitchAcc, $SSAConfig, "SwitchAcc_Demen_Style", "Enable", 0, "int")
+	IniReadS($ichkTrain, $SSAConfig, "SwitchAcc_Demen_Style", "Pre-train", 0, "int")
+	IniReadS($icmbTotalCoCAcc, $SSAConfig, "SwitchAcc_Demen_Style", "Total Coc Account", -1, "int")
+	IniReadS($ichkSmartSwitch, $SSAConfig, "SwitchAcc_Demen_Style", "Smart Switch", 0, "int")
+	IniReads($ichkCloseTraining, $SSAConfig, "SwitchAcc_Demen_Style", "Sleep Combo", 0, "int")	; Sleep Combo, 1 = Close CoC, 2 = Close Android, 0 = No sleep
 	For $i = 0 to 7
-		IniReadS($aMatchProfileAcc[$i], $g_sProfileConfigPath, "SwitchAcc_Demen_Style", "MatchProfileAcc." & $i+1, "-1")
-		IniReadS($aProfileType[$i], $g_sProfileConfigPath, "SwitchAcc_Demen_Style", "ProfileType." & $i+1, "-1")
-		IniReadS($aAccPosY[$i], $g_sProfileConfigPath, "SwitchAcc_Demen_Style", "AccLocation." & $i+1, "-1")
+		IniReadS($aMatchProfileAcc[$i], $SSAConfig, "SwitchAcc_Demen_Style", "MatchProfileAcc." & $i+1, "-1")
+		IniReadS($aProfileType[$i], $SSAConfig, "SwitchAcc_Demen_Style", "ProfileType." & $i+1, "-1")
+		IniReadS($aAccPosY[$i], $SSAConfig, "SwitchAcc_Demen_Style", "AccLocation." & $i+1, "-1")
 	Next
 EndFunc   ;==>ReadConfig_RK_MOD

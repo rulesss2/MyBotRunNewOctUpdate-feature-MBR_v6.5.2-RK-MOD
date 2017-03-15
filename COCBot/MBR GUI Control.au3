@@ -628,7 +628,7 @@ Func GUIControl_WM_NOTIFY($hWind, $iMsg, $wParam, $lParam)
 		Case $g_hTabMain
 			; Handle RichText controls
 			tabMain()
-			If GUICtrlRead($g_htabMain, 1) = $g_hRKTab And GUICtrlRead($g_hGUI_RK_TAB, 1) = $g_hGUI_RK_TAB_ITEM4 Then
+			If GUICtrlRead($g_hTabMain, 1) = $g_hGUI_RK And GUICtrlRead($g_hGUI_RK_TAB, 1) = $g_hGUI_RK_TAB_ITEM4 Then
 						Local $tTag  = DllStructCreate("hwnd;int;int;int;int;int;int;ptr;int;int;int;int;int;int;int;int;int;int;int;int", $lParam)
 						Local $hFrom = DllStructGetData($tTag, 1)
 						Local $iID   = DllStructGetData($tTag, 2)
@@ -959,6 +959,7 @@ Func SetRedrawBotWindow($bEnableRedraw, $bCheckRedrawBotWindow = Default, $bForc
 		; set dirty redraw flag
 		$g_bRedrawBotWindow[1] = True
 	EndIf
+	redrawForecast()
 	Return $bWasRedraw
 EndFunc   ;==>SetRedrawBotWindow
 

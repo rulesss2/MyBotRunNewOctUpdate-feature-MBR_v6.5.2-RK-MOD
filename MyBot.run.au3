@@ -694,7 +694,16 @@ Func runBot() ;Bot that runs everything in order
 				UpgradeWall()
 				If _Sleep($iDelayRunBot3) Then Return
 				If $g_bRestart = True Then ContinueLoop
-				If $ichkSwitchAcc = 1 And $aProfileType[$nCurProfile - 1] = 2 Then checkSwitchAcc() ;  Switching to active account after donation - SwitchAcc_DEMEN_Style
+				If $ichkSwitchAcc = 1 And $aProfileType[$nCurProfile - 1] = 2 Then
+					If $ichkForceStayDonate = 1 Then
+						If MinRemainTrainAcc() > 1 Then ForceSwitchAcc("Donate", "ForceStay")	; stay on donate accounts until troops are ready in 1 minute
+					ElseIf $bForceSwitch = True Then
+						ForceSwitchAcc()
+					Else
+						checkSwitchAcc() ;  Switching to active account after donation - SwitchAcc_DEMEN_Style
+					EndIf
+				EndIf
+				
 				Idle()
 				;$fullArmy1 = $fullArmy
 				If _Sleep($iDelayRunBot3) Then Return

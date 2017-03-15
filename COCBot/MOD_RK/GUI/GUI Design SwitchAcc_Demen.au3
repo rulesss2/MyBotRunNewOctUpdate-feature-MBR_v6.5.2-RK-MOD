@@ -15,6 +15,7 @@
 
 Global $lblProfileNo[8], $lblProfileName[8], $cmbAccountNo[8], $cmbProfileType[8]
 Global $chkSwitchAcc = 0, $chkTrain = 0, $cmbTotalAccount = 0, $radNormalSwitch = 0, $radSmartSwitch = 0, $chkUseTrainingClose = 0, $radCloseCoC = 0, $radCloseAndroid = 0, $cmbLocateAcc = 0
+Global $g_hChkForceSwitch = 0, $g_txtForceSwitch = 0, $g_lblForceSwitch = 0, $g_hChkForceStayDonate = 0
 Global $g_StartHideSwitchAcc_Demen = 0, $g_SecondHideSwitchAcc_Demen, $g_EndHideSwitchAcc_Demen = 0
 
 Func CreateSwitchAcc_Demen()
@@ -67,6 +68,18 @@ Func CreateSwitchAcc_Demen()
 				GUICtrlSetOnEvent(-1, "radNormalSwitch")
 
 			$y += 80
+			$g_hChkForceSwitch = GUICtrlCreateCheckbox(GetTranslated(109,42, "Force switch after:"), $x - 5, $y, -1, -1)
+				GUICtrlSetOnEvent(-1, "chkForceSwitch")
+			$g_txtForceSwitch = GUICtrlCreateInput("100", $x + 105, $y+1, 27, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+				GUICtrlSetState(-1, $GUI_DISABLE)
+				GUICtrlSetLimit(-1, 3)
+			$g_lblForceSwitch = GUICtrlCreateLabel(GetTranslated(109,43, "searches"), $x + 135, $y+4, -1, -1)
+				GUICtrlSetState(-1, $GUI_DISABLE)
+
+			$y += 30
+			$g_hChkForceStayDonate= GUICtrlCreateCheckbox(GetTranslated(109,44, "Stay on donation while training"), $x - 5, $y, -1, -1)
+
+			$y += 30
 			$chkUseTrainingClose = GUICtrlCreateCheckbox(GetTranslated(109,19, "Combo Sleep after Switch Acc."), $x - 5, $y, -1, -1)
 				$sTxtTip = GetTranslated(109,20, "Close CoC combo with Switch Account when there is more than 3 mins remaining on training time of all accounts.")
 				GUICtrlSetTip(-1, $sTxtTip)

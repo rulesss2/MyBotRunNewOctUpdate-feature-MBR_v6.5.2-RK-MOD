@@ -104,6 +104,8 @@ Global $canContinueLoop = True
 ;Global $profile = $g_sProfilePath & "\Profile.ini"
 Global $iSwitchAccStyle = 1	; 1 = DocOc, 2 = Demen
 Global $ichkSwitchAcc = 0, $ichkTrain = 0, $icmbTotalCoCAcc, $nTotalCoCAcc = 8, $ichkSmartSwitch, $ichkCloseTraining
+Global $ichkForceSwitch, $iForceSwitch, $bForceSwitch = False
+Global $ichkForceStayDonate
 Global $nTotalProfile = 1, $nCurProfile = 1, $nNextProfile
 Global $ProfileList
 Global $aProfileType[8]		; Type of the all Profiles, 1 = active, 2 = donate, 3 = idle

@@ -165,6 +165,8 @@ Func MinRemainTrainAcc() 														; Check remain training time of all Activ
 	  EndIf
    Next
 
+   Return $nMinRemainTrain
+
 EndFunc	; --> MinRemainTrainAcc()
 
 Func SwitchProfile($SwitchCase) 										; Switch profile (1 = Active, 2 = Donate, 3 = switching continuosly) - DEMEN
@@ -212,6 +214,28 @@ Func SwitchProfile($SwitchCase) 										; Switch profile (1 = Active, 2 = Dona
    $nCurProfile = _GUICtrlComboBox_GetCurSel($g_hCmbProfile)+1
 
 EndFunc ; --> SwitchProfile()
+
+Func UpdateTrainTimeStatus($sSwitch = "After")
+	If $sSwitch = "Before" Then
+		;Update Stats Label GUI before switching Profile
+		If $aProfileType[$nCurProfile-1] = 2 Then ; Set Gui Label for Donate or Looting CurrentAccount BackGround Color Green
+			GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Donate")
+		ElseIf $aProfileType[$nCurProfile-1] = 1 Then
+			GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], Round($aUpdateRemainTrainTime[$nCurProfile-1], 2))
+		EndIf
+		GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_YELLOW)
+		GUICtrlSetColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_BLACK)
+	Else
+		;Update Stats Label GUI of new profile
+		If $aProfileType[$nCurProfile-1] = 2 Then ; Set Gui Label for Donate or Looting CurrentAccount BackGround Color Green
+			GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Donating")
+		ElseIf $aProfileType[$nCurProfile-1] = 1 Then
+			GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Looting")
+		EndIf
+		GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_GREEN)
+		GUICtrlSetColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_WHITE)
+	EndIf
+EndFunc
 
 Func CheckSwitchAcc(); Switch CoC Account with or without sleep combo - DEMEN
 
@@ -288,27 +312,9 @@ Func CheckSwitchAcc(); Switch CoC Account with or without sleep combo - DEMEN
 				Setlog("Try Request troops before switching account", $COLOR_BLUE)
 				RequestCC(true)
 			EndIf
-
-			;Update Stats Label GUI before switching Profile
-			If $aProfileType[$nCurProfile-1] = 2 Then ; Set Gui Label for Donate or Looting CurrentAccount BackGround Color Green
-				GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Donate")
-			ElseIf $aProfileType[$nCurProfile-1] = 1 Then
-				GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], Round($aUpdateRemainTrainTime[$nCurProfile-1], 2))
-			EndIf
-			GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_YELLOW)
-			GUICtrlSetColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_BLACK)
-
+			UpdateTrainTimeStatus("Before") ;Update Stats Label GUI before switching Profile
 			SwitchProfile($SwitchCase)
-
-			;Update Stats Label GUI of new profile
-			If $aProfileType[$nCurProfile-1] = 2 Then ; Set Gui Label for Donate or Looting CurrentAccount BackGround Color Green
-				GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Donating")
-			ElseIf $aProfileType[$nCurProfile-1] = 1 Then
-				GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Looting")
-			EndIf
-			GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_GREEN)
-			GUICtrlSetColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_WHITE)
-
+			UpdateTrainTimeStatus() 		;Update Stats Label GUI of new profile
 			If IsMainPage() = False Then checkMainScreen()
 			SwitchCOCAcc()
 		Else
@@ -346,6 +352,41 @@ Func CheckSwitchAcc(); Switch CoC Account with or without sleep combo - DEMEN
 	EndIf
 
 EndFunc; -->CheckSwitchAcc()
+
+Func ForceSwitchAcc($sProfileType = "", $sForceStay = "")
+	Local $SwitchCase
+	If $sForceStay = "ForceStay" Then
+		Setlog("Stay on Donation until an Active Account is ready")
+	Else
+		SetLog("Force switching account")
+	EndIf
+
+	If $sProfileType = "Donate" And $DonateSwitchCounter >= UBound($aDonateProfile) Then $DonateSwitchCounter = 0
+	If $DonateSwitchCounter < UBound($aDonateProfile) Then
+		If $nCurProfile <> $aDonateProfile[$DonateSwitchCounter] + 1 Then
+			$SwitchCase = 2
+			$bForceSwitch = True
+		Else
+			Setlog("Stay on this Donate Account")
+			runBot()
+		EndIf
+	Else
+		MinRemainTrainAcc()
+		$SwitchCase = 1
+	EndIf
+
+	If $aProfileType[$nCurProfile-1] = 1 And $g_bRequestTroopsEnable = True And $canRequestCC = True Then
+		Setlog("Try Request troops before switching account", $COLOR_BLUE)
+		RequestCC(true)
+	EndIf
+
+	UpdateTrainTimeStatus("Before")
+	SwitchProfile($SwitchCase)
+	UpdateTrainTimeStatus()
+	If IsMainPage() = False Then checkMainScreen()
+	SwitchCOCAcc()
+	runBot()
+EndFunc
 
 Func SwitchCOCAcc()
 

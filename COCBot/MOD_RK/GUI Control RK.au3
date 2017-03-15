@@ -191,6 +191,7 @@ Func chkSwitchAcc()
 				GUICtrlSetState($i, $GUI_ENABLE)
 			Next
 			radNormalSwitch()
+			chkForceSwitch()
 			btnUpdateProfile(False)
 		EndIf
 	Else
@@ -217,6 +218,14 @@ Func radNormalSwitch()
 		Next
 	EndIf
 EndFunc   ;==>radNormalSwitch  - Normal Switch is not on the same boat with Sleep Combo
+
+Func chkForceSwitch()
+	If GUICtrlRead($g_hChkForceSwitch) = $GUI_CHECKED Then
+		_GUI_Value_STATE("ENABLE", $g_txtForceSwitch & "#" & $g_lblForceSwitch)
+	Else
+		_GUI_Value_STATE("DISABLE", $g_txtForceSwitch & "#" & $g_lblForceSwitch)
+	EndIf
+EndFunc
 
 Func cmbMatchProfileAcc1()
 	MatchProfileAcc(0)

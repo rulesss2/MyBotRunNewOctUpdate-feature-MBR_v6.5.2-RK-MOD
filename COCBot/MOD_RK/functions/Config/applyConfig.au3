@@ -194,6 +194,10 @@ Func ApplyConfig_SwitchAcc($TypeReadSave, $SwitchAcc_Style = False)
 			EndIf
 			If GUICtrlRead($chkSwitchAcc) = $GUI_CHECKED Then radNormalSwitch()
 			_GUICtrlCombobox_SetCurSel($cmbTotalAccount, $icmbTotalCoCAcc - 1)
+			GUICtrlSetState($g_hChkForceSwitch, $ichkForceSwitch = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetData($g_txtForceSwitch, $iForceSwitch)
+			If GUICtrlRead($chkSwitchAcc) = $GUI_CHECKED Then chkForceSwitch()
+			GUICtrlSetState($g_hChkForceStayDonate, $ichkForceStayDonate = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			If $ichkCloseTraining >= 1 Then
 				GUICtrlSetState($chkUseTrainingClose, $GUI_CHECKED)
 				If $ichkCloseTraining = 1 Then
@@ -221,6 +225,9 @@ Func ApplyConfig_SwitchAcc($TypeReadSave, $SwitchAcc_Style = False)
 			$ichkTrain = GUICtrlRead($chkTrain) = $GUI_CHECKED ? 1 : 0
 			$icmbTotalCoCAcc = _GUICtrlCombobox_GetCurSel($cmbTotalAccount)+1
 			$ichkSmartSwitch = GUICtrlRead($radSmartSwitch) = $GUI_CHECKED ? 1 : 0
+			$ichkForceSwitch = GUICtrlRead($g_hChkForceSwitch) = $GUI_CHECKED ? 1 : 0
+			$ichkForceStayDonate = GUICtrlRead($g_hChkForceStayDonate) = $GUI_CHECKED ? 1 : 0
+			$iForceSwitch = GUICtrlRead($g_txtForceSwitch)
 			$ichkCloseTraining = GUICtrlRead($chkUseTrainingClose) = $GUI_CHECKED ? 1 : 0
 			If $ichkCloseTraining = 1 Then
 				$ichkCloseTraining = GUICtrlRead($radCloseCoC) = $GUI_CHECKED ? 1 : 2

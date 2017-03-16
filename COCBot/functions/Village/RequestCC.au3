@@ -100,11 +100,32 @@ Func _makerequest()
 			AndroidSendText($g_sRequestTroopsText, True)
 			Click($atxtRequestCCBtn[0], $atxtRequestCCBtn[1], 1, 0, "#0254") ;Select text for request $atxtRequestCCBtn[2] = [430, 140]
 			_Sleep($iDelaymakerequest2)
-			If SendText($g_sRequestTroopsText) = 0 Then
-				Setlog(" Request text entry failed, try again", $COLOR_ERROR)
-				Return
-			EndIf
-		EndIf
+			;=====================================================================
+   If $ichkRusLang2 = 1 Then
+	  SetLog("Request in russian", $COLOR_BLUE)
+     AutoItWinSetTitle('MyAutoItTitle')
+    _WinAPI_SetKeyboardLayout(WinGetHandle(AutoItWinGetTitle()), 0x0419)
+	 Sleep(200)
+	 ControlFocus($HWnd, "", "")
+	 Sleep(200)
+	 SendKeepActive($HWnd)
+	 AutoItSetOption( "SendKeyDelay", 50)
+	 If _SendExEx($g_sRequestTroopsText) = 0 Then
+	            Setlog(" Request text entry failed, try again", $COLOR_RED)
+				  Return
+			   EndIf
+            Else
+	If SendText($g_sRequestTroopsText) = 0 Then
+				Setlog(" Request text entry failed, try again", $COLOR_RED)
+				 Return
+			   EndIf
+	 SendKeepActive("")
+       EndIf
+	EndIf
+;+++++++++++++++++++++++++++++	Kychera Modified ++++++++++++++++++++++
+;						Support for the Russian language.
+;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+;=======================================================================		
 		If _Sleep($iDelaymakerequest2) Then Return ; wait time for text request to complete
 		$icount = 0
 		While Not _ColorCheck(_GetPixelColor($aSendRequestCCBtn[0], $aSendRequestCCBtn[1], True), Hex(0x5fac10, 6), 20)

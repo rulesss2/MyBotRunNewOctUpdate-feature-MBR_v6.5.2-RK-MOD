@@ -32,13 +32,13 @@ Func chkRequestCCHours()
 	Local $bWasRedraw = SetRedrawBotWindow(False, Default, Default, Default, "chkRequestCCHours")
 
 	If GUICtrlRead($g_hChkRequestTroopsEnable) = $GUI_CHECKED Then
-		GUICtrlSetState($g_hTxtRequestCC, $GUI_SHOW + $GUI_ENABLE)
-		For $i = $g_ahLblRequestCCHours0 To $g_hLblRequestCCHoursPM
+		GUICtrlSetState($chkRusLang2, $GUI_SHOW + $GUI_ENABLE)
+		For $i = $g_hTxtRequestCC To $g_hLblRequestCCHoursPM
 			GUICtrlSetState($i, $GUI_ENABLE)
 		Next
 	Else
-		GUICtrlSetState($g_hTxtRequestCC, $GUI_SHOW + $GUI_DISABLE)
-		For $i = $g_ahLblRequestCCHours0 To $g_hLblRequestCCHoursPM
+		GUICtrlSetState($chkRusLang2, $GUI_SHOW + $GUI_DISABLE)
+		For $i = $g_hTxtRequestCC To $g_hLblRequestCCHoursPM
 			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
 	EndIf

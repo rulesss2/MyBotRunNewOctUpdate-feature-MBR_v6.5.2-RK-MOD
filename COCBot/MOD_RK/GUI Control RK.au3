@@ -389,3 +389,11 @@ Func cmbSwLang() ; Rules and Kychera
 				   setForecast9()
      EndSwitch
 EndFunc
+
+Func chkRusLang2()
+If GUICtrlRead($chkRusLang2) = $GUI_CHECKED Then
+		$ichkRusLang2 = 1
+	Else
+		$ichkRusLang2 = 0
+	EndIf
+EndFunc 

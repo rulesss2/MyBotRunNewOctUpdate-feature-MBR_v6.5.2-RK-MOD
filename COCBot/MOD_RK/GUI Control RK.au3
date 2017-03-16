@@ -7,8 +7,8 @@
 	Template AutoIt script.
 
 #ce ----------------------------------------------------------------------------
-; Switch Profile by rulesss
-; Script Start - Add your code below here
+; Switch Profile by rulesss and kychera
+
 Func setupProfileComboBoxswitch()
 		; Clear the combo box current data in case profiles were deleted
 		GUICtrlSetData($cmbGoldMaxProfile, "", "")

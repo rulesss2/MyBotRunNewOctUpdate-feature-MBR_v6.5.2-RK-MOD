@@ -7,7 +7,7 @@ Func ProfileSwitch()
 				If Number($iGoldCurrent) >= Number($itxtMaxGoldAmount) Then
 					$SwitchtoProfile = $icmbGoldMaxProfile
 					Setlog("Village Gold detected Above Gold Profile Switch Conditions")
-					Setlog("It's time to switch profile")
+					Setlog("It's time to switch profile")					
 					ExitLoop
 				EndIf
 			EndIf
@@ -70,7 +70,7 @@ Func ProfileSwitch()
 			ExitLoop
 		WEnd
 
-		If $SwitchtoProfile <> "" Then
+		If $SwitchtoProfile <> -1 Then
 				TrayTip( " Profile Switch Village Report!", "Gold: "  & _NumberFormat($iGoldCurrent) & "; Elixir: " &  _NumberFormat($iElixirCurrent) & "; Dark: " &  _NumberFormat($iDarkCurrent) & "; Trophy: " & _NumberFormat($iTrophyCurrent), "", 0)
 				If FileExists(@ScriptDir & "\Audio\SwitchingProfiles.wav") Then
 					SoundPlay(@ScriptDir & "\Audio\SwitchingProfiles.wav", 1)
@@ -80,7 +80,7 @@ Func ProfileSwitch()
 
 			_GUICtrlComboBox_SetCurSel($g_hCmbProfile, $SwitchtoProfile)
 			cmbProfile()
-			If _Sleep(2000) Then Return
+			If _Sleep(3000) Then Return
 			runBot()
 		EndIf
 	EndIf

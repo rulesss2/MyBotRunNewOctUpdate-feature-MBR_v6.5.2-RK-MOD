@@ -8,46 +8,41 @@
 
 #ce ----------------------------------------------------------------------------
 ; Switch Profile by rulesss
-Func btnRecycle()
-	FileDelete($config)
-	SaveConfig()
-	SetLog(GetTranslated(637, 20, "Profile ") & $sCurrProfile & GetTranslated(637, 21, " was recycled with success"), $COLOR_GREEN)
-	SetLog(GetTranslated(637, 22, "All unused settings were removed"), $COLOR_GREEN)
-EndFunc   ;==>btnRecycle
 ; Script Start - Add your code below here
 Func setupProfileComboBoxswitch()
 		; Clear the combo box current data in case profiles were deleted
 		GUICtrlSetData($cmbGoldMaxProfile, "", "")
-		; Set the new data of available profiles
-		GUICtrlSetData($cmbGoldMaxProfile, $profileString, "<No Profiles>")
+		; Set the new data of available profiles		
+		GUICtrlSetData($cmbGoldMaxProfile, $profileString, $g_sProfileCurrentName)
 		; Clear the combo box current data in case profiles were deleted
 		GUICtrlSetData($cmbGoldMinProfile, "", "")
 		; Set the new data of available profiles
-		GUICtrlSetData($cmbGoldMinProfile, $profileString, "<No Profiles>")
+		GUICtrlSetData($cmbGoldMinProfile, $profileString, $g_sProfileCurrentName)
 		; Clear the combo box current data in case profiles were deleted
 		GUICtrlSetData($cmbElixirMaxProfile, "", "")
 		; Set the new data of available profiles
-		GUICtrlSetData($cmbElixirMaxProfile, $profileString, "<No Profiles>")
+		GUICtrlSetData($cmbElixirMaxProfile, $profileString, $g_sProfileCurrentName)
 		; Clear the combo box current data in case profiles were deleted
 		GUICtrlSetData($cmbElixirMinProfile, "", "")
 		; Set the new data of available profiles
-		GUICtrlSetData($cmbElixirMinProfile, $profileString, "<No Profiles>")
+		GUICtrlSetData($cmbElixirMinProfile, $profileString, $g_sProfileCurrentName)
 		; Clear the combo box current data in case profiles were deleted
 		GUICtrlSetData($cmbDEMaxProfile, "", "")
 		; Set the new data of available profiles
-		GUICtrlSetData($cmbDEMaxProfile, $profileString, "<No Profiles>")
+		GUICtrlSetData($cmbDEMaxProfile, $profileString, $g_sProfileCurrentName)
 		; Clear the combo box current data in case profiles were deleted
 		GUICtrlSetData($cmbDEMinProfile, "", "")
 		; Set the new data of available profiles
-		GUICtrlSetData($cmbDEMinProfile, $profileString, "<No Profiles>")
+		GUICtrlSetData($cmbDEMinProfile, $profileString, $g_sProfileCurrentName)
 		; Clear the combo box current data in case profiles were deleted
 		GUICtrlSetData($cmbTrophyMaxProfile, "", "")
 		; Set the new data of available profiles
-		GUICtrlSetData($cmbTrophyMaxProfile, $profileString, "<No Profiles>")
+		GUICtrlSetData($cmbTrophyMaxProfile, $profileString, $g_sProfileCurrentName)
 		; Clear the combo box current data in case profiles were deleted
 		GUICtrlSetData($cmbTrophyMinProfile, "", "")
 		; Set the new data of available profiles
-		GUICtrlSetData($cmbTrophyMinProfile, $profileString, "<No Profiles>")
+		GUICtrlSetData($cmbTrophyMinProfile, $profileString, $g_sProfileCurrentName)
+		
 EndFunc   ;==>setupProfileComboBox
 
 ; SwitchAcc_Demen_Style
@@ -372,3 +367,25 @@ Func chkFillArcher()
 EndFunc   ;==>chkSimpleTrain
 
 ; SwitchAcc_Demen_Style
+Func cmbSwLang() ; Rules and Kychera
+
+     Switch GUICtrlRead($cmbSwLang)
+	 ;
+		 Case "EN"
+				   setForecast2()
+		 Case "RU"
+				   setForecast3()
+		 Case "FR"
+				   setForecast4()
+		 Case "DE"
+				   setForecast5()
+		 Case "ES"
+				   setForecast6()
+		 Case "IT"
+		           setForecast7()
+		 Case "PT"
+				   setForecast8()
+		 Case "IN"
+				   setForecast9()
+     EndSwitch
+EndFunc

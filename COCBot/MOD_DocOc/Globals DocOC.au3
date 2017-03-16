@@ -23,7 +23,7 @@ Global $g_sOldModversmessage = "" ;warning message for old bot
 
 Global $g_ichkGoldTrCollect, $g_ichkElxTrCollect, $g_ichkDarkTrCollect
 Global $g_ichkFullGoldTrCollect, $g_ichkFullElxTrCollect, $g_ichkFullDarkTrCollect
-Global $g_itxtMinGoldTrCollect, $g_itxtMinElxTrCollect, $g_itxtMinDarkTrCollect
+Global $g_itxtMinGoldTrCollect = 200000, $g_itxtMinElxTrCollect = 200000, $g_itxtMinDarkTrCollect = 3000
 Global $g_ichkEnableTrCollect, $g_ichkForceTrCollect
 
 ; ================================================== BOT HUMANIZATION PART ================================================== ;

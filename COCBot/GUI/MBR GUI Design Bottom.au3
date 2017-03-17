@@ -69,7 +69,7 @@ Func CreateBottomPanel()
 		   _GUICtrlSetTip(-1, GetTranslated(602,29, "Use this to embed the Android Window into Bot."))
 		   If $g_bBtnColor Then GUICtrlSetBkColor(-1, 0x22C4F5)
 		   GUICtrlSetState(-1, $GUI_DISABLE)
-	   $g_hChkBackgroundMode = GUICtrlCreateCheckbox(GetTranslated(602,14, "Background Mode"), $x + 1, $y + 72, 90, 24)
+	   $g_hChkBackgroundMode = _GUICtrlCreateCheckbox(GetTranslated(602,14, "Background Mode"), $x + 1, $y + 72, 90, 24)
 		   GUICtrlSetFont(-1, 7)
 		   _GUICtrlSetTip(-1, GetTranslated(602,16, "Check this to ENABLE the Background Mode of the Bot.") & @CRLF & _
 						      GetTranslated(602,17, "With this you can also hide the Android Emulator window out of sight."))

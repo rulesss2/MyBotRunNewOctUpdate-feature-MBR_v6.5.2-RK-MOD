@@ -34,21 +34,21 @@ $17 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPC
     Local $x = 25, $y = 45
     GUICtrlCreateGroup(GetTranslated(634,20, "Attack Schedule"), $x - 20, $y - 20, 420, 130)
 	$x -= 5
-		$g_hChkAttackPlannerEnable = GUICtrlCreateCheckbox(GetTranslated(634,21, "Enable Schedule"), $x, $y-5, -1, -1)
+		$g_hChkAttackPlannerEnable = _GUICtrlCreateCheckbox(GetTranslated(634,21, "Enable Schedule"), $x, $y-5, -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(634,22, "This option will allow you to schedule attack times") & @CRLF & _
 							   GetTranslated(634,23, "Bot continues to run and will attack only when schedule allows"))
 			GUICtrlSetOnEvent(-1, "chkAttackPlannerEnable")
-		$g_hChkAttackPlannerCloseCoC = GUICtrlCreateCheckbox(GetTranslated(634,24, "Close CoC"), $x, $y+14, -1, -1)
+		$g_hChkAttackPlannerCloseCoC = _GUICtrlCreateCheckbox(GetTranslated(634,24, "Close CoC"), $x, $y+14, -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(634,25, "This option will close CoC app when not scheduled to Search & Attack!") & @CRLF & _
 							   GetTranslated(634,26, "Bot Continues to run and will restart when schedule allows"))
 			GUICtrlSetState(-1, $GUI_DISABLE)
 			GUICtrlSetOnEvent(-1, "chkAttackPlannerCloseCoC")
-		$g_hChkAttackPlannerCloseAll = GUICtrlCreateCheckbox(GetTranslated(634,27, "Close emulator"), $x, $y+33, -1, -1)
+		$g_hChkAttackPlannerCloseAll = _GUICtrlCreateCheckbox(GetTranslated(634,27, "Close emulator"), $x, $y+33, -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(634,28, "This option will close emulator when not scheduled to Search & Attack!") & @CRLF & _
 							   GetTranslated(634,26, -1))
 			GUICtrlSetState(-1, $GUI_DISABLE)
 			GUICtrlSetOnEvent(-1, "chkAttackPlannerCloseAll")
-		$g_hChkAttackPlannerRandom = GUICtrlCreateCheckbox(GetTranslated(634,29, "Random Disable"), $x, $y+52, -1, -1)
+		$g_hChkAttackPlannerRandom = _GUICtrlCreateCheckbox(GetTranslated(634,29, "Random Disable"), $x, $y+52, -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(634,30, "This option will randomly stop attacking") & @CRLF & _
 							   GetTranslated(634,26, -1))
 			GUICtrlSetState(-1, $GUI_DISABLE)
@@ -60,7 +60,7 @@ $17 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPC
 			GUICtrlSetOnEvent(-1, "cmbAttackPlannerRandom")
 		$g_hLbAttackPlannerRandom = GUICtrlCreateLabel(GetTranslated(603,37, "hrs"), $x+148, $y+54, -1,-1)
 			GUICtrlSetState(-1, $GUI_DISABLE)
-		$g_hChkAttackPlannerDayLimit = GUICtrlCreateCheckbox(GetTranslated(634,35, "Daily Limit"), $x, $y+71, -1, -1)
+		$g_hChkAttackPlannerDayLimit = _GUICtrlCreateCheckbox(GetTranslated(634,35, "Daily Limit"), $x, $y+71, -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(634,36, "Will randomly stop attacking when exceed random number of attacks between range selected") & @CRLF & _
 							   GetTranslated(634,26, -1))
 			GUICtrlSetState(-1, $GUI_DISABLE)
@@ -289,13 +289,13 @@ $17 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPC
 		GUICtrlCreateIcon($g_sLibIconPath, $eIcnCC, $x -10 , $y + 4, 24, 24)
 
 	$y -= 4
-		$g_hChkDropCCHoursEnable = GUICtrlCreateCheckbox(GetTranslated(634,40,"Enable CC Drop Schedule" ), $x +20, $y+2, -1, -1)
+		$g_hChkDropCCHoursEnable = _GUICtrlCreateCheckbox(GetTranslated(634,40,"Enable CC Drop Schedule" ), $x +20, $y+2, -1, -1)
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
 			_GUICtrlSetTip(-1, GetTranslated(634,41, "Use schedule to define when dropping CC is allowed, \r\n CC is always dropped when schedule is not enabled"))
 			GUICtrlSetOnEvent(-1, "chkDropCCHoursEnable")
 
 	$y += 22
-		$g_hChkUseCCBalanced = GUICtrlCreateCheckbox(GetTranslated(634,13,"Balance Donate/Receive" ), $x +20, $y+2, -1, -1)
+		$g_hChkUseCCBalanced = _GUICtrlCreateCheckbox(GetTranslated(634,13,"Balance Donate/Receive" ), $x +20, $y+2, -1, -1)
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
 			_GUICtrlSetTip(-1, GetTranslated(634,14, "Drop your Clan Castle only if your donated/received ratio is greater than D/R ratio below."))
 			GUICtrlSetOnEvent(-1, "chkBalanceDR")

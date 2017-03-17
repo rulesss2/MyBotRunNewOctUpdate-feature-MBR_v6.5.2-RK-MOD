@@ -305,3 +305,14 @@ Func ApplyConfig_RK_Switch_Profiles($TypeReadSave)
 		
 	EndSwitch	
 EndFunc  ;==> ApplyConfig_RK_Switch_Profiles
+
+;Func ApplyConfig_RK_MOD_ruRequest($TypeReadSave)
+;	Switch $TypeReadSave
+;		Case "Read"
+ ;         GUICtrlSetState($chkRusLang2, $ichkRusLang2 = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+ ;           
+;		Case "Save"
+;		   $ichkRusLang2 = GUICtrlRead($chkRusLang2) = $GUI_CHECKED ? 1 : 0
+;		    
+;	EndSwitch
+;EndFunc   ;==>ApplyConfig_RK_ruRequest

@@ -80,11 +80,11 @@ Func CreateTroopsSpellsSubTab()
 
    Local $x = 0
    Local $y = 8
-	   $g_hChkUseQuickTrain = GUICtrlCreateCheckbox(GetTranslated(621, 34, "Use Quick Train"), $x + 15, $y + 19, -1, 15)
+	   $g_hChkUseQuickTrain = _GUICtrlCreateCheckbox(GetTranslated(621, 34, "Use Quick Train"), $x + 15, $y + 9, -1, 15)
 	   GUICtrlSetState(-1, $GUI_UNCHECKED)
 	   GUICtrlSetOnEvent(-1, "chkUseQTrain")
 	   For $i = 0 To 2												; QuickTrainCombo (check box) - Demen
-		   $g_ahChkArmy[$i] = GUICtrlCreateCheckbox(GetTranslated(621, 37 + $i, "Army " & $i+1), $x + 120 + $i*60, $y + 20, 50, 15)
+		   $g_ahChkArmy[$i] = _GUICtrlCreateCheckbox(GetTranslated(621, 37 + $i, "Army " & $i+1), $x + 120 + $i*60, $y + 10, 50, 15)
 		   GUICtrlSetState(-1, $GUI_DISABLE)
 		   If $i = 0 Then GUICtrlSetState(-1, $GUI_CHECKED)
 		   GUICtrlSetOnEvent(-1, "chkQuickTrainCombo")
@@ -417,11 +417,11 @@ Func CreateTroopsSpellsSubTab()
 
 	  $x -= 195
 	  $Y += 35
-		  $g_hChkTotalCampForced = GUICtrlCreateCheckbox(GetTranslated(636, 46, "Force Total Army Camp") & ":", $x + 3, $y, -1, -1)
+		  $g_hChkTotalCampForced = _GUICtrlCreateCheckbox(GetTranslated(636, 46, "Force Total Army Camp") & ":", $x + 3, $y + 3, -1, -1)
 			 GUICtrlSetState(-1, $GUI_CHECKED)
 			 GUICtrlSetOnEvent(-1, "chkTotalCampForced")
 			 _GUICtrlSetTip(-1, GetTranslated(636, 47, "If not detected set army camp values (instead ask)"))
-		  $g_hTxtTotalCampForced = GUICtrlCreateInput("220", $x + 137, $y + 3, 30, 17, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+		  $g_hTxtTotalCampForced = GUICtrlCreateInput("220", $x + 137, $y + 3, 28, 17, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 			 GUICtrlSetOnEvent(-1, "SetComboTroopComp")
 			 GUICtrlSetLimit(-1, 3)
 
@@ -431,8 +431,8 @@ Func CreateTroopsSpellsSubTab()
 			 GUICtrlSetState(-1, BitOR($GUI_DISABLE, $GUI_HIDE))
 
 	  $x += 38
-		  GUICtrlCreateLabel(GetTranslated(621, 15, "Total"), $x + 295, $y + 7, -1, -1, $SS_RIGHT)
-		  $g_hLblCountTotal = GUICtrlCreateLabel(0, $x + 330, $y + 5, 30, 15, $SS_CENTER)
+		  GUICtrlCreateLabel(GetTranslated(621, 15, "Total"), $x + 285, $y + 5, -1, -1, $SS_RIGHT)
+		  $g_hLblCountTotal = GUICtrlCreateLabel(0, $x + 330, $y + 5, 28, 15, $SS_CENTER)
 			 _GUICtrlSetTip(-1, GetTranslated(621, 16, "The total Units of Troops should equal Total Army Camps."))
 			 GUICtrlSetBkColor(-1, $COLOR_MONEYGREEN) ;lime, moneygreen
 		  GUICtrlCreateLabel("x", $x + 364, $y + 7, -1, -1)
@@ -593,7 +593,7 @@ Func CreateTroopsSpellsSubTab()
 
 	  $y += 56
 	  $x = 17
-		  $g_hChkForceBrewBeforeAttack = GUICtrlCreateCheckbox(GetTranslated(621, 42, "Force Brew Spells"), $x, $y + 12, -1, -1)
+		  $g_hChkForceBrewBeforeAttack = _GUICtrlCreateCheckbox(GetTranslated(621, 42, "Force Brew Spells"), $x, $y + 12, -1, -1)
 		  GUICtrlSetState(-1, $GUI_UNCHECKED)
 
 	  $x = 210
@@ -620,21 +620,21 @@ Func CreateTroopsSpellsSubTab()
 	GUICtrlCreateGroup(GetTranslated(621, 300, "Simple Train (Not delete queued troops)"), $x, $y, 418, 38)
 		$x += 7
 		$y += 16
-			$g_hchkSimpleTrain = GUICtrlCreateCheckbox(GetTranslated(621, 301, "Enable SimpleTrain"), $x, $y, -1, 15)
+			$g_hchkSimpleTrain = _GUICtrlCreateCheckbox(GetTranslated(621, 301, "Enable SimpleTrain"), $x, $y - 10, -1, 15)
 				GUICtrlSetOnEvent(-1, "chkSimpleTrain")
 		$x += 130
-			$g_hchkPreciseTroops = GUICtrlCreateCheckbox(GetTranslated(621, 304, "Precise troops"), $x, $y, -1, 15)
+			$g_hchkPreciseTroops = _GUICtrlCreateCheckbox(GetTranslated(621, 304, "Precise troops"), $x, $y - 10, -1, 15)
 				GUICtrlSetState(-1, $GUI_HIDE)
 				GUICtrlSetOnEvent(-1, "chkPreciseTroops")
 		$x += 103
-			$g_hchkFillArcher = GUICtrlCreateCheckbox(GetTranslated(621, 302, "Fill Arch:"), $x, $y, -1, 15)
+			$g_hchkFillArcher = _GUICtrlCreateCheckbox(GetTranslated(621, 302, "Fill Arch:"), $x, $y - 10, -1, 15)
 				GUICtrlSetState(-1, $GUI_DISABLE)
 				GUICtrlSetOnEvent(-1, "chkFillArcher")
 			$g_htxtFillArcher = GUICtrlCreateInput("5", $x + 70, $y-1, 20, 16, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 				GUICtrlSetState(-1, $GUI_DISABLE)
 				GUICtrlSetLimit(-1, 2)
 		$x += 110
-			$g_hchkFillEQ = GUICtrlCreateCheckbox(GetTranslated(621, 303, "Fill 1 EQ"), $x, $y, -1, 15)
+			$g_hchkFillEQ = _GUICtrlCreateCheckbox(GetTranslated(621, 303, "Fill 1 EQ"), $x, $y - 10, -1, 15)
 				GUICtrlSetState(-1, $GUI_DISABLE)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 ;========== Adding GUI for SimpleTrain - Demen ==============

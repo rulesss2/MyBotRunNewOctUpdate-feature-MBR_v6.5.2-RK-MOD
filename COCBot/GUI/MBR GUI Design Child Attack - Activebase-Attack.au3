@@ -149,13 +149,14 @@ Func CreateAttackSearchActiveBaseAttack()
 
    Local $x = 10, $y = 268
 	GUICtrlCreateGroup(GetTranslated(624,32, -1),  $x - 5, $y - 20, 145, 84,$SS_CENTER)
-		$g_hChkTHSnipeBeforeLBEnable = GUICtrlCreateCheckbox(GetTranslated(624,33, -1) ,$x, $y - 5, -1, -1)
+		$g_hChkTHSnipeBeforeLBEnable = _GUICtrlCreateCheckbox(GetTranslated(624,33, -1) ,$x, $y - 5, -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(624,34, -1))
 			GUICtrlSetOnEvent(-1, "chkTHSnipeBeforeLBEnable")
 
 		$y += 16
 		$g_hLblTHSnipeBeforeLBTiles = GUICtrlCreateLabel(GetTranslated(624,35, -1)& ":", $x, $y + 3, 70, -1, $SS_RIGHT)
 		GUICtrlSetState(-1, $GUI_DISABLE)
+		GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 		$g_hTxtTHSnipeBeforeLBTiles = GUICtrlCreateInput("2", $x + 75, $y + 1, 30, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 			$sTxtTip = GetTranslated(624,36, -1)
 			_GUICtrlSetTip(-1, $sTxtTip)

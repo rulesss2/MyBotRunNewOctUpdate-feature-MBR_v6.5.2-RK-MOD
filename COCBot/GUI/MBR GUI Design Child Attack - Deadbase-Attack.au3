@@ -138,7 +138,7 @@ $49 = GUICtrlCreatePic (@ScriptDir & "\Images3\1.jpg", 0, 20, 150, 352, $WS_CLIP
 
    Local $x = 10, $y = 268
 	   GUICtrlCreateGroup(GetTranslated(624,32, "TH Snipe"),  $x - 5, $y - 20, 145, 84,$SS_CENTER)
-		   $g_hChkTHSnipeBeforeDBEnable = GUICtrlCreateCheckbox(GetTranslated(624,33, "Snipe TH External first") ,$x, $y - 5, -1, -1)
+		   $g_hChkTHSnipeBeforeDBEnable = _GUICtrlCreateCheckbox(GetTranslated(624,33, "Snipe TH External first") ,$x, $y - 5, -1, -1)
 			   _GUICtrlSetTip(-1, GetTranslated(624,34, "If TH is external start with a TH Snipe"))
 			   GUICtrlSetOnEvent(-1, "chkTHSnipeBeforeDBEnable")
 		   $y +=16

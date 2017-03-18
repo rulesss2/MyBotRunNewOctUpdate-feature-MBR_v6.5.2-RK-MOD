@@ -137,3 +137,6 @@ Global $chkTrophySwitchMin = 0, $cmbTrophyMinProfile = 0, $lblTrophyMin = 0, $tx
 
 ; SimpleTrain 
 Global $ichkSimpleTrain,  $ichkPreciseTroops, $ichkFillArcher, $iFillArcher = 5, $ichkFillEQ
+; Request russian
+Global $ichkRusLang2 = 0
+Global $chkRusLang2 = 0

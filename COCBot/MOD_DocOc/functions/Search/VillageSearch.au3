@@ -300,7 +300,47 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 		If SearchLimit($iSkipped + 1) Then Return True
         
 		; Force Switch when long search - DEMEN
-		If $ichkForceSwitch = 1 And $iSkipped >= $iForceSwitch Then ForceSwitchAcc()
+		If $ichkForceSwitch = 1 And $iSkipped+1 >= $iForceSwitch And Mod(($iSkipped+1), _Min(10, Number($iForceSwitch))) = 0 Then
+			If UBound($aDonateProfile) >= 1 Then
+				Setlog("Reach search limit: " & $iForceSwitch & ". Force switch to Donate Account.")
+				$eForceSwitch = $eDonate
+			ElseIf MinRemainTrainAcc(False, True) <= 0 Then	;	min train time, no writelog, exclude current profile
+				Setlog("Reach search limit: " & $iForceSwitch & ". Force switch to another Active Account.")
+				Setlog("Targeted Account: " & $ProfileList[$nNextProfile] & " , having troops ready " & -Round($nMinRemainTrain,2) & " m ago")
+				$eForceSwitch = $eActive
+			Else
+				Setlog("Reach search limit: " & $iForceSwitch & ". Another Active Account will be ready in " & Round($nMinRemainTrain,2) & " m")
+				Setlog("Continue searching")
+				$eForceSwitch = $eNull
+			EndIf
+
+			If $eForceSwitch <> $eNull Then
+				$iProfileBeforeForceSwitch = $nCurProfile
+				$i = 0
+				While 1
+					If _CheckPixel($aSurrenderButton, $g_bCapturePixel) = True Then
+						PureClickP($aSurrenderButton, 1, 0, "#0099") ;Click Surrender
+						Local $j = 0
+						While 1 ; dynamic wait for Okay button
+							If IsEndBattlePage(False) Then
+								ClickOkay("SurrenderOkay") ; Click Okay to Confirm surrender
+								ExitLoop 2
+							Else
+								$j += 1
+							EndIf
+							If IsMainPage(1) Then ExitLoop
+							If $j > 5 Then ExitLoop ; if Okay button not found in 5*(200)ms or 1 second, then give up.
+						WEnd
+					Else
+						$i += 1
+					EndIf
+					If IsMainPage(1) Then ExitLoop
+					If $i >= 5 Then ExitLoop ; if end battle or surrender button are not found in 5*(200)ms + 5*(200)ms or 2 seconds, then give up.
+				WEnd
+				If $i > 5 Or isProblemAffect(True) Then checkMainScreen()
+				ForceSwitchAcc($eForceSwitch)
+			EndIf
+		EndIf
 		
 		If checkAndroidReboot() = True Then
 			$g_bRestart = True

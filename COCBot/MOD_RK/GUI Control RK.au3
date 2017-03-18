@@ -201,16 +201,10 @@ EndFunc   ;==>chkSwitchAcc
 
 Func radNormalSwitch()
 	If GUICtrlRead($radNormalSwitch) = $GUI_CHECKED Then
-		GUICtrlSetState($chkUseTrainingClose, $GUI_UNCHECKED)
-		GUICtrlSetState($chkUseTrainingClose, $GUI_DISABLE)
-		For $i = $radCloseCoC To $radCloseAndroid
-			GUICtrlSetState($i, $GUI_DISABLE)
-		Next
+		_GUI_Value_STATE("UNCHECKED", $g_hChkForceStayDonate & "#" & $chkUseTrainingClose)
+		_GUI_Value_STATE("DISABLE", $g_hChkForceStayDonate & "#" & $chkUseTrainingClose & "#" & $radCloseCoC & "#" & $radCloseAndroid)
 	Else
-		GUICtrlSetState($chkUseTrainingClose, $GUI_ENABLE)
-		For $i = $radCloseCoC To $radCloseAndroid
-			GUICtrlSetState($i, $GUI_ENABLE)
-		Next
+		_GUI_Value_STATE("ENABLE", $g_hChkForceStayDonate & "#" & $chkUseTrainingClose & "#" & $radCloseCoC & "#" & $radCloseAndroid)
 	EndIf
 EndFunc   ;==>radNormalSwitch  - Normal Switch is not on the same boat with Sleep Combo
 

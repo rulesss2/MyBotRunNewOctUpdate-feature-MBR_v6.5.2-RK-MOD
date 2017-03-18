@@ -168,7 +168,7 @@ $1 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHI
 ;+++++++++++++++++++++++++++++++++++++++
 GUICtrlCreateGroup("", -99, -99, 1, 1)
    Local $x = 240, $y = 45
-   GUICtrlCreateGroup(GetTranslated(636,93, "Advanced"), $x - 20, $y - 20, 225, 108)
+   GUICtrlCreateGroup(GetTranslated(636,93, "Advanced"), $x - 20, $y - 20, 225, 121)
 	   $g_hChkUpdatingWhenMinimized = GUICtrlCreateCheckbox(GetTranslated(636,96, "Updating when minimized"), $x, $y, -1, -1)
 		   GUICtrlSetState(-1, $GUI_DISABLE) ; must be always enabled
 		   GUICtrlSetOnEvent(-1, "chkUpdatingWhenMinimized")

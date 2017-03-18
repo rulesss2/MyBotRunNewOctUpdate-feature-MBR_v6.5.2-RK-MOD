@@ -123,6 +123,9 @@ Func SaveConfig_RK_MOD()
 	IniWriteS($g_sProfileConfigPath, "Stats", "chkCoCStats", $ichkCoCStats ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "Stats", "txtAPIKey", $MyApiKey)
 	
+	; Upgrade Management (MMHK) - Added by NguyenAnhHD
+	IniWriteS($g_sProfileConfigPath, "upgrade", "UpdateNewUpgradesOnly", $g_ibUpdateNewUpgradesOnly ? 1 : 0)
+	
 EndFunc   ;==>SaveConfig_RK_MOD
 
 Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)

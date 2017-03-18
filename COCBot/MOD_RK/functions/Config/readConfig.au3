@@ -111,6 +111,9 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
 	IniReadS($ichkCoCStats, $g_sProfileConfigPath, "Stats", "chkCoCStats", 0, "int")
 	IniReadS($MyApiKey, $g_sProfileConfigPath, "Stats", "txtAPIKey", "")
 	
+	; Upgrade Management 
+	$g_ibUpdateNewUpgradesOnly = (IniRead($g_sProfileConfigPath, "upgrade", "UpdateNewUpgradesOnly", 0) = 1)
+	
 EndFunc   ;==>ReadConfig_RK_MOD
 
 Func ReadConfig_SwitchAcc($SwitchAcc_Style = False)

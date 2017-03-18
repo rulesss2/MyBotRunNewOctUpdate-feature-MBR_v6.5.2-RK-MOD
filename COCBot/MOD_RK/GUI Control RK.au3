@@ -397,3 +397,56 @@ Func chkCoCStats()
 	GUICtrlSetState($g_hTxtAPIKey, GUICtrlRead($g_hChkCoCStats) = $GUI_CHECKED ? $GUI_ENABLE : $GUI_DISABLE)
 	IniWrite($g_sProfileConfigPath, "Stats", "chkCoCStats", $ichkCoCStats)
 EndFunc   ;==>chkCoCStats
+
+; Upgrade Management 
+Func chkUpgradeAllOrNone()
+	If GUICtrlRead($g_hChkUpgradeAllOrNone) = $GUI_CHECKED And GUICtrlRead($g_hChkUpgrade[0]) = $GUI_CHECKED Then
+		For $i = 0 To $g_iUpgradeSlots - 1
+			GUICtrlSetState($g_hChkUpgrade[$i], $GUI_UNCHECKED)
+		Next
+	Else
+		For $i = 0 To $g_iUpgradeSlots - 1
+			GUICtrlSetState($g_hChkUpgrade[$i], $GUI_CHECKED)
+		Next
+	EndIf
+	Sleep(300)
+	GUICtrlSetState($g_hChkUpgradeAllOrNone, $GUI_UNCHECKED)
+EndFunc   ;==>chkUpgradeAllOrNone
+
+Func chkUpgradeRepeatAllOrNone()
+	If GUICtrlRead($g_hChkUpgradeRepeatAllOrNone) = $GUI_CHECKED And GUICtrlRead($g_hChkUpgradeRepeat[0]) = $GUI_CHECKED Then
+		For $i = 0 To $g_iUpgradeSlots - 1
+			GUICtrlSetState($g_hChkUpgradeRepeat[$i], $GUI_UNCHECKED)
+		Next
+	Else
+		For $i = 0 To $g_iUpgradeSlots - 1
+			GUICtrlSetState($g_hChkUpgradeRepeat[$i], $GUI_CHECKED)
+		Next
+	EndIf
+	Sleep(300)
+	GUICtrlSetState($g_hChkUpgradeRepeatAllOrNone, $GUI_UNCHECKED)
+EndFunc   ;==>chkUpgradeRepeatAllOrNone
+
+Func chkUpdateNewUpgradesOnly()
+	If GUICtrlRead($g_hChkUpdateNewUpgradesOnly) = $GUI_CHECKED Then
+		$g_ibUpdateNewUpgradesOnly = True
+	Else
+		$g_ibUpdateNewUpgradesOnly = False
+	EndIf
+EndFunc   ;==>chkUpdateNewUpgradesOnly
+
+Func btnTop()
+	MoveUpgrades($UP, $TILL_END)
+EndFunc   ;==>btnTop
+
+Func btnUp()
+	MoveUpgrades($UP)
+EndFunc   ;==>btnUp
+
+Func btnDown()
+	MoveUpgrades($DOWN)
+EndFunc   ;==>btnDown
+
+Func btnBottom()
+	MoveUpgrades($DOWN, $TILL_END)
+EndFunc   ;==>btnBottom

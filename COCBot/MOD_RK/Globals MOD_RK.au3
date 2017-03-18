@@ -144,3 +144,7 @@ Global $chkRusLang2 = 0
 ; CoCStats 
 Global $ichkCoCStats = 0
 Global $MyApiKey = ""
+
+; Upgrade Management 
+Global $g_ibUpdateNewUpgradesOnly = False
+Global Const $UP = True, $DOWN = False, $TILL_END = True

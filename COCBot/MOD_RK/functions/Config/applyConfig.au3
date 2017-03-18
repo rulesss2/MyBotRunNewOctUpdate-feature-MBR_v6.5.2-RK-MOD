@@ -81,6 +81,9 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			GUICtrlSetData($g_hTxtAPIKey, $MyApiKey)
 			chkCoCStats()
 			
+			; Upgrade Management 
+			GUICtrlSetState($g_hChkUpdateNewUpgradesOnly, $g_ibUpdateNewUpgradesOnly ? $GUI_CHECKED : $GUI_UNCHECKED)
+			
 		Case "Save"
         $iChkUnitFactor = (GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED)
 		$iChkWaveFactor = (GUICtrlRead($ChkWaveFactor) = $GUI_CHECKED)
@@ -124,6 +127,9 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			; CoC Stats 
 			$ichkCoCStats = GUICtrlRead($g_hChkCoCStats) = $GUI_CHECKED ? 1 : 0
 			$MyApiKey = GUICtrlRead($g_hTxtAPIKey)
+			
+			; Upgrade Management 
+			$g_ibUpdateNewUpgradesOnly = (GUICtrlRead($g_hChkUpdateNewUpgradesOnly) = $GUI_CHECKED)
 			
 	EndSwitch
 EndFunc   ;==>ApplyConfig_RK_MOD

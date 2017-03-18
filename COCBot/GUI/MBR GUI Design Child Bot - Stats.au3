@@ -399,7 +399,7 @@ Func CreateGainSubTab()
 
 	   $y += 10
 	   $x+= -10
-		   $g_hChkCoCStats = GUICtrlCreateCheckbox(GetTranslated(110,1, "CoCStats Activate"), $x, $y, -1, -1)
+		   $g_hChkCoCStats = _GUICtrlCreateCheckbox(GetTranslated(110,1, "CoCStats Activate"), $x, $y, -1, -1)
 		   $sTxtTip = GetTranslated(110,2, "Activate sending raid results to CoCStats.com")
 		   GUICtrlSetTip(-1, $sTxtTip)
 		   GUICtrlSetOnEvent(-1, "chkCoCStats")

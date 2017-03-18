@@ -24,7 +24,7 @@ $42 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 410, $WS_CLIPC
    Local $y = 45
    GUICtrlCreateGroup(GetTranslated(618,1, "Defense Farming"), $x - 20, $y - 20, 440, 150)
 	  $y +=10
-	  $g_hChkUnbreakable = GUICtrlCreateCheckbox(GetTranslated(618,2, "Enable Unbreakable"), $x - 10, $y, -1, -1)
+	  $g_hChkUnbreakable = _GUICtrlCreateCheckbox(GetTranslated(618,2, "Enable Unbreakable"), $x - 10, $y, -1, -1)
 	  _GUICtrlSetTip(-1, GetTranslated(618,3, "Enable farming Defense Wins for Unbreakable achievement.")) ;& @CRLF & "TIP: Set your trophy range on the Misc Tab to '600 - 800' for best results. WARNING: Doing so will DROP you Trophies!"
 	  GUICtrlSetOnEvent(-1, "chkUnbreakable")
 

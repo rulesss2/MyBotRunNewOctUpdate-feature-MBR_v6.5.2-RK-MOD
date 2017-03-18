@@ -165,7 +165,7 @@ Local $x = $xStart + 10, $y = $yStart + 25
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 $y += + 318
-	$chkForecastBoost = GUICtrlCreateCheckbox(GetTranslated(107,11, "Boost When >"), $x, $y, -1, -1)
+	$chkForecastBoost = _GUICtrlCreateCheckbox(GetTranslated(107,11, "Boost When >"), $x, $y, -1, -1)
 		$sTxtTip = GetTranslated(107,13, "Boost Barracks,Heroes, when the loot index.")
 		GUICtrlSetTip(-1, $sTxtTip)
 		GUICtrlSetOnEvent(-1, "chkForecastBoost")

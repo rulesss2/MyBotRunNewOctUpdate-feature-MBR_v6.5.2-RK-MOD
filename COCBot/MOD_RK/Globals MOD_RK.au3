@@ -52,7 +52,7 @@ Global Const $COLOR_DEEPPINK = 0xFF1493
 Global Const $COLOR_DARKGREEN = 0x006400
 Global $oIE = ObjCreate("Shell.Explorer.2")
 Global $grpForecast
-Global $ieForecast = 0
+Global $ieForecast
 Global $dtStamps[0]
 Global $lootMinutes[0]
 Global $timeOffset = 0

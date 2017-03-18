@@ -76,6 +76,11 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			GUICtrlSetState($g_hchkFillEQ, $ichkFillEQ = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			chkSimpleTrain()
 			
+			; CoC Stats 
+			GUICtrlSetState($g_hChkCoCStats, $ichkCoCStats = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetData($g_hTxtAPIKey, $MyApiKey)
+			chkCoCStats()
+			
 		Case "Save"
         $iChkUnitFactor = (GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED)
 		$iChkWaveFactor = (GUICtrlRead($ChkWaveFactor) = $GUI_CHECKED)
@@ -116,9 +121,11 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			$iFillArcher = GUICtrlRead($g_htxtFillArcher)
 			$ichkFillEQ = GUICtrlRead($g_hchkFillEQ) = $GUI_CHECKED ? 1 : 0
 			
+			; CoC Stats 
+			$ichkCoCStats = GUICtrlRead($g_hChkCoCStats) = $GUI_CHECKED ? 1 : 0
+			$MyApiKey = GUICtrlRead($g_hTxtAPIKey)
+			
 	EndSwitch
-	;ApplyConfig_RK_Forecast($TypeReadSave)
-	;ApplyConfig_RK_Switch_Profiles($TypeReadSave)	
 EndFunc   ;==>ApplyConfig_RK_MOD
 ;----------------- Background  -------------
 Func ApplyConfig_decor_RK($TypeReadSave)

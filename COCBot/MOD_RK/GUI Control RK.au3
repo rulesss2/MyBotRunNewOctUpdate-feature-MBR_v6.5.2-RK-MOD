@@ -391,3 +391,9 @@ If GUICtrlRead($chkRusLang2) = $GUI_CHECKED Then
 		$ichkRusLang2 = 0
 	EndIf
 EndFunc 
+
+; CoC Stats 
+Func chkCoCStats()
+	GUICtrlSetState($g_hTxtAPIKey, GUICtrlRead($g_hChkCoCStats) = $GUI_CHECKED ? $GUI_ENABLE : $GUI_DISABLE)
+	IniWrite($g_sProfileConfigPath, "Stats", "chkCoCStats", $ichkCoCStats)
+EndFunc   ;==>chkCoCStats

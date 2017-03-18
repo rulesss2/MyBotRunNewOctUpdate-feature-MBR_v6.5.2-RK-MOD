@@ -115,8 +115,14 @@ Func SaveConfig_RK_MOD()
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkTrophySwitchMin", $ichkTrophySwitchMin ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "profiles", "cmbTrophyMinProfile", _GUICtrlComboBox_GetCurSel($cmbTrophyMinProfile))
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinTrophyAmount", GUICtrlRead($txtMinTrophyAmount))
+	
 	;request  russian
 	IniWriteS($g_sProfileConfigPath, "Lang", "chkRusLang2", $ichkRusLang2 ? 1 : 0)
+	
+	; CoC Stats
+	IniWriteS($g_sProfileConfigPath, "Stats", "chkCoCStats", $ichkCoCStats ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "Stats", "txtAPIKey", $MyApiKey)
+	
 EndFunc   ;==>SaveConfig_RK_MOD
 
 Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)

@@ -103,8 +103,14 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
 	IniReadS($ichkFillArcher, $g_sProfileConfigPath, "SimpleTrain", "ChkFillArcher", 0, "int")
 	IniReadS($iFillArcher, $g_sProfileConfigPath, "SimpleTrain", "FillArcher", 5, "int")
 	IniReadS($ichkFillEQ, $g_sProfileConfigPath, "SimpleTrain", "FillEQ", 0, "int")
+	
 	;Request russian	
 	IniReadS($ichkRusLang2, $g_sProfileConfigPath, "Lang", "chkRusLang2", 0, "int")
+	
+	; CoC Stats 
+	IniReadS($ichkCoCStats, $g_sProfileConfigPath, "Stats", "chkCoCStats", 0, "int")
+	IniReadS($MyApiKey, $g_sProfileConfigPath, "Stats", "txtAPIKey", "")
+	
 EndFunc   ;==>ReadConfig_RK_MOD
 
 Func ReadConfig_SwitchAcc($SwitchAcc_Style = False)

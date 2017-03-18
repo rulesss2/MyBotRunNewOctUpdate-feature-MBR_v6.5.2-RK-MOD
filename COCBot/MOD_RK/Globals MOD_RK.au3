@@ -140,3 +140,7 @@ Global $ichkSimpleTrain,  $ichkPreciseTroops, $ichkFillArcher, $iFillArcher = 5,
 ; Request russian
 Global $ichkRusLang2 = 0
 Global $chkRusLang2 = 0
+
+; CoCStats 
+Global $ichkCoCStats = 0
+Global $MyApiKey = ""

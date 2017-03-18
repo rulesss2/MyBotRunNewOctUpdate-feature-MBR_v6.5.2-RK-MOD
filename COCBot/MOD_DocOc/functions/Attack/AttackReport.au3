@@ -229,7 +229,9 @@ Func AttackReport()
 			$iShareAttackNow = 0
 		EndIf
 	EndIf
-
+    
+	CoCStats($starsearned)
+	
 	If $g_iFirstAttack = 0 Then $g_iFirstAttack = 1
 	$g_iStatsTotalGain[$CurrentAccount][$eLootGold] += $g_iStatsLastAttack[$CurrentAccount][$eLootGold] + $g_iStatsBonusLast[$CurrentAccount][$eLootGold]
 	$g_iTotalGoldGain[$CurrentAccount][$g_iMatchMode] += $g_iStatsLastAttack[$CurrentAccount][$eLootGold] + $g_iStatsBonusLast[$CurrentAccount][$eLootGold]

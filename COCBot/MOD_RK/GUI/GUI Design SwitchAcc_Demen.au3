@@ -76,7 +76,7 @@ Func CreateSwitchAcc_Demen()
 			$g_txtForceSwitch = GUICtrlCreateInput("100", $x + 105, $y+1, 27, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 				GUICtrlSetState(-1, $GUI_DISABLE)
 				GUICtrlSetLimit(-1, 3)
-			$g_lblForceSwitch = GUICtrlCreateLabel(GetTranslated(109,43, "searches"), $x + 135, $y+4, -1, -1)
+			$g_lblForceSwitch = GUICtrlCreateLabel(GetTranslated(109,46, "searches"), $x + 135, $y+4, -1, -1)
 				GUICtrlSetState(-1, $GUI_DISABLE)
 
 			$y += 30

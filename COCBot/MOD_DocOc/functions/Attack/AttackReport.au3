@@ -185,7 +185,7 @@ Func AttackReport()
 		$AtkLogTxt &= $LeagueShort & "|"
 	Else
 		If $ichkSwitchAcc = 1 Then
-			$AtkLogTxt = String($nCurProfile) & " |" & _NowTime(4) & "|"
+			$AtkLogTxt = String($aMatchProfileAcc[$nCurProfile-1]) & " |" & _NowTime(4) & "|"
 		Else
 			$AtkLogTxt = "" & _NowTime(4) & "|"
 		EndIf

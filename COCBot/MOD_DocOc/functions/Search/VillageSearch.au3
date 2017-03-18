@@ -304,7 +304,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			If UBound($aDonateProfile) >= 1 Then
 				Setlog("Reach search limit: " & $iForceSwitch & ". Force switch to Donate Account.")
 				$eForceSwitch = $eDonate
-			ElseIf MinRemainTrainAcc(False, True) <= 0 Then	;	min train time, no writelog, exclude current profile
+			ElseIf MinRemainTrainAcc(False, $nCurProfile) <= 0 Then	;	min train time, no writelog, exclude current profile
 				Setlog("Reach search limit: " & $iForceSwitch & ". Force switch to another Active Account.")
 				Setlog("Targeted Account: " & $ProfileList[$nNextProfile] & " , having troops ready " & -Round($nMinRemainTrain,2) & " m ago")
 				$eForceSwitch = $eActive

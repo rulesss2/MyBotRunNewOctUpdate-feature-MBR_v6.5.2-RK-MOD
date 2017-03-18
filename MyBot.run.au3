@@ -698,7 +698,7 @@ Func runBot() ;Bot that runs everything in order
 				If $ichkSwitchAcc = 1 And $aProfileType[$nCurProfile - 1] = $eDonate Then
 					If $eForceSwitch = $eDonate Then
 						ForceSwitchAcc()
-					ElseIf $ichkForceStayDonate = 1 And MinRemainTrainAcc(False, False) > 1 Then
+					ElseIf $ichkForceStayDonate = 1 And MinRemainTrainAcc(False, $iProfileBeforeForceSwitch) > 1 Then
 						ForceSwitchAcc($eDonate, "StayDonate")	; stay on donate accounts until troops are ready in 1 minute
 					Else
 						checkSwitchAcc() ;  Switching to active account after donation - SwitchAcc_DEMEN_Style

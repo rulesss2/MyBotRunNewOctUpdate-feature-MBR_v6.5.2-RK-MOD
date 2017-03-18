@@ -177,7 +177,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 
    ; Multi Finger Attack by rulesss
 	ElseIf $nbSides = 6 Then
-		Local $listInfoDeploy[21][5] = [[$eGiant, $nbSides, 1, 1, 2] _
+		Local $listInfoDeploy[21][5] = [[$eGiant, $nbSides, 1, 1, 2], _
 				[$eGole, $nbSides, 1, 1, 2], _
 				[$eLava, $nbSides, 1, 1, 2], _
 				[$eBarb, $nbSides, 1, 1, 0], _

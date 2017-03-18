@@ -133,15 +133,15 @@ Func CheckWaitHero()	; get hero regen time remaining if enabled
 
  EndFunc ; --> CheckWaitHero
 
-Func MinRemainTrainAcc($Writelog = True, $ExcludeCur = False) 														; Check remain training time of all Active accounts and return the minimum remain training time
+Func MinRemainTrainAcc($Writelog = True, $ExcludeProfile = 0) 														; Check remain training time of all Active accounts and return the minimum remain training time
 
-   If $ExcludeCur = False Then
+   If $ExcludeProfile = 0 Then
 	  $aRemainTrainTime[$nCurProfile-1] = _ArrayMax($aTimeTrain)				 	; remaintraintime of current account - in minutes
 	  $aTimerStart[$nCurProfile-1] = TimerInit() 									; start counting elapse of training time of current account
    EndIf
 
    For $i = 0 to $nTotalProfile - 1
-	  If $ExcludeCur = True And $i = $nCurProfile - 1 Then ContinueLoop
+	  If $i = $ExcludeProfile - 1 Then ContinueLoop
 	  If $aProfileType[$i] = $eActive Then 											;	Only check Active profiles
 		 If $aTimerStart[$i] <> 0 Then
 			$aTimerEnd[$i] = Round(TimerDiff($aTimerStart[$i])/1000/60,2) 		; 	counting elapse of training time of an account from last army checking - in minutes
@@ -162,7 +162,7 @@ Func MinRemainTrainAcc($Writelog = True, $ExcludeCur = False) 														; Ch
 
    $nMinRemainTrain = _ArrayMax($aUpdateRemainTrainTime)
    For $i = 0 to $nTotalProfile - 1
-	  If $ExcludeCur = True And $i = $nCurProfile - 1 Then ContinueLoop
+	  If $i = $ExcludeProfile - 1 Then ContinueLoop
 	  If $aProfileType[$i] = $eActive Then ;	Only check Active profiles
 		 If $aUpdateRemainTrainTime[$i] <=  $nMinRemainTrain Then
 			$nMinRemainTrain = $aUpdateRemainTrainTime[$i]
@@ -354,7 +354,7 @@ EndFunc; -->CheckSwitchAcc()
 Func ForceSwitchAcc($AccType = $eDonate, $sSource = "")
 	Local $SwitchCase
 	If $sSource = "StayDonate" Then
-		Setlog("Stay on Donation for: " & Round($nMintrainAcc,2) & "m until an Active Account is ready")
+		Setlog("Stay on Donation for: " & Round($nMinRemainTrain, 2) & "m until an Active Account is ready")
 		If $DonateSwitchCounter >= UBound($aDonateProfile) Then $DonateSwitchCounter = 0
 	EndIf
 
@@ -366,7 +366,7 @@ Func ForceSwitchAcc($AccType = $eDonate, $sSource = "")
 				runBot()
 			EndIf
 		Else
-			If MinRemainTrainAcc(False, True) > 0 Then
+			If MinRemainTrainAcc(False, $iProfileBeforeForceSwitch) > 0 OR UBound($aActiveProfile) = 1 Then
 				$nNextProfile = $iProfileBeforeForceSwitch
 				Setlog("Return to Active Profile: " & $ProfileList[$nNextProfile] & " to continue searching")
 				$g_bRestart = True

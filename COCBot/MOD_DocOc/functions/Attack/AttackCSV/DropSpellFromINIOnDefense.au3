@@ -101,7 +101,6 @@ Func DropSpellFromINIOnDefense($Defense, $options, $qtaMin, $qtaMax, $troopName,
 
 		If $delayDropMin <> $delayDropMax Then
 			$delayDrop = Random($delayDropMin, $delayDropMax, 1)
-			$delayDrop = Int($delayDrop / $g_hDivider)
 		EndIf
 
 		Local $delayDropLast = $delayDrop
@@ -127,13 +126,11 @@ Func DropSpellFromINIOnDefense($Defense, $options, $qtaMin, $qtaMax, $troopName,
 
 		If $debugDropSCommand = 1 And IsArray($pixel) Then SetLog("$pixel[0] = " & $pixel[0] & " $pixel[1] = " & $pixel[1])
 		Local $qty2 = $qtyxpoint
-        
-		
+
 		;delay time between 2 drops in same point
 		Local $delayPoint = $delayPointmin
 		If $delayPointmin <> $delayPointmax Then
 			$delayPoint = Random($delayPointmin, $delayPointmax, 1)
-			$delayPoint = Int($delayPoint / $g_hDivider)
 		EndIf
 
 		Local $plural = 0
@@ -161,7 +158,6 @@ Func DropSpellFromINIOnDefense($Defense, $options, $qtaMin, $qtaMax, $troopName,
 		Local $sleepafter = Int($sleepafterMin)
 		If $sleepafterMin <> $sleepAfterMax Then
 			$sleepafter = Random($sleepafterMin, $sleepAfterMax, 1)
-			$sleepafter = Int($sleepafter / $g_hDivider)
 		EndIf
 		If $sleepafter > 0 And IsKeepClicksActive() = False Then
 			debugAttackCSV(">> delay after drop all troops: " & $sleepafter)

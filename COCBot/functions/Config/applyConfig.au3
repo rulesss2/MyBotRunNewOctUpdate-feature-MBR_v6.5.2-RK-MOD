@@ -285,6 +285,7 @@ Func ApplyConfig_600_11($TypeReadSave)
 				$g_abRequestCCHours[$i] = (GUICtrlRead($g_ahChkRequestCCHours[$i]) = $GUI_CHECKED)
 			Next
 	EndSwitch
+	ApplyConfig_RK_MOD_ruRequest($TypeReadSave)
 EndFunc
 
 Func ApplyConfig_600_12($TypeReadSave)

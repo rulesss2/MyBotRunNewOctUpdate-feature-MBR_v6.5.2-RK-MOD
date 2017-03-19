@@ -378,6 +378,7 @@ Func ForceSwitchAcc($AccType = $eDonate, $sSource = "")
 
 	ElseIf $AccType = $eActive Then
 		$SwitchCase = $eActive
+		MinRemainTrainAcc(False, $nCurProfile)
 		$eForceSwitch = $eNull
 	Else
 		Return False

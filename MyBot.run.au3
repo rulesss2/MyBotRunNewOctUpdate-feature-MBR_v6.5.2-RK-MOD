@@ -918,6 +918,19 @@ Func AttackMain() ;Main control for attack functions
 	getArmyCapacity(True, True)
 	If IsSearchAttackEnabled() Then
 		If (IsSearchModeActive($DB) And checkCollectors(True, False)) Or IsSearchModeActive($LB) Or IsSearchModeActive($TS) Then
+			
+			If $iSwitchAccStyle = 2 And $iSwitchAccStyle = 1 And $aAttackedCountSwitch[$nCurProfile-1] <= ($aAttackedCountAcc[$nCurProfile-1] - 2) Then
+				If UBound($aDonateProfile) > 0 Then
+					Setlog("This account has attacked twice in a row, switching to Donate Account")
+					ForceSwitchAcc($eDonate)
+				ElseIf MinRemainTrainAcc(False, $nCurProfile) <= 0 Then
+					Setlog("This account has attacked twice in a row, switching to Active Account")
+					ForceSwitchAcc($eActive)
+				Else
+					Setlog("This account has attacked twice in a row, but no other account is ready")
+				EndIf
+			EndIf ; SwitchAcc_DEMEN_Style
+			
 			If $iChkUseCCBalanced = 1 Then ;launch profilereport() only if option balance D/R it's activated
 				ProfileReport()
 				If _Sleep($iDelayAttackMain1) Then Return

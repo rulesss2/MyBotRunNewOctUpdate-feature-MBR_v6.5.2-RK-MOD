@@ -152,3 +152,7 @@ Global Const $UP = True, $DOWN = False, $TILL_END = True
 ; move the Request CC Troops  
 Global $bReqCCFirst = False
 Global $chkReqCCFirst = 0
+
+; Clan Hop Setting 
+Global $chkClanHop = 0
+Global $ichkClanHop = 0

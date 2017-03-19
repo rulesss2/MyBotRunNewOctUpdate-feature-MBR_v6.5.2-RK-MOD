@@ -85,7 +85,10 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			GUICtrlSetState($g_hChkUpdateNewUpgradesOnly, $g_ibUpdateNewUpgradesOnly ? $GUI_CHECKED : $GUI_UNCHECKED)
 			
 			;Move the Request CC Troops
-			GUICtrlSetState($chkReqCCFirst,$bReqCCFirst = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($chkReqCCFirst, $bReqCCFirst = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			
+			; Clan Hop Setting 
+			GUICtrlSetState($chkClanHop, $ichkClanHop = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			
 		Case "Save"
         $iChkUnitFactor = (GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED)
@@ -136,6 +139,9 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			
 			;Move the Request CC Troops
 			$bReqCCFirst = GUICtrlRead($chkReqCCFirst) = $GUI_CHECKED ? 1 : 0
+			
+			; Clan Hop Setting 
+			$ichkClanHop = GUICtrlRead($chkClanHop) = $GUI_CHECKED ? 1 : 0
 			
 	EndSwitch
 EndFunc   ;==>ApplyConfig_RK_MOD

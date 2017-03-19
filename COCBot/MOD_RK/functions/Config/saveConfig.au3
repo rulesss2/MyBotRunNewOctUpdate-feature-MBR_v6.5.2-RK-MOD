@@ -129,6 +129,9 @@ Func SaveConfig_RK_MOD()
 	; Move the Request CC Troops 
 	IniWriteS($g_sProfileConfigPath, "planned", "ReqCCFirst", $bReqCCFirst ? 1 : 0)
     
+	; Clan Hop Setting 
+	IniWriteS($g_sProfileConfigPath, "Others", "ClanHop", $ichkClanHop ? 1 : 0)
+    
 EndFunc   ;==>SaveConfig_RK_MOD
 
 Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)

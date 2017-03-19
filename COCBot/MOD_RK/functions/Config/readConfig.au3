@@ -116,6 +116,10 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
 	
 	; Move the Request CC Troops 
 	$bReqCCFirst = (IniRead($g_sProfileConfigPath, "planned", "ReqCCFirst", 0) = 1)
+	
+	; Clan Hop Setting 
+    $ichkClanHop = (IniRead($g_sProfileConfigPath, "Others", "ClanHop", 0) = 1)
+	 
 EndFunc   ;==>ReadConfig_RK_MOD
 
 Func ReadConfig_SwitchAcc($SwitchAcc_Style = False)

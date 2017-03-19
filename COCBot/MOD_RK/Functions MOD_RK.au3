@@ -39,6 +39,7 @@
 #include "functions\ProfileSwitch.au3"
 #include "functions\SimpleTrain.au3"
 #include "functions\CoCStats.com.au3"
+#include "functions\ClanHop.au3"
 
 #include "functions\_GuiCtrlCreateCheckbox.au3"
 #include "functions\_GUICtrlCreateRadio.au3"

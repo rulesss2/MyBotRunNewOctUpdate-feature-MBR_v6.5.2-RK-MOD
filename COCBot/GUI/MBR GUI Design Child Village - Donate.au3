@@ -108,6 +108,13 @@ Func CreateRequestSubTab()
 	    GUICtrlSetState(-1, $GUI_UNCHECKED)
 		_GUICtrlSetTip(-1, GetTranslated(611,8, "On. Russian request for troops. Note: The input language in the Android emulator must be RUSSIAN."))
 		GUICtrlSetOnEvent(-1, "chkRusLang2")
+		; MOD ; MMHK ; move the Request CC Troops function to the beginning of the run loop
+		$y += 20
+		$chkReqCCFirst = _GUICtrlCreateCheckbox("", $x + 294, $y - 6, 13, 13)
+			GUICtrlSetTip(-1, GetTranslated(611,6,"Request troops at the beginning of the run loop"))
+     		GUICtrlSetState(-1, $GUI_DISABLE)
+			GUICtrlSetOnEvent(-1, "chkReqCCFirst")
+			GUICtrlCreateLabel(GetTranslated(611,5,"Early"), $x + 311, $y - 6, -1, -1)
 		$x += 29 + 30
 		$y += 60
 		GUICtrlCreateLabel(GetTranslated(603,30,"Only during these hours of day"), $x + 30, $y, 300, 20, $BS_MULTILINE)

@@ -148,3 +148,7 @@ Global $MyApiKey = ""
 ; Upgrade Management 
 Global $g_ibUpdateNewUpgradesOnly = False
 Global Const $UP = True, $DOWN = False, $TILL_END = True
+
+; move the Request CC Troops  
+Global $bReqCCFirst = False
+Global $chkReqCCFirst = 0

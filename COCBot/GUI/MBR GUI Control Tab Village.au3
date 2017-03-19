@@ -36,11 +36,13 @@ Func chkRequestCCHours()
 		For $i = $g_hTxtRequestCC To $g_hLblRequestCCHoursPM
 			GUICtrlSetState($i, $GUI_ENABLE)
 		Next
+		GUICtrlSetState($chkReqCCFirst, $GUI_SHOW + $GUI_ENABLE) ; MOD ; MMHK
 	Else
 		GUICtrlSetState($chkRusLang2, $GUI_SHOW + $GUI_DISABLE)
 		For $i = $g_hTxtRequestCC To $g_hLblRequestCCHoursPM
 			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
+		GUICtrlSetState($chkReqCCFirst, $GUI_SHOW + $GUI_DISABLE) ; MOD ; MMHK
 	EndIf
 
 	SetRedrawBotWindowControls($bWasRedraw, $g_hGrpRequestCC, "chkRequestCCHours")
@@ -118,3 +120,13 @@ Func chkDonateHoursE2()
 	Sleep(300)
 	GUICtrlSetState($g_ahChkDonateHoursE2, $GUI_UNCHECKED)
 EndFunc   ;==>chkDonateHoursE2
+
+; MOD ; MMHK
+; move the Request CC Troops function to the beginning of the run loop
+Func chkReqCCFirst()
+	If GUICtrlRead($chkReqCCFirst) = $GUI_CHECKED Then
+		$bReqCCFirst = True
+	Else
+		$bReqCCFirst = False
+	EndIf
+EndFunc   ;==>chkReqCCFirst

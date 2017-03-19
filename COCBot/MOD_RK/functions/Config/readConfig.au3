@@ -114,6 +114,8 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
 	; Upgrade Management 
 	$g_ibUpdateNewUpgradesOnly = (IniRead($g_sProfileConfigPath, "upgrade", "UpdateNewUpgradesOnly", 0) = 1)
 	
+	; Move the Request CC Troops 
+	$bReqCCFirst = (IniRead($g_sProfileConfigPath, "planned", "ReqCCFirst", 0) = 1)
 EndFunc   ;==>ReadConfig_RK_MOD
 
 Func ReadConfig_SwitchAcc($SwitchAcc_Style = False)

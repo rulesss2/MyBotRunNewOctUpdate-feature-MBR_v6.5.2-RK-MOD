@@ -84,6 +84,9 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			; Upgrade Management 
 			GUICtrlSetState($g_hChkUpdateNewUpgradesOnly, $g_ibUpdateNewUpgradesOnly ? $GUI_CHECKED : $GUI_UNCHECKED)
 			
+			;Move the Request CC Troops
+			GUICtrlSetState($chkReqCCFirst,$bReqCCFirst = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			
 		Case "Save"
         $iChkUnitFactor = (GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED)
 		$iChkWaveFactor = (GUICtrlRead($ChkWaveFactor) = $GUI_CHECKED)
@@ -130,6 +133,9 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			
 			; Upgrade Management 
 			$g_ibUpdateNewUpgradesOnly = (GUICtrlRead($g_hChkUpdateNewUpgradesOnly) = $GUI_CHECKED)
+			
+			;Move the Request CC Troops
+			$bReqCCFirst = GUICtrlRead($chkReqCCFirst) = $GUI_CHECKED ? 1 : 0
 			
 	EndSwitch
 EndFunc   ;==>ApplyConfig_RK_MOD

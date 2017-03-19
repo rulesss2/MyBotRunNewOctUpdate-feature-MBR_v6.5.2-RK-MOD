@@ -31,7 +31,6 @@ Func CreateRKTab()
 			$g_hGUI_RK_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(106,1,"Chat"))
               ChatbotGUI()
 
-
    $g_hLastControlToHide = GUICtrlCreateDummy()
    ReDim $g_aiControlPrevState[$g_hLastControlToHide + 1]
 
@@ -40,11 +39,19 @@ Func CreateRKTab()
             $g_hGUI_RK_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslated(999,1, "Switch Profiles"))
               SwitchProfilesGUI()
    GUICtrlCreateTabItem("")
-
+  
 EndFunc
 
 Func ModOptionGUI()
 $35 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 410, $WS_CLIPCHILDREN)
+; Misc Battle Settings
+	Local $x = 25, $y = 92
+    GUICtrlCreateGroup(GetTranslated(91,9, "Miscellaneous Battle Settings"), $x - 20, $y - 20, 435, 45)
+		$chkFastADBClicks = GUICtrlCreateCheckbox("", $x - 10, $y, 13, 13) 
+		GUICtrlSetTip($chkFastADBClicks, GetTranslated(91,11, "Tick this to enable faster ADB deployment for MEmu and Droid4x in Multi-finger mode.") & @CRLF & GetTranslated(91,12, " WARNING:  This is experimental, if you have issues with deployment, disable it."))
+			;GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetOnEvent(-1, "chkFastADBClicks")
+			GUICtrlCreateLabel(GetTranslated(91,10, "Enable Fast ADB Clicks") & ":", $x + 7, $y, -1, -1)
 EndFunc
 
 Func ChatbotGUI()

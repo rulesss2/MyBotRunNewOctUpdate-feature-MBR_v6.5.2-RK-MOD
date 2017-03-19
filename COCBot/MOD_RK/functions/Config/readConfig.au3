@@ -119,6 +119,9 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
 	
 	; Clan Hop Setting 
     $ichkClanHop = (IniRead($g_sProfileConfigPath, "Others", "ClanHop", 0) = 1)
+	
+	; Misc Battle Settings 
+	IniReadS($g_bAndroidAdbClicksEnabled , $g_sProfileConfigPath, "Fast Clicks", "UseADBFastClicks", 0, "int")
 	 
 EndFunc   ;==>ReadConfig_RK_MOD
 

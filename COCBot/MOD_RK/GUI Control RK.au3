@@ -452,3 +452,12 @@ EndFunc   ;==>btnDown
 Func btnBottom()
 	MoveUpgrades($DOWN, $TILL_END)
 EndFunc   ;==>btnBottom
+
+
+Func chkFastADBClicks()
+	If GUICtrlRead($chkFastADBClicks) = $GUI_CHECKED Then
+		$g_bAndroidAdbClicksEnabled = True
+	Else
+		$g_bAndroidAdbClicksEnabled = False
+	EndIf
+EndFunc   ;==>chkFastADBClicks

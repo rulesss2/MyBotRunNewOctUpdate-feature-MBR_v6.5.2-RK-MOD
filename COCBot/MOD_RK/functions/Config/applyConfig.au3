@@ -90,6 +90,9 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			; Clan Hop Setting 
 			GUICtrlSetState($chkClanHop, $ichkClanHop = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			
+			; Misc Battle Settings 
+			GUICtrlSetState($chkFastADBClicks, $g_bAndroidAdbClicksEnabled = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+            chkFastADBClicks()
 		Case "Save"
         $iChkUnitFactor = (GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED)
 		$iChkWaveFactor = (GUICtrlRead($ChkWaveFactor) = $GUI_CHECKED)
@@ -142,6 +145,9 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			
 			; Clan Hop Setting 
 			$ichkClanHop = GUICtrlRead($chkClanHop) = $GUI_CHECKED ? 1 : 0
+			
+			; Misc Battle Settings 
+			$g_bAndroidAdbClicksEnabled = GUICtrlRead($chkFastADBClicks) = $GUI_CHECKED ? 1 : 0
 			
 	EndSwitch
 EndFunc   ;==>ApplyConfig_RK_MOD

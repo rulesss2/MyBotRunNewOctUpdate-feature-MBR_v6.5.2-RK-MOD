@@ -156,3 +156,6 @@ Global $chkReqCCFirst = 0
 ; Clan Hop Setting 
 Global $chkClanHop = 0
 Global $ichkClanHop = 0
+
+; Misc Battle Settings 
+Global $chkFastADBClicks = 0  

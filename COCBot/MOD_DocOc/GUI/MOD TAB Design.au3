@@ -77,10 +77,10 @@ Func OptionsGUI()
 	$x -= 2
 
 	GUICtrlCreatePic(@ScriptDir & "\images\Treasury.jpg", $x + 12, $y + 25, 70, 38.6)
-	$chkEnableTrCollect = GUICtrlCreateCheckbox(GetTranslated(800, 1, "Enable"), $x + 93, $y + 35, 52, 17)
+	$chkEnableTrCollect = _GUICtrlCreateCheckbox(GetTranslated(800, 1, "Enable"), $x + 93, $y + 25, 52, 17, -1, -1)
 		GUICtrlSetOnEvent(-1, "chkEnableTrCollect")
 		_GUICtrlSetTip(-1, GetTranslated(800, 50, "Check to enable automatic Treasury collecion"))
-	$chkForceTrCollect = GUICtrlCreateCheckbox(GetTranslated(800, 2, "Always collect Treasury"), $x + 15, $y + 75, 127, 17)
+	$chkForceTrCollect = _GUICtrlCreateCheckbox(GetTranslated(800, 2, "Always collect Treasury"), $x + 15, $y + 65, 127, 17)
 		GUICtrlSetOnEvent(-1, "chkForceTrCollect")
 		_GUICtrlSetTip(-1, GetTranslated(800, 51, "Check to force Treasury collection" & _
 			@CRLF & "Treasury will be collected all the time, ignoring any criteria"))
@@ -89,27 +89,27 @@ Func OptionsGUI()
 	GUICtrlCreateIcon($g_sLibIconPath, $eIcnElixir, $x + 160, $y + 45, 24, 24)
 	GUICtrlCreateIcon($g_sLibIconPath, $eIcnDark, $x + 160, $y + 75, 24, 24)
 
-	$chkGoldTrCollect = GUICtrlCreateCheckbox(GetTranslated(800, 3, "Collect when Gold <"), $x + 190, $y + 18, 112, 17)
+	$chkGoldTrCollect = _GUICtrlCreateCheckbox(GetTranslated(800, 3, "Collect when Gold <"), $x + 190, $y + 8, 112, 17)
 		GUICtrlSetOnEvent(-1, "chkResTrCollect")
 		_GUICtrlSetTip(-1, GetTranslated(800, 52, "When your Village Gold is below this value, it will collect Treasury"))
 	$txtMinGoldTrCollect = GUICtrlCreateInput("200000", $x + 305, $y + 17, 56, 21, BitOR($ES_CENTER, $ES_NUMBER))
-	$chkFullGoldTrCollect = GUICtrlCreateCheckbox(GetTranslated(800, 4, "When full"), $x + 370, $y + 18, 67, 17)
+	$chkFullGoldTrCollect = _GUICtrlCreateCheckbox(GetTranslated(800, 4, "When full"), $x + 370, $y + 8, 67, 17)
 		GUICtrlSetOnEvent(-1, "chkFullResTrCollect")
 		_GUICtrlSetTip(-1, GetTranslated(800, 53, "When your Gold level in Treasury is full, it will colect it to empty Treasury"))
 
-	$chkElxTrCollect = GUICtrlCreateCheckbox(GetTranslated(800, 5, "Collect when Elixir <"), $x + 190, $y + 48, 112, 17)
+	$chkElxTrCollect = _GUICtrlCreateCheckbox(GetTranslated(800, 5, "Collect when Elixir <"), $x + 190, $y + 38, 112, 17)
 		GUICtrlSetOnEvent(-1, "chkResTrCollect")
 		_GUICtrlSetTip(-1, GetTranslated(800, 54, "When your Village Elixir is below this value, it will collect Treasury"))
 	$txtMinElxTrCollect = GUICtrlCreateInput("200000", $x + 305, $y + 47, 56, 21, BitOR($ES_CENTER, $ES_NUMBER))
-	$chkFullElxTrCollect = GUICtrlCreateCheckbox(GetTranslated(800, 6, "When full"), $x + 370, $y + 48, 67, 17)
+	$chkFullElxTrCollect = _GUICtrlCreateCheckbox(GetTranslated(800, 6, "When full"), $x + 370, $y + 38, 67, 17)
 		GUICtrlSetOnEvent(-1, "chkFullResTrCollect")
 		_GUICtrlSetTip(-1, GetTranslated(800, 55, "When your Elixir level in Treasury is full, it will colect it to empty Treasury"))
 
-	$chkDarkTrCollect = GUICtrlCreateCheckbox(GetTranslated(800, 7, "Collect when Dark <"), $x + 190, $y + 78, 112, 17)
+	$chkDarkTrCollect = _GUICtrlCreateCheckbox(GetTranslated(800, 7, "Collect when Dark <"), $x + 190, $y + 68, 112, 17)
 		GUICtrlSetOnEvent(-1, "chkResTrCollect")
 		_GUICtrlSetTip(-1, GetTranslated(800, 56, "When your Village Dark is below this value, it will collect Treasury"))
 	$txtMinDarkTrCollect = GUICtrlCreateInput("200000", $x + 305, $y + 77, 56, 21, BitOR($ES_CENTER, $ES_NUMBER))
-	$chkFullDarkTrCollect = GUICtrlCreateCheckbox(GetTranslated(800, 8, "When full"), $x + 370, $y + 78, 67, 17)
+	$chkFullDarkTrCollect = _GUICtrlCreateCheckbox(GetTranslated(800, 8, "When full"), $x + 370, $y + 68, 67, 17)
 		GUICtrlSetOnEvent(-1, "chkFullResTrCollect")
 		_GUICtrlSetTip(-1, GetTranslated(800, 57, "When your Dark level in Treasury is full, it will colect it to empty Treasury"))
 
@@ -119,7 +119,7 @@ Func OptionsGUI()
 	$y += 110
 	$x = 5
 	Local $Group2 = GUICtrlCreateGroup("Donate Options", $x, $y, 440, 40)
-		$chkExtraPersian = GUICtrlCreateCheckbox(GetTranslated(800,100, "Enable Persian Alphabet Recognition for Donations"), $x + 12, $y + 15 , -1, -1)
+		$chkExtraPersian = _GUICtrlCreateCheckbox(GetTranslated(800,100, "Enable Persian Alphabet Recognition for Donations"), $x + 12, $y + 15 , -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(800,101, "Check this to enable the Persian Alphabet Recognition."))
 			GUICtrlSetOnEvent(-1, "Donatelang")
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
@@ -134,13 +134,13 @@ Func OptionsGUI()
 
 	   $x += 70
 	   $y -= 4
-		   $g_hRadAutoAbilities = GUICtrlCreateRadio(GetTranslated(634,2, "Auto activate (red zone)"), $x, $y-4 , -1, -1)
+		   $g_hRadAutoAbilities = _GUICtrlCreateRadio(GetTranslated(634,2, "Auto activate (red zone)"), $x, $y-4 , -1, -1)
 		   $sTxtTip = GetTranslated(634,3, "Activate the Ability when the Hero becomes weak.") & @CRLF & GetTranslated(634,4, "Heroes are checked and activated individually.")
 		   _GUICtrlSetTip(-1, $sTxtTip)
 		   GUICtrlSetState(-1, $GUI_CHECKED)
 
 	   $y += 15
-		   $g_hRadManAbilities = GUICtrlCreateRadio(GetTranslated(634,5, "Timed after") & ":", $x , $y , -1, -1)
+		   $g_hRadManAbilities = _GUICtrlCreateRadio(GetTranslated(634,5, "Timed after") & ":", $x , $y , -1, -1)
 			   $sTxtTip = GetTranslated(634,6, "Activate the Ability on a timer.") & @CRLF & GetTranslated(634,7, "All Heroes are activated at the same time.")
 			   _GUICtrlSetTip(-1, $sTxtTip)
 			   GUICtrlSetState(-1, $GUI_UNCHECKED)
@@ -157,7 +157,7 @@ Func OptionsGUI()
 		GUICtrlCreateIcon($g_sLibIconPath, $eIcnWarden, $x - 7, $y + 2, 32, 32)
 
 		$y += 12
-		   $g_hChkUseWardenAbility = GUICtrlCreateCheckbox(GetTranslated(634,9, "Force after") & ":", $x + 30, $y, -1, -1)
+		   $g_hChkUseWardenAbility = _GUICtrlCreateCheckbox(GetTranslated(634,9, "Force after") & ":", $x + 30, $y, -1, -1)
 			   $sTxtTip = GetTranslated(634,10, "Use the ability of the Grand Warden on a timer.")
 			   GUICtrlSetOnEvent(-1, "CheckWardenTimer")
 			   _GUICtrlSetTip(-1, $sTxtTip)
@@ -179,11 +179,11 @@ Func HumanizationGUI()
 $3 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)
 	Local $x , $y
 
-	$chkUseBotHumanization = GUICtrlCreateCheckbox(GetTranslated(42, 0, "Enable Bot Humanization"), 10, 30, 137, 17)
+	$chkUseBotHumanization = _GUICtrlCreateCheckbox(GetTranslated(42, 0, "Enable Bot Humanization"), 10, 20, 137, 17, -1, -1)
  		GUICtrlSetOnEvent(-1, "chkUseBotHumanization")
  		GUICtrlSetState(-1, $GUI_UNCHECKED)
 
-	$chkUseAltRClick = GUICtrlCreateCheckbox(GetTranslated(42, 1, "Make ALL BOT clicks random"), 280, 30, 162, 17)
+	$chkUseAltRClick = _GUICtrlCreateCheckbox(GetTranslated(42, 1, "Make ALL BOT clicks random"), 280, 20, 162, 17, -1, -1)
  		GUICtrlSetOnEvent(-1, "chkUseAltRClick")
  		GUICtrlSetState(-1, $GUI_UNCHECKED)
 
@@ -275,11 +275,11 @@ $3 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHI
 
  	$y += 25
 
- 		$chkCollectAchievements = GUICtrlCreateCheckbox(GetTranslated(42, 23, "Collect achievements automatically"), $x + 40, $y, 182, 17)
+ 		$chkCollectAchievements = _GUICtrlCreateCheckbox(GetTranslated(42, 23, "Collect achievements automatically"), $x + 40, $y, 182, 17, -1, -1)
  			GUICtrlSetOnEvent(-1, "chkCollectAchievements")
  			GUICtrlSetState(-1, $GUI_UNCHECKED)
 
- 		$chkLookAtRedNotifications = GUICtrlCreateCheckbox(GetTranslated(42, 24, "Look at red/purple flags on buttons"), $x + 240, $y, 187, 17)
+ 		$chkLookAtRedNotifications = _GUICtrlCreateCheckbox(GetTranslated(42, 24, "Look at red/purple flags on buttons"), $x + 240, $y, 187, 17, -1, -1)
  			GUICtrlSetOnEvent(-1, "chkLookAtRedNotifications")
  			GUICtrlSetState(-1, $GUI_UNCHECKED)
 
@@ -298,16 +298,16 @@ $12 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCH
 	Local $x = 25, $y = 50, $xStart = 25, $yStart = 50
 
 	$grpSuperXP = GUICtrlCreateGroup(GetTranslated(700, 1, "Goblin XP"), $x - 20, $y - 20, 440, 305)
-		$chkEnableSuperXP = GUICtrlCreateCheckbox(GetTranslated(700, 2, "Enable Goblin XP"), $x, $y, 102, 17)
+		$chkEnableSuperXP = _GUICtrlCreateCheckbox(GetTranslated(700, 2, "Enable Goblin XP"), $x, $y - 10, 102, 17, -1, -1)
 		GUICtrlSetOnEvent(-1, "chkEnableSuperXP")
-			$rbSXTraining = GUICtrlCreateRadio(GetTranslated(700, 3, "Farm XP during troops Training"), $x, $y + 23, 165, 17)
+			$rbSXTraining = _GUICtrlCreateRadio(GetTranslated(700, 3, "Farm XP during troops Training"), $x, $y + 13, 165, 17)
 			GUICtrlSetState(-1, $GUI_CHECKED)
 			GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
 			$lblLOCKEDSX = GUICtrlCreateLabel(GetTranslated(700, 13, "LOCKED"), $x + 210, $y + 23, 173, 50)
 			GUICtrlSetFont(-1, 30, 800, 0, "Arial")
 			GUICtrlSetColor(-1, 0xFF0000)
 			GUICtrlSetState(-1, $GUI_HIDE)
-			$rbSXIAttacking = GUICtrlCreateRadio(GetTranslated(700, 4, "Farm XP instead of Attacking"), $x, $y + 46, 158, 17)
+			$rbSXIAttacking = _GUICtrlCreateRadio(GetTranslated(700, 4, "Farm XP instead of Attacking"), $x, $y + 36, 158, 17)
 			GUICtrlCreateLabel (GetTranslated(700, 14, "Max XP to Gain") & ":", $x, $y + 69, -1, 17)
 			GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
 			$txtMaxXPtoGain = GUICtrlCreateInput("500", $x + 85, $y + 67, 70, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
@@ -321,11 +321,11 @@ $12 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCH
 			GUICtrlCreateIcon($g_sLibIconPath, $eIcnWarden, $x + 80, $y, 32, 32)
 		GUICtrlCreateLabel(GetTranslated(700, 6, "to gain XP"), $x + 123, $y + 13, 53, 17)
 	$x += 10
-		$chkSXBK = GUICtrlCreateCheckbox("", $x, $y + 35, 17, 17)
+		$chkSXBK = GUICtrlCreateCheckbox("", $x, $y + 35, 13, 13)
 		GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
-		$chkSXAQ = GUICtrlCreateCheckbox("", $x + 40, $y + 35, 17, 17)
+		$chkSXAQ = GUICtrlCreateCheckbox("", $x + 40, $y + 35, 13, 13)
 		GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
-		$chkSXGW = GUICtrlCreateCheckbox("", $x + 80, $y + 35, 17, 17)
+		$chkSXGW = GUICtrlCreateCheckbox("", $x + 80, $y + 35, 13, 13)
 		GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
 
 	$x = $xStart + 25

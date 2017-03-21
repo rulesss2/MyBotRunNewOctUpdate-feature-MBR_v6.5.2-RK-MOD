@@ -24,6 +24,10 @@ Func ReadConfig_RK_MOD()
    IniReadS($iChkWaveFactor, $g_sProfileConfigPath, "SetSleep", "EnableWaveFactor", 0, "Int")
    IniReadS($iTxtWaveFactor, $g_sProfileConfigPath, "SetSleep", "WaveFactor", 100 ,"Int")
    
+   IniReadS($iChkGiantSlot, $g_sProfileConfigPath, "SetSleep", "EnableGiantSlot", 0, "Int")
+   ;IniReadS($iTxtGiantSlot , $g_sProfileConfigPath, "SetSleep", "GiantSlot", 2 ,"Int")
+   IniReadS($iCmbGiantSlot , $g_sProfileConfigPath, "SetSleep", "CmbGiantSlot", 0 ,"Int")
+   
    ;Background by Kychera
    IniReadS($iBackGr, $g_sProfileConfigPath, "background", "BackGr", 0, "Int")
    IniReadS($ichkPic, $g_sProfileConfigPath, "background", "chkPic", 1, "Int")

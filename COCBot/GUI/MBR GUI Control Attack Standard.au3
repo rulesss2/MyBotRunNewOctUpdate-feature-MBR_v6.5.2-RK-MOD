@@ -69,7 +69,7 @@ EndFunc   ;==>chkSmartAttackRedAreaDB
 Func chkUnitFactor()
 	If GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED Then
 		$iChkUnitFactor = 1
-		GUICtrlSetState($txtUnitFactor, $GUI_ENABLE)
+		GUICtrlSetState($TxtUnitFactor, $GUI_ENABLE)
 	Else
 		$iChkUnitFactor = 0
 		GUICtrlSetState($TxtUnitFactor, $GUI_DISABLE)
@@ -86,4 +86,40 @@ Func chkWaveFactor()
 		GUICtrlSetState($TxtWaveFactor, $GUI_DISABLE)
 	EndIf
 	$iTxtWaveFactor = GUICtrlRead($TxtWaveFactor)
+EndFunc
+
+;Func ChkGiantSlot()
+;	If GUICtrlRead($ChkGiantSlot) = $GUI_CHECKED Then
+;		$iChkGiantSlot = 1
+;		GUICtrlSetState($TxtGiantSlot, $GUI_ENABLE)
+;	Else
+;		$iChkGiantSlot = 0
+;		GUICtrlSetState($TxtGiantSlot, $GUI_DISABLE)
+;	EndIf
+;	$iTxtGiantSlot = GUICtrlRead($TxtGiantSlot)
+;EndFunc
+
+Func ChkGiantSlot()
+	If GUICtrlRead($ChkGiantSlot) = $GUI_CHECKED Then
+		$iChkGiantSlot = 1
+		GUICtrlSetState($CmbGiantSlot, $GUI_ENABLE)
+	Else
+		$iChkGiantSlot = 0
+		GUICtrlSetState($CmbGiantSlot, $GUI_DISABLE)
+	EndIf
+	$iCmbGiantSlot = _GUICtrlComboBox_GetCurSel($CmbGiantSlot)
+EndFunc
+Func CmbGiantSlot()
+ If $iChkGiantSlot = 1 Then ;$g_iMatchMode = $DB And _GUICtrlComboBox_GetCurSel($g_hCmbStandardDropSidesDB) = 5 And 
+     Switch GUICtrlRead($CmbGiantSlot);$iCmbGiantSlot = _GUICtrlComboBox_GetCurSel($CmbGiantSlot)
+		 Case "all sides"
+			 $SlotsGiantsRK = 0
+		 Case "two ."
+			 $SlotsGiantsRK = 2
+		 
+     EndSwitch
+ Else
+	If Number($GiantComp) >= 8 And $nbSides = 6 Then $SlotsGiantsRK = 2 ; will be split in 2 slots, when >16 or >=8 with FF
+	If Number($GiantComp) >= 12 And $nbSides = 6 Then $SlotsGiantsRK = 0 ; spread on vector, when >20 or >=12 with FF 
+ EndIf
 EndFunc

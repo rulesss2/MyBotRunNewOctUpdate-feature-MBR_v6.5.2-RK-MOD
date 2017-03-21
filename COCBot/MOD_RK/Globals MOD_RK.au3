@@ -29,6 +29,9 @@ Global $iChkUnitFactor = 0
 Global $iTxtUnitFactor = 10
 Global $iChkWaveFactor = 0
 Global $iTxtWaveFactor = 100
+
+Global $ChkGiantSlot, $iChkGiantSlot = 0, $TxtGiantSlot, $iTxtGiantSlot = 2, $CmbGiantSlot, $iCmbGiantSlot = 0, $SlotsGiantsRK 
+
 ;-------------------------------------------------------
 ;Background by Kychera
 Global $BackGr, $chkPic

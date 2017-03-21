@@ -24,8 +24,7 @@ Func SaveConfig_RK_MOD()
     IniWriteS($g_sProfileConfigPath, "SetSleep", "UnitFactor", GUICtrlRead($TxtUnitFactor))
 	IniWriteS($g_sProfileConfigPath, "SetSleep", "WaveFactor", GUICtrlRead($TxtWaveFactor))
 	
-	IniWriteS($g_sProfileConfigPath, "SetSleep", "EnableGiantSlot", $iChkGiantSlot ? 1 : 0)
-	;IniWriteS($g_sProfileConfigPath, "SetSleep", "GiantSlot", GUICtrlRead($TxtGiantSlot))
+	IniWriteS($g_sProfileConfigPath, "SetSleep", "EnableGiantSlot", $iChkGiantSlot ? 1 : 0)	
 	IniWriteS($g_sProfileConfigPath, "SetSleep", "CmbGiantSlot", _GUICtrlComboBox_GetCurSel($CmbGiantSlot))
 	;Background by Kychera
 	IniWriteS($g_sProfileConfigPath, "background", "chkPic", $ichkPic ? 1 : 0)

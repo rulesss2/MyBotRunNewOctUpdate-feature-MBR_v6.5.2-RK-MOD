@@ -112,9 +112,9 @@ EndFunc
 Func CmbGiantSlot()
  If $iChkGiantSlot = 1 Then ;$g_iMatchMode = $DB And _GUICtrlComboBox_GetCurSel($g_hCmbStandardDropSidesDB) = 5 And 
      Switch GUICtrlRead($CmbGiantSlot);$iCmbGiantSlot = _GUICtrlComboBox_GetCurSel($CmbGiantSlot)
-		 Case "all sides"
+		 Case "Around the perimeter of the"
 			 $SlotsGiantsRK = 0
-		 Case "two ."
+		 Case "Two points on the side"
 			 $SlotsGiantsRK = 2
 		 
      EndSwitch

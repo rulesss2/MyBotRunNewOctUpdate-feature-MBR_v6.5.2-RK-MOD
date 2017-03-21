@@ -116,7 +116,7 @@ Func launchMultiFinger($listInfoDeploy, $CC, $King, $Queen, $Warden, $overrideSm
 		For $i = $eBarb To $eBowl ; lauch all remaining troops
 			;If $i = $eBarb Or $i = $eArch Then
 			LauchTroop($i, $nbSides, 0, 1, 0)
-			CheckHeroesHealth()
+		;CheckHeroesHealth()
 			;Else
 			;	 LauchTroop($i, $nbSides, 0, 1, 2)
 			;EndIf

@@ -163,4 +163,4 @@ Global $ichkClanHop = 0
 ; Misc Battle Settings 
 Global $chkFastADBClicks = 0  
 ;Notify alert botsleep
-Global $NotifyAlertBOTSleep
+Global $ChkNotifyAlertBOTSleep = 0, $iNotifyAlertBOTSleep = 0

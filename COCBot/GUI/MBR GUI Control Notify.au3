@@ -62,7 +62,7 @@ Func chkPBTGenabled()
 		GUICtrlSetState($g_hChkNotifyAlertBuilderIdle, $GUI_ENABLE)
 		GUICtrlSetState($g_hChkNotifyAlertMaintenance, $GUI_ENABLE)
 		GUICtrlSetState($g_hChkNotifyAlertBAN, $GUI_ENABLE)
-		GUICtrlSetState($g_hChkNotifyBOTUpdate, $GUI_ENABLE)
+		GUICtrlSetState($g_hChkNotifyBOTUpdate, $GUI_ENABLE)		
 	Else
 		GUICtrlSetState($g_hChkNotifyRemote, $GUI_DISABLE)
 		GUICtrlSetState($g_hTxtNotifyOrigin, $GUI_DISABLE)
@@ -85,6 +85,7 @@ Func chkPBTGenabled()
 		GUICtrlSetState($g_hChkNotifyDeleteOldPBPushes, $GUI_DISABLE)
 		GUICtrlSetState($g_hBtnNotifyDeleteMessages, $GUI_DISABLE)
 	EndIf
+	 ChkNotifyAlertBOTSleep()
 EndFunc   ;==>chkPBTGenabled
 
 Func chkDeleteOldPBPushes()

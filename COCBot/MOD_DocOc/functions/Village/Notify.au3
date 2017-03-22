@@ -1218,11 +1218,11 @@ Func NotifyPushMessageToBoth($Message, $Source = "")
 			EndIf
 		;===============Modified kychera===========
 		Case "SleepBot"
-		    If ($g_bNotifyPBEnable = 1 Or $g_bNotifyTGEnable = 1) And $NotifyAlertBOTSleep = 1 Then
+		    If ($g_bNotifyPBEnable = True Or $g_bNotifyTGEnable = True) And $iNotifyAlertBOTSleep = 1 Then
 		      NotifyPushToBoth($g_sNotifyOrigin & " | " & GetTranslated(620,736, "Bot Sleep") & "..." & "\n" & $sWaitTime)
 		    EndIf
 		Case "WakeUpBot"
-		    If ($g_bNotifyPBEnable = 1 Or $g_bNotifyTGEnable = 1) And $NotifyAlertBOTSleep = 1 Then
+		    If ($g_bNotifyPBEnable = True Or $g_bNotifyTGEnable = True) And $iNotifyAlertBOTSleep = 1 Then
 		      NotifyPushToBoth($g_sNotifyOrigin & " | " & GetTranslated(620,737, "Wake Up Bot"))
 		    EndIf
 ;==========================================	

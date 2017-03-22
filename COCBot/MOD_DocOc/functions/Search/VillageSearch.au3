@@ -21,6 +21,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 	Local $weakBaseValues
 	Local $logwrited = False
 	$iSkipped = 0
+	$iProfileBeforeForceSwitch = 0;	ForceSwitch when long search - Demen
 
 	If $g_iDebugDeadBaseImage = 1 Or $g_aiSearchEnableDebugDeadBaseImage > 0 Then
 		DirCreate($g_sProfileTempDebugPath & "\SkippedZombies\")
@@ -288,7 +289,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 		If $noMatchTxt <> "" Then
 			;SetLog(_PadStringCenter(" " & StringMid($noMatchTxt, 3) & " ", 50, "~"), $COLOR_DEBUG)
 			SetLog($GetResourcesTXT, $COLOR_BLACK, "Lucida Console", 7.5)
-			SetLog("      " & StringMid($noMatchTxt, 3), $COLOR_BLACK, "Lucida Console", 7.5)
+			SetLog("      " & StringMid($noMatchTxt, 3), $COLOR_ORANGE, "Lucida Console", 7.5)
 			$logwrited = True
 		EndIf
 
@@ -298,7 +299,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 
 		; Return Home on Search limit
 		If SearchLimit($iSkipped + 1) Then Return True
-        
+
 		; Force Switch when long search - DEMEN
 		If $ichkForceSwitch = 1 And $iSkipped+1 >= $iForceSwitch And Mod(($iSkipped+1), _Min(10, Number($iForceSwitch))) = 0 Then
 			If UBound($aDonateProfile) >= 1 Then
@@ -338,10 +339,10 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 					If $i >= 5 Then ExitLoop ; if end battle or surrender button are not found in 5*(200)ms + 5*(200)ms or 2 seconds, then give up.
 				WEnd
 				If $i > 5 Or isProblemAffect(True) Then checkMainScreen()
-				ForceSwitchAcc($eForceSwitch)
+				ForceSwitchAcc($eForceSwitch, "SearchLimit")
 			EndIf
 		EndIf
-		
+
 		If checkAndroidReboot() = True Then
 			$g_bRestart = True
 			$Is_ClientSyncError = True

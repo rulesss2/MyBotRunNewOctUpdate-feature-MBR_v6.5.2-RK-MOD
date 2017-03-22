@@ -15,6 +15,7 @@
 #include-once
 
 Global $IsFullArmywithHeroesAndSpells = False
+Global $bWaitForCCTroopSpell = False	; ForceSwitch while waiting for CC troops - Demen
 
 Func TrainRevamp()
 
@@ -301,6 +302,9 @@ Func CheckArmySpellCastel()
 			If $g_bFirstStart Then $g_bFirstStart = False
 		Else
 			$IsFullArmywithHeroesAndSpells = False
+		EndIf
+		If $fullarmy And $checkSpells And $bFullArmyHero Then							; ForceSwitch while waiting for CC - Demen
+			If $fullcastlespells = False Or $fullcastletroops = False Then $bWaitForCCTroopSpell = True
 		EndIf
 	Else
 		$IsFullArmywithHeroesAndSpells = False
@@ -2192,7 +2196,7 @@ Func MakingDonatedTroops()
 			$Plural = 0
 			If $avDefaultTroopGroup[$i][4] > 0 Then
 				$RemainTrainSpace = GetOCRCurrent(48, 160)
-				If $RemainTrainSpace[0] = $RemainTrainSpace[1] Then ; army camps full
+				If $RemainTrainSpace[0] = $RemainTrainSpace[1] And $ichkSimpleTrain <> 1 Then ; army camps full; Always make donated troops in SimpleTrain - Demen
 					;Camps Full All Donate Counters should be zero!!!!
 					For $j = 0 To UBound($avDefaultTroopGroup, 1) - 1
 						$avDefaultTroopGroup[$j][4] = 0
@@ -2202,7 +2206,7 @@ Func MakingDonatedTroops()
 
 				Local $iTroopIndex = TroopIndexLookup($avDefaultTroopGroup[$i][0])
 
-				If $avDefaultTroopGroup[$i][2] * $avDefaultTroopGroup[$i][4] <= $RemainTrainSpace[2] Then ; Troopheight x donate troop qty <= avaible train space
+				If $avDefaultTroopGroup[$i][2] * $avDefaultTroopGroup[$i][4] <= $RemainTrainSpace[2] Or $ichkSimpleTrain = 1 Or $ichkSimpleTrain = 1 Then ; Troopheight x donate troop qty <= avaible train space; Always make donated troops in SimpleTrain - Demen
 					;Local $pos = GetTrainPos(TroopIndexLookup($avDefaultTroopGroup[$i][0]))
 					Local $howMuch = $avDefaultTroopGroup[$i][4]
 					If $avDefaultTroopGroup[$i][5] = "e" Then

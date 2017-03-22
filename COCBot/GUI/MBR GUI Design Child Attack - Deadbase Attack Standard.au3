@@ -153,9 +153,9 @@ $ChkGiantSlot = _GUICtrlCreateCheckbox(GetTranslated(671, 102,"GiantSlot"), $x+1
 	GUICtrlSetOnEvent(-1, "ChkGiantSlot")
 	GUICtrlSetState(-1, $GUI_UNCHECKED)
 $CmbGiantSlot = GUICtrlCreateCombo("", $x + 130, $y + 20, 120, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-GUICtrlSetData(-1,  GetTranslated(671, 112, "Around the perimeter of the") & "|" & _
-                    GetTranslated(671, 113, "Two points on the side") , GetTranslated(671, 112, "Around the perimeter of the"))
-					GUICtrlSetOnEvent(-1, "ChkGiantSlot")   
+GUICtrlSetData(-1,  GetTranslated(671, 112, "Perimeter") & "|" & _
+                    GetTranslated(671, 113, "TwoPoints"), GetTranslated(671, 112, "Perimeter"))
+					GUICtrlSetOnEvent(-1, "CmbGiantSlot")   
 $y += 30
 $ChkUnitFactor = _GUICtrlCreateCheckbox(GetTranslated(671, 108, "Modify Unit Factor"), $x+10, $y + 10, 130, 25)
 	$sTxtTip = GetTranslated(671, 109, "Unit deploy delay = Unit setting x Unit Factor (millisecond)")

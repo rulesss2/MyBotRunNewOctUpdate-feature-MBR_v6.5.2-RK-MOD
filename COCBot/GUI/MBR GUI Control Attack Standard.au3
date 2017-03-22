@@ -88,17 +88,6 @@ Func chkWaveFactor()
 	$iTxtWaveFactor = GUICtrlRead($TxtWaveFactor)
 EndFunc
 
-;Func ChkGiantSlot()
-;	If GUICtrlRead($ChkGiantSlot) = $GUI_CHECKED Then
-;		$iChkGiantSlot = 1
-;		GUICtrlSetState($TxtGiantSlot, $GUI_ENABLE)
-;	Else
-;		$iChkGiantSlot = 0
-;		GUICtrlSetState($TxtGiantSlot, $GUI_DISABLE)
-;	EndIf
-;	$iTxtGiantSlot = GUICtrlRead($TxtGiantSlot)
-;EndFunc
-
 Func ChkGiantSlot()
 	If GUICtrlRead($ChkGiantSlot) = $GUI_CHECKED Then
 		$iChkGiantSlot = 1
@@ -107,16 +96,15 @@ Func ChkGiantSlot()
 		$iChkGiantSlot = 0
 		GUICtrlSetState($CmbGiantSlot, $GUI_DISABLE)
 	EndIf
-	$iCmbGiantSlot = _GUICtrlComboBox_GetCurSel($CmbGiantSlot)
+	;$iCmbGiantSlot = _GUICtrlComboBox_GetCurSel($CmbGiantSlot)
 EndFunc
 Func CmbGiantSlot()
  If $iChkGiantSlot = 1 Then ;$g_iMatchMode = $DB And _GUICtrlComboBox_GetCurSel($g_hCmbStandardDropSidesDB) = 5 And 
-     Switch GUICtrlRead($CmbGiantSlot);$iCmbGiantSlot = _GUICtrlComboBox_GetCurSel($CmbGiantSlot)
-		 Case "Around the perimeter of the"
-			 $SlotsGiantsRK = 0
-		 Case "Two points on the side"
-			 $SlotsGiantsRK = 2
-		 
+     Switch _GUICtrlComboBox_GetCurSel($CmbGiantSlot)
+		 Case 0
+			 $SlotsGiantsRK = 0			 
+		 Case 1
+			 $SlotsGiantsRK = 2		     
      EndSwitch
  Else
 	If Number($GiantComp) >= 8 And $nbSides = 6 Then $SlotsGiantsRK = 2 ; will be split in 2 slots, when >16 or >=8 with FF

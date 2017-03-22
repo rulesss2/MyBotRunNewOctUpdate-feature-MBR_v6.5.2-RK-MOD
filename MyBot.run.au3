@@ -705,8 +705,10 @@ Func runBot() ;Bot that runs everything in order
 				If $g_bRestart = True Then ContinueLoop
 				If $ichkSwitchAcc = 1 And $aProfileType[$nCurProfile - 1] = $eDonate Then
 					If $eForceSwitch = $eDonate Then
-						ForceSwitchAcc()
-					ElseIf $ichkForceStayDonate = 1 And MinRemainTrainAcc(False, $iProfileBeforeForceSwitch) > 1 Then
+						Local $sSource = ""
+						If $iProfileBeforeForceSwitch > 0 Then $sSource = "SearchLimit"
+						ForceSwitchAcc($eForceSwitch, $sSource)
+					ElseIf $ichkForceStayDonate = 1 And MinRemainTrainAcc(False) > 1 Then
 						ForceSwitchAcc($eDonate, "StayDonate")	; stay on donate accounts until troops are ready in 1 minute
 					Else
 						checkSwitchAcc() ;  Switching to active account after donation - SwitchAcc_DEMEN_Style
@@ -906,7 +908,12 @@ Func Idle() ;Sequence that runs until Full Army
 
 		If $g_iCommandStop = -1 Then ; Check if closing bot/emulator while training and not in halt mode
 			If $iSwitchAccStyle = 2 And $ichkSwitchAcc = 1 Then ; SwitchAcc_DEMEN_Style
-				checkSwitchAcc()
+				If $bWaitForCCTroopSpell Then
+					Setlog("Still waiting for CC troops/ spells, switching to another Account")
+					ForceSwitchAcc($eDonate)
+				Else
+					checkSwitchAcc()
+				EndIf
 			Else
 				SmartWait4Train()
 			EndIf

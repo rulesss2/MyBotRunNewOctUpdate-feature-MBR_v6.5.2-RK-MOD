@@ -104,7 +104,7 @@ Global $UpgradeDuration
 Global $canContinueLoop = True
 
 ; SwitchAcc_Demen_Style
-;Global $profile = $g_sProfilePath & "\Profile.ini"
+Global $profile 
 Global $iSwitchAccStyle = 1	; 1 = DocOc, 2 = Demen
 Global $ichkSwitchAcc = 0, $ichkTrain = 0, $icmbTotalCoCAcc, $nTotalCoCAcc = 8, $ichkSmartSwitch, $ichkCloseTraining
 Global Enum $eNull, $eActive, $eDonate, $eIdle, $eStay, $eContinuous	; Enum for Profile Type & Switch Case & ForceSwitch

@@ -30,7 +30,7 @@ Global $iTxtUnitFactor = 10
 Global $iChkWaveFactor = 0
 Global $iTxtWaveFactor = 100
 
-Global $ChkGiantSlot = 0, $iChkGiantSlot = 0, $CmbGiantSlot = 0, $iCmbGiantSlot = 0, $SlotsGiantsRK = 0
+Global $ChkGiantSlot = 0, $iChkGiantSlot = 0, $CmbGiantSlot = 0, $iCmbGiantSlot = 0, $SlotsGiantsRK = 1
 
 ;-------------------------------------------------------
 ;Background by Kychera

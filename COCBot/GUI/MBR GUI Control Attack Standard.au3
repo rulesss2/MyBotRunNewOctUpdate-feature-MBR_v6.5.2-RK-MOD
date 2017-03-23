@@ -99,7 +99,7 @@ Func ChkGiantSlot()
 	;$iCmbGiantSlot = _GUICtrlComboBox_GetCurSel($CmbGiantSlot)
 EndFunc
 Func CmbGiantSlot()
- If $iChkGiantSlot = 1 Then ;$g_iMatchMode = $DB And _GUICtrlComboBox_GetCurSel($g_hCmbStandardDropSidesDB) = 5 And 
+ If $iChkGiantSlot = 1 Then 
      Switch _GUICtrlComboBox_GetCurSel($CmbGiantSlot)
 		 Case 0
 			 $SlotsGiantsRK = 0			 
@@ -107,7 +107,9 @@ Func CmbGiantSlot()
 			 $SlotsGiantsRK = 2		     
      EndSwitch
  Else
-	If Number($GiantComp) >= 8 And $nbSides = 6 Then $SlotsGiantsRK = 2 ; will be split in 2 slots, when >16 or >=8 with FF
-	If Number($GiantComp) >= 12 And $nbSides = 6 Then $SlotsGiantsRK = 0 ; spread on vector, when >20 or >=12 with FF 
+    If Number($GiantComp) >= 1 And Number($GiantComp) <= 7 Then $SlotsGiantsRK = 1
+	If Number($GiantComp) >= 8 Then $SlotsGiantsRK = 2 ; will be split in 2 slots, when >16 or >=8 with FF	
+	If Number($GiantComp) >= 12 Then $SlotsGiantsRK = 0 ; spread on vector, when >20 or >=12 with FF 
+	
  EndIf
 EndFunc

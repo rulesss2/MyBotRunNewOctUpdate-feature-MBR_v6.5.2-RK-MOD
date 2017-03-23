@@ -792,7 +792,7 @@ Func CreateTrainOrderSubTab()
 
    Local $x = 25, $y = 45
    GUICtrlCreateGroup(GetTranslated(641, 25, "Training Order"), $x - 20, $y - 20, 271, 335)
-	   $g_hChkCustomTrainOrderEnable = GUICtrlCreateCheckbox(GetTranslated(641, 26, "Custom Order"), $x - 5, $y, -1, -1)
+	   $g_hChkCustomTrainOrderEnable = _GUICtrlCreateCheckbox(GetTranslated(641, 26, "Custom Order"), $x - 5, $y, -1, -1)
 	   GUICtrlSetState(-1, $GUI_UNCHECKED)
 	   _GUICtrlSetTip(-1, GetTranslated(641, 27, "Enable to select a custom troop training order") & @CRLF & _
 						  GetTranslated(641, 28, "Changing train order can be useful with CSV scripted attack armies!"))
@@ -857,7 +857,7 @@ Func CreateOptionsSubTab()
    Local $sTxtTip = ""
    Local $x = 25, $y = 45
    GUICtrlCreateGroup(GetTranslated(641, 2, "Training Idle Time"), $x - 20, $y - 20, 151, 266)
-	   $g_hChkCloseWhileTraining = GUICtrlCreateCheckbox(GetTranslated(641, 3, "Close While Training"), $x - 12, $y, 140, -1)
+	   $g_hChkCloseWhileTraining = _GUICtrlCreateCheckbox(GetTranslated(641, 3, "Close While Training"), $x - 12, $y, 140, -1)
 	   GUICtrlSetState(-1, $GUI_CHECKED)
 	   _GUICtrlSetTip(-1, GetTranslated(641, 4, "Option will exit CoC game for time required to complete TROOP training when SHIELD IS ACTIVE") & @CRLF & _
 						  GetTranslated(641, 5, "Close for Spell creation will be enabled when 'Wait for Spells' is selected on Search tabs") & @CRLF & _
@@ -865,7 +865,7 @@ Func CreateOptionsSubTab()
 	   GUICtrlSetOnEvent(-1, "chkCloseWaitEnable")
 
    $y += 28
-	   $g_hChkCloseWithoutShield = GUICtrlCreateCheckbox(GetTranslated(641, 7, "Without Shield"), $x + 18, $y + 1, 110, -1)
+	   $g_hChkCloseWithoutShield = _GUICtrlCreateCheckbox(GetTranslated(641, 7, "Without Shield"), $x + 18, $y + 1, 110, -1)
 	   $sTxtTip = GetTranslated(641, 8, "Option will ALWAYS close CoC for idle training time and when NO SHIELD IS ACTIVE!") & @CRLF & _
 				  GetTranslated(641, 9, "Note - You can be attacked and lose trophies when this option is enabled!")
 	   GUICtrlSetState(-1, $GUI_UNCHECKED)
@@ -875,7 +875,7 @@ Func CreateOptionsSubTab()
 	   _GUICtrlSetTip(-1, $sTxtTip)
 
    $y += 28
-	   $g_hChkCloseEmulator = GUICtrlCreateCheckbox(GetTranslated(641, 13, "Close Emulator"), $x + 18, $y + 1, 110, -1)
+	   $g_hChkCloseEmulator = _GUICtrlCreateCheckbox(GetTranslated(641, 13, "Close Emulator"), $x + 18, $y + 1, 110, -1)
 	   $sTxtTip = GetTranslated(641, 14, "Option will close Android Emulator completely when selected") & @CRLF & _
 				  GetTranslated(641, 15, "Adding this option may increase offline time slightly due to variable times required for startup")
 	   GUICtrlSetState(-1, $GUI_UNCHECKED)
@@ -885,14 +885,14 @@ Func CreateOptionsSubTab()
 	   _GUICtrlSetTip(-1, $sTxtTip)
 
    $y += 28
-	   $g_hChkRandomClose = GUICtrlCreateCheckbox(GetTranslated(641, 10, "Random Close"), $x + 18, $y + 1, 110, -1)
+	   $g_hChkRandomClose = _GUICtrlCreateCheckbox(GetTranslated(641, 10, "Random Close"), $x + 18, $y + 1, 110, -1)
 	   GUICtrlSetState(-1, $GUI_UNCHECKED)
 	   _GUICtrlSetTip(-1, GetTranslated(641, 11, "Option will Randomly choose between time out, close CoC, or Close emulator when selected") & @CRLF & _
 						  GetTranslated(641, 15, "Adding this option may increase offline time slightly due to variable times required for startup"))
 	   GUICtrlSetOnEvent(-1, "btnCloseWaitStopRandom")
 
    $y += 28
-	   $g_hRdoCloseWaitExact = GUICtrlCreateRadio(GetTranslated(641, 16, "Exact Time"), $x + 18, $y + 1, 110, -1)
+	   $g_hRdoCloseWaitExact = _GUICtrlCreateRadio(GetTranslated(641, 16, "Exact Time"), $x + 18, $y + 1, 110, -1)
 	   _GUICtrlSetTip(-1, GetTranslated(641, 17, "Select to wait exact time required for troops to complete training"))
 	   GUICtrlSetState(-1, $GUI_UNCHECKED)
 	   GUICtrlSetOnEvent(-1, "btnCloseWaitRandom")
@@ -900,7 +900,7 @@ Func CreateOptionsSubTab()
 	   _GUICtrlSetTip(-1, GetTranslated(641, 18, "Select how much time to wait when feature enables"))
 
    $y += 24
-	   $g_hRdoCloseWaitRandom = GUICtrlCreateRadio(GetTranslated(641, 19, "Random Time"), $x + 18, $y + 1, 110, -1)
+	   $g_hRdoCloseWaitRandom = _GUICtrlCreateRadio(GetTranslated(641, 19, "Random Time"), $x + 18, $y + 1, 110, -1)
 	   _GUICtrlSetTip(-1, GetTranslated(641, 20, "Select to ADD a random extra wait time like human who forgets to clash"))
 	   GUICtrlSetState(-1, $GUI_CHECKED)
 	   GUICtrlSetOnEvent(-1, "btnCloseWaitRandom")
@@ -954,7 +954,7 @@ Func CreateOptionsSubTab()
    $y = 45
    GUICtrlCreateGroup(GetTranslated(641,35, "Training Add Random Delay"), $x - 20, $y - 20, 173, 81)
    $y += 15
-	   $g_hChkTrainAddRandomDelayEnable = GUICtrlCreateCheckbox(GetTranslated(641, 36, "Add Random Delay"),$x + 18, $y - 11, 130, -1)
+	   $g_hChkTrainAddRandomDelayEnable = _GUICtrlCreateCheckbox(GetTranslated(641, 36, "Add Random Delay"),$x + 18, $y - 11, 130, -1)
 	   $sTxtTip = GetTranslated(641, 37, "Add random delay between two calls of train army.")& @CRLF & _
 				  GetTranslated(641, 38, "This option reduces the calls to the training window  humanizing the bot spacing calls each time with a causal interval chosen between the minimum and maximum values indicated below.")
 	   GUICtrlSetState(-1, $GUI_CHECKED)

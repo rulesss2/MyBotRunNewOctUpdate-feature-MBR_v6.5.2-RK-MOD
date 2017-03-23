@@ -461,3 +461,10 @@ Func chkFastADBClicks()
 		$g_bAndroidAdbClicksEnabled = 0
 	EndIf
 EndFunc   ;==>chkFastADBClicks
+Func ChkNotifyAlertBOTSleep()
+   If $g_bNotifyPBEnable = True Or $g_bNotifyTGEnable = True Then
+      GUICtrlSetState($ChkNotifyAlertBOTSleep, $GUI_ENABLE)
+   Else
+      GUICtrlSetState($ChkNotifyAlertBOTSleep, $GUI_DISABLE)
+   EndIf
+EndFunc 

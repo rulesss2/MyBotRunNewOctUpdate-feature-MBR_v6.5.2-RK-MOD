@@ -106,7 +106,24 @@ Func launchMultiFinger($listInfoDeploy, $CC, $King, $Queen, $Warden, $overrideSm
 			EndIf
 		EndIf
 	Next
-
+	If _Sleep($iDelayalgorithm_AllTroops4) Then Return
+	SetLog("Dropping left over troops", $COLOR_INFO)
+	For $x = 0 To 1
+		If PrepareAttack($g_iMatchMode, True) = 0 Then
+			If $g_iDebugSetlog = 1 Then Setlog("No Wast time... exit, no troops usable left", $COLOR_DEBUG)
+			ExitLoop ;Check remaining quantities
+		EndIf
+		For $i = $eBarb To $eBowl ; lauch all remaining troops
+			;If $i = $eBarb Or $i = $eArch Then
+			LauchTroop($i, $nbSides, 0, 1, 0)
+		CheckHeroesHealth()
+			;Else
+			;	 LauchTroop($i, $nbSides, 0, 1, 2)
+			;EndIf
+			If _Sleep($iDelayalgorithm_AllTroops5) Then Return
+		Next
+	Next
+	CheckHeroesHealth()
 	SetLog("Finished Attacking, waiting for the battle to end")
 	Local $usingMultiFinger = False
 	Return True

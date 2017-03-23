@@ -24,6 +24,8 @@ Func SaveConfig_RK_MOD()
     IniWriteS($g_sProfileConfigPath, "SetSleep", "UnitFactor", GUICtrlRead($TxtUnitFactor))
 	IniWriteS($g_sProfileConfigPath, "SetSleep", "WaveFactor", GUICtrlRead($TxtWaveFactor))
 	
+	IniWriteS($g_sProfileConfigPath, "SetSleep", "EnableGiantSlot", $iChkGiantSlot ? 1 : 0)	
+	IniWriteS($g_sProfileConfigPath, "SetSleep", "CmbGiantSlot", _GUICtrlComboBox_GetCurSel($CmbGiantSlot))
 	;Background by Kychera
 	IniWriteS($g_sProfileConfigPath, "background", "chkPic", $ichkPic ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "background", "BackGr", $iBackGr)
@@ -134,7 +136,8 @@ Func SaveConfig_RK_MOD()
     
 	; Misc Battle Settings 
 	IniWriteS($g_sProfileConfigPath, "Fast Clicks", "UseADBFastClicks", $g_bAndroidAdbClicksEnabled ? 1 : 0)
-	
+	;Notify alert bot sleep	 
+	 IniWriteS($g_sProfileConfigPath, "notify", "AlertPBVMFound", $iNotifyAlertBOTSleep ? 1 : 0)
 EndFunc   ;==>SaveConfig_RK_MOD
 
 Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)

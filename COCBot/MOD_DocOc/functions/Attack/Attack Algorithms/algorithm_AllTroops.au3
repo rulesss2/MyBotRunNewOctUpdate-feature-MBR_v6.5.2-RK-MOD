@@ -153,7 +153,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 						]
 		EndSwitch
 	; Classic Four Fingers
-	ElseIf $nbSides = 5 Then
+	ElseIf $nbSides = 5 Then	
 		Local $listInfoDeploy[21][5] = [[$eGiant, $nbSides, 1, 1, $SlotsGiants], _
 				[$eGole, $nbSides, 1, 1, 2], _
 				[$eLava, $nbSides, 1, 1, 2], _
@@ -175,9 +175,10 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 				["CC", 1, 1, 1, 1], _
 				["HEROES", 1, 2, 1, 1]]
 
-   ; Multi Finger Attack by rulesss
+   ; Multi Finger Attack by rulesss and kychera
 	ElseIf $nbSides = 6 Then
-		Local $listInfoDeploy[21][5] = [[$eGiant, $nbSides, 1, 1, 2], _
+	   	CmbGiantSlot()				
+	Local $listInfoDeploy[21][5] = [[$eGiant, $nbSides, 1, 1, $SlotsGiantsRK], _
 				[$eGole, $nbSides, 1, 1, 2], _
 				[$eLava, $nbSides, 1, 1, 2], _
 				[$eBarb, $nbSides, 1, 1, 0], _
@@ -197,8 +198,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 				[$eMini, $nbSides, 1, 1, 0], _
 				["CC", 1, 1, 1, 1], _
 				["HEROES", 1, 2, 1, 1]]
-
-	Else
+ 	Else
 		If $g_iDebugSetlog = 1 Then SetLog("listdeploy standard for attack", $COLOR_DEBUG)
 		Switch $g_aiAttackStdDropOrder[$g_iMatchMode]
 			Case 0

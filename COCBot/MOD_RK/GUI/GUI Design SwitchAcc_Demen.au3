@@ -25,11 +25,11 @@ Func CreateSwitchAcc_Demen()
 	; Adding option for SwitchAcc_Demen_Style
 	Local $x = 20, $y = 45
 	GUICtrlCreateLabel(GetTranslated(109,1, "Switch Account Style:"), $x + 285, $y, -1, -1)
-	$g_hRdoSwitchAcc_DocOc = GUICtrlCreateRadio("DocOc", $x + 270, $y + 16, -1, -1)
+	$g_hRdoSwitchAcc_DocOc = _GUICtrlCreateRadio("DocOc", $x + 270, $y + 16, -1, -1)
 		_GUICtrlSetTip(-1, GetTranslated(109,2, "Use SwitchAcc moded by DocOc Team"))
 		GUICtrlSetState(-1, $GUI_CHECKED)
 		GUICtrlSetOnEvent(-1, "RdoSwitchAcc_Style")
-	$g_hRdoSwitchAcc_Demen = GUICtrlCreateRadio("Demen", $x + 350, $y + 16, -1, -1)
+	$g_hRdoSwitchAcc_Demen = _GUICtrlCreateRadio("Demen", $x + 350, $y + 16, -1, -1)
 		_GUICtrlSetTip(-1, GetTranslated(109,3, "Use SwitchAcc moded by Demen"))
 		GUICtrlSetOnEvent(-1, "RdoSwitchAcc_Style")
 
@@ -58,12 +58,12 @@ Func CreateSwitchAcc_Demen()
 				GUICtrlSetData(-1, "1 Acc." & "|" & "2 Acc." & "|" & "3 Acc." & "|" & "4 Acc." & "|" & "5 Acc." & "|" & "6 Acc." & "|" & "7 Acc." & "|" & "8 Acc.")
 				GUICtrlSetTip(-1, $sTxtTip)
 
-			$radNormalSwitch = GUICtrlCreateRadio(GetTranslated(109,15, "Normal switch"), $x + 10, $y + 55, -1, 16)
+			$radNormalSwitch = _GUICtrlCreateRadio(GetTranslated(109,15, "Normal switch"), $x + 10, $y + 55, -1, 16)
 				GUICtrlSetTip(-1, GetTranslated(109,16, "Switching accounts continously"))
 				GUICtrlSetState(-1, $GUI_CHECKED)
 				GUICtrlSetOnEvent(-1, "radNormalSwitch")
 
-			$radSmartSwitch = GUICtrlCreateRadio(GetTranslated(109,17, "Smart switch"), $x + 100, $y + 55, -1, 16)
+			$radSmartSwitch = _GUICtrlCreateRadio(GetTranslated(109,17, "Smart switch"), $x + 100, $y + 55, -1, 16)
 				GUICtrlSetTip(-1, GetTranslated(109,18, "Switch to account with the shortest remain training time"))
 				GUICtrlSetOnEvent(-1, "radNormalSwitch")
 
@@ -90,10 +90,10 @@ Func CreateSwitchAcc_Demen()
 				GUICtrlSetTip(-1, $sTxtTip)
 
 			GUIStartGroup()
-			$radCloseCoC = GUICtrlCreateRadio(GetTranslated(109,21, "Close CoC"), $x + 10, $y + 30, -1, 16)
+			$radCloseCoC = _GUICtrlCreateRadio(GetTranslated(109,21, "Close CoC"), $x + 10, $y + 30, -1, 16)
 				GUICtrlSetState(-1, $GUI_CHECKED)
 
-			$radCloseAndroid = GUICtrlCreateRadio(GetTranslated(109,22, "Close Android"), $x + 100, $y + 30, -1, 16)
+			$radCloseAndroid = _GUICtrlCreateRadio(GetTranslated(109,22, "Close Android"), $x + 100, $y + 30, -1, 16)
 
 			$y += 60
 			GUICtrlCreateLabel(GetTranslated(109,23, "Manually locate account coordinates"), $x, $y, -1, -1)

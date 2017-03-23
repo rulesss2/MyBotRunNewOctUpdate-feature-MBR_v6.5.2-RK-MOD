@@ -107,6 +107,7 @@ Func CmbGiantSlot()
 			 $SlotsGiantsRK = 2		     
      EndSwitch
  Else
+ LocaL $GiantComp = $g_ahTxtTrainArmyTroopCount[$eTroopGiant]
     If Number($GiantComp) >= 1 And Number($GiantComp) <= 7 Then $SlotsGiantsRK = 1
 	If Number($GiantComp) >= 8 Then $SlotsGiantsRK = 2 ; will be split in 2 slots, when >16 or >=8 with FF	
 	If Number($GiantComp) >= 12 Then $SlotsGiantsRK = 0 ; spread on vector, when >20 or >=12 with FF 

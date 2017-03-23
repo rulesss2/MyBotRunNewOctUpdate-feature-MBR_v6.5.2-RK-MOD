@@ -96,7 +96,9 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			; Misc Battle Settings 
 			GUICtrlSetState($chkFastADBClicks, $g_bAndroidAdbClicksEnabled = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
             chkFastADBClicks()
+			
 		Case "Save"
+				
         $iChkUnitFactor = (GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED)
 		$iChkWaveFactor = (GUICtrlRead($ChkWaveFactor) = $GUI_CHECKED)
 		$iTxtUnitFactor = GUICtrlRead($TxtUnitFactor)
@@ -363,3 +365,12 @@ Func ApplyConfig_RK_MOD_NotifyBotSleep($TypeReadSave)
 	EndSwitch
 EndFunc   ;==>ApplyConfig_RK_ruRequest
 
+Func ApplyConfig_RK_MOD_DBCollectorMOD($TypeReadSave)
+	Switch $TypeReadSave
+		Case "Read"          
+		  GUICtrlSetState($g_hChkDBDisableCollectorsFilter, $g_bCollectorFilterDisable = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+          chkDBCollectorMOD()
+		Case "Save"
+		   $g_bCollectorFilterDisable = GUICtrlRead($g_hChkDBDisableCollectorsFilter) = $GUI_CHECKED ? 1 : 0		    
+	EndSwitch
+EndFunc   ;==>ApplyConfig_RK_ruRequest

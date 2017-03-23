@@ -33,7 +33,6 @@ Func CreateAttackSearchDeadBaseCollectors()
 		    _GUICtrlSetTip(-1, GetTranslated(626,33, "Excluding Collector Filter the bot consider DeadBase as ActiveBase"))
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
 			GUICtrlSetOnEvent(-1, "chkDBDisableCollectorsFilter")
-
         
 		$y+=40
 		$g_ahChkDBCollectorLevel[6] = GUICtrlCreateCheckbox("", $x, $y, 18, 18)

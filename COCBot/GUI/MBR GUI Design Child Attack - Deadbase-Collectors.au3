@@ -30,9 +30,11 @@ Func CreateAttackSearchDeadBaseCollectors()
    GUICtrlCreateGroup(GetTranslated(626,1,"Collectors"), $x - 5, $y - 20, 420, 335)
 		GUICtrlCreateLabel(GetTranslated(626,2, "Choose which collectors to search for while looking for a dead base. Also, choose how full they must be."), $x, $y, 250, 28)
 		$g_hChkDBDisableCollectorsFilter = _GUICtrlCreateCheckbox(GetTranslated(626,32,"Disable Collector Filter"), $x+250, $y+60, 150, 18)
+		    _GUICtrlSetTip(-1, GetTranslated(626,33, "Excluding Collector Filter the bot consider DeadBase as ActiveBase"))
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
-			_GUICtrlSetTip(-1, GetTranslated(626,33, "Excluding Collector Filter the bot consider DeadBase as ActiveBase"))
+			GUICtrlSetOnEvent(-1, "chkDBDisableCollectorsFilter")
 
+        
 		$y+=40
 		$g_ahChkDBCollectorLevel[6] = GUICtrlCreateCheckbox("", $x, $y, 18, 18)
 			$sTxtTip = $s_TxtTip1 & @CRLF & GetTranslated(626,16, "for level 6 elixir collectors during dead base detection.")

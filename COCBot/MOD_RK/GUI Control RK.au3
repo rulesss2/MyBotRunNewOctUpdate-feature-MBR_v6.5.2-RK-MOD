@@ -461,6 +461,7 @@ Func chkFastADBClicks()
 		$g_bAndroidAdbClicksEnabled = 0
 	EndIf
 EndFunc   ;==>chkFastADBClicks
+
 Func ChkNotifyAlertBOTSleep()
    If $g_bNotifyPBEnable = True Or $g_bNotifyTGEnable = True Then
       GUICtrlSetState($ChkNotifyAlertBOTSleep, $GUI_ENABLE)
@@ -468,3 +469,14 @@ Func ChkNotifyAlertBOTSleep()
       GUICtrlSetState($ChkNotifyAlertBOTSleep, $GUI_DISABLE)
    EndIf
 EndFunc 
+
+
+Func chkDBCollectorMOD()
+    If $g_hChkDBDisableCollectorsFilter = $GUI_CHECKED Then
+	   GUICtrlSetState($g_ahChkDBCollectorLevel[$i], $GUI_CHECKED + $GUI_DISABLE )
+	   $g_bCollectorFilterDisable = 1
+    Else
+	   GUICtrlSetState($g_ahChkDBCollectorLevel[$i], $GUI_UNCHECKED + $GUI_ENABLE)
+	   $g_bCollectorFilterDisable = 0
+	EndIf
+EndFunc ;==>chkDBCollectorMOD

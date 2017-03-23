@@ -1,4 +1,4 @@
-; #FUNCTION# ====================================================================================================================
+ ; #FUNCTION# ====================================================================================================================
 ; Name ..........: MBR GUI Design Child Mod - Switch Account
 ; Description ...: This file creates the "Mods" tab
 ; Syntax ........:
@@ -38,14 +38,14 @@ Func CreateSwitchAcc_Demen()
 
 		$g_StartHideSwitchAcc_Demen = GUICtrlCreateDummy()
 		GUICtrlCreateGroup(GetTranslated(109,4, "Switch Account Mode"), $x - 12, $y - 20, 200, 295)
-			$chkSwitchAcc = GUICtrlCreateCheckbox(GetTranslated(109,5, "Enable Switch Account"), $x - 5, $y, -1, -1)
+			$chkSwitchAcc = _GUICtrlCreateCheckbox(GetTranslated(109,5, "Enable Switch Account"), $x - 5, $y, -1, -1)
 				$sTxtTip = GetTranslated(109,6, "Switch to another account & profile when troop training time is >= 1 minutes") & _
 					@CRLF & GetTranslated(109,7, "This function supports maximum 8 CoC accounts & 8 Bot profiles") & _
 					@CRLF & GetTranslated(109,8, "Make sure to create sufficient Profiles equal to number of CoC Accounts")
 				GUICtrlSetTip(-1, $sTxtTip)
 				GUICtrlSetOnEvent(-1, "chkSwitchAcc")
 
-			$chkTrain = GUICtrlCreateCheckbox(GetTranslated(109,9, "Pre-train"), $x + 127, $y, -1, -1)
+			$chkTrain = _GUICtrlCreateCheckbox(GetTranslated(109,9, "Pre-train"), $x + 127, $y, -1, -1)
 				$sTxtTip = GetTranslated(109,10, "Enable it to pre-train donated troops in quick train 3 before switch to next account.") & _
 					@CRLF & GetTranslated(109,11, "This function requires use Quick Train, not Custom Train.") & _
 					@CRLF & GetTranslated(109,12, "Use army 1 for farming troops, army 2 for spells and army 3 for donated troops.")
@@ -68,24 +68,24 @@ Func CreateSwitchAcc_Demen()
 				GUICtrlSetOnEvent(-1, "radNormalSwitch")
 
 			$y += 80
-			$g_hChkForceSwitch = GUICtrlCreateCheckbox(GetTranslated(109,42, "Force switch after:"), $x - 5, $y, -1, -1)
-                GUICtrlSetTip(-1, GetTranslated(109,20, "Force the Bot to switch account when searching for too long") & _
-					@CRLF & GetTranslated(109,21, "First switch to all donate accounts") & _
-					@CRLF & GetTranslated(109,22, "Then switch to another active account if its army is ready"))
+			$g_hChkForceSwitch = _GUICtrlCreateCheckbox(GetTranslated(109,42, "Force switch after:"), $x - 5, $y, -1, -1)
+                GUICtrlSetTip(-1, GetTranslated(109,43, "Force the Bot to switch account when searching for too long") & _
+					@CRLF & GetTranslated(109,44, "First switch to all donate accounts") & _
+					@CRLF & GetTranslated(109,45, "Then switch to another active account if its army is ready"))
 				GUICtrlSetOnEvent(-1, "chkForceSwitch")
-			$g_txtForceSwitch = GUICtrlCreateInput("100", $x + 105, $y+1, 27, -1, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			$g_txtForceSwitch = GUICtrlCreateInput("100", $x + 105, $y+1, 27, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 				GUICtrlSetState(-1, $GUI_DISABLE)
 				GUICtrlSetLimit(-1, 3)
 			$g_lblForceSwitch = GUICtrlCreateLabel(GetTranslated(109,46, "searches"), $x + 135, $y+4, -1, -1)
 				GUICtrlSetState(-1, $GUI_DISABLE)
 
 			$y += 30
-			$g_hChkForceStayDonate= GUICtrlCreateCheckbox(GetTranslated(109,44, "Stay on donation while training"), $x - 5, $y, -1, -1)
-                GUICtrlSetTip(-1, GetTranslated(109,25, "Stay at donate account until an active account is getting troops ready in 1 minute") & _
-					@CRLF & GetTranslated(109,26, "Circulate among the donate accounts if there are more than 1"))
+			$g_hChkForceStayDonate= _GUICtrlCreateCheckbox(GetTranslated(109,47, "Stay on donation while training"), $x - 5, $y, -1, -1)
+                GUICtrlSetTip(-1, GetTranslated(109,48, "Stay at donate account until an active account is getting troops ready in 1 minute") & _
+					@CRLF & GetTranslated(109,49, "Circulate among the donate accounts if there are more than 1"))
 
 			$y += 30
-			$chkUseTrainingClose = GUICtrlCreateCheckbox(GetTranslated(109,19, "Combo Sleep after Switch Acc."), $x - 5, $y, -1, -1)
+			$chkUseTrainingClose = _GUICtrlCreateCheckbox(GetTranslated(109,19, "Combo Sleep after Switch Acc."), $x - 5, $y, -1, -1)
 				$sTxtTip = GetTranslated(109,20, "Close CoC combo with Switch Account when there is more than 3 mins remaining on training time of all accounts.")
 				GUICtrlSetTip(-1, $sTxtTip)
 

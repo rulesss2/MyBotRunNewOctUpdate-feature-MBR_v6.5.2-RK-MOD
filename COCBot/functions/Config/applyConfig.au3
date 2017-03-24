@@ -592,6 +592,7 @@ Func ApplyConfig_600_18($TypeReadSave)
 		   $g_bNotifyAlertBAN = (GUICtrlRead($g_hChkNotifyAlertBAN) = $GUI_CHECKED)
 		   $g_bNotifyAlertBOTUpdate = (GUICtrlRead($g_hChkNotifyBOTUpdate) = $GUI_CHECKED)
 	EndSwitch
+	ApplyConfig_RK_MOD_NotifyBotSleep($TypeReadSave)
 EndFunc
 
 Func ApplyConfig_600_19($TypeReadSave)

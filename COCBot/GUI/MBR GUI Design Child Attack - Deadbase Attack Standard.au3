@@ -145,7 +145,18 @@ $x = 20
 $y = 220
 
 GUICtrlCreateGroup(GetTranslated(671, 107, "Deploy speed for all standard attack mode."), $x, $y, 230, 110)
-$y += 20
+$y += 5
+$ChkGiantSlot = _GUICtrlCreateCheckbox(GetTranslated(671, 102,"GiantSlot"), $x+10, $y + 10, 130, 25)
+	$sTxtTip = GetTranslated(671, 103, "perimeter (> = 12, recommended)") & @CRLF & _               
+			   GetTranslated(671, 104, "two points on each side (> = 8, recommended)")
+	_GUICtrlSetTip(-1, $sTxtTip)
+	GUICtrlSetOnEvent(-1, "ChkGiantSlot")
+	GUICtrlSetState(-1, $GUI_UNCHECKED)
+$CmbGiantSlot = GUICtrlCreateCombo("", $x + 130, $y + 20, 120, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1,  GetTranslated(671, 112, "Perimeter") & "|" & _
+                    GetTranslated(671, 113, "TwoPoints"), GetTranslated(671, 112, "Perimeter"))
+					GUICtrlSetOnEvent(-1, "CmbGiantSlot")   
+$y += 30
 $ChkUnitFactor = _GUICtrlCreateCheckbox(GetTranslated(671, 108, "Modify Unit Factor"), $x+10, $y + 10, 130, 25)
 	$sTxtTip = GetTranslated(671, 109, "Unit deploy delay = Unit setting x Unit Factor (millisecond)")
 	_GUICtrlSetTip(-1, $sTxtTip)

@@ -35,6 +35,9 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		GUICtrlSetState($ChkWaveFactor, $iChkWaveFactor ? $GUI_CHECKED : $GUI_UNCHECKED)
 		GUICtrlSetData($TxtWaveFactor, $iTxtWaveFactor)
 		chkWaveFactor()
+		GUICtrlSetState($ChkGiantSlot, $iChkGiantSlot ? $GUI_CHECKED : $GUI_UNCHECKED)		
+		_GUICtrlComboBox_SetCurSel($CmbGiantSlot,$iCmbGiantSlot)
+		ChkGiantSlot()
 		;Disable background
 		GUICtrlSetState($chkPic, $ichkPic = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 		chkPic()
@@ -98,6 +101,8 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		$iChkWaveFactor = (GUICtrlRead($ChkWaveFactor) = $GUI_CHECKED)
 		$iTxtUnitFactor = GUICtrlRead($TxtUnitFactor)
 		$iTxtWaveFactor = GUICtrlRead($TxtWaveFactor)
+		$iChkGiantSlot = (GUICtrlRead($ChkGiantSlot) = $GUI_CHECKED)		
+		$iCmbGiantSlot = _GUICtrlComboBox_GetCurSel($CmbGiantSlot)
 		$ichkPic = (GUICtrlRead($chkPic) = $GUI_CHECKED)
         $iSldTransLevel = GUICtrlRead($SldTransLevel)
 		
@@ -347,3 +352,14 @@ Func ApplyConfig_RK_MOD_ruRequest($TypeReadSave)
 		    
 	EndSwitch
 EndFunc   ;==>ApplyConfig_RK_ruRequest
+
+Func ApplyConfig_RK_MOD_NotifyBotSleep($TypeReadSave)
+	Switch $TypeReadSave
+		Case "Read"          
+		  GUICtrlSetState($ChkNotifyAlertBOTSleep, $iNotifyAlertBOTSleep = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+          ChkNotifyAlertBOTSleep()
+		Case "Save"
+		   $iNotifyAlertBOTSleep = GUICtrlRead($ChkNotifyAlertBOTSleep) = $GUI_CHECKED ? 1 : 0		    
+	EndSwitch
+EndFunc   ;==>ApplyConfig_RK_ruRequest
+

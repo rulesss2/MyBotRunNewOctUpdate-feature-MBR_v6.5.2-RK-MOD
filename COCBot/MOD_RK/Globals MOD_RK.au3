@@ -29,6 +29,9 @@ Global $iChkUnitFactor = 0
 Global $iTxtUnitFactor = 10
 Global $iChkWaveFactor = 0
 Global $iTxtWaveFactor = 100
+
+Global $ChkGiantSlot = 0, $iChkGiantSlot = 0, $CmbGiantSlot = 0, $iCmbGiantSlot = 0, $SlotsGiantsRK = 1
+
 ;-------------------------------------------------------
 ;Background by Kychera
 Global $BackGr, $chkPic
@@ -159,3 +162,5 @@ Global $ichkClanHop = 0
 
 ; Misc Battle Settings 
 Global $chkFastADBClicks = 0  
+;Notify alert botsleep
+Global $ChkNotifyAlertBOTSleep = 0, $iNotifyAlertBOTSleep = 0

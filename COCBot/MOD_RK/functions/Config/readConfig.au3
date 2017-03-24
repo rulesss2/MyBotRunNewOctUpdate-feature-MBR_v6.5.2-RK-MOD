@@ -24,6 +24,9 @@ Func ReadConfig_RK_MOD()
    IniReadS($iChkWaveFactor, $g_sProfileConfigPath, "SetSleep", "EnableWaveFactor", 0, "Int")
    IniReadS($iTxtWaveFactor, $g_sProfileConfigPath, "SetSleep", "WaveFactor", 100 ,"Int")
    
+   IniReadS($iChkGiantSlot, $g_sProfileConfigPath, "SetSleep", "EnableGiantSlot", 0, "Int")   
+   IniReadS($iCmbGiantSlot , $g_sProfileConfigPath, "SetSleep", "CmbGiantSlot", 0 ,"Int")
+   
    ;Background by Kychera
    IniReadS($iBackGr, $g_sProfileConfigPath, "background", "BackGr", 0, "Int")
    IniReadS($ichkPic, $g_sProfileConfigPath, "background", "chkPic", 1, "Int")
@@ -122,7 +125,8 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
 	
 	; Misc Battle Settings 
 	IniReadS($g_bAndroidAdbClicksEnabled , $g_sProfileConfigPath, "Fast Clicks", "UseADBFastClicks", 0, "int")
-	 
+	 ;Notify alert bot sleep
+	 IniReadS($iNotifyAlertBOTSleep, $g_sProfileConfigPath, "notify", "AlertPBVMFound", 0, "int")	 
 EndFunc   ;==>ReadConfig_RK_MOD
 
 Func ReadConfig_SwitchAcc($SwitchAcc_Style = False)

@@ -69,7 +69,7 @@ EndFunc   ;==>chkSmartAttackRedAreaDB
 Func chkUnitFactor()
 	If GUICtrlRead($ChkUnitFactor) = $GUI_CHECKED Then
 		$iChkUnitFactor = 1
-		GUICtrlSetState($txtUnitFactor, $GUI_ENABLE)
+		GUICtrlSetState($TxtUnitFactor, $GUI_ENABLE)
 	Else
 		$iChkUnitFactor = 0
 		GUICtrlSetState($TxtUnitFactor, $GUI_DISABLE)
@@ -86,4 +86,31 @@ Func chkWaveFactor()
 		GUICtrlSetState($TxtWaveFactor, $GUI_DISABLE)
 	EndIf
 	$iTxtWaveFactor = GUICtrlRead($TxtWaveFactor)
+EndFunc
+
+Func ChkGiantSlot()
+	If GUICtrlRead($ChkGiantSlot) = $GUI_CHECKED Then
+		$iChkGiantSlot = 1
+		GUICtrlSetState($CmbGiantSlot, $GUI_ENABLE)
+	Else
+		$iChkGiantSlot = 0
+		GUICtrlSetState($CmbGiantSlot, $GUI_DISABLE)
+	EndIf
+	;$iCmbGiantSlot = _GUICtrlComboBox_GetCurSel($CmbGiantSlot)
+EndFunc
+Func CmbGiantSlot()
+ If $iChkGiantSlot = 1 Then 
+     Switch _GUICtrlComboBox_GetCurSel($CmbGiantSlot)
+		 Case 0
+			 $SlotsGiantsRK = 0			 
+		 Case 1
+			 $SlotsGiantsRK = 2		     
+     EndSwitch
+ Else
+ LocaL $GiantComp = $g_ahTxtTrainArmyTroopCount[$eTroopGiant]
+    If Number($GiantComp) >= 1 And Number($GiantComp) <= 7 Then $SlotsGiantsRK = 1
+	If Number($GiantComp) >= 8 Then $SlotsGiantsRK = 2 ; will be split in 2 slots, when >16 or >=8 with FF	
+	If Number($GiantComp) >= 12 Then $SlotsGiantsRK = 0 ; spread on vector, when >20 or >=12 with FF 
+	
+ EndIf
 EndFunc

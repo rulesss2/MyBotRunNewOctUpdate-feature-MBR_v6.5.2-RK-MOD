@@ -236,7 +236,7 @@ $11 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 410, $WS_CLIPC
 Local $sTxtTip = ""
 Local $x = 25, $y = 60
 	GUICtrlCreateGroup(GetTranslated(999,7, "Gold Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ;Gold Switch
-		$chkGoldSwitchMax = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkGoldSwitchMax = _GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
 			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
 			$sTxtTip = GetTranslated(999,9, "Enable this to switch profiles when gold is above amount.")
 			_GUICtrlSetTip(-1, $sTxtTip)
@@ -250,7 +250,7 @@ Local $x = 25, $y = 60
 			GUICtrlSetLimit(-1, 7)
 
 	$y += 30
-		$chkGoldSwitchMin = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkGoldSwitchMin = _GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
 			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
 			$sTxtTip = GetTranslated(999,13, "Enable this to switch profiles when gold is below amount.")
 			_GUICtrlSetTip(-1, $sTxtTip)
@@ -266,7 +266,7 @@ Local $x = 25, $y = 60
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y += 48
 	GUICtrlCreateGroup(GetTranslated(999,15, "Elixir Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ; Elixir Switch
-		$chkElixirSwitchMax = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkElixirSwitchMax = _GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
 			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
 			$sTxtTip = GetTranslated(999,16, "Enable this to switch profiles when Elixir is above amount.")
 			_GUICtrlSetTip(-1, $sTxtTip)
@@ -280,7 +280,7 @@ Local $x = 25, $y = 60
 			_GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetLimit(-1, 7)
 	$y += 30
-		$chkElixirSwitchMin = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkElixirSwitchMin = _GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
 			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
 			$sTxtTip = GetTranslated(999,19, "Enable this to switch profiles when Elixir is below amount.")
 			_GUICtrlSetTip(-1, $sTxtTip)
@@ -296,7 +296,7 @@ Local $x = 25, $y = 60
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y += 48
 	GUICtrlCreateGroup(GetTranslated(999,21, "Dark Elixir Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ;DE Switch
-		$chkDESwitchMax = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkDESwitchMax = _GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
 			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
 			$sTxtTip = GetTranslated(999,22, "Enable this to switch profiles when Dark Elixir is above amount.")
 			_GUICtrlSetTip(-1, $sTxtTip)
@@ -309,7 +309,7 @@ Local $x = 25, $y = 60
 			_GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetLimit(-1, 6)
 	$y += 30
-		$chkDESwitchMin = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkDESwitchMin = _GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
 			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
 			$sTxtTip = GetTranslated(999,24, "Enable this to switch profiles when Dark Elixir is below amount.")
 			_GUICtrlSetTip(-1, $sTxtTip)
@@ -325,7 +325,7 @@ Local $x = 25, $y = 60
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y += 48
 	GUICtrlCreateGroup(GetTranslated(999,27, "Trophy Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ; Trophy Switch
-		$chkTrophySwitchMax = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkTrophySwitchMax = _GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
 			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
 			$sTxtTip = GetTranslated(999,28, "Enable this to switch profiles when Trophies are above amount.")
 			_GUICtrlSetTip(-1, $sTxtTip)
@@ -338,7 +338,7 @@ Local $x = 25, $y = 60
 			_GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetLimit(-1, 4)
 	$y += 30
-		$chkTrophySwitchMin = GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
+		$chkTrophySwitchMin = _GUICtrlCreateCheckbox(GetTranslated(999,8, "Switch To"), $x - 10, $y - 5, -1, -1)
 			GUICtrlSetOnEvent(-1, "ProfileSwitchCheck")
 			$sTxtTip = GetTranslated(999,31, "Enable this to switch profiles when Trophies are below amount.")
 			_GUICtrlSetTip(-1, $sTxtTip)

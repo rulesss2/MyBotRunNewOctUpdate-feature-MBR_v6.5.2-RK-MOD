@@ -165,6 +165,3 @@ Global $chkFastADBClicks = 0
 
 ;Notify alert botsleep
 Global $ChkNotifyAlertBOTSleep = 0, $iNotifyAlertBOTSleep = 0
-
-;Disable Collectors Filter mod
-Global $g_hChkDBDisableCollectorsFilter = 0, $g_bCollectorFilterDisable = 0

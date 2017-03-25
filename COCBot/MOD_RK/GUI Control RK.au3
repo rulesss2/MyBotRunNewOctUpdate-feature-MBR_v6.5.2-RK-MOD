@@ -469,16 +469,3 @@ Func ChkNotifyAlertBOTSleep()
       GUICtrlSetState($ChkNotifyAlertBOTSleep, $GUI_DISABLE)
    EndIf
 EndFunc 
-
-
-Func chkDBCollectorMOD()
-    For $i = 6 To 12
-       If GUICtrlRead($g_hChkDBDisableCollectorsFilter) = $GUI_CHECKED Then
-	      $g_bCollectorFilterDisable = 1
-		  GUICtrlSetState($g_ahChkDBCollectorLevel[$i], $GUI_UNCHECKED + $GUI_ENABLE)
-       Else
-	      $g_bCollectorFilterDisable = 0
-	      GUICtrlSetState($g_ahChkDBCollectorLevel[$i], $GUI_CHECKED + $GUI_DISABLE)
-	   EndIf
-    Next	  
-EndFunc  ;==>chkDBCollectorMOD

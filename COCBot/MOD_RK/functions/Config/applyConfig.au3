@@ -364,13 +364,3 @@ Func ApplyConfig_RK_MOD_NotifyBotSleep($TypeReadSave)
 		   $iNotifyAlertBOTSleep = GUICtrlRead($ChkNotifyAlertBOTSleep) = $GUI_CHECKED ? 1 : 0		    
 	EndSwitch
 EndFunc   ;==>ApplyConfig_RK_ruRequest
-
-Func ApplyConfig_RK_MOD_DBCollectorMOD($TypeReadSave)
-	Switch $TypeReadSave
-		Case "Read"          
-		  GUICtrlSetState($g_hChkDBDisableCollectorsFilter, $g_bCollectorFilterDisable = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-          chkDBCollectorMOD()
-		Case "Save"
-		   $g_bCollectorFilterDisable = GUICtrlRead($g_hChkDBDisableCollectorsFilter) = $GUI_CHECKED ? 1 : 0		    
-	EndSwitch
-EndFunc   ;==>ApplyConfig_RK_ruRequest

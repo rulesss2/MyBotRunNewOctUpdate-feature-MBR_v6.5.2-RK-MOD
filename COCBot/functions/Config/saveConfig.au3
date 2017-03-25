@@ -896,7 +896,7 @@ Func SaveConfig_600_31()
 		IniWriteS($g_sProfileConfigPath, "collectors", "lvl" & $i & "Enabled", $g_abCollectorLevelEnabled[$i] ? 1 : 0)
 		IniWriteS($g_sProfileConfigPath, "collectors", "lvl" & $i & "fill", $g_aiCollectorLevelFill[$i])
 	Next
-	;IniWriteS($g_sProfileConfigPath, "search", "chkDisableCollectorsFilter", $g_bCollectorFilterDisable ? 1 : 0)
+	IniWriteS($g_sProfileConfigPath, "search", "chkDisableCollectorsFilter", $g_bCollectorFilterDisable ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "collectors", "minmatches", $g_iCollectorMatchesMin)
 	IniWriteS($g_sProfileConfigPath, "collectors", "tolerance", $g_iCollectorToleranceOffset)
 EndFunc

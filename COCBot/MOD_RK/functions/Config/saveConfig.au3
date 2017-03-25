@@ -140,9 +140,6 @@ Func SaveConfig_RK_MOD()
 	;Notify alert bot sleep	 
 	 IniWriteS($g_sProfileConfigPath, "notify", "AlertPBVMFound", $iNotifyAlertBOTSleep ? 1 : 0)
 	 
-	 ;Disable Collectors Filter mod
-	 IniWriteS($g_sProfileConfigPath, "search", "chkDisableCollectorsFilter", $g_bCollectorFilterDisable ? 1 : 0)
-	 
 EndFunc   ;==>SaveConfig_RK_MOD
 
 Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)

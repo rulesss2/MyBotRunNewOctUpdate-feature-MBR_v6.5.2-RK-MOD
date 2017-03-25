@@ -849,7 +849,7 @@ Global $g_bMilkFarmForceToleranceEnable = False, $g_iMilkFarmForceToleranceNorma
 ; <><><><> Attack Plan / Search & Attack / Deadbase / Collectors <><><><>
 Global $g_abCollectorLevelEnabled[13] = [-1, -1, -1, -1, -1, -1, True, True, True, True, True, True, True] ; elements 0 thru 5 are never referenced
 Global $g_aiCollectorLevelFill[13] = [-1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1] ; elements 0 thru 5 are never referenced
-;Global $g_bCollectorFilterDisable = False
+Global $g_bCollectorFilterDisable = False
 Global $g_iCollectorMatchesMin = 3
 Global $g_iCollectorToleranceOffset = 0
 

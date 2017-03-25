@@ -51,6 +51,7 @@ Func chkDBCollector()
 	   EndIf
     Next
 	checkCollectors()
+	ChkDBDisableCollectorsFilter()
 EndFunc   ;==>chkDBCollector
 
 Func cmbDBCollector()
@@ -58,6 +59,18 @@ Func cmbDBCollector()
 	   If $g_ahCmbDBCollectorLevel[$i] = @GUI_CtrlId Then
 		  $g_aiCollectorLevelFill[$i] = _GUICtrlComboBox_GetCurSel($g_ahCmbDBCollectorLevel[$i])
 		  ExitLoop
+	   EndIf
+    Next
+EndFunc
+
+Func ChkDBDisableCollectorsFilter()
+    For $i = 6 To 12
+       If GUICtrlRead($g_hChkDBDisableCollectorsFilter) = $GUI_CHECKED Then
+	      $g_bCollectorFilterDisable = 1
+		  GUICtrlSetState($g_ahChkDBCollectorLevel[$i], $GUI_DISABLE)
+       Else
+	      $g_bCollectorFilterDisable = 0
+	      GUICtrlSetState($g_ahChkDBCollectorLevel[$i],  $GUI_ENABLE)
 	   EndIf
     Next
 EndFunc

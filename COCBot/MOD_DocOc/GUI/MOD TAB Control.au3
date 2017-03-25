@@ -36,7 +36,7 @@ EndFunc   ;==>SXSetXP
 
 
 Func chkEnableSuperXP()
-
+    $ichkEnableSuperXP = 1 
 	If GUICtrlRead($chkEnableSuperXP) = $GUI_CHECKED Then
 		GUICtrlSetState($rbSXTraining, $GUI_ENABLE)
 		GUICtrlSetState($rbSXIAttacking, $GUI_ENABLE)
@@ -45,6 +45,7 @@ Func chkEnableSuperXP()
 		GUICtrlSetState($chkSXGW, $GUI_ENABLE)
 		GUICtrlSetState($txtMaxXPtoGain, $GUI_ENABLE)
 	Else
+	$ichkEnableSuperXP = 0	
 		GUICtrlSetState($rbSXTraining, $GUI_DISABLE)
 		GUICtrlSetState($rbSXIAttacking, $GUI_DISABLE)
 		GUICtrlSetState($chkSXBK, $GUI_DISABLE)

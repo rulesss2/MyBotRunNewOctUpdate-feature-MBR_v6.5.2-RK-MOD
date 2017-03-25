@@ -31,6 +31,7 @@
 #include "functions\Smart Upgrade\SmartUpgrade.au3"
 #include "functions\SwitchAcc\SwitchAcc.au3"
 #include "functions\SwitchAcc\UpdateProfileStats.au3"
+#include "functions\UpgradesMgmt.au3"
 
 #include "other/BackgroundCheck.au3"
 #include "other/TransLevel.au3"

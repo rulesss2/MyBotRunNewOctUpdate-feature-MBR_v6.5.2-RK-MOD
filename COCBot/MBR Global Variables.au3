@@ -1321,7 +1321,7 @@ Global Const $g_aEQSpellDmg[4] = [0.14, 0.17, 0.21, 0.25]
 
 ; Android Settings - RK MOD
 Global $sAndroid = "<No Emulators>"
-Global $g_sAndroidInstance 
+Global $g_sAndroidInstance = ""
 Global $g_sBotTitle, $g_sOldTitle 
 Global $CmbAndroid  
 Global $TxtAndroidInstance 

@@ -137,9 +137,9 @@ Func modifyAndroid()
 			If $g_iAndroidConfig <> $currentConfig Or $sAndroid <> $currentAndroid Then setupInstances()
 		Case Else ; Emulator and instance is specified by the command line so use them instead of the profile settings.
 			$sAndroid = $g_asCmdLine[2]
-			$g_iAndroidConfig = getEmulatorNumber($g_sAndroid)
+			$g_iAndroidConfig = getEmulatorNumber($sAndroid)
 			$g_sAndroidInstance = $g_asCmdLine[3]
 
-			If $g_iAndroidConfig <> $currentConfig Or $sAndroid <> $currentAndroid Or $g_sAndroidInstance <> $currentAndroidInstance Then setupInstances()
+			If $g_iAndroidConfig <> $currentConfig Or $sAndroid <> $currentAndroid Or $sAndroidInstance <> $currentAndroidInstance Then setupInstances()
 	EndSwitch
 EndFunc   ;==>modifyAndroid

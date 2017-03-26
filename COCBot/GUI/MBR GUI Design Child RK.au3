@@ -44,12 +44,26 @@ EndFunc
 
 Func ModOptionGUI()
 $35 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 410, $WS_CLIPCHILDREN)
+
+; Android Settings
+	Local $x = 25, $y = 43
+	GUICtrlCreateGroup(GetTranslated(91,2,"Android Options"), $x - 20, $y - 20, 438, 50)
+		$CmbAndroid = GUICtrlCreateCombo("", $x - 10, $y - 5, 130, 18, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			GUICtrlSetTip($CmbAndroid, GetTranslated(91,3,"Use this to select the Android Emulator to use with this profile."))
+			setupAndroidComboBox()
+			GUICtrlSetState(-1, $GUI_SHOW)
+			GUICtrlSetOnEvent(-1, "CmbAndroid")
+		$LblAndroidInstance = GUICtrlCreateLabel(GetTranslated(91,4,"Instance:"), $x + 130, $y - 2 , 60, 21, $SS_RIGHT)
+		$TxtAndroidInstance = GUICtrlCreateInput("", $x + 200, $y - 5, 210, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
+			GUICtrlSetTip($TxtAndroidInstance, GetTranslated(91,5,"Enter the Instance to use with this profile."))
+			GUICtrlSetOnEvent(-1, "TxtAndroidInstance")
+			GUICtrlSetState(-1, $GUI_DISABLE)
+			
 ; Misc Battle Settings
 	Local $x = 25, $y = 92
     GUICtrlCreateGroup(GetTranslated(91,9, "Miscellaneous Battle Settings"), $x - 20, $y - 20, 435, 45)
 		$chkFastADBClicks = GUICtrlCreateCheckbox("", $x - 10, $y, 13, 13) 
 		GUICtrlSetTip($chkFastADBClicks, GetTranslated(91,11, "Tick this to enable faster ADB deployment for MEmu and Droid4x in Multi-finger mode.") & @CRLF & GetTranslated(91,12, " WARNING:  This is experimental, if you have issues with deployment, disable it."))
-			;GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetOnEvent(-1, "chkFastADBClicks")
 			GUICtrlCreateLabel(GetTranslated(91,10, "Enable Fast ADB Clicks") & ":", $x + 7, $y, -1, -1)
 EndFunc

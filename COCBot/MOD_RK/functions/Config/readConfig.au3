@@ -16,24 +16,24 @@
 Func ReadConfig_RK_MOD()
    ;  Multi Finger - Added by
 	IniReadS($iMultiFingerStyle, $g_sProfileConfigPath, "MultiFinger", "Select", 2, "int")
-	
+
    ; Unit Wave Factor Added by rulesss
    IniReadS($iChkUnitFactor, $g_sProfileConfigPath, "SetSleep", "EnableUnitFactor", 0, "Int")
    IniReadS($iTxtUnitFactor, $g_sProfileConfigPath, "SetSleep", "UnitFactor", 10 ,"Int")
 
    IniReadS($iChkWaveFactor, $g_sProfileConfigPath, "SetSleep", "EnableWaveFactor", 0, "Int")
    IniReadS($iTxtWaveFactor, $g_sProfileConfigPath, "SetSleep", "WaveFactor", 100 ,"Int")
-   
-   IniReadS($iChkGiantSlot, $g_sProfileConfigPath, "SetSleep", "EnableGiantSlot", 0, "Int")   
+
+   IniReadS($iChkGiantSlot, $g_sProfileConfigPath, "SetSleep", "EnableGiantSlot", 0, "Int")
    IniReadS($iCmbGiantSlot , $g_sProfileConfigPath, "SetSleep", "CmbGiantSlot", 0 ,"Int")
-   
+
    ;Background by Kychera
    IniReadS($iBackGr, $g_sProfileConfigPath, "background", "BackGr", 0, "Int")
    IniReadS($ichkPic, $g_sProfileConfigPath, "background", "chkPic", 1, "Int")
-   
+
    ;Transparent Gui by Kychera
    IniReadS($iSldTransLevel, $g_sProfileConfigPath, "TransLevel", "Level", 0, "Int")
-  
+
    ;Forecast
  IniReadS($iChkForecastBoost, $g_sProfileConfigPath, "forecast", "chkForecastBoost", 0, "Int")
  IniReadS($iTxtForecastBoost, $g_sProfileConfigPath, "forecast", "txtForecastBoost", 6, "Int")
@@ -47,11 +47,11 @@ Func ReadConfig_RK_MOD()
  ;watchdog
  IniReadS($iChkLaunchWatchdog, $g_sProfileConfigPath, "Other", "chkLaunchWatchdog", 1, "Int")
 
- ; Check Collectors Outside 
+ ; Check Collectors Outside
 IniReadS($ichkDBMeetCollOutside, $g_sProfileConfigPath, "search", "DBMeetCollOutside", 0, "int")
 IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollOutsidePercent", 50, "int")
 
-; CSV Deploy Speed 
+; CSV Deploy Speed
  IniReadS($g_iCmbCSVSpeed[$DB], $g_sProfileConfigPath, "DeploymentSpeed", "DB", 2, "Int")
  IniReadS($g_iCmbCSVSpeed[$LB], $g_sProfileConfigPath, "DeploymentSpeed", "LB", 2, "Int")
 
@@ -73,7 +73,7 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
 	IniReadS($iSmartMinGold, $g_sProfileConfigPath, "upgrade", "SmartMinGold", 200000, "int")
 	IniReadS($iSmartMinElixir, $g_sProfileConfigPath, "upgrade", "SmartMinElixir", 200000, "int")
 	IniReadS($iSmartMinDark, $g_sProfileConfigPath, "upgrade", "SmartMinDark", 1500, "int")
-  
+
   ; Profile Switch
   IniReadS($ichkGoldSwitchMax, $g_sProfileConfigPath, "profiles", "chkGoldSwitchMax", 0, "int")
   IniReadS($icmbGoldMaxProfile, $g_sProfileConfigPath, "profiles", "cmbGoldMaxProfile", 0, "int")
@@ -100,35 +100,38 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
   IniReadS($icmbTrophyMinProfile, $g_sProfileConfigPath, "profiles", "cmbTrophyMinProfile", 0, "int")
   IniReadS($itxtMinTrophyAmount, $g_sProfileConfigPath, "profiles", "txtMinTrophyAmount", 1000, "int")
 
-  ; SimpleTrain 
+  ; SimpleTrain
 	IniReadS($ichkSimpleTrain, $g_sProfileConfigPath, "SimpleTrain", "Enable", 0, "int")
 	IniReadS($ichkPreciseTroops, $g_sProfileConfigPath, "SimpleTrain", "PreciseTroops", 0, "int")
 	IniReadS($ichkFillArcher, $g_sProfileConfigPath, "SimpleTrain", "ChkFillArcher", 0, "int")
 	IniReadS($iFillArcher, $g_sProfileConfigPath, "SimpleTrain", "FillArcher", 5, "int")
 	IniReadS($ichkFillEQ, $g_sProfileConfigPath, "SimpleTrain", "FillEQ", 0, "int")
-	
-	;Request russian	
+
+	;Request russian
 	IniReadS($ichkRusLang2, $g_sProfileConfigPath, "Lang", "chkRusLang2", 0, "int")
-	
-	; CoC Stats 
+
+	; CoC Stats
 	IniReadS($ichkCoCStats, $g_sProfileConfigPath, "Stats", "chkCoCStats", 0, "int")
 	IniReadS($MyApiKey, $g_sProfileConfigPath, "Stats", "txtAPIKey", "")
-	
-	; Upgrade Management 
+
+	; Upgrade Management
 	$g_ibUpdateNewUpgradesOnly = (IniRead($g_sProfileConfigPath, "upgrade", "UpdateNewUpgradesOnly", 0) = 1)
-	
-	; Move the Request CC Troops 
+
+	; Move the Request CC Troops
 	$bReqCCFirst = (IniRead($g_sProfileConfigPath, "planned", "ReqCCFirst", 0) = 1)
-	
-	; Clan Hop Setting 
+
+	; Clan Hop Setting
     $ichkClanHop = (IniRead($g_sProfileConfigPath, "Others", "ClanHop", 0) = 1)
-	
-	; Misc Battle Settings 
+
+	; Misc Battle Settings
 	IniReadS($g_bAndroidAdbClicksEnabled , $g_sProfileConfigPath, "Fast Clicks", "UseADBFastClicks", 0, "int")
-	
+
 	 ;Notify alert bot sleep
-	 IniReadS($iNotifyAlertBOTSleep, $g_sProfileConfigPath, "notify", "AlertPBVMFound", 0, "int")	
-     
+	 IniReadS($iNotifyAlertBOTSleep, $g_sProfileConfigPath, "notify", "AlertPBVMFound", 0, "int")
+
+	 ; Android Settings
+	 IniReadS($sAndroid, $g_sProfileConfigPath, "Android", "Emulator", "<No Emulators>", 0, "Int")
+     IniReadS($g_sAndroidInstance, $g_sProfileConfigPath, "Android", "Emulator", "<No Emulators>", 0,"Int")
 EndFunc   ;==>ReadConfig_RK_MOD
 
 Func ReadConfig_SwitchAcc($SwitchAcc_Style = False)

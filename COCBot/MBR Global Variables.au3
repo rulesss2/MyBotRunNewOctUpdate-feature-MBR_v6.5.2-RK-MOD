@@ -1319,6 +1319,13 @@ Global Const $g_aEQSpellDmg[4] = [0.14, 0.17, 0.21, 0.25]
 ; Global Const $drillLevelHold[6] = [120, 225, 405, 630, 960, 1350] ; Total Amount of DE available from Drill at each level (1-6)
 ; Global Const $drillLevelSteal[6] = [59, 102, 172, 251, 343, 479] ; Amount of DE available to steal from Drills at each level (1-6)
 
+; Android Settings - RK MOD
+Global $sAndroid = "<No Emulators>"
+Global $g_sAndroidInstance 
+Global $g_sBotTitle, $g_sOldTitle 
+Global $CmbAndroid  
+Global $TxtAndroidInstance 
+Global $LblAndroidInstance
 ; #######################################################################
 ; Doc Oc MOD
 #include "MOD_DocOc\Globals DocOC.au3"

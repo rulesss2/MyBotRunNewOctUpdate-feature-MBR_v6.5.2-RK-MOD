@@ -469,3 +469,25 @@ Func ChkNotifyAlertBOTSleep()
       GUICtrlSetState($ChkNotifyAlertBOTSleep, $GUI_DISABLE)
    EndIf
 EndFunc 
+
+
+Func setupAndroidComboBox()
+	Local $androidString = ""
+	Local $aAndroid = getInstalledEmulators()
+
+	; Convert the array into a string
+	$androidString = _ArrayToString($aAndroid, "|")
+
+	; Set the new data of valid Emulators
+	GUICtrlSetData($CmbAndroid, $androidString, $aAndroid[0])
+EndFunc   ;==>setupAndroidComboBox
+
+Func CmbAndroid()
+	$sAndroid = GUICtrlRead($CmbAndroid)
+	modifyAndroid()
+EndFunc   ;==>cmbAndroid
+
+Func TxtAndroidInstance()
+	$g_sAndroidInstance = GUICtrlRead($TxtAndroidInstance)
+	modifyAndroid()
+EndFunc   ;==>$txtAndroidInstance

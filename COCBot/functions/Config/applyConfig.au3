@@ -128,6 +128,7 @@ Func applyConfig($bRedrawAtExit = True, $TypeReadSave = "Read") ;Applies the dat
 	;@<<>>@<<>>@<<>>@<<>>@<<>>@<<>>@
 	ApplyConfig_RK_Forecast($TypeReadSave)
 	ApplyConfig_RK_Switch_Profiles($TypeReadSave)
+	ApplyConfig_RK_MOD_AndroidSettings($TypeReadSave)
 	; SwitchAcc_Demen_Style
 	ApplyConfig_SwitchAcc($TypeReadSave, True)
     ; <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>

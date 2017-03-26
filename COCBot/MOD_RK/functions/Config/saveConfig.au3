@@ -23,23 +23,23 @@ Func SaveConfig_RK_MOD()
 
     IniWriteS($g_sProfileConfigPath, "SetSleep", "UnitFactor", GUICtrlRead($TxtUnitFactor))
 	IniWriteS($g_sProfileConfigPath, "SetSleep", "WaveFactor", GUICtrlRead($TxtWaveFactor))
-	
-	IniWriteS($g_sProfileConfigPath, "SetSleep", "EnableGiantSlot", $iChkGiantSlot ? 1 : 0)	
+
+	IniWriteS($g_sProfileConfigPath, "SetSleep", "EnableGiantSlot", $iChkGiantSlot ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "SetSleep", "CmbGiantSlot", _GUICtrlComboBox_GetCurSel($CmbGiantSlot))
 	;Background by Kychera
 	IniWriteS($g_sProfileConfigPath, "background", "chkPic", $ichkPic ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "background", "BackGr", $iBackGr)
-	
+
     ;Transparent Gui (Modified Kychera)
-	IniWrites($g_sProfileConfigPath, "TransLevel", "Level", $iSldTransLevel)
+	IniWriteS($g_sProfileConfigPath, "TransLevel", "Level", $iSldTransLevel)
 
 	IniWriteS($g_sProfileConfigPath, "TransLevel", "Level", $iSldTransLevel)
-	
+
 	;forecast
-	IniWriteS($g_sProfileConfigPath, "forecast", "txtForecastBoost", GUICtrlRead($txtForecastBoost))	 
+	IniWriteS($g_sProfileConfigPath, "forecast", "txtForecastBoost", GUICtrlRead($txtForecastBoost))
 	IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMax", _GUICtrlComboBox_GetCurSel($cmbForecastHopingSwitchMax))
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtForecastHopingSwitchMax", GUICtrlRead($txtForecastHopingSwitchMax))
-	IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMin", _GUICtrlComboBox_GetCurSel($cmbForecastHopingSwitchMin))	
+	IniWriteS($g_sProfileConfigPath, "profiles", "cmbForecastHopingSwitchMin", _GUICtrlComboBox_GetCurSel($cmbForecastHopingSwitchMin))
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtForecastHopingSwitchMin", GUICtrlRead($txtForecastHopingSwitchMin))
 	IniWriteS($g_sProfileConfigPath, "forecast", "chkForecastBoost", $iChkForecastBoost ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkForecastHopingSwitchMax", $ichkForecastHopingSwitchMax ? 1 : 0)
@@ -50,15 +50,15 @@ Func SaveConfig_RK_MOD()
     ;Watchdog disable
 	IniWriteS($g_sProfileConfigPath, "Other", "chkLaunchWatchdog", $iChkLaunchWatchdog ? 1 : 0)
 
-	; Check Collectors Outside 
+	; Check Collectors Outside
     IniWriteS($g_sProfileConfigPath, "search", "DBMeetCollOutside", $ichkDBMeetCollOutside ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "search", "DBMinCollOutsidePercent", $iDBMinCollOutsidePercent)
-	
-	; CSV Deploy Speed 
+
+	; CSV Deploy Speed
 	IniWriteS($g_sProfileConfigPath, "DeploymentSpeed", "DB", _GUICtrlComboBox_GetCurSel($g_hCmbCSVSpeed[$DB]))
 	IniWriteS($g_sProfileConfigPath, "DeploymentSpeed", "LB", _GUICtrlComboBox_GetCurSel($g_hCmbCSVSpeed[$LB]))
-	
-	; Smart Upgrade 
+
+	; Smart Upgrade
 	IniWriteS($g_sProfileConfigPath, "upgrade", "chkSmartUpgrade", $ichkSmartUpgrade ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "upgrade", "chkIgnoreTH", $ichkIgnoreTH ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "upgrade", "chkIgnoreKing", $ichkIgnoreKing ? 1 : 0)
@@ -76,70 +76,74 @@ Func SaveConfig_RK_MOD()
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinGold", GUICtrlRead($SmartMinGold))
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinElixir", GUICtrlRead($SmartMinElixir))
 	IniWriteS($g_sProfileConfigPath, "upgrade", "SmartMinDark", GUICtrlRead($SmartMinDark))
-    
-	; SimpleTrain 
+
+	; SimpleTrain
 	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "Enable", $ichkSimpleTrain)
 	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "PreciseTroops", $ichkPreciseTroops)
 	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "ChkFillArcher", $ichkFillArcher)
 	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "FillArcher", $iFillArcher)
 	IniWriteS($g_sProfileConfigPath, "SimpleTrain", "FillEQ", $ichkFillEQ)
-	
+
 	; Profile Switch
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkGoldSwitchMax", $ichkGoldSwitchMax ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "profiles", "cmbGoldMaxProfile", _GUICtrlComboBox_GetCurSel($cmbGoldMaxProfile))
-	
-	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxGoldAmount", GUICtrlRead($txtMaxGoldAmount))	
-	
+
+	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxGoldAmount", GUICtrlRead($txtMaxGoldAmount))
+
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkGoldSwitchMin", $ichkGoldSwitchMin ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "profiles", "cmbGoldMinProfile", _GUICtrlComboBox_GetCurSel($cmbGoldMinProfile))
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinGoldAmount", GUICtrlRead($txtMinGoldAmount))
-    
+
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkElixirSwitchMax", $ichkElixirSwitchMax ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "profiles", "cmbElixirMaxProfile", _GUICtrlComboBox_GetCurSel($cmbElixirMaxProfile))
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxElixirAmount", GUICtrlRead($txtMaxElixirAmount))
-	
+
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkElixirSwitchMin", $ichkElixirSwitchMin ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "profiles", "cmbElixirMinProfile", _GUICtrlComboBox_GetCurSel($cmbElixirMinProfile))
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinElixirAmount", GUICtrlRead($txtMinElixirAmount))
-	
+
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkDESwitchMax", $ichkDESwitchMax ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "profiles", "cmbDEMaxProfile", _GUICtrlComboBox_GetCurSel($cmbDEMaxProfile))
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxDEAmount", GUICtrlRead($txtMaxDEAmount))
-	
+
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkDESwitchMin", $ichkDESwitchMin ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "profiles", "cmbDEMinProfile", _GUICtrlComboBox_GetCurSel($cmbDEMinProfile))
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinDEAmount", GUICtrlRead($txtMinDEAmount))
-	
+
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkTrophySwitchMax", $ichkTrophySwitchMax ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "profiles", "cmbTrophyMaxProfile", _GUICtrlComboBox_GetCurSel($cmbTrophyMaxProfile))
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxTrophyAmount", GUICtrlRead($txtMaxTrophyAmount))
-	
+
 	IniWriteS($g_sProfileConfigPath, "profiles", "chkTrophySwitchMin", $ichkTrophySwitchMin ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "profiles", "cmbTrophyMinProfile", _GUICtrlComboBox_GetCurSel($cmbTrophyMinProfile))
 	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinTrophyAmount", GUICtrlRead($txtMinTrophyAmount))
-	
+
 	;request  russian
 	IniWriteS($g_sProfileConfigPath, "Lang", "chkRusLang2", $ichkRusLang2 ? 1 : 0)
-	
+
 	; CoC Stats
 	IniWriteS($g_sProfileConfigPath, "Stats", "chkCoCStats", $ichkCoCStats ? 1 : 0)
 	IniWriteS($g_sProfileConfigPath, "Stats", "txtAPIKey", $MyApiKey)
-	
-	; Upgrade Management 
+
+	; Upgrade Management
 	IniWriteS($g_sProfileConfigPath, "upgrade", "UpdateNewUpgradesOnly", $g_ibUpdateNewUpgradesOnly ? 1 : 0)
-	
-	; Move the Request CC Troops 
+
+	; Move the Request CC Troops
 	IniWriteS($g_sProfileConfigPath, "planned", "ReqCCFirst", $bReqCCFirst ? 1 : 0)
-    
-	; Clan Hop Setting 
+
+	; Clan Hop Setting
 	IniWriteS($g_sProfileConfigPath, "Others", "ClanHop", $ichkClanHop ? 1 : 0)
-    
-	; Misc Battle Settings 
+
+	; Misc Battle Settings
 	IniWriteS($g_sProfileConfigPath, "Fast Clicks", "UseADBFastClicks", $g_bAndroidAdbClicksEnabled ? 1 : 0)
-	
-	;Notify alert bot sleep	 
+
+	;Notify alert bot sleep
 	 IniWriteS($g_sProfileConfigPath, "notify", "AlertPBVMFound", $iNotifyAlertBOTSleep ? 1 : 0)
-	 
+
+	 ; Android Settings
+	 IniWriteS($g_sProfileConfigPath, "Android", "Emulator", _GUICtrlComboBox_GetCurSel ($CmbAndroid))
+	 IniWriteS($g_sProfileConfigPath, "Android", "Instance", _GUICtrlComboBox_GetCurSel ($TxtAndroidInstance))
+
 EndFunc   ;==>SaveConfig_RK_MOD
 
 Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)

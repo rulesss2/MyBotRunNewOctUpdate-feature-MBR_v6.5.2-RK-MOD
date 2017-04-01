@@ -32,7 +32,7 @@ Func getEmulatorNumber($emulatorName)
 EndFunc   ;==>getEmulatorNumber
 
 Func getInstalledEmulators() ; Returns an array of all installed Android Emulators
-	Local $currentConfig = $g_iAndroidConfig, $currentAndroid = $sAndroid, $currentAndroidInstance = $g_sAndroidInstance
+	Local $currentConfig = $g_iAndroidConfig, $currentAndroid = $g_sAndroidEmulator, $currentAndroidInstance = $g_sAndroidInstance
 	Local $aReturn[1], $arrayCounter = 0
 
     $g_bSilentSetLog = True
@@ -64,7 +64,7 @@ Func getInstalledEmulators() ; Returns an array of all installed Android Emulato
 
 	; Reset to the previous settings
 	$g_iAndroidConfig = $CurrentConfig
-	$sAndroid = $currentAndroid
+	$g_sAndroidEmulator = $currentAndroid
 	$g_sAndroidInstance = $currentAndroidInstance
 
 	$g_bInitAndroid = True
@@ -78,12 +78,12 @@ EndFunc   ;==>getInstalledEmulators
 Func setupInstances()
 	; Update Bot title
 	Local $g_sOldTitle = $g_sBotTitle
-
-    $g_sBotTitle & "(" & ($g_sAndroidInstance <> "" ? $g_sAndroidInstance : $sAndroid) & ")" ;Do not change this. If you do, multiple instances will not work.
+UpdateBotTitle()
+    ;$g_sBotTitle & "(" & ($g_sAndroidInstance <> "" ? $g_sAndroidInstance : $g_sAndroidEmulator) & ")" ;Do not change this. If you do, multiple instances will not work.
 	Local $g_hMutexTmp = _Singleton($g_sBotTitle, 1)
 	If $g_hMutexTmp = 0 And $g_sBotTitle <> $g_sOldTitle Then
-		MsgBox(0, $g_sBotTitle, "My Bot for " & $sAndroid & ($g_sAndroidInstance <> "" ? " instance (" & $g_sAndroidInstance & ")" : "") & " is already running." & @CRLF & @CRLF & _
-			   "To use this profile you must close the BOT that is currently running on " & $sAndroid & ($g_sAndroidInstance <> "" ? " instance (" & $g_sAndroidInstance & ")" : ""))
+		MsgBox(0, $g_sBotTitle, "My Bot for " & $g_sAndroidEmulator & ($g_sAndroidInstance <> "" ? " instance (" & $g_sAndroidInstance & ")" : "") & " is already running." & @CRLF & @CRLF & _
+			   "To use this profile you must close the BOT that is currently running on " & $g_sAndroidEmulator & ($g_sAndroidInstance <> "" ? " instance (" & $g_sAndroidInstance & ")" : ""))
 		Exit
 	EndIf
 	_WinAPI_CloseHandle($g_hMutex_BotTitle)
@@ -99,13 +99,13 @@ Func setupInstances()
 EndFunc   ;==>setupInstances
 
 Func modifyAndroid()
-	Local $currentConfig = $g_iAndroidConfig, $currentAndroid = $sAndroid, $currentAndroidInstance = $g_sAndroidInstance
+	Local $currentConfig = $g_iAndroidConfig, $currentAndroid = $g_sAndroidEmulator, $currentAndroidInstance = $g_sAndroidInstance
 
 	; Only use the profile for stored emulator and instance if there was no specific emulator and/or instance specified in the command line.
 	Switch $g_asCmdLine[0]
 		Case 0, 1 ; Command line does not contain any emulator information so use the profile settings.
 			; Set profile name to the text box value if no profiles are found.
-			If $g_sProfileCurrentName = "<No Profiles>" Then $g_sProfileCurrentName = StringRegExpReplace(GUICtrlRead($txtVillageName), '[/:*?"<>|]', '_')
+			If $g_sProfileCurrentName = "<No Profiles>" Then $g_sProfileCurrentName = StringRegExpReplace(GUICtrlRead($g_hTxtVillageName), '[/:*?"<>|]', '_')
 
 			$g_iAndroidConfig = getEmulatorNumber($sAndroid)
 
@@ -116,30 +116,30 @@ Func modifyAndroid()
 					; Bluestacks or Bluestacks2 so ignore the instance parameter.
 					GUICtrlSetState($TxtAndroidInstance, $GUI_DISABLE)
 
-					$sAndroid = $sAndroid
+					$g_sAndroidEmulator = $sAndroid
 					$g_sAndroidInstance = ""
 
-					If $g_iAndroidConfig <> $currentConfig Or $sAndroid <> $currentAndroid Then setupInstances()
+					If $g_iAndroidConfig <> $currentConfig Or $g_sAndroidEmulator <> $currentAndroid Then setupInstances()
 				Case Else
 					; Another emulator so use the instance parameter
-					GUICtrlSetState($TxtAndroidInstance, $GUI_ENABLE)
+					GUICtrlSetState($TxtAndroidInstance, $GUI_DISABLE);($TxtAndroidInstance, $GUI_ENABLE)
 
-					$sAndroid = $sAndroid
-					$g_sAndroidInstance = $g_sAndroidInstance
+					$g_sAndroidEmulator = $sAndroid
+					$g_sAndroidInstance = "";$g_sAndroidInstance
 
-					If $g_iAndroidConfig <> $currentConfig Or $sAndroid <> $currentAndroid Or $g_sAndroidInstance <> $currentAndroidInstance Then setupInstances()
+					If $g_iAndroidConfig <> $currentConfig Or $g_sAndroidEmulator <> $currentAndroid Or $g_sAndroidInstance <> $currentAndroidInstance Then setupInstances()
 			EndSwitch
 		Case 2 ; Emulator is specified by the command line so use it instead of the profile setting.
-			$sAndroid = $g_asCmdLine[2]
-			$g_iAndroidConfig = getEmulatorNumber($sAndroid)
+			$g_sAndroidEmulator = $g_asCmdLine[2]
+			$g_iAndroidConfig = getEmulatorNumber($g_sAndroidEmulator)
 			$g_sAndroidInstance = $g_avAndroidAppConfig[$g_iAndroidConfig][1] ; default instance
 
-			If $g_iAndroidConfig <> $currentConfig Or $sAndroid <> $currentAndroid Then setupInstances()
+			If $g_iAndroidConfig <> $currentConfig Or $g_sAndroidEmulator <> $currentAndroid Then setupInstances()
 		Case Else ; Emulator and instance is specified by the command line so use them instead of the profile settings.
-			$sAndroid = $g_asCmdLine[2]
-			$g_iAndroidConfig = getEmulatorNumber($sAndroid)
+			$g_sAndroidEmulator = $g_asCmdLine[2]
+			$g_iAndroidConfig = getEmulatorNumber($g_sAndroidEmulator)
 			$g_sAndroidInstance = $g_asCmdLine[3]
 
-			If $g_iAndroidConfig <> $currentConfig Or $sAndroid <> $currentAndroid Or $sAndroidInstance <> $currentAndroidInstance Then setupInstances()
-	EndSwitch
+			If $g_iAndroidConfig <> $currentConfig Or $g_sAndroidEmulator <> $currentAndroid Or $sAndroidInstance <> $currentAndroidInstance Then setupInstances()
+	EndSwitch	
 EndFunc   ;==>modifyAndroid

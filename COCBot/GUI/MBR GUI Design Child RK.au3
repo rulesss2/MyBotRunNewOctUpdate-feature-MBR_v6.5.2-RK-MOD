@@ -56,7 +56,7 @@ $35 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 410, $WS_CLIPC
 		$LblAndroidInstance = GUICtrlCreateLabel(GetTranslated(91,4,"Instance:"), $x + 130, $y - 2 , 60, 21, $SS_RIGHT)
 		$TxtAndroidInstance = GUICtrlCreateInput("", $x + 200, $y - 5, 210, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
 			GUICtrlSetTip($TxtAndroidInstance, GetTranslated(91,5,"Enter the Instance to use with this profile."))
-			GUICtrlSetOnEvent(-1, "TxtAndroidInstance")
+			;GUICtrlSetOnEvent(-1, "TxtAndroidInstance")
 			GUICtrlSetState(-1, $GUI_DISABLE)
 			
 ; Misc Battle Settings

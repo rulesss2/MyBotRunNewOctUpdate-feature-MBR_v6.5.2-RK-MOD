@@ -368,12 +368,20 @@ EndFunc   ;==>ApplyConfig_RK_ruRequest
 Func ApplyConfig_RK_MOD_AndroidSettings($TypeReadSave)
 	Switch $TypeReadSave
 		Case "Read"
-		   _GUICtrlComboBox_FindStringExact($CmbAndroid, String($sAndroid)) 
-           _GUICtrlComboBox_SelectString($CmbAndroid, String($sAndroid))
-		   modifyAndroid()
+		If _GUICtrlComboBox_FindStringExact($CmbAndroid, String($sAndroid)) <> -1 Then
+		_GUICtrlComboBox_SelectString($CmbAndroid, String($sAndroid))
+	    Else		  
+		_GUICtrlComboBox_SetCurSel($CmbAndroid, 0)
+		EndIf		
+	      modifyAndroid()
+		  Sleep(300)
+		  
+		  ;GUICtrlSetData($TxtAndroidInstance, $g_sAndroidInstance)		 
+         
 		Case "Save"
-		   _GUICtrlComboBox_SetCurSel($CmbAndroid, 0)
-           $g_sAndroidInstance = _GUICtrlComboBox_GetCurSel($CmbAndroid)
-           GUICtrlSetState($TxtAndroidInstance, $g_sAndroidInstance)
+		$sAndroid = _GUICtrlComboBox_GetCurSel($CmbAndroid)     
+		   
+		   ;$g_sAndroidInstance = GUICtrlRead($TxtAndroidInstance)
+		   
 	EndSwitch
 EndFunc   ;==>ApplyConfig_RK_ruRequest

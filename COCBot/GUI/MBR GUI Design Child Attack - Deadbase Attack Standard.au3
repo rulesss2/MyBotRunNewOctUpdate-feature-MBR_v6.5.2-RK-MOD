@@ -80,15 +80,18 @@ Func CreateAttackSearchDeadBaseStandard()
 			   GUICtrlSetData(-1, "1|2|3|4|5|6|7|8|9|10", "4")
 
 		  $y += 22
-		   $g_hChkRandomSpeedAtkDB = _GUICtrlCreateCheckbox(GetTranslated(608,16, "Randomize delay for Units && Waves"), $x, $y, -1, -1)
+		   $g_hChkRandomSpeedAtkDB = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			   _GUICtrlSetTip(-1, $sTxtTip)
 			   GUICtrlSetOnEvent(-1, "chkRandomSpeedAtkDB")
-
+			   GUICtrlCreateLabel(GetTranslated(608,16, "Randomize delay for Units && Waves"), $x + 17, $y, -1, -1)
+               GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 		   $y +=22
-		   $g_hChkSmartAttackRedAreaDB = _GUICtrlCreateCheckbox(GetTranslated(608,17, "Use Smart Attack: Near Red Line."), $x, $y, -1, -1)
+		   $g_hChkSmartAttackRedAreaDB = GUICtrlCreateCheckbox("", $x, $y, 13, 13)
 			   _GUICtrlSetTip(-1, GetTranslated(608,18, "Use Smart Attack to detect the outer 'Red Line' of the village to attack. And drop your troops close to it."))
 			   GUICtrlSetState(-1, $GUI_CHECKED)
 			   GUICtrlSetOnEvent(-1, "chkSmartAttackRedAreaDB")
+			   GUICtrlCreateLabel(GetTranslated(608,18, "Use Smart Attack to detect the outer 'Red Line' of the village to attack. And drop your troops close to it."), $x + 17, $y, -1, -1)
+		       GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
 		   $y += 22
 		   $g_hLblSmartDeployDB = GUICtrlCreateLabel(GetTranslated(608,19, "Drop Type") & ":", $x, $y + 5, -1, -1)
 		   GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)

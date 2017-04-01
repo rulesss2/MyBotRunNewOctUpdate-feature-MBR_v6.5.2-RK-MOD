@@ -195,8 +195,8 @@ Func CreateAttackSearchDeadBaseCollectors()
 			GUICtrlSetState(-1, $GUI_HIDE)
 		;EndIf
 
-	    $y += 25
-		$g_hLblCollectorWarning = GUICtrlCreateLabel("Warning: no collecters are selected. The bot will never find a dead base.", $x, $y, 255, 30)
+	    $y += 200
+		$g_hLblCollectorWarning = GUICtrlCreateLabel(GetTranslated(626,50, "Warning: no collecters are selected. The bot will never find a dead base."), $x, $y, 300, 45)
 			GUICtrlSetFont(-1, 10, $FW_BOLD)
 			GUICtrlSetColor(-1, $COLOR_ERROR)
 			GUICtrlSetState(-1, $GUI_HIDE)

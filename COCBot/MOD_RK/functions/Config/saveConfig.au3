@@ -141,9 +141,12 @@ Func SaveConfig_RK_MOD()
 	 IniWriteS($g_sProfileConfigPath, "notify", "AlertPBVMFound", $iNotifyAlertBOTSleep ? 1 : 0)
 
 	 ; Android Settings
-	 IniWriteS($g_sProfileConfigPath, "Android", "Emulator", _GUICtrlComboBox_GetCurSel ($CmbAndroid))
-	 IniWriteS($g_sProfileConfigPath, "Android", "Instance", _GUICtrlComboBox_GetCurSel ($TxtAndroidInstance))
+	; IniWriteS($g_sProfileConfigPath, "Android", "Emulator", _GUICtrlComboBox_GetCurSel($CmbAndroid))
+	; IniWriteS($g_sProfileConfigPath, "Android", "Instance", _GUICtrlComboBox_GetCurSel($TxtAndroidInstance))
 
+	 IniWrite($g_sProfileConfigPath, "Android", "Emulator", GUICtrlRead($CmbAndroid))
+    ;IniWrite($g_sProfileConfigPath, "Android", "Instance", GUICtrlRead($TxtAndroidInstance))
+	 
 EndFunc   ;==>SaveConfig_RK_MOD
 
 Func SaveConfig_SwitchAcc($SwitchAcc_Style = False)

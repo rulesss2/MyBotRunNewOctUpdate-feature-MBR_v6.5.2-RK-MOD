@@ -962,7 +962,7 @@ Global Const $sDefaultLanguage = "English"
 Global $aLanguage[1][1] ;undimmed language array
 
 ; Notify
-Global Const $g_sNotifyVersion = "Revamp v1.5.1"
+Global Const $g_sNotifyVersion = "Revamp v1.6.2"
 Global Const $g_iPBRemoteControlInterval = 60000 ; 60 secs
 Global Const $g_iPBDeleteOldPushesInterval = 1800000 ; 30 mins
 Global $g_bNotifyDeleteAllPushesNow = False

@@ -121,7 +121,7 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
 	$bReqCCFirst = (IniRead($g_sProfileConfigPath, "planned", "ReqCCFirst", 0) = 1)
 
 	; Clan Hop Setting
-    $ichkClanHop = (IniRead($g_sProfileConfigPath, "Others", "ClanHop", 0) = 1)
+    IniReadS($ichkClanHop, $g_sProfileConfigPath, "Others", "ClanHop", 0, "int")
 
 	; Misc Battle Settings
 	IniReadS($g_bAndroidAdbClicksEnabled , $g_sProfileConfigPath, "Fast Clicks", "UseADBFastClicks", 0, "int")
@@ -129,7 +129,7 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
 	 ;Notify alert bot sleep
 	 IniReadS($iNotifyAlertBOTSleep, $g_sProfileConfigPath, "notify", "AlertPBVMFound", 0, "int")
 
-	 ; Android Settings	 
+	 ; Android Settings
 	  IniReadS($sAndroid, $g_sProfileConfigPath, "Android", "Emulator",  0, "Int")
       IniReadS($g_sAndroidInstance, $g_sProfileConfigPath, "Android", "Emulator",  "","Int")
 

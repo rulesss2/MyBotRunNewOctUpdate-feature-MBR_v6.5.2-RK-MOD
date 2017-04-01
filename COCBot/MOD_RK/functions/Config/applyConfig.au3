@@ -91,7 +91,7 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			GUICtrlSetState($chkReqCCFirst, $bReqCCFirst = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 
 			; Clan Hop Setting
-			GUICtrlSetState($chkClanHop, $ichkClanHop = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($g_hChkClanHop, $ichkClanHop = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 
 			; Misc Battle Settings
 			GUICtrlSetState($chkFastADBClicks, $g_bAndroidAdbClicksEnabled = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
@@ -151,7 +151,7 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 			$bReqCCFirst = GUICtrlRead($chkReqCCFirst) = $GUI_CHECKED ? 1 : 0
 
 			; Clan Hop Setting
-			$ichkClanHop = GUICtrlRead($chkClanHop) = $GUI_CHECKED ? 1 : 0
+			$ichkClanHop = GUICtrlRead($g_hChkClanHop) = $GUI_CHECKED ? 1 : 0
 
 			; Misc Battle Settings
 			$g_bAndroidAdbClicksEnabled = GUICtrlRead($chkFastADBClicks) = $GUI_CHECKED ? 1 : 0

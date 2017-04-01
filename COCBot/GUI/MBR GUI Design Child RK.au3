@@ -29,15 +29,13 @@ Func CreateRKTab()
             $g_hGUI_RK_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(91,1, "Mod Option"))
               ModOptionGUI()
 			$g_hGUI_RK_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(106,1,"Chat"))
-              ChatbotGUI()
-
-   $g_hLastControlToHide = GUICtrlCreateDummy()
-   ReDim $g_aiControlPrevState[$g_hLastControlToHide + 1]
-
-			$g_hGUI_RK_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(107,1,"Forecast"))
-              ForecastGUI()
+              ChatbotGUI()			
             $g_hGUI_RK_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslated(999,1, "Switch Profiles"))
               SwitchProfilesGUI()
+			  $g_hGUI_RK_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(107,1,"Forecast"))
+			$g_hLastControlToHide = GUICtrlCreateDummy()
+   ReDim $g_aiControlPrevState[$g_hLastControlToHide + 1]
+              ForecastGUI()
    GUICtrlCreateTabItem("")
   
 EndFunc

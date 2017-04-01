@@ -118,7 +118,7 @@ Func OptionsGUI()
 
 	$y += 110
 	$x = 5
-	Local $Group2 = GUICtrlCreateGroup("Donate Options", $x, $y, 440, 40)
+	Local $Group2 = GUICtrlCreateGroup(GetTranslated(800, 102,"Donate Options"), $x, $y, 440, 40)
 		$chkExtraPersian = _GUICtrlCreateCheckbox(GetTranslated(800,100, "Enable Persian Alphabet Recognition for Donations"), $x + 12, $y + 15 , -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(800,101, "Check this to enable the Persian Alphabet Recognition."))
 			GUICtrlSetOnEvent(-1, "Donatelang")

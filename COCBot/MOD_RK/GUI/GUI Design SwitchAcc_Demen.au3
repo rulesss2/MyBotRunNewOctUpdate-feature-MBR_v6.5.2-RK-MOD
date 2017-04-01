@@ -45,7 +45,7 @@ Func CreateSwitchAcc_Demen()
 				GUICtrlSetTip(-1, $sTxtTip)
 				GUICtrlSetOnEvent(-1, "chkSwitchAcc")
 
-			$chkTrain = _GUICtrlCreateCheckbox(GetTranslated(109,9, "Pre-train"), $x + 127, $y, -1, -1)
+			$chkTrain = _GUICtrlCreateCheckbox(GetTranslated(109,9, "Pre-train"), $x + 80, $y, -1, -1)
 				$sTxtTip = GetTranslated(109,10, "Enable it to pre-train donated troops in quick train 3 before switch to next account.") & _
 					@CRLF & GetTranslated(109,11, "This function requires use Quick Train, not Custom Train.") & _
 					@CRLF & GetTranslated(109,12, "Use army 1 for farming troops, army 2 for spells and army 3 for donated troops.")
@@ -58,12 +58,12 @@ Func CreateSwitchAcc_Demen()
 				GUICtrlSetData(-1, "1 Acc." & "|" & "2 Acc." & "|" & "3 Acc." & "|" & "4 Acc." & "|" & "5 Acc." & "|" & "6 Acc." & "|" & "7 Acc." & "|" & "8 Acc.")
 				GUICtrlSetTip(-1, $sTxtTip)
 
-			$radNormalSwitch = _GUICtrlCreateRadio(GetTranslated(109,15, "Normal switch"), $x + 10, $y + 55, -1, 16)
+			$radNormalSwitch = _GUICtrlCreateRadio(GetTranslated(109,15, "Normal switch"), $x + 10, $y + 45, -1, 16)
 				GUICtrlSetTip(-1, GetTranslated(109,16, "Switching accounts continously"))
 				GUICtrlSetState(-1, $GUI_CHECKED)
 				GUICtrlSetOnEvent(-1, "radNormalSwitch")
 
-			$radSmartSwitch = _GUICtrlCreateRadio(GetTranslated(109,17, "Smart switch"), $x + 100, $y + 55, -1, 16)
+			$radSmartSwitch = _GUICtrlCreateRadio(GetTranslated(109,17, "Smart switch"), $x + 100, $y + 45, -1, 16)
 				GUICtrlSetTip(-1, GetTranslated(109,18, "Switch to account with the shortest remain training time"))
 				GUICtrlSetOnEvent(-1, "radNormalSwitch")
 

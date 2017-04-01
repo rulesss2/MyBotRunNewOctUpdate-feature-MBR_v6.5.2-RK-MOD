@@ -89,7 +89,7 @@ Func CreateTroopsSpellsSubTab()
 		   If $i = 0 Then GUICtrlSetState(-1, $GUI_CHECKED)
 		   GUICtrlSetOnEvent(-1, "chkQuickTrainCombo")
 	   Next	
-	   GUICtrlCreateLabel(GetTranslated(621, 41, "Remove Army"), $x + 335, $y + 20, -1, 15, $SS_LEFT)
+	   GUICtrlCreateLabel(GetTranslated(621, 41, "Remove Army"), $x + 357, $y + 20, -1, 15, $SS_LEFT)
 	   GUICtrlCreateIcon($g_sLibIconPath, $eIcnResetButton, $x + 405, $y + 17, 24, 24)
 	   GUICtrlSetOnEvent(-1, "Removecamp")
 

@@ -37,7 +37,6 @@ Func SimpleTrain()
 
 	If $iChkPreciseTroops = 1 Then
 		Setlog(" - Checking precision of troops and spells", $COLOR_ACTION1)
-
 		Local $toRemove = CheckWrongTroops(True, True, False)
 		Local $text = ""
 		If $g_abRCheckWrongTroops[0] = False Then $text &= " Troops &"
@@ -70,10 +69,7 @@ Func SimpleTrain()
 		EndIf
 	EndIf
 
-	If $bDonationEnabled And $g_bChkDonate And $bRemoveUnpreciseTroops = False Then
-		MakingDonatedTroops()
-		OpenTrainTabNumber($ArmyTAB, "SimpleTrain()")
-	EndIf
+	If $bDonationEnabled And $g_bChkDonate And $bRemoveUnpreciseTroops = False Then MakingDonatedTroops()
 
 	If $g_bRunState = False Then Return
 
@@ -117,11 +113,11 @@ Func SimpleTrain()
 		Case 1 To $ArmyCamp[1] - $iFillArcher - 1 ; 474/240
 			SetLog(" »» Not full queue. Delete queued troops")
 			DeleteQueue()
-			$ArmyCamp = GetOCRCurrent(48, 160)
-			If $ArmyCamp[0] - $ArmyCamp[1] >= 0 Then  ; Full troops camp after deleting queue.
+			If CheckBlockTroops() = False Then ; check if camp is not full after delete queue
 				$eTrainMethod = $g_eFull
 			Else
-				If $bRemoveUnpreciseTroops = False Then $bCheckWrongTroops = True
+				ClearTrainingTroops(False, False)
+				$bCheckWrongTroops = True
 				$eTrainMethod = $g_eRemained
 				$eTrainMethod2 = $g_eFull
 			EndIf
@@ -138,19 +134,12 @@ Func SimpleTrain()
 			ElseIf _ColorCheck(_GetPixelColor(824, 243, True), Hex(0x949522, 6), 20) Then ; the green check symbol [bottom right] at slot 0 troop
 				SetLog("  » A big troop is blocking in queue, try delete queued troops")
 				ClearTrainingTroops(False, False)
-				$ArmyCamp = GetOCRCurrent(48, 160)
-				If $ArmyCamp[0] - $ArmyCamp[1] >= 0 Then ; Full troops camp after deleting queue.
+				If CheckBlockTroops() = False Then ; check if camp is not full after delete queue
 					$eTrainMethod = $g_eFull
 				Else
-					If $ArmyCamp[1] - $ArmyCamp[0] <=  $iFillArcher Then
-						SetLog("   Fill some archers")
-						FillArcher($ArmyCamp[1] - $ArmyCamp[0])
-						$eTrainMethod = $g_eFull
-					Else
-						If $bRemoveUnpreciseTroops = False Then $bCheckWrongTroops = True
-						$eTrainMethod = $g_eRemained
-						$eTrainMethod2 = $g_eFull
-					EndIf
+					If $bRemoveUnpreciseTroops = False Then $bCheckWrongTroops = True
+					$eTrainMethod = $g_eRemained
+					$eTrainMethod2 = $g_eFull
 				EndIf
 			EndIf
 
@@ -204,11 +193,11 @@ Func SimpleTrain()
 				If $ichkFillEQ = 0 Or $SpellCamp[0] - $SpellCamp[1] < $SpellCamp[1] - 1 Then
 					SetLog(" »» Not full queue, Delete queued spells")
 					DeleteQueue(True)
-					$SpellCamp = GetOCRCurrent(48, 160)
-					If $SpellCamp[0] - $SpellCamp[1] >= 0 Then  ; Full spell camp after deleting queue.
+					If CheckBlockTroops(True) = False Then ; check if spell camp is not full after delete queue
 						$eBrewMethod = $g_eFull
 					Else
-						If $bRemoveUnpreciseTroops = False Then $bCheckWrongSpells = True
+						ClearTrainingTroops(True, False)
+						$bCheckWrongSpells = True
 						$eBrewMethod = $g_eRemained
 						$eBrewMethod2 = $g_eFull
 					EndIf
@@ -226,19 +215,12 @@ Func SimpleTrain()
 				ElseIf _ColorCheck(_GetPixelColor(824, 243, True), Hex(0x949522, 6), 20) Then ; the green check symbol [bottom right] at slot 0 troop
 					SetLog("  » A big spell is blocking in queue, try delete queued spells")
 					ClearTrainingTroops(True, False)
-					$SpellCamp = GetOCRCurrent(48, 160)
-					If $SpellCamp[0] - $SpellCamp[1] >= 0 Then ; Full spells camp after deleting queue.
+					If CheckBlockTroops(True) = False Then ; check if spell camp is not full after delete queue
 						$eBrewMethod = $g_eFull
 					Else
-						If $ichkFillEQ = 1 And $SpellCamp[1] - $SpellCamp[0] = 1 Then
-							SetLog("   Fill with 1 EQ spell")
-							If ISArmyWindow(False, $BrewSpellsTAB) Then TrainIt($eESpell, 1, 500)
-							$eBrewMethod = $g_eFull
-						Else
-							If $bRemoveUnpreciseTroops = False Then $bCheckWrongSpells = True
-							$eBrewMethod = $g_eRemained
-							$eBrewMethod2 = $g_eFull
-						EndIf
+						If $bRemoveUnpreciseTroops = False Then $bCheckWrongSpells = True
+						$eBrewMethod = $g_eRemained
+						$eBrewMethod2 = $g_eFull
 					EndIf
 				EndIf
 		EndSwitch
@@ -318,8 +300,32 @@ Func DeleteQueue($Spell = False)
 		EndIf
 	Next
 	If _Sleep(250) Then Return
-
 EndFunc   ;==>DeleteQueue
+
+Func CheckBlockTroops($Spell = False)
+	Local $NewCampOCR = GetOCRCurrent(48, 160)
+	If $NewCampOCR[0] - $NewCampOCR[1] >= 0 Then ; Full camp after deleting queue.
+		Return False	; train $g_efull
+	Else
+		If $Spell = False Then
+			If $NewCampOCR[1] - $NewCampOCR[0] <=  $iFillArcher Then
+				SetLog("   Fill some archers")
+				FillArcher($NewCampOCR[1] - $NewCampOCR[0])
+				Return False ; train $g_efull
+			Else
+				Return True ; train remained
+			EndIf
+		Else
+			If $ichkFillEQ = 1 And $NewCampOCR[1] - $NewCampOCR[0] = 1 Then
+				SetLog("   Fill with 1 EQ spell")
+				If ISArmyWindow(False, $BrewSpellsTAB) Then TrainIt($eESpell, 1, 500)
+				Return False ; train $g_efull
+			Else
+				Return True ; train remained
+			EndIf
+		EndIf
+	EndIf
+EndFunc   ;==>CheckBlockTroops
 
 Func CheckWrongTroops($Troop = True, $Spell = False, $CheckExistentArmy = True)
 	$g_abRCheckWrongTroops[0] = False
@@ -425,8 +431,6 @@ Func RemoveWrongTroops($Troop, $Spell, $toRemove)
 
 		If _ColorCheck(_GetPixelColor(806, 561, True), Hex(0xD0E878, 6), 25) = False Then ; If no 'Okay' button found in army tab to save changes
 			SetLog("Cannot find/verify 'Okay' Button in Army tab", $COLOR_ORANGE)
-			ClickP($aAway, 2, 0, "#0346") ; Click Away, Necessary! due to possible errors/changes
-			If _Sleep(400) Then OpenArmyWindow() ; Open Army Window AGAIN
 			Return ; Exit Function
 		EndIf
 
@@ -438,7 +442,6 @@ Func RemoveWrongTroops($Troop, $Spell, $toRemove)
 
 		If _ColorCheck(_GetPixelColor(508, 428, True), Hex(0xFFFFFF, 6), 30) = False Then ; If no 'Okay' button found to verify that we accept the changes
 			SetLog("Cannot find/verify 'Okay #2' Button in Army tab", $COLOR_ORANGE)
-			ClickP($aAway, 2, 0, "#0346") ;Click Away
 			Return ; Exit function
 		EndIf
 

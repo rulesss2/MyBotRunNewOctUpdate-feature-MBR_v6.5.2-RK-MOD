@@ -48,7 +48,7 @@ EndFunc   ;==>setupProfileComboBox
 ; SwitchAcc_Demen_Style
 Func RdoSwitchAcc_Style()
 	If GUICtrlRead($g_hRdoSwitchAcc_DocOc) = $GUI_CHECKED Then
-		GUICtrlSetState($chkSwitchAcc, $GUI_UNCHECKED)
+		_GUI_Value_STATE("UNCHECKED", $chkSwitchAcc & "#" & $g_hChkForceSwitch & "#" & $g_hChkForceStayDonate)
 		For $i = $g_StartHideSwitchAcc_Demen To $g_EndHideSwitchAcc_Demen
 			GUICtrlSetState($i,$GUI_HIDE)
 		Next
@@ -128,7 +128,7 @@ Func btnUpdateProfile($Config = True)
 	$aActiveProfile = _ArrayFindAll($aProfileType, $eActive)
 	$aDonateProfile = _ArrayFindAll($aProfileType, $eDonate)
 	$ProfileList = _GUICtrlComboBox_GetListArray($g_hCmbProfile)
-	$nTotalProfile = _GUICtrlComboBox_GetCount($g_hCmbProfile)
+	$nTotalProfile = _Min(8, _GUICtrlComboBox_GetCount($g_hCmbProfile))
 
 	For $i = 0 To 7
 		If $i <= $nTotalProfile - 1 Then
@@ -184,6 +184,7 @@ Func chkSwitchAcc()
 			GUICtrlSetState($chkSwitchAcc, $GUI_UNCHECKED)
 			MsgBox($MB_OK, GetTranslated(109,42, "SwitchAcc Mode"), GetTranslated(109,43, "Cannot enable SwitchAcc Mode") & @CRLF & GetTranslated(109,44, "You have only ") & _GUICtrlComboBox_GetCount($g_hCmbProfile) & " Profile", 30, $g_hGUI_BOT)
 		Else
+			_GUI_Value_STATE("UNCHECKED", $g_hChkForceSwitch & "#" & $g_hChkForceStayDonate)
 			For $i = $chkTrain To $g_EndHideSwitchAcc_Demen
 				GUICtrlSetState($i, $GUI_ENABLE)
 			Next
@@ -332,14 +333,14 @@ Func chkQuickTrainCombo()
 	EndIf
 EndFunc	;==> QuickTrainCombo
 
-; SimpleTrain 
+; SimpleTrain (Demen) - Added by Demen
 Func chkSimpleTrain()
 	If GUICtrlRead($g_hchkSimpleTrain) = $GUI_CHECKED Then
-		_GUI_Value_STATE("ENABLE", $g_hchkPreciseTroops & "#" & $g_hchkFillArcher & "#" & $g_hchkFillEQ)
-		chkPreciseTroops()
+		If GUICtrlRead($g_hChkUseQuickTrain) = $GUI_UNCHECKED Then _GUI_Value_STATE("ENABLE", $g_hchkPreciseTroops)
+		_GUI_Value_STATE("ENABLE", $g_hchkFillArcher & "#" & $g_hchkFillEQ)
 		chkFillArcher()
 	Else
-		_GUI_Value_STATE("DISABLE", $g_hchkPreciseTroops & "#" & $g_hchkFillArcher & "#" & $g_htxtFillArcher & "#" &  $g_hchkFillEQ)
+		_GUI_Value_STATE("DISABLE", $g_hchkPreciseTroops & "#" & $g_hchkFillArcher & "#" & $g_htxtFillArcher & "#" & $g_hchkFillEQ)
 		_GUI_Value_STATE("UNCHECKED", $g_hchkPreciseTroops & "#" & $g_hchkFillArcher & "#" & $g_hchkFillEQ)
 	EndIf
 EndFunc   ;==>chkSimpleTrain
@@ -352,7 +353,7 @@ Func chkPreciseTroops()
 	Else
 		_GUI_Value_STATE("ENABLE", $g_hchkFillArcher & "#" & $g_hchkFillEQ)
 	EndIf
-EndFunc   ;==>chkSimpleTrain
+EndFunc   ;==>chkPreciseTroops
 
 Func chkFillArcher()
 	If GUICtrlRead($g_hchkFillArcher) = $GUI_CHECKED Then
@@ -360,9 +361,9 @@ Func chkFillArcher()
 	Else
 		_GUI_Value_STATE("DISABLE", $g_htxtFillArcher)
 	EndIf
-EndFunc   ;==>chkSimpleTrain
-
+EndFunc   ;==>chkFillArcher
 ; SwitchAcc_Demen_Style
+
 Func cmbSwLang() ; Rules and Kychera
 
      Switch GUICtrlRead($cmbSwLang)

@@ -12,86 +12,87 @@
 
 Func InitiateSwitchAcc() ; Checking profiles setup in Mybot, First matching CoC Acc with current profile, Reset all Timers relating to Switch Acc Mode.
 
-   $ProfileList = _GUICtrlComboBox_GetListArray($g_hCmbProfile)
-   $nTotalProfile = _GUICtrlComboBox_GetCount($g_hCmbProfile)
-   $nCurProfile = _GuiCtrlComboBox_GetCurSel($g_hCmbProfile) + 1
+	$ProfileList = _GUICtrlComboBox_GetListArray($g_hCmbProfile)
+	$nTotalProfile = _Min(8, _GUICtrlComboBox_GetCount($g_hCmbProfile))
+	$nCurProfile = _GUICtrlComboBox_GetCurSel($g_hCmbProfile) + 1
 
-   $aActiveProfile = _ArrayFindAll($aProfileType, $eActive)
-   $aDonateProfile = _ArrayFindAll($aProfileType, $eDonate)
+	$aActiveProfile = _ArrayFindAll($aProfileType, $eActive)
+	$aDonateProfile = _ArrayFindAll($aProfileType, $eDonate)
 
-   Setlog($nTotalProfile & " profiles available")
+	Setlog($nTotalProfile & " profiles available")
 
-   For $i = 0 to _Min($nTotalProfile - 1,7)
-	  Switch $aProfileType[$i]
-	  Case $eActive
-		 Setlog("Profile [" & $i + 1 & "]: " & $ProfileList[$i+1] & " - Active - Match with Account [" & $aMatchProfileAcc[$i] &"]")
-	  Case $eDonate
-		 Setlog("Profile [" & $i + 1 & "]: " & $ProfileList[$i+1] & " - Donate - Match with Account [" & $aMatchProfileAcc[$i] &"]")
-	  Case Else
-		 Setlog("Profile [" & $i + 1 & "]: " & $ProfileList[$i+1] & " - Idle   - Match with Account [" & $aMatchProfileAcc[$i] &"]")
-	  EndSwitch
-   Next
+	For $i = 0 To _Min($nTotalProfile - 1, 7)
+		Switch $aProfileType[$i]
+			Case $eActive
+				Setlog("Profile [" & $i + 1 & "]: " & $ProfileList[$i + 1] & " - Active - Match with Account [" & $aMatchProfileAcc[$i] & "]")
+			Case $eDonate
+				Setlog("Profile [" & $i + 1 & "]: " & $ProfileList[$i + 1] & " - Donate - Match with Account [" & $aMatchProfileAcc[$i] & "]")
+			Case Else
+				Setlog("Profile [" & $i + 1 & "]: " & $ProfileList[$i + 1] & " - Idle   - Match with Account [" & $aMatchProfileAcc[$i] & "]")
+		EndSwitch
+	Next
 
-   If $icmbTotalCoCAcc <> -1 then
-	   $nTotalCoCAcc = $icmbTotalCoCAcc
-	   Setlog ("Total CoC Account is declared: " & $nTotalCoCAcc)
-   Else
-	   $nTotalCoCAcc = 8
-	   Setlog ("Total CoC Account has not declared, default: " & $nTotalCoCAcc)
-   EndIf
-
-   ; Locating CoC Accounts
-   If _ArrayMax($aAccPosY) > 0 Then
-	   Local $MaxIdx = _ArrayMaxIndex($aAccPosY)
-	   For $i = 1 to $nTotalCoCAcc
-		   If $aAccPosY[$i-1] <= 0 Then $aAccPosY[$i-1] = $aAccPosY[$MaxIdx] + 73*($i-1-$MaxIdx)
-		   Setlog("  >>> Y-coordinate Acc No. " & $i & " is located at: " & $aAccPosY[$i-1])
-	   Next
-   EndIf
-
-   $i = $nCurProfile
-   While $aProfileType[$i-1] = $eIdle OR $aProfileType[$i-1] = $eNull		;	Current Profile is idle
-	   If $i < $nTotalProfile Then
-		   $i += 1
-	   Else
-		   $i = 1
-	   EndIf
-	   If $aProfileType[$i-1] <> $eIdle AND $aProfileType[$i-1] <> $eNull Then
-		   Setlog("Try to avoid Idle Profile. Switching to Profile [" & $i &"] - CoC Acc [" & $aMatchProfileAcc[$i-1] & "]")
-		   _GUICtrlComboBox_SetCurSel($g_hCmbProfile, $i-1)
-		   cmbProfile()
-		   ExitLoop
-	   EndIf
-   WEnd
-
-   $nCurProfile = _GuiCtrlComboBox_GetCurSel($g_hCmbProfile) + 1
-
-   For $i = 0 to _Min($nTotalProfile - 1, 7)
-	  $aTimerStart[$i] = 0
-	  $aTimerEnd[$i] = 0
-	  $aRemainTrainTime[$i] = 0
-	  $aUpdateRemainTrainTime[$i] = 0
-   Next
-
-	If $aProfileType[$nCurProfile-1] = $eActive Then
-		GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Looting")
-		GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_GREEN)
-		GUICtrlSetColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_WHITE)
-	ElseIf $aProfileType[$nCurProfile-1] = $eDonate Then
-		GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Donating")
-		GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_GREEN)
-		GUICtrlSetColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_WHITE)
+	If $icmbTotalCoCAcc <> -1 Then
+		$nTotalCoCAcc = $icmbTotalCoCAcc
+		Setlog("Total CoC Account is declared: " & $nTotalCoCAcc)
+	Else
+		$nTotalCoCAcc = 8
+		Setlog("Total CoC Account has not declared, default: " & $nTotalCoCAcc)
 	EndIf
 
-   Setlog ("Matching CoC Account with Bot Profile. Trying to Switch Account", $COLOR_BLUE)
+	; Locating CoC Accounts
+	If _ArrayMax($aAccPosY) > 0 Then
+		Local $MaxIdx = _ArrayMaxIndex($aAccPosY)
+		For $i = 1 To $nTotalCoCAcc
+			If $aAccPosY[$i - 1] <= 0 Then $aAccPosY[$i - 1] = $aAccPosY[$MaxIdx] + 73 * ($i - 1 - $MaxIdx)
+			Setlog("  >>> Y-coordinate Acc No. " & $i & " is located at: " & $aAccPosY[$i - 1])
+		Next
+	EndIf
 
-   SwitchCOCAcc()
-   If $bReMatchAcc = False Then runBot()
+	$i = $nCurProfile
+	While $aProfileType[$i - 1] = $eIdle Or $aProfileType[$i - 1] = $eNull ;	Current Profile is idle
+		If $i < $nTotalProfile Then
+			$i += 1
+		Else
+			$i = 1
+		EndIf
+		If $aProfileType[$i - 1] <> $eIdle And $aProfileType[$i - 1] <> $eNull Then
+			Setlog("Try to avoid Idle Profile. Switching to Profile [" & $i & "] - CoC Acc [" & $aMatchProfileAcc[$i - 1] & "]")
+			_GUICtrlComboBox_SetCurSel($g_hCmbProfile, $i - 1)
+			cmbProfile()
+			DisableGUI_AfterLoadNewProfile()
+			ExitLoop
+		EndIf
+	WEnd
 
-EndFunc	; --> InitiateSwitchAcc()
+	$nCurProfile = _GUICtrlComboBox_GetCurSel($g_hCmbProfile) + 1
 
-Func CheckWaitHero()	; get hero regen time remaining if enabled
-    Local $iActiveHero
+	For $i = 0 To _Min($nTotalProfile - 1, 7)
+		$aTimerStart[$i] = 0
+		$aTimerEnd[$i] = 0
+		$aRemainTrainTime[$i] = 0
+		$aUpdateRemainTrainTime[$i] = 0
+	Next
+
+	If $aProfileType[$nCurProfile - 1] = $eActive Then
+		GUICtrlSetData($g_lblTroopsTime[$nCurProfile - 1], "Looting")
+		GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile - 1], $COLOR_GREEN)
+		GUICtrlSetColor($g_lblTroopsTime[$nCurProfile - 1], $COLOR_WHITE)
+	ElseIf $aProfileType[$nCurProfile - 1] = $eDonate Then
+		GUICtrlSetData($g_lblTroopsTime[$nCurProfile - 1], "Donating")
+		GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile - 1], $COLOR_GREEN)
+		GUICtrlSetColor($g_lblTroopsTime[$nCurProfile - 1], $COLOR_WHITE)
+	EndIf
+
+	Setlog("Matching CoC Account with Bot Profile. Trying to Switch Account", $COLOR_BLUE)
+
+	SwitchCOCAcc()
+	If $bReMatchAcc = False Then runBot()
+
+EndFunc   ;==>InitiateSwitchAcc
+
+Func CheckWaitHero() ; get hero regen time remaining if enabled
+	Local $iActiveHero
 	Local $aHeroResult[3]
 	$aTimeTrain[2] = 0
 
@@ -115,8 +116,8 @@ Func CheckWaitHero()	; get hero regen time remaining if enabled
 			For $pMatchMode = $DB To $g_iModeCount - 1 ; check all attack modes
 				$iActiveHero = -1
 				If IsSpecialTroopToBeUsed($pMatchMode, $pTroopType) And _
-					 BitOr($g_aiAttackUseHeroes[$pMatchMode], $g_aiSearchHeroWaitEnable[$pMatchMode]) = $g_aiAttackUseHeroes[$pMatchMode] Then ; check if Hero enabled to wait
-				$iActiveHero = $pTroopType - $eKing ; compute array offset to active hero
+						BitOR($g_aiAttackUseHeroes[$pMatchMode], $g_aiSearchHeroWaitEnable[$pMatchMode]) = $g_aiAttackUseHeroes[$pMatchMode] Then ; check if Hero enabled to wait
+					$iActiveHero = $pTroopType - $eKing ; compute array offset to active hero
 				EndIf
 				If $iActiveHero <> -1 And $aHeroResult[$iActiveHero] > 0 Then ; valid time?
 					; check exact time & existing time is less than new time
@@ -131,126 +132,128 @@ Func CheckWaitHero()	; get hero regen time remaining if enabled
 
 	Setlog("Hero recover wait time: " & $aTimeTrain[2] & " minute(s)", $COLOR_BLUE)
 
- EndFunc ; --> CheckWaitHero
+EndFunc   ;==>CheckWaitHero
 
-Func MinRemainTrainAcc($Writelog = True, $ExcludeProfile = 0) 														; Check remain training time of all Active accounts and return the minimum remain training time
+Func MinRemainTrainAcc($Writelog = True, $ExcludeProfile = 0) ; Check remain training time of all Active accounts and return the minimum remain training time
 
-   If $ExcludeProfile = 0 Then
-	  $aRemainTrainTime[$nCurProfile-1] = _ArrayMax($aTimeTrain)				 	; remaintraintime of current account - in minutes
-	  $aTimerStart[$nCurProfile-1] = TimerInit() 									; start counting elapse of training time of current account
-   EndIf
+	If $ExcludeProfile = 0 Then
+		$aRemainTrainTime[$nCurProfile - 1] = _ArrayMax($aTimeTrain) ; remaintraintime of current account - in minutes
+		$aTimerStart[$nCurProfile - 1] = TimerInit() ; start counting elapse of training time of current account
+	EndIf
 
-   For $i = 0 to $nTotalProfile - 1
-	  If $i = $ExcludeProfile - 1 Then ContinueLoop
-	  If $aProfileType[$i] = $eActive Then 											;	Only check Active profiles
-		 If $aTimerStart[$i] <> 0 Then
-			$aTimerEnd[$i] = Round(TimerDiff($aTimerStart[$i])/1000/60,2) 		; 	counting elapse of training time of an account from last army checking - in minutes
-			$aUpdateRemainTrainTime[$i] = $aRemainTrainTime[$i]-$aTimerEnd[$i] 	;   updated remain train time of Active accounts
-			If $Writelog = True Then
-				If $aUpdateRemainTrainTime[$i] >= 0 Then
-				   Setlog("Profile [" & $i+1 & "] - " & $ProfileList[$i+1] & " (Acc. " & $aMatchProfileAcc[$i] & ") will have full army in:" & $aUpdateRemainTrainTime[$i] & " minutes")
-				Else
-				   Setlog("Profile [" & $i+1 & "] - " & $ProfileList[$i+1] & " (Acc. " & $aMatchProfileAcc[$i] & ") was ready:" & -$aUpdateRemainTrainTime[$i] & " minutes ago")
+	For $i = 0 To $nTotalProfile - 1
+		If $i = $ExcludeProfile - 1 Then ContinueLoop
+		If $aProfileType[$i] = $eActive Then ;	Only check Active profiles
+			If $aTimerStart[$i] <> 0 Then
+				$aTimerEnd[$i] = Round(TimerDiff($aTimerStart[$i]) / 1000 / 60, 2) ; 	counting elapse of training time of an account from last army checking - in minutes
+				$aUpdateRemainTrainTime[$i] = $aRemainTrainTime[$i] - $aTimerEnd[$i] ;   updated remain train time of Active accounts
+				If $Writelog = True Then
+					If $aUpdateRemainTrainTime[$i] >= 0 Then
+						Setlog("Profile [" & $i + 1 & "] - " & $ProfileList[$i + 1] & " (Acc. " & $aMatchProfileAcc[$i] & ") will have full army in:" & $aUpdateRemainTrainTime[$i] & " minutes")
+					Else
+						Setlog("Profile [" & $i + 1 & "] - " & $ProfileList[$i + 1] & " (Acc. " & $aMatchProfileAcc[$i] & ") was ready:" & - $aUpdateRemainTrainTime[$i] & " minutes ago")
+					EndIf
 				EndIf
+			Else ; for accounts first Run
+				If $Writelog = True Then Setlog("Profile [" & $i + 1 & "] - " & $ProfileList[$i + 1] & " (Acc. " & $aMatchProfileAcc[$i] & ") has not been read its remain train time")
+				$aUpdateRemainTrainTime[$i] = -999
 			EndIf
-		 Else ; for accounts first Run
-			If $Writelog = True Then Setlog("Profile [" & $i+1 & "] - " & $ProfileList[$i+1] & " (Acc. " & $aMatchProfileAcc[$i] & ") has not been read its remain train time")
-			$aUpdateRemainTrainTime[$i] = 0
-		 EndIf
-	  EndIf
-   Next
-
-   $nMinRemainTrain = _ArrayMax($aUpdateRemainTrainTime)
-   For $i = 0 to $nTotalProfile - 1
-	  If $i = $ExcludeProfile - 1 Then ContinueLoop
-	  If $aProfileType[$i] = $eActive Then ;	Only check Active profiles
-		 If $aUpdateRemainTrainTime[$i] <=  $nMinRemainTrain Then
-			$nMinRemainTrain = $aUpdateRemainTrainTime[$i]
-			$nNextProfile = $i + 1
-		 EndIf
-	  EndIf
-   Next
-
-   Return $nMinRemainTrain
-
-EndFunc	; --> MinRemainTrainAcc()
-
-Func SwitchProfile($SwitchCase) 										; Switch profile (1 = Active, 2 = Donate, 4 = Stay , 5 = switching continuosly) - DEMEN
-
-   $nCurProfile = _GUICtrlComboBox_GetCurSel($g_hCmbProfile)+1
-
-   Switch $SwitchCase
-   Case $eActive
-	  Setlog("Switch to active Profile ["& $nNextProfile & "] - " & $ProfileList[$nNextProfile] & " (Acc. " & $aMatchProfileAcc[$nNextProfile-1] & ")")
-	  _GUICtrlComboBox_SetCurSel($g_hCmbProfile, $nNextProfile - 1)
-	  cmbProfile()
-
-   Case $eDonate
-	  $nNextProfile = $aDonateProfile[$DonateSwitchCounter] + 1
-	  Setlog("Switch to Profile ["& $nNextProfile & "] - " & $ProfileList[$nNextProfile] & " (Acc. " & $aMatchProfileAcc[$nNextProfile - 1] & ") for donating")
-	  _GUICtrlComboBox_SetCurSel($g_hCmbProfile, $nNextProfile - 1)
-	  $DonateSwitchCounter += 1
-	  cmbProfile()
-
-   Case $eStay
-	 Setlog("Staying in this profile")
-
-   Case $eContinuous
-	 Setlog("Switching to next account")
-	 $nNextProfile = 1
-	 If $nCurProfile < $nTotalProfile Then
-		$nNextProfile = $nCurProfile + 1
-	 Else
-		$nNextProfile = 1
-	 EndIf
-	 While $aProfileType[$nNextProfile-1] = $eIdle Or $aProfileType[$nNextProfile-1] = $eNull
-		If $nNextProfile < $nTotalProfile Then
-		   $nNextProfile += 1
-		Else
-		   $nNextProfile = 1
 		EndIf
-		If $aProfileType[$nNextProfile-1] <> $eIdle And $aProfileType[$nNextProfile-1] <> $eNull Then ExitLoop
-	  WEnd
-     _GUICtrlComboBox_SetCurSel($g_hCmbProfile, $nNextProfile-1)
-	  cmbProfile()
-   EndSwitch
+	Next
 
-   If _Sleep(1000) Then Return
+	$nMinRemainTrain = _ArrayMax($aUpdateRemainTrainTime)
+	For $i = 0 To $nTotalProfile - 1
+		If $i = $ExcludeProfile - 1 Then ContinueLoop
+		If $aProfileType[$i] = $eActive Then ;	Only check Active profiles
+			If $aUpdateRemainTrainTime[$i] <= $nMinRemainTrain Then
+				$nMinRemainTrain = $aUpdateRemainTrainTime[$i]
+				$nNextProfile = $i + 1
+			EndIf
+		EndIf
+	Next
 
-   $nCurProfile = _GUICtrlComboBox_GetCurSel($g_hCmbProfile)+1
+	Return $nMinRemainTrain
 
-EndFunc ; --> SwitchProfile()
+EndFunc   ;==>MinRemainTrainAcc
+
+Func SwitchProfile($SwitchCase) ; Switch profile (1 = Active, 2 = Donate, 4 = Stay , 5 = switching continuosly) - DEMEN
+
+	$nCurProfile = _GUICtrlComboBox_GetCurSel($g_hCmbProfile) + 1
+
+	Switch $SwitchCase
+		Case $eActive
+			Setlog("Switch to active Profile [" & $nNextProfile & "] - " & $ProfileList[$nNextProfile] & " (Acc. " & $aMatchProfileAcc[$nNextProfile - 1] & ")")
+			_GUICtrlComboBox_SetCurSel($g_hCmbProfile, $nNextProfile - 1)
+			cmbProfile()
+
+		Case $eDonate
+			$nNextProfile = $aDonateProfile[$DonateSwitchCounter] + 1
+			Setlog("Switch to Profile [" & $nNextProfile & "] - " & $ProfileList[$nNextProfile] & " (Acc. " & $aMatchProfileAcc[$nNextProfile - 1] & ") for donating")
+			_GUICtrlComboBox_SetCurSel($g_hCmbProfile, $nNextProfile - 1)
+			$DonateSwitchCounter += 1
+			cmbProfile()
+
+		Case $eStay
+			Setlog("Staying in this profile")
+
+		Case $eContinuous
+			Setlog("Switching to next account")
+			$nNextProfile = 1
+			If $nCurProfile < $nTotalProfile Then
+				$nNextProfile = $nCurProfile + 1
+			Else
+				$nNextProfile = 1
+			EndIf
+			While $aProfileType[$nNextProfile - 1] = $eIdle Or $aProfileType[$nNextProfile - 1] = $eNull
+				If $nNextProfile < $nTotalProfile Then
+					$nNextProfile += 1
+				Else
+					$nNextProfile = 1
+				EndIf
+				If $aProfileType[$nNextProfile - 1] <> $eIdle And $aProfileType[$nNextProfile - 1] <> $eNull Then ExitLoop
+			WEnd
+			_GUICtrlComboBox_SetCurSel($g_hCmbProfile, $nNextProfile - 1)
+			cmbProfile()
+	EndSwitch
+
+	If _Sleep(1000) Then Return
+
+	If $SwitchCase <> $eStay Then DisableGUI_AfterLoadNewProfile()
+
+	$nCurProfile = _GUICtrlComboBox_GetCurSel($g_hCmbProfile) + 1
+
+EndFunc   ;==>SwitchProfile
 
 Func UpdateTrainTimeStatus($sSwitch = "After")
 	If $sSwitch = "Before" Then
 		;Update Stats Label GUI before switching Profile
-		If $aProfileType[$nCurProfile-1] = $eDonate Then ; Set Gui Label for Donate or Looting CurrentAccount BackGround Color Green
-			GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Donate")
-		ElseIf $aProfileType[$nCurProfile-1] = $eActive Then
-			GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], Round($aUpdateRemainTrainTime[$nCurProfile-1], 2))
+		If $aProfileType[$nCurProfile - 1] = $eDonate Then ; Set Gui Label for Donate or Looting CurrentAccount BackGround Color Green
+			GUICtrlSetData($g_lblTroopsTime[$nCurProfile - 1], "Donate")
+		ElseIf $aProfileType[$nCurProfile - 1] = $eActive Then
+			GUICtrlSetData($g_lblTroopsTime[$nCurProfile - 1], Round($aUpdateRemainTrainTime[$nCurProfile - 1], 2))
 		EndIf
-		GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_YELLOW)
-		GUICtrlSetColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_BLACK)
+		GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile - 1], $COLOR_YELLOW)
+		GUICtrlSetColor($g_lblTroopsTime[$nCurProfile - 1], $COLOR_BLACK)
 	Else
 		;Update Stats Label GUI of new profile
-		If $aProfileType[$nCurProfile-1] = $eDonate Then ; Set Gui Label for Donate or Looting CurrentAccount BackGround Color Green
-			GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Donating")
-		ElseIf $aProfileType[$nCurProfile-1] = $eActive Then
-			GUICtrlSetData($g_lblTroopsTime[$nCurProfile-1], "Looting")
+		If $aProfileType[$nCurProfile - 1] = $eDonate Then ; Set Gui Label for Donate or Looting CurrentAccount BackGround Color Green
+			GUICtrlSetData($g_lblTroopsTime[$nCurProfile - 1], "Donating")
+		ElseIf $aProfileType[$nCurProfile - 1] = $eActive Then
+			GUICtrlSetData($g_lblTroopsTime[$nCurProfile - 1], "Looting")
 		EndIf
-		GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_GREEN)
-		GUICtrlSetColor($g_lblTroopsTime[$nCurProfile-1], $COLOR_WHITE)
+		GUICtrlSetBkColor($g_lblTroopsTime[$nCurProfile - 1], $COLOR_GREEN)
+		GUICtrlSetColor($g_lblTroopsTime[$nCurProfile - 1], $COLOR_WHITE)
 	EndIf
-EndFunc
+EndFunc   ;==>UpdateTrainTimeStatus
 
-Func CheckSwitchAcc(); Switch CoC Account with or without sleep combo - DEMEN
+Func CheckSwitchAcc() ; Switch CoC Account with or without sleep combo - DEMEN
 
 	Local $SwitchCase, $bReachAttackLimit
 
 	SetLog("Start SwitchAcc Mode")
 
-	If IsMainPage() = False Then ClickP($aAway, 2, 250, "#0335")	; Sometimes the bot cannot open Army Overview Window, trying to click away first
-	If IsMainPage() = False Then checkMainScreen()				; checkmainscreen (may restart CoC) if still fail to locate main page.
+	If IsMainPage() = False Then ClickP($aAway, 2, 250, "#0335") ; Sometimes the bot cannot open Army Overview Window, trying to click away first
+	If IsMainPage() = False Then checkMainScreen() ; checkmainscreen (may restart CoC) if still fail to locate main page.
 	getArmyTroopTime(True, False)
 
 	If IsWaitforSpellsActive() Then
@@ -267,9 +270,9 @@ Func CheckSwitchAcc(); Switch CoC Account with or without sleep combo - DEMEN
 
 	ClickP($aAway, 1, 0, "#0000") ;Click Away
 
-	$bReachAttackLimit = ($aAttackedCountSwitch[$nCurProfile-1] <= $aAttackedCountAcc[$nCurProfile-1] - 2)
+	$bReachAttackLimit = ($aAttackedCountSwitch[$nCurProfile - 1] <= $aAttackedCountAcc[$nCurProfile - 1] - 2)
 
-	If $aProfileType[$nCurProfile-1] = $eActive And _ArrayMax($aTimeTrain) <= 0 And Not($bReachAttackLimit) Then
+	If $aProfileType[$nCurProfile - 1] = $eActive And _ArrayMax($aTimeTrain) <= 0 And Not ($bReachAttackLimit) Then
 		Setlog("Army is ready, skip switching account")
 		If _Sleep(500) Then Return
 
@@ -278,7 +281,7 @@ Func CheckSwitchAcc(); Switch CoC Account with or without sleep combo - DEMEN
 
 		MinRemainTrainAcc()
 
-		If $ichkSmartSwitch = 1 And _ArraySearch($aProfileType, $eActive) <> -1 Then		; Smart switch and there is at least 1 active profile
+		If $ichkSmartSwitch = 1 And _ArraySearch($aProfileType, $eActive) <> -1 Then ; Smart switch and there is at least 1 active profile
 			If $nMinRemainTrain <= 1 Then
 				If $nCurProfile <> $nNextProfile Then
 					$SwitchCase = $eActive
@@ -295,7 +298,7 @@ Func CheckSwitchAcc(); Switch CoC Account with or without sleep combo - DEMEN
 					ElseIf $nMinRemainTrain <= 3 Then
 						$SwitchCase = $eStay
 					Else
-						setlog("Still " & Round($nMinRemainTrain,2) & " min until army is ready. Other accounts may need donating.")
+						setlog("Still " & Round($nMinRemainTrain, 2) & " min until army is ready. Other accounts may need donating.")
 						$SwitchCase = $eContinuous
 					EndIf
 					$DonateSwitchCounter = 0
@@ -306,13 +309,13 @@ Func CheckSwitchAcc(); Switch CoC Account with or without sleep combo - DEMEN
 		EndIf
 
 		If $SwitchCase <> $eStay Then
-			If $aProfileType[$nCurProfile-1] = $eActive And $g_bRequestTroopsEnable = True And $canRequestCC = True Then
+			If $aProfileType[$nCurProfile - 1] = $eActive And $g_bRequestTroopsEnable = True And $canRequestCC = True Then
 				Setlog("Try Request troops before switching account", $COLOR_BLUE)
-				RequestCC(true)
+				RequestCC(True)
 			EndIf
 			UpdateTrainTimeStatus("Before") ;Update Stats Label GUI before switching Profile
 			SwitchProfile($SwitchCase)
-			UpdateTrainTimeStatus() 		;Update Stats Label GUI of new profile
+			UpdateTrainTimeStatus() ;Update Stats Label GUI of new profile
 			If IsMainPage() = False Then checkMainScreen()
 			SwitchCOCAcc()
 		Else
@@ -324,7 +327,7 @@ Func CheckSwitchAcc(); Switch CoC Account with or without sleep combo - DEMEN
 			ReArm()
 			If $g_bRequestTroopsEnable = True And $canRequestCC = True Then
 				Setlog("Try Request troops before going to sleep", $COLOR_BLUE)
-				RequestCC(true)
+				RequestCC(True)
 			EndIf
 			PoliteCloseCoC()
 			$iShouldRearm = True
@@ -349,7 +352,7 @@ Func CheckSwitchAcc(); Switch CoC Account with or without sleep combo - DEMEN
 		If $SwitchCase <> $eStay Then runBot()
 	EndIf
 
-EndFunc; -->CheckSwitchAcc()
+EndFunc   ;==>CheckSwitchAcc
 
 Func ForceSwitchAcc($AccType = $eDonate, $sSource = "")
 	Local $SwitchCase
@@ -367,7 +370,7 @@ Func ForceSwitchAcc($AccType = $eDonate, $sSource = "")
 			EndIf
 			$eForceSwitch = $eDonate
 		ElseIf $sSource = "SeachLimit" Then
-			If MinRemainTrainAcc(False, $iProfileBeforeForceSwitch) > 0 OR UBound($aActiveProfile) = 1 Then
+			If MinRemainTrainAcc(False, $iProfileBeforeForceSwitch) > 0 Or UBound($aActiveProfile) = 1 Then
 				$nNextProfile = $iProfileBeforeForceSwitch
 				Setlog("Return to Active Profile: " & $ProfileList[$nNextProfile] & " to continue searching")
 				$g_bRestart = True
@@ -390,9 +393,9 @@ Func ForceSwitchAcc($AccType = $eDonate, $sSource = "")
 		Return False
 	EndIf
 
-	If $aProfileType[$nCurProfile-1] = $eActive And $g_bRequestTroopsEnable = True And $canRequestCC = True Then
+	If $aProfileType[$nCurProfile - 1] = $eActive And $g_bRequestTroopsEnable = True And $canRequestCC = True Then
 		Setlog("Try Request troops before switching account", $COLOR_BLUE)
-		RequestCC(true)
+		RequestCC(True)
 	EndIf
 
 	UpdateTrainTimeStatus("Before")
@@ -401,12 +404,12 @@ Func ForceSwitchAcc($AccType = $eDonate, $sSource = "")
 	If IsMainPage() = False Then checkMainScreen()
 	SwitchCOCAcc()
 	runBot()
-EndFunc
+EndFunc   ;==>ForceSwitchAcc
 
 Func SwitchCOCAcc()
 
 	If $ichkTrain = 1 Then
-	SetLog("Pre-train Donated Troops in QuickTrain Number 3", $COLOR_ACTION1)
+		SetLog("Pre-train Donated Troops in QuickTrain Number 3", $COLOR_ACTION1)
 		If OpenArmyWindow() = False Then Return
 		SetLog(" - Army Window Opened!", $COLOR_ACTION)
 		If _Sleep(2000) Then Return
@@ -422,28 +425,28 @@ Func SwitchCOCAcc()
 	EndIf
 
 	Local $NextAccount, $YCoord, $idx, $idx2, $idx3
-	$NextAccount = $aMatchProfileAcc[$nCurProfile-1]
+	$NextAccount = $aMatchProfileAcc[$nCurProfile - 1]
 
-	If $aAccPosY[$NextAccount-1] > 0 Then
-		$YCoord = $aAccPosY[$NextAccount-1]
+	If $aAccPosY[$NextAccount - 1] > 0 Then
+		$YCoord = $aAccPosY[$NextAccount - 1]
 	Else
-		$YCoord = 373.5 - ($nTotalCoCAcc - 1)*36.5 + 73*($NextAccount - 1)
+		$YCoord = 373.5 - ($nTotalCoCAcc - 1) * 36.5 + 73 * ($NextAccount - 1)
 	EndIf
 
-	Setlog ("Switching to Account [" & $NextAccount & "]")
+	Setlog("Switching to Account [" & $NextAccount & "]")
 
-	PureClick(820, 585, 1, 0, "Click Setting")      ;Click setting
+	PureClick(820, 585, 1, 0, "Click Setting") ;Click setting
 	If _Sleep(500) Then Return
 
 	$idx = 0
-	While $idx <=15								; Checking Green Connect Button continuously in 15sec
-		If _ColorCheck(_GetPixelColor(408, 408, True), "D0E878", 20) Then		;	Green
-			PureClick(440, 420, 2, 1000)			;	Click Connect & Disconnect
+	While $idx <= 15 ; Checking Green Connect Button continuously in 15sec
+		If _ColorCheck(_GetPixelColor(408, 408, True), "D0E878", 20) Then ;	Green
+			PureClick(440, 420, 2, 1000) ;	Click Connect & Disconnect
 			If _Sleep(500) Then Return
 			Setlog("   1. Click connect & disconnect")
 			ExitLoop
-		ElseIf _ColorCheck(_GetPixelColor(408, 408, True), "F07077", 20) Then	; 	Red
-			PureClick(440, 420)						;	Click Disconnect
+		ElseIf _ColorCheck(_GetPixelColor(408, 408, True), "F07077", 20) Then ; 	Red
+			PureClick(440, 420) ;	Click Disconnect
 			If _Sleep(500) Then Return
 			Setlog("   1. Click disconnect")
 			ExitLoop
@@ -454,15 +457,15 @@ Func SwitchCOCAcc()
 		EndIf
 	WEnd
 
-	$idx=0
-	While $idx <=15								; Checking Account List continuously in 15sec
-		If _ColorCheck(_GetPixelColor(600, 310, True), "FFFFFF", 20) Then		;	Grey
-			PureClick(383, $YCoord)					;	Click Account
+	$idx = 0
+	While $idx <= 15 ; Checking Account List continuously in 15sec
+		If _ColorCheck(_GetPixelColor(600, 310, True), "FFFFFF", 20) Then ;	Grey
+			PureClick(383, $YCoord) ;	Click Account
 			Setlog("   2. Click account [" & $NextAccount & "]")
 			If _Sleep(1000) Then Return
 			ExitLoop
-		ElseIf _ColorCheck(_GetPixelColor(408, 408, True), "F07077", 20) And $idx = 6 Then	; 	Red, double click did not work, try click Disconnect 1 more time
-			PureClick(440, 420)						;	Click Disconnect
+		ElseIf _ColorCheck(_GetPixelColor(408, 408, True), "F07077", 20) And $idx = 6 Then ; 	Red, double click did not work, try click Disconnect 1 more time
+			PureClick(440, 420) ;	Click Disconnect
 			Setlog("   1.5. Click disconnect again")
 			If _Sleep(500) Then Return
 		Else
@@ -472,22 +475,22 @@ Func SwitchCOCAcc()
 		EndIf
 	WEnd
 
-	$idx=0
-	While $idx <=15								; Checking Load Button continuously in 15sec
-		If _ColorCheck(_GetPixelColor(408, 408, True), "D0E878", 20) Then 	; Already in current account
+	$idx = 0
+	While $idx <= 15 ; Checking Load Button continuously in 15sec
+		If _ColorCheck(_GetPixelColor(408, 408, True), "D0E878", 20) Then ; Already in current account
 			Setlog("Already in current account")
 			PureClickP($aAway, 2, 0, "#0167") ;Click Away
 			If _Sleep(1000) Then Return
 			$bReMatchAcc = False
 			ExitLoop
 
-		ElseIf _ColorCheck(_GetPixelColor(480, 441, True), "60B010", 20) Then 	; Load Button
-			PureClick(443, 430, 1, 0, "Click Load")      ;Click Load
+		ElseIf _ColorCheck(_GetPixelColor(480, 441, True), "60B010", 20) Then ; Load Button
+			PureClick(443, 430, 1, 0, "Click Load") ;Click Load
 			Setlog("   3. Click load button")
 
 			$idx2 = 0
-			While $idx2 <= 15					; Checking Text Box continuously in 15sec
-				If _ColorCheck(_GetPixelColor(585, 16, True), "F88088", 20) Then	; Pink (close icon)
+			While $idx2 <= 15 ; Checking Text Box continuously in 15sec
+				If _ColorCheck(_GetPixelColor(585, 16, True), "F88088", 20) Then ; Pink (close icon)
 					PureClick(360, 195, 1, 0, "Click Text box")
 					Setlog("   4. Click text box")
 					If _Sleep(500) Then Return
@@ -501,9 +504,9 @@ Func SwitchCOCAcc()
 			WEnd
 
 			$idx3 = 0
-			While $idx3 <= 10					; Checking OKAY Button continuously in 10sec
+			While $idx3 <= 10 ; Checking OKAY Button continuously in 10sec
 				If _ColorCheck(_GetPixelColor(480, 200, True), "71BB1E", 20) Then
-					PureClick(480, 200, 1, 0, "Click OKAY")      ;Click OKAY
+					PureClick(480, 200, 1, 0, "Click OKAY") ;Click OKAY
 					Setlog("   5. Click OKAY")
 					ExitLoop
 				Else
@@ -518,9 +521,9 @@ Func SwitchCOCAcc()
 			$iShouldRearm = True
 			$NotNeedAllTime[0] = 1
 			$NotNeedAllTime[1] = 1
-			$aAttackedCountSwitch[$nCurProfile-1] = $aAttackedCountAcc[$nCurProfile-1]
+			$aAttackedCountSwitch[$nCurProfile - 1] = $aAttackedCountAcc[$nCurProfile - 1]
 
-			If IsMainPage(80) Then ExitLoop		; Waiting for fully load CoC in 8 sec
+			If IsMainPage(80) Then ExitLoop ; Waiting for fully load CoC in 8 sec
 			ExitLoop
 
 		Else
@@ -531,7 +534,7 @@ Func SwitchCOCAcc()
 		EndIf
 	WEnd
 
-EndFunc     ;==> SwitchCOCAcc
+EndFunc   ;==>SwitchCOCAcc
 
 Func SwitchFail_runBot()
 	Setlog("Switching account failed!", $COLOR_RED)
@@ -539,5 +542,13 @@ Func SwitchFail_runBot()
 	PureClickP($aAway, 3, 500)
 	checkMainScreen()
 	runBot()
-EndFunc
+EndFunc   ;==>SwitchFail_runBot
 
+Func DisableGUI_AfterLoadNewProfile()
+	For $i = $g_hFirstControlToHide To $g_hLastControlToHide
+		If IsAlwaysEnabledControl($i) Then ContinueLoop
+		If $g_bNotifyPBEnable And $i = $g_hBtnNotifyDeleteMessages Then ContinueLoop ; exclude the DeleteAllMesages button when PushBullet is enabled
+		If BitAND(GUICtrlGetState($i), $GUI_ENABLE) Then GUICtrlSetState($i, $GUI_DISABLE)
+	Next
+	ControlEnable("","",$g_hCmbGUILanguage)
+EndFunc   ;==>DisableGUI_AfterLoadNewProfile

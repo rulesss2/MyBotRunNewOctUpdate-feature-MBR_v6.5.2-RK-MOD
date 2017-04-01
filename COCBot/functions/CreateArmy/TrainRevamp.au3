@@ -55,8 +55,8 @@ Func TrainRevamp()
 	If $g_bRunState = False Then Return
 
 	If $ichkSimpleTrain = 1 Then				;	SimpleTrain - Demen
-		If $bDonationEnabled And $g_bChkDonate Then MakingDonatedTroops()
 		SimpleTrain()
+		ResetVariables("donated")	; fixed making wrong donated spells - Demen
 		EndGainCost("Train")
 		Return
 	EndIf										;	SimpleTrain - Demen
@@ -227,6 +227,7 @@ EndFunc   ;==>TrainRevampOldStyle
 
 Func CheckArmySpellCastel()
 
+	$bWaitForCCTroopSpell = False	; ForceSwitch while waiting for CC - Demen
 	Local $fullcastlespells = False
 	Local $fullcastletroops = False
 
@@ -2022,6 +2023,11 @@ Func ResetVariables($txt = "")
 		For $i = 0 To $eTroopCount - 1
 			If $g_bRunState = False Then Return
 			$g_aiDonateTroops[$i] = 0
+			If _Sleep($iDelayTrain6) Then Return ; '20' just to Pause action
+		Next
+		For $i = 0 To $eSpellCount - 1				; fixed making wrong donated spells - Demen
+			If $g_bRunState = False Then Return
+			$g_aiDonateSpells[$i] = 0
 			If _Sleep($iDelayTrain6) Then Return ; '20' just to Pause action
 		Next
 	EndIf

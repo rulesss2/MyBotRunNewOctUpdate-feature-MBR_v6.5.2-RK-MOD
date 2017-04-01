@@ -1604,6 +1604,7 @@ Func ApplyConfig_600_31($TypeReadSave)
 			_GUICtrlComboBox_SetCurSel($g_hCmbMinCollectorMatches, $g_iCollectorMatchesMin - 1)
 			GUICtrlSetData($g_hSldCollectorTolerance, $g_iCollectorToleranceOffset)
 			checkCollectors()
+			ChkDBDisableCollectorsFilter()
 		Case "Save"
 			For $i = 6 To 12
 				$g_abCollectorLevelEnabled[$i] = (GUICtrlRead($g_ahChkDBCollectorLevel[$i]) = $GUI_CHECKED)

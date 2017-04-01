@@ -67,12 +67,17 @@ Func ChkDBDisableCollectorsFilter()
     For $i = 6 To 12
        If GUICtrlRead($g_hChkDBDisableCollectorsFilter) = $GUI_CHECKED Then
 	      $g_bCollectorFilterDisable = 1
+		  GUICtrlSetState($g_ahChkDBCollectorLevel[$i], $GUI_UNCHECKED)
 		  GUICtrlSetState($g_ahChkDBCollectorLevel[$i], $GUI_DISABLE)
+		  GUICtrlSetState($g_ahCmbDBCollectorLevel[$i], $GUI_DISABLE)
        Else
 	      $g_bCollectorFilterDisable = 0
-	      GUICtrlSetState($g_ahChkDBCollectorLevel[$i],  $GUI_ENABLE)
+		  GUICtrlSetState($g_ahChkDBCollectorLevel[$i], $GUI_CHECKED)
+	      GUICtrlSetState($g_ahChkDBCollectorLevel[$i], $GUI_ENABLE)
+		  GUICtrlSetState($g_ahCmbDBCollectorLevel[$i], $GUI_ENABLE)
 	   EndIf
     Next
+	checkCollectors()
 EndFunc
 
 Func sldCollectorTolerance()

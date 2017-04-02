@@ -130,8 +130,6 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
 	 IniReadS($iNotifyAlertBOTSleep, $g_sProfileConfigPath, "notify", "AlertPBVMFound", 0, "int")
 
 	 ; Android Settings	 
-	  ;IniReadS($sAndroid, $g_sProfileConfigPath, "Android", "Emulator",  0, "Int")
-      ;IniReadS($g_sAndroidInstance, $g_sProfileConfigPath, "Android", "Emulator",  "","Int")
        $sAndroid = IniRead($g_sProfileConfigPath, "Android", "Emulator", "<No Emulators>")
        $sAndroidInstance = IniRead($g_sProfileConfigPath, "Android", "Instance", "")
 EndFunc   ;==>ReadConfig_RK_MOD

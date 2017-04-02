@@ -105,7 +105,6 @@ Global $canContinueLoop = True
 
 ; SwitchAcc_Demen_Style
 
-;Global $profile = $g_sProfilePath & "\Profile.ini"
 
 Global $SSAConfig = $g_sProfilePath & "\Profile.ini"
 

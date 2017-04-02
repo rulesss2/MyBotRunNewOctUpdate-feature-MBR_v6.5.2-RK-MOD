@@ -55,7 +55,7 @@ Func CreateMODTab()
 			GoblinXPGUI()
 		$g_hGUI_MOD_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600, 36, "Profiles"))
 			CreateModProfiles()
-		$g_hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem("MultiStat's") ; Has to be outside of the Last Control to hide
+		$g_hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslated(600, 62, "MultiStat's")) ; Has to be outside of the Last Control to hide
 			$g_hLastControlToHide = GUICtrlCreateDummy()
 			ReDim $g_aiControlPrevState[$g_hLastControlToHide + 1]
 			CreateMultiStatsGUI()

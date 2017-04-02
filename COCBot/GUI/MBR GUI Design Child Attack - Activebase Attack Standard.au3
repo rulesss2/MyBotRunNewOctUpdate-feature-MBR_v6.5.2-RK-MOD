@@ -52,7 +52,7 @@ Func CreateAttackSearchActiveBaseStandard()
 ;~ 								  GetTranslated(608,30, "Attack on the single side closest to the Townhall"), GetTranslated(608,7, -1))
 
 			   GUICtrlSetData(-1, GetTranslated(608,8, -1) & "|" & GetTranslated(608,9, -1) & "|" & GetTranslated(608,10, -1) & "|" & _
-								  GetTranslated(608,11, -1) & "|" & "Classic Four Fingers" & "|" & GetTranslated(608,31, "DE Side Attack") & "|" & _
+								  GetTranslated(608,11, -1) & "|" & GetTranslated(608,36, "Classic Four Fingers") & "|" & GetTranslated(608,31, "DE Side Attack") & "|" & _
 								  GetTranslated(608,32, "TH Side Attack"), GetTranslated(608,11, -1))
 
 ;~ 			   GUICtrlSetData(-1, GetTranslated(608,8, -1) & "|" & GetTranslated(608,9, -1) & "|" & GetTranslated(608,10, -1) & "|" & _

@@ -47,7 +47,7 @@ Func CreateAttackSearchDeadBaseStandard()
 			   _GUICtrlSetTip(-1, GetTranslated(608,4, "Attack on a single side, penetrates through base") & @CRLF & _
 								  GetTranslated(608,5, "Attack on two sides, penetrates through base") & @CRLF & _
 								  GetTranslated(608,6, "Attack on three sides, gets outer and some inside of base") & @CRLF & _
-								  "Attack on Classic Four Fingers", GetTranslated(608,7,"Select the No. of sides to attack on."))
+								  GetTranslated(608,36, "Attack on Classic Four Fingers"), GetTranslated(608,7,"Select the No. of sides to attack on."))
 
 ;~ 			   _GUICtrlSetTip(-1, GetTranslated(608,4, "Attack on a single side, penetrates through base") & @CRLF & _
 ;~ 								  GetTranslated(608,5, "Attack on two sides, penetrates through base") & @CRLF & _
@@ -56,7 +56,7 @@ Func CreateAttackSearchDeadBaseStandard()
 
 			   GUICtrlSetData(-1, GetTranslated(608,8, "one side") & "|" & GetTranslated(608,9, "two sides") & "|" & _
 								  GetTranslated(608,10, "three sides") &"|" & GetTranslated(608,11,"all sides equally" ) &"|" & _
-								  "Classic Four Fingers" & "|" & GetTranslated(671,42, "Multi Finger"), GetTranslated(608,11, -1))
+								  GetTranslated(608,36, "Classic Four Fingers") & "|" & GetTranslated(671,42, "Multi Finger"), GetTranslated(608,11, -1))
 
 ;~ 			   GUICtrlSetData(-1, GetTranslated(608,8, "one side") & "|" & GetTranslated(608,9, "two sides") & "|" & _
 ;~ 								  GetTranslated(608,10, "three sides") &"|" & GetTranslated(608,11,"all sides equally" ), _

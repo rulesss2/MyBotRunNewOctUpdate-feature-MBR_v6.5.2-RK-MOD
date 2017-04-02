@@ -125,7 +125,7 @@ Func modifyAndroid()
 					GUICtrlSetState($TxtAndroidInstance, $GUI_DISABLE);($TxtAndroidInstance, $GUI_ENABLE)
 
 					$g_sAndroidEmulator = $sAndroid
-					$g_sAndroidInstance = "";$g_sAndroidInstance
+					$g_sAndroidInstance = $g_sAndroidInstance
 
 					If $g_iAndroidConfig <> $currentConfig Or $g_sAndroidEmulator <> $currentAndroid Or $g_sAndroidInstance <> $currentAndroidInstance Then setupInstances()
 			EndSwitch
@@ -140,6 +140,6 @@ Func modifyAndroid()
 			$g_iAndroidConfig = getEmulatorNumber($g_sAndroidEmulator)
 			$g_sAndroidInstance = $g_asCmdLine[3]
 
-			If $g_iAndroidConfig <> $currentConfig Or $g_sAndroidEmulator <> $currentAndroid Or $sAndroidInstance <> $currentAndroidInstance Then setupInstances()
+			If $g_iAndroidConfig <> $currentConfig Or $g_sAndroidEmulator <> $currentAndroid Or $g_sAndroidInstance <> $currentAndroidInstance Then setupInstances()
 	EndSwitch	
 EndFunc   ;==>modifyAndroid

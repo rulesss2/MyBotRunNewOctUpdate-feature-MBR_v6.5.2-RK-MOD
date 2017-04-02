@@ -468,11 +468,11 @@ Func SaveConfig_600_22()
 		$string &= ($g_abBoostBarracksHours[$i] ? "1" : "0") & "|"
 	Next
 	IniWriteS($g_sProfileConfigPath, "planned", "BoostBarracksHours", $string)
-	IniWriteS($g_sProfileConfigPath, "boost", "BoostBarracks", $g_iCmbBoostBarracks)
-	IniWriteS($g_sProfileConfigPath, "boost", "BoostSpellFactory", $g_iCmbBoostSpellFactory)
-    IniWriteS($g_sProfileConfigPath, "boost", "BoostBarbarianKing", $g_iCmbBoostBarbarianKing)
-	IniWriteS($g_sProfileConfigPath, "boost", "BoostArcherQueen", $g_iCmbBoostArcherQueen)
-	IniWriteS($g_sProfileConfigPath, "boost", "BoostWarden", $g_iCmbBoostWarden)
+	;IniWriteS($g_sProfileConfigPath, "boost", "BoostBarracks", $g_iCmbBoostBarracks)
+	;IniWriteS($g_sProfileConfigPath, "boost", "BoostSpellFactory", $g_iCmbBoostSpellFactory)
+   ; IniWriteS($g_sProfileConfigPath, "boost", "BoostBarbarianKing", $g_iCmbBoostBarbarianKing)
+	;IniWriteS($g_sProfileConfigPath, "boost", "BoostArcherQueen", $g_iCmbBoostArcherQueen)
+	;IniWriteS($g_sProfileConfigPath, "boost", "BoostWarden", $g_iCmbBoostWarden)
 EndFunc
 
 Func SaveConfig_600_26()

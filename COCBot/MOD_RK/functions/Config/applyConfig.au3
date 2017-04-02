@@ -373,7 +373,8 @@ Func ApplyConfig_RK_MOD_AndroidSettings($TypeReadSave)
 	    Else		  
 		_GUICtrlComboBox_SetCurSel($CmbAndroid, 0)
 		EndIf		
-	      modifyAndroid()		  
+	      modifyAndroid()
+sleep(300)		  
 		  GUICtrlSetData($TxtAndroidInstance, $sAndroidInstance)		 
          
 		Case "Save"

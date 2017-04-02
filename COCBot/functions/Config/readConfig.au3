@@ -609,6 +609,12 @@ Func ReadConfig_600_22()
     Next
     ; Note: These global variables are not stored to the ini file, to prevent automatic boosting (and spending of gems) when the bot is started:
 	; $g_iCmbBoostBarracks, $g_iCmbBoostSpellFactory, $g_iCmbBoostBarbarianKing, $g_iCmbBoostArcherQueen, $g_iCmbBoostWarden
+  
+	IniReadS($g_iCmbBoostBarracks, $g_sProfileConfigPath, "boost", "BoostBarracks", 0, "int")
+	IniReadS($g_iCmbBoostSpellFactory, $g_sProfileConfigPath, "boost", "BoostSpellFactory", 0, "int")
+	IniReadS($g_iCmbBoostBarbarianKing, $g_sProfileConfigPath, "boost", "BoostBarbarianKing", 0, "int")
+	IniReadS($g_iCmbBoostArcherQueen, $g_sProfileConfigPath, "boost", "BoostArcherQueen", 0, "int")
+	IniReadS($g_iCmbBoostWarden, $g_sProfileConfigPath, "boost", "BoostWarden", 0, "int")
 EndFunc
 
 Func ReadConfig_600_26()

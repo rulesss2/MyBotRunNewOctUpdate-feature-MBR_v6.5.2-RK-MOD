@@ -308,7 +308,7 @@ Func btnLocateAcc()
 		ExitLoop
 	WEnd
 	Clickp($aAway, 2, 0, "#0207")
-	IniWriteS($profile, "Switch Account", "AccLocation." & $AccNo, $aLocateAccConfig[$AccNo-1])
+	IniWriteS($SSAConfig, "Switch Account", "AccLocation." & $AccNo, $aLocateAccConfig[$AccNo-1])
     $g_bRunState = $wasRunState
 	AndroidShield("LocateAcc") ; Update shield status due to manual $RunState
 

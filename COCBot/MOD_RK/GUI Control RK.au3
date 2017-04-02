@@ -489,6 +489,6 @@ Func CmbAndroid()
 EndFunc   ;==>cmbAndroid
 
 Func TxtAndroidInstance()
-	$g_sAndroidInstance = GUICtrlRead($TxtAndroidInstance)
+	$sAndroidInstance = GUICtrlRead($TxtAndroidInstance)
 	modifyAndroid()
 EndFunc   ;==>$txtAndroidInstance

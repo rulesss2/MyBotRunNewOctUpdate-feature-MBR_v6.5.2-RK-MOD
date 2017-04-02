@@ -145,7 +145,7 @@ Func SaveConfig_RK_MOD()
 	; IniWriteS($g_sProfileConfigPath, "Android", "Instance", _GUICtrlComboBox_GetCurSel($TxtAndroidInstance))
 
 	 IniWrite($g_sProfileConfigPath, "Android", "Emulator", GUICtrlRead($CmbAndroid))
-    ;IniWrite($g_sProfileConfigPath, "Android", "Instance", GUICtrlRead($TxtAndroidInstance))
+    IniWrite($g_sProfileConfigPath, "Android", "Instance", GUICtrlRead($TxtAndroidInstance))
 	 
 EndFunc   ;==>SaveConfig_RK_MOD
 

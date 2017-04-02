@@ -110,7 +110,7 @@ Func CreateRequestSubTab()
 		GUICtrlSetOnEvent(-1, "chkRusLang2")
 		; MOD ; MMHK ; move the Request CC Troops function to the beginning of the run loop
 		$y += 20
-		$chkReqCCFirst = _GUICtrlCreateCheckbox("", $x + 294, $y - 6, 13, 13)
+		$chkReqCCFirst = GUICtrlCreateCheckbox("", $x + 294, $y - 6, 13, 13)
 			GUICtrlSetTip(-1, GetTranslated(611,6,"Request troops at the beginning of the run loop"))
      		GUICtrlSetState(-1, $GUI_DISABLE)
 			GUICtrlSetOnEvent(-1, "chkReqCCFirst")

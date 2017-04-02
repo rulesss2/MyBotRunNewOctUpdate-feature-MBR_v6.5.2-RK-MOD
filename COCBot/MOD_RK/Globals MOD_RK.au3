@@ -104,7 +104,7 @@ Global $UpgradeDuration
 Global $canContinueLoop = True
 
 ; SwitchAcc_Demen_Style
-Global $profile 
+Global $profile = $g_sProfilePath & "\Profile.ini"
 Global $iSwitchAccStyle = 1	; 1 = DocOc, 2 = Demen
 Global $ichkSwitchAcc = 0, $ichkTrain = 0, $icmbTotalCoCAcc, $nTotalCoCAcc = 8, $ichkSmartSwitch, $ichkCloseTraining
 Global Enum $eNull, $eActive, $eDonate, $eIdle, $eStay, $eContinuous	; Enum for Profile Type & Switch Case & ForceSwitch
@@ -122,7 +122,7 @@ Global $aRemainTrainTime[8], $aUpdateRemainTrainTime[8], $nMinRemainTrain
 Global $aLocateAccConfig[8], $aAccPosY[8]
 Global $SwitchAcc_Style
 
-; Profile Switch 
+; Profile Switch
 Global $profileString
 Global $ichkGoldSwitchMax = 0, $itxtMaxGoldAmount = 6000000, $icmbGoldMaxProfile = 0, $ichkGoldSwitchMin = 0, $itxtMinGoldAmount = 500000, $icmbGoldMinProfile = 0
 Global $ichkElixirSwitchMax = 0, $itxtMaxElixirAmount = 6000000, $icmbElixirMaxProfile = 0, $ichkElixirSwitchMin = 0, $itxtMinElixirAmount = 500000, $icmbElixirMinProfile = 0
@@ -138,30 +138,30 @@ Global $chkDESwitchMin = 0, $cmbDEMinProfile = 0, $lblDEMin = 0, $txtMinDEAmount
 Global $chkTrophySwitchMax = 0, $cmbTrophyMaxProfile = 0, $lblTrophyMax = 0, $txtMaxTrophyAmount = 0
 Global $chkTrophySwitchMin = 0, $cmbTrophyMinProfile = 0, $lblTrophyMin = 0, $txtMinTrophyAmount = 0, $picProfileTrophy = 0
 
-; SimpleTrain 
+; SimpleTrain
 Global $ichkSimpleTrain,  $ichkPreciseTroops, $ichkFillArcher, $iFillArcher = 5, $ichkFillEQ
 ; Request russian
 Global $ichkRusLang2 = 0
 Global $chkRusLang2 = 0
 
-; CoCStats 
+; CoCStats
 Global $ichkCoCStats = 0
 Global $MyApiKey = ""
 
-; Upgrade Management 
+; Upgrade Management
 Global $g_ibUpdateNewUpgradesOnly = False
 Global Const $UP = True, $DOWN = False, $TILL_END = True
 
-; move the Request CC Troops  
+; move the Request CC Troops
 Global $bReqCCFirst = False
 Global $chkReqCCFirst = 0
 
-; Clan Hop Setting 
+; Clan Hop Setting
 Global $g_hChkClanHop = 0
-Global $ichkClanHop 
+Global $ichkClanHop
 
-; Misc Battle Settings 
-Global $chkFastADBClicks = 0  
+; Misc Battle Settings
+Global $chkFastADBClicks = 0
 
 ;Notify alert botsleep
 Global $ChkNotifyAlertBOTSleep = 0, $iNotifyAlertBOTSleep = 0

@@ -963,6 +963,9 @@ Func AttackMain() ;Main control for attack functions
 				SetLog(_PadStringCenter(" Hero status check" & BitAND($g_aiAttackUseHeroes[$LB], $g_aiSearchHeroWaitEnable[$LB], $iHeroAvailable) & "|" & $g_aiSearchHeroWaitEnable[$LB] & "|" & $iHeroAvailable, 54, "="), $COLOR_DEBUG)
 				;Setlog("BullyMode: " & $g_abAttackTypeEnable[$TB] & ", Bully Hero: " & BitAND($g_aiAttackUseHeroes[$g_iAtkTBMode], $g_aiSearchHeroWaitEnable[$g_iAtkTBMode], $iHeroAvailable) & "|" & $g_aiSearchHeroWaitEnable[$g_iAtkTBMode] & "|" & $iHeroAvailable, $COLOR_DEBUG)
 			EndIf
+			If $ChatbotChatGlobal = true or $ChatbotChatClan = true Then
+               ChatbotMessage()	
+	        EndIf	
 			PrepareSearch()
 			If $OutOfGold = 1 Then Return ; Check flag for enough gold to search
 			If $g_bRestart = True Then Return

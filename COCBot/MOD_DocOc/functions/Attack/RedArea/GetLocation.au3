@@ -186,7 +186,7 @@ Func GetLocationGoldStorage()
 		Next
 	EndIf
 
-	If $g_iDebugSetlog = 1 Then SetLog("  - Calculated  in: " & Round(TimerDiff($hTimer) / 1000, 2) & " seconds ", $COLOR_DEBUG1)
+	If $g_iDebugSetlog = 1 Then SetLog("  - Calculated  in: " & Round(__TimerDiff($hTimer) / 1000, 2) & " seconds ", $COLOR_DEBUG1)
 
 	If StringLen($TempVectStr) > 0 Then
 		$TempVectStr = StringLeft($TempVectStr, StringLen($TempVectStr) - 1)
@@ -235,7 +235,7 @@ Func GetLocationElixirStorage()
 		Next
 	EndIf
 
-	If $g_iDebugSetlog = 1 Then SetLog("  - Calculated  in: " & Round(TimerDiff($hTimer) / 1000, 2) & " seconds ", $COLOR_DEBUG1)
+	If $g_iDebugSetlog = 1 Then SetLog("  - Calculated  in: " & Round(__TimerDiff($hTimer) / 1000, 2) & " seconds ", $COLOR_DEBUG1)
 
 	If StringLen($TempVectStr) > 0 Then
 		$TempVectStr = StringLeft($TempVectStr, StringLen($TempVectStr) - 1)

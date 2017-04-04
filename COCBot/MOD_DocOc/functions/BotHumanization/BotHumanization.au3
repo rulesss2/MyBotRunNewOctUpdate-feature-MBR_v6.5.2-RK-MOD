@@ -86,7 +86,7 @@ Func QuickMIS($ValueReturned, $directory, $Left = 0, $Top = 0, $Right = $g_iGAME
 	Sleep(1500)
 
 	_CaptureRegion2($Left, $Top, $Right, $Bottom)
-	Local $Res = DllCall($g_sLibImgLocPath, "str", "SearchMultipleTilesBetweenLevels", "handle", $hHBitmap2, "str", $directory, "str", "FV", "Int", 0, "str", "FV", "Int", 0, "Int", 1000)
+	Local $Res = DllCall($g_hLibImgLoc, "str", "SearchMultipleTilesBetweenLevels", "handle", $g_hHBitmap2, "str", $directory, "str", "FV", "Int", 0, "str", "FV", "Int", 0, "Int", 1000)
 
 	If IsArray($Res) Then
 		If $Debug Then _ArrayDisplay($Res)
@@ -120,7 +120,7 @@ Func QuickMIS($ValueReturned, $directory, $Left = 0, $Top = 0, $Right = $g_iGAME
 					Local $Result = "", $DLLRes = Null
 					Local $KeyValue = StringSplit($Res[0], "|", $STR_NOCOUNT)
 					For $i = 0 To UBound($KeyValue) - 1
-						$DLLRes = DllCall($g_sLibImgLocPath, "str", "GetProperty", "str", $KeyValue[$i], "str", "objectpoints")
+						$DLLRes = DllCall($g_hLibImgLoc, "str", "GetProperty", "str", $KeyValue[$i], "str", "objectpoints")
 						$Result &= $DLLRes[0] & "|"
 					Next
 					If StringRight($Result, 1) = "|" Then $Result = StringLeft($Result, (StringLen($Result) - 1))
@@ -134,7 +134,7 @@ Func QuickMIS($ValueReturned, $directory, $Left = 0, $Top = 0, $Right = $g_iGAME
 					Local $Result = "", $DLLRes = Null
 					Local $KeyValue = StringSplit($Res[0], "|", $STR_NOCOUNT)
 					For $i = 0 To UBound($KeyValue) - 1
-						$DLLRes = DllCall($g_sLibImgLocPath, "str", "GetProperty", "str", $KeyValue[$i], "str", "objectpoints")
+						$DLLRes = DllCall($g_hLibImgLoc, "str", "GetProperty", "str", $KeyValue[$i], "str", "objectpoints")
 						$Result &= $DLLRes[0] & "|"
 					Next
 					If StringRight($Result, 1) = "|" Then $Result = StringLeft($Result, (StringLen($Result) - 1))
@@ -164,7 +164,7 @@ Func QuickMIS($ValueReturned, $directory, $Left = 0, $Top = 0, $Right = $g_iGAME
 					Local $Result = "", $DLLRes = Null
 					Local $KeyValue = StringSplit($Res[0], "|", $STR_NOCOUNT)
 					For $i = 0 To UBound($KeyValue) - 1
-						$DLLRes = DllCall($g_sLibImgLocPath, "str", "GetProperty", "str", $KeyValue[$i], "str", "totalobjects")
+						$DLLRes = DllCall($g_hLibImgLoc, "str", "GetProperty", "str", $KeyValue[$i], "str", "totalobjects")
 						$Result &= $DLLRes[0] & "|"
 					Next
 					If StringRight($Result, 1) = "|" Then $Result = StringLeft($Result, (StringLen($Result) - 1))

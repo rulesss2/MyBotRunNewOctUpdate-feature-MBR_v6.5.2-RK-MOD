@@ -30,10 +30,11 @@ Global $g_hPicDBLightSpellWait = 0, $g_hPicDBHealSpellWait = 0, $g_hPicDBRageSpe
 ; Filters
 Global $g_hCmbDBMeetGE = 0, $g_hTxtDBMinGold = 0, $g_hTxtDBMinElixir = 0, $g_hTxtDBMinGoldPlusElixir = 0
 Global $g_hChkDBMeetDE = 0, $g_hTxtDBMinDarkElixir = 0
-Global $g_hChkDBMeetTrophy = 0, $g_hTxtDBMinTrophy = 0
+Global $g_hChkDBMeetTrophy = 0, $g_hTxtDBMinTrophy = 0, $g_hTxtDBMaxTrophy = 0
 Global $g_hChkDBMeetTH = 0, $g_hCmbDBTH = 0, $g_hChkDBMeetTHO = 0
 
-Global $g_hGrpDBFilter = 0, $g_hPicDBMinGold = 0, $g_hPicDBMinElixir = 0, $g_hPicDBMinGPEGold = 0, $g_hPicDBMinDarkElixir = 0, $g_hPicDBMinTrophies = 0, $g_hPicDBMaxTH10 = 0
+Global $g_hGrpDBFilter = 0, $g_hPicDBMinGold = 0, $g_hPicDBMinElixir = 0, $g_hPicDBMinGPEGold = 0, $g_hPicDBMinDarkElixir = 0, $g_hPicDBMinTrophies = 0
+Global $g_ahPicDBMaxTH[12]; $g_hPicDBMaxTH10 = 0
 
 Func CreateAttackSearchDeadBaseSearch()
 $15 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)
@@ -49,7 +50,7 @@ $15 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPC
 
    Local $sTxtTip = ""
    Local $x = 25, $y = 45
-	   GUICtrlCreateGroup(GetTranslated(625,0, "Start Search IF"), $x - 20, $y - 20, 190, 305)
+	   GUICtrlCreateGroup(GetTranslated(625,0, "Start Search IF"), $x - 20, $y - 20, 190, $g_iSizeHGrpTab4)
 		   $x -= 15
 		   $g_hChkDBActivateSearches = _GUICtrlCreateCheckbox(GetTranslated(625,1,"Search"), $x, $y - 10, 68, 18)
 			   _GUICtrlSetTip(-1, GetTranslated(625,68, "Note - enables SEARCH range for this attack type ONLY.") & @CRLF & _
@@ -180,7 +181,7 @@ $15 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPC
 	   GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 	   Local $x = 220, $y = 45
-	   $g_hGrpDBFilter = GUICtrlCreateGroup(GetTranslated(625,14, "Filters"), $x - 20, $y - 20, 225, 305)
+	   $g_hGrpDBFilter = GUICtrlCreateGroup(GetTranslated(625,14, "Filters"), $x - 20, $y - 20, 225, $g_iSizeHGrpTab4)
 		   $x -= 15
 		   $g_hCmbDBMeetGE = GUICtrlCreateCombo("", $x , $y + 10, 65, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			   GUICtrlSetData(-1, GetTranslated(625,19, "G And E") &"|" & GetTranslated(625,20, "G Or E") & "|" & GetTranslated(625,21, "G + E"), GetTranslated(625,19, -1))
@@ -247,8 +248,25 @@ $15 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPC
 			   _GUICtrlSetTip(-1, $sTxtTip)
 			   GUICtrlSetState(-1, $GUI_DISABLE)
 			   GUICtrlSetData(-1, "4-6|7|8|9|10|11", "4-6")
-		   $g_hPicDBMaxTH10 = GUICtrlCreateIcon($g_sLibIconPath, $eIcnTH10, $x + 140, $y - 3, 24, 24)
-			   _GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetOnEvent(-1, "CmbDBTH")
+		$g_ahPicDBMaxTH[6] = GUICtrlCreateIcon($g_sLibIconPath, $eHdV06, $x + 137, $y - 3, 24, 24)
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetState (-1, $GUI_SHOW)
+		$g_ahPicDBMaxTH[7] = GUICtrlCreateIcon($g_sLibIconPath, $eHdV07, $x + 137, $y - 3, 24, 24)
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetState (-1, $GUI_HIDE)
+		$g_ahPicDBMaxTH[8] = GUICtrlCreateIcon($g_sLibIconPath, $eHdV08, $x + 137, $y - 3, 24, 24)
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetState (-1, $GUI_HIDE)
+		$g_ahPicDBMaxTH[9] = GUICtrlCreateIcon($g_sLibIconPath, $eHdV09, $x + 137, $y - 3, 24, 24)
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetState (-1, $GUI_HIDE)
+		$g_ahPicDBMaxTH[10] = GUICtrlCreateIcon($g_sLibIconPath, $eHdV10, $x + 137, $y - 3, 24, 24)
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetState (-1, $GUI_HIDE)
+		$g_ahPicDBMaxTH[11] = GUICtrlCreateIcon($g_sLibIconPath, $eHdV11, $x + 137, $y - 3, 24, 24)
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetState (-1, $GUI_HIDE)
 
 		   $y += 24
 		   $g_hChkDBMeetTHO = _GUICtrlCreateCheckbox(GetTranslated(625,34, "Townhall Outside"), $x, $y, -1, -1)

@@ -13,7 +13,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 #include-once
- 
+
 ; Start search if
 Global $g_hChkABActivateSearches = 0, $g_hTxtABSearchesMin = 0, $g_hTxtABSearchesMax = 0  ; Search count limit
 Global $g_hChkABActivateTropies = 0, $g_hTxtABTropiesMin = 0, $g_hTxtABTropiesMax = 0  ; Trophy limit
@@ -30,10 +30,11 @@ Global $g_hPicABLightSpellWait = 0, $g_hPicABHealSpellWait = 0, $g_hPicABRageSpe
 ; Filters
 Global $g_hCmbABMeetGE = 0, $g_hTxtABMinGold = 0, $g_hTxtABMinElixir = 0, $g_hTxtABMinGoldPlusElixir = 0
 Global $g_hChkABMeetDE = 0, $g_hTxtABMinDarkElixir = 0
-Global $g_hChkABMeetTrophy = 0, $g_hTxtABMinTrophy = 0
+Global $g_hChkABMeetTrophy = 0, $g_hTxtABMinTrophy = 0, $g_hTxtABMaxTrophy = 0
 Global $g_hChkABMeetTH = 0, $g_hCmbABTH = 0, $g_hChkABMeetTHO = 0
 
-Global $g_hGrpABFilter = 0, $g_hPicABMinGold = 0, $g_hPicABMinElixir = 0, $g_hPicABMinGPEGold = 0, $g_hPicABMinDarkElixir = 0, $g_hPicABMinTrophies = 0, $g_hPicABMaxTH10 = 0
+Global $g_hGrpABFilter = 0, $g_hPicABMinGold = 0, $g_hPicABMinElixir = 0, $g_hPicABMinGPEGold = 0, $g_hPicABMinDarkElixir = 0, $g_hPicABMinTrophies = 0
+Global $g_ahPicABMaxTH[12]
 
 Func CreateAttackSearchActiveBaseSearch()
      $6 = GUICtrlCreatePic(@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)   
@@ -49,7 +50,7 @@ Func CreateAttackSearchActiveBaseSearch()
 
    Local $sTxtTip = ""
    Local $x = 25, $y = 45
-	GUICtrlCreateGroup(GetTranslated(625,0, -1), $x - 20, $y - 20, 190, 305)
+	GUICtrlCreateGroup(GetTranslated(625,0, -1), $x - 20, $y - 20, 190, $g_iSizeHGrpTab4)
 		$x -= 15
 		$g_hChkABActivateSearches = _GUICtrlCreateCheckbox(GetTranslated(625,1, -1), $x, $y - 10, 68, 18)
 			_GUICtrlSetTip(-1, GetTranslated(625,68, -1) & @CRLF & _
@@ -177,7 +178,7 @@ Func CreateAttackSearchActiveBaseSearch()
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
     Local $x = 220, $y = 45
-	$g_hGrpABFilter = GUICtrlCreateGroup(GetTranslated(625,14, -1), $x - 20, $y - 20, 225, 305)
+	$g_hGrpABFilter = GUICtrlCreateGroup(GetTranslated(625,14, -1), $x - 20, $y - 20, 225, $g_iSizeHGrpTab4)
 		$x -= 15
 		$g_hCmbABMeetGE = GUICtrlCreateCombo("", $x , $y + 10, 65, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetData(-1, GetTranslated(625,19, -1) &"|" & GetTranslated(625,20, -1) & "|" & GetTranslated(625,21, -1), GetTranslated(625,19, -1))
@@ -244,8 +245,25 @@ Func CreateAttackSearchActiveBaseSearch()
 			_GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetState(-1, $GUI_DISABLE)
 			GUICtrlSetData(-1, "4-6|7|8|9|10|11", "4-6")
-		$g_hPicABMaxTH10 = GUICtrlCreateIcon($g_sLibIconPath, $eIcnTH10, $x + 137, $y - 3, 24, 24)
+			GUICtrlSetOnEvent(-1, "CmbABTH")
+		$g_ahPicABMaxTH[6] = GUICtrlCreateIcon($g_sLibIconPath, $eHdV06, $x + 137, $y - 3, 24, 24)
 			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetState (-1, $GUI_SHOW)
+		$g_ahPicABMaxTH[7] = GUICtrlCreateIcon($g_sLibIconPath, $eHdV07, $x + 137, $y - 3, 24, 24)
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetState (-1, $GUI_HIDE)
+		$g_ahPicABMaxTH[8] = GUICtrlCreateIcon($g_sLibIconPath, $eHdV08, $x + 137, $y - 3, 24, 24)
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetState (-1, $GUI_HIDE)
+		$g_ahPicABMaxTH[9] = GUICtrlCreateIcon($g_sLibIconPath, $eHdV09, $x + 137, $y - 3, 24, 24)
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetState (-1, $GUI_HIDE)
+		$g_ahPicABMaxTH[10] = GUICtrlCreateIcon($g_sLibIconPath, $eHdV10, $x + 137, $y - 3, 24, 24)
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetState (-1, $GUI_HIDE)
+		$g_ahPicABMaxTH[11] = GUICtrlCreateIcon($g_sLibIconPath, $eHdV11, $x + 137, $y - 3, 24, 24)
+			_GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetState (-1, $GUI_HIDE)
 
 		$y += 24
 		$g_hChkABMeetTHO = _GUICtrlCreateCheckbox(GetTranslated(625,34, -1), $x, $y, -1, -1)

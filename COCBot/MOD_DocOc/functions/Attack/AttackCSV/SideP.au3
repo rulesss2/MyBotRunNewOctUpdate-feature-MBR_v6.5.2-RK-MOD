@@ -444,8 +444,8 @@ Func GetRedLines()
 	If $DebugSideP Then $hTimer = TimerInit()
 	_CaptureRegion2()
 	Local $SingleCocDiamond = "ECD"
-	Local $result = DllCall($g_hLibFunctions, "str", "SearchRedLines", "handle", $hHBitmap2, "str", $SingleCocDiamond)
-	Local $aValue = DllCall($g_hLibFunctions, "str", "GetProperty", "str", "redline", "str", "")
+	Local $result = DllCall($g_hLibMyBot, "str", "SearchRedLines", "handle", $hHBitmap2, "str", $SingleCocDiamond)
+	Local $aValue = DllCall($g_hLibMyBot, "str", "GetProperty", "str", "redline", "str", "")
 	Local $redLines = $aValue[0]
 	If IsArray($result) Then
 		If $DebugSideP Then SetLog("Redline grabbed within " & Round(TimerDiff($hTimer) / 1000, 2) & " second(s)", $COLOR_GREEN)

@@ -30,7 +30,7 @@ Func ConvertOCRTime($WhereRead, $ToConvert)
 		EndIf
 		SetLog($WhereRead & " time: " & StringFormat("%.2f", $iRemainTimer) & " min", $COLOR_INFO)
 	Else
-		If Not $bFullArmySpells Then
+		If Not $g_bFullArmySpells Then
 			If $g_iDebugSetlogTrain = 1 Or $g_iDebugSetlog = 1 Then SetLog("Can not read remaining time for " & $WhereRead, $COLOR_ERROR)
 		EndIf
 	EndIf

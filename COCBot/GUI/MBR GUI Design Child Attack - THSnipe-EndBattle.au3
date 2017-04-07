@@ -20,7 +20,7 @@ Global $g_hGrpTSEndBattle = 0, $g_hLblTSArmyCamps2 = 0
 Func CreateAttackSearchTHSnipeEndBattle()
     $24 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 0, 23, 430, 350, $WS_CLIPCHILDREN)
     Local $x = 10, $y = 45
-	$g_hGrpTSEndBattle = GUICtrlCreateGroup(GetTranslated(606,1, -1),  $x - 5, $y - 20, 420, 305)
+	$g_hGrpTSEndBattle = GUICtrlCreateGroup(GetTranslated(606,1, -1),  $x - 5, $y - 20, $g_iSizeWGrpTab4, $g_iSizeHGrpTab4)
 	;Apply to switch Attack Standard after THSnipe End ==>
 	  GUICtrlCreateLabel(GetTranslated(606,28,"Switch DB Attack at END") & ":",$x, $y , 143 , 18,$SS_LEFT)
 	  $y += 15

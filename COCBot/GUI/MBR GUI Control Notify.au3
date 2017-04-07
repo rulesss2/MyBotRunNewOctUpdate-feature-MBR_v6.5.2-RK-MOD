@@ -62,7 +62,7 @@ Func chkPBTGenabled()
 		GUICtrlSetState($g_hChkNotifyAlertBuilderIdle, $GUI_ENABLE)
 		GUICtrlSetState($g_hChkNotifyAlertMaintenance, $GUI_ENABLE)
 		GUICtrlSetState($g_hChkNotifyAlertBAN, $GUI_ENABLE)
-		GUICtrlSetState($g_hChkNotifyBOTUpdate, $GUI_ENABLE)		
+		GUICtrlSetState($g_hChkNotifyBOTUpdate, $GUI_ENABLE)
 	Else
 		GUICtrlSetState($g_hChkNotifyRemote, $GUI_DISABLE)
 		GUICtrlSetState($g_hTxtNotifyOrigin, $GUI_DISABLE)
@@ -103,8 +103,8 @@ Func btnDeletePBMessages()
 EndFunc   ;==>btnDeletePBMessages
 
 Func NotifyHelp()
-	If FileExists(@ScriptDir & "\Help\NotifyHelp_" & $sLanguage & ".mht") Then
-		ShellExecute(@ScriptDir & "\Help\NotifyHelp_" & $sLanguage & ".mht")
+	If FileExists(@ScriptDir & "\Help\NotifyHelp_" & $g_sLanguage & ".mht") Then
+		ShellExecute(@ScriptDir & "\Help\NotifyHelp_" & $g_sLanguage & ".mht")
 	ElseIf FileExists(@ScriptDir & "\Help\NotifyHelp_English.mht") Then
 		ShellExecute(@ScriptDir & "\Help\NotifyHelp_English.mht")
 	EndIf

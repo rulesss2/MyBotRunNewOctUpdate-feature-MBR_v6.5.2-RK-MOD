@@ -5,7 +5,7 @@
 ; Parameters ....: $type                - Flag for type return desired.
 ; Return values .: None
 ; Author ........:
-; Modified ......: KnowJack (June2015)
+; Modified ......: KnowJack (06-2015)
 ; Remarks .......: This file is part of MyBot, previously known as ClashGameBot. Copyright 2015-2017
 ;                  MyBot is distributed under the terms of the GNU GPL
 ; Related .......:

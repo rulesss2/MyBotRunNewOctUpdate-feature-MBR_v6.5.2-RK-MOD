@@ -15,11 +15,11 @@
 #include-once
 
 Func LoadCOCDistributorsComboBox()
-	Local $sDistributors = $g_sNO_COC
+	Local $sDistributors = $NO_COC
 	Local $aDistributorsData = GetCOCDistributors()
 
 	If @error = 2 Then
-		$sDistributors = $g_sUNKNOWN_COC
+		$sDistributors = $UNKNOWN_COC
 	ElseIf IsArray($aDistributorsData) Then
 		$sDistributors = _ArrayToString($aDistributorsData, "|")
 	EndIf

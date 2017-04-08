@@ -24,7 +24,7 @@ Func CreateLogTab()
 
    Local $activeHWnD = WinGetHandle("") ; RichEdit Controls tamper with active window
 
-   $g_hGUI_LOG = _GUICreate("", $g_iSizeWGrpTab1, $g_iSizeHGrpTab1, $_GUI_CHILD_LEFT, $_GUI_CHILD_TOP, BitOR($WS_CHILD, 0), -1, $g_hFrmBotEx)
+   $g_hGUI_LOG = GUICreate("", $_GUI_MAIN_WIDTH - 20, $_GUI_MAIN_HEIGHT - 255, $_GUI_CHILD_LEFT, $_GUI_CHILD_TOP, BitOR($WS_CHILD, 0), -1, $g_hFrmBotEx)
    ;GUISetBkColor($COLOR_WHITE, $g_hGUI_LOG)
 
    $g_hTxtLog = _GUICtrlRichEdit_Create($g_hGUI_LOG, _PadStringCenter(" " & GetTranslated(601,2, "BOT LOG") & " ", 71, "="), 0, 0, 20, 20, BitOR($ES_MULTILINE, $ES_READONLY, $WS_VSCROLL, 8908), $WS_EX_STATICEDGE)

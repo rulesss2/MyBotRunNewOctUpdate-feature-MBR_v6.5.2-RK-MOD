@@ -55,7 +55,7 @@ Func GetLocationElixir()
 EndFunc   ;==>GetLocationElixir
 
 Func GetLocationDarkElixir()
-	;Local $result = DllCall($g_hLibFunctions, "str", "getLocationDarkElixirExtractor", "ptr", $hHBitmap2)
+	;Local $result = DllCall($g_hLibMyBot, "str", "getLocationDarkElixirExtractor", "ptr", $g_hHBitmap2)
 	Local $directory = @ScriptDir & "\imgxml\Storages\Drills"
 	Local $Maxpositions = 3
 	Local $aResult = returnMultipleMatches($directory, $Maxpositions)
@@ -68,21 +68,21 @@ Func GetLocationDarkElixir()
 EndFunc   ;==>GetLocationDarkElixir
 
 Func GetLocationTownHall()
-	Local $result = DllCall($g_hLibFunctions, "str", "getLocationTownHall", "ptr", $hHBitmap2)
+	Local $result = DllCall($g_hLibMyBot, "str", "getLocationTownHall", "ptr", $g_hHBitmap2)
 	If $g_iDebugBuildingPos = 1 Then Setlog("#*# GetLocationTownHall: " & $result[0], $COLOR_DEBUG1)
 	If $g_iDebugGetLocation = 1 Then DebugImageGetLocation($result[0], "TownHall")
 	Return GetListPixel($result[0])
 EndFunc   ;==>GetLocationTownHall
 
 Func GetLocationDarkElixirStorageWithLevel()
-	Local $result = DllCall($g_hLibFunctions, "str", "getLocationDarkElixirStorageWithLevel", "ptr", $hHBitmap2)
+	Local $result = DllCall($g_hLibMyBot, "str", "getLocationDarkElixirStorageWithLevel", "ptr", $g_hHBitmap2)
 	If $g_iDebugBuildingPos = 1 Then Setlog("#*# GetLocationDarkElixirStorageWithLevel: " & $result[0], $COLOR_DEBUG1)
 	If $g_iDebugGetLocation = 1 Then DebugImageGetLocation($result[0], "DarkElixirStorageWithLevel")
 	Return $result[0]
 EndFunc   ;==>GetLocationDarkElixirStorageWithLevel
 
 Func GetLocationDarkElixirStorage()
-	Local $result = DllCall($g_hLibFunctions, "str", "getLocationDarkElixirStorage", "ptr", $hHBitmap2)
+	Local $result = DllCall($g_hLibMyBot, "str", "getLocationDarkElixirStorage", "ptr", $g_hHBitmap2)
 	If $g_iDebugBuildingPos = 1 Then Setlog("#*# GetLocationDarkElixirStorage: " & $result[0], $COLOR_DEBUG1)
 	If $g_iDebugGetLocation = 1 Then DebugImageGetLocation($result[0], "DarkElixirStorage")
 	Return GetListPixel($result[0])
@@ -101,11 +101,11 @@ Func GetLocationElixirWithLevel()
 	; LEV 8 elixir extractors level 12
 
 	If $iDetectedImageType = 0 Then
-		Local $result = DllCall($g_hLibFunctions, "str", "getLocationElixirExtractorWithLevel", "ptr", $hHBitmap2)
+		Local $result = DllCall($g_hLibMyBot, "str", "getLocationElixirExtractorWithLevel", "ptr", $g_hHBitmap2)
 		If $g_iDebugBuildingPos = 1 Then Setlog("#*# getLocationElixirExtractorWithLevel: " & $result[0], $COLOR_DEBUG1)
 		If $g_iDebugGetLocation = 1 Then DebugImageGetLocation($result[0], "ElixirExtractorWithLevel")
 	Else
-		Local $result = DllCall($g_hLibFunctions, "str", "getLocationSnowElixirExtractorWithLevel", "ptr", $hHBitmap2)
+		Local $result = DllCall($g_hLibMyBot, "str", "getLocationSnowElixirExtractorWithLevel", "ptr", $g_hHBitmap2)
 		If $g_iDebugBuildingPos = 1 Then Setlog("#*# getLocationSnowElixirExtractorWithLevel: " & $result[0], $COLOR_DEBUG1)
 		If $g_iDebugGetLocation = 1 Then DebugImageGetLocation($result[0], "SnowElixirExtractorWithLevel")
 	EndIf
@@ -125,12 +125,12 @@ Func GetLocationMineWithLevel()
 	; LEV 8 gold mine level 12
 
 	If $iDetectedImageType = 0 Then
-		Local $result = DllCall($g_hLibFunctions, "str", "getLocationMineExtractorWithLevel", "ptr", $hHBitmap2)
+		Local $result = DllCall($g_hLibMyBot, "str", "getLocationMineExtractorWithLevel", "ptr", $g_hHBitmap2)
 		If $g_iDebugBuildingPos = 1 Then Setlog("#*# getLocationMineExtractorWithLevel: " & $result[0], $COLOR_DEBUG1)
 		If $g_iDebugGetLocation = 1 Then DebugImageGetLocation($result[0], "MineExtractorWithLevel")
 
 	Else
-		Local $result = DllCall($g_hLibFunctions, "str", "getLocationSnowMineExtractorWithLevel", "ptr", $hHBitmap2)
+		Local $result = DllCall($g_hLibMyBot, "str", "getLocationSnowMineExtractorWithLevel", "ptr", $g_hHBitmap2)
 		If $g_iDebugBuildingPos = 1 Then Setlog("#*# getLocationSnowMineExtractorWithLevel: " & $result[0], $COLOR_DEBUG1)
 		If $g_iDebugGetLocation = 1 Then DebugImageGetLocation($result[0], "SnowMineExtractorWithLevel")
 	EndIf
@@ -138,7 +138,7 @@ Func GetLocationMineWithLevel()
 EndFunc   ;==>GetLocationMineWithLevel
 
 Func GetLocationDarkElixirWithLevel()
-	;Local $result = DllCall($g_hLibFunctions, "str", "getLocationDarkElixirExtractorWithLevel", "ptr", $hHBitmap2)
+	;Local $result = DllCall($g_hLibFunctions, "str", "getLocationDarkElixirExtractorWithLevel", "ptr", $g_hHBitmap2)
 
 	Local $directory = @ScriptDir & "\imgxml\Storages\Drills"
 	Local $Maxpositions = 3

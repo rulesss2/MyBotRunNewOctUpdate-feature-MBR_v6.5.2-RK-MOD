@@ -6,7 +6,7 @@
 ; Parameters ....:
 ; Return values .: None
 ; Author ........: Code Monkey #17
-; Modified ......: (2016-2), CodeSlinger69 (2017), MonkeyHunter (2017-3)
+; Modified ......: MonkeyHunter (2016-2), CodeSlinger69 (2017), MonkeyHunter (2017-3)
 ; Remarks .......: This file is part of MyBot, previously known as ClashGameBot. Copyright 2015-2017
 ;                  MyBot is distributed under the terms of the GNU GPL
 ; Related .......:
@@ -16,7 +16,8 @@
 #include-once
 
 Func BotCommand()
-    	Static $TimeToStop = -1
+
+	Static $TimeToStop = -1
 
 	Local $bChkBotStop, $iCmbBotCond, $iCmbBotCommand
 
@@ -37,7 +38,7 @@ Func BotCommand()
 		$g_bTrainEnabled = True
 		$g_bDonationEnabled = True
 
-		If $iCmbBotCond = 15 And $g_iCmbHoursStop <> 0 Then $TimeToStop = $g_iCmbHoursStop * 3600000 ; 3600000 = 1 Hours		
+		If $iCmbBotCond = 15 And $g_iCmbHoursStop <> 0 Then $TimeToStop = $g_iCmbHoursStop * 3600000 ; 3600000 = 1 Hours
 
 		Switch $iCmbBotCond
 			Case 0
@@ -76,11 +77,11 @@ Func BotCommand()
 				$g_bMeetCondStop = True
 			Case 17 ; Donate Only
 				$g_bMeetCondStop = True
-				$g_bTrainEnabled  = False
+				$g_bTrainEnabled = False
 			Case 18 ; Only stay online
 				$g_bMeetCondStop = True
 				$g_bTrainEnabled = False
-				$bDonationEnabled = False
+				$g_bDonationEnabled = False
 			Case 19 ; Have shield - Online/Train/Collect/Donate
 				If $g_bWaitShield = True Then $g_bMeetCondStop = True
 			Case 20 ; Have shield - Online/Collect/Donate
@@ -98,7 +99,6 @@ Func BotCommand()
 
 		If $g_bMeetCondStop Then
 			Switch $iCmbBotCommand
-			
 				Case 0
 				    If $ChatbotChatGlobal = True Or $ChatbotChatClan = True Then
 					   ChatbotMessage()			   

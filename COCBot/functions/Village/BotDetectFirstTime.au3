@@ -52,10 +52,8 @@ Func BotDetectFirstTime()
 		Setlog("Warning: TownHall level below 6 NOT RECOMMENDED!", $COLOR_ERROR)
 		Setlog("Proceed with caution as errors may occur.", $COLOR_ERROR)
 	EndIf
-    
+
 	;If _Sleep($DELAYBOTDETECT1) Then Return
-	
-	;If _Sleep($iDelayBotDetectFirstTime1) Then Return
 	;ClanLevel()
 	If _Sleep($DELAYBOTDETECT1) Then Return
 	CheckImageType()

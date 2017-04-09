@@ -29,12 +29,12 @@ Func chkShieldStatus($bChkShield = True, $bForceChkPBT = False)
 		If _Sleep($DELAYRESPOND) Then Return
 
 		If IsArray($Result) Then
-		    Local $iShieldExp = _DateDiff('n', $Result[2], _NowCalc())
+			Local $iShieldExp = _DateDiff('n', $Result[2], _NowCalc())
 			If Abs($iShieldExp) > 0 Then
-			   Local $sFormattedDiff = _Date_Difference(_NowCalc(), $Result[2], 4)
-			   Setlog("Shield expires in: " & $sFormattedDiff)
+				Local $sFormattedDiff = _Date_Difference(_NowCalc(), $Result[2], 4)
+				Setlog("Shield expires in: " & $sFormattedDiff)
 			Else
-			   Setlog("Shield has expired")
+				Setlog("Shield has expired")
 			EndIf
 
 			If _DateIsValid($g_asShieldStatus[2]) Then ; if existing global shield time is valid
@@ -88,7 +88,7 @@ Func chkShieldStatus($bChkShield = True, $bForceChkPBT = False)
 
 	If $bForceChkPBT Or $g_bGForcePBTUpdate Or $g_sPBStartTime = "" Then
 
-		$g_bGForcePBTUpdate = False  ; Reset global flag to force PB update
+		$g_bGForcePBTUpdate = False ; Reset global flag to force PB update
 
 		$Result = getPBTime() ; Get time in future that PBT starts
 
@@ -125,17 +125,17 @@ EndFunc   ;==>chkShieldStatus
 ; Returns formatted difference between two dates
 ; $iGrain from 0 To 5, to control level of detail that is returned
 Func _Date_Difference($sStartDate, Const $sEndDate, Const $iGrain)
-    Local $aUnit[6] = ["Y", "M", "D", "h", "n", "s"]
-    Local $aType[6] = ["year", "month", "day", "hour", "minute", "second"]
-    Local $sReturn = "", $iUnit
+	Local $aUnit[6] = ["Y", "M", "D", "h", "n", "s"]
+	Local $aType[6] = ["year", "month", "day", "hour", "minute", "second"]
+	Local $sReturn = "", $iUnit
 
-    For $i = 0 To $iGrain
-        $iUnit = _DateDiff($aUnit[$i], $sStartDate, $sEndDate)
-        If $iUnit <> 0 Then
-            $sReturn &= $iUnit & " " & $aType[$i] & ($iUnit > 1 ? "s" : "") & " "
-        EndIf
-        $sStartDate = _DateAdd($aUnit[$i], $iUnit, $sStartDate)
-    Next
+	For $i = 0 To $iGrain
+		$iUnit = _DateDiff($aUnit[$i], $sStartDate, $sEndDate)
+		If $iUnit <> 0 Then
+			$sReturn &= $iUnit & " " & $aType[$i] & ($iUnit > 1 ? "s" : "") & " "
+		EndIf
+		$sStartDate = _DateAdd($aUnit[$i], $iUnit, $sStartDate)
+	Next
 
 	Return $sReturn
 EndFunc   ;==>_Date_Difference

@@ -5,7 +5,7 @@
 ; Syntax ........: CloseBS()
 ; Parameters ....: None
 ; Return values .: @error = 1 if failure
-; Author ........: The Master1 (From CGB Forums Aug2015)
+; Author ........: TheMaster1st (08-2015)
 ; Modified ......: KnowJack (08-2015)
 ; Remarks .......: This file is part of MyBot, previously known as ClashGameBot. Copyright 2015-2017
 ;                  MyBot is distributed under the terms of the GNU GPL

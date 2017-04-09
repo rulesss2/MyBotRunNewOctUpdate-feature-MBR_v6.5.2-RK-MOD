@@ -5,7 +5,7 @@
 ; Parameters ....: None
 ; Return values .: None
 ; Author ........:
-; Modified ......: CodeSlinger69 (2017), MonkeyHunter (03-2017)
+; Modified ......: CodeSlinger69 (2017)
 ; Remarks .......: This file is part of MyBot, previously known as ClashGameBot. Copyright 2015-2017
 ;                  MyBot is distributed under the terms of the GNU GPL
 ; Related .......:
@@ -30,46 +30,9 @@ Global $g_hChkDropCCHoursEnable = 0, $g_ahChkDropCCHours[24] = [0,0,0,0,0,0,0,0,
 Global $g_ahChkDropCCHoursE1 = 0, $g_ahChkDropCCHoursE2 = 0
 
 Func CreateAttackSearchOptionsAttack()
-
-   Local $sTxtTip = ""
-   Local $x = 25, $y = 45
-	GUICtrlCreateGroup(GetTranslated(634,1, "Hero Abilities"), $x - 20, $y - 20, $g_iSizeWGrpTab4, 95)
-		GUICtrlCreateIcon($g_sLibIconPath, $eIcnHeroes, $x, $y, 64, 64)
-
-	   $x += 82
-	   $y -= 4
-		   $g_hRadAutoAbilities = GUICtrlCreateRadio(GetTranslated(634,2, "Auto activate (red zone)."), $x, $y - 4 , -1, -1)
-		   $sTxtTip = GetTranslated(634,3, "Activate the Ability when the Hero becomes weak.") & @CRLF & GetTranslated(634,4, "Heroes are checked and activated individually.")
-		   _GUICtrlSetTip(-1, $sTxtTip)
-		   GUICtrlSetState(-1, $GUI_CHECKED)
-
-	   $y += 15
-		   $g_hRadManAbilities = GUICtrlCreateRadio(GetTranslated(634,5, "Timed after") & ":", $x , $y , -1, -1)
-			   $sTxtTip = GetTranslated(634,6, "Activate the Ability on a timer.") & @CRLF & GetTranslated(634,7, "All Heroes are activated at the same time.")
-			   _GUICtrlSetTip(-1, $sTxtTip)
-			   GUICtrlSetState(-1, $GUI_UNCHECKED)
-
-		   $g_hTxtManAbilities = GUICtrlCreateInput("9", $x + 80, $y + 3, 30, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-			   $sTxtTip = GetTranslated(634,8, "Set the time in seconds for Timed Activation of Hero Abilities.")
-			   _GUICtrlSetTip(-1, $sTxtTip)
-			   GUICtrlSetLimit(-1, 2)
-		   GUICtrlCreateLabel(GetTranslated(603,6, "sec."), $x + 115, $y + 4, -1, -1)
-
-	  $y += 30
-		   $g_hChkUseWardenAbility = GUICtrlCreateCheckbox(GetTranslated(634,9, "Forced activation of Warden Ability after") & ":", $x + 1, $y, -1, -1)
-			   $sTxtTip = GetTranslated(634,10, "Force Eternal Tome ability of Grand Warden on a timer.")
-			   _GUICtrlSetTip(-1, $sTxtTip)
-				GUICtrlSetOnEvent(-1, "ChkUseWardenAbility")
-		   $g_hTxtWardenAbility = GUICtrlCreateInput("10", $x + 220, $y + 2, 30, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
-			   $sTxtTip = GetTranslated(634,11, "Set the time in seconds for Timed Activation of Grand Warden Ability.")
-			   _GUICtrlSetTip(-1, $sTxtTip)
-			   GUICtrlSetLimit(-1, 2)
-		   GUICtrlCreateLabel(GetTranslated(603,6, -1), $x + 253, $y + 4, -1, -1)
-
-	GUICtrlCreateGroup("", -99, -99, 1, 1)
-
-    Local $x = 25, $y = 145
-    GUICtrlCreateGroup(GetTranslated(634,20, "Attack Schedule"), $x - 20, $y - 20, $g_iSizeWGrpTab4, 127)
+$17 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)
+    Local $x = 25, $y = 45
+    GUICtrlCreateGroup(GetTranslated(634,20, "Attack Schedule"), $x - 20, $y - 20, 420, 130)
 	$x -= 5
 		$g_hChkAttackPlannerEnable = _GUICtrlCreateCheckbox(GetTranslated(634,21, "Enable Schedule"), $x, $y-5, -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(634,22, "This option will allow you to schedule attack times") & @CRLF & _
@@ -321,9 +284,9 @@ Func CreateAttackSearchOptionsAttack()
 
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
-    Local $x = 25, $y = 275
-    GUICtrlCreateGroup(GetTranslated(634,12, "ClanCastle"), $x - 20, $y - 20, $g_iSizeWGrpTab4, 110)
-		GUICtrlCreateIcon($g_sLibIconPath, $eIcnCC, $x, $y + 8, 64, 64)
+    Local $x = 25, $y = 180
+    GUICtrlCreateGroup(GetTranslated(634,12, "ClanCastle"), $x - 20, $y - 20, 420, 100)
+		GUICtrlCreateIcon($g_sLibIconPath, $eIcnCC, $x -10 , $y + 4, 24, 24)
 
 	$y -= 4
 		$g_hChkDropCCHoursEnable = _GUICtrlCreateCheckbox(GetTranslated(634,40,"Enable CC Drop Schedule" ), $x +20, $y+2, -1, -1)
@@ -331,11 +294,32 @@ Func CreateAttackSearchOptionsAttack()
 			_GUICtrlSetTip(-1, GetTranslated(634,41, "Use schedule to define when dropping CC is allowed, \r\n CC is always dropped when schedule is not enabled"))
 			GUICtrlSetOnEvent(-1, "chkDropCCHoursEnable")
 
+	$y += 22
+		$g_hChkUseCCBalanced = _GUICtrlCreateCheckbox(GetTranslated(634,13,"Balance Donate/Receive" ), $x +20, $y+2, -1, -1)
+			GUICtrlSetState(-1, $GUI_UNCHECKED)
+			_GUICtrlSetTip(-1, GetTranslated(634,14, "Drop your Clan Castle only if your donated/received ratio is greater than D/R ratio below."))
+			GUICtrlSetOnEvent(-1, "chkBalanceDR")
+
+	$y += 28
+		$g_hCmbCCDonated = GUICtrlCreateCombo("",  $x + 40 , $y, 30, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			_GUICtrlSetTip(-1, GetTranslated(634,15, "Donated ratio"))
+			GUICtrlSetData(-1, "1|2|3|4|5", "1")
+			GUICtrlSetState(-1, $GUI_DISABLE)
+			GUICtrlSetOnEvent(-1, "cmbBalanceDR")
+		GUICtrlCreateLabel("/", $x + 73, $y + 5, -1, -1)
+			_GUICtrlSetTip(-1, GetTranslated(634,16, "Wanted donated / received ratio") & @CRLF & _
+							   GetTranslated(634,17, "1/1 means donated = received, 1/2 means donated = half the received etc."))
+		$g_hCmbCCReceived = GUICtrlCreateCombo("", $x +80, $y, 30, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			_GUICtrlSetTip(-1, GetTranslated(634,18, "Received ratio"))
+			GUICtrlSetData(-1, "1|2|3|4|5", "1")
+			GUICtrlSetState(-1, $GUI_DISABLE)
+			GUICtrlSetOnEvent(-1, "cmbBalanceDR")
+
 	$x += 188
-	$y += 20
+	$y = 180
 		GUICtrlCreateLabel(GetTranslated(603,30, -1), $x+8, $y)
 
-	$y += 14
+    $y += 14
 	$x -= 21
 		GUICtrlCreateLabel(" 0", $x + 30, $y, 13, 15)
 		GUICtrlCreateLabel(" 1", $x + 45, $y, 13, 15)

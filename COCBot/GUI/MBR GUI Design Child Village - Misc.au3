@@ -14,7 +14,7 @@
 ; ===============================================================================================================================
 #include-once
 
-;$hGUI_Settings = _GUICreate("", $g_iSizeWGrpTab2, $g_iSizeHGrpTab2, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hGUI_VILLAGE)
+;$hGUI_Settings = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 - 28, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hGUI_VILLAGE)
 ;GUISetBkColor($COLOR_WHITE, $hGUI_Settings)
 
 Global $g_hChkBotStop = 0, $g_hCmbBotCommand = 0, $g_hCmbBotCond = 0, $g_hCmbHoursStop = 0
@@ -27,7 +27,7 @@ Func CreateVillageMisc()
 $39 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 2, 23, 442, 410, $WS_CLIPCHILDREN)
    Local $sTxtTip = ""
    Local $x = 15, $y = 45
-   GUICtrlCreateGroup(GetTranslated(610,1, "Halt Attack"), $x - 10, $y - 20, $g_iSizeWGrpTab2, 100)
+   GUICtrlCreateGroup(GetTranslated(610,1, "Halt Attack"), $x - 10, $y - 20, 440, 100)
 		$g_hChkBotStop = GUICtrlCreateCheckbox("", $x - 5, $y, 16, 16)
 			$sTxtTip = GetTranslated(610,2, "Use these options to set when the bot will stop attacking.")
 			_GUICtrlSetTip(-1, $sTxtTip)
@@ -85,8 +85,8 @@ $39 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 2, 23, 442, 410, $WS_CLIP
 			GUICtrlSetLimit(-1, 6)
    GUICtrlCreateGroup("", -99, -99, 1, 1)
 
-   Local $x = 15, $y = 148
-   GUICtrlCreateGroup(GetTranslated(610,40, "Rearm, Collect, Clear"), $x -10, $y - 20 , $g_iSizeWGrpTab2, 235)
+   Local $x = 15, $y = 150
+   GUICtrlCreateGroup(GetTranslated(610,40, "Rearm, Collect, Clear"), $x -10, $y - 20 , 440, 190)
 		GUICtrlCreateIcon($g_sLibIconPath, $eIcnTrap, $x + 7, $y, 24, 24)
 		GUICtrlCreateIcon($g_sLibIconPath, $eIcnXbow, $x + 32, $y, 24, 24)
 		GUICtrlCreateIcon($g_sLibIconPath, $eIcnInferno, $x + 57, $y, 24, 24)
@@ -127,7 +127,7 @@ $39 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 2, 23, 442, 410, $WS_CLIP
 
 
    Local $x = 20, $y = 345
-   GUICtrlCreateGroup(GetTranslated(610,53, "Locate Manually"), $x - 15, $y - 20, $g_iSizeWGrpTab2, 65)
+   GUICtrlCreateGroup(GetTranslated(610,53, "Locate Manually"), $x - 15, $y - 20, 440, 65)
 		Local $sTxtRelocate = GetTranslated(610,55, "Relocate your") & " "
 		$X -= 11
 		$y += 0

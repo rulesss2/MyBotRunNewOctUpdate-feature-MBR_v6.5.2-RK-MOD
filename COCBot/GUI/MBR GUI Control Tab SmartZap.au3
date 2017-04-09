@@ -27,7 +27,7 @@ Func chkSmartLightSpell()
 			GUICtrlSetState($g_hTxtSmartMinDark, $GUI_DISABLE)
 			GUICtrlSetState($g_hTxtSmartExpectedDE, $GUI_DISABLE)
 		EndIf
-		$g_bSmartZapEnable = True
+		$ichkSmartZap = 1
 	Else
 		GUICtrlSetState($g_hChkSmartZapDB, $GUI_DISABLE)
 		GUICtrlSetState($g_hChkSmartZapSaveHeroes, $GUI_DISABLE)
@@ -36,7 +36,7 @@ Func chkSmartLightSpell()
 		GUICtrlSetState($g_hChkSmartEQSpell, $GUI_DISABLE)
 		GUICtrlSetState($g_hLblSmartUseLSpell, $GUI_HIDE)
 		GUICtrlSetState($g_hTxtSmartExpectedDE, $GUI_DISABLE)
-		$g_bSmartZapEnable = False
+		$ichkSmartZap = 0
 	EndIf
 EndFunc   ;==>chkSmartLightSpell
 
@@ -44,36 +44,36 @@ Func chkNoobZap()
 	If GUICtrlRead($g_hChkNoobZap) = $GUI_CHECKED Then
 		GUICtrlSetState($g_hTxtSmartMinDark, $GUI_ENABLE)
 		GUICtrlSetState($g_hTxtSmartExpectedDE, $GUI_ENABLE)
-		$g_bNoobZap = True
+		$ichkNoobZap = 1
 	Else
 		GUICtrlSetState($g_hTxtSmartMinDark, $GUI_DISABLE)
 		GUICtrlSetState($g_hTxtSmartExpectedDE, $GUI_DISABLE)
-		$g_bNoobZap = False
+		$ichkNoobZap = 0
 	EndIf
 EndFunc   ;==>chkNoobZap
 
 Func chkEarthQuakeZap()
 	If GUICtrlRead($g_hChkSmartEQSpell) = $GUI_CHECKED Then
 		GUICtrlSetState($g_hLblSmartUseEQSpell, $GUI_SHOW)
-		$g_bEarthQuakeZap = True
+		$ichkEarthQuakeZap = 1
 	Else
 		GUICtrlSetState($g_hLblSmartUseEQSpell, $GUI_HIDE)
-		$g_bEarthQuakeZap = False
+		$ichkEarthQuakeZap = 0
 	EndIf
 EndFunc   ;==>chkEarthQuakeZap
 
 Func chkSmartZapDB()
-    $g_bSmartZapDB = (GUICtrlRead($g_hChkSmartZapDB) = $GUI_CHECKED)
+    $ichkSmartZapDB = GUICtrlRead($g_hChkSmartZapDB) = $GUI_CHECKED ? 1 : 0
 EndFunc   ;==>chkSmartZapDB
 
 Func chkSmartZapSaveHeroes()
-    $g_bSmartZapSaveHeroes = (GUICtrlRead($g_hChkSmartZapSaveHeroes) = $GUI_CHECKED)
+    $ichkSmartZapSaveHeroes = GUICtrlRead($g_hChkSmartZapSaveHeroes) = $GUI_CHECKED ? 1 : 0
 EndFunc   ;==>chkSmartZapSaveHeroes
 
 Func txtMinDark()
-	$g_iSmartZapMinDE = GUICtrlRead($g_hTxtSmartMinDark)
+	$itxtMinDE = GUICtrlRead($g_hTxtSmartMinDark)
 EndFunc   ;==>txtMinDark
 
 Func txtExpectedDE()
-	$g_iSmartZapExpectedDE = GUICtrlRead($g_hTxtSmartExpectedDE)
+	$itxtExpectedDE = GUICtrlRead($g_hTxtSmartExpectedDE)
 EndFunc   ;==>TxtExpectedDE

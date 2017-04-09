@@ -21,14 +21,14 @@ Global $g_hCmbStandardDropOrderAB = 0, $g_hCmbStandardDropSidesAB = 0, $g_hCmbSt
 Global $g_hLblSmartDeployAB = 0, $g_hPicAttackNearDarkElixirDrillAB = 0
 
 Func CreateAttackSearchActiveBaseStandard()
-
-   $g_hGUI_ACTIVEBASE_ATTACK_STANDARD = _GUICreate("", $_GUI_MAIN_WIDTH - 195, $g_iSizeHGrpTab4, 150, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hGUI_ACTIVEBASE)
+   
+   $g_hGUI_ACTIVEBASE_ATTACK_STANDARD = GUICreate("", $_GUI_MAIN_WIDTH - 195, $_GUI_MAIN_HEIGHT - 344, 150, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hGUI_ACTIVEBASE)
    ;GUISetBkColor($COLOR_WHITE, $g_hGUI_ACTIVEBASE_ATTACK_STANDARD)
    $46 = GUICtrlCreatePic (@ScriptDir & "\Images2\1.jpg", 0, -5, 280, 352, $WS_CLIPCHILDREN)
    Local $sTxtTip = ""
    Local $x = 25, $y = 20
 
-   GUICtrlCreateGroup(GetTranslated(608,1, -1), $x - 20, $y - 20, 270, $g_iSizeHGrpTab4)
+   GUICtrlCreateGroup(GetTranslated(608,1, -1), $x - 20, $y - 20, 270, 306)
    ;$x -= 15
 	  GUICtrlCreateLabel(GetTranslated(608,2, -1),$x, $y, 143,18,$SS_LEFT)
 	  GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)

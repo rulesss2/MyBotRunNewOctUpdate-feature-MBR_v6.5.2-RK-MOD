@@ -13,6 +13,23 @@
 ; Example .......: No
 ; ===============================================================================================================================
 #include-once
+Func chkBalanceDR()
+	If GUICtrlRead($g_hChkUseCCBalanced) = $GUI_CHECKED Then
+		GUICtrlSetState($g_hCmbCCDonated, $GUI_ENABLE)
+		GUICtrlSetState($g_hCmbCCReceived, $GUI_ENABLE)
+	Else
+		GUICtrlSetState($g_hCmbCCDonated, $GUI_DISABLE)
+		GUICtrlSetState($g_hCmbCCReceived, $GUI_DISABLE)
+	EndIf
+EndFunc   ;==>chkBalanceDR
+
+Func cmbBalanceDR()
+	If _GUICtrlComboBox_GetCurSel($g_hCmbCCDonated) = _GUICtrlComboBox_GetCurSel($g_hCmbCCReceived) Then
+		_GUICtrlComboBox_SetCurSel($g_hCmbCCDonated, 0)
+		_GUICtrlComboBox_SetCurSel($g_hCmbCCReceived, 0)
+	EndIf
+EndFunc   ;==>cmbBalanceDR
+
 Func btnMilkingOptions()
 ;~ 	OpenGUIMilk2()
 EndFunc   ;==>btnMilkingOptions
@@ -47,7 +64,7 @@ Func cmbDBAlgorithm()
 	Local $iCmbValue = _GUICtrlComboBox_GetCurSel($g_hCmbDBAlgorithm)
 	; Algorithm Alltroops
 	; show spells if milking because after milking you can continue to attack with thsnipe or standard attack where you can use spells
-    _GUI_Value_STATE(($iCmbValue = 1 Or $iCmbValue = 2) ? "SHOW" : "HIDE", $g_aGroupAttackDBSpell & "#" & $groupIMGAttackDBSpell)
+    _GUI_Value_STATE(($iCmbValue = 1 Or $iCmbValue = 2) ? "SHOW" : "HIDE", $groupAttackDBSpell & "#" & $groupIMGAttackDBSpell)
 
 	If BitAND(GUICtrlGetState($g_hGUI_DEADBASE), $GUI_SHOW) And GUICtrlRead($g_hGUI_DEADBASE_TAB) = 1 Then ; fix ghosting during control applyConfig
 		Select
@@ -284,7 +301,7 @@ EndFunc   ;==>IschkAttackWeekdays
 
 Func chkAttackPlannerEnable()
 	If GUICtrlRead($g_hChkAttackPlannerEnable) = $GUI_CHECKED Then
-		$g_bAttackPlannerEnable = True
+		$ichkAttackPlannerEnable = 1
 
 		If GUICtrlRead($g_hChkAttackPlannerCloseAll) = $GUI_UNCHECKED Then
 			GUICtrlSetState($g_hChkAttackPlannerCloseAll, $GUI_ENABLE)
@@ -328,7 +345,7 @@ Func chkAttackPlannerEnable()
 			GUICtrlSetState($g_ahChkAttackHoursE2, $GUI_ENABLE)
 		EndIf
 	Else
-		$g_bAttackPlannerEnable = False
+		$ichkAttackPlannerEnable = 0
 		GUICtrlSetState($g_hChkAttackPlannerCloseCoC, $GUI_DISABLE)
 		GUICtrlSetState($g_hChkAttackPlannerCloseAll, $GUI_DISABLE)
 		GUICtrlSetState($g_hChkAttackPlannerRandom, $GUI_DISABLE)
@@ -351,25 +368,25 @@ EndFunc   ;==>chkAttackPlannerEnable
 
 Func chkAttackPlannerCloseCoC()
 	If GUICtrlRead($g_hChkAttackPlannerCloseCoC) = $GUI_CHECKED Then
-		$g_bAttackPlannerCloseCoC = True
+		$ichkAttackPlannerCloseCoC = 1
 	Else
-		$g_bAttackPlannerCloseCoC = False
+		$ichkAttackPlannerCloseCoC = 0
 	EndIf
 EndFunc   ;==>chkAttackPlannerCloseCoC
 
 Func chkAttackPlannerCloseAll()
 	If GUICtrlRead($g_hChkAttackPlannerCloseAll) = $GUI_CHECKED Then
-		$g_bAttackPlannerCloseAll = True
+		$ichkAttackPlannerCloseAll = 1
 		GUICtrlSetState($g_hChkAttackPlannerCloseCoC, BitOR($GUI_DISABLE, $GUI_UNCHECKED))
 	Else
-		$g_bAttackPlannerCloseAll = False
+		$ichkAttackPlannerCloseAll = 0
 		GUICtrlSetState($g_hChkAttackPlannerCloseCoC, $GUI_ENABLE)
 	EndIf
 EndFunc   ;==>chkAttackPlannerCloseAll
 
 Func chkAttackPlannerRandom()
 	If GUICtrlRead($g_hChkAttackPlannerRandom) = $GUI_CHECKED Then
-		$g_bAttackPlannerRandomEnable = True
+		$ichkAttackPlannerRandom = 1
 		GUICtrlSetState($g_hCmbAttackPlannerRandom, $GUI_ENABLE)
 		GUICtrlSetState($g_hLbAttackPlannerRandom, $GUI_ENABLE)
 		For $i = 0 To 6
@@ -383,24 +400,24 @@ Func chkAttackPlannerRandom()
 		GUICtrlSetState($g_ahChkAttackHoursE1, $GUI_DISABLE)
 		GUICtrlSetState($g_ahChkAttackHoursE2, $GUI_DISABLE)
 	Else
-		$g_bAttackPlannerRandomEnable = False
+		$ichkAttackPlannerRandom = 0
 		chkAttackPlannerEnable()
 	EndIf
 EndFunc   ;==>chkAttackPlannerRandom
 
 Func cmbAttackPlannerRandom()
-	$g_iAttackPlannerRandomTime = Int(_GUICtrlComboBox_GetCurSel($g_hCmbAttackPlannerRandom))
-	GUICtrlSetData($g_hLbAttackPlannerRandom, $g_iAttackPlannerRandomTime > 0 ? GetTranslated(603, 37, -1) : GetTranslated(603, 38, "hr"))
+	$icmbAttackPlannerRandom = Int(_GUICtrlComboBox_GetCurSel($g_hCmbAttackPlannerRandom))
+	GUICtrlSetData($g_hLbAttackPlannerRandom, $icmbAttackPlannerRandom > 0 ? GetTranslated(603, 37, -1) : GetTranslated(603, 38, "hr"))
 EndFunc   ;==>cmbAttackPlannerRandom
 
 Func chkAttackPlannerDayLimit()
 	If GUICtrlRead($g_hChkAttackPlannerDayLimit) = $GUI_CHECKED Then
-		$g_bAttackPlannerDayLimit = True
+		$ichkAttackPlannerDayLimit = 1
 		GUICtrlSetState($g_hCmbAttackPlannerDayMin, $GUI_ENABLE)
 		GUICtrlSetState($g_hLbAttackPlannerDayLimit, $GUI_ENABLE)
 		GUICtrlSetState($g_hCmbAttackPlannerDayMax, $GUI_ENABLE)
 	Else
-		$g_bAttackPlannerDayLimit = False
+		$ichkAttackPlannerDayLimit = 0
 		GUICtrlSetState($g_hCmbAttackPlannerDayMin, $GUI_DISABLE)
 		GUICtrlSetState($g_hLbAttackPlannerDayLimit, $GUI_DISABLE)
 		GUICtrlSetState($g_hCmbAttackPlannerDayMax, $GUI_DISABLE)
@@ -412,7 +429,7 @@ Func cmbAttackPlannerDayMin()
 	If Int(GUICtrlRead($g_hCmbAttackPlannerDayMax)) < Int(GUICtrlRead($g_hCmbAttackPlannerDayMin)) Then
 		GUICtrlSetData($g_hCmbAttackPlannerDayMin, GUICtrlRead($g_hCmbAttackPlannerDayMax))
 	EndIf
-	$g_iAttackPlannerDayMin = Int(GUICtrlRead($g_hCmbAttackPlannerDayMin))
+	$icmbAttackPlannerDayMin = Int(GUICtrlRead($g_hCmbAttackPlannerDayMin))
 	_cmbAttackPlannerDayLimit()
 EndFunc   ;==>cmbAttackPlannerDayMin
 
@@ -420,7 +437,7 @@ Func cmbAttackPlannerDayMax()
 	If Int(GUICtrlRead($g_hCmbAttackPlannerDayMax)) < Int(GUICtrlRead($g_hCmbAttackPlannerDayMin)) Then
 		GUICtrlSetData($g_hCmbAttackPlannerDayMax, GUICtrlRead($g_hCmbAttackPlannerDayMin))
 	EndIf
-	$g_iAttackPlannerDayMax = Int(GUICtrlRead($g_hCmbAttackPlannerDayMax))
+	$icmbAttackPlannerDayMax = Int(GUICtrlRead($g_hCmbAttackPlannerDayMax))
 	_cmbAttackPlannerDayLimit()
 EndFunc   ;==>cmbAttackPlannerDayMax
 
@@ -446,7 +463,7 @@ EndFunc   ;==>_cmbAttackPlannerDayLimit
 Func chkDropCCHoursEnable()
     Local $bChk = GUICtrlRead($g_hChkDropCCHoursEnable) = $GUI_CHECKED
 
-    $g_bPlannedDropCCHoursEnable = ($bChk ? 1 : 0)
+    $iPlannedDropCCHoursEnable = $bChk ? 1 : 0
     For $i = 0 To 23
 	  GUICtrlSetState($g_ahChkDropCCHours[$i], $bChk ? $GUI_ENABLE : $GUI_DISABLE)
     Next

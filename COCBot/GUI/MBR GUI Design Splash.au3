@@ -31,7 +31,7 @@ Func CreateSplashScreen()
    Local $iT = 20 ; Top of logo (additional space)
    Local $iB = 10 ; Bottom of logo (additional space)
 
-   If $ichkDisableSplash = 0 Then
+   If $g_bDisableSplash = 0 Then
 
 	   Local $hSplashImg = _GDIPlus_BitmapCreateFromFile($sSplashImg)
 	   ; Determine dimensions of splash image

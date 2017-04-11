@@ -90,7 +90,7 @@ Func CreateBottomPanel()
 
    If $g_bAndroidAdbScreencap = True Then chkBackground() ; update background mode GUI
 
-   $g_hPicTwoArrowShield = GUICtrlCreateIcon($g_sLibIconPath, $eIcn2Arrow, $x + 190, $y + 10, 48, 48)
+   $g_hPicTwoArrowShield = _GUICtrlCreatePic(@ScriptDir & "\Images\Logo2.png", $x + 190, $y + 10, 54, 52)
 
    $g_hLblVersion = GUICtrlCreateLabel($g_sBotVersion, 200, $y + 60, 60, 17, $SS_CENTER)
 	   GUICtrlSetColor(-1, $COLOR_MEDGRAY)

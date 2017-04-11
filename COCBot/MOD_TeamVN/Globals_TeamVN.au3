@@ -13,10 +13,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
-; Check Version
-Global $g_sLastModversion = "" ;latest version from GIT
-Global $g_sLastModmessage = "" ;message for last version
-Global $g_sOldModversmessage = "" ;warning message for old bot
+
 
 ; CSV Command DropS, SideP, Zap, Remain (Mr.Viper) - Added by NguyenAnhHD
 Global $CurBaseRedLine[2] = ["", ""]

@@ -99,7 +99,7 @@ Global $hImageList = 0
 Global $g_hFrmBotButtons, $g_hFrmBotLogoUrlSmall, $g_hFrmBotEx = 0, $g_hLblBotTitle, $g_hLblBotShrink = 0, $g_hLblBotExpand = 0, $g_hLblBotMinimize = 0, $g_hLblBotClose = 0, $g_hFrmBotBottom = 0
 Global $g_hFrmBotEmbeddedShield = 0, $g_hFrmBotEmbeddedShieldInput = 0, $g_hFrmBotEmbeddedGraphics = 0
 Global $g_hFrmBot_MAIN_PIC = 0, $g_hFrmBot_URL_PIC = 0, $g_hFrmBot_URL_PIC2 = 0
-Global $g_hTabMain = 0, $g_hTabLog = 0, $g_hTabVillage = 0, $g_hTabAttack = 0, $g_hTabBot = 0, $g_hTabMOD = 0, $g_hTabAbout = 0
+Global $g_hTabMain = 0, $g_hTabLog = 0, $g_hTabVillage = 0, $g_hTabAttack = 0, $g_hTabBot = 0, $g_hTabMOD = 0, $g_hTabRK = 0, $g_hTabAbout = 0
 Global $g_hStatusBar = 0
 Global $g_hTiShow = 0, $g_hTiHide = 0, $g_hTiDonate = 0, $g_hTiAbout = 0, $g_hTiExit = 0
 Global $g_aFrmBotPosInit[8] = [0, 0, 0, 0, 0, 0, 0, 0]
@@ -111,6 +111,7 @@ Global $g_bFrmBotMinimized = False ; prevents bot flickering
 #include "GUI\MBR GUI Design Village.au3"
 #include "GUI\MBR GUI Design Attack.au3"
 #include "GUI\MBR GUI Design Bot.au3"
+#include "GUI\MBR GUI Design Child RK.au3"
 #include "GUI\MBR GUI Design About.au3"
 
 ; TeamVN MOD (NguyenAnhHD, Demen)
@@ -260,7 +261,10 @@ Func CreateMainGUIControls()
 
    SplashStep(GetTranslated(500, 37, "Loading Mods tab..."))
    CreateMODTab()
-
+   
+   SplashStep(GetTranslated(500, 62, "Loading RK tab..."))
+   CreateRKTab()
+   
    SplashStep(GetTranslated(500, 29, "Loading About Us tab..."))
    CreateAboutTab()
 
@@ -276,6 +280,7 @@ Func CreateMainGUIControls()
    $g_hTabAttack = GUICtrlCreateTabItem(GetTranslated(600,3,"Attack Plan"))
    $g_hTabBot = GUICtrlCreateTabItem(GetTranslated(600,4,"Bot"))
    $g_hTabMOD = GUICtrlCreateTabItem(GetTranslated(600,57,"Mods"))
+   $g_hTabRK = GUICtrlCreateTabItem(GetTranslated(600,61,"RK"))
    $g_hTabAbout = GUICtrlCreateTabItem(GetTranslated(600, 5, "About Us"))
    GUICtrlCreateTabItem("")
    GUICtrlSetResizing(-1, $GUI_DOCKBORDERS)

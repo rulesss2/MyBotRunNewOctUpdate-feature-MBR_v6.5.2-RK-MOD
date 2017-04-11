@@ -7,7 +7,6 @@
 *.orig
 *.png
 *.jpg
-*.exe
 *.bmp
 *.zip
 
@@ -29,11 +28,6 @@
 
 # Exclusion language ini files
 ![Ll]anguages/*.ini
-
-# Exclusion Zip tool to debug
-!7za.exe
-!Bug Reporter.exe
-![Ll]ib/DebugTools/virus.ico
 
 # Exclusion Images/Icon
 ![Ii]mages/logo.jpg
@@ -60,7 +54,6 @@
 ![Ii]mages/WeakBase/Xbow/*.png
 ![Ii]mages/Walls/*.jpg
 ![Ii]mages/*.png
-![Ii]mages/*.jpg
 ![Ss]trategies/*.ini
 
 #imgloc transition

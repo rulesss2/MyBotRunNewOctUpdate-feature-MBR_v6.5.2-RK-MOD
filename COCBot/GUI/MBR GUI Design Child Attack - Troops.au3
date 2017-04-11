@@ -18,7 +18,8 @@ Global $g_hGUI_TRAINARMY = 0
 Global $g_hGUI_TRAINARMY_TAB = 0, $g_hGUI_TRAINARMY_TAB_ITEM1 = 0, $g_hGUI_TRAINARMY_TAB_ITEM2 = 0, $g_hGUI_TRAINARMY_TAB_ITEM3 = 0, $g_hGUI_TRAINARMY_TAB_ITEM4 = 0
 
 ; Troops/Spells sub-tab
-Global $g_hChkUseQuickTrain = 0, $g_hRdoArmy1 = 0, $g_hRdoArmy2 = 0, $g_hRdoArmy3 = 0
+Global $g_hChkUseQuickTrain = 0, $g_ahChkArmy[3] = [0,0,0]			; QuickTrainCombo (check box) - Demen
+Global $g_hchkSimpleTrain = 0, $g_hchkPreciseTroops = 0, $g_hchkFillArcher = 0, $g_htxtFillArcher = 0, $g_hchkFillEQ = 0		; SimpleTrain - Demen
 Global $g_ahTxtTrainArmyTroopCount[$eTroopCount] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 Global $g_ahLblTrainArmyTroopLevel[$eTroopCount] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 Global $g_ahTxtTrainArmySpellCount[$eSpellCount] = [0,0,0,0,0,0,0,0,0,0]
@@ -85,13 +86,12 @@ Func CreateTroopsSpellsSubTab()
 	   $g_hChkUseQuickTrain = GUICtrlCreateCheckbox(GetTranslated(621, 34, "Use Quick Train"), $x + 15, $y + 19, -1, 15)
 	   GUICtrlSetState(-1, $GUI_UNCHECKED)
 	   GUICtrlSetOnEvent(-1, "chkUseQTrain")
-	   $g_hRdoArmy1 = GUICtrlCreateRadio(GetTranslated(621, 37, "Army 1"), $x + 120, $y + 20, 57, 15)
-	   GUICtrlSetState(-1, $GUI_DISABLE)
-	   GUICtrlSetState(-1, $GUI_CHECKED)
-	   $g_hRdoArmy2 = GUICtrlCreateRadio(GetTranslated(621, 38, "Army 2"), $x + 185, $y + 20, 57, 15)
-	   GUICtrlSetState(-1, $GUI_DISABLE)
-	   $g_hRdoArmy3 = GUICtrlCreateRadio(GetTranslated(621, 39, "Army 3"), $x + 250, $y + 20, 57, 15)
-	   GUICtrlSetState(-1, $GUI_DISABLE)
+	   For $i = 0 To 2												; QuickTrainCombo (check box) - Demen
+		   $g_ahChkArmy[$i] = GUICtrlCreateCheckbox("Army " & $i+1, $x + 120 + $i*60, $y + 20, 50, 15)
+		   GUICtrlSetState(-1, $GUI_DISABLE)
+		   If $i = 0 Then GUICtrlSetState(-1, $GUI_CHECKED)
+		   GUICtrlSetOnEvent(-1, "chkQuickTrainCombo")
+	   Next															; QuickTrainCombo (check box) - Demen
 	   GUICtrlCreateLabel(GetTranslated(621, 41, "Remove Army"), $x + 335, $y + 20, -1, 15, $SS_LEFT)
 	   GUICtrlCreateIcon($g_sLibIconPath, $eIcnResetButton, $x + 405, $y + 17, 24, 24)
 	   GUICtrlSetOnEvent(-1, "Removecamp")
@@ -616,6 +616,38 @@ Func CreateTroopsSpellsSubTab()
 			 GUICtrlSetColor(-1, $COLOR_WHITE)
 		  GUICtrlCreateIcon($g_sLibIconPath, $eIcnDark, $x + 146, $y + 14, 16, 16)
    GUICtrlCreateGroup("", -99, -99, 1, 1)
+
+;========== Adding GUI for SimpleTrain - Demen ==============
+	$x = 10
+	$y = 363
+	GUICtrlCreateGroup(GetTranslated(621, 300, "Simple Train (do not empty barracks)"), $x - 5, $y, $g_iSizeWGrpTab3, 38)
+		$x += 7
+		$y += 16
+			$g_hchkSimpleTrain = GUICtrlCreateCheckbox(GetTranslated(621, 301, "Always train queue"), $x, $y, -1, 15)
+				GUICtrlSetOnEvent(-1, "chkSimpleTrain")
+				_GUICtrlSetTip(-1, 	GetTranslated(621, 302, "Train 2 sets of army to make full camp & full queue") _
+									& @CRLF & GetTranslated(621, 303, "Only delete queued troops or spells if the queue is not full") _
+									& @CRLF & GetTranslated(621, 304, "Not delete training troops up to full camp capacity"))
+		$x += 130
+			$g_hchkPreciseTroops = GUICtrlCreateCheckbox(GetTranslated(621, 305, "Precise troops"), $x, $y, -1, 15)
+				GUICtrlSetOnEvent(-1, "chkPreciseTroops")
+				_GUICtrlSetTip(-1, 	GetTranslated(621, 306, "Check precision of troops & spells before training.") _
+									& @CRLF & GetTranslated(621, 307, "Will remove wrong troops or spells if any"))
+		$x += 103
+			$g_hchkFillArcher = GUICtrlCreateCheckbox(GetTranslated(621, 308, "Fill Archer:"), $x, $y, -1, 15)
+				GUICtrlSetState(-1, $GUI_DISABLE)
+				GUICtrlSetOnEvent(-1, "chkFillArcher")
+				_GUICtrlSetTip(-1, GetTranslated(621, 309, "Train some archers to top-up the camp or queue if it is nearly full"))
+			$g_htxtFillArcher = GUICtrlCreateInput("5", $x + 70, $y-1, 20, 16, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+				GUICtrlSetState(-1, $GUI_DISABLE)
+				GUICtrlSetLimit(-1, 2)
+		$x += 110
+			$g_hchkFillEQ = GUICtrlCreateCheckbox(GetTranslated(621, 310, "Fill 1 EQ"), $x, $y, -1, 15)
+				GUICtrlSetState(-1, $GUI_DISABLE)
+				_GUICtrlSetTip(-1, GetTranslated(621, 311, "Brew 1 EarthQuake Spell to top-up the spell camp or queue"))
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+;========== Adding GUI for SimpleTrain - Demen ==============
+
 EndFunc
 
 Func  CreateBoostSubTab()
@@ -631,8 +663,8 @@ Func  CreateBoostSubTab()
 	   GUICtrlCreateLabel(GetTranslated(623, 5, "Barracks") & " " & $sTextBoostLeft, $x + 20 + 29, $y + 4 + 7, -1, -1)
 		  $sTxtTip = GetTranslated(623, 6, "Use this to boost your Barracks with GEMS! Use with caution!")
 		  _GUICtrlSetTip(-1, $sTxtTip)
-	   $g_hCmbBoostBarracks = GUICtrlCreateCombo("", $x + 140 + 45, $y + 7, 40, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-		  GUICtrlSetData(-1, "0|1|2|3|4|5|6|7|8|9|10|11|12", "0")
+	   $g_hCmbBoostBarracks = GUICtrlCreateCombo("", $x + 140 + 45, $y + 7, 60, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+		  GUICtrlSetData(-1, "0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|No limit", "0")
 		  _GUICtrlSetTip(-1, $sTxtTip)
    GUICtrlCreateGroup("", -99, -99, 1, 1)
 
@@ -643,8 +675,8 @@ Func  CreateBoostSubTab()
 	   GUICtrlCreateLabel(GetTranslated(623, 8, "Spell Factory") & " " & $sTextBoostLeft, $x + 20 + 29, $y + 4, -1, -1)
 		  $sTxtTip = GetTranslated(623, 9, "Use this to boost your Spell Factory with GEMS! Use with caution!")
 		  _GUICtrlSetTip(-1, $sTxtTip)
-	   $g_hCmbBoostSpellFactory = GUICtrlCreateCombo("", $x + 185, $y, 40, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-		  GUICtrlSetData(-1, "0|1|2|3|4|5|6|7|8|9|10|11|12", "0")
+	   $g_hCmbBoostSpellFactory = GUICtrlCreateCombo("", $x + 185, $y, 60, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+		  GUICtrlSetData(-1, "0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|No limit", "0")
 		  _GUICtrlSetTip(-1, $sTxtTip)
    GUICtrlCreateGroup("", -99, -99, 1, 1)
 
@@ -654,8 +686,8 @@ Func  CreateBoostSubTab()
 	   GUICtrlCreateLabel(GetTranslated(603, 33, -1) & " " & $sTextBoostLeft, $x + 20, $y + 4, -1, -1)
 		  $sTxtTip = GetTranslated(623, 14, "Use this to boost your Barbarian King with GEMS! Use with caution!")
 		  _GUICtrlSetTip(-1, $sTxtTip)
-	   $g_hCmbBoostBarbarianKing = GUICtrlCreateCombo("", $x + 185, $y, 40, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-		  GUICtrlSetData(-1, "0|1|2|3|4|5|6|7|8|9|10|11|12", "0")
+	   $g_hCmbBoostBarbarianKing = GUICtrlCreateCombo("", $x + 185, $y, 60, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+		  GUICtrlSetData(-1, "0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|No limit", "0")
 		  _GUICtrlSetTip(-1, $sTxtTip)
 		  GUICtrlSetOnEvent(-1, "chkUpgradeKing")
 
@@ -664,8 +696,8 @@ Func  CreateBoostSubTab()
 	   GUICtrlCreateLabel(GetTranslated(603, 34, -1) & " " & $sTextBoostLeft, $x + 20, $y + 4, -1, -1)
 		  $sTxtTip = GetTranslated(623, 16, "Use this to boost your Archer Queen with GEMS! Use with caution!")
 		  _GUICtrlSetTip(-1, $sTxtTip)
-	   $g_hCmbBoostArcherQueen = GUICtrlCreateCombo("", $x + 185, $y, 40, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-		  GUICtrlSetData(-1, "0|1|2|3|4|5|6|7|8|9|10|11|12", "0")
+	   $g_hCmbBoostArcherQueen = GUICtrlCreateCombo("", $x + 185, $y, 60, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+		  GUICtrlSetData(-1, "0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|No limit", "0")
 		  _GUICtrlSetTip(-1, $sTxtTip)
 		  GUICtrlSetOnEvent(-1, "chkUpgradeQueen")
 
@@ -674,8 +706,8 @@ Func  CreateBoostSubTab()
 	   GUICtrlCreateLabel(GetTranslated(603, 35, -1) & " " & $sTextBoostLeft, $x + 20, $y + 4, -1, -1)
 		  $sTxtTip = GetTranslated(623, 18, "Use this to boost your Grand Warden with GEMS! Use with caution!")
 		  _GUICtrlSetTip(-1, $sTxtTip)
-	   $g_hCmbBoostWarden = GUICtrlCreateCombo("", $x + 185, $y, 40, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-		  GUICtrlSetData(-1, "0|1|2|3|4|5|6|7|8|9|10|11|12", "0")
+	   $g_hCmbBoostWarden = GUICtrlCreateCombo("", $x + 185, $y, 60, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+		  GUICtrlSetData(-1, "0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|No limit", "0")
 		  _GUICtrlSetTip(-1, $sTxtTip)
 		  GUICtrlSetOnEvent(-1, "chkUpgradeWarden")
    GUICtrlCreateGroup("", -99, -99, 1, 1)

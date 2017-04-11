@@ -26,6 +26,7 @@ Global $g_hChkAutostart = 0, $g_hTxtAutostartDelay = 0, $g_hChkCheckGameLanguage
 Global $g_hChkBotCustomTitleBarClick = 0, $g_hChkBotAutoSlideClick = 0, $g_hChkHideWhenMinimized = 0, $g_hChkUseRandomClick = 0, $g_hChkScreenshotType = 0, _
 	   $g_hChkScreenshotHideName = 0, $g_hTxtTimeAnotherDevice = 0
 Global $g_hChkSinglePBTForced = 0, $g_hTxtSinglePBTimeForced = 0, $g_hTxtPBTimeForcedExit = 0, $g_hChkFixClanCastle = 0, $g_hChkAutoResume = 0, $g_hTxtAutoResumeTime = 0
+Global $g_hChkAutohide = 0, $g_hTxtAutohideDelay = 0 ; Auto Hide - Added By NguyenAnhHD
 
 Func CreateBotOptions()
 
@@ -89,12 +90,21 @@ Func CreateBotOptions()
    GUICtrlCreateGroup("", -99, -99, 1, 1)
 
    $y += 48
-   GUICtrlCreateGroup(GetTranslated(636,12, "When Bot Starts"), $x - 20, $y - 20, 210, 112)
+   GUICtrlCreateGroup(GetTranslated(636,12, "When Bot Starts"), $x - 20, $y - 20, 210, 135)
 	   $y -= 5
 	   $g_hChkAutostart = GUICtrlCreateCheckbox(GetTranslated(636,13, "Auto START after") & ":", $x, $y, -1, -1)
 		   _GUICtrlSetTip(-1, GetTranslated(636,58, "Auto START the Bot after this No. of seconds."))
 		   GUICtrlSetOnEvent(-1, "chkAutostart")
 	   $g_hTxtAutostartDelay = GUICtrlCreateInput("10", $x + 120, $y + 2, 25, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+		   GUICtrlSetFont(-1, 8)
+		   GUICtrlSetState(-1, $GUI_DISABLE)
+	   GUICtrlCreateLabel(GetTranslated(603,6, "sec."), $x + 150, $y + 4, 27, 18)
+
+	   $y += 22
+	   $g_hChkAutohide = GUICtrlCreateCheckbox(GetTranslated(636,202, "Auto HIDE after") & ":", $x, $y, -1, -1)
+		   _GUICtrlSetTip(-1, GetTranslated(636,203, "Auto HIDE the Bot after this No. of seconds."))
+		   GUICtrlSetOnEvent(-1, "chkAutohide")
+	   $g_hTxtAutohideDelay = GUICtrlCreateInput("10", $x + 120, $y + 2, 25, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 		   GUICtrlSetFont(-1, 8)
 		   GUICtrlSetState(-1, $GUI_DISABLE)
 	   GUICtrlCreateLabel(GetTranslated(603,6, "sec."), $x + 150, $y + 4, 27, 18)

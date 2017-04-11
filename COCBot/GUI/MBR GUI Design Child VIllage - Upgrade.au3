@@ -15,7 +15,7 @@
 #include-once
 
 Global $g_hGUI_UPGRADE = 0, $g_hGUI_UPGRADE_TAB = 0, $g_hGUI_UPGRADE_TAB_ITEM1 = 0, $g_hGUI_UPGRADE_TAB_ITEM2 = 0, $g_hGUI_UPGRADE_TAB_ITEM3 = 0, _
-	   $g_hGUI_UPGRADE_TAB_ITEM4 = 0
+	   $g_hGUI_UPGRADE_TAB_ITEM4 = 0, $g_hGUI_UPGRADE_TAB_ITEM5 = 0
 
 ; Lab
 Global $g_hChkAutoLabUpgrades = 0, $g_hCmbLaboratory = 0, $g_hLblNextUpgrade = 0, $g_hBtnResetLabUpgradeTime = 0, $g_hPicLabUpgrade = 0
@@ -42,6 +42,10 @@ Global $g_hLblWallCost = 0, $g_hBtnFindWalls = 0
 Global $g_ahWallsCurrentCount[13] = [-1,-1,-1,-1,0,0,0,0,0,0,0,0,0] ; elements 0 to 3 are not referenced
 Global $g_ahPicWallsLevel[13] = [-1,-1,-1,-1,0,0,0,0,0,0,0,0,0] ; elements 0 to 3 are not referenced
 
+; Upgrade Management (MMHK) - Added by NguyenAnhHD
+Global $g_hChkUpgradeAllOrNone = 0, $g_hChkUpgradeRepeatAllOrNone = 0, $g_hChkUpdateNewUpgradesOnly = 0, $g_hBtnTop = 0, $g_hBtnBottom = 0, $g_hBtnUp = 0, $g_hBtnDown = 0
+
+#include "..\MOD_TeamVN\GUI\MOD GUI Design - SmartUpgrade.au3"
 
 Func CreateVillageUpgrade()
    $g_hGUI_UPGRADE = _GUICreate("", $g_iSizeWGrpTab2, $g_iSizeHGrpTab2, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hGUI_VILLAGE)
@@ -57,6 +61,8 @@ Func CreateVillageUpgrade()
    CreateBuildingsSubTab()
    $g_hGUI_UPGRADE_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600,17,"Walls"))
    CreateWallsSubTab()
+   $g_hGUI_UPGRADE_TAB_ITEM5 = GUICtrlCreateTabItem("SmartUpgarde")
+   CreateSmartUpgradeGUI()
    GUICtrlCreateTabItem("")
 EndFunc
 
@@ -172,14 +178,28 @@ Func CreateBuildingsSubTab()
 	$x -= 7
    ; table header
 	$y -= 7
+
+; Upgrade Management (MMHK) - Added by NguyenAnhHD
+		Local $sTxtTip = GetTranslated(656,7, "This button will clear or set the entire column of checkboxes")
+		$g_hChkUpgradeAllOrNone = GUICtrlCreateCheckbox("", $x + 4, $y, 13, 13, BitOR($BS_PUSHLIKE, $BS_ICON))
+			GUICtrlSetImage(-1, $g_sLibIconPath, $eIcnGoldStar, 0)
+			GUICtrlSetState(-1, $GUI_UNCHECKED)
+			GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetOnEvent(-1, "chkUpgradeAllOrNone")
+		$g_hChkUpgradeRepeatAllOrNone = GUICtrlCreateCheckbox("", $x + 394, $y, 13, 13, BitOR($BS_PUSHLIKE, $BS_ICON))
+			GUICtrlSetImage(-1, $g_sLibIconPath, $eIcnGoldStar, 0)
+			GUICtrlSetState(-1, $GUI_UNCHECKED)
+			GUICtrlSetTip(-1, $sTxtTip)
+			GUICtrlSetOnEvent(-1, "chkUpgradeRepeatAllOrNone")
+
 		GUICtrlCreateLabel(GetTranslated(616,2,"Unit Name"), $x+71, $y, 70, 18)
 		GUICtrlCreateLabel(GetTranslated(616,3,"Lvl"), $x+153, $y, 40, 18)
 		GUICtrlCreateLabel(GetTranslated(616,4,"Type"), $x+173, $y, 50, 18)
 		GUICtrlCreateLabel(GetTranslated(616,5,"Cost"), $x+219, $y, 50, 18)
 		GUICtrlCreateLabel(GetTranslated(616,6,"Time"), $x+270, $y, 50, 18)
-		GUICtrlCreateLabel(GetTranslated(616,7,"Rep."), $x+392, $y, 50, 18)
+;~		GUICtrlCreateLabel(GetTranslated(616,7,"Rep."), $x+392, $y, 50, 18)
 		GUICtrlCreateLabel(GetTranslated(616,37,"Estimate End"), $x+314, $y, 70, 18)
-	$y+=13
+	$y += 13
 
    ; Create upgrade GUI slots 0 to $g_iUpgradeSlots
    ; Can add more slots with $g_iUpgradeSlots value in Global variables file, 6 is minimum and max limit is 15 before GUI is too long.
@@ -231,21 +251,39 @@ Func CreateBuildingsSubTab()
 			_GUICtrlSetTip(-1, GetTranslated(616,18, "Save this much Elixir after the upgrade completes") & @CRLF & GetTranslated(616,19, "Set this value as needed to save for making troops or wall upgrades."))
 			GUICtrlSetLimit(-1, 7)
 	$x -= 15
-	$y -= 8
+	$y -= 18
 		GUICtrlCreateIcon ($g_sLibIconPath, $eIcnDark, $x + 140, $y, 15, 15)
 		GUICtrlCreateLabel(GetTranslated(616,20, "Min. Dark") & ":", $x + 160, $y + 3, -1, -1)
 		$g_hTxtUpgrMinDark = GUICtrlCreateInput("3000", $x + 210, $y, 61, 17, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 			_GUICtrlSetTip(-1, GetTranslated(616,21, "Save this amount of Dark Elixir after the upgrade completes.") & @CRLF & GetTranslated(616,22, "Set this value higher if you want make war troops."))
 			GUICtrlSetLimit(-1, 6)
+
+; Upgrade Management (MMHK) - Added by NguyenAnhHD
+		$g_hChkUpdateNewUpgradesOnly = GUICtrlCreateCheckbox(GetTranslated(656,1, "New Only"), $x + 141, $y + 15, -1, -1)
+			GUICtrlSetTip(-1, GetTranslated(656,2, "Update NEW upgrades only for speed"))
+			GUICtrlSetOnEvent(-1, "chkUpdateNewUpgradesOnly")
+		$g_hBtnTop = GUICtrlCreateButton("T", $x + 209, $y + 18, 23, 17, $BS_CENTER)
+			GUICtrlSetTip(-1, GetTranslated(656,3, "Push button to move upgrade-box-checked buildings to the TOP of the list"))
+			GUICtrlSetOnEvent(-1, "btnTop")
+		$g_hBtnBottom = GUICtrlCreateButton("B", $x + 233, $y + 18, 23, 17, $BS_CENTER)
+			GUICtrlSetTip(-1, GetTranslated(656,4, "Push button to move upgrade-box-checked buildings to the BOTTOM of the list"))
+			GUICtrlSetOnEvent(-1, "btnBottom")
+		$g_hBtnUp = GUICtrlCreateButton("▲", $x + 257, $y + 18, 23, 17, $BS_CENTER)
+			GUICtrlSetTip(-1, GetTranslated(656,5, "Push button to move UP upgrade-box-checked buildings a row"))
+			GUICtrlSetOnEvent(-1, "btnUp")
+		$g_hBtnDown = GUICtrlCreateButton("▼", $x + 281, $y + 18, 23, 17, $BS_CENTER)
+			GUICtrlSetTip(-1, GetTranslated(656,6, "Push button to move DOWN upgrade-box-checked buildings a row"))
+			GUICtrlSetOnEvent(-1, "btnDown")
+
 		GUICtrlCreateGroup("", -99, -99, 1, 1)
-	$y -= 8
+	$y -= 2
 
    ; Locate/reset buttons
-   GUICtrlCreateButton(GetTranslated(616,8, "Locate Upgrades"), $x + 290, $y - 4, 120, 18, BitOR($BS_MULTILINE, $BS_VCENTER))
+   GUICtrlCreateButton(GetTranslated(616,8, "Locate Upgrades"), $x + 308, $y, 120, 18, BitOR($BS_MULTILINE, $BS_VCENTER))
 	  _GUICtrlSetTip(-1, GetTranslated(616,9, "Push button to locate and record information on building/Hero upgrades") & @CRLF & _
 						 GetTranslated(616,10, "Any upgrades with repeat enabled are skipped and can not be located again"))
 	  GUICtrlSetOnEvent(-1, "btnLocateUpgrades")
-   GUICtrlCreateButton(GetTranslated(616,11, "Reset Upgrades"), $x + 290, $y + 16, 120, 18, BitOR($BS_MULTILINE, $BS_VCENTER))
+   GUICtrlCreateButton(GetTranslated(616,11, "Reset Upgrades"), $x + 308, $y + 19, 120, 18, BitOR($BS_MULTILINE, $BS_VCENTER))
 	  _GUICtrlSetTip(-1, GetTranslated(616,12, "Push button to reset & remove upgrade information") & @CRLF & _
 						 GetTranslated(616,13, "If repeat box is checked, data will not be reset"))
 	  GUICtrlSetOnEvent(-1, "btnResetUpgrade")

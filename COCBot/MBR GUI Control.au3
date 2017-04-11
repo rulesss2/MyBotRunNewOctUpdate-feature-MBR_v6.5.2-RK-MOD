@@ -48,6 +48,9 @@ Global $g_hFrmBot_WNDPROC_ptr = 0
 #include "GUI\MBR GUI Control Android.au3"
 #include "MBR GUI Action.au3"
 
+; TeamVN MOD (NguyenAnhHD, Demen)
+#include "MOD_TeamVN\GUI\MOD GUI Control.au3"
+
 Func InitializeMainGUI()
    InitializeControlVariables()
 
@@ -460,6 +463,8 @@ Func GUIControl_WM_COMMAND($hWind, $iMsg, $wParam, $lParam)
 			btnAttackNowLB()
 		Case $g_hBtnAttackNowTS
 			btnAttackNowTS()
+		Case $g_hModSupportConfig
+			ShellExecute($g_sModSupportUrl)
 		;Case $idMENU_DONATE_SUPPORT
 		;	ShellExecute("https://mybot.run/forums/index.php?/donate/make-donation/")
 		Case $g_hBtnNotifyDeleteMessages
@@ -673,6 +678,8 @@ Func GUIControl_WM_NOTIFY($hWind, $iMsg, $wParam, $lParam)
 			tabTHSnipe()
 		Case $g_hGUI_BOT_TAB
 			tabBot()
+		Case $g_hGUI_MOD_TAB
+;			tabMod()
 		Case Else
 			$bCheckEmbeddedShield = False
 	EndSwitch
@@ -1364,6 +1371,8 @@ EndFunc   ;==>ControlRedraw
 Func SetTime($bForceUpdate = False)
 	If $g_hTimerSinceStarted = 0 Then Return ; GIGO, no setTime when timer hasn't started yet
 	Local $day = 0, $hour = 0, $min = 0, $sec = 0
+	Local Static $DisplayLoop = 0		; Showing troops time in ProfileStats - SwitchAcc - Demen
+
 	If GUICtrlRead($g_hGUI_STATS_TAB, 1) = $g_hGUI_STATS_TAB_ITEM2 Or $bForceUpdate = True Then
 		_TicksToDay(Int(__TimerDiff($g_hTimerSinceStarted) + $g_iTimePassed), $day, $hour, $min, $sec)
 		GUICtrlSetData($g_hLblResultRuntime, $day > 0 ? StringFormat("%2u Day(s) %02i:%02i:%02i", $day, $hour, $min, $sec) : StringFormat("%02i:%02i:%02i", $hour, $min, $sec))
@@ -1372,6 +1381,36 @@ Func SetTime($bForceUpdate = False)
 		_TicksToTime(Int(__TimerDiff($g_hTimerSinceStarted) + $g_iTimePassed), $hour, $min, $sec)
 		GUICtrlSetData($g_hLblResultRuntimeNow, StringFormat("%02i:%02i:%02i", $hour, $min, $sec))
 	EndIf
+
+; Showing troops time in ProfileStats - SwitchAcc - Demen
+	If $DisplayLoop >= 10 Then ; Conserve Clock Cycles on Updating times
+		$DisplayLoop = 0
+		;Update Multi Stat Page _ SwitchAcc_Demen_Style
+		If $ichkSwitchAcc = 1 Then
+			If GUICtrlRead($g_hGUI_MOD_TAB, 1) = $g_hGUI_MOD_TAB_ITEM4 Then
+				For $i = 0 To $nTotalProfile - 1 ; Update time for all Accounts
+					If $aProfileType[$i] = 1 And _
+							$i <> $nCurProfile - 1 And _
+							$aTimerStart[$i] <> 0 Then
+						$aTimerEnd[$i] = TimerDiff($aTimerStart[$i])
+						$aUpdateRemainTrainTime[$i] = Round($aRemainTrainTime[$i] * 60 * 1000 - $aTimerEnd[$i], 2)
+						If $aUpdateRemainTrainTime[$i] < 0 Then
+							GUICtrlSetData($g_lblTroopsTime[$i], Round($aUpdateRemainTrainTime[$i] / 60 / 1000, 2))
+							GUICtrlSetBkColor($g_lblTroopsTime[$i], $COLOR_RED)
+							GUICtrlSetColor($g_lblTroopsTime[$i], $COLOR_WHITE)
+						Else
+							GUICtrlSetData($g_lblTroopsTime[$i], Round($aUpdateRemainTrainTime[$i] / 60 / 1000, 2))
+							GUICtrlSetBkColor($g_lblTroopsTime[$i], $COLOR_YELLOW)
+							GUICtrlSetColor($g_lblTroopsTime[$i], $COLOR_BLACK)
+						EndIf
+					EndIf
+				Next
+			EndIf
+		EndIf
+	EndIf
+	$DisplayLoop += 1
+; Showing troops time in ProfileStats - SwitchAcc - Demen
+
 EndFunc   ;==>SetTime
 
 Func tabMain()
@@ -1382,6 +1421,7 @@ Func tabMain()
 				GUISetState(@SW_HIDE, $g_hGUI_ATTACK)
 				GUISetState(@SW_HIDE, $g_hGUI_BOT)
 				GUISetState(@SW_HIDE, $g_hGUI_ABOUT)
+				GUISetState(@SW_HIDE, $g_hGUI_MOD)
 				GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_LOG)
 
 			Case $tabidx = 1 ; Village
@@ -1389,6 +1429,7 @@ Func tabMain()
 				GUISetState(@SW_HIDE, $g_hGUI_ATTACK)
 				GUISetState(@SW_HIDE, $g_hGUI_BOT)
 				GUISetState(@SW_HIDE, $g_hGUI_ABOUT)
+				GUISetState(@SW_HIDE, $g_hGUI_MOD)
 				GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_VILLAGE)
 				tabVillage()
 
@@ -1397,6 +1438,7 @@ Func tabMain()
 				GUISetState(@SW_HIDE, $g_hGUI_VILLAGE)
 				GUISetState(@SW_HIDE, $g_hGUI_BOT)
 				GUISetState(@SW_HIDE, $g_hGUI_ABOUT)
+				GUISetState(@SW_HIDE, $g_hGUI_MOD)
 				GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_ATTACK)
 				tabAttack()
 
@@ -1405,21 +1447,33 @@ Func tabMain()
 				GUISetState(@SW_HIDE, $g_hGUI_VILLAGE)
 				GUISetState(@SW_HIDE, $g_hGUI_ATTACK)
 				GUISetState(@SW_HIDE, $g_hGUI_ABOUT)
+				GUISetState(@SW_HIDE, $g_hGUI_MOD)
 				GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_BOT)
 				tabBot()
 
-			Case $tabidx = 4 ; About
+			Case $tabidx = 4 ; MOD
 				GUISetState(@SW_HIDE, $g_hGUI_LOG)
 				GUISetState(@SW_HIDE, $g_hGUI_VILLAGE)
 				GUISetState(@SW_HIDE, $g_hGUI_ATTACK)
 				GUISetState(@SW_HIDE, $g_hGUI_BOT)
+				GUISetState(@SW_HIDE, $g_hGUI_ABOUT)
+				GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_MOD)
+;				tabMod()
+
+			Case $tabidx = 5 ; About
+				GUISetState(@SW_HIDE, $g_hGUI_LOG)
+				GUISetState(@SW_HIDE, $g_hGUI_VILLAGE)
+				GUISetState(@SW_HIDE, $g_hGUI_ATTACK)
+				GUISetState(@SW_HIDE, $g_hGUI_BOT)
+				GUISetState(@SW_HIDE, $g_hGUI_MOD)
 				GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_ABOUT)
 
-			Case ELSE
+			Case Else
 				GUISetState(@SW_HIDE, $g_hGUI_LOG)
 				GUISetState(@SW_HIDE, $g_hGUI_VILLAGE)
 				GUISetState(@SW_HIDE, $g_hGUI_ATTACK)
 				GUISetState(@SW_HIDE, $g_hGUI_BOT)
+				GUISetState(@SW_HIDE, $g_hGUI_MOD)
 		EndSelect
 
 EndFunc   ;==>tabMain
@@ -1618,18 +1672,28 @@ Func tabBot()
 			Case $tabidx = 1 ; Debug tab
 				GUISetState(@SW_HIDE, $g_hGUI_STATS)
 				ControlHide("","",$g_hCmbGUILanguage)
-			Case $tabidx = 2 ; Profiles tab
+;~			Case $tabidx = 2 ; Profiles tab
+;~				GUISetState(@SW_HIDE, $g_hGUI_STATS)
+;~				ControlHide("","",$g_hCmbGUILanguage)
+			Case $tabidx = 2 ; Android tab
 				GUISetState(@SW_HIDE, $g_hGUI_STATS)
 				ControlHide("","",$g_hCmbGUILanguage)
-			Case $tabidx = 3 ; Android tab
-				GUISetState(@SW_HIDE, $g_hGUI_STATS)
-				ControlHide("","",$g_hCmbGUILanguage)
-			Case $tabidx = 4 ; Stats tab
+			Case $tabidx = 3 ; Stats tab
 				GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_STATS)
 				ControlHide("","",$g_hCmbGUILanguage)
 		EndSelect
 EndFunc   ;==>tabBot
-
+#cs
+Func tabMod()
+	Local $tabidx = GUICtrlRead($g_hGUI_MOD_TAB)
+	Select
+		Case $tabidx = 3 ; Profile tab
+			GUISetState(@SW_SHOWNOACTIVATE, $g_hGUI_MOD_SWITCH)
+		Case Else
+			GUISetState(@SW_HIDE, $g_hGUI_MOD_SWITCH)
+	EndSelect
+EndFunc   ;==>tabMod
+#ce
 Func tabDeadbase()
 	Local $tabidx = GUICtrlRead($g_hGUI_DEADBASE_TAB)
 		Select
@@ -1778,7 +1842,7 @@ Func Bind_ImageList($nCtrl)
 	Switch $nCtrl
 		Case $g_hTabMain
 			; the icons for main tab
-			Local $aIconIndex[5] = [$eIcnHourGlass, $eIcnTH11, $eIcnAttack, $eIcnGUI, $eIcnInfo]
+			Local $aIconIndex[6] = [$eIcnHourGlass, $eIcnTH11, $eIcnAttack, $eIcnGUI, $eIcnMods, $eIcnInfo]
 
 		Case $g_hGUI_VILLAGE_TAB
 			; the icons for village tab
@@ -1794,7 +1858,7 @@ Func Bind_ImageList($nCtrl)
 
 		Case $g_hGUI_UPGRADE_TAB
 			; the icons for upgrade tab
-			Local $aIconIndex[4] = [$eIcnLaboratory, $eIcnHeroes, $eIcnMortar, $eIcnWall]
+			Local $aIconIndex[5] = [$eIcnLaboratory, $eIcnHeroes, $eIcnMortar, $eIcnWall, $eIcnUpgrade]
 
 		Case $g_hGUI_NOTIFY_TAB
 			; the icons for NOTIFY tab
@@ -1826,8 +1890,12 @@ Func Bind_ImageList($nCtrl)
 
 		Case $g_hGUI_BOT_TAB
 			; the icons for Bot tab
-			Local $aIconIndex[5] = [$eIcnOptions, $eIcnAndroid, $eIcnProfile, $eIcnProfile, $eIcnGold]
+			Local $aIconIndex[4] = [$eIcnOptions, $eIcnAndroid, $eIcnDebug, $eIcnGold]
 			; The Android Robot is a Google Trademark and follows Creative Common Attribution 3.0
+
+		Case $g_hGUI_MOD_TAB
+			; the icons for Mods tab
+			Local $aIconIndex[4] = [$eIcnOptions, $eIcnReload2, $eIcnProfile2, $eIcnStats]
 
 		Case $g_hGUI_STRATEGIES_TAB
 			; the icons for strategies tab

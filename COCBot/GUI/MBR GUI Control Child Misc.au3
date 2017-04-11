@@ -46,6 +46,10 @@ Func btnAddConfirm()
 			GUICtrlSetState($g_hBtnCancelProfileChange, $GUI_SHOW)
 			GUICtrlSetState($g_hBtnConfirmRenameProfile, $GUI_HIDE)
 			GUICtrlSetState($g_hBtnRenameProfile, $GUI_HIDE)
+			; IceCube (Misc v1.0)
+			GUICtrlSetState($g_hBtnRecycle, $GUI_HIDE)
+			; IceCube (Misc v1.0)
+
 		Case $g_hBtnConfirmAddProfile
 			Local $newProfileName = StringRegExpReplace(GUICtrlRead($g_hTxtVillageName), '[/:*?"<>|]', '_')
 			If FileExists($g_sProfilePath & "\" & $newProfileName) Then
@@ -57,6 +61,7 @@ Func btnAddConfirm()
 			; Setup the profile if it doesn't exist.
 			createProfile()
 			setupProfileComboBox()
+			setupProfileComboBoxswitch()
 			selectProfile()
 			GUICtrlSetState($g_hTxtVillageName, $GUI_HIDE)
 			GUICtrlSetState($g_hCmbProfile, $GUI_SHOW)
@@ -66,17 +71,29 @@ Func btnAddConfirm()
 			GUICtrlSetState($g_hBtnCancelProfileChange, $GUI_HIDE)
 			GUICtrlSetState($g_hBtnConfirmRenameProfile, $GUI_HIDE)
 			GUICtrlSetState($g_hBtnRenameProfile, $GUI_SHOW)
+			; IceCube (Misc v1.0)
+			GUICtrlSetState($g_hBtnRecycle, $GUI_SHOW)
+			; IceCube (Misc v1.0)
 
 			If GUICtrlGetState($g_hBtnDeleteProfile) <> $GUI_ENABLE Then GUICtrlSetState($g_hBtnDeleteProfile, $GUI_ENABLE)
 			If GUICtrlGetState($g_hBtnRenameProfile) <> $GUI_ENABLE Then GUICtrlSetState($g_hBtnRenameProfile, $GUI_ENABLE)
+			; IceCube (Misc v1.0)
+			If GUICtrlGetState($g_hBtnRecycle) <> $GUI_ENABLE Then GUICtrlSetState($g_hBtnRecycle, $GUI_ENABLE)
+			; IceCube (Misc v1.0)
+
 		Case Else
 			SetLog("If you are seeing this log message there is something wrong.", $COLOR_ERROR)
 	EndSwitch
+	AddProfileToList()	; SwitchAcc Demen
 EndFunc   ;==>btnAddConfirm
 
 Func btnDeleteCancel()
 	Switch @GUI_CtrlId
 		Case $g_hBtnDeleteProfile
+
+			SaveConfig_SwitchAcc()													; SwitchAcc - Demen
+			Local $iDeleteProfile = _GUICtrlCombobox_GetCurSel($g_hCmbProfile)		; SwitchAcc - Demen
+
 			Local $msgboxAnswer = MsgBox($MB_ICONWARNING + $MB_OKCANCEL, GetTranslated(637, 8, "Delete Profile"), GetTranslated(637, 14, "Are you sure you really want to delete the profile?\r\nThis action can not be undone."))
 			If $msgboxAnswer = $IDOK Then
 				; Confirmed profile deletion so delete it.
@@ -91,6 +108,9 @@ Func btnDeleteCancel()
 					; create new default profile
 					createProfile(True)
 				EndIf
+
+				RemoveProfileFromList($iDeleteProfile)								; SwitchAcc_Demen_Style
+
 			EndIf
 		Case $g_hBtnCancelProfileChange
 			GUICtrlSetState($g_hTxtVillageName, $GUI_HIDE)
@@ -101,6 +121,10 @@ Func btnDeleteCancel()
 			GUICtrlSetState($g_hBtnDeleteProfile, $GUI_SHOW)
 			GUICtrlSetState($g_hBtnConfirmRenameProfile, $GUI_HIDE)
 			GUICtrlSetState($g_hBtnRenameProfile, $GUI_SHOW)
+			; IceCube (Misc v1.0)
+			GUICtrlSetState($g_hBtnRecycle, $GUI_SHOW)
+			; IceCube (Misc v1.0)
+
 		Case Else
 			SetLog("If you are seeing this log message there is something wrong.", $COLOR_ERROR)
 	EndSwitch
@@ -108,6 +132,10 @@ Func btnDeleteCancel()
 	If GUICtrlRead($g_hCmbProfile) = "<No Profiles>" Then
 		GUICtrlSetState($g_hBtnDeleteProfile, $GUI_DISABLE)
 		GUICtrlSetState($g_hBtnRenameProfile, $GUI_DISABLE)
+		; IceCube (Misc v1.0)
+		GUICtrlSetState($g_hBtnRecycle, $GUI_DISABLE)
+		; IceCube (Misc v1.0)
+
 	EndIf
 EndFunc   ;==>btnDeleteCancel
 
@@ -123,6 +151,10 @@ Func btnRenameConfirm()
 			GUICtrlSetState($g_hBtnCancelProfileChange, $GUI_SHOW)
 			GUICtrlSetState($g_hBtnRenameProfile, $GUI_HIDE)
 			GUICtrlSetState($g_hBtnConfirmRenameProfile, $GUI_SHOW)
+			; IceCube (Misc v1.0)
+			GUICtrlSetState($g_hBtnRecycle, $GUI_HIDE)
+			; IceCube (Misc v1.0)
+
 		Case $g_hBtnConfirmRenameProfile
 			Local $newProfileName = StringRegExpReplace(GUICtrlRead($g_hTxtVillageName), '[/:*?"<>|]', '_')
 			If FileExists($g_sProfilePath & "\" & $newProfileName) Then
@@ -134,6 +166,7 @@ Func btnRenameConfirm()
 			; Rename the profile.
 			renameProfile()
 			setupProfileComboBox()
+			setupProfileComboBoxswitch()
 			selectProfile()
 
 			GUICtrlSetState($g_hTxtVillageName, $GUI_HIDE)
@@ -144,6 +177,10 @@ Func btnRenameConfirm()
 			GUICtrlSetState($g_hBtnDeleteProfile, $GUI_SHOW)
 			GUICtrlSetState($g_hBtnConfirmRenameProfile, $GUI_HIDE)
 			GUICtrlSetState($g_hBtnRenameProfile, $GUI_SHOW)
+			; IceCube (Misc v1.0)
+			GUICtrlSetState($g_hBtnRecycle, $GUI_SHOW)
+			; IceCube (Misc v1.0)
+
 		Case Else
 			SetLog("If you are seeing this log message there is something wrong.", $COLOR_ERROR)
 	EndSwitch

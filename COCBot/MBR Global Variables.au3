@@ -431,7 +431,8 @@ Global Enum $eIcnArcher = 1, $eIcnDonArcher, $eIcnBalloon, $eIcnDonBalloon, $eIc
 		$eHdV11, $eUnranked, $eBronze, $eSilver, $eGold, $eCrystal, $eMaster, $eChampion, $eTitan, $eLegend, _
 		$eWall04, $eWall05, $eWall06, $eWall07, $eWall08, $eWall09, $eWall10, $eWall11, $eIcnPBNotify, $eIcnCCTroops, _
 		$eIcnCCSpells, $eIcnSpellsGroup, $eBahasaIND, $eChinese_S, $eChinese_T, $eEnglish, $eFrench, $eGerman, $eItalian, $ePersian, _
-		$eRussian, $eSpanish, $eTurkish, $eMissingLangIcon, $eWall12, $ePortuguese, $eIcnDonPoisonSpell, $eIcnDonEarthQuakeSpell, $eIcnDonHasteSpell, $eIcnDonSkeletonSpell, $eVietnamese, $eKorean, $eAzerbaijani
+		$eRussian, $eSpanish, $eTurkish, $eMissingLangIcon, $eWall12, $ePortuguese, $eIcnDonPoisonSpell, $eIcnDonEarthQuakeSpell, $eIcnDonHasteSpell, $eIcnDonSkeletonSpell, $eVietnamese, $eKorean, $eAzerbaijani, _
+		$eIcnUpgrade, $eArabic, $eIcnDebug, $eIcnReload2, $eIcnProfile2, $eIcnStats, $eIcnMods
 
 Global $eIcnDonBlank = $eIcnDonBlacklist
 Global $eIcnOptions = $eIcnDonBlacklist
@@ -514,25 +515,25 @@ Global Const $g_aiTroopTrainTime[$eTroopCount] = [ _
 		36, 90, 180, 600, 360, 600, 120]
 ; Zero element contains number of levels, elements 1 thru n contain cost of that level troop
 Global Const $g_aiTroopCostPerLevel[$eTroopCount][9] = [ _
-		[7, 25, 40, 60, 100, 150, 200, 250], _ 				 ; Archer
-		[7, 50, 80, 120, 200, 300, 400, 500], _ 				 ;Barbarian
+		[7, 25, 40, 60, 100, 150, 200, 250], _ 				 ; Barbarian
+		[7, 50, 80, 120, 200, 300, 400, 500], _ 			 ; Archer
 		[8, 250, 750, 1250, 1750, 2250, 3000, 3500, 4000], _ ; Giant
 		[7, 25, 40, 60, 80, 100, 150, 200], _ 				 ; Goblin
 		[6, 1000, 1500, 2000, 2500, 3000, 3500], _ 			 ; WallBreaker
 		[7, 2000, 2500, 3000, 3500, 4000, 4500, 5000], _ 	 ; Balloon
 		[7, 1500, 2000, 2500, 3000, 3500, 4000, 4500], _ 	 ; Wizard
-		[4, 5000, 6000, 8000, 10000], _						 ;Healer
+		[4, 5000, 6000, 8000, 10000], _						 ; Healer
 		[6, 25000, 29000, 33000, 37000, 42000, 46000], _ 	 ; Dragon
 		[5, 28000, 32000, 36000, 40000, 45000], _ 			 ; Pekka
 		[5, 15000, 16000, 17000, 18000, 19000], _ 			 ; BabyDragon
-		[4, 4200, 4800, 5400, 6000], _  						 ; Miner
+		[4, 4200, 4800, 5400, 6000], _  					 ; Miner
 		[7, 6, 7, 8, 9, 10, 11, 12], _ 						 ; Minion
 		[7, 40, 45, 52, 58, 65, 90, 115], _					 ; HogRider
-		[5, 70, 100, 130, 160, 190], _ 						 ;Valkyrie
+		[5, 70, 100, 130, 160, 190], _ 						 ; Valkyrie
 		[6, 450, 525, 600, 675, 750, 825], _ 				 ; Golem
 		[3, 250, 350, 450], _ 								 ; Witch
-		[4, 390, 450, 510, 570], _  							 ;Lavahound
-		[3, 130, 150, 170]] ; Bowler
+		[4, 390, 450, 510, 570], _  						 ; Lavahound
+		[3, 130, 150, 170]]									 ; Bowler
 Global Const $g_aiTroopDonateXP[$eTroopCount] = [1, 1, 5, 1, 2, 5, 4, 14, 20, 25, 10, 5, 2, 5, 8, 30, 12, 30, 6]
 
 ; Spells
@@ -544,16 +545,16 @@ Global Const $g_aiSpellSpace[$eSpellCount] = [2, 2, 2, 2, 2, 4, 1, 1, 1, 1]
 Global Const $g_aiSpellTrainTime[$eSpellCount] = [360, 360, 360, 360, 360, 720, 180, 180, 180, 180]
 ; Zero element contains number of levels, elements 1 thru n contain cost of that level spell
 Global Const $g_aiSpellCostPerLevel[$eSpellCount][8] = [ _
-		[7, 15000, 16500, 18000, 20000, 22000, 24000, 26000], _ ;LightningSpell
-		[6, 15000, 16500, 18000, 20000, 22000, 24000], _ 	 ;HealSpell
-		[5, 23000, 25000, 27000, 30000, 33000], _     		 ;RageSpell
-		[3, 23000, 27000, 31000], _        					 ;JumpSpell
-		[5, 26000, 29000, 31000, 33000, 35000], _ ;FreezeSpell
-		[4, 38000, 40000, 42000, 44000], _					 ;CloneSpell
-		[5, 95, 110, 125, 140, 155], _         				 ;PoisonSpell
-		[4, 125, 140, 160, 180], _    						 ;EarthquakeSpell
-		[4, 80, 85, 60, 95], _								 ;HasteSpell
-		[4, 110, 120, 130, 140]] ;SkeletonSpell
+		[7, 15000, 16500, 18000, 20000, 22000, 24000, 26000], _ ; LightningSpell
+		[6, 15000, 16500, 18000, 20000, 22000, 24000], _ 		; HealSpell
+		[5, 23000, 25000, 27000, 30000, 33000], _     			; RageSpell
+		[3, 23000, 27000, 31000], _        						; JumpSpell
+		[5, 26000, 29000, 31000, 33000, 35000], _ 				; FreezeSpell
+		[4, 38000, 40000, 42000, 44000], _						; CloneSpell
+		[5, 95, 110, 125, 140, 155], _         					; PoisonSpell
+		[4, 125, 140, 160, 180], _    							; EarthquakeSpell
+		[4, 80, 85, 90, 95], _									; HasteSpell
+		[4, 110, 120, 130, 140]] 								; SkeletonSpell
 Global Const $g_aiSpellDonateXP[$eSpellCount] = [10, 10, 10, 10, 10, 0, 5, 5, 5, 5]
 
 ; Hero Bitmaped Values
@@ -754,7 +755,7 @@ Global $g_abNotifyScheduleWeekDays[7] = [False, False, False, False, False, Fals
 
 ; <><><><> Attack Plan / Train Army / Troops/Spells <><><><>
 Global $g_bQuickTrainEnable = False
-Global $g_iQuickTrainArmyNum = 1
+Global $g_bQuickTrainArmy[3] = [True, False, False]			; QuickTrainCombo (Checkbox) - Demen
 Global $g_aiArmyCompTroops[$eTroopCount] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 Global $g_aiArmyCompSpells[$eSpellCount] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 Global $g_aiTrainArmyTroopLevel[$eTroopCount] = [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -1084,11 +1085,11 @@ Global $g_iImglocTHLevel = 0
 Global $g_aiTownHallDetails[4] = [-1, -1, -1, -1] ; [LocX, LocY, BldgLvl, Quantity]
 
 ; Attack
-Global Const $g_aaiTopLeftDropPoints[5][2] = [[83, 306], [174, 238], [240, 188], [303, 142], [390, 76]]
-Global Const $g_aaiTopRightDropPoints[5][2] = [[466, 66], [556, 134], [622, 184], [684, 231], [775, 300]]
-Global Const $g_aaiBottomLeftDropPoints[5][2] = [[81, 363], [174, 434], [235, 481], [299, 530], [390, 600]]
-Global Const $g_aaiBottomRightDropPoints[5][2] = [[466, 590], [554, 523], [615, 477], [678, 430], [765, 364]]
-Global Const $g_aaiEdgeDropPoints[4] = [$g_aaiBottomRightDropPoints, $g_aaiTopLeftDropPoints, $g_aaiBottomLeftDropPoints, $g_aaiTopRightDropPoints]
+;~ Global Const $g_aaiTopLeftDropPoints[5][2] = [[83, 306], [174, 238], [240, 188], [303, 142], [390, 76]]
+;~ Global Const $g_aaiTopRightDropPoints[5][2] = [[466, 66], [556, 134], [622, 184], [684, 231], [775, 300]]
+;~ Global Const $g_aaiBottomLeftDropPoints[5][2] = [[81, 363], [174, 434], [235, 481], [299, 530], [390, 600]]
+;~ Global Const $g_aaiBottomRightDropPoints[5][2] = [[466, 590], [554, 523], [615, 477], [678, 430], [765, 364]]
+;~ Global Const $g_aaiEdgeDropPoints[4] = [$g_aaiBottomRightDropPoints, $g_aaiTopLeftDropPoints, $g_aaiBottomLeftDropPoints, $g_aaiTopRightDropPoints]
 Global Const $g_aiUseAllTroops[33] = [$eBarb, $eArch, $eGiant, $eGobl, $eWall, $eBall, $eWiza, $eHeal, $eDrag, $ePekk, $eBabyD, $eMine, $eMini, $eHogs, $eValk, $eGole, $eWitc, $eLava, $eBowl, $eKing, $eQueen, $eWarden, $eCastle, $eLSpell, $eHSpell, $eRSpell, $eJSpell, $eFSpell, $eCSpell, $ePSpell, $eESpell, $eHaSpell]
 Global Const $g_aiUseBarracks[26] = [$eBarb, $eArch, $eGiant, $eGobl, $eWall, $eBall, $eWiza, $eHeal, $eDrag, $ePekk, $eBabyD, $eMine, $eKing, $eQueen, $eWarden, $eCastle, $eLSpell, $eHSpell, $eRSpell, $eJSpell, $eFSpell, $eCSpell, $ePSpell, $eESpell, $eHaSpell, $eSkSpell]
 Global Const $g_aiUseBarbs[15] = [$eBarb, $eKing, $eQueen, $eWarden, $eCastle, $eLSpell, $eHSpell, $eRSpell, $eJSpell, $eFSpell, $eCSpell, $ePSpell, $eESpell, $eHaSpell, $eSkSpell]
@@ -1313,3 +1314,6 @@ Global Const $g_aEQSpellDmg[4] = [0.14, 0.17, 0.21, 0.25]
 Global Enum $eWeakEagle = 1, $eWeakInferno, $eWeakXBow, $eWeakWizard, $eWeakMortar, $eWeakAirDefense
 Global $g_aWeakDefenseNames = ["None", "Eagle Artillery", "Inferno Tower", "XBow", "Wizard Tower", "Mortar", "Air Defense"]
 Global $g_aWeakDefenseMaxLevels = [0, 2, 4, 4, 9, 9, 8]
+
+; TeamVN MOD (NguyenAnhHD, Demen)
+#include "MOD_TeamVN\Globals_TeamVN.au3"

@@ -7,6 +7,7 @@
 *.orig
 *.png
 *.jpg
+*.exe
 *.bmp
 *.zip
 
@@ -28,6 +29,10 @@
 
 # Exclusion language ini files
 ![Ll]anguages/*.ini
+
+# Exclusion Zip tool to debug
+
+
 
 # Exclusion Images/Icon
 ![Ii]mages/logo.jpg
@@ -53,7 +58,6 @@
 ![Ii]mages/WeakBase/WTower/*.png
 ![Ii]mages/WeakBase/Xbow/*.png
 ![Ii]mages/Walls/*.jpg
-![Ii]mages/*.png
 ![Ss]trategies/*.ini
 
 #imgloc transition

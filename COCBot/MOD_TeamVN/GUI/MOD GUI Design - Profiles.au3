@@ -166,7 +166,7 @@ Func CreateModSwitchProfile()
 			$sTxtTip = GetTranslated(655,6, "Set the amount of Gold to trigger switching Profile.")
 			_GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetLimit(-1, 7)
-		GUICtrlCreatePic(@ScriptDir & "\Images\GoldStorage.jpg", $x + 350, $y - 40, 60, 60)
+		_GUICtrlCreatePic(@ScriptDir & "\Images\GoldStorage.png", $x + 350, $y - 40, 60, 60)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y += 48
 	GUICtrlCreateGroup(GetTranslated(655,9, "Elixir Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ; Elixir Switch
@@ -194,7 +194,7 @@ Func CreateModSwitchProfile()
 			$sTxtTip = GetTranslated(655,12, "Set the amount of Elixir to trigger switching Profile.")
 			_GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetLimit(-1, 7)
-		GUICtrlCreatePic(@ScriptDir & "\Images\ElixirStorage.jpg", $x + 350, $y - 40, 60, 60)
+		_GUICtrlCreatePic(@ScriptDir & "\Images\ElixirStorage.png", $x + 350, $y - 40, 60, 60)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y += 48
 	GUICtrlCreateGroup(GetTranslated(655,15, "Dark Elixir Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ;DE Switch
@@ -221,7 +221,7 @@ Func CreateModSwitchProfile()
 			$sTxtTip = GetTranslated(655,18, "Set the amount of Dark Elixir to trigger switching Profile.")
 			_GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetLimit(-1, 6)
-		GUICtrlCreatePic(@ScriptDir & "\Images\DEStorage.jpg", $x + 350, $y - 40, 60, 60)
+		_GUICtrlCreatePic(@ScriptDir & "\Images\DEStorage.png", $x + 350, $y - 40, 60, 60)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y += 48
 	GUICtrlCreateGroup(GetTranslated(655,21, "Trophy Switch Profile Conditions"), $x - 20, $y - 20, 438, 75) ; Trophy Switch
@@ -248,7 +248,7 @@ Func CreateModSwitchProfile()
 			$sTxtTip = GetTranslated(655,24, "Set the amount of Trophies to trigger switching Profile.")
 			_GUICtrlSetTip(-1, $sTxtTip)
 			GUICtrlSetLimit(-1, 4)
-		GUICtrlCreatePic(@ScriptDir & "\Images\TrophyLeague.jpg", $x + 350, $y - 40, 60, 60)
+		_GUICtrlCreatePic(@ScriptDir & "\Images\TrophyLeague.png", $x + 350, $y - 40, 60, 60)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 		setupProfileComboBoxswitch()
 EndFunc

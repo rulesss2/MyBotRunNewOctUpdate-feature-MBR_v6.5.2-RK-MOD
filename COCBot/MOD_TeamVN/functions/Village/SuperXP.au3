@@ -121,10 +121,10 @@ Func CheckForFullArmy()
 
 	OpenArmyWindow()
 
-	$fullarmy = False
-	$bFullArmySpells = False
+	$g_bFullArmy = False
+	$g_bFullArmySpells = False
 
-	$canRequestCC = _ColorCheck(_GetPixelColor($aRequestTroopsAO[0], $aRequestTroopsAO[1], True), Hex($aRequestTroopsAO[2], 6), $aRequestTroopsAO[5])
+	$g_bCanRequestCC = _ColorCheck(_GetPixelColor($aRequestTroopsAO[0], $aRequestTroopsAO[1], True), Hex($aRequestTroopsAO[2], 6), $aRequestTroopsAO[5])
 
 	IsFullArmy(True)
 	If $g_bRunState = False Then Return
@@ -134,10 +134,10 @@ Func CheckForFullArmy()
 	If $g_bRunState = False Then Return
 	Local $fullcastletroops = IsFullCastleTroops()
 
-	Local $checkSpells = checkspells()
+	Local $g_bCheckSpells = checkspells()
 
 	;Test for Train/Donate Only and Fullarmy
-	If ($g_iCommandStop = 3 Or $g_iCommandStop = 0) And $fullarmy Then
+	If ($g_iCommandStop = 3 Or $g_iCommandStop = 0) And $g_bFullArmy Then
 		SetLog("You are in halt attack mode and your Army is prepared!", $COLOR_DEBUG) ;Debug
 		If $g_bFirstStart Then $g_bFirstStart = False
 		Return
@@ -152,7 +152,7 @@ Func CheckForFullArmy()
 
 	If $g_bRunState = False Then Return
 
-	If $fullarmy And $checkSpells And $bFullArmyHero And $fullcastlespells And $fullcastletroops Then
+	If $g_bFullArmy And $g_bCheckSpells And $bFullArmyHero And $fullcastlespells And $fullcastletroops Then
 		$g_bIsFullArmywithHeroesAndSpells = True
 		$g_bFirstStart = False
 	Else
@@ -291,19 +291,19 @@ Func ActivateHeroesByDelay($hBdTimer)
 	If StringInStr($KingDelay, "-") > 0 Then $KingDelay = Random(Number(StringSplit($KingDelay, "-", 2)[0]), Number(StringSplit($KingDelay, "-", 2)[1]), 1)
 
 	Local $tDiff = TimerDiff($hBdTimer)
-	If $tDiff >= $QueenDelay And $QueenDelay <> 0 And $ActivatedHeroes[0] = False And $Queen <> -1 And $ichkSXAQ <> $eHeroNone Then
+	If $tDiff >= $QueenDelay And $QueenDelay <> 0 And $ActivatedHeroes[0] = False And $g_iQueenSlot <> -1 And $ichkSXAQ <> $eHeroNone Then
 		If $DebugSX = 1 Then SetLog("SX|Activating Queen Ability After " & Round($tDiff, 3) & "/" & $QueenDelay & " ms(s)")
-		SelectDropTroop($Queen)
+		SelectDropTroop($g_iQueenSlot)
 		$ActivatedHeroes[0] = True
 	EndIf
-	If $tDiff >= $WardenDelay And $WardenDelay <> 0 And $ActivatedHeroes[1] = False And $Warden <> -1 And $ichkSXGW <> $eHeroNone Then
+	If $tDiff >= $WardenDelay And $WardenDelay <> 0 And $ActivatedHeroes[1] = False And $g_iWardenSlot <> -1 And $ichkSXGW <> $eHeroNone Then
 		If $DebugSX = 1 Then SetLog("SX|Activating Warden Ability After " & Round($tDiff, 3) & "/" & $WardenDelay & " ms(s)")
-		SelectDropTroop($Warden)
+		SelectDropTroop($g_iWardenSlot)
 		$ActivatedHeroes[1] = True
 	EndIf
-	If $tDiff >= $KingDelay And $KingDelay <> 0 And $ActivatedHeroes[2] = False And $King <> -1 And $ichkSXBK <> $eHeroNone Then
+	If $tDiff >= $KingDelay And $KingDelay <> 0 And $ActivatedHeroes[2] = False And $g_iKingSlot <> -1 And $ichkSXBK <> $eHeroNone Then
 		If $DebugSX = 1 Then SetLog("SX|Activating King Ability After " & Round($tDiff, 3) & "/" & $KingDelay & " ms(s)")
-		SelectDropTroop($King)
+		SelectDropTroop($g_iKingSlot)
 		$ActivatedHeroes[2] = True
 	EndIf
 EndFunc   ;==>ActivateHeroesByDelay
@@ -345,22 +345,22 @@ Func AttackSuperXP()
 EndFunc   ;==>AttackSuperXP
 
 Func CheckAvailableHeroes()
-	$canGainXP = ((IIf($ichkSXBK = $eHeroNone, False, $King <> -1) Or IIf($ichkSXAQ = $eHeroNone, False, $Queen <> -1) Or IIf($ichkSXGW = $eHeroNone, False, $Warden <> -1)) And IIf($irbSXTraining = 1, $g_bIsFullArmywithHeroesAndSpells = False, True))
+	$canGainXP = ((IIf($ichkSXBK = $eHeroNone, False, $g_iKingSlot <> -1) Or IIf($ichkSXAQ = $eHeroNone, False, $g_iQueenSlot <> -1) Or IIf($ichkSXGW = $eHeroNone, False, $g_iWardenSlot <> -1)) And IIf($irbSXTraining = 1, $g_bIsFullArmywithHeroesAndSpells = False, True))
 	If $DebugSX = 1 Then SetLog("SX|CheckAvailableHeroes=" & $canGainXP)
 	Return $canGainXP
 EndFunc   ;==>CheckAvailableHeroes
 
 Func DropAQSuperXP($bActivateASAP = True)
-	If $Queen <> -1 And $ichkSXAQ <> $eHeroNone Then
+	If $g_iQueenSlot <> -1 And $ichkSXAQ <> $eHeroNone Then
 		SetLog("Deploying Queen", $COLOR_BLUE)
-		Click(GetXPosOfArmySlot($Queen, 68), 595 + $g_ibottomOffsetY, 1, 0, "#0000") ;Select Queen
+		Click(GetXPosOfArmySlot($g_iQueenSlot, 68), 595 + $g_ibottomOffsetY, 1, 0, "#0000") ;Select Queen
 		If _Sleep($DELAYDROPSuperXP1) Then Return False
 		If CheckEarnedStars($minStarsToEnd) = True Then Return True
 		ClickP(GetDropPointSuperXP(1), 1, 0, "#0000") ;Drop Queen
 		If _Sleep($DELAYDROPSuperXP3) Then Return False
 		If $bActivateASAP = True Then
 			If IsAttackPage() Then
-				SelectDropTroop($Queen) ;If Queen was not activated: Boost Queen
+				SelectDropTroop($g_iQueenSlot) ;If Queen was not activated: Boost Queen
 				$ActivatedHeroes[0] = True
 			EndIf
 		EndIf
@@ -369,16 +369,16 @@ Func DropAQSuperXP($bActivateASAP = True)
 EndFunc   ;==>DropAQSuperXP
 
 Func DropGWSuperXP($bActivateASAP = True)
-	If $Warden <> -1 And $ichkSXGW <> $eHeroNone Then
+	If $g_iWardenSlot <> -1 And $ichkSXGW <> $eHeroNone Then
 		SetLog("Deploying Warden", $COLOR_BLUE)
-		Click(GetXPosOfArmySlot($Warden, 68), 595 + $g_ibottomOffsetY, 1, 0, "#0179") ;Select Warden
+		Click(GetXPosOfArmySlot($g_iWardenSlot, 68), 595 + $g_ibottomOffsetY, 1, 0, "#0179") ;Select Warden
 		If _Sleep($DELAYDROPSuperXP1) Then Return False
 		If CheckEarnedStars($minStarsToEnd) = True Then Return True
 		ClickP(GetDropPointSuperXP(2), 1, 0, "#0180") ;Drop Warden
 		If _Sleep($DELAYDROPSuperXP3) Then Return False
 		If $bActivateASAP = True Then
 			If IsAttackPage() Then
-				SelectDropTroop($Warden) ;If Warden was not activated: Boost Warden
+				SelectDropTroop($g_iWardenSlot) ;If Warden was not activated: Boost Warden
 				$ActivatedHeroes[1] = True
 			EndIf
 		EndIf
@@ -387,16 +387,16 @@ Func DropGWSuperXP($bActivateASAP = True)
 EndFunc   ;==>DropGWSuperXP
 
 Func DropBKSuperXP($bActivateASAP = True)
-	If $King <> -1 And $ichkSXBK <> $eHeroNone Then
+	If $g_iKingSlot <> -1 And $ichkSXBK <> $eHeroNone Then
 		SetLog("Deploying King", $COLOR_BLUE)
-		Click(GetXPosOfArmySlot($King, 68), 595 + $g_ibottomOffsetY, 1, 0, "#0177") ;Select King
+		Click(GetXPosOfArmySlot($g_iKingSlot, 68), 595 + $g_ibottomOffsetY, 1, 0, "#0177") ;Select King
 		If _Sleep($DELAYDROPSuperXP1) Then Return False
 		If CheckEarnedStars($minStarsToEnd) = True Then Return True
 		ClickP(GetDropPointSuperXP(3), 1, 0, "#0178") ;Drop King
 		If _Sleep($DELAYDROPSuperXP3) Then Return False
 		If $bActivateASAP = True Then
 			If IsAttackPage() Then
-				SelectDropTroop($King) ;If King was not activated: Boost King
+				SelectDropTroop($g_iKingSlot) ;If King was not activated: Boost King
 				$ActivatedHeroes[2] = True
 			EndIf
 		EndIf
@@ -416,7 +416,7 @@ EndFunc   ;==>GetDropPointSuperXP
 Func PrepareSuperXPAttack()
 	If $DebugSX = 1 Then SetLog("SX|PrepareSuperXPAttack", $COLOR_PURPLE)
 	Local $troopsnumber = 0
-	If _Sleep($DELAYPrepareAttack1) Then Return
+	If _Sleep($DELAYPREPAREATTACK1) Then Return
 	_CaptureRegion2(0, 571 + $g_ibottomOffsetY, 859, 671 + $g_ibottomOffsetY)
 	Local $Plural = 0
 	Local $result = AttackBarCheck()
@@ -433,26 +433,26 @@ Func PrepareSuperXPAttack()
 	EndIf
 	For $i = 0 To UBound($aTemp) - 1
 		If $aTemp[$i][0] = "" And $aTemp[$i][1] = "" Then
-			$atkTroops[$i][0] = -1
-			$atkTroops[$i][1] = 0
+			$g_avAttackTroops[$i][0] = -1
+			$g_avAttackTroops[$i][1] = 0
 		Else
 			Local $troopKind = $aTemp[$i][0]
 			If $troopKind < $eKing Then
-				$atkTroops[$i][0] = $aTemp[$i][0]
-				$atkTroops[$i][1] = $aTemp[$i][1]
+				$g_avAttackTroops[$i][0] = $aTemp[$i][0]
+				$g_avAttackTroops[$i][1] = $aTemp[$i][1]
 				$troopKind = $aTemp[$i][1]
 				$troopsnumber += $aTemp[$i][1]
 
 			Else ;king, queen, warden and spells
-				$atkTroops[$i][0] = $troopKind
+				$g_avAttackTroops[$i][0] = $troopKind
 				$troopsnumber += 1
-				$atkTroops[$i][0] = $aTemp[$i][0]
+				$g_avAttackTroops[$i][0] = $aTemp[$i][0]
 				$troopKind = $aTemp[$i][1]
 				$troopsnumber += 1
 			EndIf
 			$Plural = 0
 			If $aTemp[$i][1] > 1 Then $Plural = 1
-			If $troopKind <> -1 Then SetLog($aTemp[$i][2] & " » " & $aTemp[$i][1] & " " & NameOfTroop($atkTroops[$i][0], $Plural), $COLOR_GREEN)
+			If $troopKind <> -1 Then SetLog($aTemp[$i][2] & " » " & $aTemp[$i][1] & " " & NameOfTroop($g_avAttackTroops[$i][0], $Plural), $COLOR_GREEN)
 		EndIf
 	Next
 
@@ -460,16 +460,16 @@ Func PrepareSuperXPAttack()
 
 	If $g_idebugSetlog = 1 Then Setlog("troopsnumber  = " & $troopsnumber)
 
-	$King = -1
-	$Queen = -1
-	$Warden = -1
-	For $i = 0 To UBound($atkTroops) - 1
-		If $atkTroops[$i][0] = $eKing Then
-			$King = $i
-		ElseIf $atkTroops[$i][0] = $eQueen Then
-			$Queen = $i
-		ElseIf $atkTroops[$i][0] = $eWarden Then
-			$Warden = $i
+	$g_iKingSlot = -1
+	$g_iQueenSlot = -1
+	$g_iWardenSlot = -1
+	For $i = 0 To UBound($g_avAttackTroops) - 1
+		If $g_avAttackTroops[$i][0] = $eKing Then
+			$g_iKingSlot = $i
+		ElseIf $g_avAttackTroops[$i][0] = $eQueen Then
+			$g_iQueenSlot = $i
+		ElseIf $g_avAttackTroops[$i][0] = $eWarden Then
+			$g_iWardenSlot = $i
 		EndIf
 	Next
 
@@ -528,9 +528,9 @@ Func ReturnHomeSuperXP()
 	Local Const $DELAYEachCheck = 70, $iRetryLimits = 429 ; Wait for each Color About 30 Seconds If didn't found!
 	Local $Counter = 0
 
-	$King = -1
-	$Queen = -1
-	$Warden = -1
+	$g_iKingSlot = -1
+	$g_iQueenSlot = -1
+	$g_iWardenSlot = -1
 	SetLog("Returning Home - SuperXP", $COLOR_BLUE)
 
 	; 1st Step
@@ -890,7 +890,7 @@ Func OpenSinglePlayerPage()
 
 	If IsMainPage() Then
 
-		If $iUseRandomClick = 0 Then
+		If $g_bUseRandomClick = 0 Then
 			ClickP($aAttackButton, 1, 0, "#0149") ; Click Attack Button
 		Else
 			ClickR($aAttackButtonRND, $aAttackButton[0], $aAttackButton[1], 1, 0)

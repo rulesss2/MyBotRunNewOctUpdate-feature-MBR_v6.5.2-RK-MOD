@@ -16,7 +16,7 @@
 
 Global $g_hBtnStart = 0, $g_hBtnStop = 0, $g_hBtnPause = 0, $g_hBtnResume = 0, $g_hBtnSearchMode = 0, $g_hBtnMakeScreenshot = 0, $g_hBtnHide = 0, $g_hBtnEmbed = 0, _
 	   $g_hChkBackgroundMode = 0, $g_hLblDonate = 0, $g_hBtnAttackNowDB = 0, $g_hBtnAttackNowLB = 0, $g_hBtnAttackNowTS = 0
-Global $g_hPicTwoArrowShield = 0, $g_hLblVersion = 0, $g_hPicArrowLeft = 0, $g_hPicArrowRight = 0
+Global $g_hPicTwoArrowShield = 0, $g_hLblVersion = 0, $g_hPicArrowLeft = 0, $g_hPicArrowRight = 0, $g_hBtnEnableGUI = 0, $g_hBtnDisableGUI = 0 
 Global $g_hGrpVillage = 0
 Global $g_hLblResultGoldNow = 0, $g_hLblResultGoldHourNow = 0, $g_hPicResultGoldNow = 0, $g_hPicResultGoldTemp = 0
 Global $g_hLblResultElixirNow = 0, $g_hLblResultElixirHourNow = 0, $g_hPicResultElixirNow = 0, $g_hPicResultElixirTemp = 0
@@ -85,6 +85,17 @@ Func CreateBottomPanel()
 	   $g_hBtnAttackNowLB = GUICtrlCreateButton(GetTranslated(602,19, "LB Attack!"), $x + 190, $y + 23, 60, -1)
 		   GUICtrlSetState(-1, $GUI_HIDE)
 	   $g_hBtnAttackNowTS = GUICtrlCreateButton(GetTranslated(602,20, "TH Snipe!"), $x + 190, $y + 50, 60, -1)
+		   GUICtrlSetState(-1, $GUI_HIDE)
+	   $g_hBtnEnableGUI = GUICtrlCreateButton(GetTranslated(602,52, "Enable GUI"), $x + 100, $y + 70, 80, -1)
+		   _GUICtrlSetTip(-1, 	GetTranslated(602,53, "Enable GUI control while botting") & @CRLF & _
+								GetTranslated(602,54, "Warning:  USE THIS WITH CAUTION!") & @CRLF & _
+								GetTranslated(602,55, "This function may create errors that require bot/PC restart") & @CRLF & _
+								GetTranslated(602,56, "Better to stop the Bot completely if you need to change the setting"))
+		   GUICtrlSetOnEvent(-1, "btnEnableGUI")
+		   GUICtrlSetState(-1, $GUI_HIDE)
+	   $g_hBtnDisableGUI = GUICtrlCreateButton("Disable GUI", $x + 100, $y + 70, 80, -1)
+		   _GUICtrlSetTip(-1, GetTranslated(602,57, "Enable GUI control while botting"))
+		   GUICtrlSetOnEvent(-1, "btnDisableGUI")
 		   GUICtrlSetState(-1, $GUI_HIDE)
    GUICtrlCreateGroup("", -99, -99, 1, 1)
 

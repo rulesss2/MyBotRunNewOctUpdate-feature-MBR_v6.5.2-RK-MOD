@@ -97,12 +97,12 @@ Func SaveConfig_MOD()
 ;~	_Ini_Add("Others", "ClanHop", $ichkClanHop ? 1 : 0)
      
 	 ; ================================================== GOBLINXP PART ================================================== ;
-	IniWriteS($g_sProfileConfigPath, "attack", "EnableSuperXP", $ichkEnableSuperXP)
-	IniWriteS($g_sProfileConfigPath, "attack", "SXTraining", $irbSXTraining)
-	IniWriteS($g_sProfileConfigPath, "attack", "SXBK", $ichkSXBK)
-	IniWriteS($g_sProfileConfigPath, "attack", "SXAQ", $ichkSXAQ)
-	IniWriteS($g_sProfileConfigPath, "attack", "SXGW", $ichkSXGW)
-	IniWriteS($g_sProfileConfigPath, "attack", "MaxXptoGain", GUICtrlRead($txtMaxXPtoGain))
+	_Ini_Add("attack", "EnableSuperXP", $ichkEnableSuperXP)
+	_Ini_Add("attack", "SXTraining", $irbSXTraining)
+	_Ini_Add("attack", "SXBK", $ichkSXBK)
+	_Ini_Add("attack", "SXAQ", $ichkSXAQ)
+	_Ini_Add("attack", "SXGW", $ichkSXGW)
+	_Ini_Add("attack", "MaxXptoGain", GUICtrlRead($txtMaxXPtoGain))
 	; ================================================== GOBLINXP END =================================================== ;
 EndFunc
 

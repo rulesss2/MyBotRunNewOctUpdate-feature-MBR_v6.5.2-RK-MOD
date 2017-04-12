@@ -133,7 +133,7 @@ Func InitializeBot()
 	CreateSplashScreen() ; Create splash window
 
 	; Ensure watchdog is launched (requires Bot Window for messaging)
-	If $g_bBotLaunchOption_NoWatchdog = False Then LaunchWatchdog()
+	;If $g_bBotLaunchOption_NoWatchdog = False Then LaunchWatchdog()
 
 	InitializeMBR($sAndroidInfo)
 
@@ -190,8 +190,8 @@ Func ProcessCommandLine()
 					$g_bBotLaunchOption_Restart = True
 				Case "/autostart", "/a", "-autostart", "-a"
 					$g_bBotLaunchOption_Autostart = True
-				Case "/nowatchdog", "/nwd", "-nowatchdog", "-nwd"
-					$g_bBotLaunchOption_NoWatchdog = True
+				;Case "/nowatchdog", "/nwd", "-nowatchdog", "-nwd"
+				;	$g_bBotLaunchOption_NoWatchdog = True
 				Case "/dpiaware", "/da", "-dpiaware", "-da"
 					$g_bBotLaunchOption_ForceDpiAware = True
 				Case "/dock1", "/d1", "-dock1", "-d1", "/dock", "/d", "-dock", "-d"

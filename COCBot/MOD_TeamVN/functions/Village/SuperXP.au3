@@ -22,11 +22,12 @@ Global $BdGoblinPicnic[3] = [0, "5000-7000", "6000-8000"] ; [0] = Queen, [1] = W
 Global $ActivatedHeroes[3] = [False, False, False] ; [0] = Queen, [1] = Warden, [2] = Barbarian King , Prevent to click on them to Activate Again And Again
 Global Const $minStarsToEnd = 1
 Global $canGainXP = False
+Global $iGainedXP 
 
 Func MainSuperXPHandler()
 	If $ichkEnableSuperXP = 0 Then Return
-	If $g_idebugSetlog Or $DebugSX Then SetLog("Begin MainSuperXPHandler, $irbSXTraining=" & $irbSXTraining & ", $IsFullArmywithHeroesAndSpells=" & $IsFullArmywithHeroesAndSpells, $COLOR_DEBUG)
-	If $irbSXTraining = 1 And $IsFullArmywithHeroesAndSpells = True Then Return ; If Gain while Training Enabled but Army is Full Then Return
+	If $g_idebugSetlog Or $DebugSX Then SetLog("Begin MainSuperXPHandler, $irbSXTraining=" & $irbSXTraining & ", $IsFullArmywithHeroesAndSpells=" & $g_bIsFullArmywithHeroesAndSpells, $COLOR_DEBUG)
+	If $irbSXTraining = 1 And $g_bIsFullArmywithHeroesAndSpells = True Then Return ; If Gain while Training Enabled but Army is Full Then Return
 	If $iGainedXP >= $itxtMaxXPtoGain Then
 		SetLog("You have Max XP to Gain GoblinXP", $COLOR_DEBUG)
 		If $DebugSX = 1 Then SetLog("$iGainedXP = " & $iGainedXP & "|$itxtMaxXPtoGain = " & $itxtMaxXPtoGain, $COLOR_DEBUG)
@@ -40,9 +41,9 @@ Func MainSuperXPHandler()
 		Return False
 	EndIf
 
-	$iTrophyCurrent = getTrophyMainScreen($aTrophies[0], $aTrophies[1]) ; get OCR to read current Village Trophies
-	If $g_iDebugSetlog = 1 Then SetLog("Current Trophy Count: " & $iTrophyCurrent, $COLOR_DEBUG) ;Debug
-	If Number($iTrophyCurrent) > Number($iTxtMaxTrophy) Then Return
+	$g_aiCurrentLoot[$eLootTrophy] = getTrophyMainScreen($aTrophies[0], $aTrophies[1]) ; get OCR to read current Village Trophies
+	If $g_iDebugSetlog = 1 Then SetLog("Current Trophy Count: " & $g_aiCurrentLoot, $COLOR_DEBUG) ;Debug
+	If Number($g_aiCurrentLoot) > Number($g_iDropTrophyMax) Then Return
 
 	Local $heroRes = getArmyHeroCount(True, True)
 	If $heroRes = @error And @error > 0 Then SetLog("Error while getting hero count, #" & @error, $COLOR_DEBUG)
@@ -51,14 +52,14 @@ Func MainSuperXPHandler()
 		Return False
 	EndIf
 
-	$canGainXP = ($iHeroAvailable <> $eHeroNone And (IIf($ichkSXBK = $eHeroNone, False, BitAND($iHeroAvailable, $eHeroKing) = $eHeroKing) Or IIf($ichkSXAQ = $eHeroNone, False, BitAND($iHeroAvailable, $eHeroQueen) = $eHeroQueen) Or IIf($ichkSXGW = $eHeroNone, False, BitAND($iHeroAvailable, $eHeroWarden) = $eHeroWarden) And IIf($irbSXTraining = 1, $IsFullArmywithHeroesAndSpells = False, True) And Number($iGainedXP) < Number($itxtMaxXPtoGain)))
+	$canGainXP = ($g_iHeroAvailable <> $eHeroNone And (IIf($ichkSXBK = $eHeroNone, False, BitAND($g_iHeroAvailable, $eHeroKing) = $eHeroKing) Or IIf($ichkSXAQ = $eHeroNone, False, BitAND($g_iHeroAvailable, $eHeroQueen) = $eHeroQueen) Or IIf($ichkSXGW = $eHeroNone, False, BitAND($g_iHeroAvailable, $eHeroWarden) = $eHeroWarden) And IIf($irbSXTraining = 1, $g_bIsFullArmywithHeroesAndSpells = False, True) And Number($iGainedXP) < Number($itxtMaxXPtoGain)))
 
-	If $DebugSX = 1 Then SetLog("$iHeroAvailable = " & $iHeroAvailable)
+	If $DebugSX = 1 Then SetLog("$g_iHeroAvailable = " & $g_iHeroAvailable)
 	If $DebugSX = 1 Then SetLog("BK: " & $ichkSXBK & ", AQ: " & $ichkSXAQ & ", GW: " & $ichkSXGW)
 	If $DebugSX = 1 Then SetLog("$canGainXP = " & $canGainXP & @CRLF & "1: " & String(IIf($ichkSXBK = $eHeroNone, False, BitAND($iHeroAvailable, $eHeroKing) = $eHeroKing)) & ", 2: " & _
-			String(IIf($ichkSXAQ = $eHeroNone, False, BitAND($iHeroAvailable, $eHeroQueen) = $eHeroQueen) & "|" & BitAND($iHeroAvailable, $eHeroQueen)) & ", 3: " & _
-			String(IIf($ichkSXGW = $eHeroNone, False, BitAND($iHeroAvailable, $eHeroWarden) = $eHeroWarden) & "|" & BitAND($iHeroAvailable, $eHeroWarden)) & ", 4: " & ($iHeroAvailable <> $eHeroNone) & _
-			", 5: " & String(IIf($irbSXTraining = 1, $IsFullArmywithHeroesAndSpells = False, True)) & ", 6: " & String(Number($iGainedXP) < Number($itxtMaxXPtoGain)))
+			String(IIf($ichkSXAQ = $eHeroNone, False, BitAND($g_iHeroAvailable, $eHeroQueen) = $eHeroQueen) & "|" & BitAND($g_iHeroAvailable, $eHeroQueen)) & ", 3: " & _
+			String(IIf($ichkSXGW = $eHeroNone, False, BitAND($g_iHeroAvailable, $eHeroWarden) = $eHeroWarden) & "|" & BitAND($g_iHeroAvailable, $eHeroWarden)) & ", 4: " & ($g_iHeroAvailable <> $eHeroNone) & _
+			", 5: " & String(IIf($irbSXTraining = 1, $g_bIsFullArmywithHeroesAndSpells = False, True)) & ", 6: " & String(Number($iGainedXP) < Number($itxtMaxXPtoGain)))
 
 	If $canGainXP = False Then Return
 
@@ -100,13 +101,13 @@ Func MainSuperXPHandler()
 		If $canGainXP = False Then ExitLoop
 		DonateCC(True)
 		If $irbSXTraining = 1 Then CheckForFullArmy()
-		$canGainXP = ($iHeroAvailable <> $eHeroNone And (IIf($ichkSXBK = $eHeroNone, False, BitAND($iHeroAvailable, $eHeroKing) = $eHeroKing) Or IIf($ichkSXAQ = $eHeroNone, False, BitAND($iHeroAvailable, $eHeroQueen) = $eHeroQueen) Or IIf($ichkSXGW = $eHeroNone, False, BitAND($iHeroAvailable, $eHeroWarden) = $eHeroWarden) And IIf($irbSXTraining = 1, $IsFullArmywithHeroesAndSpells = False, True) And $ichkEnableSuperXP = 1 And Number($iGainedXP) < Number($itxtMaxXPtoGain)))
-		If $DebugSX = 1 Then SetLog("$iHeroAvailable = " & $iHeroAvailable)
+		$canGainXP = ($g_iHeroAvailable <> $eHeroNone And (IIf($ichkSXBK = $eHeroNone, False, BitAND($g_iHeroAvailable, $eHeroKing) = $eHeroKing) Or IIf($ichkSXAQ = $eHeroNone, False, BitAND($g_iHeroAvailable, $eHeroQueen) = $eHeroQueen) Or IIf($ichkSXGW = $eHeroNone, False, BitAND($g_iHeroAvailable, $eHeroWarden) = $eHeroWarden) And IIf($irbSXTraining = 1, $g_bIsFullArmywithHeroesAndSpells = False, True) And $ichkEnableSuperXP = 1 And Number($iGainedXP) < Number($itxtMaxXPtoGain)))
+		If $DebugSX = 1 Then SetLog("$g_iHeroAvailable = " & $g_iHeroAvailable)
 		If $DebugSX = 1 Then SetLog("BK: " & $ichkSXBK & ", AQ: " & $ichkSXAQ & ", GW: " & $ichkSXGW)
-		If $DebugSX = 1 Then SetLog("While|$canGainXP = " & $canGainXP & @CRLF & "1: " & String(IIf($ichkSXBK = $eHeroNone, False, BitAND($iHeroAvailable, $eHeroKing) = $eHeroKing)) & ", 2: " & _
-				String(IIf($ichkSXAQ = $eHeroNone, False, BitAND($iHeroAvailable, $eHeroQueen) = $eHeroQueen)) & ", 3: " & _
-				String(IIf($ichkSXGW = $eHeroNone, False, BitAND($iHeroAvailable, $eHeroWarden) = $eHeroWarden)) & ", 4: " & ($iHeroAvailable <> $eHeroNone) & _
-				", 5: " & String(IIf($irbSXTraining = 1, $IsFullArmywithHeroesAndSpells = False, True)) & ", 6: " & String($ichkEnableSuperXP = 1) & ", 7: " & String(Number($iGainedXP) < Number($itxtMaxXPtoGain)))
+		If $DebugSX = 1 Then SetLog("While|$canGainXP = " & $canGainXP & @CRLF & "1: " & String(IIf($ichkSXBK = $eHeroNone, False, BitAND($g_iHeroAvailable, $eHeroKing) = $eHeroKing)) & ", 2: " & _
+				String(IIf($ichkSXAQ = $eHeroNone, False, BitAND($g_iHeroAvailable, $eHeroQueen) = $eHeroQueen)) & ", 3: " & _
+				String(IIf($ichkSXGW = $eHeroNone, False, BitAND($g_iHeroAvailable, $eHeroWarden) = $eHeroWarden)) & ", 4: " & ($g_iHeroAvailable <> $eHeroNone) & _
+				", 5: " & String(IIf($irbSXTraining = 1, $g_bIsFullArmywithHeroesAndSpells = False, True)) & ", 6: " & String($ichkEnableSuperXP = 1) & ", 7: " & String(Number($iGainedXP) < Number($itxtMaxXPtoGain)))
 	WEnd
 EndFunc   ;==>MainSuperXPHandler
 
@@ -142,7 +143,7 @@ Func CheckForFullArmy()
 		Return
 	EndIf
 
-	If IsWaitforHeroesActive() Or $iChkTrophyRange = 1 Or $ichkEnableSuperXP = 1 Then
+	If IsWaitforHeroesActive() Or $g_bDropTrophyEnable = 1 Or $ichkEnableSuperXP = 1 Then
 		;CheckExistentArmy("Heroes")
 		getArmyHeroCount()
 	Else
@@ -152,16 +153,16 @@ Func CheckForFullArmy()
 	If $g_bRunState = False Then Return
 
 	If $fullarmy And $checkSpells And $bFullArmyHero And $fullcastlespells And $fullcastletroops Then
-		$IsFullArmywithHeroesAndSpells = True
+		$g_bIsFullArmywithHeroesAndSpells = True
 		$g_bFirstStart = False
 	Else
-		$IsFullArmywithHeroesAndSpells = False
+		$g_bIsFullArmywithHeroesAndSpells = False
 	EndIf
 
-	If $IsFullArmywithHeroesAndSpells = False And (_ColorCheck(_GetPixelColor(391, 126, True), Hex(0x605C4C, 6), 15) = True And _ColorCheck(_GetPixelColor(587, 126, True), Hex(0x605C4D, 6), 15) = True) Then ; if Full army was false and nothing was in 'Train' and 'Brew' Queue then check for train
+	If $g_bIsFullArmywithHeroesAndSpells = False And (_ColorCheck(_GetPixelColor(391, 126, True), Hex(0x605C4C, 6), 15) = True And _ColorCheck(_GetPixelColor(587, 126, True), Hex(0x605C4D, 6), 15) = True) Then ; if Full army was false and nothing was in 'Train' and 'Brew' Queue then check for train
 		If $DebugSX = 1 Then SetLog("SX|CFFA TrainRevamp Condi. #1")
 		TrainRevamp()
-	ElseIf $IsFullArmywithHeroesAndSpells = True And $ichkEnableSuperXP = 1 And $irbSXTraining = 1 Then ; Train Troops Before Attack
+	ElseIf $g_bIsFullArmywithHeroesAndSpells = True And $ichkEnableSuperXP = 1 And $irbSXTraining = 1 Then ; Train Troops Before Attack
 		If $DebugSX = 1 Then SetLog("SX|CFFA TrainRevamp Condi. #2")
 		TrainRevamp()
 	EndIf
@@ -344,7 +345,7 @@ Func AttackSuperXP()
 EndFunc   ;==>AttackSuperXP
 
 Func CheckAvailableHeroes()
-	$canGainXP = ((IIf($ichkSXBK = $eHeroNone, False, $King <> -1) Or IIf($ichkSXAQ = $eHeroNone, False, $Queen <> -1) Or IIf($ichkSXGW = $eHeroNone, False, $Warden <> -1)) And IIf($irbSXTraining = 1, $IsFullArmywithHeroesAndSpells = False, True))
+	$canGainXP = ((IIf($ichkSXBK = $eHeroNone, False, $King <> -1) Or IIf($ichkSXAQ = $eHeroNone, False, $Queen <> -1) Or IIf($ichkSXGW = $eHeroNone, False, $Warden <> -1)) And IIf($irbSXTraining = 1, $g_bIsFullArmywithHeroesAndSpells = False, True))
 	If $DebugSX = 1 Then SetLog("SX|CheckAvailableHeroes=" & $canGainXP)
 	Return $canGainXP
 EndFunc   ;==>CheckAvailableHeroes
@@ -353,10 +354,10 @@ Func DropAQSuperXP($bActivateASAP = True)
 	If $Queen <> -1 And $ichkSXAQ <> $eHeroNone Then
 		SetLog("Deploying Queen", $COLOR_BLUE)
 		Click(GetXPosOfArmySlot($Queen, 68), 595 + $g_ibottomOffsetY, 1, 0, "#0000") ;Select Queen
-		If _Sleep($iDelayDropSuperXP1) Then Return False
+		If _Sleep($DELAYDROPSuperXP1) Then Return False
 		If CheckEarnedStars($minStarsToEnd) = True Then Return True
 		ClickP(GetDropPointSuperXP(1), 1, 0, "#0000") ;Drop Queen
-		If _Sleep($iDelayDropSuperXP3) Then Return False
+		If _Sleep($DELAYDROPSuperXP3) Then Return False
 		If $bActivateASAP = True Then
 			If IsAttackPage() Then
 				SelectDropTroop($Queen) ;If Queen was not activated: Boost Queen
@@ -371,17 +372,17 @@ Func DropGWSuperXP($bActivateASAP = True)
 	If $Warden <> -1 And $ichkSXGW <> $eHeroNone Then
 		SetLog("Deploying Warden", $COLOR_BLUE)
 		Click(GetXPosOfArmySlot($Warden, 68), 595 + $g_ibottomOffsetY, 1, 0, "#0179") ;Select Warden
-		If _Sleep($iDelayDropSuperXP1) Then Return False
+		If _Sleep($DELAYDROPSuperXP1) Then Return False
 		If CheckEarnedStars($minStarsToEnd) = True Then Return True
 		ClickP(GetDropPointSuperXP(2), 1, 0, "#0180") ;Drop Warden
-		If _Sleep($iDelayDropSuperXP3) Then Return False
+		If _Sleep($DELAYDROPSuperXP3) Then Return False
 		If $bActivateASAP = True Then
 			If IsAttackPage() Then
 				SelectDropTroop($Warden) ;If Warden was not activated: Boost Warden
 				$ActivatedHeroes[1] = True
 			EndIf
 		EndIf
-		If _Sleep($iDelayDropSuperXP3) Then Return False
+		If _Sleep($DELAYDROPSuperXP3) Then Return False
 	EndIf
 EndFunc   ;==>DropGWSuperXP
 
@@ -389,17 +390,17 @@ Func DropBKSuperXP($bActivateASAP = True)
 	If $King <> -1 And $ichkSXBK <> $eHeroNone Then
 		SetLog("Deploying King", $COLOR_BLUE)
 		Click(GetXPosOfArmySlot($King, 68), 595 + $g_ibottomOffsetY, 1, 0, "#0177") ;Select King
-		If _Sleep($iDelayDropSuperXP1) Then Return False
+		If _Sleep($DELAYDROPSuperXP1) Then Return False
 		If CheckEarnedStars($minStarsToEnd) = True Then Return True
 		ClickP(GetDropPointSuperXP(3), 1, 0, "#0178") ;Drop King
-		If _Sleep($iDelayDropSuperXP3) Then Return False
+		If _Sleep($DELAYDROPSuperXP3) Then Return False
 		If $bActivateASAP = True Then
 			If IsAttackPage() Then
 				SelectDropTroop($King) ;If King was not activated: Boost King
 				$ActivatedHeroes[2] = True
 			EndIf
 		EndIf
-		If _Sleep($iDelayDropSuperXP3) Then Return False
+		If _Sleep($DELAYDROPSuperXP3) Then Return False
 	EndIf
 EndFunc   ;==>DropBKSuperXP
 
@@ -415,7 +416,7 @@ EndFunc   ;==>GetDropPointSuperXP
 Func PrepareSuperXPAttack()
 	If $DebugSX = 1 Then SetLog("SX|PrepareSuperXPAttack", $COLOR_PURPLE)
 	Local $troopsnumber = 0
-	If _Sleep($iDelayPrepareAttack1) Then Return
+	If _Sleep($DELAYPrepareAttack1) Then Return
 	_CaptureRegion2(0, 571 + $g_ibottomOffsetY, 859, 671 + $g_ibottomOffsetY)
 	Local $Plural = 0
 	Local $result = AttackBarCheck()
@@ -524,7 +525,7 @@ EndFunc   ;==>CheckEarnedStars
 
 Func ReturnHomeSuperXP()
 	Local Const $EndBattleText[4] = [29, 565 + $g_imidOffsetY, 0xFFFFFF, 10], $EndBattle2Text[4] = [377, 244 + $g_imidOffsetY, 0xFFFFFF, 20], $ReturnHomeText[4] = [428, 545 + $g_imidOffsetY, 0xFFFFFF, 10]
-	Local Const $iDelayEachCheck = 70, $iRetryLimits = 429 ; Wait for each Color About 30 Seconds If didn't found!
+	Local Const $DELAYEachCheck = 70, $iRetryLimits = 429 ; Wait for each Color About 30 Seconds If didn't found!
 	Local $Counter = 0
 
 	$King = -1
@@ -535,7 +536,7 @@ Func ReturnHomeSuperXP()
 	; 1st Step
 	While _ColorCheck(_GetPixelColor($EndBattleText[0], $EndBattleText[1], True), Hex($EndBattleText[2], 6), $EndBattleText[3]) = False ; First EndBattle Button
 		If $DebugSX = 1 Then SetLog("SX|RHSX|1-Loop #" & $Counter, $COLOR_DEBUG)
-		If _Sleep($iDelayEachCheck) Then Return False
+		If _Sleep($DELAYEachCheck) Then Return False
 		$Counter += 1
 		If $Counter >= $iRetryLimits Then
 			If $DebugSX = 1 Then SetLog("SX|RHSX|First EndBattle Button not found")
@@ -544,13 +545,13 @@ Func ReturnHomeSuperXP()
 	WEnd
 
 	Click(Random($EndBattleText[0] - 5, $EndBattleText[0] + 5, 1), Random($EndBattleText[1] - 5, $EndBattleText[1] + 5, 1)) ; Click First EndBattle Button
-	If _Sleep($iDelayEachCheck) Then Return False
+	If _Sleep($DELAYEachCheck) Then Return False
 
 	; 2nd Step
 	$Counter = 0 ; Reset Counter
 	While _ColorCheck(_GetPixelColor($EndBattle2Text[0], $EndBattle2Text[1], True), Hex($EndBattle2Text[2], 6), $EndBattle2Text[3]) = False ; Second EndBattle Button
 		If $DebugSX = 1 Then SetLog("SX|RHSX|2-Loop #" & $Counter, $COLOR_DEBUG)
-		If _Sleep($iDelayEachCheck) Then Return False
+		If _Sleep($DELAYEachCheck) Then Return False
 		$Counter += 1
 		If $Counter >= $iRetryLimits Then
 			If $DebugSX = 1 Then SetLog("SX|RHSX|Second EndBattle Button not found")
@@ -559,13 +560,13 @@ Func ReturnHomeSuperXP()
 	WEnd
 
 	Click(Random(455, 565, 1), Random(412, 447, 1)) ; Click 2nd EndBattle Button, (Verify)
-	If _Sleep($iDelayEachCheck) Then Return False
+	If _Sleep($DELAYEachCheck) Then Return False
 
 	; 3rd Step
 	$Counter = 0 ; Reset Counter
 	While _ColorCheck(_GetPixelColor($ReturnHomeText[0], $ReturnHomeText[1], True), Hex($ReturnHomeText[2], 6), $ReturnHomeText[3]) = False ; Last - Return Home Button
 		If $DebugSX = 1 Then SetLog("SX|RHSX|3-Loop #" & $Counter, $COLOR_DEBUG)
-		If _Sleep($iDelayEachCheck) Then Return False
+		If _Sleep($DELAYEachCheck) Then Return False
 		$Counter += 1
 		If $Counter >= $iRetryLimits Then
 			If $DebugSX = 1 Then SetLog("SX|RHSX|Last Return Home Button not found")
@@ -574,13 +575,13 @@ Func ReturnHomeSuperXP()
 	WEnd
 
 	Click(Random($ReturnHomeText[0] - 5, $ReturnHomeText[0] + 5, 1), Random($ReturnHomeText[1] - 5, $ReturnHomeText[1] + 5, 1)) ; Click on Return Home Button
-	If _Sleep($iDelayReturnHome2) Then Return ; short wait for screen to Exit
+	If _Sleep($DELAYReturnHome2) Then Return ; short wait for screen to Exit
 
 	; Last Step, Check for Main Screen
 	$Counter = 0 ; Reset Counter
 	While 1
 		If $DebugSX = 1 Then SetLog("SX|RHSX|4-Loop #" & $Counter, $COLOR_DEBUG)
-		If _Sleep($iDelayReturnHome4) Then Return
+		If _Sleep($DELAYReturnHome4) Then Return
 		If IsMainPage(1) Then
 			_GUICtrlEdit_SetText($g_hTxtLog, _PadStringCenter(" BOT LOG ", 71, "="))
 			_GUICtrlRichEdit_SetFont($g_hTxtLog, 6, "Lucida Console")
@@ -602,7 +603,7 @@ Func WaitForNoClouds()
 	Local $i = 0
 	ForceCaptureRegion()
 	While _ColorCheck(_GetPixelColor(60, 576, True), Hex(0x000000, 6), 20) = False
-		If _Sleep($iDelayGetResources1) Then Return False
+		If _Sleep($DELAYGetResources1) Then Return False
 		$i += 1
 		If $i >= 120 Or isProblemAffect(True) Then ; Wait 30 seconds then restart bot and CoC
 			$Is_ClientSyncError = True
@@ -707,7 +708,7 @@ Func OpenGoblinPicnic()
 		If _CheckPixel($aCancelFight, $g_bNoCapturePixel) Or _CheckPixel($aCancelFight2, $g_bNoCapturePixel) Then
 			If $g_idebugSetlog Then SetLog("#cOb# Clicks X 2, $aCancelFight", $COLOR_BLUE)
 			PureClickP($aCancelFight, 1, 0, "#0135") ;Clicks X
-			If _Sleep($iDelaycheckObstacles1) Then Return False
+			If _Sleep($DELAYcheckObstacles1) Then Return False
 			SafeReturnSX()
 			Return False
 		EndIf
@@ -913,12 +914,12 @@ Func OpenSinglePlayerPage()
 
 EndFunc   ;==>OpenSinglePlayerPage
 
-Func WaitForMain($clickAway = True, $delayEachCheck = 50, $maxRetry = 100)
+Func WaitForMain($clickAway = True, $DELAYEachCheck = 50, $maxRetry = 100)
 	If $clickAway Then ClickP($aAway, 2, 0, "#0346") ;Click Away
 
 	Local $Counter = 0
 	While Not (IsMainPage())
-		If _Sleep($delayEachCheck) Then Return True
+		If _Sleep($DELAYEachCheck) Then Return True
 		If $clickAway Then ClickP($aAway, 2, 0, "#0346") ;Click Away
 		$Counter += 1
 		If $Counter > $maxRetry Then

@@ -20,6 +20,13 @@ Global $g_hGUI_MOD_TAB = 0, $g_hGUI_MOD_TAB_ITEM1 = 0 , $g_hGUI_MOD_TAB_ITEM2 = 
 ; CoC Stats
 Global $g_hChkCoCStats = 0, $g_hTxtAPIKey = 0
 
+; GoblinXP
+Global $grpSuperXP = 0 , $chkEnableSuperXP = 0 , $rbSXTraining= 0 , $lblLOCKEDSX = 0 , $rbSXIAttacking = 0 , $txtMaxXPtoGain = 0
+Global $chkSXBK = 0 , $chkSXAQ = 0 , $chkSXGW = 0
+Global $DocXP1 = 0 , $DocXP2 = 0 , $DocXP3 = 0 ,$DocXP4 = 0
+Global $lblXPatStart = 0 , $lblXPCurrent = 0 , $lblXPSXWon = 0 , $lblXPSXWonHour = 0
+
+
 #include "MOD GUI Design - Profiles.au3"
 #include "MOD GUI Design - ProfileStats.au3"
 
@@ -35,6 +42,8 @@ Func CreateMODTab()
 			CreateSwitchAccount()
 		$g_hGUI_MOD_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600, 60, "Switch Profile"))
 			CreateModSwitchProfile()
+		$g_hGUI_MOD_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslated(600, 65, "Goblin XP"))
+		    GoblinXPGUI()
 		$g_hGUI_MOD_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600, 61, "Profile Stat's")) ; Has to be outside of the Last Control to hide
 			$g_hLastControlToHide = GUICtrlCreateDummy()
 			ReDim $g_aiControlPrevState[$g_hLastControlToHide + 1]
@@ -63,11 +72,79 @@ Func OptionsGUI()
 
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
-	$y += 70
-	$x = 5
-	Local $Group2 = GUICtrlCreateGroup("Not thought out of additional functions....!!", $x, $y, 440, 200)
-	Local $txtHelp = "Wait For The Next Version......!!!!!" & _
-		 @CRLF & "Coming Soon.................!! :P "
-		GUICtrlCreateLabel($txtHelp, $x + 30, $y + 30, 430, 125)
-
 EndFunc   ;==>TreasuryGUI
+
+Func GoblinXPGUI()
+;$12 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)
+	Local $x = 25, $y = 50, $xStart = 25, $yStart = 50
+
+	$grpSuperXP = GUICtrlCreateGroup(GetTranslated(700, 1, "Goblin XP"), $x - 20, $y - 20, 440, 305)
+		$chkEnableSuperXP = GUICtrlCreateCheckbox(GetTranslated(700, 2, "Enable Goblin XP"), $x, $y - 10, 102, 17, -1, -1)
+		GUICtrlSetOnEvent(-1, "chkEnableSuperXP")
+			$rbSXTraining = GUICtrlCreateRadio(GetTranslated(700, 3, "Farm XP during troops Training"), $x, $y + 13, 165, 17)
+			GUICtrlSetState(-1, $GUI_CHECKED)
+			GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
+			$lblLOCKEDSX = GUICtrlCreateLabel(GetTranslated(700, 13, "LOCKED"), $x + 210, $y + 23, 173, 50)
+			GUICtrlSetFont(-1, 30, 800, 0, "Arial")
+			GUICtrlSetColor(-1, 0xFF0000)
+			GUICtrlSetState(-1, $GUI_HIDE)
+			$rbSXIAttacking = GUICtrlCreateRadio(GetTranslated(700, 4, "Farm XP instead of Attacking"), $x, $y + 36, 158, 17)
+			GUICtrlCreateLabel (GetTranslated(700, 14, "Max XP to Gain") & ":", $x, $y + 69, -1, 17)
+			GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
+			$txtMaxXPtoGain = GUICtrlCreateInput("500", $x + 85, $y + 67, 70, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+			GUICtrlSetLimit(-1, 8)
+			GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
+	$x += 129
+	$y += 100
+		GUICtrlCreateLabel(GetTranslated(700, 5, "Use"), $x - 35, $y + 13, 23, 17)
+			GUICtrlCreateIcon($g_sLibIconPath, $eIcnKing, $x, $y, 32, 32)
+			GUICtrlCreateIcon($g_sLibIconPath, $eIcnQueen, $x + 40, $y, 32, 32)
+			GUICtrlCreateIcon($g_sLibIconPath, $eIcnWarden, $x + 80, $y, 32, 32)
+		GUICtrlCreateLabel(GetTranslated(700, 6, "to gain XP"), $x + 123, $y + 13, 53, 17)
+	$x += 10
+		$chkSXBK = GUICtrlCreateCheckbox("", $x, $y + 35, 13, 13)
+		GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
+		$chkSXAQ = GUICtrlCreateCheckbox("", $x + 40, $y + 35, 13, 13)
+		GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
+		$chkSXGW = GUICtrlCreateCheckbox("", $x + 80, $y + 35, 13, 13)
+		GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
+
+	$x = $xStart + 25
+	$y += 73
+		GUICtrlCreateLabel("", $x - 25, $y, 5, 19)
+		GUICtrlSetBkColor (-1, 0xD8D8D8)
+		$DocXP1 = GUICtrlCreateLabel(GetTranslated(700, 7, "XP at Start"), $x - 20, $y, 98, 19)
+		GUICtrlSetBkColor (-1, 0xD8D8D8)
+		$DocXP2 = GUICtrlCreateLabel(GetTranslated(700, 8, "Current XP"), $x + 63 + 15, $y, 104, 19)
+		GUICtrlSetBkColor (-1, 0xD8D8D8)
+		$DocXP3 = GUICtrlCreateLabel(GetTranslated(700, 9, "XP Won"), $x + 71 + 76 + 35, $y, 103, 19)
+		GUICtrlSetBkColor (-1, 0xD8D8D8)
+		$DocXP4 = GUICtrlCreateLabel(GetTranslated(700, 10, "XP Won/Hour"), $x + 69 + 55 + 110 + 45, $y, 87, 19)
+		GUICtrlSetBkColor (-1, 0xD8D8D8)
+		;GUICtrlCreateGroup("", $x - 28, $y - 7, 395, 29)
+	$y += 15
+			GUICtrlCreateLabel("", $x - 25, $y + 7, 5, 36)
+			GUICtrlSetBkColor (-1, 0xbfdfff)
+		$lblXPatStart = GUICtrlCreateLabel("0", $x - 20, $y + 7, 99, 36)
+			GUICtrlSetFont(-1, 20, 800, 0, "Arial")
+			GUICtrlSetBkColor (-1, 0xbfdfff)
+		$lblXPCurrent = GUICtrlCreateLabel("0", $x + 78, $y + 7, 105, 36)
+			GUICtrlSetFont(-1, 20, 800, 0, "Arial")
+			GUICtrlSetBkColor (-1, 0xbfdfff)
+		$lblXPSXWon = GUICtrlCreateLabel("0", $x + 182, $y + 7, 97, 36)
+			GUICtrlSetFont(-1, 20, 800, 0, "Arial")
+			GUICtrlSetBkColor (-1, 0xbfdfff)
+		$lblXPSXWonHour = GUICtrlCreateLabel("0", $x + 279, $y + 7, 87, 36)
+			GUICtrlSetFont(-1, 20, 800, 0, "Arial")
+			GUICtrlSetBkColor (-1, 0xbfdfff)
+
+	$x = $xStart
+	$y += 57
+		GUICtrlCreateLabel(GetTranslated(700, 11, "Goblin XP attack continuously the TH of Goblin Picnic to farm XP."), $x, $y, 312, 17)
+		GUICtrlCreateLabel(GetTranslated(700, 12, "At each attack, you win 5 XP"), $x, $y + 20, 306, 17)
+
+	chkEnableSuperXP()
+
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+
+EndFunc

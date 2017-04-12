@@ -95,7 +95,15 @@ Func SaveConfig_MOD()
 
 	; ClanHop (Rhinoceros) - Added by NguyenAnhHD
 ;~	_Ini_Add("Others", "ClanHop", $ichkClanHop ? 1 : 0)
-
+     
+	 ; ================================================== GOBLINXP PART ================================================== ;
+	IniWriteS($g_sProfileConfigPath, "attack", "EnableSuperXP", $ichkEnableSuperXP)
+	IniWriteS($g_sProfileConfigPath, "attack", "SXTraining", $irbSXTraining)
+	IniWriteS($g_sProfileConfigPath, "attack", "SXBK", $ichkSXBK)
+	IniWriteS($g_sProfileConfigPath, "attack", "SXAQ", $ichkSXAQ)
+	IniWriteS($g_sProfileConfigPath, "attack", "SXGW", $ichkSXGW)
+	IniWriteS($g_sProfileConfigPath, "attack", "MaxXptoGain", GUICtrlRead($txtMaxXPtoGain))
+	; ================================================== GOBLINXP END =================================================== ;
 EndFunc
 
 ; SwitchAcc (Demen) - Added By Demen

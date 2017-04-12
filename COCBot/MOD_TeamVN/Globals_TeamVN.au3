@@ -112,3 +112,18 @@ Global $MyApiKey = ""
 
 ; ClanHop (Rhinoceros) - Added by NguyenAnhHD
 ;Global $ichkClanHop
+
+;SuperXP / GoblinXP
+Global $ichkEnableSuperXP = 0, $irbSXTraining = 1, $ichkSXBK = 0, $ichkSXAQ = 0, $ichkSXGW = 0, $iStartXP = 0, $iCurrentXP = 0, $iGainedXP = 0, $iGainedXPHour = 0, $itxtMaxXPtoGain = 500
+Global $DebugSX = 0
+
+
+Global Const $iDelayDropSuperXP1 = 500
+Global Const $iDelayDropSuperXP2 = 1000
+Global Const $iDelayDropSuperXP3 = 250
+Global Const $iDelayPrepareSearchSuperXP = 500
+
+
+Global $CurBaseRedLine[2] = ["", ""]
+Global $DCD = "440,70|825,344|440,640|55,344"
+Global $ECD = "440,22|860,344|440,670|2,344"

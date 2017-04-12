@@ -219,6 +219,12 @@ Global Const $DELAYDONATEWINDOW1 = 250
 Global Const $DELAYDROPTROPHY1 = 1000
 Global Const $DELAYDROPTROPHY4 = 250
 
+;SuperXP / GoblinXP
+;Global Const $iDelayDropSuperXP1 = 500
+;Global Const $iDelayDropSuperXP2 = 1000
+;Global Const $iDelayDropSuperXP3 = 250
+;Global Const $iDelayPrepareSearchSuperXP = 500
+
 ;GetTownHallLevel
 Global Const $DELAYGETTHLEVEL1 = 1000
 Global Const $DELAYGETTHLEVEL2 = 1500

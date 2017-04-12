@@ -121,7 +121,7 @@
 #include "functions\Image Search\ImageSearch.au3"
 #include "functions\Image Search\checkDeadBase.au3"
 #include "functions\Image Search\CheckTombs.au3"
-#include "functions\Image Search\imglocAuxiliary.au3"
+#include "functions\Image Search\imglocAuxiliary.au3" 
 #include "functions\Image Search\imglocScreens.au3"
 #include "functions\Image Search\imglocTrainHelper.au3"
 #include "functions\Image Search\imglocCheckWall.au3"

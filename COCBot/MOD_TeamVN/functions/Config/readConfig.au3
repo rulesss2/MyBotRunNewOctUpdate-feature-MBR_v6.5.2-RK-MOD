@@ -95,7 +95,18 @@ Func ReadConfig_MOD()
 
 	; ClanHop (Rhinoceros) - Added by NguyenAnhHD
 ;~	IniReadS($ichkClanHop, $g_sProfileConfigPath, "Others", "ClanHop", 0, "int")
+    
+	; ================================================== GOBLINXP PART ================================================== ;
 
+	IniReadS($ichkEnableSuperXP, $g_sProfileConfigPath, "attack", "EnableSuperXP", 0, "int")
+	IniReadS($irbSXTraining, $g_sProfileConfigPath, "attack", "SXTraining", 1, "int")
+	IniReadS($itxtMaxXPtoGain, $g_sProfileConfigPath, "attack", "MaxXptoGain", 500, "int")
+	IniReadS($ichkSXBK, $g_sProfileConfigPath, "attack", "SXBK", $eHeroNone)
+	IniReadS($ichkSXAQ, $g_sProfileConfigPath, "attack", "SXAQ", $eHeroNone)
+	IniReadS($ichkSXGW, $g_sProfileConfigPath, "attack", "SXGW", $eHeroNone)
+
+	; ================================================== GOBLINXP END =================================================== ;
+	
 EndFunc
 
 ; SwitchAcc (Demen) - Added By Demen

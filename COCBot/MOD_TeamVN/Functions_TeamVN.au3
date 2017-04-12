@@ -64,3 +64,5 @@
 
 ; ClanHop (Rhinoceros) - Added by NguyenAnhHD
 ;#include "functions\Mod's\ClanHop.au3"
+
+#include "functions\Village\SuperXP.au3"

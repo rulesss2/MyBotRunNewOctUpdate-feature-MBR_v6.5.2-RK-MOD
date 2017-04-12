@@ -14,6 +14,61 @@
 ; ===============================================================================================================================
 #include-once
 
+
+Func DisableSX()
+	GUICtrlSetState($chkEnableSuperXP, $GUI_UNCHECKED)
+	$ichkEnableSuperXP = 0
+
+	For $i = $grpSuperXP To $lblXPSXWonHour
+		GUICtrlSetState($i, $GUI_DISABLE)
+	Next
+
+	GUICtrlSetState($lblLOCKEDSX, BitOR($GUI_SHOW, $GUI_ENABLE))
+EndFunc   ;==>DisableSX
+
+Func SXSetXP($toSet = "")
+	If $toSet = "S" Or $toSet = "" Then GUICtrlSetData($lblXPatStart, $iStartXP)
+	If $toSet = "C" Or $toSet = "" Then GUICtrlSetData($lblXPCurrent, $iCurrentXP)
+	If $toSet = "W" Or $toSet = "" Then GUICtrlSetData($lblXPSXWon, $iGainedXP)
+	$iGainedXPHour = Round($iGainedXP / (Int(TimerDiff($g_hTimerSinceStarted) + $g_iTimePassed)) * 3600 * 1000)
+	If $toSet = "H" Or $toSet = "" Then GUICtrlSetData($lblXPSXWonHour, _NumberFormat($iGainedXPHour))
+
+EndFunc   ;==>SXSetXP
+
+
+Func chkEnableSuperXP()
+    $ichkEnableSuperXP = 1 
+	If GUICtrlRead($chkEnableSuperXP) = $GUI_CHECKED Then
+		GUICtrlSetState($rbSXTraining, $GUI_ENABLE)
+		GUICtrlSetState($rbSXIAttacking, $GUI_ENABLE)
+		GUICtrlSetState($chkSXBK, $GUI_ENABLE)
+		GUICtrlSetState($chkSXAQ, $GUI_ENABLE)
+		GUICtrlSetState($chkSXGW, $GUI_ENABLE)
+		GUICtrlSetState($txtMaxXPtoGain, $GUI_ENABLE)
+	Else
+	$ichkEnableSuperXP = 0	
+		GUICtrlSetState($rbSXTraining, $GUI_DISABLE)
+		GUICtrlSetState($rbSXIAttacking, $GUI_DISABLE)
+		GUICtrlSetState($chkSXBK, $GUI_DISABLE)
+		GUICtrlSetState($chkSXAQ, $GUI_DISABLE)
+		GUICtrlSetState($chkSXGW, $GUI_DISABLE)
+		GUICtrlSetState($txtMaxXPtoGain, $GUI_DISABLE)
+	EndIf
+
+EndFunc   ;==>chkEnableSuperXP
+
+
+Func chkEnableSuperXP2()
+
+	$ichkEnableSuperXP = GUICtrlRead($chkEnableSuperXP) = $GUI_CHECKED ? 1 : 0
+	$irbSXTraining = GUICtrlRead($rbSXTraining) = $GUI_CHECKED ? 1 : 2
+	$ichkSXBK = (GUICtrlRead($chkSXBK) = $GUI_CHECKED) ? $eHeroKing : $eHeroNone
+	$ichkSXAQ = (GUICtrlRead($chkSXAQ) = $GUI_CHECKED) ? $eHeroQueen : $eHeroNone
+	$ichkSXGW = (GUICtrlRead($chkSXGW) = $GUI_CHECKED) ? $eHeroWarden : $eHeroNone
+	$itxtMaxXPtoGain = Int(GUICtrlRead($txtMaxXPtoGain))
+
+EndFunc   ;==>chkEnableSuperXP2
+
 ; Classic Four Finger (Demen) - Added by NguyenAnhHD
 Func cmbStandardDropSidesAB() ; avoid conflict between FourFinger and SmartAttack
 	If _GUICtrlComboBox_GetCurSel($g_hCmbStandardDropSidesAB) = 4 Then

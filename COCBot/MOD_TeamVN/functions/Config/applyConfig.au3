@@ -111,6 +111,23 @@ Func ApplyConfig_MOD($TypeReadSave)
 			; ClanHop (Rhinoceros) - Added by NguyenAnhHD
 ;~			GUICtrlSetState($g_hChkClanHop, $ichkClanHop = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 
+			; ================================================== GOBLINXP PART ================================================== ;
+
+			GUICtrlSetState($chkEnableSuperXP, $ichkEnableSuperXP = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+
+			chkEnableSuperXP()
+
+			GUICtrlSetState($rbSXTraining, ($irbSXTraining = 1) ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($rbSXIAttacking, ($irbSXTraining = 2) ? $GUI_CHECKED : $GUI_UNCHECKED)
+
+			GUICtrlSetData($txtMaxXPtoGain, $itxtMaxXPtoGain)
+
+			GUICtrlSetState($chkSXBK, $ichkSXBK = $eHeroKing ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($chkSXAQ, $ichkSXAQ = $eHeroQueen ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($chkSXGW, $ichkSXGW = $eHeroWarden ? $GUI_CHECKED : $GUI_UNCHECKED)
+
+			; ================================================== GOBLINXP END =================================================== ;
+
 		Case "Save"
 			; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
 			$ichkAutoHide = GUICtrlRead($g_hChkAutohide) = $GUI_CHECKED ? 1 : 0
@@ -193,6 +210,17 @@ Func ApplyConfig_MOD($TypeReadSave)
 
 			; ClanHop (Rhinoceros) - Added by NguyenAnhHD
 ;~			$ichkClanHop = GUICtrlRead($g_hChkClanHop) = $GUI_CHECKED ? 1 : 0
+
+			; ================================================== GOBLINXP PART ================================================== ;
+
+			$ichkEnableSuperXP = GUICtrlRead($chkEnableSuperXP) = $GUI_CHECKED ? 1 : 0
+			$irbSXTraining = GUICtrlRead($rbSXTraining) = $GUI_CHECKED ? 1 : 2
+			$ichkSXBK = (GUICtrlRead($chkSXBK) = $GUI_CHECKED) ? $eHeroKing : $eHeroNone
+			$ichkSXAQ = (GUICtrlRead($chkSXAQ) = $GUI_CHECKED) ? $eHeroQueen : $eHeroNone
+			$ichkSXGW = (GUICtrlRead($chkSXGW) = $GUI_CHECKED) ? $eHeroWarden : $eHeroNone
+			$itxtMaxXPtoGain = Int(GUICtrlRead($txtMaxXPtoGain))
+
+			; ================================================== GOBLINXP END =================================================== ;
 
 
 	EndSwitch

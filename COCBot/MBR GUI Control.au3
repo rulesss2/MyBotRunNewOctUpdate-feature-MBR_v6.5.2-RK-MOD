@@ -51,7 +51,7 @@ Global $g_hFrmBot_WNDPROC_ptr = 0
 ;RK_MOD
 #include "MOD_TeamVN\GUI\MOD GUI Control.au3"
 
-#include "MOD_RK\GUI Control RK.au3"
+;#include "MOD_RK\GUI Control RK.au3"
 
 Func InitializeMainGUI()
    InitializeControlVariables()

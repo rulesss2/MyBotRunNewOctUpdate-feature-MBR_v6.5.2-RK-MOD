@@ -55,7 +55,7 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
  IniReadS($g_iCmbCSVSpeed[$DB], $g_sProfileConfigPath, "DeploymentSpeed", "DB", 2, "Int")
  IniReadS($g_iCmbCSVSpeed[$LB], $g_sProfileConfigPath, "DeploymentSpeed", "LB", 2, "Int")
 
-    
+ #cs   
   ; Profile Switch
   IniReadS($ichkGoldSwitchMax, $g_sProfileConfigPath, "profiles", "chkGoldSwitchMax", 0, "int")
   IniReadS($icmbGoldMaxProfile, $g_sProfileConfigPath, "profiles", "cmbGoldMaxProfile", 0, "int")
@@ -81,7 +81,7 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
   IniReadS($ichkTrophySwitchMin, $g_sProfileConfigPath, "profiles", "chkTrophySwitchMin", 0, "int")
   IniReadS($icmbTrophyMinProfile, $g_sProfileConfigPath, "profiles", "cmbTrophyMinProfile", 0, "int")
   IniReadS($itxtMinTrophyAmount, $g_sProfileConfigPath, "profiles", "txtMinTrophyAmount", 1000, "int")
-
+#ce
   	;Request russian
 	IniReadS($ichkRusLang2, $g_sProfileConfigPath, "Lang", "chkRusLang2", 0, "int")
 

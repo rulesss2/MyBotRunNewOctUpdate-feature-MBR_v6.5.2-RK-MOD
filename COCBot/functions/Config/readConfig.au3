@@ -214,7 +214,8 @@ Func ReadRegularConfig()
 	; TeamVN MOD (NguyenAnhHD, Demen)
 	ReadConfig_MOD()
 	ReadConfig_SwitchAcc()
-
+	;
+    ReadConfig_RK_MOD()
 	; <><><><> Attack Plan / Strategies <><><><>
 	; <<< nothing here >>>
 

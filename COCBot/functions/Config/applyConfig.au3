@@ -107,6 +107,9 @@ Func applyConfig($bRedrawAtExit = True, $TypeReadSave = "Read") ;Applies the dat
 
 	; TeamVN MOD (NguyenAnhHD, Demen)
 	ApplyConfig_MOD($TypeReadSave)
+	;@<<>>@<<>>@<<>>@<<>>@<<>>@<<>>@
+	ApplyConfig_RK_MOD($TypeReadSave)
+	;@<<>>@<<>>@<<>>@<<>>@<<>>@<<>>@
 	ApplyConfig_SwitchAcc($TypeReadSave)
 
 	; <><><><> Attack Plan / Strategies <><><><>
@@ -1130,6 +1133,7 @@ Func ApplyConfig_600_29_DB($TypeReadSave)
 	ApplyConfig_600_29_DB_Standard($TypeReadSave)
 	ApplyConfig_600_29_DB_Scripted($TypeReadSave)
 	ApplyConfig_600_29_DB_Milking($TypeReadSave)
+    ApplyConfig_RK_MOD_multifinger($TypeReadSave)
 EndFunc   ;==>ApplyConfig_600_29_DB
 
 Func ApplyConfig_600_29_DB_Standard($TypeReadSave)
@@ -1160,6 +1164,7 @@ Func ApplyConfig_600_29_DB_Standard($TypeReadSave)
 			$g_abAttackStdSmartNearCollectors[$DB][1] = (GUICtrlRead($g_hChkAttackNearElixirCollectorDB) = $GUI_CHECKED)
 			$g_abAttackStdSmartNearCollectors[$DB][2] = (GUICtrlRead($g_hChkAttackNearDarkElixirDrillDB) = $GUI_CHECKED)
 	EndSwitch
+;Bridge()
 EndFunc   ;==>ApplyConfig_600_29_DB_Standard
 
 Func ApplyConfig_600_29_DB_Scripted($TypeReadSave)

@@ -30,9 +30,9 @@ Func unitLocation($kind) ; Gets the location of the unit type on the bar.
 	Local $i = 0
 
 	; This loops through the bar array but allows us to exit as soon as we find our match.
-	While $i < UBound($atkTroops)
-		; $atkTroops[$i][0] holds the unit ID for that position on the deployment bar.
-		If $atkTroops[$i][0] = $kind Then
+	While $i < UBound($g_avAttackTroops)
+		; $g_avAttackTroops[$i][0] holds the unit ID for that position on the deployment bar.
+		If $g_avAttackTroops[$i][0] = $kind Then
 			$return = $i
 			ExitLoop
 		EndIf
@@ -48,9 +48,9 @@ Func getUnitLocationArray() ; Gets the location on the bar for every type of uni
 	Local $result[$eCCSpell + 1] = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
 
 	; Loop through all the bar and assign it position to the respective unit.
-	For $i = 0 To UBound($atkTroops) - 1
-		If Number($atkTroops[$i][0]) <> -1 Then
-			$result[Number($atkTroops[$i][0])] = $i
+	For $i = 0 To UBound($g_avAttackTroops) - 1
+		If Number($g_avAttackTroops[$i][0]) <> -1 Then
+			$result[Number($g_avAttackTroops[$i][0])] = $i
 		EndIf
 	Next
 	; Return the positions as an array.
@@ -62,7 +62,7 @@ Func unitCount($kind) ; Gets a count of the number of units of the type specifie
 	Local $barLocation = unitLocation($kind)
 	; $barLocation is -1 if the unit/spell type is not found on the deployment bar.
 	If $barLocation <> -1 Then
-		$numUnits = $atkTroops[unitLocation($kind)][1]
+		$numUnits = $g_avAttackTroops[unitLocation($kind)][1]
 	EndIf
 
 	Return $numUnits
@@ -72,9 +72,9 @@ Func unitCountArray() ; Gets a count of the number of units for every type of un
 	Local $result[$eCCSpell + 1] = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
 
 	; Loop through all the bar and assign its unit count to the respective unit.
-	For $i = 0 To UBound($atkTroops) - 1
-		If Number($atkTroops[$i][1]) > 0 Then
-			$result[Number($atkTroops[$i][0])] = $atkTroops[$i][1]
+	For $i = 0 To UBound($g_avAttackTroops) - 1
+		If Number($g_avAttackTroops[$i][1]) > 0 Then
+			$result[Number($g_avAttackTroops[$i][0])] = $g_avAttackTroops[$i][1]
 		EndIf
 	Next
 
@@ -150,21 +150,21 @@ Func multiSingle($totalDrop, $useDelay = False)
 	Local $dropAmount = Ceiling($totalDrop / 4)
 
 	; Progressively adjust the drop amount
-	sideSingle($TopLeft, $dropAmount)
+	sideSingle($g_aaiTopLeftDropPoints, $dropAmount)
 	$totalDrop -= $dropAmount
 	$dropAmount = Ceiling($totalDrop / 3)
 
 	; Progressively adjust the drop amount
-	sideSingle($TopRight, $dropAmount)
+	sideSingle($g_aaiTopRightDropPoints, $dropAmount)
 	$totalDrop -= $dropAmount
 	$dropAmount = Ceiling($totalDrop / 2)
 
 	; Progressively adjust the drop amount
-	sideSingle($BottomRight, $dropAmount)
+	sideSingle($g_aaiBottomRightDropPoints, $dropAmount)
 	$totalDrop -= $dropAmount
 
 	; Drop whatever is left
-	sideSingle($BottomLeft, $totalDrop, True)
+	sideSingle($g_aaiBottomLeftDropPoints, $totalDrop, True)
 EndFunc   ;==>multiSingle
 
 ; Drop the troops from two points on all sides at once
@@ -172,21 +172,21 @@ Func multiDouble($totalDrop, $useDelay = False)
 	Local $dropAmount = Ceiling($totalDrop / 4)
 
 	; Progressively adjust the drop amount
-	sideDouble($TopLeft, $dropAmount)
+	sideDouble($g_aaiTopLeftDropPoints, $dropAmount)
 	$totalDrop -= $dropAmount
 	$dropAmount = Ceiling($totalDrop / 3)
 
 	; Progressively adjust the drop amount
-	sideDouble($TopRight, $dropAmount)
+	sideDouble($g_aaiTopRightDropPoints, $dropAmount)
 	$totalDrop -= $dropAmount
 	$dropAmount = Ceiling($totalDrop / 2)
 
 	; Progressively adjust the drop amount
-	sideDouble($BottomRight, $dropAmount)
+	sideDouble($g_aaiBottomRightDropPoints, $dropAmount)
 	$totalDrop -= $dropAmount
 
 	; Drop whatever is left
-	sideDouble($BottomLeft, $totalDrop, True)
+	sideDouble($g_aaiBottomLeftDropPoints, $totalDrop, True)
 EndFunc   ;==>multiDouble
 
 ; Drop the troops from a single point on a single side

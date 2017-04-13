@@ -202,6 +202,8 @@ Func SaveRegularConfig()
 	; TeamVN MOD (NguyenAnhHD, Demen)
 	SaveConfig_MOD()
 	SaveConfig_SwitchAcc()
+	;
+	SaveConfig_RK_MOD()
 
 	; <><><><> Attack Plan / Strategies <><><><>
 	; <<< nothing here >>>

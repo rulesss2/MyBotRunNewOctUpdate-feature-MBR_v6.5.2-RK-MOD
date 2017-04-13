@@ -45,11 +45,12 @@ Func CreateAttackSearchDeadBaseStandard()
 								  GetTranslated(608,5, "Attack on two sides, penetrates through base") & @CRLF & _
 								  GetTranslated(608,6, "Attack on three sides, gets outer and some inside of base"), _
 								  GetTranslated(608,40, "Attack on Classic Four Fingers"), _
+								  GetTranslated(671,42, "Multi Finger"), _
 								  GetTranslated(608,7,"Select the No. of sides to attack on."))
 			   GUICtrlSetData(-1, GetTranslated(608,8, "one side") & "|" & GetTranslated(608,9, "two sides") & "|" & _
-								  GetTranslated(608,10, "three sides") & "|" & GetTranslated(608,11, "all sides equally") & "|" & GetTranslated(608,41, "Classic Four Fingers"), _
+								  GetTranslated(608,10, "three sides") & "|" & GetTranslated(608,11, "all sides equally") & "|" & GetTranslated(608,41, "Classic Four Fingers") & "|" & GetTranslated(671,42, "Multi Finger"), _
 								  GetTranslated(608,11, -1))
-			   GUICtrlSetOnEvent(-1, "cmbStandardDropSidesDB") ; Uncheck SmartAttack Red Area when enable FourFinger to avoid conflict
+			   GUICtrlSetOnEvent(-1, "Bridge") ; Uncheck SmartAttack Red Area when enable FourFinger to avoid conflict
 
 		   $y += 25
 		   GUICtrlCreateLabel(GetTranslated(608,12, "Delay Unit") & ":", $x, $y + 5, -1, -1)
@@ -104,6 +105,69 @@ Func CreateAttackSearchDeadBaseStandard()
 			   _GUICtrlSetTip(-1, $sTxtTip)
 		   $g_hPicAttackNearDarkElixirDrillDB = GUICtrlCreateIcon($g_sLibIconPath, $eIcnDrill, $x + 20 , $y - 3, 24, 24)
 			   _GUICtrlSetTip(-1, $sTxtTip)
+	$x = 25
+	$y += 15
+	$LblDBMultiFinger = GUICtrlCreateLabel(GetTranslated(671,51,"Style:"), $x - 5, $y + 3, 35, -1, $SS_RIGHT)
+	GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
+	$CmbDBMultiFinger = GUICtrlCreateCombo("", $x + 35, $y, 175, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+		$sTxtTip = GetTranslated(671,52,"Select which multi finger attack style you would like.") & @CRLF & @CRLF & _
+			GetTranslated(671,53,	  "     Random will chose one of the attacks at random.") & @CRLF & _
+			GetTranslated(671,54,	  "     Four Finger and Eight Finger attacks will attack from all 4 sides at once.")
+	GUICtrlSetTip(-1, $sTxtTip)
+	GUICtrlSetData(-1,  GetTranslated(671,43,"Random") & "|" & _
+						GetTranslated(671,44,"Four Finger Standard") & "|" & _
+						GetTranslated(671,45,"Four Finger Spiral Left") & "|" & _
+						GetTranslated(671,46,"Four Finger Spiral Right") & "|" & _
+						GetTranslated(671,47,"Eight Finger Blossom") & "|" & _
+						GetTranslated(671,48,"Eight Finger Implosion") & "|" & _
+						GetTranslated(671,49,"Eight Finger Pin Wheel Spiral Left") & "|" & _
+						GetTranslated(671,50,"Eight Finger Pin Wheel Spiral Right"), GetTranslated(671,44,"Four Finger Standard"))
+	GUICtrlSetOnEvent(-1, "cmbDBMultiFinger")
+GUICtrlCreateGroup("", -99, -99, 1, 1)
+
+; Unit Wave Factor
+$x = 20
+$y = 220
+
+GUICtrlCreateGroup(GetTranslated(671, 107, "Deploy speed for all standard attack mode."), $x, $y, 250, 110)
+$y += 5
+$ChkGiantSlot = _GUICtrlCreateCheckbox(GetTranslated(671, 102,"GiantSlot"), $x+10, $y + 10, 130, 25)
+	$sTxtTip = GetTranslated(671, 103, "perimeter (> = 12, recommended)") & @CRLF & _               
+			   GetTranslated(671, 104, "two points on each side (> = 8, recommended)")
+	_GUICtrlSetTip(-1, $sTxtTip)
+	GUICtrlSetOnEvent(-1, "ChkGiantSlot")
+	GUICtrlSetState(-1, $GUI_UNCHECKED)
+$CmbGiantSlot = GUICtrlCreateCombo("", $x + 130, $y + 20, 100, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1,  GetTranslated(671, 112, "Perimeter") & "|" & _
+                    GetTranslated(671, 113, "TwoPoints"), GetTranslated(671, 112, "Perimeter"))
+					GUICtrlSetOnEvent(-1, "CmbGiantSlot")   
+$y += 30
+$ChkUnitFactor = _GUICtrlCreateCheckbox(GetTranslated(671, 108, "Modify Unit Factor"), $x+10, $y + 10, 130, 25)
+	$sTxtTip = GetTranslated(671, 109, "Unit deploy delay = Unit setting x Unit Factor (millisecond)")
+	_GUICtrlSetTip(-1, $sTxtTip)
+	GUICtrlSetOnEvent(-1, "chkUnitFactor")
+	GUICtrlSetState(-1, $GUI_UNCHECKED)
+
+$TxtUnitFactor = GUICtrlCreateInput("10", $x + 180, $y + 20, 31, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+	$sTxtTip = GetTranslated(671, 109, "Unit deploy delay = Unit setting x Unit Factor (millisecond)")
+	_GUICtrlSetTip(-1, $sTxtTip)
+	GUICtrlSetState(-1, $GUI_DISABLE)
+	GUICtrlSetData(-1, 10)
+	GUICtrlSetOnEvent(-1, "chkUnitFactor")
+$y += 30
+$ChkWaveFactor = _GUICtrlCreateCheckbox(GetTranslated(671, 110, "Modify Wave Factor"), $x+10, $y + 10, 130, 25)
+	$sTxtTip = GetTranslated(671, 111, "Switch troop delay = Wave setting x Wave Factor (millisecond)")
+	_GUICtrlSetTip(-1, $sTxtTip)
+	GUICtrlSetOnEvent(-1, "chkWaveFactor")
+	GUICtrlSetState(-1, $GUI_UNCHECKED)
+
+$TxtWaveFactor = GUICtrlCreateInput("100", $x + 180, $y + 20, 31, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+	$sTxtTip = GetTranslated(671, 111, "Switch troop delay = Wave setting x Wave Factor (millisecond)")
+	_GUICtrlSetTip(-1, $sTxtTip)
+	GUICtrlSetState(-1, $GUI_DISABLE)
+	GUICtrlSetData(-1, 100)
+	GUICtrlSetOnEvent(-1, "chkWaveFactor")   
+GUICtrlCreateGroup("", -99, -99, 1, 1)
 	   GUICtrlCreateGroup("", -99, -99, 1, 1)
 
    ;GUISetState()

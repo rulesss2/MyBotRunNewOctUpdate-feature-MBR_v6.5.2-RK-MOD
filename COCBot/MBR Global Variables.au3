@@ -1315,6 +1315,13 @@ Global Const $g_aEQSpellDmg[4] = [0.14, 0.17, 0.21, 0.25]
 Global Enum $eWeakEagle = 1, $eWeakInferno, $eWeakXBow, $eWeakWizard, $eWeakMortar, $eWeakAirDefense
 Global $g_aWeakDefenseNames = ["None", "Eagle Artillery", "Inferno Tower", "XBow", "Wizard Tower", "Mortar", "Air Defense"]
 Global $g_aWeakDefenseMaxLevels = [0, 2, 4, 4, 9, 9, 8]
+; Android Settings - RK MOD
+Global $sAndroid = "<No Emulators>"
+Global $sAndroidInstance = ""
+Global $g_sBotTitle, $g_sOldTitle 
+Global $CmbAndroid  
+Global $TxtAndroidInstance 
+Global $LblAndroidInstance
 
 ; TeamVN MOD (NguyenAnhHD, Demen)
 #include "MOD_TeamVN\Globals_TeamVN.au3"

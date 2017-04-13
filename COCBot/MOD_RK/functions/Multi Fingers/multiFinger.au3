@@ -46,9 +46,9 @@ Func multiFingerDropOnEdge($multiStyle, $dropVectors, $waveNumber, $kind, $dropA
 	If $position = 0 Or $dropAmount < $position Then $position = $dropAmount
 
 	KeepClicks()
-	 If _SleepAttack($iDelayDropOnEdge1) Then Return
+	 If _SleepAttack($DELAYDROPONEDGE1) Then Return
 	SelectDropTroop($kind) ; Select Troop
-	 If _SleepAttack($iDelayDropOnEdge2) Then Return
+	 If _SleepAttack($DELAYDROPONEDGE2) Then Return
 
 	Switch $multiStyle
 		Case $mfFFStandard, $mfFFSpiralLeft, $mfFFSpiralRight
@@ -59,7 +59,7 @@ Func multiFingerDropOnEdge($multiStyle, $dropVectors, $waveNumber, $kind, $dropA
 	ReleaseClicks()
 EndFunc   ;==>multiFingerDropOnEdge
 
-Func launchMultiFinger($listInfoDeploy, $CC, $King, $Queen, $Warden, $overrideSmartDeploy = -1)
+Func launchMultiFinger($listInfoDeploy, $g_iClanCastleSlot, $g_iKingSlot, $g_iQueenSlot, $g_iWardenSlot, $overrideSmartDeploy = -1)
 	Local $kind, $nbSides, $waveNumber, $waveCount, $position, $remainingWaves, $dropAmount
 	Local $RandomEdge, $RandomXY
 	Local $dropVectors[0][0]
@@ -68,7 +68,7 @@ Func launchMultiFinger($listInfoDeploy, $CC, $King, $Queen, $Warden, $overrideSm
 	Local $multiStyle = ($iMultiFingerStyle = $mfRandom) ? Random($mfFFStandard, $mf8FPinWheelRight, 1) : $iMultiFingerStyle
 
 	SetLog("Attacking " & $aAttackTypeString[$multiStyle] & " fight style.", $COLOR_BLUE)
-	If $g_iDebugSetlog = 1 Then SetLog("Launch " & $aAttackTypeString[$multiStyle] & " with CC " & $CC & ", K " & $King & ", Q " & $Queen & ", W " & $Warden , $COLOR_PURPLE)
+	If $g_iDebugSetlog = 1 Then SetLog("Launch " & $aAttackTypeString[$multiStyle] & " with CC " & $g_iClanCastleSlot & ", K " & $g_iKingSlot & ", Q " & $g_iQueenSlot & ", W " & $g_iWardenSlot, $COLOR_PURPLE)
 
 	Local $aDeployButtonPositions = getUnitLocationArray()
 	Local $unitCount = unitCountArray()
@@ -87,13 +87,13 @@ Func launchMultiFinger($listInfoDeploy, $CC, $King, $Queen, $Warden, $overrideSm
 		$barPosition = $aDeployButtonPositions[$kind]
 
 		If IsString($kind) And ($kind = "CC" Or $kind = "HEROES") Then
-			$RandomEdge = $Edges[Round(Random(0, 3))]
+			$RandomEdge = $g_aaiEdgeDropPoints[Round(Random(0, 3))]
 			$RandomXY = Round(Random(0, 4))
 
 			If $kind = "CC" Then
-				dropCC($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $CC)
+				dropCC($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $g_iClanCastleSlot)
 			ElseIf $kind = "HEROES" Then
-				dropHeroes($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $King, $Queen, $Warden)
+				dropHeroes($RandomEdge[$RandomXY][0], $RandomEdge[$RandomXY][1], $g_iKingSlot, $g_iQueenSlot, $g_iWardenSlot)
 			EndIf
 		ElseIf IsNumber($kind) And $barPosition <> -1 Then
 			$dropAmount = calculateDropAmount($unitCount[$kind], $remainingWaves, $position)
@@ -106,7 +106,7 @@ Func launchMultiFinger($listInfoDeploy, $CC, $King, $Queen, $Warden, $overrideSm
 			EndIf
 		EndIf
 	Next
-	If _Sleep($iDelayalgorithm_AllTroops4) Then Return
+	If _Sleep($DELAYALGORITHM_ALLTROOPS4) Then Return
 	SetLog("Dropping left over troops", $COLOR_INFO)
 	For $x = 0 To 1
 		If PrepareAttack($g_iMatchMode, True) = 0 Then
@@ -120,7 +120,7 @@ Func launchMultiFinger($listInfoDeploy, $CC, $King, $Queen, $Warden, $overrideSm
 			;Else
 			;	 LauchTroop($i, $nbSides, 0, 1, 2)
 			;EndIf
-			If _Sleep($iDelayalgorithm_AllTroops5) Then Return
+			If _Sleep($DELAYALGORITHM_ALLTROOPS5) Then Return
 		Next
 	Next
 	CheckHeroesHealth()
@@ -138,7 +138,7 @@ Func dropRemainingTroops($nbSides, $overrideSmartDeploy = -1) ; Uses any left ov
 			LaunchTroops($i, $nbSides, 0, 1, 0, $overrideSmartDeploy)
 			CheckHeroesHealth()
 
-			If _SleepAttack($iDelayalgorithm_AllTroops5) Then Return
+			If _SleepAttack($DELAYALGORITHM_ALLTROOPS5) Then Return
 		Next
 	Next
 EndFunc   ;==>dropRemainingTroops
@@ -179,12 +179,12 @@ Func modDropTroop($troop, $nbSides, $number, $slotsPerEdge = 0, $indexToAttack =
 		Local $nbTroopsLeft = $number
 		If ($iChkSmartAttack[$iMatchMode][0] = 0 And $iChkSmartAttack[$iMatchMode][1] = 0 And $iChkSmartAttack[$iMatchMode][2] = 0) Then
 			If $nbSides = 4 Then
-				Local $edgesPixelToDrop = GetPixelDropTroop($troop, $number, $slotsPerEdge)
+				Local $g_aaiEdgeDropPointsPixelToDrop = GetPixelDropTroop($troop, $number, $slotsPerEdge)
 
 				For $i = 0 To $nbSides - 3
 					Local $nbTroopsPerEdge = Round($nbTroopsLeft / ($nbSides - $i * 2))
 					If ($number > 0 And $nbTroopsPerEdge = 0) Then $nbTroopsPerEdge = 1
-					Local $listEdgesPixelToDrop[2] = [$edgesPixelToDrop[$i], $edgesPixelToDrop[$i + 2]]
+					Local $listEdgesPixelToDrop[2] = [$g_aaiEdgeDropPointsPixelToDrop[$i], $g_aaiEdgeDropPointsPixelToDrop[$i + 2]]
 					DropOnPixel($troop, $listEdgesPixelToDrop, $nbTroopsPerEdge, $slotsPerEdge)
 					$nbTroopsLeft -= $nbTroopsPerEdge * 2
 				Next
@@ -195,15 +195,15 @@ Func modDropTroop($troop, $nbSides, $number, $slotsPerEdge = 0, $indexToAttack =
 				If $nbSides = 1 Or ($nbSides = 3 And $i = 2) Then
 					Local $nbTroopsPerEdge = Round($nbTroopsLeft / ($nbSides - $i))
 					If ($number > 0 And $nbTroopsPerEdge = 0) Then $nbTroopsPerEdge = 1
-					Local $edgesPixelToDrop = GetPixelDropTroop($troop, $nbTroopsPerEdge, $slotsPerEdge)
-					Local $listEdgesPixelToDrop[1] = [$edgesPixelToDrop[$i]]
+					Local $g_aaiEdgeDropPointsPixelToDrop = GetPixelDropTroop($troop, $nbTroopsPerEdge, $slotsPerEdge)
+					Local $listEdgesPixelToDrop[1] = [$g_aaiEdgeDropPointsPixelToDrop[$i]]
 					DropOnPixel($troop, $listEdgesPixelToDrop, $nbTroopsPerEdge, $slotsPerEdge)
 					$nbTroopsLeft -= $nbTroopsPerEdge
 				ElseIf ($nbSides = 2 And $i = 0) Or ($nbSides = 3 And $i <> 1) Then
 					Local $nbTroopsPerEdge = Round($nbTroopsLeft / ($nbSides - $i * 2))
 					If ($number > 0 And $nbTroopsPerEdge = 0) Then $nbTroopsPerEdge = 1
-					Local $edgesPixelToDrop = GetPixelDropTroop($troop, $nbTroopsPerEdge, $slotsPerEdge)
-					Local $listEdgesPixelToDrop[2] = [$edgesPixelToDrop[$i + 3], $edgesPixelToDrop[$i + 1]]
+					Local $g_aaiEdgeDropPointsPixelToDrop = GetPixelDropTroop($troop, $nbTroopsPerEdge, $slotsPerEdge)
+					Local $listEdgesPixelToDrop[2] = [$g_aaiEdgeDropPointsPixelToDrop[$i + 3], $g_aaiEdgeDropPointsPixelToDrop[$i + 1]]
 
 					DropOnPixel($troop, $listEdgesPixelToDrop, $nbTroopsPerEdge, $slotsPerEdge)
 					$nbTroopsLeft -= $nbTroopsPerEdge * 2
@@ -267,5 +267,5 @@ EndFunc   ;==>cmbDBMultiFinger
 
 Func Bridge()
     cmbDBMultiFinger()
-    cmbDeployDB()    
+    cmbStandardDropSidesDB()    
 EndFunc ;==>Bridge

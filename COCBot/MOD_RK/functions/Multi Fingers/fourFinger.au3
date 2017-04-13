@@ -36,9 +36,9 @@ Func fourFingerDropOnEdge($dropVectors, $waveNumber, $kind, $dropAmount, $positi
 
 	If $dropAmount = 0 Or isProblemAffect(True) Then Return
 		
-	If _SleepAttack($iDelayDropOnEdge1) Then Return
+	If _SleepAttack($DELAYDROPONEDGE1) Then Return
 	SelectDropTroop($kind) ; Select Troop
-	If _SleepAttack($iDelayDropOnEdge2) Then Return
+	If _SleepAttack($DELAYDROPONEDGE2) Then Return
 
 	Switch $position
 		Case 1

@@ -50,59 +50,13 @@ Func SaveConfig_RK_MOD()
     ;Watchdog disable
 	IniWriteS($g_sProfileConfigPath, "Other", "chkLaunchWatchdog", $iChkLaunchWatchdog ? 1 : 0)
 
-	; Check Collectors Outside
-    IniWriteS($g_sProfileConfigPath, "search", "DBMeetCollOutside", $ichkDBMeetCollOutside ? 1 : 0)
-	IniWriteS($g_sProfileConfigPath, "search", "DBMinCollOutsidePercent", $iDBMinCollOutsidePercent)
-
-	; CSV Deploy Speed
-	IniWriteS($g_sProfileConfigPath, "DeploymentSpeed", "DB", _GUICtrlComboBox_GetCurSel($g_hCmbCSVSpeed[$DB]))
-	IniWriteS($g_sProfileConfigPath, "DeploymentSpeed", "LB", _GUICtrlComboBox_GetCurSel($g_hCmbCSVSpeed[$LB]))
-
-	; Profile Switch
-	IniWriteS($g_sProfileConfigPath, "profiles", "chkGoldSwitchMax", $ichkGoldSwitchMax ? 1 : 0)
-	IniWriteS($g_sProfileConfigPath, "profiles", "cmbGoldMaxProfile", _GUICtrlComboBox_GetCurSel($cmbGoldMaxProfile))
-
-	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxGoldAmount", GUICtrlRead($txtMaxGoldAmount))
-
-	IniWriteS($g_sProfileConfigPath, "profiles", "chkGoldSwitchMin", $ichkGoldSwitchMin ? 1 : 0)
-	IniWriteS($g_sProfileConfigPath, "profiles", "cmbGoldMinProfile", _GUICtrlComboBox_GetCurSel($cmbGoldMinProfile))
-	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinGoldAmount", GUICtrlRead($txtMinGoldAmount))
-
-	IniWriteS($g_sProfileConfigPath, "profiles", "chkElixirSwitchMax", $ichkElixirSwitchMax ? 1 : 0)
-	IniWriteS($g_sProfileConfigPath, "profiles", "cmbElixirMaxProfile", _GUICtrlComboBox_GetCurSel($cmbElixirMaxProfile))
-	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxElixirAmount", GUICtrlRead($txtMaxElixirAmount))
-
-	IniWriteS($g_sProfileConfigPath, "profiles", "chkElixirSwitchMin", $ichkElixirSwitchMin ? 1 : 0)
-	IniWriteS($g_sProfileConfigPath, "profiles", "cmbElixirMinProfile", _GUICtrlComboBox_GetCurSel($cmbElixirMinProfile))
-	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinElixirAmount", GUICtrlRead($txtMinElixirAmount))
-
-	IniWriteS($g_sProfileConfigPath, "profiles", "chkDESwitchMax", $ichkDESwitchMax ? 1 : 0)
-	IniWriteS($g_sProfileConfigPath, "profiles", "cmbDEMaxProfile", _GUICtrlComboBox_GetCurSel($cmbDEMaxProfile))
-	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxDEAmount", GUICtrlRead($txtMaxDEAmount))
-
-	IniWriteS($g_sProfileConfigPath, "profiles", "chkDESwitchMin", $ichkDESwitchMin ? 1 : 0)
-	IniWriteS($g_sProfileConfigPath, "profiles", "cmbDEMinProfile", _GUICtrlComboBox_GetCurSel($cmbDEMinProfile))
-	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinDEAmount", GUICtrlRead($txtMinDEAmount))
-
-	IniWriteS($g_sProfileConfigPath, "profiles", "chkTrophySwitchMax", $ichkTrophySwitchMax ? 1 : 0)
-	IniWriteS($g_sProfileConfigPath, "profiles", "cmbTrophyMaxProfile", _GUICtrlComboBox_GetCurSel($cmbTrophyMaxProfile))
-	IniWriteS($g_sProfileConfigPath, "profiles", "txtMaxTrophyAmount", GUICtrlRead($txtMaxTrophyAmount))
-
-	IniWriteS($g_sProfileConfigPath, "profiles", "chkTrophySwitchMin", $ichkTrophySwitchMin ? 1 : 0)
-	IniWriteS($g_sProfileConfigPath, "profiles", "cmbTrophyMinProfile", _GUICtrlComboBox_GetCurSel($cmbTrophyMinProfile))
-	IniWriteS($g_sProfileConfigPath, "profiles", "txtMinTrophyAmount", GUICtrlRead($txtMinTrophyAmount))
 
 	;request  russian
 	IniWriteS($g_sProfileConfigPath, "Lang", "chkRusLang2", $ichkRusLang2 ? 1 : 0)
 	
-	; Upgrade Management
-	IniWriteS($g_sProfileConfigPath, "upgrade", "UpdateNewUpgradesOnly", $g_ibUpdateNewUpgradesOnly ? 1 : 0)
-
 	; Move the Request CC Troops
 	IniWriteS($g_sProfileConfigPath, "planned", "ReqCCFirst", $bReqCCFirst ? 1 : 0)
 
-	; Clan Hop Setting
-	IniWriteS($g_sProfileConfigPath, "Others", "ClanHop", $ichkClanHop ? 1 : 0)
 
 	; Misc Battle Settings
 	IniWriteS($g_sProfileConfigPath, "Fast Clicks", "UseADBFastClicks", $g_bAndroidAdbClicksEnabled ? 1 : 0)

@@ -44,17 +44,9 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		;Transparent Gui (Modified Kychera)
 	    GUICtrlSetData($SldTransLevel, $iSldTransLevel)
 
-        ; CSV Deploy Speed
-		_GUICtrlComboBox_SetCurSel($g_hCmbCSVSpeed[$DB], $g_iCmbCSVSpeed[$DB])
-		_GUICtrlComboBox_SetCurSel($g_hCmbCSVSpeed[$LB], $g_iCmbCSVSpeed[$LB])
-			; Upgrade Management
-			GUICtrlSetState($g_hChkUpdateNewUpgradesOnly, $g_ibUpdateNewUpgradesOnly ? $GUI_CHECKED : $GUI_UNCHECKED)
 
 			;Move the Request CC Troops
 			GUICtrlSetState($chkReqCCFirst, $bReqCCFirst = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-
-			; Clan Hop Setting
-			GUICtrlSetState($g_hChkClanHop, $ichkClanHop = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 
 			; Misc Battle Settings
 			GUICtrlSetState($chkFastADBClicks, $g_bAndroidAdbClicksEnabled = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
@@ -71,18 +63,8 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		$ichkPic = (GUICtrlRead($chkPic) = $GUI_CHECKED)
         $iSldTransLevel = GUICtrlRead($SldTransLevel)
 
-        ; CSV Deploy Speed
-		$g_iCmbCSVSpeed[$DB] = _GUICtrlComboBox_GetCurSel($g_hCmbCSVSpeed[$DB])
-		$g_iCmbCSVSpeed[$LB] = _GUICtrlComboBox_GetCurSel($g_hCmbCSVSpeed[$LB])
-		    
-			; Upgrade Management
-			$g_ibUpdateNewUpgradesOnly = (GUICtrlRead($g_hChkUpdateNewUpgradesOnly) = $GUI_CHECKED)
-
 			;Move the Request CC Troops
 			$bReqCCFirst = GUICtrlRead($chkReqCCFirst) = $GUI_CHECKED ? 1 : 0
-
-			; Clan Hop Setting
-			$ichkClanHop = GUICtrlRead($g_hChkClanHop) = $GUI_CHECKED ? 1 : 0
 
 			; Misc Battle Settings
 			$g_bAndroidAdbClicksEnabled = GUICtrlRead($chkFastADBClicks) = $GUI_CHECKED ? 1 : 0
@@ -132,88 +114,6 @@ Func ApplyConfig_RK_Forecast($TypeReadSave)
 	EndSwitch
 EndFunc   ;==>ApplyConfig_RK_Forecast
 
-Func ApplyConfig_RK_CollOutside($TypeReadSave)
-    Switch $TypeReadSave
-	Case "Read"
-	GUICtrlSetState($g_hChkDBMeetCollOutside, $ichkDBMeetCollOutside = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-	GUICtrlSetData($g_hTxtDBMinCollOutsidePercent, $iDBMinCollOutsidePercent)
-	chkDBMeetCollOutside()
-    Case "Save"
-	$ichkDBMeetCollOutside = GUICtrlRead($g_hChkDBMeetCollOutside) = $GUI_CHECKED ? 1 : 0
-	$iDBMinCollOutsidePercent = GUICtrlRead($g_hTxtDBMinCollOutsidePercent)
-    EndSwitch
-EndFunc   ;==>ApplyConfig_RK_CollOutside
-
-Func ApplyConfig_RK_Switch_Profiles($TypeReadSave)
-    Switch $TypeReadSave
-		Case "Read"
-		GUICtrlSetState($chkGoldSwitchMax, $ichkGoldSwitchMax = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-		_GUICtrlComboBox_SetCurSel($cmbGoldMaxProfile, $icmbGoldMaxProfile)
-		GUICtrlSetData($txtMaxGoldAmount, $itxtMaxGoldAmount)
-
-		GUICtrlSetState($chkGoldSwitchMin, $ichkGoldSwitchMin = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-		_GUICtrlComboBox_SetCurSel($cmbGoldMinProfile, $icmbGoldMinProfile)
-		GUICtrlSetData($txtMinGoldAmount, $itxtMinGoldAmount)
-
-		GUICtrlSetState($chkElixirSwitchMax, $ichkElixirSwitchMax = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-		_GUICtrlComboBox_SetCurSel($cmbElixirMaxProfile, $icmbElixirMaxProfile)
-	     GUICtrlSetData($txtMaxElixirAmount, $itxtMaxElixirAmount)
-
-		 GUICtrlSetState($chkElixirSwitchMin, $ichkElixirSwitchMin = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-		 _GUICtrlComboBox_SetCurSel($cmbElixirMinProfile, $icmbElixirMinProfile)
-	     GUICtrlSetData($txtMinElixirAmount, $itxtMinElixirAmount)
-
-		 GUICtrlSetState($chkDESwitchMax, $ichkDESwitchMax = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-		 _GUICtrlComboBox_SetCurSel($cmbDEMaxProfile, $icmbDEMaxProfile)
-	     GUICtrlSetData($txtMaxDEAmount, $itxtMaxDEAmount)
-
-		 GUICtrlSetState($chkDESwitchMin, $ichkDESwitchMin = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-		 _GUICtrlComboBox_SetCurSel($cmbDEMinProfile, $icmbDEMinProfile)
-	     GUICtrlSetData($txtMinDEAmount, $itxtMinDEAmount)
-
-		 GUICtrlSetState($chkTrophySwitchMax, $ichkTrophySwitchMax = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-		 _GUICtrlComboBox_SetCurSel($cmbTrophyMaxProfile, $icmbTrophyMaxProfile)
-	     GUICtrlSetData($txtMaxTrophyAmount, $itxtMaxTrophyAmount)
-
-		 GUICtrlSetState($chkTrophySwitchMin, $ichkTrophySwitchMin = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-		 _GUICtrlComboBox_SetCurSel($cmbTrophyMinProfile, $icmbTrophyMinProfile)
-	     GUICtrlSetData($txtMinTrophyAmount, $itxtMinTrophyAmount)
-		 ProfileSwitchCheck()
-		Case "Save"
-		$ichkGoldSwitchMax = GUICtrlRead($chkGoldSwitchMax) = $GUI_CHECKED ? 1 : 0
-		$icmbGoldMaxProfile = _GUICtrlComboBox_GetCurSel($cmbGoldMaxProfile)
-		$itxtMaxGoldAmount = GUICtrlRead($txtMaxGoldAmount)
-
-		$ichkGoldSwitchMin = GUICtrlRead($chkGoldSwitchMin) = $GUI_CHECKED ? 1 : 0
-		$icmbGoldMinProfile = _GUICtrlComboBox_GetCurSel($cmbGoldMinProfile)
-		$itxtMinGoldAmount = GUICtrlRead($txtMinGoldAmount)
-
-		$ichkElixirSwitchMax = GUICtrlRead($chkElixirSwitchMax) = $GUI_CHECKED ? 1 : 0
-		$icmbElixirMaxProfile = _GUICtrlComboBox_GetCurSel($cmbElixirMaxProfile)
-		$itxtMaxElixirAmount = GUICtrlRead($txtMaxElixirAmount)
-
-		$ichkElixirSwitchMin = GUICtrlRead($chkElixirSwitchMin) = $GUI_CHECKED ? 1 : 0
-		$icmbElixirMinProfile = _GUICtrlComboBox_GetCurSel($cmbElixirMinProfile)
-		$itxtMinElixirAmount = GUICtrlRead($txtMinElixirAmount)
-
-		$ichkDESwitchMax = GUICtrlRead($chkDESwitchMax) = $GUI_CHECKED ? 1 : 0
-		$icmbDEMinProfile = _GUICtrlComboBox_GetCurSel($cmbDEMinProfile)
-		$itxtMaxDEAmount = GUICtrlRead($txtMaxDEAmount)
-
-		$ichkDESwitchMin = GUICtrlRead($chkDESwitchMin) = $GUI_CHECKED ? 1 : 0
-		$icmbDEMaxProfile = _GUICtrlComboBox_GetCurSel($cmbDEMaxProfile)
-		$itxtMinDEAmount = GUICtrlRead($txtMinDEAmount)
-
-		$ichkTrophySwitchMax = GUICtrlRead($chkTrophySwitchMax) = $GUI_CHECKED ? 1 : 0
-		$icmbTrophyMaxProfile = _GUICtrlComboBox_GetCurSel($cmbTrophyMaxProfile)
-		$itxtMaxTrophyAmount = GUICtrlRead($txtMaxTrophyAmount)
-
-		$ichkTrophySwitchMin = GUICtrlRead($chkTrophySwitchMin) = $GUI_CHECKED ? 1 : 0
-		$icmbTrophyMinProfile = _GUICtrlComboBox_GetCurSel($cmbTrophyMinProfile)
-		$itxtMinTrophyAmount = GUICtrlRead($txtMinTrophyAmount)
-
-	EndSwitch
-EndFunc  ;==> ApplyConfig_RK_Switch_Profiles
 
 Func ApplyConfig_RK_MOD_ruRequest($TypeReadSave)
 	Switch $TypeReadSave

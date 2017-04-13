@@ -83,10 +83,6 @@ Global $chkRusLang2 = 0
 Global $bReqCCFirst = False
 Global $chkReqCCFirst = 0
 
-; Clan Hop Setting
-Global $g_hChkClanHop = 0
-Global $ichkClanHop
-
 ; Misc Battle Settings
 Global $chkFastADBClicks = 0
 

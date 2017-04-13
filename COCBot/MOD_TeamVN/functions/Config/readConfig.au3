@@ -107,6 +107,26 @@ Func ReadConfig_MOD()
 
 	; ================================================== GOBLINXP END =================================================== ;
 	
+	; ================================================== BOT HUMANIZATION PART ================================================== ;
+	IniReadS($g_ichkUseBotHumanization, $g_sProfileConfigPath, "Humanization", "chkUseBotHumanization", 0, "int")
+	IniReadS($g_ichkUseAltRClick, $g_sProfileConfigPath, "Humanization", "chkUseAltRClick", 0, "int")
+	IniReadS($g_ichkCollectAchievements, $g_sProfileConfigPath, "Humanization", "chkCollectAchievements", 0, "int")
+	IniReadS($g_ichkLookAtRedNotifications, $g_sProfileConfigPath, "Humanization", "chkLookAtRedNotifications", 0, "int")
+	For $i = 0 To 12
+		IniReadS($g_iacmbPriority[$i], $g_sProfileConfigPath, "Humanization", "cmbPriority[" & $i & "]", 0, "int")
+	Next
+	For $i = 0 To 1
+		IniReadS($g_iacmbMaxSpeed[$i], $g_sProfileConfigPath, "Humanization", "cmbMaxSpeed[" & $i & "]", 1, "int")
+	Next
+	For $i = 0 To 1
+		IniReadS($g_iacmbPause[$i], $g_sProfileConfigPath, "Humanization", "cmbPause[" & $i & "]", 0, "int")
+	Next
+	For $i = 0 To 1
+		$g_iahumanMessage[$i] = IniRead($g_sProfileConfigPath, "Humanization", "humanMessage[" & $i & "]", "")
+	Next
+	IniReadS($g_icmbMaxActionsNumber, "Humanization", "cmbMaxActionsNumber", 1, "int")
+	; ================================================== BOT HUMANIZATION END ================================================== ;
+	
 EndFunc
 
 ; SwitchAcc (Demen) - Added By Demen

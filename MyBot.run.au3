@@ -791,7 +791,9 @@ Func Idle() ;Sequence that runs until Full Army
 		Local $hTimer = __TimerInit()
 		Local $iReHere = 0
 		;PrepareDonateCC()
-
+        
+		BotHumanization()
+		
 		;If $g_bDonateSkipNearFullEnable = True Then getArmyCapacity(true,true)
 		If $g_iActiveDonate And $g_bChkDonate Then
 			Local $aHeroResult = CheckArmyCamp(True, True, True)

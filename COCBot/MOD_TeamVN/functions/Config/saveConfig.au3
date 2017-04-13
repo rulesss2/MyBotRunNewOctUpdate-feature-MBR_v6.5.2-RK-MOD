@@ -104,6 +104,26 @@ Func SaveConfig_MOD()
 	_Ini_Add("attack", "SXGW", $ichkSXGW)
 	_Ini_Add("attack", "MaxXptoGain", GUICtrlRead($txtMaxXPtoGain))
 	; ================================================== GOBLINXP END =================================================== ;
+	
+	; ================================================== BOT HUMANIZATION PART ================================================== ;
+	_Ini_Add("Humanization", "chkUseBotHumanization", $g_ichkUseBotHumanization)
+	_Ini_Add("Humanization", "chkUseAltRClick", $g_ichkUseAltRClick)
+	_Ini_Add("Humanization", "chkCollectAchievements", $g_ichkCollectAchievements)
+	_Ini_Add("Humanization", "chkLookAtRedNotifications", $g_ichkLookAtRedNotifications)
+	For $i = 0 To 12
+		_Ini_Add("Humanization", "cmbPriority[" & $i & "]", _GUICtrlComboBox_GetCurSel($g_acmbPriority[$i]))
+	Next
+	For $i = 0 To 1
+		_Ini_Add("Humanization", "cmbMaxSpeed[" & $i & "]", _GUICtrlComboBox_GetCurSel($g_iacmbMaxSpeed[$i]))
+	Next
+	For $i = 0 To 1
+		_Ini_Add("Humanization", "cmbPause[" & $i & "]", _GUICtrlComboBox_GetCurSel($g_acmbPause[$i]))
+	Next
+	For $i = 0 To 1
+		_Ini_Add("Humanization", "humanMessage[" & $i & "]", GUICtrlRead($g_ahumanMessage[$i]))
+	Next
+	_Ini_Add("Humanization", "cmbMaxActionsNumber", _GUICtrlComboBox_GetCurSel($g_icmbMaxActionsNumber))
+	; ================================================== BOT HUMANIZATION END ================================================== ;
 EndFunc
 
 ; SwitchAcc (Demen) - Added By Demen

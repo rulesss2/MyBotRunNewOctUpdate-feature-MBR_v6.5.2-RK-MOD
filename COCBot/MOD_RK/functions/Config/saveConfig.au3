@@ -97,7 +97,7 @@ Func SaveConfig_RK_MOD()
 	
 
 	; Upgrade Management
-	_Ini_Add("upgrade", "UpdateNewUpgradesOnly", $g_ibUpdateNewUpgradesOnly ? 1 : 0)
+	;_Ini_Add("upgrade", "UpdateNewUpgradesOnly", $g_ibUpdateNewUpgradesOnly ? 1 : 0)
 
 
 	; Move the Request CC Troops
@@ -105,7 +105,7 @@ Func SaveConfig_RK_MOD()
 
 
 	; Clan Hop Setting
-	_Ini_Add("Others", "ClanHop", $ichkClanHop ? 1 : 0)
+	;_Ini_Add("Others", "ClanHop", $ichkClanHop ? 1 : 0)
 
 
 

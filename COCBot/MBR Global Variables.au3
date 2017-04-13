@@ -432,7 +432,8 @@ Global Enum $eIcnArcher = 1, $eIcnDonArcher, $eIcnBalloon, $eIcnDonBalloon, $eIc
 		$eWall04, $eWall05, $eWall06, $eWall07, $eWall08, $eWall09, $eWall10, $eWall11, $eIcnPBNotify, $eIcnCCTroops, _
 		$eIcnCCSpells, $eIcnSpellsGroup, $eBahasaIND, $eChinese_S, $eChinese_T, $eEnglish, $eFrench, $eGerman, $eItalian, $ePersian, _
 		$eRussian, $eSpanish, $eTurkish, $eMissingLangIcon, $eWall12, $ePortuguese, $eIcnDonPoisonSpell, $eIcnDonEarthQuakeSpell, $eIcnDonHasteSpell, $eIcnDonSkeletonSpell, $eVietnamese, $eKorean, $eAzerbaijani, _
-		$eIcnUpgrade, $eArabic, $eIcnDebug, $eIcnReload2, $eIcnProfile2, $eIcnStats, $eIcnMods
+		$eIcnUpgrade, $eArabic, $eIcnDebug, _
+        $eIcnChat, $eIcnRepeat, $eIcnClan, $eIcnSwords, $eIcnLoop, $eIcnBug, $eIcnDelete, $eIcnMultiStat, $eIcnMove, $eIcnStats
 
 Global $eIcnDonBlank = $eIcnDonBlacklist
 Global $eIcnOptions = $eIcnDonBlacklist

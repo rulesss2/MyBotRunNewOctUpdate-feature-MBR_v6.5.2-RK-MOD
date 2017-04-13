@@ -65,4 +65,13 @@
 ; ClanHop (Rhinoceros) - Added by NguyenAnhHD
 ;#include "functions\Mod's\ClanHop.au3"
 
+;Фарм XP
 #include "functions\Village\SuperXP.au3"
+
+;Humanization
+#include "functions\BotHumanization\BotHumanization.au3"
+#include "functions\BotHumanization\AttackNDefenseActions.au3"
+#include "functions\BotHumanization\BestClansNPlayersActions.au3"
+#include "functions\BotHumanization\ChatActions.au3"
+#include "functions\BotHumanization\ClanActions.au3"
+#include "functions\BotHumanization\ClanWarActions.au3"

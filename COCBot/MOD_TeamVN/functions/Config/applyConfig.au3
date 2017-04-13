@@ -127,7 +127,27 @@ Func ApplyConfig_MOD($TypeReadSave)
 			GUICtrlSetState($chkSXGW, $ichkSXGW = $eHeroWarden ? $GUI_CHECKED : $GUI_UNCHECKED)
 
 			; ================================================== GOBLINXP END =================================================== ;
-
+            
+			; ================================================== BOT HUMANIZATION PART ================================================== ;
+			$g_ichkUseBotHumanization = GUICtrlRead($chkUseBotHumanization) = $GUI_CHECKED ? 1 : 0
+			$g_ichkUseAltRClick = GUICtrlRead($chkUseAltRClick) = $GUI_CHECKED ? 1 : 0
+			$g_ichkCollectAchievements = GUICtrlRead($chkCollectAchievements) = $GUI_CHECKED ? 1 : 0
+			$g_ichkLookAtRedNotifications = GUICtrlRead($chkLookAtRedNotifications) = $GUI_CHECKED ? 1 : 0
+			For $i = 0 To 12
+				$g_iacmbPriority[$i] = _GUICtrlComboBox_GetCurSel($g_acmbPriority[$i])
+			Next
+			For $i = 0 To 1
+				$g_iacmbMaxSpeed[$i] = _GUICtrlComboBox_GetCurSel($g_acmbMaxSpeed[$i])
+			Next
+			For $i = 0 To 1
+				$g_iacmbPause[$i] = _GUICtrlComboBox_GetCurSel($g_acmbPause[$i])
+			Next
+			For $i = 0 To 1
+				$g_iahumanMessage[$i] = GUICtrlRead($g_ahumanMessage[$i])
+			Next
+			$g_icmbMaxActionsNumber = _GUICtrlComboBox_GetCurSel($g_icmbMaxActionsNumber)
+			; ================================================== BOT HUMANIZATION END ================================================== ;
+			
 		Case "Save"
 			; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
 			$ichkAutoHide = GUICtrlRead($g_hChkAutohide) = $GUI_CHECKED ? 1 : 0
@@ -221,7 +241,29 @@ Func ApplyConfig_MOD($TypeReadSave)
 			$itxtMaxXPtoGain = Int(GUICtrlRead($txtMaxXPtoGain))
 
 			; ================================================== GOBLINXP END =================================================== ;
-
+            
+			; ================================================== BOT HUMANIZATION PART ================================================== ;
+			GUICtrlSetState($chkUseBotHumanization, $g_ichkUseBotHumanization = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($chkUseAltRClick, $g_ichkUseAltRClick = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($chkCollectAchievements, $g_ichkCollectAchievements = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($chkLookAtRedNotifications, $g_ichkLookAtRedNotifications = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			chkUseBotHumanization()
+			For $i = 0 To 12
+				_GUICtrlComboBox_SetCurSel($g_acmbPriority[$i], $g_iacmbPriority[$i])
+			Next
+			For $i = 0 To 1
+				_GUICtrlComboBox_SetCurSel($g_acmbMaxSpeed[$i], $g_iacmbMaxSpeed[$i])
+			Next
+			For $i = 0 To 1
+				_GUICtrlComboBox_SetCurSel($g_acmbPause[$i], $g_iacmbPause[$i])
+			Next
+			For $i = 0 To 1
+				_GUICtrlComboBox_SetCurSel($g_ahumanMessage[$i], $g_iahumanMessage[$i])
+			Next
+			_GUICtrlComboBox_SetCurSel($g_icmbMaxActionsNumber, $g_icmbMaxActionsNumber)
+			cmbStandardReplay()
+			cmbWarReplay()
+			; ================================================== BOT HUMANIZATION END ================================================== ;
 
 	EndSwitch
 EndFunc

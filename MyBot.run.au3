@@ -651,6 +651,18 @@ Func runBot() ;Bot that runs everything in order
 			AddIdleTime()
 			If $g_bRunState = False Then Return
 			If $g_bRestart = True Then ContinueLoop
+			If $iChkForecastBoost = 1 Then;-------- forecast boost -----
+ 				$currentForecast = readCurrentForecast()
+ 					If $currentForecast >= Number($iTxtForecastBoost, 3) Then
+ 					   If _GUICtrlComboBox_GetCurSel($g_hCmbBoostBarracks) > 0 Then
+					     SetLog("Boost Time !", $COLOR_GREEN)
+					   Else
+					     SetLog("Boost barracks disabled!", $COLOR_GREEN)
+					   EndIf
+ 					Else
+ 					SetLog("Forecast index is below the required value, no boost !", $COLOR_RED)
+ 					EndIf
+ 			EndIf ;------------------------------------------------------
 			If IsSearchAttackEnabled() Then ; if attack is disabled skip reporting, requesting, donating, training, and boosting
 				Local $aRndFuncList = ['ReplayShare', 'NotifyReport', 'DonateCC,Train', 'BoostBarracks', 'BoostSpellFactory', 'BoostKing', 'BoostQueen', 'BoostWarden', 'RequestCC']
 				While 1

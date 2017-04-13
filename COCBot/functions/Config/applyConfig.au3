@@ -1166,7 +1166,7 @@ Func ApplyConfig_600_29_DB_Standard($TypeReadSave)
 			$g_abAttackStdSmartNearCollectors[$DB][1] = (GUICtrlRead($g_hChkAttackNearElixirCollectorDB) = $GUI_CHECKED)
 			$g_abAttackStdSmartNearCollectors[$DB][2] = (GUICtrlRead($g_hChkAttackNearDarkElixirDrillDB) = $GUI_CHECKED)
 	EndSwitch
-;Bridge()
+Bridge()
 EndFunc   ;==>ApplyConfig_600_29_DB_Standard
 
 Func ApplyConfig_600_29_DB_Scripted($TypeReadSave)

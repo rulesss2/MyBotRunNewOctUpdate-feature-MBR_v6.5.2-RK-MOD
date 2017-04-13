@@ -1317,3 +1317,5 @@ Global $g_aWeakDefenseMaxLevels = [0, 2, 4, 4, 9, 9, 8]
 
 ; TeamVN MOD (NguyenAnhHD, Demen)
 #include "MOD_TeamVN\Globals_TeamVN.au3"
+;MOD_RK
+#include "MOD_RK\Globals MOD_RK.au3"

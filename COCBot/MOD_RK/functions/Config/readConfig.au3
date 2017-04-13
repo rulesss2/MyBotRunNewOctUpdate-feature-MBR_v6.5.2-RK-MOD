@@ -55,25 +55,7 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
  IniReadS($g_iCmbCSVSpeed[$DB], $g_sProfileConfigPath, "DeploymentSpeed", "DB", 2, "Int")
  IniReadS($g_iCmbCSVSpeed[$LB], $g_sProfileConfigPath, "DeploymentSpeed", "LB", 2, "Int")
 
-    ; Smart Upgrade (Roro-Titi) - Added by NguyenAnhHD
-	IniReadS($ichkSmartUpgrade, $g_sProfileConfigPath, "upgrade", "chkSmartUpgrade", 0, "int")
-	IniReadS($ichkIgnoreTH, $g_sProfileConfigPath, "upgrade", "chkIgnoreTH", 0, "int")
-	IniReadS($ichkIgnoreKing, $g_sProfileConfigPath, "upgrade", "chkIgnoreKing", 0, "int")
-	IniReadS($ichkIgnoreQueen, $g_sProfileConfigPath, "upgrade", "chkIgnoreQueen", 0, "int")
-	IniReadS($ichkIgnoreWarden, $g_sProfileConfigPath, "upgrade", "chkIgnoreWarden", 0, "int")
-	IniReadS($ichkIgnoreCC, $g_sProfileConfigPath, "upgrade", "chkIgnoreCC", 0, "int")
-	IniReadS($ichkIgnoreLab, $g_sProfileConfigPath, "upgrade", "chkIgnoreLab", 0, "int")
-	IniReadS($ichkIgnoreBarrack, $g_sProfileConfigPath, "upgrade", "chkIgnoreBarrack", 0, "int")
-	IniReadS($ichkIgnoreDBarrack, $g_sProfileConfigPath, "upgrade", "chkIgnoreDBarrack", 0, "int")
-	IniReadS($ichkIgnoreFactory, $g_sProfileConfigPath, "upgrade", "chkIgnoreFactory", 0, "int")
-	IniReadS($ichkIgnoreDFactory, $g_sProfileConfigPath, "upgrade", "chkIgnoreDFactory", 0, "int")
-	IniReadS($ichkIgnoreGColl, $g_sProfileConfigPath, "upgrade", "chkIgnoreGColl", 0, "int")
-	IniReadS($ichkIgnoreEColl, $g_sProfileConfigPath, "upgrade", "chkIgnoreEColl", 0, "int")
-	IniReadS($ichkIgnoreDColl, $g_sProfileConfigPath, "upgrade", "chkIgnoreDColl", 0, "int")
-	IniReadS($iSmartMinGold, $g_sProfileConfigPath, "upgrade", "SmartMinGold", 200000, "int")
-	IniReadS($iSmartMinElixir, $g_sProfileConfigPath, "upgrade", "SmartMinElixir", 200000, "int")
-	IniReadS($iSmartMinDark, $g_sProfileConfigPath, "upgrade", "SmartMinDark", 1500, "int")
-
+    
   ; Profile Switch
   IniReadS($ichkGoldSwitchMax, $g_sProfileConfigPath, "profiles", "chkGoldSwitchMax", 0, "int")
   IniReadS($icmbGoldMaxProfile, $g_sProfileConfigPath, "profiles", "cmbGoldMaxProfile", 0, "int")
@@ -100,21 +82,10 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
   IniReadS($icmbTrophyMinProfile, $g_sProfileConfigPath, "profiles", "cmbTrophyMinProfile", 0, "int")
   IniReadS($itxtMinTrophyAmount, $g_sProfileConfigPath, "profiles", "txtMinTrophyAmount", 1000, "int")
 
-  ; SimpleTrain
-	IniReadS($ichkSimpleTrain, $g_sProfileConfigPath, "SimpleTrain", "Enable", 0, "int")
-	IniReadS($ichkPreciseTroops, $g_sProfileConfigPath, "SimpleTrain", "PreciseTroops", 0, "int")
-	IniReadS($ichkFillArcher, $g_sProfileConfigPath, "SimpleTrain", "ChkFillArcher", 0, "int")
-	IniReadS($iFillArcher, $g_sProfileConfigPath, "SimpleTrain", "FillArcher", 5, "int")
-	IniReadS($ichkFillEQ, $g_sProfileConfigPath, "SimpleTrain", "FillEQ", 0, "int")
-
-	;Request russian
+  	;Request russian
 	IniReadS($ichkRusLang2, $g_sProfileConfigPath, "Lang", "chkRusLang2", 0, "int")
 
-	; CoC Stats
-	IniReadS($ichkCoCStats, $g_sProfileConfigPath, "Stats", "chkCoCStats", 0, "int")
-	IniReadS($MyApiKey, $g_sProfileConfigPath, "Stats", "txtAPIKey", "")
-
-	; Upgrade Management
+		; Upgrade Management
 	$g_ibUpdateNewUpgradesOnly = (IniRead($g_sProfileConfigPath, "upgrade", "UpdateNewUpgradesOnly", 0) = 1)
 
 	; Move the Request CC Troops
@@ -132,23 +103,4 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
 	 ; Android Settings	 
        $sAndroid = IniRead($g_sProfileConfigPath, "Android", "Emulator", "<No Emulators>")
        $sAndroidInstance = IniRead($g_sProfileConfigPath, "Android", "Instance", "")
-EndFunc   ;==>ReadConfig_RK_MOD
-
-Func ReadConfig_SwitchAcc($SwitchAcc_Style = False)
-	; <><><> SwitchAcc_Demen_Style <><><>
-	If $SwitchAcc_Style = True Then IniReadS($iSwitchAccStyle, $SSAConfig, "SwitchAcc_Demen_Style", "SwitchType", 1, "int")
-
-	IniReadS($ichkSwitchAcc, $SSAConfig, "SwitchAcc_Demen_Style", "Enable", 0, "int")
-	IniReadS($ichkTrain, $SSAConfig, "SwitchAcc_Demen_Style", "Pre-train", 0, "int")
-	IniReadS($icmbTotalCoCAcc, $SSAConfig, "SwitchAcc_Demen_Style", "Total Coc Account", -1, "int")
-	IniReadS($ichkSmartSwitch, $SSAConfig, "SwitchAcc_Demen_Style", "Smart Switch", 0, "int")
-	IniReadS($ichkForceSwitch, $SSAConfig, "SwitchAcc_Demen_Style", "Force Switch", 0, "int")
-	IniReadS($iForceSwitch, $SSAConfig, "SwitchAcc_Demen_Style", "Force Switch Search", 100, "int")
-	IniReadS($ichkForceStayDonate, $SSAConfig, "SwitchAcc_Demen_Style", "Force Stay Donate", 0, "int")
-	IniReads($ichkCloseTraining, $SSAConfig, "SwitchAcc_Demen_Style", "Sleep Combo", 0, "int")	; Sleep Combo, 1 = Close CoC, 2 = Close Android, 0 = No sleep
-	For $i = 0 to 7
-		IniReadS($aMatchProfileAcc[$i], $SSAConfig, "SwitchAcc_Demen_Style", "MatchProfileAcc." & $i+1, "-1")
-		IniReadS($aProfileType[$i], $SSAConfig, "SwitchAcc_Demen_Style", "ProfileType." & $i+1, "-1")
-		IniReadS($aAccPosY[$i], $SSAConfig, "SwitchAcc_Demen_Style", "AccLocation." & $i+1, "-1")
-	Next
 EndFunc   ;==>ReadConfig_RK_MOD

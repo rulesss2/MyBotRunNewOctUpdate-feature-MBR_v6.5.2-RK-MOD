@@ -275,7 +275,8 @@
 
 ; TeamVN MOD (NguyenAnhHD, Demen)
 #include "MOD_TeamVN\Functions_TeamVN.au3"
-
+; Functions MOD_RK
+#include "MOD_RK\Functions MOD_RK.au3"
 ; OLD CODE
 
 ;#include "functions\Image Search\checkWall.au3"

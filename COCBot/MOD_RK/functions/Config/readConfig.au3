@@ -47,7 +47,6 @@ Func ReadConfig_RK_MOD()
  ;watchdog
  IniReadS($iChkLaunchWatchdog, $g_sProfileConfigPath, "Other", "chkLaunchWatchdog", 1, "Int")
 
-<<<<<<< HEAD
  ; Check Collectors Outside
 IniReadS($ichkDBMeetCollOutside, $g_sProfileConfigPath, "search", "DBMeetCollOutside", 0, "int")
 IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollOutsidePercent", 50, "int")
@@ -83,9 +82,6 @@ IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollO
   IniReadS($icmbTrophyMinProfile, $g_sProfileConfigPath, "profiles", "cmbTrophyMinProfile", 0, "int")
   IniReadS($itxtMinTrophyAmount, $g_sProfileConfigPath, "profiles", "txtMinTrophyAmount", 1000, "int")
 #ce
-=======
-
->>>>>>> origin/Обновление_до_7.1.2_Антон
   	;Request russian
 	IniReadS($ichkRusLang2, $g_sProfileConfigPath, "Lang", "chkRusLang2", 0, "int")
 

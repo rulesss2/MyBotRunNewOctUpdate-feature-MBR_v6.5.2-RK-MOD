@@ -50,6 +50,7 @@ Func SaveConfig_RK_MOD()
     ;Watchdog disable
 	_Ini_Add("Other", "chkLaunchWatchdog", $iChkLaunchWatchdog ? 1 : 0)
 
+<<<<<<< HEAD
 	; Check Collectors Outside
     _Ini_Add("search", "DBMeetCollOutside", $ichkDBMeetCollOutside ? 1 : 0)
 	_Ini_Add("search", "DBMinCollOutsidePercent", $iDBMinCollOutsidePercent)
@@ -87,6 +88,8 @@ Func SaveConfig_RK_MOD()
 	_Ini_Add("profiles", "chkTrophySwitchMax", $ichkTrophySwitchMax ? 1 : 0)
 	_Ini_Add("profiles", "cmbTrophyMaxProfile", _GUICtrlComboBox_GetCurSel($cmbTrophyMaxProfile))
 	_Ini_Add("profiles", "txtMaxTrophyAmount", GUICtrlRead($txtMaxTrophyAmount))
+=======
+>>>>>>> origin/Обновление_до_7.1.2_Антон
 
 	_Ini_Add("profiles", "chkTrophySwitchMin", $ichkTrophySwitchMin ? 1 : 0)
 	_Ini_Add("profiles", "cmbTrophyMinProfile", _GUICtrlComboBox_GetCurSel($cmbTrophyMinProfile))
@@ -95,14 +98,20 @@ Func SaveConfig_RK_MOD()
 	;request  russian
 	_Ini_Add("Lang", "chkRusLang2", $ichkRusLang2 ? 1 : 0)
 	
+<<<<<<< HEAD
 	; Upgrade Management
 	_Ini_Add("upgrade", "UpdateNewUpgradesOnly", $g_ibUpdateNewUpgradesOnly ? 1 : 0)
 
+=======
+>>>>>>> origin/Обновление_до_7.1.2_Антон
 	; Move the Request CC Troops
 	_Ini_Add("planned", "ReqCCFirst", $bReqCCFirst ? 1 : 0)
 
+<<<<<<< HEAD
 	; Clan Hop Setting
 	_Ini_Add("Others", "ClanHop", $ichkClanHop ? 1 : 0)
+=======
+>>>>>>> origin/Обновление_до_7.1.2_Антон
 
 	; Misc Battle Settings
 	_Ini_Add("Fast Clicks", "UseADBFastClicks", $g_bAndroidAdbClicksEnabled ? 1 : 0)

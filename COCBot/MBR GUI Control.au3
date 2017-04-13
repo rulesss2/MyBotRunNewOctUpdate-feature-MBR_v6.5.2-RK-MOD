@@ -47,6 +47,7 @@ Global $g_hFrmBot_WNDPROC_ptr = 0
 #include "GUI\MBR GUI Control Child Misc.au3"
 #include "GUI\MBR GUI Control Android.au3"
 #include "MBR GUI Action.au3"
+#include "GUI\MBR GUI Control Tab Meteo.au3"
 
 ;RK_MOD
 #include "MOD_TeamVN\GUI\MOD GUI Control.au3"
@@ -662,6 +663,22 @@ Func GUIControl_WM_NOTIFY($hWind, $iMsg, $wParam, $lParam)
 		Case $g_hTabMain
 			; Handle RichText controls
 			tabMain()
+			If GUICtrlRead($g_hTabMain, 1) = $g_hGUI_RK And GUICtrlRead($g_hGUI_RK_TAB, 1) = $g_hGUI_RK_TAB_ITEM4 Then
+						Local $tTag  = DllStructCreate("hwnd;int;int;int;int;int;int;ptr;int;int;int;int;int;int;int;int;int;int;int;int", $lParam)
+						Local $hFrom = DllStructGetData($tTag, 1)
+						Local $iID   = DllStructGetData($tTag, 2)
+						Local $iCode = DllStructGetData($tTag, 3)
+						Local $iPos  = DllStructGetData($tTag, 4)
+
+						If $iCode = -551 Then ;tab selected
+							GUICtrlSetState($g_hGUI_RK_TAB_ITEM4, $GUI_SHOW)
+							sleep(100)
+							If TimerDiff($TimerForecast) > (1 * 10000) Then ; 1 Refresh Graphique toutes les 5 mn maxi, faut pas abuser
+						cmbSwLang() ;Added Multi Switch Language by rulesss and kychera
+							$TimerForecast = TimerInit()
+							EndIf
+						EndIf
+					EndIf       
 		Case $g_hGUI_VILLAGE_TAB
 			tabVillage()
 		Case $g_hGUI_DONATE_TAB
@@ -681,6 +698,42 @@ Func GUIControl_WM_NOTIFY($hWind, $iMsg, $wParam, $lParam)
 		Case $g_hGUI_MOD_TAB
 ;			tabMod()
         Case $g_hGUI_RK_TAB
+				If GUICtrlRead($g_hGUI_RK_TAB, 1) = $g_hGUI_RK_TAB_ITEM4 Then
+						Local $tTag  = DllStructCreate("hwnd;int;int;int;int;int;int;ptr;int;int;int;int;int;int;int;int;int;int;int;int", $lParam)
+						Local $hFrom = DllStructGetData($tTag, 1)
+						Local $iID   = DllStructGetData($tTag, 2)
+						Local $iCode = DllStructGetData($tTag, 3)
+						Local $iPos  = DllStructGetData($tTag, 4)
+
+						If $iCode = -551 Then ;tab selected
+							GUICtrlSetState($g_hGUI_RK_TAB_ITEM4, $GUI_SHOW)
+							sleep(100)
+							If TimerDiff($TimerForecast) > (1 * 10000) Then ; 1 Refresh Graphique toutes les 5 mn maxi, faut pas abuser
+							setForecast()
+							EndIf
+						EndIf
+					EndIf
+
+					tabMain()
+
+					If GUICtrlRead($g_hGUI_RK_TAB, 1) = $g_hGUI_RK_TAB_ITEM4 Then
+						Local $tTag  = DllStructCreate("hwnd;int;int;int;int;int;int;ptr;int;int;int;int;int;int;int;int;int;int;int;int", $lParam)
+						Local $hFrom = DllStructGetData($tTag, 1)
+						Local $iID   = DllStructGetData($tTag, 2)
+						Local $iCode = DllStructGetData($tTag, 3)
+						Local $iPos  = DllStructGetData($tTag, 4)
+
+						If $iCode = -551 Then ;tab selected
+							GUICtrlSetState($g_hGUI_RK_TAB_ITEM4, $GUI_SHOW)
+							sleep(100)
+							If TimerDiff($TimerForecast) > (1 * 10000) Then ; 1 Refresh Graphique toutes les 5 mn maxi, faut pas abuser
+						cmbSwLang()
+						
+	
+                            $TimerForecast = TimerInit()
+							EndIf
+						EndIf
+					EndIf
 		Case Else
 			$bCheckEmbeddedShield = False
 	EndSwitch
@@ -1275,6 +1328,7 @@ Func SetRedrawBotWindow($bEnableRedraw, $bCheckRedrawBotWindow = Default, $bForc
 		; set dirty redraw flag
 		$g_bRedrawBotWindow[1] = True
 	EndIf
+	redrawForecast()
 	Return $bWasRedraw
 EndFunc   ;==>SetRedrawBotWindow
 

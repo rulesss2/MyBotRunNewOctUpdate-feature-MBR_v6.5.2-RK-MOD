@@ -111,7 +111,9 @@ Func applyConfig($bRedrawAtExit = True, $TypeReadSave = "Read") ;Applies the dat
 	ApplyConfig_RK_MOD($TypeReadSave)
 	;@<<>>@<<>>@<<>>@<<>>@<<>>@<<>>@
 	ApplyConfig_SwitchAcc($TypeReadSave)
-
+    
+	;RK_MOD
+	ApplyConfig_RK_Forecast($TypeReadSave)
 	; <><><><> Attack Plan / Strategies <><><><>
 	; <<< nothing here >>>
 

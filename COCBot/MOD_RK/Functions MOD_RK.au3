@@ -34,7 +34,7 @@
 #include "other/Multy Lang.au3"
 
 
-#include "functions\ClanHop.au3"
+;#include "functions\ClanHop.au3"
 
 #include "functions\_GuiCtrlCreateCheckbox.au3"
 #include "functions\_GUICtrlCreateRadio.au3"

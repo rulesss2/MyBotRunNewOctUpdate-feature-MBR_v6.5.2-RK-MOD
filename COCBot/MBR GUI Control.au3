@@ -1961,7 +1961,7 @@ Func Bind_ImageList($nCtrl)
 
 		Case $g_hGUI_BOT_TAB
 			; the icons for Bot tab
-			Local $aIconIndex[4] = [$eIcnOptions, $eIcnAndroid, $eIcnDebug, $eIcnGold]
+			Local $aIconIndex[4] = [$eIcnOptions, $eIcnAndroid, $eIcnProfile, $eIcnGold]
 			; The Android Robot is a Google Trademark and follows Creative Common Attribution 3.0
 
 		; Case $g_hGUI_MOD_TAB

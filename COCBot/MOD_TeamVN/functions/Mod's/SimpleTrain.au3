@@ -172,8 +172,8 @@ Func SimpleTrain()
 			Case -$SpellCamp[1] + 1 To -1 ; 10/11
 				If $ichkFillEQ = 0 Or $SpellCamp[0] - $SpellCamp[1] < -1 Then
 					If $g_bQuickTrainEnable = False Then
-						SetLog(" »» Not full spell camp. Let's clear brewing spells")
-						If ISArmyWindow(False, $BrewSpellsTAB) Then ClearTrainingTroops(True, False)
+						SetLog(" »» Not full spell camp. Let's clear brewing spells")					
+						If ISArmyWindow(False, $BrewSpellsTAB) Then ClearTrainingTroops(True, False)					  
 					Else
 						SetLog(" »» Not full spell camp.")
 					EndIf
@@ -194,7 +194,7 @@ Func SimpleTrain()
 			Case 1 To $SpellCamp[1] - 1 ; 21/11
 				If $ichkFillEQ = 0 Or $SpellCamp[0] - $SpellCamp[1] < $SpellCamp[1] - 1 Then
 					SetLog(" »» Not full queue, Delete queued spells")
-					DeleteQueue(True)
+					If Not $g_bForceBrewSpells Then	DeleteQueue(True) ; fix kychera					
 					If CheckBlockTroops(True) = False Then ; check if spell camp is not full after delete queue
 						$eBrewMethod = $g_eFull
 					Else

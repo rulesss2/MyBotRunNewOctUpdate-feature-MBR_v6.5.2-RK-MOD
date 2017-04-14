@@ -80,7 +80,7 @@ Global $ichkRusLang2 = 0
 Global $chkRusLang2 = 0
 
 ; move the Request CC Troops
-Global $bReqCCFirst = False
+Global $g_bReqCCFirst = False
 Global $chkReqCCFirst = 0
 
 ; Misc Battle Settings

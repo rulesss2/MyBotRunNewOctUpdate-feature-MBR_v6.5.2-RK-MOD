@@ -54,7 +54,7 @@ Func SaveConfig_RK_MOD()
 	_Ini_Add("Lang", "chkRusLang2", $ichkRusLang2 ? 1 : 0)
 
 	; Move the Request CC Troops
-	_Ini_Add("planned", "ReqCCFirst", $bReqCCFirst ? 1 : 0)
+	_Ini_Add("planned", "ReqCCFirst", $g_bReqCCFirst ? 1 : 0)
 
 	; Misc Battle Settings
 	_Ini_Add("Fast Clicks", "UseADBFastClicks", $g_bAndroidAdbClicksEnabled ? 1 : 0)

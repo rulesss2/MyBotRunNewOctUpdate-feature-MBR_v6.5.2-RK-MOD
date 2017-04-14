@@ -125,8 +125,8 @@ EndFunc   ;==>chkDonateHoursE2
 ; move the Request CC Troops function to the beginning of the run loop
 Func chkReqCCFirst()
 	If GUICtrlRead($chkReqCCFirst) = $GUI_CHECKED Then
-		$bReqCCFirst = True
+		$g_bReqCCFirst = True
 	Else
-		$bReqCCFirst = False
+		$g_bReqCCFirst = False
 	EndIf
 EndFunc   ;==>chkReqCCFirst

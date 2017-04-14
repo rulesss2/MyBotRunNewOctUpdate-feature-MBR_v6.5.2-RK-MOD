@@ -64,7 +64,7 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
         $iSldTransLevel = GUICtrlRead($SldTransLevel)
 
 			;Move the Request CC Troops
-			$bReqCCFirst = GUICtrlRead($chkReqCCFirst) = $GUI_CHECKED ? 1 : 0
+			$g_bReqCCFirst = GUICtrlRead($chkReqCCFirst) = $GUI_CHECKED ? 1 : 0
 
 			; Misc Battle Settings
 			$g_bAndroidAdbClicksEnabled = GUICtrlRead($chkFastADBClicks) = $GUI_CHECKED ? 1 : 0

@@ -86,25 +86,12 @@ Func CreateBottomPanel()
 		   GUICtrlSetState(-1, $GUI_HIDE)
 	   $g_hBtnAttackNowTS = GUICtrlCreateButton(GetTranslated(602,20, "TH Snipe!"), $x + 190, $y + 50, 60, -1)
 		   GUICtrlSetState(-1, $GUI_HIDE)
-	   $g_hBtnEnableGUI = GUICtrlCreateButton(GetTranslated(602,52, "Enable GUI"), $x + 100, $y + 70, 80, -1)
-		   _GUICtrlSetTip(-1, 	GetTranslated(602,53, "Enable GUI control while botting") & @CRLF & _
-								GetTranslated(602,54, "Warning:  USE THIS WITH CAUTION!") & @CRLF & _
-								GetTranslated(602,55, "This function may create errors that require bot/PC restart") & @CRLF & _
-								GetTranslated(602,56, "Better to stop the Bot completely if you need to change the setting"))
-		   GUICtrlSetOnEvent(-1, "btnEnableGUI")
-		   GUICtrlSetState(-1, $GUI_HIDE)
-	   $g_hBtnDisableGUI = GUICtrlCreateButton("Disable GUI", $x + 100, $y + 70, 80, -1)
-		   _GUICtrlSetTip(-1, GetTranslated(602,57, "Enable GUI control while botting"))
-		   GUICtrlSetOnEvent(-1, "btnDisableGUI")
-		   GUICtrlSetState(-1, $GUI_HIDE)
+	 
    GUICtrlCreateGroup("", -99, -99, 1, 1)
 
    If $g_bAndroidAdbScreencap = True Then chkBackground() ; update background mode GUI
 
    $g_hPicTwoArrowShield = _GUICtrlCreatePic(@ScriptDir & "\Images\Logo2.png", $x + 190, $y + 10, 54, 52)
-
-   $g_hLblVersion = GUICtrlCreateLabel($g_sBotVersion, 200, $y + 60, 60, 17, $SS_CENTER)
-	   GUICtrlSetColor(-1, $COLOR_MEDGRAY)
 
    $g_hPicArrowLeft = GUICtrlCreateIcon($g_sLibIconPath, $eIcnArrowLeft, $x + 249, $y + 30, 16, 16)
 	  $sTxtTip = GetTranslated(602,25, "Switch between village info and stats")

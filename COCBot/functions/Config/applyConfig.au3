@@ -108,12 +108,12 @@ Func applyConfig($bRedrawAtExit = True, $TypeReadSave = "Read") ;Applies the dat
 	; TeamVN MOD (NguyenAnhHD, Demen)
 	ApplyConfig_MOD($TypeReadSave)
 	;@<<>>@<<>>@<<>>@<<>>@<<>>@<<>>@
-	ApplyConfig_RK_MOD($TypeReadSave)
-	;@<<>>@<<>>@<<>>@<<>>@<<>>@<<>>@
 	ApplyConfig_SwitchAcc($TypeReadSave)
     
 	;RK_MOD
+	ApplyConfig_RK_MOD($TypeReadSave)
 	ApplyConfig_RK_Forecast($TypeReadSave)
+	ApplyConfig_RK_MOD_AndroidSettings($TypeReadSave)
 	; <><><><> Attack Plan / Strategies <><><><>
 	; <<< nothing here >>>
 

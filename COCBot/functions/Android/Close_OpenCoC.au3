@@ -97,7 +97,7 @@ Func WaitnOpenCoC($iWaitTime, $bFullRestart = False)
 	If Not $g_bRunState Then Return
 
 	Local $RunApp = ""
-	Local $sWaitTime = ""
+	Global $sWaitTime = ""
 	Local $iMin, $iSec, $iHour, $iWaitSec
 	WinGetAndroidHandle()
 	;AndroidHomeButton()
@@ -108,6 +108,7 @@ Func WaitnOpenCoC($iWaitTime, $bFullRestart = False)
 	If $iHour > 0 Then $sWaitTime &= $iHour & " hours "
 	If $iMin > 0 Then $sWaitTime &= $iMin & " minutes "
 	If $iSec > 0 Then $sWaitTime &= $iSec & " seconds "
+	PushMsg("SleepBot")
 	SetLog("Waiting " & $sWaitTime & "before starting CoC", $COLOR_SUCCESS)
 	ReduceBotMemory()
 	If _SleepStatus($iWaitTime) Then Return False ; Wait for server to see log off
@@ -122,6 +123,7 @@ Func WaitnOpenCoC($iWaitTime, $bFullRestart = False)
 		$g_bRestart = True
 	Else
 		waitMainScreen()
+		PushMsg("WakeUpBot")
 	EndIf
 
 EndFunc   ;==>WaitnOpenCoC

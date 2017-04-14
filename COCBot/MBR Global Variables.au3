@@ -995,7 +995,7 @@ Global Const $g_sDirLanguages = @ScriptDir & "\Languages\"
 Global Const $g_sDefaultLanguage = "English"
 
 ; Notify
-Global Const $g_sNotifyVersion = "Revamp v1.5.1"
+Global Const $g_sNotifyVersion = "Revamp v1.6.2"
 Global Const $g_iPBRemoteControlInterval = 60000 ; 60 secs
 Global Const $g_iPBDeleteOldPushesInterval = 1800000 ; 30 mins
 Global $g_bNotifyDeleteAllPushesNow = False

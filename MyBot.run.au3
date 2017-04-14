@@ -637,6 +637,12 @@ Func runBot() ;Bot that runs everything in order
 			If _Sleep($DELAYRUNBOT5) Then Return
 			checkMainScreen(False)
 			If $g_bRestart = True Then ContinueLoop
+			; MOD ; MMHK ; move the Request CC Troops function to the beginning of the run loop
+			$g_bcanRequestCC = True ; coz almost always empty cc after raids, and no other lines above could check if true, other than Idle(): set True - Train(), CheckOverviewFullArmy(); set False - RequestCC()
+			If ($g_bReqCCFirst) Then
+				RequestCC()
+				If _Sleep($DELAYRUNBOT1) = False Then checkMainScreen(False)
+			EndIf
 			Local $aRndFuncList = ['Collect', 'CheckTombs', 'ReArm', 'CleanYard']
 			While 1
 				If $g_bRunState = False Then Return
@@ -829,12 +835,6 @@ Func Idle() ;Sequence that runs until Full Army
 		If $g_bRestart = True Then ExitLoop
 					
 		If $iCollectCounter > $g_iCollectAtCount Then ; This is prevent from collecting all the time which isn't needed anyway
-			; MOD ; MMHK ; move the Request CC Troops function to the beginning of the run loop
-			$g_bcanRequestCC = True ; coz almost always empty cc after raids, and no other lines above could check if true, other than Idle(): set True - Train(), CheckOverviewFullArmy(); set False - RequestCC()
-			If ($g_bReqCCFirst) Then
-				RequestCC()
-				If _Sleep($DELAYRUNBOT1) = False Then checkMainScreen(False)
-			EndIf
 			Local $aRndFuncList = ['Collect', 'CheckTombs', 'DonateCC', 'CleanYard']
 			While 1
 				If $g_bRunState = False Then Return

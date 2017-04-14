@@ -29,10 +29,13 @@ Func CreateAttackSearchDeadBaseCollectors()
    GUICtrlCreateGroup(GetTranslated(626,1,"Collectors"), $x - 5, $y - 20, $g_iSizeWGrpTab4, $g_iSizeHGrpTab4)
 		GUICtrlCreateLabel(GetTranslated(626,2, "Choose which collectors to search for while looking for a dead base. Also, choose how full they must be."), $x, $y, 250, 28)
 		$g_hChkDBDisableCollectorsFilter = GUICtrlCreateCheckbox(GetTranslated(626,32,"Disable Collector Filter"), $x+250, $y+60, 150, 18)
+		    _GUICtrlSetTip(-1, GetTranslated(626,33, "Disable Collector Filter CHANGES DeadBase into another ActiveBase search"))
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
-			_GUICtrlSetTip(-1, GetTranslated(626,33, "Disable Collector Filter CHANGES DeadBase into another ActiveBase search"))
-
-		; Check Collector Outside - Added By NguyenAnhHD
+			GUICtrlSetOnEvent(-1, "ChkDBDisableCollectorsFilter")
+			ChkDBDisableCollectorsFilter() ;by RK_Mod
+			
+        
+		; Check Collector Outside - RK_Mod
 		$g_hChkDBMeetCollOutside = GUICtrlCreateCheckbox(GetTranslated(626,40, "Check Collectors Outside"), $x+250, $y+90, -1, -1)
 			$sTxtTip = GetTranslated(626,41, "Search for bases that has their collectors outside.")
 			GUICtrlSetOnEvent(-1, "chkDBMeetCollOutside")
@@ -168,7 +171,7 @@ Func CreateAttackSearchDeadBaseCollectors()
 			_GUICtrlSetTip(-1, $sTxtTip)
 		$g_hCmbMinCollectorMatches = GUICtrlCreateCombo("", $x + 125, $y, 75, 20, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			_GUICtrlSetTip(-1, $sTxtTip)
-			GUICtrlSetData(-1, "1|2|3|4|5|6", "3")
+			GUICtrlSetData(-1, "1|2|3|4|5|6", "4")
 			GUICtrlSetOnEvent(-1, "cmbMinCollectorMatches")
 
 	    $y += 25

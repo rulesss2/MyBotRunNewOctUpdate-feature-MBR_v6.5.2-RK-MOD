@@ -111,7 +111,8 @@ Global $ichkCoCStats = 0
 Global $MyApiKey = ""
 
 ; ClanHop (Rhinoceros) - Added by NguyenAnhHD
-;Global $ichkClanHop
+Global $g_hChkClanHop = 0
+Global $ichkClanHop
 
 ;SuperXP / GoblinXP
 Global $ichkEnableSuperXP = 0, $irbSXTraining = 1, $ichkSXBK = 0, $ichkSXAQ = 0, $ichkSXGW = 0, $iStartXP = 0, $iCurrentXP = 0, $iGainedXP = 0, $iGainedXPHour = 0, $itxtMaxXPtoGain = 500

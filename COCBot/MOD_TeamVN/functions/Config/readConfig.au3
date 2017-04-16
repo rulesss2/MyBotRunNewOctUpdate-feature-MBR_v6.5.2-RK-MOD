@@ -90,11 +90,8 @@ Func ReadConfig_MOD()
 	IniReadS($ichkCoCStats, $g_sProfileConfigPath, "Stats", "chkCoCStats", 0, "int")
 	IniReadS($MyApiKey, $g_sProfileConfigPath, "Stats", "txtAPIKey", "")
 
-	; Notify Bot Speep (Kychera) - Added By NguyenAnhHD
-;~	IniReadS($g_bNotifyAlertBOTSleep, $g_sProfileConfigPath, "notify", "AlertPBSleep", False, "Bool")
-
 	; ClanHop (Rhinoceros) - Added by NguyenAnhHD
-;~	IniReadS($ichkClanHop, $g_sProfileConfigPath, "Others", "ClanHop", 0, "int")
+	IniReadS($ichkClanHop, $g_sProfileConfigPath, "Others", "ClanHop", 0, "int")
     
 	; ================================================== GOBLINXP PART ================================================== ;
 

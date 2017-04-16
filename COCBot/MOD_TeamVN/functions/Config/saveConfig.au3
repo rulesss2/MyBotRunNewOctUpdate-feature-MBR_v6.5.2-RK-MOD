@@ -90,11 +90,8 @@ Func SaveConfig_MOD()
 	_Ini_Add("Stats", "chkCoCStats", $ichkCoCStats ? 1 : 0)
 	_Ini_Add("Stats", "txtAPIKey", $MyApiKey)
 
-	; Notify Bot Speep (Kychera) - Added By NguyenAnhHD
-;~	_Ini_Add("notify", "AlertPBSleep", $g_bNotifyAlertBOTSleep ? 1 : 0)
-
 	; ClanHop (Rhinoceros) - Added by NguyenAnhHD
-;~	_Ini_Add("Others", "ClanHop", $ichkClanHop ? 1 : 0)
+	_Ini_Add("Others", "ClanHop", $ichkClanHop ? 1 : 0)
      
 	 ; ================================================== GOBLINXP PART ================================================== ;
 	_Ini_Add("attack", "EnableSuperXP", $ichkEnableSuperXP)

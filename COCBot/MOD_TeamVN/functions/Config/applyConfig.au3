@@ -104,12 +104,8 @@ Func ApplyConfig_MOD($TypeReadSave)
 			GUICtrlSetData($g_hTxtAPIKey, $MyApiKey)
 			chkCoCStats()
 
-			; Notify Bot Speep (Kychera) - Added By NguyenAnhHD
-;~			GUICtrlSetState($g_hChkNotifyBOTSleep, $g_bNotifyAlertBOTSleep ? $GUI_CHECKED : $GUI_UNCHECKED)
-
-
 			; ClanHop (Rhinoceros) - Added by NguyenAnhHD
-;~			GUICtrlSetState($g_hChkClanHop, $ichkClanHop = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($g_hChkClanHop, $ichkClanHop = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 
 			; ================================================== GOBLINXP PART ================================================== ;
 

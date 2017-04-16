@@ -63,7 +63,7 @@
 #include "functions\Mod's\CoCStats.com.au3"
 
 ; ClanHop (Rhinoceros) - Added by NguyenAnhHD
-;#include "functions\Mod's\ClanHop.au3"
+#include "functions\Mod's\ClanHop.au3"
 
 ;Фарм XP
 #include "functions\Village\SuperXP.au3"

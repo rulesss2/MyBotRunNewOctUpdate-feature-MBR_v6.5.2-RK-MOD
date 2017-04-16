@@ -1736,6 +1736,7 @@ Func ApplyConfig_600_35($TypeReadSave)
 			$g_iAutoResumeTime = GUICtrlRead($g_hTxtAutoResumeTime)
 			$g_bForceClanCastleDetection = (GUICtrlRead($g_hChkFixClanCastle) = $GUI_CHECKED)
 	EndSwitch
+	ApplyConfig_decor_RK($TypeReadSave)
 EndFunc   ;==>ApplyConfig_600_35
 
 Func ApplyConfig_600_52_1($TypeReadSave)

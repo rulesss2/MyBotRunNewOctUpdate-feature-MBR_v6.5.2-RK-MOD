@@ -21,7 +21,7 @@ Global $g_hCmbProfile = 0, $g_hTxtVillageName = 0, $g_hBtnAddProfile = 0, $g_hBt
 ;GUISwitch($hGUI_Profiles)
 
 Func CreateBotProfiles()
-
+;$31 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)  
     Local $x = 25, $y = 45
 	GUICtrlCreateGroup(GetTranslated(637,1, "Switch Profiles"), $x - 20, $y - 20, $g_iSizeWGrpTab2, $g_iSizeHGrpTab2)
 		;$y -= 5

@@ -60,14 +60,14 @@ Func CreateMODTab()
 EndFunc   ;==>CreateMODTab
 
 Func OptionsGUI()
-
+$7 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)
 	Local $sTxtTip = ""
 	Local $x = 25, $y = 30
 	Local $Group1 = GUICtrlCreateGroup("", $x - 20, $y, 440, 35)
 
 	   $y += 10
 	   $x += -12
-		   $g_hChkCoCStats = GUICtrlCreateCheckbox(GetTranslated(657,1, "CoCStats Activate"), $x, $y, -1, -1)
+		   $g_hChkCoCStats = _GUICtrlCreateCheckbox(GetTranslated(657,1, "CoCStats Activate"), $x, $y, -1, -1)
 		   $sTxtTip = GetTranslated(657,2, "Activate sending raid results to CoCStats.com")
 		   GUICtrlSetTip(-1, $sTxtTip)
 		   GUICtrlSetOnEvent(-1, "chkCoCStats")
@@ -83,20 +83,20 @@ Func OptionsGUI()
 EndFunc   ;==>TreasuryGUI
 
 Func GoblinXPGUI()
-;$12 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)
+$12 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)
 	Local $x = 25, $y = 50, $xStart = 25, $yStart = 50
 
 	$grpSuperXP = GUICtrlCreateGroup(GetTranslated(700, 1, "Goblin XP"), $x - 20, $y - 20, 440, 340)
-		$chkEnableSuperXP = GUICtrlCreateCheckbox(GetTranslated(700, 2, "Enable Goblin XP"), $x, $y - 1, 102, 17, -1, -1)
+		$chkEnableSuperXP = _GUICtrlCreateCheckbox(GetTranslated(700, 2, "Enable Goblin XP"), $x, $y - 1, 102, 17, -1, -1)
 		GUICtrlSetOnEvent(-1, "chkEnableSuperXP")
-			$rbSXTraining = GUICtrlCreateRadio(GetTranslated(700, 3, "Farm XP during troops Training"), $x, $y + 25, 175, 17)
+			$rbSXTraining = _GUICtrlCreateRadio(GetTranslated(700, 3, "Farm XP during troops Training"), $x, $y + 25, 175, 17)
 			GUICtrlSetState(-1, $GUI_CHECKED)
 			GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
 			$lblLOCKEDSX = GUICtrlCreateLabel(GetTranslated(700, 13, "LOCKED"), $x + 210, $y + 35, 173, 50)
 			GUICtrlSetFont(-1, 30, 800, 0, "Arial")
 			GUICtrlSetColor(-1, 0xFF0000)
 			GUICtrlSetState(-1, $GUI_HIDE)
-			$rbSXIAttacking = GUICtrlCreateRadio(GetTranslated(700, 4, "Farm XP instead of Attacking"), $x, $y + 45, 158, 17)
+			$rbSXIAttacking = _GUICtrlCreateRadio(GetTranslated(700, 4, "Farm XP instead of Attacking"), $x, $y + 45, 158, 17)
 			GUICtrlCreateLabel (GetTranslated(700, 14, "Max XP to Gain") & ":", $x, $y + 78, -1, 17)
 			GUICtrlSetOnEvent(-1, "chkEnableSuperXP2")
 			$txtMaxXPtoGain = GUICtrlCreateInput("500", $x + 85, $y + 75, 70, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
@@ -158,7 +158,7 @@ Func GoblinXPGUI()
 EndFunc
 
 Func HumanizationGUI()
-;$3 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)
+$3 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHILDREN)
 	Local $x , $y
 
 	$chkUseBotHumanization = _GUICtrlCreateCheckbox(GetTranslated(42, 0, "Enable Bot Humanization"), 10, 20, 137, 17, -1, -1)

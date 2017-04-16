@@ -377,8 +377,8 @@ Func ChatbotChatInput($message)
 	 AutoItWinSetTitle('MyAutoItTitle')
     _WinAPI_SetKeyboardLayout(WinGetHandle(AutoItWinGetTitle()), 0x0419)
 		Sleep(500)
-		ControlFocus($HWnd, "", "")
-		SendKeepActive($HWnd)
+		ControlFocus($g_hAndroidWindow, "", "")
+		SendKeepActive($g_hAndroidWindow)
 		Sleep(500)
 	;Opt("SendKeyDelay", 1000)	
 	AutoItSetOption("SendKeyDelay", 50)	
@@ -437,8 +437,8 @@ Func ChatbotPushbulletSendChat()
 
    Local $ChatFile = $Date & "__" & $Time & ".jpg" ; separator __ is need  to not have conflict with saving other files if $TakeSS = 1 and $chkScreenshotLootInfo = 0
    $g_sProfileLootsPath
-   _GDIPlus_ImageSaveToFile($hBitmap, $g_sProfileLootsPath & $ChatFile)
-   _GDIPlus_ImageDispose($hBitmap)
+   _GDIPlus_ImageSaveToFile($g_hBitmap, $g_sProfileLootsPath & $ChatFile)
+   _GDIPlus_ImageDispose($g_hBitmap)
    ;push the file
    SetLog("Chatbot: Sent chat image", $COLOR_GREEN)
    ;========Modified Kychera===========

@@ -133,7 +133,9 @@ Func InitializeBot()
 	CreateSplashScreen() ; Create splash window
 
 	; Ensure watchdog is launched (requires Bot Window for messaging)
-	;If $g_bBotLaunchOption_NoWatchdog = False Then LaunchWatchdog()
+	If $iChkLaunchWatchdog = 0 Then
+	     If $g_bBotLaunchOption_NoWatchdog = False Then LaunchWatchdog()
+	EndIf
 
 	InitializeMBR($sAndroidInfo)
 
@@ -157,7 +159,10 @@ Func InitializeBot()
 	FinalInitialization($sAndroidInfo)
 
 	;ProcessSetPriority(@AutoItPID, $iBotProcessPriority) ;~ Restore process priority
-
+    ;===============================================
+	;transparent gui
+      Slider()
+	;===============================================  
 	; AutoStart Bot if requested
 	AutoStart()
 

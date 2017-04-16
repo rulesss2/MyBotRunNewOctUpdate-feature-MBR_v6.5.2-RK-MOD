@@ -39,6 +39,7 @@ Func CreateRKTab()
 EndFunc
 
 Func ModOptionGUI()
+$35 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 410, $WS_CLIPCHILDREN)
 
 ; Android Settings
     Local $x = 25, $y = 43
@@ -169,7 +170,7 @@ $chatIni = $g_sProfilePath & "\" & $g_sProfileCurrentName &  "\chat.ini"
 EndFunc
 
 Func ForecastGUI()
- $37 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 410, $WS_CLIPCHILDREN)
+   $37 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 410, $WS_CLIPCHILDREN)
 
 Local $sTxtTip = ""
 Local $xStart = 0, $yStart = 0

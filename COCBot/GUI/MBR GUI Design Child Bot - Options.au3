@@ -149,14 +149,14 @@ $1 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 410, $WS_CLIPCHI
    GUICtrlCreateGroup("", -99, -99, 1, 1)
 ;++++++++ Modified Kychera	+++++++++++
 	$y += 49
-	GUICtrlCreateGroup(GetTranslated(636,126, "Decor"), $x - 20, $y - 20, 210, 90)
+	GUICtrlCreateGroup(GetTranslated(636,129, "Decor"), $x - 20, $y - 20, 210, 90)
 	$y += -5
 		$chkPic = GUICtrlCreateCheckbox("", $x, $y + 2, 13, 13)
-        $sTxtTip = GetTranslated(636,127, "Enable Background.")
+        $sTxtTip = GetTranslated(636,130, "Enable Background.")
         GUICtrlSetTip(-1, $sTxtTip)
         GUICtrlSetState(-1, $GUI_CHECKED)
 		GUICtrlSetOnEvent(-1, "chkPic")
-		GUICtrlCreateLabel(GetTranslated(636,127, "Enable Backgroung"), $x + 17, $y + 2, -1, -1)
+		GUICtrlCreateLabel(GetTranslated(636,130, "Enable Backgroung"), $x + 17, $y + 2, -1, -1)
 		;$y += 25
 		$x += 120
 	    $BackGr = GUICtrlCreateCombo("", $x, $y, 60, 45, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
@@ -207,11 +207,11 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 			GUICtrlSetOnEvent(-1, "chkAutoResume")
 		$g_hTxtAutoResumeTime = GUICtrlCreateInput("5",$x + 132, $y + 5, 30, 16, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 		GUICtrlCreateLabel( GetTranslated(603,10, -1), $x+167, $y+5, 27, 15)
-		$y += 19
+		$y += 23
 	   $g_hChkUseRandomClick = _GUICtrlCreateCheckbox(GetTranslated(636,94, "Random Click"), $x, $y, -1, -1)
 		   GUICtrlSetOnEvent(-1, "chkUseRandomClick")
 		$y += 19
-	  $ChkLaunchWatchdog = _GUICtrlCreateCheckbox(GetTranslated(2000,1, "Disabled Watchdog"), $x, $y, -1, -1)
+	  $ChkLaunchWatchdog = _GUICtrlCreateCheckbox(GetTranslated(2000,1, "Disabled Watchdog"), $x, $y + 2, -1, -1)
           GUICtrlSetState(-1, $GUI_CHECKED)
 	     GUICtrlSetOnEvent(-1, "chkLaunchWatchdog")
          $y += 19

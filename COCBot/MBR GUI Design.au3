@@ -111,6 +111,7 @@ Global $g_bFrmBotMinimized = False ; prevents bot flickering
 #include "GUI\MBR GUI Design Village.au3"
 #include "GUI\MBR GUI Design Attack.au3"
 #include "GUI\MBR GUI Design Bot.au3"
+; MOD RK
 #include "GUI\MBR GUI Design Child RK.au3"
 #include "GUI\MBR GUI Design About.au3"
 

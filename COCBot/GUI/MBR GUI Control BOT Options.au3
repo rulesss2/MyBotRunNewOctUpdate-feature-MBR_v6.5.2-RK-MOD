@@ -680,5 +680,13 @@ Func btnTestOcrMemory()
 		;getOcrAndCapture("coc-DonTroops", 162, 200, 120, 27, True)
 
 	Next
-
+EndFunc
+Func chkLaunchWatchdog()
+	If GUICtrlRead($ChkLaunchWatchdog) = $GUI_CHECKED Then
+	$iChkLaunchWatchdog = 1
+		
+	Else
+	$iChkLaunchWatchdog = 0
+		
+	EndIf
 EndFunc

@@ -42,8 +42,7 @@ Func ApplyConfig_RK_MOD($TypeReadSave)
 		GUICtrlSetState($chkPic, $ichkPic = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 		chkPic()
 		;Transparent Gui (Modified Kychera)
-	    GUICtrlSetData($SldTransLevel, $iSldTransLevel)
-
+	    GUICtrlSetData($SldTransLevel, $iSldTransLevel)        
 
 			;Move the Request CC Troops
 			GUICtrlSetState($chkReqCCFirst, $g_bReqCCFirst = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)

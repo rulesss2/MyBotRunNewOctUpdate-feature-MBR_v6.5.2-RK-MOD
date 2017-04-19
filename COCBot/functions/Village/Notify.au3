@@ -370,9 +370,11 @@ Func NotifyGetLastMessageFromTelegram()
 	If $g_bNotifyTGEnable = False Or $g_sNotifyTGToken = "" Then Return
 
 	Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
-	$oHTTP.Open("Get", "https://api.telegram.org/bot" & $g_sNotifyTGToken & "/getupdates", False)
-	$oHTTP.Send()
-	Local $Result = $oHTTP.ResponseText
+	$oHTTP.Open("Get", "https://api.telegram.org/bot" & $g_sNotifyTGToken & "/getupdates", False) 
+	;oHTTP.Send()
+	Execute('$oHTTP.Send()')
+	$oHTTP.WaitForResponse
+	Local $Result = Execute('$oHTTP.ResponseText')
 
 	Local $chat_id = _StringBetween($Result, 'm":{"id":', ',"f')
 	$g_sTGChatID = _ArrayPop($chat_id)
@@ -388,8 +390,10 @@ Func NotifyGetLastMessageFromTelegram()
 
 
 	$oHTTP.Open("Get", "https://api.telegram.org/bot" & $g_sNotifyTGToken & "/getupdates?offset=" & $g_sTGLast_UID, False)
-	$oHTTP.Send()
-	Local $Result2 = $oHTTP.ResponseText
+	;$oHTTP.Send()
+	Execute('$oHTTP.Send()')
+	$oHTTP.WaitForResponse
+	Local $Result2 = Execute('$oHTTP.ResponseText')
 
 	Local $findstr2 = StringRegExp(StringUpper($Result2), '"TEXT":"')
 	If $findstr2 = 1 Then
@@ -440,7 +444,7 @@ EndFunc   ;==>NotifyActivateKeyboardOnTelegram
 
  ;~~~~~~~~~~~~~~~~~ start bot when bot is stopped by kychera 03/05/17 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Func NotifyRemoteControl2()
-   If $g_bNotifyRemoteEnable = True Then NotifyRemoteControlProc2()
+  If $g_bNotifyPBEnable = True Or $g_bNotifyTGEnable = True Then NotifyRemoteControlProc2()
 EndFunc
  
 Func NotifyRemoteControlProc2()

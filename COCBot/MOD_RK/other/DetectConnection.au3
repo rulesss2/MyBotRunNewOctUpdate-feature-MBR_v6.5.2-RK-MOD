@@ -22,7 +22,7 @@ EndFunc   ;==>_IsInternet
 Func _ConnectTime()         
     If $iNotifyAlertConnect = 1 and _IsInternet() <> 1 Then     
 	 $TimerConnect = __TimerInit() 
-	 setlog("timer")
+	 ;setlog("timer")
     EndIf	
 EndFunc
 
@@ -32,11 +32,11 @@ If $iNotifyAlertConnect = 1 and _IsInternet() <> 0 Then
 	;$DiffConnect = TimerDiff($TimerConnect)	
 	$DiffConnect = _TicksToTime(Int(__TimerDiff($TimerConnect)), $Hour, $Mins, $Secs)
 	$Time = StringFormat("%02i:%02i:%02i", $Hour, $Mins, $Secs)
-	setlog($Time)
+	;setlog($Time)
 	  	  If $Time <> "00:00:00" Then
 		  NotifyPendingActions()
 	      PushMsg("Connect")		  
-	      setlog("Connect")		 
+	      ;setlog("Connect")		 
 	       EndIf	   
 	  ;$TimerConnect = __TimerInit()
 EndIf	 

@@ -22,6 +22,7 @@ Func CloseCoC($ReOpenCoC = False)
 	Local $Adb = ""
 	If $ReOpenCoC Then
 		SetLog("Please wait for CoC restart......", $COLOR_ERROR) ; Let user know we need time...
+		_ConnectTime()
 	Else
 		SetLog("Closing CoC......", $COLOR_ERROR) ; Let user know what we do...
 	EndIf
@@ -119,11 +120,10 @@ Func WaitnOpenCoC($iWaitTime, $bFullRestart = False)
 	If $g_iDebugSetlog = 1 Then setlog("CoC Restarted, Waiting for completion", $COLOR_DEBUG)
 
 	If $bFullRestart = True Then
-		checkMainScreen() ; Use checkMainScreen to restart CoC, and waitMainScreen to handle Take A Break wait, or other errors.
-		$g_bRestart = True
+		checkMainScreen() ; Use checkMainScreen to restart CoC, and waitMainScreen to handle Take A Break wait, or other errors.		
+        $g_bRestart = True
 	Else
-		waitMainScreen()
-        _ConnectTime() 
+		waitMainScreen()		
 		PushMsg("WakeUpBot")
 	EndIf
 

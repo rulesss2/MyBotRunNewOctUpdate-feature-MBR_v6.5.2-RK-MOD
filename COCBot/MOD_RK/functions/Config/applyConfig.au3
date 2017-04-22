@@ -128,9 +128,12 @@ EndFunc   ;==>ApplyConfig_RK_ruRequest
 Func ApplyConfig_RK_MOD_NotifyBotSleep($TypeReadSave)
 	Switch $TypeReadSave
 		Case "Read"
+		  GUICtrlSetState($ChkNotifyAlertConnect, $iNotifyAlertConnect = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+		  ChkNotifyConnect()
 		  GUICtrlSetState($ChkNotifyAlertBOTSleep, $iNotifyAlertBOTSleep = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
           ChkNotifyAlertBOTSleep()
 		Case "Save"
+		   $iNotifyAlertConnect = GUICtrlRead($ChkNotifyAlertConnect) = $GUI_CHECKED ? 1 : 0
 		   $iNotifyAlertBOTSleep = GUICtrlRead($ChkNotifyAlertBOTSleep) = $GUI_CHECKED ? 1 : 0
 	EndSwitch
 EndFunc   ;==>ApplyConfig_RK_ruRequest

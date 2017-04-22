@@ -58,6 +58,14 @@ Func ChkNotifyAlertBOTSleep()
    EndIf
 EndFunc 
 
+Func ChkNotifyConnect()
+   If $g_bNotifyPBEnable = True Or $g_bNotifyTGEnable = True Then
+      GUICtrlSetState($ChkNotifyAlertConnect, $GUI_ENABLE)
+   Else
+      GUICtrlSetState($ChkNotifyAlertConnect, $GUI_DISABLE)
+   EndIf
+EndFunc 
+
 
 Func setupAndroidComboBox()
 	Local $androidString = ""

@@ -88,3 +88,4 @@ Global $chkFastADBClicks = 0
 
 ;Notify alert botsleep
 Global $ChkNotifyAlertBOTSleep = 0, $iNotifyAlertBOTSleep = 0
+Global $TimerConnect, $DiffConnect, $iNotifyAlertConnect, $ChkNotifyAlertConnect 

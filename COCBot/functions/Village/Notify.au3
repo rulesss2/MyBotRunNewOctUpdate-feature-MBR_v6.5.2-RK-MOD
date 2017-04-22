@@ -1235,6 +1235,10 @@ Func NotifyPushMessageToBoth($Message, $Source = "")
 		    If ($g_bNotifyPBEnable = True Or $g_bNotifyTGEnable = True) And $iNotifyAlertBOTSleep = 1 Then
 		      NotifyPushToBoth($g_sNotifyOrigin & " | " & GetTranslated(620,737, "Wake Up Bot"))
 		    EndIf
+		Case "Connect"		   
+            If ($g_bNotifyPBEnable = True Or $g_bNotifyTGEnable = True) And $iNotifyAlertConnect = 1 Then			 
+			    NotifyPushToBoth($g_sNotifyOrigin & " | " & GetTranslated(620,738,"Internet was not") & " " & $Time)				
+			EndIf	
 ;==========================================		
 		Case "Misc"
 			NotifyPushToBoth($Message)

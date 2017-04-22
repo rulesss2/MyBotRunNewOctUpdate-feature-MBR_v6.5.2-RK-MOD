@@ -148,7 +148,12 @@ Func CreatePushBulletTelegramSubTab()
 		$g_hChkNotifyAlertAnotherDevice = _GUICtrlCreateCheckbox(GetTranslated(619,43, "Another device"), $x + 210, $y, -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(619,44, "Send an Alert when your village is connected to from another device."))
 			GUICtrlSetState(-1, $GUI_DISABLE)
-
+		;============Modified Kychera=========	
+		$ChkNotifyAlertConnect = _GUICtrlCreateCheckbox(GetTranslated(619,73, "Break connection"), $x + 315, $y, -1, -1) 	
+             _GUICtrlSetTip(-1, GetTranslated(619,74, "Send the message after the connection is restored, with the time."))
+			 GUICtrlSetState(-1, $GUI_DISABLE)
+		GUICtrlSetOnEvent(-1, "ChkNotifyConnect")
+		;=====================================
 		$y += 20
 		$g_hChkNotifyAlertMaintenance = _GUICtrlCreateCheckbox(GetTranslated(619,45, "Maintenance"), $x + 10, $y, -1, -1)
 			_GUICtrlSetTip(-1, GetTranslated(619,46, "Send an Alert when CoC is under maintenance by SuperCell"))

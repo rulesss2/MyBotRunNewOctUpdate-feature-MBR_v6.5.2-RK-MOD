@@ -57,6 +57,7 @@ Func ReadConfig_RK_MOD()
 	IniReadS($g_bAndroidAdbClicksEnabled , $g_sProfileConfigPath, "Fast Clicks", "UseADBFastClicks", 0, "int")
 
 	 ;Notify alert bot sleep
+	 IniReadS($iNotifyAlertConnect, $g_sProfileConfigPath, "notify", "AlertConnect", 0, "int")
 	 IniReadS($iNotifyAlertBOTSleep, $g_sProfileConfigPath, "notify", "AlertPBVMFound", 0, "int")
 
 	 ; Android Settings

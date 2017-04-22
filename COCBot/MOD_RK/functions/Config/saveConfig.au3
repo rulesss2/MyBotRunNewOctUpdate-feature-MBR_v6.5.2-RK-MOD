@@ -60,6 +60,7 @@ Func SaveConfig_RK_MOD()
 	_Ini_Add("Fast Clicks", "UseADBFastClicks", $g_bAndroidAdbClicksEnabled ? 1 : 0)
 
 	;Notify alert bot sleep
+	 _Ini_Add("notify", "AlertConnect", $iNotifyAlertConnect ? 1 : 0)
 	 _Ini_Add("notify", "AlertPBVMFound", $iNotifyAlertBOTSleep ? 1 : 0)
 
 	 ; Android Settings

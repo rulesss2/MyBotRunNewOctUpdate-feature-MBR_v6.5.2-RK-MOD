@@ -123,6 +123,7 @@ Func WaitnOpenCoC($iWaitTime, $bFullRestart = False)
 		$g_bRestart = True
 	Else
 		waitMainScreen()
+        _ConnectTime() 
 		PushMsg("WakeUpBot")
 	EndIf
 

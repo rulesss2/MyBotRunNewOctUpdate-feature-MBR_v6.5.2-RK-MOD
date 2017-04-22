@@ -893,6 +893,7 @@ Func RestartAndroidCoC($bInitAndroid = True, $bRestart = True)
 		$sRestart = "-S "
 	Else
 		SetLog("Launch Clash of Clans now...", $COLOR_SUCCESS)
+		_ConnectTime();fix kychera
 	EndIf
 	ConnectAndroidAdb()
 	If Not $g_bRunState Then Return False

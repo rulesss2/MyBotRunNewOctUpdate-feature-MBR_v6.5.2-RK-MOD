@@ -904,7 +904,6 @@ Func CreateOptionsSubTab()
 	   _GUICtrlSetTip(-1, $sTxtTip)
 
    $y += 28
-          $y += 28
 	   $g_hChkSuspendComputer = GUICtrlCreateCheckbox(GetTranslated(641, 47, "Suspend Computer"), $x + 18, $y + 1, 110, -1)
 	   $sTxtTip = GetTranslated(641, 48, "Option will suspend computer when selected\r\nAdding this option may increase offline time slightly due to variable times required for startup")
 	   GUICtrlSetState(-1, $GUI_UNCHECKED)

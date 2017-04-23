@@ -199,7 +199,6 @@ Func SaveRegularConfig()
 	; <><><><> Bot / Debug <><><><>
 	SaveConfig_Debug()
 
-	; TeamVN MOD (NguyenAnhHD, Demen)
 	SaveConfig_MOD()
 	SaveConfig_SwitchAcc()
 	;

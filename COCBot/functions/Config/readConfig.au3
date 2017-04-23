@@ -211,7 +211,7 @@ Func ReadRegularConfig()
 	; <><><> Attack Plan / Train Army / Options <><><>
 	ReadConfig_641_1()
 
-	; TeamVN MOD (NguyenAnhHD, Demen)
+
 	ReadConfig_MOD()
 	ReadConfig_SwitchAcc()
 	;

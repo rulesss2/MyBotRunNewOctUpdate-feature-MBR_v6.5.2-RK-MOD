@@ -542,12 +542,9 @@ Func NotifyRemoteControl2()
 EndFunc
  
 Func NotifyRemoteControlProc2()
-If $g_bNotifyTGEnable = True And $g_sNotifyTGToken <> "" Then
+ If $g_bNotifyTGEnable = True And $g_sNotifyTGToken <> ""  Then
 		$g_sTGLastMessage = NotifyGetLastMessageFromTelegram()
 		Local $TGActionMSG = StringUpper(StringStripWS($g_sTGLastMessage, $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES)) ;upercase & remove space laset message
-		If $g_iDebugSetlog Then Setlog("Telegram | NotifyRemoteControlProc $TGActionMSG : " & $TGActionMSG)
-		If $g_iDebugSetlog Then Setlog("Telegram | NotifyRemoteControlProc $g_iTGLastRemote : " & $g_iTGLastRemote)
-		If $g_iDebugSetlog Then Setlog("Telegram | NotifyRemoteControlProc $g_sTGLast_UID : " & $g_sTGLast_UID)
 			If $g_iTGLastRemote <> $g_sTGLast_UID Then
 				$g_iTGLastRemote = $g_sTGLast_UID
 				Switch $TGActionMSG	
@@ -982,7 +979,7 @@ Func NotifyRemoteControlProc()
 						NotifyPushFileToTelegram($g_sLogFileName, "Logs", "text\/plain; charset=utf-8", $g_sNotifyOrigin & " | Current Log " & "\n")
 					Case GetTranslated(620, 21, "LASTRAID"), '\UD83C\UDF04 ' & GetTranslated(620, 21, "LASTRAID")
 						If $g_sLootFileName <> "" Then
-							NotifyPushFileToTelegram($g_sLootFileName, GetTranslated(620, 120, "Loots"), "image/jpeg", $g_sNotifyOrigin & " | " & GetTranslated(620, 152, "Last Raid") & "\n" & $g_sLootFileName)
+							NotifyPushFileToTelegram($g_sLootFileName, "Loots", "image/jpeg", $g_sNotifyOrigin & " | " & GetTranslated(620, 152, "Last Raid") & "\n" & $g_sLootFileName)
 							SetLog("Notify Telegram: Push Last Raid Snapshot...", $COLOR_GREEN)
 						Else
 							NotifyPushToTelegram($g_sNotifyOrigin & " | " & GetTranslated(620, 141, "There is no last raid screenshot."))
@@ -1018,32 +1015,36 @@ Func NotifyRemoteControlProc()
 						NotifyPushToTelegram($g_sNotifyOrigin & " | " & GetTranslated(620, 135, "Statistics resetted."))
 					Case GetTranslated(620, 35, "TROOPS"), '\UD83D\UDCAA ' & GetTranslated(620, 35, "TROOPS")
 						SetLog("Notify Telegram: Your request has been received. Sending Troop/Spell Stats...", $COLOR_GREEN)
-						Local $txtTroopStats = " | " & GetTranslated(620, 136, "Troops/Spells set to Train") & ":\n" & _
-								"Barbs:" & $g_aiArmyCompTroops[$eTroopBarbarian] & " Arch:" & $g_aiArmyCompTroops[$eTroopArcher] & " Gobl:" & $g_aiArmyCompTroops[$eTroopGoblin] & "\n" & _
-								"Giant:" & $g_aiArmyCompTroops[$eTroopGiant] & " WallB:" & $g_aiArmyCompTroops[$eTroopWallBreaker] & " Wiza:" & $g_aiArmyCompTroops[$eTroopWizard] & "\n" & _
-								"Balloon:" & $g_aiArmyCompTroops[$eTroopBalloon] & " Heal:" & $g_aiArmyCompTroops[$eTroopHealer] & " Dragon:" & $g_aiArmyCompTroops[$eTroopDragon] & " Pekka:" & $g_aiArmyCompTroops[$eTroopPekka] & "\n" & _
-								"Mini:" & $g_aiArmyCompTroops[$eTroopMinion] & " Hogs:" & $g_aiArmyCompTroops[$eTroopHogRider] & " Valks:" & $g_aiArmyCompTroops[$eTroopValkyrie] & "\n" & _
-								"Golem:" & $g_aiArmyCompTroops[$eTroopGolem] & " Witch:" & $g_aiArmyCompTroops[$eTroopWitch] & " Lava:" & $g_aiArmyCompTroops[$eTroopLavaHound] & "\n" & _
-								"LSpell:" & $g_aiArmyCompSpells[$eSpellLightning] & " HeSpell:" & $g_aiArmyCompSpells[$eSpellHeal] & " RSpell:" & $g_aiArmyCompSpells[$eSpellRage] & " JSpell:" & $g_aiArmyCompSpells[$eSpellJump] & "\n" & _
-								"FSpell:" & $g_aiArmyCompSpells[$eSpellFreeze] & " PSpell:" & $g_aiArmyCompSpells[$eSpellPoison] & " ESpell:" & $g_aiArmyCompSpells[$eSpellEarthquake] & " HaSpell:" & $g_aiArmyCompSpells[$eSpellHaste] & "\n"
-						$txtTroopStats &= "\n" & GetTranslated(620, 168, "Current Trained Troops & Spells") & ":"
-						$txtTroopStats &= "\n\n" & GetTranslated(620, 169, "Current Army Camp") & ": " & $g_CurrentCampUtilization & "/" & $g_iTotalCampSpace
+						; $g_aiCurrentTroops[$eTroopCount] is the current troops quantities
+						Local $txtTroopStats = " | " & GetTranslated(620, 136, "Troops/Spells Train Status") & ":\n" & _
+								"Barbs:" & $g_aiCurrentTroops[$eTroopBarbarian] & " of " & $g_aiArmyCompTroops[$eTroopBarbarian] & " | Arch:" & $g_aiCurrentTroops[$eTroopArcher] & " of " & $g_aiArmyCompTroops[$eTroopArcher] & " | Gobl:" &$g_aiCurrentTroops[$eTroopGoblin] & " of " &  $g_aiArmyCompTroops[$eTroopGoblin] & "\n" & _
+								"Giant:" & $g_aiCurrentTroops[$eTroopGiant] & " of " & $g_aiArmyCompTroops[$eTroopGiant] & " | WallB:" & $g_aiCurrentTroops[$eTroopWallBreaker] & " of " & $g_aiArmyCompTroops[$eTroopWallBreaker] & " | Wiza:" & $g_aiCurrentTroops[$eTroopWizard] & " of " & $g_aiArmyCompTroops[$eTroopWizard] & "\n" & _
+								"Balloon:" & $g_aiCurrentTroops[$eTroopBalloon] & " of " & $g_aiArmyCompTroops[$eTroopBalloon] & " | Heal:" & $g_aiCurrentTroops[$eTroopHealer] & " of " & $g_aiArmyCompTroops[$eTroopHealer] & " | Dragon:" & $g_aiCurrentTroops[$eTroopDragon] & " of " & $g_aiArmyCompTroops[$eTroopDragon] & " | Pekka:" & $g_aiCurrentTroops[$eTroopPekka] & " of " & $g_aiArmyCompTroops[$eTroopPekka] & "\n" & _
+								"Mini:" & $g_aiCurrentTroops[$eTroopMinion] & " of " & $g_aiArmyCompTroops[$eTroopMinion] & " | Hogs:" & $g_aiCurrentTroops[$eTroopHogRider] & " of " & $g_aiArmyCompTroops[$eTroopHogRider] & " | Valks:" & $g_aiCurrentTroops[$eTroopValkyrie] & " of " & $g_aiArmyCompTroops[$eTroopValkyrie] & "\n" & _
+								"Golem:" & $g_aiCurrentTroops[$eTroopGolem] & " of " & $g_aiArmyCompTroops[$eTroopGolem] & " | Witch:" & $g_aiCurrentTroops[$eTroopWitch] & " of " & $g_aiArmyCompTroops[$eTroopWitch] & " | Lava:" & $g_aiCurrentTroops[$eTroopLavaHound] & " of " & $g_aiArmyCompTroops[$eTroopLavaHound] & "\n" & _
+								"LSpell:" & $g_aiCurrentSpells[$eSpellLightning] & " of " & $g_aiArmyCompSpells[$eSpellLightning] & " | HeSpell:" & $g_aiCurrentSpells[$eSpellHeal] & " of " & $g_aiArmyCompSpells[$eSpellHeal] & " | RSpell:" & $g_aiCurrentSpells[$eSpellRage] & " of " & $g_aiArmyCompSpells[$eSpellRage] & " | JSpell:" & $g_aiCurrentSpells[$eSpellJump] & " of " & $g_aiArmyCompSpells[$eSpellJump] & "\n" & _
+								"FSpell:" & $g_aiCurrentSpells[$eSpellFreeze] & " of " & $g_aiArmyCompSpells[$eSpellFreeze] & " | PSpell:" & $g_aiCurrentSpells[$eSpellPoison] & " of " & $g_aiArmyCompSpells[$eSpellPoison] & " | ESpell:" & $g_aiCurrentSpells[$eSpellEarthquake] & " of " & $g_aiArmyCompSpells[$eSpellEarthquake] & " | HaSpell:" & $g_aiCurrentSpells[$eSpellHaste] & " of " & $g_aiArmyCompSpells[$eSpellHaste] & "\n"
+						$txtTroopStats &= "\n" & GetTranslated(620, 168, "Current Capacities") & ":"
+						$txtTroopStats &= "\n" & GetTranslated(620, 169, " - Army Camp") & ": " & $g_CurrentCampUtilization & "/" & $g_iTotalCampSpace
+						$txtTroopStats &= "\n" & GetTranslated(620, 209, " - Spells") & ": " & $g_iSpellFactorySize & "/" & $g_iTotalTrainSpaceSpell
 						NotifyPushToTelegram($g_sNotifyOrigin & $txtTroopStats)
-					Case GetTranslated(620, 37, "HALTATTACKON"), '\U274C ' & StringUpper(GetTranslated(620, 38, "Attack Off"))
+					Case GetTranslated(620, 37, "HALTATTACKON"), '\U274C ' & StringUpper(GetTranslated(620, 38, "ATTACK OFF"))
 						GUICtrlSetState($g_hChkBotStop, $GUI_CHECKED)
+						NotifyPushToTelegram($g_sNotifyOrigin & " | " & GetTranslated(620, 210, "Set Halt Attack ON."))
 						btnStop()
 						$g_bChkBotStop = True ; set halt attack variable
 						$g_iCmbBotCond = 18 ; set stay online
 						btnStart()
-					Case GetTranslated(620, 40, "HALTATTACKOFF"), '\U2705 ' & StringUpper(GetTranslated(620, 41, "Attack On"))
+					Case GetTranslated(620, 40, "HALTATTACKOFF"), '\U2705 ' & StringUpper(GetTranslated(620, 41, "ATTACK ON"))
 						GUICtrlSetState($g_hChkBotStop, $GUI_UNCHECKED)
+						NotifyPushToTelegram($g_sNotifyOrigin & " | " & GetTranslated(620, 211, "Set Halt Attack OFF."))
 						btnStop()
 						btnStart()
 					Case GetTranslated(620, 43, "HIBERNATE"), '\UD83D\UDCA4 ' & GetTranslated(620, 43, "HIBERNATE")
 						SetLog("Notify Telegram: Your request has been received from " & $g_sNotifyOrigin & ". Hibernate PC", $COLOR_GREEN)
 						NotifyPushToTelegram(GetTranslated(620, 45, "PC Hibernate sequence initiated"))
 						Shutdown(64)
-					Case GetTranslated(620, 46, "SHUTDOWN"), '\U26A1 ' & StringUpper(GetTranslated(620, 47, "Shut down"))
+					Case GetTranslated(620, 46, "SHUTDOWN"), '\U26A1 ' & StringUpper(GetTranslated(620, 47, "SHUT DOWN"))
 						SetLog("Notify Telegram: Your request has been received from " & $g_sNotifyOrigin & ". Shutdown PC", $COLOR_GREEN)
 						NotifyPushToTelegram(GetTranslated(620, 49, "PC Shutdown sequence initiated"))
 						Shutdown(5)
@@ -1088,11 +1089,16 @@ Func NotifyRemoteControlProc()
 EndFunc   ;==>NotifyRemoteControlProc
 
 Func NotifyPushToBoth($pMessage)
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyPushToBoth($pMessage): " & $pMessage)
 	If ($g_bNotifyPBEnable = False Or $g_sNotifyPBToken = "") And ($g_bNotifyTGEnable = False Or $g_sNotifyTGToken = "") Then Return
 
 	;PushBullet ---------------------------------------------------------------------------------
 	If $g_bNotifyPBEnable = True And $g_sNotifyPBToken <> "" Then
 		Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+		If @error Then
+			SetLog("PushBullet Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+			Return
+		EndIf
 		$oHTTP.Open("Post", "https://api.pushbullet.com/v2/pushes", False)
 		Local $access_token = $g_sNotifyPBToken
 		$oHTTP.SetCredentials($access_token, "", 0)
@@ -1101,11 +1107,16 @@ Func NotifyPushToBoth($pMessage)
 		Local $Time = @HOUR & "." & @MIN
 		Local $pPush = '{"type": "note", "body": "' & $pMessage & "\n" & $Date & "__" & $Time & '"}'
 		$oHTTP.Send($pPush)
+		$oHTTP.WaitForResponse
 	EndIf
 	;PushBullet ---------------------------------------------------------------------------------
 	;Telegram ---------------------------------------------------------------------------------
 	If $g_bNotifyTGEnable = True And $g_sNotifyTGToken <> "" Then
 		Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+		If @error Then
+			SetLog("Telegram Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+			Return
+		EndIf
 		Local $url = "https://api.telegram.org/bot"
 		$oHTTP.Open("Post", $url & $g_sNotifyTGToken & "/sendMessage", False)
 		$oHTTP.SetRequestHeader("Content-Type", "application/json; charset=ISO-8859-1,utf-8")
@@ -1114,11 +1125,14 @@ Func NotifyPushToBoth($pMessage)
 		Local $Time = @HOUR & '.' & @MIN
 		Local $TGPushMsg = '{"text":"' & $pMessage & '\n' & $Date & '__' & $Time & '", "chat_id":' & $g_sTGChatID & '}}'
 		$oHTTP.Send($TGPushMsg)
+		$oHTTP.WaitForResponse
 	EndIf
 	;Telegram ---------------------------------------------------------------------------------
 EndFunc   ;==>NotifyPushToBoth
 
 Func NotifyPushMessageToBoth($Message, $Source = "")
+
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyPushMessageToBoth($Message, $Source = ""): " & $Message & "," & $Source)
 	Static $iReportIdleBuilder = 0
 
 	If $g_bNotifyForced = False And $Message <> "DeleteAllPBMessages" Then
@@ -1357,19 +1371,31 @@ Func NotifyPushMessageToBoth($Message, $Source = "")
 EndFunc   ;==>NotifyPushMessageToBoth
 
 Func NotifyPushFileToBoth($File, $Folder, $FileType, $body)
+
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyPushFileToBoth($File, $Folder, $FileType, $body): " & $File & "," & $Folder & "," & $FileType & "," & $body)
+
 	If ($g_bNotifyPBEnable = False Or $g_sNotifyPBToken = "") And ($g_bNotifyTGEnable = False Or $g_sNotifyTGToken = "") Then Return
 
 	;PushBullet ---------------------------------------------------------------------------------
 	If $g_bNotifyPBEnable = True And $g_sNotifyPBToken <> "" Then
 		If FileExists($g_sProfilePath & "\" & $g_sProfileCurrentName & '\' & $Folder & '\' & $File) Then
 			Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+			If @error Then
+				SetLog("PushBullet Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+				Return
+			EndIf
 			$oHTTP.Open("Post", "https://api.pushbullet.com/v2/upload-request", False)
 			Local $access_token = $g_sNotifyPBToken
 			$oHTTP.SetCredentials($access_token, "", 0)
 			$oHTTP.SetRequestHeader("Content-Type", "application/json")
 			Local $pPush = '{"file_name": "' & $File & '", "file_type": "' & $FileType & '"}'
 			$oHTTP.Send($pPush)
+			$oHTTP.WaitForResponse
 			Local $Result = $oHTTP.ResponseText
+			If $oHTTP.Status <> 200 Then
+				Setlog("PushBullet status is: " & $oHTTP.Status, $COLOR_RED)
+				Return
+			EndIf
 			Local $upload_url = _StringBetween($Result, 'upload_url":"', '"')
 			Local $awsaccesskeyid = _StringBetween($Result, 'awsaccesskeyid":"', '"')
 			Local $acl = _StringBetween($Result, 'acl":"', '"')
@@ -1384,6 +1410,7 @@ Func NotifyPushFileToBoth($File, $Folder, $FileType, $body)
 				$oHTTP.SetRequestHeader("Content-Type", "application/json")
 				Local $pPush = '{"type": "file", "file_name": "' & $File & '", "file_type": "' & $FileType & '", "file_url": "' & $file_url[0] & '", "body": "' & $body & '"}'
 				$oHTTP.Send($pPush)
+				$oHTTP.WaitForResponse
 			Else
 				SetLog(GetTranslated(620, 182, "Notify PushBullet") & ": " & GetTranslated(620, 183, "Unable to send file") & " " & $File, $COLOR_RED)
 				NotifyPushToPushBullet($g_sNotifyOrigin & " | " & GetTranslated(620, 170, "Unable to Upload File") & "\n" & GetTranslated(620, 171, "Occured an error type") & " 1 " & GetTranslated(620, 144, "uploading file to PushBullet server") & "...")
@@ -1400,12 +1427,17 @@ Func NotifyPushFileToBoth($File, $Folder, $FileType, $body)
 		If FileExists($g_sProfilePath & "\" & $g_sProfileCurrentName & '\' & $Folder & '\' & $File) Then
 
 			Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+			If @error Then
+				SetLog("Telegram Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+				Return
+			EndIf
 			Local $telegram_url = "https://api.telegram.org/bot" & $g_sNotifyTGToken & "/sendPhoto"
 			Local $Result = RunWait($g_sCurlPath & " -i -X POST " & $telegram_url & ' -F chat_id="' & $g_sTGChatID & ' " -F photo=@"' & $g_sProfilePath & "\" & $g_sProfileCurrentName & '\' & $Folder & '\' & $File & '"', "", @SW_HIDE)
 			$oHTTP.Open("Post", "https://api.telegram.org/bot" & $g_sNotifyTGToken & "/sendPhoto", False)
 			$oHTTP.SetRequestHeader("Content-Type", "application/json")
 			Local $pPush = '{"type": "file", "file_name": "' & $File & '", "file_type": "' & $FileType & '", "file_url": "' & $telegram_url & '", "body": "' & $body & '"}'
 			$oHTTP.Send($pPush)
+			$oHTTP.WaitForResponse
 		Else
 			SetLog("Notify Telegram: Unable to send file " & $File, $COLOR_RED)
 			NotifyPushToTelegram($g_sNotifyOrigin & " | " & GetTranslated(620, 170, "Unable to Upload File") & "\n" & GetTranslated(620, 146, "Occured an error type 2 uploading file to Telegram server..."))
@@ -1414,3 +1446,22 @@ Func NotifyPushFileToBoth($File, $Folder, $FileType, $body)
 	;Telegram ---------------------------------------------------------------------------------
 EndFunc   ;==>NotifyPushFileToBoth
 ; Both ---------------------------------
+
+; User's COM error function. Will be called if COM error occurs
+; This is a custom error handler
+Func __ErrFunc($oError)
+	Local $sHexNumber = Hex($oError.number, 8)
+	SetLog("COM Error intercepted !" & @CRLF & _
+			"Scriptline is: " & $oError.scriptline & @CRLF & _
+			"Number is: " & $sHexNumber & @CRLF & _
+			"WinDescription is: " & $oError.windescription & @CRLF & _
+			"Description is: " & $oError.description, $COLOR_RED)
+EndFunc   ;==>__ErrFunc
+
+Func __ObjEventIni()
+	$g_oCOMErrorHandler = ObjEvent("AutoIt.Error", "__ErrFunc")
+EndFunc   ;==>__ObjEventIni
+
+Func __ObjEventEnds()
+	$g_oCOMErrorHandler = 0
+EndFunc   ;==>__ObjEventEnds

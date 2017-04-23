@@ -12,30 +12,15 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
-#include-once
-
-Global Const $g_sCurlPath = $g_sLibPath & "\curl\curl.exe" ; Curl used on PushBullet
-Global $g_bNotifyForced = False
-Global $g_sTGChatID = ""
-Global $g_bPBRequestScreenshot = False
-Global $g_bPBRequestScreenshotHD = False
-Global $g_bPBRequestBuilderInfo = False
-Global $g_bPBRequestShieldInfo = False
-Global $g_bTGRequestScreenshot = False
-Global $g_bTGRequestScreenshotHD = False
-Global $g_bTGRequestBuilderInfo = False
-Global $g_bTGRequestShieldInfo = False
-Global $g_iTGLastRemote = 0
-Global $g_sTGLast_UID = ""
-Global $g_sTGLastMessage = ""
-Global $g_sAttackFile = ""
 
 ;GUI --------------------------------------------------------------------------------------------------
 Func NotifyRemoteControl()
-	If $g_bNotifyRemoteEnable = True Then NotifyRemoteControlProc(0)
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyRemoteControl()")
+	If $g_bNotifyRemoteEnable = True Then NotifyRemoteControlProc()
 EndFunc   ;==>NotifyRemoteControl
 
 Func NotifyReport()
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyReport()")
 	If $g_bNotifyAlertVillageReport = True Then
 		NotifylPushBulletMessage($g_sNotifyOrigin & ":" & "\n" & " [" & GetTranslated(620, 109, "G") & "]: " & _NumberFormat($g_aiCurrentLoot[$eLootGold]) & " [" & GetTranslated(620, 110, "E") & "]: " & _NumberFormat($g_aiCurrentLoot[$eLootElixir]) & " [" & GetTranslated(620, 111, "DE") & "]: " & _NumberFormat($g_aiCurrentLoot[$eLootDarkElixir]) & "  [" & GetTranslated(620, 112, "T") & "]: " & _NumberFormat($g_aiCurrentLoot[$eLootTrophy]) & " [" & GetTranslated(620, 105, "No. of Free Builders") & "]: " & _NumberFormat($g_iFreeBuilderCount))
 	EndIf
@@ -47,21 +32,25 @@ Func NotifyReport()
 EndFunc   ;==>NotifyReport
 
 Func _DeletePush()
+	If $g_iDebugSetlog Then SetDebugLog("Notify | _DeletePush()")
 	NotifyDeletePushBullet()
 	SetLog("Delete all previous PushBullet messages...", $COLOR_BLUE)
 EndFunc   ;==>_DeletePush
 
 Func PushMsg($Message, $Source = "")
+	If $g_iDebugSetlog Then SetDebugLog("Notify | PushMsg()")
 	NotifyPushMessageToBoth($Message, $Source)
 EndFunc   ;==>PushMsg
 
 Func _DeleteOldPushes()
+	If $g_iDebugSetlog Then SetDebugLog("Notify | _DeleteOldPushes()")
 	NotifyDeleteOldPushesFromPushBullet()
 EndFunc   ;==>_DeleteOldPushes
 ;GUI --------------------------------------------------------------------------------------------------
 
 ;MISC --------------------------------------------------------------------------------------------------
 Func _GetDateFromUnix($nPosix)
+	If $g_iDebugSetlog Then SetDebugLog("Notify | _GetDateFromUnix($nPosix): " & $nPosix)
 	Local $nYear = 1970, $nMon = 1, $nDay = 1, $nHour = 00, $nMin = 00, $nSec = 00, $aNumDays = StringSplit("31,28,31,30,31,30,31,31,30,31,30,31", ",")
 	While 1
 		If (Mod($nYear + 1, 400) = 0) Or (Mod($nYear + 1, 4) = 0 And Mod($nYear + 1, 100) <> 0) Then ; is leap year
@@ -97,6 +86,7 @@ EndFunc   ;==>_GetDateFromUnix
 
 ;Execute Notify Pending Actions
 Func NotifyPendingActions()
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyPendingActions()")
 	If ($g_bNotifyPBEnable = False Or $g_sNotifyPBToken = "") And ($g_bNotifyTGEnable = False Or $g_sNotifyTGToken = "") Then Return
 
 	NotifyRemoteControl()
@@ -117,17 +107,19 @@ Func NotifyPendingActions()
 EndFunc   ;==>NotifyPendingActions
 ;MISC --------------------------------------------------------------------------------------------------
 
-
-; PushBullet ---------------------------------
-Func PushBulletRemoteControl()
-	If ($g_bNotifyPBEnable = True) And $g_bNotifyRemoteEnable = True Then NotifyRemoteControlProc(1)
-EndFunc   ;==>PushBulletRemoteControl
+;~ ; PushBullet ---------------------------------
+;~ Func PushBulletRemoteControl()
+;~ 	If $g_iDebugSetlog then SetDebugLog("Notify | PushBulletRemoteControl()")
+;~ 	If ($g_bNotifyPBEnable = True) And $g_bNotifyRemoteEnable = True Then NotifyRemoteControlProc()
+;~ EndFunc   ;==>PushBulletRemoteControl
 
 Func PushBulletDeleteOldPushes()
+	If $g_iDebugSetlog Then SetDebugLog("Notify | PushBulletDeleteOldPushes()")
 	If $g_bNotifyPBEnable = True And $g_bNotifyDeletePushesOlderThan = True Then _DeleteOldPushes() ; check every 30 min if must delete old pushbullet messages, increase delay time for anti ban pushbullet
 EndFunc   ;==>PushBulletDeleteOldPushes
 
 Func NotifylPushBulletMessage($pMessage = "")
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifylPushBulletMessage($pMessage): " & $pMessage)
 	If ($g_bNotifyPBEnable = False Or $g_sNotifyPBToken = "") And ($g_bNotifyTGEnable = False Or $g_sNotifyTGToken = "") Then Return
 
 	If $g_bNotifyForced = False Then
@@ -163,11 +155,20 @@ Func NotifylPushBulletMessage($pMessage = "")
 		$g_bNotifyForced = False
 
 		Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+		If @error Then
+			SetLog("PushBullet Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+			Return
+		EndIf
 		;$access_token = $g_sNotifyPBToken
 		$oHTTP.Open("Get", "https://api.pushbullet.com/v2/devices", False)
 		$oHTTP.SetCredentials($g_sNotifyPBToken, "", 0)
 		$oHTTP.Send()
+		$oHTTP.WaitForResponse
 		Local $Result = $oHTTP.ResponseText
+		If $oHTTP.Status <> 200 Then
+			Setlog("PushBullet status is: " & $oHTTP.Status, $COLOR_RED)
+			Return
+		EndIf
 		Local $g_sAnotherDevice_iden = _StringBetween($Result, 'iden":"', '"')
 		Local $g_sAnotherDevice_name = _StringBetween($Result, 'nickname":"', '"')
 		Local $g_sAnotherDevice = ""
@@ -186,9 +187,18 @@ Func NotifylPushBulletMessage($pMessage = "")
 	If $g_bNotifyTGEnable = True And $g_sNotifyTGToken <> "" Then
 
 		Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+		If @error Then
+			SetLog("Telegram Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+			Return
+		EndIf
 		$oHTTP.Open("Get", "https://api.telegram.org/bot" & $g_sNotifyTGToken & "/getupdates", False)
 		$oHTTP.Send()
+		$oHTTP.WaitForResponse
 		Local $Result = $oHTTP.ResponseText
+		If $oHTTP.Status <> 200 Then
+			Setlog("Telegram status is: " & $oHTTP.Status, $COLOR_RED)
+			Return
+		EndIf
 		Local $chat_id = _StringBetween($Result, 'm":{"id":', ',"f')
 		$g_sTGChatID = _ArrayPop($chat_id)
 		$oHTTP.Open("Post", "https://api.telegram.org/bot" & $g_sNotifyTGToken & "/sendmessage", False)
@@ -197,17 +207,23 @@ Func NotifylPushBulletMessage($pMessage = "")
 		Local $Time = @HOUR & '.' & @MIN
 		Local $TGPushMsg = '{"text":"' & $pMessage & '\n' & $Date & '__' & $Time & '", "chat_id":' & $g_sTGChatID & '}}'
 		$oHTTP.Send($TGPushMsg)
+		$oHTTP.WaitForResponse
 	EndIf
 	;Telegram ---------------------------------------------------------------------------------
 
 EndFunc   ;==>NotifylPushBulletMessage
 
 Func NotifyPushToPushBullet($pMessage)
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyPushToPushBullet($pMessage): " & $pMessage)
 	If ($g_bNotifyPBEnable = False Or $g_sNotifyPBToken = "") And ($g_bNotifyTGEnable = False Or $g_sNotifyTGToken = "") Then Return
 
 	;PushBullet ---------------------------------------------------------------------------------
 	If $g_bNotifyPBEnable = True And $g_sNotifyPBToken <> "" Then
 		Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+		If @error Then
+			SetLog("PushBullet Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+			Return
+		EndIf
 		$oHTTP.Open("Post", "https://api.pushbullet.com/v2/pushes", False)
 		Local $access_token = $g_sNotifyPBToken
 		$oHTTP.SetCredentials($access_token, "", 0)
@@ -216,34 +232,48 @@ Func NotifyPushToPushBullet($pMessage)
 		Local $Time = @HOUR & "." & @MIN
 		Local $pPush = '{"type": "note", "body": "' & $pMessage & "\n" & $Date & "__" & $Time & '"}'
 		$oHTTP.Send($pPush)
+		$oHTTP.WaitForResponse
 	EndIf
 	;PushBullet ---------------------------------------------------------------------------------
 EndFunc   ;==>NotifyPushToPushBullet
 
 Func NotifyDeletePushBullet()
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyDeletePushBullet()")
 	If $g_bNotifyPBEnable = False Or $g_sNotifyPBToken = "" Then Return
 
 	Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+	If @error Then
+		SetLog("PushBullet Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+		Return
+	EndIf
 	$oHTTP.Open("DELETE", "https://api.pushbullet.com/v2/pushes", False)
 	Local $access_token = $g_sNotifyPBToken
 	$oHTTP.SetCredentials($access_token, "", 0)
 	$oHTTP.SetRequestHeader("Content-Type", "application/json")
 	$oHTTP.Send()
+	$oHTTP.WaitForResponse
 EndFunc   ;==>NotifyDeletePushBullet
 
 Func NotifyDeleteMessageFromPushBullet($iden)
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyDeleteMessageFromPushBullet($iden): " & $iden)
 	If $g_bNotifyPBEnable = False Or $g_sNotifyPBToken = "" Then Return
 
 	Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+	If @error Then
+		SetLog("PushBullet Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+		Return
+	EndIf
 	$oHTTP.Open("Delete", "https://api.pushbullet.com/v2/pushes/" & $iden, False)
 	Local $access_token = $g_sNotifyPBToken
 	$oHTTP.SetCredentials($access_token, "", 0)
 	$oHTTP.SetRequestHeader("Content-Type", "application/json")
 	$oHTTP.Send()
+	$oHTTP.WaitForResponse
 	$iden = ""
 EndFunc   ;==>NotifyDeleteMessageFromPushBullet
 
 Func NotifyDeleteOldPushesFromPushBullet()
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyDeleteOldPushesFromPushBullet()")
 	If $g_bNotifyPBEnable = False Or $g_sNotifyPBToken = "" Or $g_bNotifyDeletePushesOlderThan = False Then Return
 	;Local UTC time
 	Local $tLocal = _Date_Time_GetLocalTime()
@@ -251,12 +281,21 @@ Func NotifyDeleteOldPushesFromPushBullet()
 	Local $timeUTC = _Date_Time_SystemTimeToDateTimeStr($tSystem, 1)
 	Local $timestamplimit = 0
 	Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+	If @error Then
+		SetLog("PushBullet Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+		Return
+	EndIf
 	$oHTTP.Open("Get", "https://api.pushbullet.com/v2/pushes?active=true&modified_after=" & $timestamplimit, False)
 	Local $access_token = $g_sNotifyPBToken
 	$oHTTP.SetCredentials($access_token, "", 0)
 	$oHTTP.SetRequestHeader("Content-Type", "application/json")
 	$oHTTP.Send()
+	$oHTTP.WaitForResponse
 	Local $Result = $oHTTP.ResponseText
+	If $oHTTP.Status <> 200 Then
+		Setlog("PushBullet status is: " & $oHTTP.Status, $COLOR_RED)
+		Return
+	EndIf
 	Local $findstr = StringRegExp($Result, ',"created":')
 	Local $msgdeleted = 0
 	If $findstr = 1 Then
@@ -283,19 +322,29 @@ Func NotifyDeleteOldPushesFromPushBullet()
 EndFunc   ;==>NotifyDeleteOldPushesFromPushBullet
 
 Func NotifyPushFileToPushBullet($File, $Folder, $FileType, $body)
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyPushFileToPushBullet($File, $Folder, $FileType, $body): " & $File & "," & $Folder & "," & $FileType & "," & $body)
 	If ($g_bNotifyPBEnable = False Or $g_sNotifyPBToken = "") And ($g_bNotifyTGEnable = False Or $g_sNotifyTGToken = "") Then Return
 
 	;PushBullet ---------------------------------------------------------------------------------
 	If $g_bNotifyPBEnable = True And $g_sNotifyPBToken <> "" Then
 		If FileExists($g_sProfilePath & "\" & $g_sProfileCurrentName & '\' & $Folder & '\' & $File) Then
 			Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+			If @error Then
+				SetLog("PushBullet Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+				Return
+			EndIf
 			$oHTTP.Open("Post", "https://api.pushbullet.com/v2/upload-request", False)
 			Local $access_token = $g_sNotifyPBToken
 			$oHTTP.SetCredentials($access_token, "", 0)
 			$oHTTP.SetRequestHeader("Content-Type", "application/json")
 			Local $pPush = '{"file_name": "' & $File & '", "file_type": "' & $FileType & '"}'
 			$oHTTP.Send($pPush)
+			$oHTTP.WaitForResponse
 			Local $Result = $oHTTP.ResponseText
+			If $oHTTP.Status <> 200 Then
+				Setlog("PushBullet status is: " & $oHTTP.Status, $COLOR_RED)
+				Return
+			EndIf
 			Local $upload_url = _StringBetween($Result, 'upload_url":"', '"')
 			Local $awsaccesskeyid = _StringBetween($Result, 'awsaccesskeyid":"', '"')
 			Local $acl = _StringBetween($Result, 'acl":"', '"')
@@ -326,12 +375,19 @@ EndFunc   ;==>NotifyPushFileToPushBullet
 
 ; Telegram ---------------------------------
 Func NotifyPushToTelegram($pMessage)
+
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyPushToTelegram($pMessage): " & $pMessage)
+
 	If ($g_bNotifyPBEnable = False Or $g_sNotifyPBToken = "") And ($g_bNotifyTGEnable = False Or $g_sNotifyTGToken = "") Then Return
 
 	;Telegram ---------------------------------------------------------------------------------
 	If $g_bNotifyTGEnable = True And $g_sNotifyTGToken <> "" Then
 
 		Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+		If @error Then
+			SetLog("Telegram Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+			Return
+		EndIf
 		Local $url = "https://api.telegram.org/bot"
 		$oHTTP.Open("Post", $url & $g_sNotifyTGToken & "/sendMessage", False)
 		$oHTTP.SetRequestHeader("Content-Type", "application/json; charset=ISO-8859-1,utf-8")
@@ -345,39 +401,66 @@ Func NotifyPushToTelegram($pMessage)
 EndFunc   ;==>NotifyPushToTelegram
 
 Func NotifyPushFileToTelegram($File, $Folder, $FileType, $body)
+
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyPushFileToTelegram($File, $Folder, $FileType, $body): " & $File & "," & $Folder & "," & $FileType & "," & $body)
+
 	If ($g_bNotifyPBEnable = False Or $g_sNotifyPBToken = "") And ($g_bNotifyTGEnable = False Or $g_sNotifyTGToken = "") Then Return
 
 	;Telegram ---------------------------------------------------------------------------------
 	If $g_bNotifyTGEnable = True And $g_sNotifyTGToken <> "" Then
 		If FileExists($g_sProfilePath & "\" & $g_sProfileCurrentName & '\' & $Folder & '\' & $File) Then
-
 			Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
-			Local $telegram_url = "https://api.telegram.org/bot" & $g_sNotifyTGToken & "/sendPhoto"
-			Local $Result = RunWait($g_sCurlPath & " -i -X POST " & $telegram_url & ' -F chat_id="' & $g_sTGChatID & ' " -F photo=@"' & $g_sProfilePath & "\" & $g_sProfileCurrentName & '\' & $Folder & '\' & $File & '"', "", @SW_HIDE)
-			$oHTTP.Open("Post", "https://api.telegram.org/bot" & $g_sNotifyTGToken & "/sendPhoto", False)
-			$oHTTP.SetRequestHeader("Content-Type", "application/json")
-			Local $pPush = '{"type": "file", "file_name": "' & $File & '", "file_type": "' & $FileType & '", "file_url": "' & $telegram_url & '", "body": "' & $body & '"}'
+			If @error Then
+				SetLog("Telegram Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+				Return
+			EndIf
+			Local $sCmd = "/sendPhoto"
+			Local $sCmd1 = "photo"
+			If $FileType = "text\/plain; charset=utf-8" Then
+				$sCmd = "/sendDocument"
+				$sCmd1 = "document"
+			EndIf
+			Local $telegram_url = "https://api.telegram.org/bot" & $g_sNotifyTGToken & $sCmd
+			Local $Result = RunWait($g_sCurlPath & " -i -X POST " & $telegram_url & ' -F chat_id="' & $g_sTGChatID & '" -F ' & $sCmd1 & '=@"' & $g_sProfilePath & "\" & $g_sProfileCurrentName & '\' & $Folder & '\' & $File & '"', "", @SW_HIDE)
+			$oHTTP.Open("Post", "https://api.telegram.org/bot" & $g_sNotifyTGToken & "/sendMessage", False)
+			$oHTTP.SetRequestHeader("Content-Type", "application/json; charset=ISO-8859-1,utf-8")
+			Local $pPush = '{"text":"' & $body & '", "chat_id":' & $g_sTGChatID & '}}'
 			$oHTTP.Send($pPush)
+			$oHTTP.WaitForResponse
+			If $g_iDebugSetlog Then SetDebugLog("$oHTTP.ResponseText: " & $oHTTP.ResponseText)
 		Else
 			SetLog("Notify Telegram: Unable to send file " & $File, $COLOR_RED)
 			NotifyPushToTelegram($g_sNotifyOrigin & " | " & GetTranslated(620, 170, "Unable to Upload File") & "\n" & GetTranslated(620, 146, "Occured an error type 2 uploading file to Telegram server..."))
 		EndIf
+
 	EndIf
 	;Telegram ---------------------------------------------------------------------------------
 EndFunc   ;==>NotifyPushFileToTelegram
 
 Func NotifyGetLastMessageFromTelegram()
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyGetLastMessageFromTelegram()")
+
+	Local $TGLastMessage = ""
 	If $g_bNotifyTGEnable = False Or $g_sNotifyTGToken = "" Then Return
 
 	Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
-	$oHTTP.Open("Get", "https://api.telegram.org/bot" & $g_sNotifyTGToken & "/getupdates", False) 
-	;oHTTP.Send()
-	Execute('$oHTTP.Send()')
+	If @error Then
+		SetLog("Telegram Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+		Return
+	EndIf
+
+	$oHTTP.Open("Get", "https://api.telegram.org/bot" & $g_sNotifyTGToken & "/getupdates", False)
+	$oHTTP.Send()
 	$oHTTP.WaitForResponse
-	Local $Result = Execute('$oHTTP.ResponseText')
+	Local $Result = $oHTTP.ResponseText
+	If $oHTTP.Status <> 200 Then
+		Setlog("Telegram status is: " & $oHTTP.Status, $COLOR_RED)
+		Return
+	EndIf
 
 	Local $chat_id = _StringBetween($Result, 'm":{"id":', ',"f')
 	$g_sTGChatID = _ArrayPop($chat_id)
+	If $g_iDebugSetlog Then Setlog("Telegram $g_sTGChatID:" & $g_sTGChatID)
 
 	Local $uid = _StringBetween($Result, 'update_id":', '"message"') ;take update id
 	$g_sTGLast_UID = StringTrimRight(_ArrayPop($uid), 2)
@@ -385,33 +468,44 @@ Func NotifyGetLastMessageFromTelegram()
 	Local $findstr2 = StringRegExp(StringUpper($Result), '"TEXT":"')
 	If $findstr2 = 1 Then
 		Local $rmessage = _StringBetween($Result, 'text":"', '"}}') ;take message
-		Local $g_sTGLastMessage = _ArrayPop($rmessage) ;take last message
+		$TGLastMessage = _ArrayPop($rmessage) ;take last message
+		If $g_iDebugSetlog Then Setlog("Telegram $TGLastMessage:" & $TGLastMessage)
 	EndIf
 
+	;If $g_bFirstStart then $g_iTGLastRemote = $g_sTGLast_UID
+
+	If $g_iDebugSetlog Then Setlog("Telegram $g_sTGLast_UID:" & $g_sTGLast_UID)
 
 	$oHTTP.Open("Get", "https://api.telegram.org/bot" & $g_sNotifyTGToken & "/getupdates?offset=" & $g_sTGLast_UID, False)
-	;$oHTTP.Send()
-	Execute('$oHTTP.Send()')
+	$oHTTP.Send()
 	$oHTTP.WaitForResponse
-	Local $Result2 = Execute('$oHTTP.ResponseText')
-
+	Local $Result2 = $oHTTP.ResponseText
+	If $oHTTP.Status <> 200 Then
+		Setlog("Telegram status is: " & $oHTTP.Status, $COLOR_RED)
+		Return
+	EndIf
 	Local $findstr2 = StringRegExp(StringUpper($Result2), '"TEXT":"')
 	If $findstr2 = 1 Then
 		Local $rmessage = _StringBetween($Result2, 'text":"', '"}}') ;take message
-		Local $g_sTGLastMessage = _ArrayPop($rmessage) ;take last message
-		If $g_sTGLastMessage = "" Then
+		$TGLastMessage = _ArrayPop($rmessage) ;take last message
+		If $TGLastMessage = "" Then
 			Local $rmessage = _StringBetween($Result2, 'text":"', '","entities"') ;take message
-			Local $g_sTGLastMessage = _ArrayPop($rmessage) ;take last message
+			$TGLastMessage = _ArrayPop($rmessage) ;take last message
 		EndIf
-
-		Return $g_sTGLastMessage
+		If $g_iDebugSetlog Then Setlog("Telegram - $TGLastMessage:" & $TGLastMessage)
+		Return $TGLastMessage
 	EndIf
 
 EndFunc   ;==>NotifyGetLastMessageFromTelegram
 
 Func NotifyActivateKeyboardOnTelegram($TGMsg)
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyActivateKeyboardOnTelegram($TGMsg): " & $TGMsg)
 
 	Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+	If @error Then
+		SetLog("Telegram Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+		Return
+	EndIf
 	Local $url = "https://api.telegram.org/bot"
 	$oHTTP.Open("Post", $url & $g_sNotifyTGToken & "/sendMessage", False)
 	$oHTTP.SetRequestHeader("Content-Type", "application/json; charset=ISO-8859-1,utf-8")
@@ -448,9 +542,12 @@ Func NotifyRemoteControl2()
 EndFunc
  
 Func NotifyRemoteControlProc2()
- If $g_bNotifyTGEnable = True And $g_sNotifyTGToken <> ""  Then
+If $g_bNotifyTGEnable = True And $g_sNotifyTGToken <> "" Then
 		$g_sTGLastMessage = NotifyGetLastMessageFromTelegram()
 		Local $TGActionMSG = StringUpper(StringStripWS($g_sTGLastMessage, $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES)) ;upercase & remove space laset message
+		If $g_iDebugSetlog Then Setlog("Telegram | NotifyRemoteControlProc $TGActionMSG : " & $TGActionMSG)
+		If $g_iDebugSetlog Then Setlog("Telegram | NotifyRemoteControlProc $g_iTGLastRemote : " & $g_iTGLastRemote)
+		If $g_iDebugSetlog Then Setlog("Telegram | NotifyRemoteControlProc $g_sTGLast_UID : " & $g_sTGLast_UID)
 			If $g_iTGLastRemote <> $g_sTGLast_UID Then
 				$g_iTGLastRemote = $g_sTGLast_UID
 				Switch $TGActionMSG	
@@ -476,14 +573,19 @@ EndFunc
 
 
 ; Both ---------------------------------
-Func NotifyRemoteControlProc($OnlyPB)
+Func NotifyRemoteControlProc()
+	If $g_iDebugSetlog Then SetDebugLog("Notify | NotifyRemoteControlProc()")
 	Static $pushLastModified = 0
 
 	If ($g_bNotifyPBEnable = False And $g_bNotifyTGEnable = False) Or $g_bNotifyRemoteEnable = False Then Return
 
 	;PushBullet ---------------------------------------------------------------------------------
-	If $OnlyPB = 0 And $g_bNotifyPBEnable = True And $g_sNotifyPBToken <> "" Then
+	If $g_bNotifyPBEnable = True And $g_sNotifyPBToken <> "" Then
 		Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+		If @error Then
+			SetLog("Obj Error code: " & Hex(@error, 8), $COLOR_RED)
+			Return
+		EndIf
 		Local $pushbulletApiUrl
 		If $pushLastModified = 0 Then
 			$pushbulletApiUrl = "https://api.pushbullet.com/v2/pushes?active=true&limit=1" ; if this is the first time looking for pushes, get the last one
@@ -495,7 +597,12 @@ Func NotifyRemoteControlProc($OnlyPB)
 		$oHTTP.SetCredentials($access_token, "", 0)
 		$oHTTP.SetRequestHeader("Content-Type", "application/json")
 		$oHTTP.Send()
+		$oHTTP.WaitForResponse
 		Local $Result = $oHTTP.ResponseText
+		If $oHTTP.Status <> 200 Then
+			Setlog("PushBullet status is: " & $oHTTP.Status, $COLOR_RED)
+			Return
+		EndIf
 
 		Local $modified = _StringBetween($Result, '"modified":', ',', "", False)
 		If UBound($modified) > 0 Then
@@ -754,6 +861,9 @@ Func NotifyRemoteControlProc($OnlyPB)
 	If $g_bNotifyTGEnable = True And $g_sNotifyTGToken <> "" Then
 		$g_sTGLastMessage = NotifyGetLastMessageFromTelegram()
 		Local $TGActionMSG = StringUpper(StringStripWS($g_sTGLastMessage, $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES)) ;upercase & remove space laset message
+		If $g_iDebugSetlog Then Setlog("Telegram | NotifyRemoteControlProc $TGActionMSG : " & $TGActionMSG)
+		If $g_iDebugSetlog Then Setlog("Telegram | NotifyRemoteControlProc $g_iTGLastRemote : " & $g_iTGLastRemote)
+		If $g_iDebugSetlog Then Setlog("Telegram | NotifyRemoteControlProc $g_sTGLast_UID : " & $g_sTGLast_UID)
 		If ($TGActionMSG = "/START" Or $TGActionMSG = "KEYB") And $g_iTGLastRemote <> $g_sTGLast_UID Then
 			$g_iTGLastRemote = $g_sTGLast_UID
 			NotifyActivateKeyboardOnTelegram($g_sBotTitle & " \uD83D\uDE0E \u270C " & $g_sNotifyVersion & " by RK Team")
@@ -865,10 +975,11 @@ Func NotifyRemoteControlProc($OnlyPB)
 						$txtStats &= "\n\n" & GetTranslated(620, 105, "No. of Free Builders") & ": " & $g_iFreeBuilderCount & "\n[" & GetTranslated(620, 117, "No. of Wall Up") & "]: [" & GetTranslated(620, 109, "G") & "]: "
 						$txtStats &= $g_iNbrOfWallsUppedGold & "/ [" & GetTranslated(620, 110, "E") & "]: " & $g_iNbrOfWallsUppedElixir & "\n\n" & GetTranslated(620, 116, "Attacked") & ": "
 						$txtStats &= $g_aiAttackedCount & "\n" & GetTranslated(620, 115, "Skipped") & ": " & $g_iSkippedVillageCount
+						$txtStats &= "\n" & GetTranslated(620, 212, "Run Time") & ": " & GUICtrlRead($g_hLblResultRuntime)
 						NotifyPushToTelegram($g_sNotifyOrigin & $txtStats)
 					Case GetTranslated(620, 19, "LOG"), '\UD83D\UDCCB ' & GetTranslated(620, 19, "LOG")
 						SetLog("Notify Telegram: Your request has been received from " & $g_sNotifyOrigin & ". Log is now sent", $COLOR_GREEN)
-						NotifyPushFileToTelegram($g_sLogFileName, "logs", "text\/plain; charset=utf-8", $g_sNotifyOrigin & " | Current Log " & "\n")
+						NotifyPushFileToTelegram($g_sLogFileName, "Logs", "text\/plain; charset=utf-8", $g_sNotifyOrigin & " | Current Log " & "\n")
 					Case GetTranslated(620, 21, "LASTRAID"), '\UD83C\UDF04 ' & GetTranslated(620, 21, "LASTRAID")
 						If $g_sLootFileName <> "" Then
 							NotifyPushFileToTelegram($g_sLootFileName, GetTranslated(620, 120, "Loots"), "image/jpeg", $g_sNotifyOrigin & " | " & GetTranslated(620, 152, "Last Raid") & "\n" & $g_sLootFileName)

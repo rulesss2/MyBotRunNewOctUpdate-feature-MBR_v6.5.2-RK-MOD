@@ -13,14 +13,14 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
-; <><><><><><><><><><><><><><><> TeamVN MOD (NguyenAnhHD, Demen) <><><><><><><><><><><><><><><>
 
-; Config (NguyenAnhHD, Demen)
+
+; Config 
 #include "functions\Config\saveConfig.au3"
 #include "functions\Config\readConfig.au3"
 #include "functions\Config\applyConfig.au3"
 
-; CSV Command DropS, SideP, Zap, Remain (Mr.Viper) - Added by NguyenAnhHD
+; CSV Command DropS, SideP, Zap, Remain (Mr.Viper) 
 #include "functions\Attack\AttackCSV\DropSpellFromINIOnDefense.au3"
 #include "functions\Attack\AttackCSV\DropTroopFromINI.au3"
 #include "functions\Attack\AttackCSV\ParseAttackCSV.au3"
@@ -37,35 +37,35 @@
 #include "functions\Other\ArrayFunctions.au3"
 #include "functions\Search\multiSearch.au3"
 
-; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
+; Auto Hide 
 #include "functions\Mod's\AutoHide.au3"
 
-; Check Collector Outside (McSlither) - Added by NguyenAnhHD
+; Check Collector Outside 
 #include "functions\Mod's\AreCollectorsOutside.au3"
 
-; Switch Profile (IceCube) - Added by NguyenAnhHD
+; Switch Profile 
 #include "functions\Mod's\ProfileSwitch.au3"
 
-; Smart Upgarde (Roro-Titi) - Added by NguyenAnhHD
+; Smart Upgarde 
 #include "functions\Mod's\SmartUpgrade.au3"
 
-; Upgrade Management (MMHK) - Added by NguyenAnhHD
+; Upgrade Management 
 #include "functions\Mod's\UpgradesMgmt.au3"
 
-; SwitchAcc (Demen) - Added By Demen
+; SwitchAcc (Demen)
 #include "functions\Mod's\SwitchAcc.au3"
 #include "functions\Mod's\UpdateProfileStats.au3"
 
-; SimpleTrain (Demen) - Added By Demen
+; SimpleTrain (Demen) 
 #include "functions\Mod's\SimpleTrain.au3"
 
-; CoCStats - Added by NguyenAnhHD
+; CoCStats 
 #include "functions\Mod's\CoCStats.com.au3"
 
-; ClanHop (Rhinoceros) - Added by NguyenAnhHD
+; ClanHop (Rhinoceros) 
 #include "functions\Mod's\ClanHop.au3"
 
-;Фарм XP
+;Super XP
 #include "functions\Village\SuperXP.au3"
 
 ;Humanization

@@ -450,13 +450,14 @@ Func NotifyGetLastMessageFromTelegram()
 	EndIf
 
 	$oHTTP.Open("Get", "https://api.telegram.org/bot" & $g_sNotifyTGToken & "/getupdates", False)
-	$oHTTP.Send()
+	;$oHTTP.Send()
+	Execute('$oHTTP.Send()')   
 	$oHTTP.WaitForResponse
-	Local $Result = $oHTTP.ResponseText
-	If $oHTTP.Status <> 200 Then
-		Setlog("Telegram status is: " & $oHTTP.Status, $COLOR_RED)
-		Return
-	EndIf
+	Local $Result = Execute('$oHTTP.ResponseText');$oHTTP.ResponseText
+	;If $oHTTP.Status <> 200 Then
+	;	Setlog("Telegram status is: " & $oHTTP.Status, $COLOR_RED)
+	;	Return
+	;EndIf
 
 	Local $chat_id = _StringBetween($Result, 'm":{"id":', ',"f')
 	$g_sTGChatID = _ArrayPop($chat_id)
@@ -477,13 +478,14 @@ Func NotifyGetLastMessageFromTelegram()
 	If $g_iDebugSetlog Then Setlog("Telegram $g_sTGLast_UID:" & $g_sTGLast_UID)
 
 	$oHTTP.Open("Get", "https://api.telegram.org/bot" & $g_sNotifyTGToken & "/getupdates?offset=" & $g_sTGLast_UID, False)
-	$oHTTP.Send()
+	;$oHTTP.Send()
+	Execute('$oHTTP.Send()')
 	$oHTTP.WaitForResponse
-	Local $Result2 = $oHTTP.ResponseText
-	If $oHTTP.Status <> 200 Then
-		Setlog("Telegram status is: " & $oHTTP.Status, $COLOR_RED)
-		Return
-	EndIf
+	Local $Result2 = Execute('$oHTTP.ResponseText');$oHTTP.ResponseText
+	;If $oHTTP.Status <> 200 Then
+	;	Setlog("Telegram status is: " & $oHTTP.Status, $COLOR_RED)
+	;	Return
+	;EndIf
 	Local $findstr2 = StringRegExp(StringUpper($Result2), '"TEXT":"')
 	If $findstr2 = 1 Then
 		Local $rmessage = _StringBetween($Result2, 'text":"', '"}}') ;take message
@@ -542,13 +544,18 @@ Func NotifyRemoteControl2()
 EndFunc
  
 Func NotifyRemoteControlProc2()
- If $g_bNotifyTGEnable = True And $g_sNotifyTGToken <> ""  Then
+
+If $g_bNotifyTGEnable = True And $g_sNotifyTGToken <> "" Then
 		$g_sTGLastMessage = NotifyGetLastMessageFromTelegram()
 		Local $TGActionMSG = StringUpper(StringStripWS($g_sTGLastMessage, $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES)) ;upercase & remove space laset message
-			If $g_iTGLastRemote <> $g_sTGLast_UID Then
-				$g_iTGLastRemote = $g_sTGLast_UID
-				Switch $TGActionMSG	
-				     ;========= modified kychera ============	
+		If $g_iDebugSetlog Then Setlog("Telegram | NotifyRemoteControlProc $TGActionMSG : " & $TGActionMSG)
+		If $g_iDebugSetlog Then Setlog("Telegram | NotifyRemoteControlProc $g_iTGLastRemote : " & $g_iTGLastRemote)
+		If $g_iDebugSetlog Then Setlog("Telegram | NotifyRemoteControlProc $g_sTGLast_UID : " & $g_sTGLast_UID)
+		If $g_iTGLastRemote <> $g_sTGLast_UID Then
+			$g_iTGLastRemote = $g_sTGLast_UID
+			
+              Switch $TGActionMSG
+                 ;========= modified kychera ============	
 					Case "START", '\u25b6 ' & "START"
 					     SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,900, "Your request has been received. Bot is now started"), $COLOR_GREEN)
 						;If	$g_bBotPaused = False And $g_bRunState = False Then
@@ -560,8 +567,8 @@ Func NotifyRemoteControlProc2()
 						EndIf
 					;======================================	
 				EndSwitch
-			EndIf
- EndIf			
+		EndIf
+ EndIf					    
 EndFunc	 
 ;`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -877,7 +877,7 @@ Func CreateOptionsSubTab()
    Local $x = 25, $y = 45
    GUICtrlCreateGroup(GetTranslated(641, 2, "Training Idle Time"), $x - 20, $y - 20, 151, 266)
 	   $g_hChkCloseWhileTraining = _GUICtrlCreateCheckbox(GetTranslated(641, 3, "Close While Training"), $x - 12, $y, 140, -1)
-	   GUICtrlSetState(-1, $GUI_CHECKED)
+	   GUICtrlSetState(-1, $GUI_UNCHECKED)
 	   _GUICtrlSetTip(-1, GetTranslated(641, 4, "Option will exit CoC game for time required to complete TROOP training when SHIELD IS ACTIVE") & @CRLF & _
 						  GetTranslated(641, 5, "Close for Spell creation will be enabled when 'Wait for Spells' is selected on Search tabs") & @CRLF & _
 						  GetTranslated(641, 6, "Close for Hero healing will be enabled when 'Wait for Heroes' is enabled on Search tabs"))
@@ -887,7 +887,7 @@ Func CreateOptionsSubTab()
 	   $g_hChkCloseWithoutShield = _GUICtrlCreateCheckbox(GetTranslated(641, 7, "Without Shield"), $x + 18, $y + 1, 110, -1)
 	   $sTxtTip = GetTranslated(641, 8, "Option will ALWAYS close CoC for idle training time and when NO SHIELD IS ACTIVE!") & @CRLF & _
 				  GetTranslated(641, 9, "Note - You can be attacked and lose trophies when this option is enabled!")
-	   GUICtrlSetState(-1, $GUI_CHECKED)
+	   GUICtrlSetState(-1, $GUI_UNCHECKED)
 	   _GUICtrlSetTip(-1, $sTxtTip)
 	   GUICtrlSetOnEvent(-1, "chkCloseWaitTrain")
 	   $g_hPicCloseWaitTrain = GUICtrlCreateIcon($g_sLibIconPath, $eIcnNoShield, $x - 13, $y, 24, 24)

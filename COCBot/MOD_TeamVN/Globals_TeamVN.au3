@@ -15,7 +15,7 @@
 
 
 
-; CSV Command DropS, SideP, Zap, Remain (Mr.Viper) - Added by NguyenAnhHD
+; CSV Command DropS, SideP, Zap, Remain (Mr.Viper) 
 Global $CurBaseRedLine[2] = ["", ""]
 Global $DCD = "440,70|825,344|440,640|55,344"
 Global $ECD = "440,22|860,344|440,670|2,344"
@@ -33,17 +33,17 @@ Global $DebugSideP = 0
 Global $dGoldMines = @ScriptDir & "\imgxml\Storages\SideP\GoldMines", $dDarkDrills = @ScriptDir & "\imgxml\Storages\SideP\Drills", $dElixirCollectors = @ScriptDir & "\imgxml\Storages\SideP\Collectors"
 Global $allMinesFound[7][3], $allCollectorsFound[7][3], $allDrillsFound[3][3]
 
-; Attack Settings [Dec 2016] used on Classic Attack
+; Attack Settings 
 Global Const $g_aaiTopLeftDropPoints[5][2] = [[62, 306], [156, 238], [221, 188], [288, 142], [383, 76]]
 Global Const $g_aaiTopRightDropPoints[5][2] = [[486, 59], [586, 134], [652, 184], [720, 231], [817, 308]]
 Global Const $g_aaiBottomLeftDropPoints[5][2] = [[20, 373], [101, 430], [171, 481], [244, 535], [346, 615]]
 Global Const $g_aaiBottomRightDropPoints[5][2] = [[530, 615], [632, 535], [704, 481], [781, 430], [848, 373]]
 Global Const $g_aaiEdgeDropPoints[4] = [$g_aaiBottomRightDropPoints, $g_aaiTopLeftDropPoints, $g_aaiBottomLeftDropPoints, $g_aaiTopRightDropPoints]
 
-; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
+; Auto Hide 
 Global $ichkAutoHide, $ichkAutoHideDelay = 10
 
-; Check Collector Outside (McSlither) - Added by NguyenAnhHD
+; Check Collector Outside 
 #region Check Collectors Outside
 ; Collectors outside filter
 Global $ichkDBMeetCollOutside, $iDBMinCollOutsidePercent, $iCollOutsidePercent ; check later if $iCollOutsidePercent obsolete
@@ -54,19 +54,19 @@ Global Const $centerX = 430, $centerY = 335 ; check later if $THEllipseWidth, $T
 Global $hBitmapFirst
 #endregion
 
-; Switch Profile (IceCube) - Added by NguyenAnhHD
+; Switch Profile 
 Global $profileString = ""
 Global $ichkGoldSwitchMax, $itxtMaxGoldAmount, $icmbGoldMaxProfile, $ichkGoldSwitchMin, $itxtMinGoldAmount, $icmbGoldMinProfile
 Global $ichkElixirSwitchMax, $itxtMaxElixirAmount, $icmbElixirMaxProfile, $ichkElixirSwitchMin, $itxtMinElixirAmount, $icmbElixirMinProfile
 Global $ichkDESwitchMax, $itxtMaxDEAmount, $icmbDEMaxProfile, $ichkDESwitchMin, $itxtMinDEAmount, $icmbDEMinProfile
 Global $ichkTrophySwitchMax, $itxtMaxTrophyAmount, $icmbTrophyMaxProfile, $ichkTrophySwitchMin, $itxtMinTrophyAmount, $icmbTrophyMinProfile
 
-; CSV Deploy Speed (Roro-Titi) - Added by NguyenAnhHD
+; CSV Deploy Speed 
 Global $g_hCmbCSVSpeed[2] = [$LB, $DB]
 Global $g_iCmbCSVSpeed[2] = [$LB, $DB]
 Global $g_hDivider
 
-; SmartUpgrade (Roro-Titi) - Added by NguyenAnhHD
+; SmartUpgrade 
 Global $g_iQuickMISX = 0, $g_iQuickMISY = 0
 Global $ichkSmartUpgrade
 Global $ichkIgnoreTH, $ichkIgnoreKing, $ichkIgnoreQueen, $ichkIgnoreWarden, $ichkIgnoreCC, $ichkIgnoreLab
@@ -79,11 +79,11 @@ Global $TypeFound = 0
 Global $UpgradeDuration
 Global $canContinueLoop = True
 
-; Upgrade Management (MMHK) - Added by NguyenAnhHD
+; Upgrade Management (MMHK) 
 Global $g_ibUpdateNewUpgradesOnly = False
 Global Const $UP = True, $DOWN = False, $TILL_END = True
 
-; SwitchAcc (Demen) - Added By Demen
+; SwitchAcc (Demen)
 Global $profile = $g_sProfilePath & "\Profile.ini"
 Global $ichkSwitchAcc = 0, $ichkTrain = 0, $icmbTotalCoCAcc, $nTotalCoCAcc = 8, $ichkSmartSwitch, $ichkCloseTraining
 Global Enum $eNull, $eActive, $eDonate, $eIdle, $eStay, $eContinuous ; Enum for Profile Type & Switch Case & ForceSwitch
@@ -100,17 +100,17 @@ Global $aTimerStart[8], $aTimerEnd[8]
 Global $aRemainTrainTime[8], $aUpdateRemainTrainTime[8], $nMinRemainTrain
 Global $aLocateAccConfig[8], $aAccPosY[8]
 
-; SimpleTrain (Demen) - Added By Demen
+; SimpleTrain (Demen) 
 Global $ichkSimpleTrain, $ichkPreciseTroops, $ichkFillArcher, $iFillArcher, $ichkFillEQ
 Global $bWaitForCCTroopSpell = False	; ForceSwitch while waiting for CC troops - Demen
 Global Enum $g_eFull, $g_eRemained, $g_eNoTrain
 Global $g_abRCheckWrongTroops[2] = [False, False] ; Result of checking wrong troops & spells
 
-; CoCStats - Added by NguyenAnhHD
+; CoCStats 
 Global $ichkCoCStats = 0
 Global $MyApiKey = ""
 
-; ClanHop (Rhinoceros) - Added by NguyenAnhHD
+; ClanHop (Rhinoceros) 
 Global $g_hChkClanHop = 0
 Global $ichkClanHop
 

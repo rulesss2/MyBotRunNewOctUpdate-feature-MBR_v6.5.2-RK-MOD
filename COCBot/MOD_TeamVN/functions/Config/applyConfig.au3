@@ -14,25 +14,24 @@
 ; ===============================================================================================================================
 
 Func ApplyConfig_MOD($TypeReadSave)
-	; <><><> TeamVN MOD (NguyenAnhHD, Demen) <><><>
 	Switch $TypeReadSave
 		Case "Read"
 
-			; Classic Four Finger (Demen) - Added by NguyenAnhHD
+			; Classic Four Finger (Demen) 
 			cmbStandardDropSidesDB()
 			cmbStandardDropSidesAB()
 
-			; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
+			; Auto Hide 
 			GUICtrlSetState($g_hChkAutohide, $ichkAutoHide = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			GUICtrlSetData($g_hTxtAutohideDelay, $ichkAutoHideDelay)
 			chkAutoHide()
 
-			; Check Collector Outside (McSlither) - Added by NguyenAnhHD
+			; Check Collector Outside 
 			GUICtrlSetState($g_hChkDBMeetCollOutside, $ichkDBMeetCollOutside = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			GUICtrlSetData($g_hTxtDBMinCollOutsidePercent, $iDBMinCollOutsidePercent)
 			chkDBMeetCollOutside()
 
-			; Switch Profile (IceCube) - Added by NguyenAnhHD
+			; Switch Profile 
 			GUICtrlSetState($g_hChkGoldSwitchMax, $ichkGoldSwitchMax = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			_GUICtrlComboBox_SetCurSel($g_hCmbGoldMaxProfile, $icmbGoldMaxProfile)
 			GUICtrlSetData($g_hTxtMaxGoldAmount, $itxtMaxGoldAmount)
@@ -61,11 +60,11 @@ Func ApplyConfig_MOD($TypeReadSave)
 			_GUICtrlComboBox_SetCurSel($g_hCmbTrophyMinProfile, $icmbTrophyMinProfile)
 			GUICtrlSetData($g_hTxtMinTrophyAmount, $itxtMinTrophyAmount)
 
-			; CSV Deploy Speed (Roro-Titi) - Added by NguyenAnhHD
+			; CSV Deploy Speed 
 			_GUICtrlComboBox_SetCurSel($g_hCmbCSVSpeed[$DB], $g_iCmbCSVSpeed[$DB])
 			_GUICtrlComboBox_SetCurSel($g_hCmbCSVSpeed[$LB], $g_iCmbCSVSpeed[$LB])
 
-			; Smart Upgarde (Roro-Titi) - Added by NguyenAnhHD
+			; Smart Upgarde 
 			GUICtrlSetState($g_hChkSmartUpgrade, $ichkSmartUpgrade = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			chkSmartUpgrade()
 
@@ -88,10 +87,10 @@ Func ApplyConfig_MOD($TypeReadSave)
 			GUICtrlSetState($g_hChkIgnoreDColl, $ichkIgnoreDColl = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			chkSmartUpgrade()
 
-			; Upgrade Management (MMHK) - Added by NguyenAnhHD
+			; Upgrade Management (MMHK) 
 			GUICtrlSetState($g_hChkUpdateNewUpgradesOnly, $g_ibUpdateNewUpgradesOnly ? $GUI_CHECKED : $GUI_UNCHECKED)
 
-			; SimpleTrain (Demen) - Added By Demen
+			; SimpleTrain (Demen) 
 			GUICtrlSetState($g_hchkSimpleTrain, $ichkSimpleTrain = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			GUICtrlSetState($g_hchkPreciseTroops, $ichkPreciseTroops = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			GUICtrlSetState($g_hchkFillArcher, $ichkFillArcher = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
@@ -99,12 +98,12 @@ Func ApplyConfig_MOD($TypeReadSave)
 			GUICtrlSetState($g_hchkFillEQ, $ichkFillEQ = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			chkSimpleTrain()
 
-			; CoC Stats - Added by NguyenAnhHD
+			; CoC Stats 
 			GUICtrlSetState($g_hChkCoCStats, $ichkCoCStats = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			GUICtrlSetData($g_hTxtAPIKey, $MyApiKey)
 			chkCoCStats()
 
-			; ClanHop (Rhinoceros) - Added by NguyenAnhHD
+			; ClanHop (Rhinoceros) 
 			GUICtrlSetState($g_hChkClanHop, $ichkClanHop = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 
 			; ================================================== GOBLINXP PART ================================================== ;
@@ -145,15 +144,15 @@ Func ApplyConfig_MOD($TypeReadSave)
 			; ================================================== BOT HUMANIZATION END ================================================== ;
 			
 		Case "Save"
-			; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
+			; Auto Hide 
 			$ichkAutoHide = GUICtrlRead($g_hChkAutohide) = $GUI_CHECKED ? 1 : 0
 			$ichkAutoHideDelay = GUICtrlRead($g_hTxtAutohideDelay)
 
-			; Check Collector Outside (McSlither) - Added by NguyenAnhHD
+			; Check Collector Outside (McSlither) 
 			$ichkDBMeetCollOutside = GUICtrlRead($g_hChkDBMeetCollOutside) = $GUI_CHECKED ? 1 : 0
 			$iDBMinCollOutsidePercent = GUICtrlRead($g_hTxtDBMinCollOutsidePercent)
 
-			; Switch Profile (IceCube) - Added by NguyenAnhHD
+			; Switch Profile (IceCube) 
 			$ichkGoldSwitchMax = GUICtrlRead($g_hChkGoldSwitchMax) = $GUI_CHECKED ? 1 : 0
 			$icmbGoldMaxProfile = _GUICtrlComboBox_GetCurSel($g_hCmbGoldMaxProfile)
 			$itxtMaxGoldAmount = GUICtrlRead($g_hTxtMaxGoldAmount)
@@ -182,11 +181,11 @@ Func ApplyConfig_MOD($TypeReadSave)
 			$icmbTrophyMinProfile = _GUICtrlComboBox_GetCurSel($g_hCmbTrophyMinProfile)
 			$itxtMinTrophyAmount = GUICtrlRead($g_hTxtMinTrophyAmount)
 
-			; CSV Deploy Speed (Roro-Titi) - Added by NguyenAnhHD
+			; CSV Deploy Speed (Roro-Titi) 
 			$g_iCmbCSVSpeed[$DB] = _GUICtrlComboBox_GetCurSel($g_hCmbCSVSpeed[$DB])
 			$g_iCmbCSVSpeed[$LB] = _GUICtrlComboBox_GetCurSel($g_hCmbCSVSpeed[$LB])
 
-			; Smart Upgarde (Roro-Titi) - Added by NguyenAnhHD
+			; Smart Upgarde (Roro-Titi)
 			$ichkSmartUpgrade = GUICtrlRead($g_hChkSmartUpgrade) = $GUI_CHECKED ? 1 : 0
 
 			$iSmartMinGold = GUICtrlRead($SmartMinGold)
@@ -207,25 +206,22 @@ Func ApplyConfig_MOD($TypeReadSave)
 			$ichkIgnoreEColl = GUICtrlRead($g_hChkIgnoreEColl) = $GUI_CHECKED ? 1 : 0
 			$ichkIgnoreDColl = GUICtrlRead($g_hChkIgnoreDColl) = $GUI_CHECKED ? 1 : 0
 
-			; Upgrade Management (MMHK) - Added by NguyenAnhHD
+			; Upgrade Management (MMHK) 
 			$g_ibUpdateNewUpgradesOnly = (GUICtrlRead($g_hChkUpdateNewUpgradesOnly) = $GUI_CHECKED)
 
-			; SimpleTrain (Demen) - Added by Demen
+			; SimpleTrain (Demen) 
 			$ichkSimpleTrain = GUICtrlRead($g_hchkSimpleTrain) = $GUI_CHECKED ? 1 : 0
 			$ichkPreciseTroops = GUICtrlRead($g_hchkPreciseTroops) = $GUI_CHECKED ? 1 : 0
 			$ichkFillArcher = GUICtrlRead($g_hchkFillArcher) = $GUI_CHECKED ? 1 : 0
 			$iFillArcher = GUICtrlRead($g_htxtFillArcher)
 			$ichkFillEQ = GUICtrlRead($g_hchkFillEQ) = $GUI_CHECKED ? 1 : 0
 
-			; CoC Stats - Added by NguyenAnhHD
+			; CoC Stats 
 			$ichkCoCStats = GUICtrlRead($g_hChkCoCStats) = $GUI_CHECKED ? 1 : 0
 			$MyApiKey = GUICtrlRead($g_hTxtAPIKey)
 
-			; Notify Bot Speep (Kychera) - Added By NguyenAnhHD
-;~			$g_bNotifyAlertBOTSleep = (GUICtrlRead($g_hChkNotifyBOTSleep) = $GUI_CHECKED)
-
-			; ClanHop (Rhinoceros) - Added by NguyenAnhHD
-;~			$ichkClanHop = GUICtrlRead($g_hChkClanHop) = $GUI_CHECKED ? 1 : 0
+			; ClanHop (Rhinoceros)
+			$ichkClanHop = GUICtrlRead($g_hChkClanHop) = $GUI_CHECKED ? 1 : 0
 
 			; ================================================== GOBLINXP PART ================================================== ;
 
@@ -264,7 +260,7 @@ Func ApplyConfig_MOD($TypeReadSave)
 	EndSwitch
 EndFunc
 
-; SwitchAcc (Demen) - Added By Demen
+; SwitchAcc (Demen) 
 Func ApplyConfig_SwitchAcc($TypeReadSave)
 	; <><><> SwitchAcc_Demen_Style <><><>
 	Switch $TypeReadSave

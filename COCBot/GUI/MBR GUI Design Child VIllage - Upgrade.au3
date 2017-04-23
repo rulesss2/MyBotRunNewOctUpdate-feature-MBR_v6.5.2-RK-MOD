@@ -42,7 +42,7 @@ Global $g_hLblWallCost = 0, $g_hBtnFindWalls = 0
 Global $g_ahWallsCurrentCount[13] = [-1,-1,-1,-1,0,0,0,0,0,0,0,0,0] ; elements 0 to 3 are not referenced
 Global $g_ahPicWallsLevel[13] = [-1,-1,-1,-1,0,0,0,0,0,0,0,0,0] ; elements 0 to 3 are not referenced
 
-; Upgrade Management (MMHK) - Added by NguyenAnhHD
+; Upgrade Management (MMHK)
 Global $g_hChkUpgradeAllOrNone = 0, $g_hChkUpgradeRepeatAllOrNone = 0, $g_hChkUpdateNewUpgradesOnly = 0, $g_hBtnTop = 0, $g_hBtnBottom = 0, $g_hBtnUp = 0, $g_hBtnDown = 0
 
 #include "..\MOD_TeamVN\GUI\MOD GUI Design - SmartUpgrade.au3"
@@ -61,7 +61,7 @@ Func CreateVillageUpgrade()
    CreateBuildingsSubTab()
    $g_hGUI_UPGRADE_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(600,17,"Walls"))
    CreateWallsSubTab()
-   $g_hGUI_UPGRADE_TAB_ITEM5 = GUICtrlCreateTabItem("SmartUpgarde")
+   $g_hGUI_UPGRADE_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslated(671,1,"SmartUpgarde"))
    CreateSmartUpgradeGUI()
    GUICtrlCreateTabItem("")
 EndFunc
@@ -179,7 +179,7 @@ Func CreateBuildingsSubTab()
    ; table header
 	$y -= 7
 
-; Upgrade Management (MMHK) - Added by NguyenAnhHD
+; Upgrade Management (MMHK) 
 		Local $sTxtTip = GetTranslated(656,7, "This button will clear or set the entire column of checkboxes")
 		$g_hChkUpgradeAllOrNone = GUICtrlCreateCheckbox("", $x + 4, $y, 13, 13, BitOR($BS_PUSHLIKE, $BS_ICON))
 			GUICtrlSetImage(-1, $g_sLibIconPath, $eIcnGoldStar, 0)
@@ -258,7 +258,7 @@ Func CreateBuildingsSubTab()
 			_GUICtrlSetTip(-1, GetTranslated(616,21, "Save this amount of Dark Elixir after the upgrade completes.") & @CRLF & GetTranslated(616,22, "Set this value higher if you want make war troops."))
 			GUICtrlSetLimit(-1, 6)
 
-; Upgrade Management (MMHK) - Added by NguyenAnhHD
+; Upgrade Management (MMHK) 
 		$g_hChkUpdateNewUpgradesOnly = GUICtrlCreateCheckbox(GetTranslated(656,1, "New Only"), $x + 141, $y + 15, -1, -1)
 			GUICtrlSetTip(-1, GetTranslated(656,2, "Update NEW upgrades only for speed"))
 			GUICtrlSetOnEvent(-1, "chkUpdateNewUpgradesOnly")

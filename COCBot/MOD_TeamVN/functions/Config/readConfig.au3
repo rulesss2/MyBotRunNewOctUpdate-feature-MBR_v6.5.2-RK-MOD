@@ -14,17 +14,16 @@
 ; ===============================================================================================================================
 
 Func ReadConfig_MOD()
-	; <><><> TeamVN MOD (NguyenAnhHD, Demen) <><><>
 
-	; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
+	; Auto Hide 
 	IniReadS($ichkAutoHide, $g_sProfileConfigPath, "general", "AutoHide", 0, "int")
 	IniReadS($ichkAutoHideDelay, $g_sProfileConfigPath, "general", "AutoHideDelay", 10, "int")
 
-	; Check Collector Outside (McSlither) - Added by NguyenAnhHD
+	; Check Collector Outside (McSlither) 
 	IniReadS($ichkDBMeetCollOutside, $g_sProfileConfigPath, "search", "DBMeetCollOutside", 0, "int")
 	IniReadS($iDBMinCollOutsidePercent, $g_sProfileConfigPath, "search", "DBMinCollOutsidePercent", 50, "int")
 
-	; Switch Profile (IceCube) - Added by NguyenAnhHD
+	; Switch Profile (IceCube) 
 	IniReadS($ichkGoldSwitchMax, $g_sProfileConfigPath, "profiles", "chkGoldSwitchMax", 0, "int")
 	IniReadS($icmbGoldMaxProfile, $g_sProfileConfigPath, "profiles", "cmbGoldMaxProfile", 0, "int")
 	IniReadS($itxtMaxGoldAmount, $g_sProfileConfigPath, "profiles", "txtMaxGoldAmount", 6000000, "int")
@@ -53,11 +52,11 @@ Func ReadConfig_MOD()
 	IniReadS($icmbTrophyMinProfile, $g_sProfileConfigPath, "profiles", "cmbTrophyMinProfile", 0, "int")
 	IniReadS($itxtMinTrophyAmount, $g_sProfileConfigPath, "profiles", "txtMinTrophyAmount", 1000, "int")
 
-	; CSV Deploy Speed (Roro-Titi) - Added by NguyenAnhHD
+	; CSV Deploy Speed (Roro-Titi) 
 	$g_iCmbCSVSpeed[$DB] = Int(IniRead($g_sProfileConfigPath, "DeploymentSpeed", "DB", 2))
 	$g_iCmbCSVSpeed[$LB] = Int(IniRead($g_sProfileConfigPath, "DeploymentSpeed", "LB", 2))
 
-	; Smart Upgrade (Roro-Titi) - Added by NguyenAnhHD
+	; Smart Upgrade (Roro-Titi) 
 	IniReadS($ichkSmartUpgrade, $g_sProfileConfigPath, "upgrade", "chkSmartUpgrade", 0, "int")
 	IniReadS($ichkIgnoreTH, $g_sProfileConfigPath, "upgrade", "chkIgnoreTH", 0, "int")
 	IniReadS($ichkIgnoreKing, $g_sProfileConfigPath, "upgrade", "chkIgnoreKing", 0, "int")
@@ -76,21 +75,21 @@ Func ReadConfig_MOD()
 	IniReadS($iSmartMinElixir, $g_sProfileConfigPath, "upgrade", "SmartMinElixir", 200000, "int")
 	IniReadS($iSmartMinDark, $g_sProfileConfigPath, "upgrade", "SmartMinDark", 1500, "int")
 
-	; Upgrade Management (MMHK) - Added by NguyenAnhHD
+	; Upgrade Management (MMHK)
 	$g_ibUpdateNewUpgradesOnly = (IniRead($g_sProfileConfigPath, "upgrade", "UpdateNewUpgradesOnly", 0) = 1)
 
-	; SimpleTrain (Demen) - Added By Demen
+	; SimpleTrain (Demen) 
 	IniReadS($ichkSimpleTrain, $g_sProfileConfigPath, "SimpleTrain", "Enable", 0, "int")
 	IniReadS($ichkPreciseTroops, $g_sProfileConfigPath, "SimpleTrain", "PreciseTroops", 0, "int")
 	IniReadS($ichkFillArcher, $g_sProfileConfigPath, "SimpleTrain", "ChkFillArcher", 0, "int")
 	IniReadS($iFillArcher, $g_sProfileConfigPath, "SimpleTrain", "FillArcher", 5, "int")
 	IniReadS($ichkFillEQ, $g_sProfileConfigPath, "SimpleTrain", "FillEQ", 0, "int")
 
-	; CoC Stats - Added by NguyenAnhHD
+	; CoC Stats 
 	IniReadS($ichkCoCStats, $g_sProfileConfigPath, "Stats", "chkCoCStats", 0, "int")
 	IniReadS($MyApiKey, $g_sProfileConfigPath, "Stats", "txtAPIKey", "")
 
-	; ClanHop (Rhinoceros) - Added by NguyenAnhHD
+	; ClanHop (Rhinoceros) 
 	IniReadS($ichkClanHop, $g_sProfileConfigPath, "Others", "ClanHop", 0, "int")
     
 	; ================================================== GOBLINXP PART ================================================== ;
@@ -126,7 +125,7 @@ Func ReadConfig_MOD()
 	
 EndFunc
 
-; SwitchAcc (Demen) - Added By Demen
+; SwitchAcc (Demen) 
 Func ReadConfig_SwitchAcc()
 	IniReadS($ichkSwitchAcc, $profile, "SwitchAcc", "Enable", 0, "int")
 	IniReadS($ichkTrain, $profile, "SwitchAcc", "Pre-train", 0, "int")

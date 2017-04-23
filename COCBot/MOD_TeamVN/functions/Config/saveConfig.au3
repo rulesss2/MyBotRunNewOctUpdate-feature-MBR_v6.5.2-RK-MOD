@@ -14,17 +14,17 @@
 ; ===============================================================================================================================
 
 Func SaveConfig_MOD()
-	; <><><> TeamVN MOD (NguyenAnhHD, Demen) <><><>
+
 	ApplyConfig_MOD("Save")
-	; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
+	; Auto Hide 
 	_Ini_Add("general", "AutoHide", $ichkAutoHide ? 1 : 0)
 	_Ini_Add("general", "AutoHideDelay", $ichkAutoHideDelay)
 
-	; Check Collector Outside (McSlither) - Added by NguyenAnhHD
+	; Check Collector Outside (McSlither) 
 	_Ini_Add("search", "DBMeetCollOutside", $ichkDBMeetCollOutside ? 1 : 0)
 	_Ini_Add("search", "DBMinCollOutsidePercent", $iDBMinCollOutsidePercent)
 
-	; Switch Profile (IceCube) - Added by NguyenAnhHD
+	; Switch Profile (IceCube) 
 	_Ini_Add("profiles", "chkGoldSwitchMax", $ichkGoldSwitchMax ? 1 : 0)
 	_Ini_Add("profiles", "cmbGoldMaxProfile", $icmbGoldMaxProfile)
 	_Ini_Add("profiles", "txtMaxGoldAmount", $itxtMaxGoldAmount)
@@ -53,11 +53,11 @@ Func SaveConfig_MOD()
 	_Ini_Add("profiles", "cmbTrophyMinProfile", $icmbTrophyMinProfile)
 	_Ini_Add("profiles", "txtMinTrophyAmount", $itxtMinTrophyAmount)
 
-	; CSV Deploy Speed (Roro-Titi) - Added by NguyenAnhHD
+	; CSV Deploy Speed (Roro-Titi)
 	_Ini_Add("DeploymentSpeed", "DB", $g_iCmbCSVSpeed[$DB])
 	_Ini_Add("DeploymentSpeed", "LB", $g_iCmbCSVSpeed[$LB])
 
-	; Smart Upgrade (Roro-Titi) - Added by NguyenAnhHD
+	; Smart Upgrade (Roro-Titi) 
 	_Ini_Add("upgrade", "chkSmartUpgrade", $ichkSmartUpgrade ? 1 : 0)
 	_Ini_Add("upgrade", "chkIgnoreTH", $ichkIgnoreTH ? 1 : 0)
 	_Ini_Add("upgrade", "chkIgnoreKing", $ichkIgnoreKing ? 1 : 0)
@@ -76,21 +76,21 @@ Func SaveConfig_MOD()
 	_Ini_Add("upgrade", "SmartMinElixir", $iSmartMinElixir)
 	_Ini_Add("upgrade", "SmartMinDark", $iSmartMinDark)
 
-	; Upgrade Management (MMHK) - Added by NguyenAnhHD
+	; Upgrade Management (MMHK) 
 	_Ini_Add("upgrade", "UpdateNewUpgradesOnly", $g_ibUpdateNewUpgradesOnly ? 1 : 0)
 
-	; SimpleTrain (Demen) - Added By Demen
+	; SimpleTrain (Demen) 
 	_Ini_Add("SimpleTrain", "Enable", $ichkSimpleTrain)
 	_Ini_Add("SimpleTrain", "PreciseTroops", $ichkPreciseTroops)
 	_Ini_Add("SimpleTrain", "ChkFillArcher", $ichkFillArcher)
 	_Ini_Add("SimpleTrain", "FillArcher", $iFillArcher)
 	_Ini_Add("SimpleTrain", "FillEQ", $ichkFillEQ)
 
-	; CoC Stats - Added by NguyenAnhHD
+	; CoC Stats 
 	_Ini_Add("Stats", "chkCoCStats", $ichkCoCStats ? 1 : 0)
 	_Ini_Add("Stats", "txtAPIKey", $MyApiKey)
 
-	; ClanHop (Rhinoceros) - Added by NguyenAnhHD
+	; ClanHop (Rhinoceros)
 	_Ini_Add("Others", "ClanHop", $ichkClanHop ? 1 : 0)
      
 	 ; ================================================== GOBLINXP PART ================================================== ;
@@ -123,7 +123,7 @@ Func SaveConfig_MOD()
 	; ================================================== BOT HUMANIZATION END ================================================== ;
 EndFunc
 
-; SwitchAcc (Demen) - Added By Demen
+; SwitchAcc (Demen) 
 Func SaveConfig_SwitchAcc()
 	ApplyConfig_SwitchAcc("Save")
 

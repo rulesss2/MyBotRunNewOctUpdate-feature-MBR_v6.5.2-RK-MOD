@@ -69,7 +69,7 @@ Func chkEnableSuperXP2()
 
 EndFunc   ;==>chkEnableSuperXP2
 
-; Classic Four Finger (Demen) - Added by NguyenAnhHD
+; Classic Four Finger 
 Func cmbStandardDropSidesAB() ; avoid conflict between FourFinger and SmartAttack
 	If _GUICtrlComboBox_GetCurSel($g_hCmbStandardDropSidesAB) = 4 Then
 		GUICtrlSetState($g_hChkSmartAttackRedAreaAB, $GUI_UNCHECKED)
@@ -90,12 +90,12 @@ Func cmbStandardDropSidesDB() ; avoid conflict between FourFinger and SmartAttac
 	chkSmartAttackRedAreaDB()
 EndFunc   ;==>g_hCmbStandardDropSidesDB
 
-; Auto Hide (NguyenAnhHD) - Added by NguyenAnhHD
+; Auto Hide 
 Func chkAutoHide()
 	GUICtrlSetState($g_hTxtAutohideDelay, GUICtrlRead($g_hChkAutoHide) = $GUI_CHECKED ? $GUI_ENABLE : $GUI_DISABLE)
 EndFunc   ;==>chkAutoHide
 
-; Switch Profiles (IceCube) - Added by NguyenAnhHD
+; Switch Profiles 
 Func btnRecycle()
 	FileDelete($g_sProfileConfigPath)
 	saveConfig()
@@ -138,7 +138,7 @@ Func setupProfileComboBoxswitch()
 	GUICtrlSetData($g_hCmbTrophyMinProfile, $profileString, "<No Profiles>")
 EndFunc   ;==>setupProfileComboBoxswitch
 
-; CSV Deploy Speed (Roro-Titi) - Added by NguyenAnhHD
+; CSV Deploy Speed 
 Func cmbCSVSpeed()
 
 	Switch _GUICtrlComboBox_GetCurSel($g_hCmbCSVSpeed[$g_iMatchMode])
@@ -160,7 +160,7 @@ Func cmbCSVSpeed()
 
 EndFunc   ;==>cmbCSVSpeed
 
-; Attack Now Button MR.ViPeR) - Added by NguyenAnhHD
+; Attack Now Button MR.ViPeR) 
 Func AttackNowLB()
 	SetLog("Begin Live Base Attack TEST")
 	$g_iMatchMode = $LB			; Select Live Base As Attack Type
@@ -218,7 +218,7 @@ Func AttackNowDB()
 	SetLog("End Dead Base Attack TEST")
 EndFunc   ;==>AttackNowLB
 
-; Upgrade Management (MMHK) - Added by NguyenAnhHD
+; Upgrade Management (MMHK)
 Func chkUpgradeAllOrNone()
 	If GUICtrlRead($g_hChkUpgradeAllOrNone) = $GUI_CHECKED And GUICtrlRead($g_hChkUpgrade[0]) = $GUI_CHECKED Then
 		For $i = 0 To $g_iUpgradeSlots - 1
@@ -271,7 +271,7 @@ Func btnBottom()
 	MoveUpgrades($DOWN, $TILL_END)
 EndFunc   ;==>btnBottom
 
-; CoC Stats - Added by NguyenAnhHD
+; CoC Stats 
 Func chkCoCStats()
 	GUICtrlSetState($g_hTxtAPIKey, GUICtrlRead($g_hChkCoCStats) = $GUI_CHECKED ? $GUI_ENABLE : $GUI_DISABLE)
 	IniWrite($g_sProfileConfigPath, "Stats", "chkCoCStats", $ichkCoCStats)
@@ -287,7 +287,7 @@ Func chkQuickTrainCombo()
 	EndIf
 EndFunc   ;==>chkQuickTrainCombo
 
-; SimpleTrain (Demen) - Added By Demen
+; SimpleTrain (Demen) 
 Func chkSimpleTrain()
 	If GUICtrlRead($g_hchkSimpleTrain) = $GUI_CHECKED Then
 		If GUICtrlRead($g_hChkUseQuickTrain) = $GUI_UNCHECKED Then _GUI_Value_STATE("ENABLE", $g_hchkPreciseTroops)
@@ -317,7 +317,7 @@ Func chkFillArcher()
 	EndIf
 EndFunc   ;==>chkFillArcher
 
-; SwitchAcc (Demen) - Added By Demen
+; SwitchAcc (Demen) 
 Func AddProfileToList()
 	Switch @GUI_CtrlId
 		Case $g_hBtnAddProfile

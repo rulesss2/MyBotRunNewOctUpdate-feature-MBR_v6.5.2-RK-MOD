@@ -13,7 +13,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
-Func BotStart()
+Func BotStart($bAutostartDelay = 0)
 	ResumeAndroid()
 	CalCostCamp()
 	CalCostSpell()
@@ -45,8 +45,12 @@ Func BotStart()
 	readConfig()
 	applyConfig(False) ; bot window redraw stays disabled!
 
+	; Initial ObjEvents for the Autoit objects errors
+	__ObjEventIni()
+
 	;Reset Telegram message
 	NotifyGetLastMessageFromTelegram()
+	$g_iTGLastRemote = $g_sTGLast_UID
 
 	If BitAND($g_iAndroidSupportFeature, 1 + 2) = 0 And $g_bChkBackgroundMode = True Then
 		GUICtrlSetState($g_hChkBackgroundMode, $GUI_UNCHECKED)
@@ -65,6 +69,11 @@ Func BotStart()
 	DisableGuiControls()
 
 	SetRedrawBotWindow(True, Default, Default, Default, "BotStart")
+
+	If $bAutostartDelay Then
+		SetLog("Bot Auto Starting in " & Round($bAutostartDelay / 1000, 0) & " seconds", $COLOR_ERROR)
+		_SleepStatus($bAutostartDelay)
+	EndIf
 
 	Local $Result = False
 	If WinGetAndroidHandle() = 0 Then
@@ -96,7 +105,7 @@ Func BotStart()
 		EndIf
 		If Not $g_bRunState Then Return
 		If $hWndActive = $g_hAndroidWindow And ($g_bAndroidBackgroundLaunched = True Or AndroidControlAvailable())  Then ; Really?
-			AutoHide() ; Auto Hide - NguyenAnhHD
+		    AutoHide() ; Auto Hide
 			Initiate() ; Initiate and run bot
 		Else
 			SetLog("Cannot use " & $g_sAndroidEmulator & ", please check log", $COLOR_ERROR)
@@ -136,8 +145,6 @@ Func BotStop()
 	If $g_iTownHallLevel > 2 Then GUICtrlSetState($g_hBtnSearchMode, $GUI_ENABLE)
 	GUICtrlSetState($g_hBtnSearchMode, $GUI_SHOW)
 	;GUICtrlSetState($g_hBtnMakeScreenshot, $GUI_ENABLE)
-	GUICtrlSetState($g_hBtnEnableGUI, $GUI_HIDE) ; Manually enable/disable GUI while botting (as requested by YScorpion) - Demen
-	GUICtrlSetState($g_hBtnDisableGUI, $GUI_HIDE) ; Manually enable/disable GUI while botting (as requested by YScorpion) - Demen
 
 	; hide attack buttons if show
 	GUICtrlSetState($g_hBtnAttackNowDB, $GUI_HIDE)
@@ -164,6 +171,9 @@ Func BotStop()
 	Else
 		$g_bSearchMode = False
 	EndIf
+
+	; Ends ObjEvents for the Autoit objects errors
+	__ObjEventEnds()
 
 	ReduceBotMemory()
 EndFunc   ;==>BotStop

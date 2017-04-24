@@ -564,7 +564,7 @@ Func MainLoop()
 		_Sleep($DELAYSLEEP, True, False)
 		
 		If $g_bRunState = False and $g_bNotifyRemoteEnable = True Then
-	      NotifyRemoteControl2(); remote control when stopped the bot by kechera
+	      NotifyRemoteControl2(); remote control when stopped the bot by kychera
 	    EndIf
 
 		Switch $g_iBotAction

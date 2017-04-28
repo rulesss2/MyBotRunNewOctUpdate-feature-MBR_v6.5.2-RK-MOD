@@ -237,12 +237,12 @@ $15 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPC
 			   _GUICtrlEdit_SetReadOnly(-1, True)
 			   GUICtrlSetLimit(-1, 2)
 			   GUICtrlCreateLabel("-", $x + 109, $y + 2, -1, -1)
-		   $g_hTxtDBMaxTrophy = GUICtrlCreateInput("0", $x + 115, $y, 20, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+		   $g_hTxtDBMaxTrophy = GUICtrlCreateInput("0", $x + 140, $y, 50, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
 			   $sTxtTip = GetTranslated(625,82, "Set the Max. amount of Trophies to search for on a village to attack.")
 			   _GUICtrlSetTip(-1, $sTxtTip)
 			   _GUICtrlEdit_SetReadOnly(-1, True)
 			   GUICtrlSetLimit(-1, 2)
-		   $g_hPicDBMinTrophies = GUICtrlCreateIcon($g_sLibIconPath, $eIcnTrophy, $x + 140, $y, 16, 16)
+		   $g_hPicDBMinTrophies = GUICtrlCreateIcon($g_sLibIconPath, $eIcnTrophy, $x + 200, $y, 16, 16)
 			   _GUICtrlSetTip(-1, $sTxtTip)
 
 		   $y += 24

@@ -46,8 +46,10 @@ Func CreateAttackSearchDeadBaseStandard()
 								  GetTranslatedFileIni("MBR GUI Design Child Attack - Attack Standard", "CmbStandardDropSides_Info_03", "Attack on three sides, gets outer and some inside of base") & @CRLF & _
 								  GetTranslatedFileIni("MBR GUI Design Child Attack - Attack Standard", "CmbStandardDropSides_Info_04", "Select the No. of sides to attack on."))
 			   GUICtrlSetData(-1, GetTranslatedFileIni("MBR GUI Design Child Attack - Attack Standard", "CmbStandardDropSides_Item_01", "one side") & "|" & GetTranslatedFileIni("MBR GUI Design Child Attack - Attack Standard", "CmbStandardDropSides_Item_02", "two sides") & "|" & _
-								  GetTranslatedFileIni("MBR GUI Design Child Attack - Attack Standard", "CmbStandardDropSides_Item_03", "three sides") &"|" & GetTranslatedFileIni("MBR GUI Design Child Attack - Attack Standard", "CmbStandardDropSides_Item_04", "all sides equally" ), _
+								  GetTranslatedFileIni("MBR GUI Design Child Attack - Attack Standard", "CmbStandardDropSides_Item_03", "three sides") &"|" & GetTranslatedFileIni("MBR GUI Design Child Attack - Attack Standard", "CmbStandardDropSides_Item_04", "all sides equally" )& "|" & GetTranslatedFileIni("MBR GUI Design Child Attack - Attack Standard", "CmbStandardDropSides_Item_07", "classic 4 finger" ) & "|" & GetTranslatedFileIni("MBR GUI Design Child Attack - Attack Standard", "CmbStandardDropSides_Item_08", "multi finger" ), _
 								  GetTranslatedFileIni("MBR GUI Design Child Attack - Attack Standard", "CmbStandardDropSides_Item_04", -1))
+GUICtrlSetOnEvent(-1, "Bridge")
+			   GUICtrlSetOnEvent(-1, "Bridge") ; Uncheck SmartAttack Red Area when enable FourFinger to avoid conflict
 
 		   $y += 25
 		   GUICtrlCreateLabel(GetTranslatedFileIni("MBR GUI Design Child Attack - Attack Standard", "Lbl-CmbStandardUnitDelay", "Delay Unit") & ":", $x, $y + 5, -1, -1)
@@ -105,4 +107,69 @@ Func CreateAttackSearchDeadBaseStandard()
 	   GUICtrlCreateGroup("", -99, -99, 1, 1)
 
    ;GUISetState()
+	$x  =  23
+	$y += -67
+	$LblDBMultiFinger = GUICtrlCreateLabel("Style:", $x, $y + 3, 33, -1, $SS_RIGHT)
+	GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
+	$CmbDBMultiFinger = GUICtrlCreateCombo("", $x + 56, $y, 122, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+		$sTxtTip = "Select a Multi-Fingers Attack Style." & @CRLF & @CRLF & _
+			"* Random Mode, Chooses One Of The Attack Styles By Random." & @CRLF & _
+			"* 4Fingers And 8Fingers Styles, Will Attack From All 4 Sides At Once." & @CRLF & _
+			"* 4Fingers And 8Fingers Styles, Are Risky And Bot Like!"
+	GUICtrlSetTip(-1, $sTxtTip)
+	GUICtrlSetData(-1,  "Random Mode" & "|" & _
+						"4Fingers Standard" & "|" & _
+						"4Fingers Spiral Left" & "|" & _
+						"4Fingers Spiral Right" & "|" & _
+						"8Fingers Blossom" & "|" & _
+						"8Fingers Implosion" & "|" & _
+						"8Fingers Spiral Left" & "|" & _
+						"8Fingers Spiral Right", "4Fingers Standard")
+	GUICtrlSetOnEvent(-1, "cmbDBMultiFinger")
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+
+; ==================================================== UNIT WAVE FACTOR ====================================================
+$x = 23
+$y = 140
+
+  $g_hGrpSettings = GUICtrlCreateGroup("Settings", $x, $y, 180, 105)
+
+$y += 5
+$ChkGiantSlot = _GUICtrlCreateCheckbox("GiantSlot", $x+10, $y, 89, 25)
+	$sTxtTip = "perimeter (> = 12, recommended)"& @CRLF & _
+			   "two points on each side (> = 8, recommended)"
+	_GUICtrlSetTip(-1, $sTxtTip)
+	GUICtrlSetOnEvent(-1, "ChkGiantSlot")
+	GUICtrlSetState(-1, $GUI_UNCHECKED)
+$CmbGiantSlot = GUICtrlCreateCombo("", $x + 99, $y + 12, 73, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+GUICtrlSetData(-1,  "Perimeter" & "|" & _
+                    "TwoPoints", "Perimeter")
+					GUICtrlSetOnEvent(-1, "CmbGiantSlot")
+; ==========================================================================================================================
+$y += 34
+$ChkUnitFactor = _GUICtrlCreateCheckbox("Modify Unit Factor", $x + 10, $y - 7, 130, 25)
+	$sTxtTip = "Unit deploy delay = Unit setting x Unit Factor (millisecond)"
+	_GUICtrlSetTip(-1, $sTxtTip)
+	GUICtrlSetOnEvent(-1, "chkUnitFactor")
+	GUICtrlSetState(-1, $GUI_UNCHECKED)
+
+$TxtUnitFactor = GUICtrlCreateInput("10", $x + 140, $y + 6, 31, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+	$sTxtTip = "Unit deploy delay = Unit setting x Unit Factor (millisecond)"
+	_GUICtrlSetTip(-1, $sTxtTip)
+	GUICtrlSetState(-1, $GUI_DISABLE)
+	GUICtrlSetData(-1, 10)
+	GUICtrlSetOnEvent(-1, "chkUnitFactor")
+$y += 30
+$ChkWaveFactor = _GUICtrlCreateCheckbox("Modify Wave Factor", $x + 10, $y - 9, 130, 25)
+	$sTxtTip = "Switch troop delay = Wave setting x Wave Factor (millisecond)"
+	_GUICtrlSetTip(-1, $sTxtTip)
+	GUICtrlSetOnEvent(-1, "chkWaveFactor")
+	GUICtrlSetState(-1, $GUI_UNCHECKED)
+
+$TxtWaveFactor = GUICtrlCreateInput("100", $x + 140, $y + 4, 31, 20, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+	$sTxtTip = "Switch troop delay = Wave setting x Wave Factor (millisecond)"
+	_GUICtrlSetTip(-1, $sTxtTip)
+	GUICtrlSetState(-1, $GUI_DISABLE)
+	GUICtrlSetData(-1, 100)
+	GUICtrlSetOnEvent(-1, "chkWaveFactor")
 EndFunc

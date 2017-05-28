@@ -15,7 +15,7 @@
 #include-once
 
 Global $g_hGUI_TRAINARMY = 0
-Global $g_hGUI_TRAINARMY_TAB = 0, $g_hGUI_TRAINARMY_TAB_ITEM1 = 0, $g_hGUI_TRAINARMY_TAB_ITEM2 = 0, $g_hGUI_TRAINARMY_TAB_ITEM3 = 0, $g_hGUI_TRAINARMY_TAB_ITEM4 = 0
+Global $g_hGUI_TRAINARMY_TAB = 0, $g_hGUI_TRAINARMY_TAB_ITEM1 = 0, $g_hGUI_TRAINARMY_TAB_ITEM2 = 0, $g_hGUI_TRAINARMY_TAB_ITEM3 = 0, $g_hGUI_TRAINARMY_TAB_ITEM4 = 0, $g_hGUI_TRAINARMY_TAB_ITEM5 = 0
 
 ; Troops/Spells sub-tab
 Global $g_hChkUseQuickTrain = 0, $g_hRdoArmy1 = 0, $g_hRdoArmy2 = 0, $g_hRdoArmy3 = 0
@@ -85,16 +85,19 @@ Global $g_hChkCloseWhileTraining = 0, $g_hChkCloseWithoutShield = 0, $g_hChkClos
 Global $g_hLblCloseWaitRdmPercent = 0, $g_hLblCloseWaitingTroops = 0, $g_hLblSymbolWaiting = 0, $g_hLblWaitingInMinutes = 0, $g_hLblTrainITDelay = 0, $g_hLblTrainITDelayTime = 0, _
 	   $g_hLblAddDelayIdlePhaseBetween = 0, $g_hLblAddDelayIdlePhaseSec = 0, $g_hPicCloseWaitTrain = 0, $g_hPicCloseWaitStop = 0, $g_hPicCloseWaitExact = 0
 
+
+
 Func CreateAttackTroops()
    $g_hGUI_TRAINARMY = _GUICreate("", $g_iSizeWGrpTab2, $g_iSizeHGrpTab2, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hGUI_ATTACK)
    ;GUISetBkColor($COLOR_WHITE, $g_hGUI_TRAINARMY)
-
-   $g_hGUI_TRAINARMY_TAB = GUICtrlCreateTab(0, 0, $g_iSizeWGrpTab2, $g_iSizeHGrpTab2, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
+   ;$26 = GUICtrlCreatePic($g_sImagePath & $g_sImageBg, 2, 23, 442, 380, $WS_CLIPCHILDREN)
+   $g_hGUI_TRAINARMY_TAB = GUICtrlCreateTab(0, 0, $g_iSizeWGrpTab2, $g_iSizeHGrpTab2, BitOR($TCS_SINGLELINE, $TCS_RIGHTJUSTIFY))
 
    CreateTroopsSpellsSubTab()
    CreateBoostSubTab()
    CreateTrainOrderSubTab()
    CreateOptionsSubTab()
+   TroopsDrop()
 
 EndFunc
 
@@ -1041,3 +1044,4 @@ Func CreateOptionsSubTab()
 	   $g_hLblAddDelayIdlePhaseSec = GUICtrlCreateLabel(GetTranslatedFileIni("MBR Global GUI Design", "sec.", "sec."), $x+110, $y, 20, 30)
    GUICtrlCreateGroup("", -99, -99, 1, 1)
 EndFunc
+#include "..\Team__AiO_&_RK__MOD++\GUI\MOD GUI Design - DropOrderTpoops.au3"

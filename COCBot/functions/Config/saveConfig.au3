@@ -211,6 +211,7 @@ Func SaveRegularConfig()
 	SaveConfig_641_1()
 	; <><><><> Bot / Debug <><><><>
 	SaveConfig_Debug()
+    SaveConfig_MOD()
 	; <><><><> Attack Plan / Strategies <><><><>
 	; <<< nothing here >>>
 

@@ -47,6 +47,10 @@ Global $g_hFrmBot_WNDPROC_ptr = 0
 #include "GUI\MBR GUI Control Child Misc.au3"
 #include "GUI\MBR GUI Control Android.au3"
 #include "MBR GUI Action.au3"
+; Team AiO & RK MOD++ (2017)
+#include "Team__AiO_&_RK__MOD++\GUI\MOD GUI Control.au3"
+;#include "Team__AiO_&_RK__MOD++\GUI\MOD GUI Control - Forecast.au3"
+#include "Team__AiO_&_RK__MOD++\GUI\MOD GUI Control - DropOrderTpoops.au3"
 
 Func InitializeMainGUI()
    InitializeControlVariables()
@@ -1777,7 +1781,7 @@ Func Bind_ImageList($nCtrl)
 
 		Case $g_hGUI_TRAINARMY_TAB
 			; the icons for army tab
-			Local $aIconIndex[4] = [$eIcnTrain, $eIcnGem, $eIcnReOrder, $eIcnOptions]
+			Local $aIconIndex[5] = [$eIcnTrain, $eIcnGem, $eIcnReOrder, $eIcnOptions, $eIcnReOrder]
 
 		Case $g_hGUI_DONATE_TAB
 			 ; the icons for donate tab

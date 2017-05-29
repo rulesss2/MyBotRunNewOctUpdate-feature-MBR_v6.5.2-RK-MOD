@@ -19,10 +19,11 @@ Global $g_hGUI_BOT = 0
 #include "MBR GUI Design Child Bot - Options.au3"
 #include "MBR GUI Design Child Bot - Android.au3"
 #include "MBR GUI Design Child Bot - Debug.au3"
-#include "MBR GUI Design Child Bot - Profiles.au3"
+#include "MOD GUI Design - Profiles.au3" ;"MBR GUI Design Child Bot - Profiles.au3"
+#include "MOD GUI Design - ProfileStats.au3"
 #include "MBR GUI Design Child Bot - Stats.au3"
 
-Global $g_hGUI_BOT_TAB = 0, $g_hGUI_BOT_TAB_ITEM1 = 0, $g_hGUI_BOT_TAB_ITEM2 = 0, $g_hGUI_BOT_TAB_ITEM3 = 0, $g_hGUI_BOT_TAB_ITEM4 = 0, $g_hGUI_BOT_TAB_ITEM5 = 0
+Global $g_hGUI_BOT_TAB = 0, $g_hGUI_BOT_TAB_ITEM1 = 0, $g_hGUI_BOT_TAB_ITEM2 = 0, $g_hGUI_BOT_TAB_ITEM3 = 0, $g_hGUI_BOT_TAB_ITEM4 = 0, $g_hGUI_BOT_TAB_ITEM5 = 0, $g_hGUI_BOT_TAB_ITEM6 = 0
 
 Func CreateBotTab()
    $g_hGUI_BOT = _GUICreate("", $g_iSizeWGrpTab1, $g_iSizeHGrpTab1, $_GUI_CHILD_LEFT, $_GUI_CHILD_TOP, BitOR($WS_CHILD, $WS_TABSTOP), -1, $g_hFrmBotEx)
@@ -39,11 +40,14 @@ Func CreateBotTab()
    $g_hGUI_BOT_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslatedFileIni("MBR Main GUI", "Tab_04_STab_03", "Debug"))
    CreateBotDebug()
    $g_hGUI_BOT_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslatedFileIni("MBR Main GUI", "Tab_04_STab_04", "Profiles"))
-   CreateBotProfiles()
-   $g_hGUI_BOT_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslatedFileIni("MBR Main GUI", "Tab_04_STab_05", "Stats"))
+   ;CreateBotProfiles()
+   CreateSwitchAccount()
+   $g_hGUI_BOT_TAB_ITEM5 = GUICtrlCreateTabItem(GetTranslatedFileIni("MBR Main GUI", "Tab_04_STab_05", "Stats"))   
 	; This dummy is used in btnStart and btnStop to disable/enable all labels, text, buttons etc. on all tabs.
    $g_hLastControlToHide = GUICtrlCreateDummy()
    ReDim $g_aiControlPrevState[$g_hLastControlToHide + 1]
    CreateBotStats()
+   $g_hGUI_BOT_TAB_ITEM6 = GUICtrlCreateTabItem(GetTranslatedFileIni("MBR Main GUI", "Tab_04_STab_06", "ProfileStats"))
+   CreateProfileStats()
    GUICtrlCreateTabItem("")
 EndFunc

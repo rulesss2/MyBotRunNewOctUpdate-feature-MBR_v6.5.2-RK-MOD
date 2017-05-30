@@ -1375,7 +1375,7 @@ Func SetTime($bForceUpdate = False)
 		$DisplayLoop = 0
 		;Update Multi Stat Page _ SwitchAcc_Demen_Style
 		If $ichkSwitchAcc = 1 Then
-			If GUICtrlRead($g_hGUI_MOD_TAB, 1) = $g_hGUI_MOD_TAB_ITEM6 Then
+			If GUICtrlRead($g_hGUI_BOT_TAB, 1) = $g_hGUI_BOT_TAB_ITEM4 Then
 				For $i = 0 To $nTotalProfile - 1 ; Update time for all Accounts
 					If $aProfileType[$i] = 1 And _
 							$i <> $nCurProfile - 1 And _

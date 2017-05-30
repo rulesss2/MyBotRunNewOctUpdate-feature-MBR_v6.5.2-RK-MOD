@@ -63,11 +63,11 @@
 ;#include "functions\Mod's\UpgradesMgmt.au3"
 
 ; SwitchAcc (Demen) - Added By Demen
-;#include "functions\Mod's\SwitchAcc.au3"
-;#include "functions\Mod's\UpdateProfileStats.au3"
+#include "functions\Mod's\SwitchAcc.au3"
+#include "functions\Mod's\UpdateProfileStats.au3"
 
 ; SimpleTrain (Demen) - Added By Demen
-;#include "functions\Mod's\SimpleTrain.au3"
+#include "functions\Mod's\SimpleTrain.au3"
 
 ; CoCStats - Added by NguyenAnhHD
 ;#include "functions\Mod's\CoCStats.com.au3"

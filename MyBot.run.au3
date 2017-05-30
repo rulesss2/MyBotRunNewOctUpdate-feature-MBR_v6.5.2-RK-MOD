@@ -644,7 +644,7 @@ Func runBot() ;Bot that runs everything in order
 			If $g_bRestart = True Then ContinueLoop
 			If _Sleep($DELAYRUNBOT3) Then Return
 			VillageReport()
-			ProfileSwitch()
+			;ProfileSwitch()
 			If $g_bOutOfGold = True And (Number($g_aiCurrentLoot[$eLootGold]) >= Number($g_iTxtRestartGold)) Then ; check if enough gold to begin searching again
 				$g_bOutOfGold = False ; reset out of gold flag
 				Setlog("Switching back to normal after no gold to search ...", $COLOR_SUCCESS)
@@ -731,7 +731,7 @@ Func runBot() ;Bot that runs everything in order
 						checkSwitchAcc() ;  Switching to active account after donation
 					EndIf
 				EndIf																		; SwitchAcc Demen
-				GTFO()
+				;GTFO()
 					If _Sleep($DELAYRUNBOT3) Then Return
 					If $g_bRestart = True Then ContinueLoop
 				Idle()

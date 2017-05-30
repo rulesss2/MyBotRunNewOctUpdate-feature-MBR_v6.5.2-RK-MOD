@@ -18,7 +18,8 @@ Global $g_hGUI_TRAINARMY = 0
 Global $g_hGUI_TRAINARMY_TAB = 0, $g_hGUI_TRAINARMY_TAB_ITEM1 = 0, $g_hGUI_TRAINARMY_TAB_ITEM2 = 0, $g_hGUI_TRAINARMY_TAB_ITEM3 = 0, $g_hGUI_TRAINARMY_TAB_ITEM4 = 0, $g_hGUI_TRAINARMY_TAB_ITEM5 = 0
 
 ; Troops/Spells sub-tab
-Global $g_hChkUseQuickTrain = 0, $g_hRdoArmy1 = 0, $g_hRdoArmy2 = 0, $g_hRdoArmy3 = 0
+Global $g_hChkUseQuickTrain = 0, $g_ahChkArmy[3] = [0,0,0]			; QuickTrainCombo (check box) - Demen
+Global $g_hchkSimpleTrain = 0, $g_hchkPreciseTroops = 0, $g_hchkFillArcher = 0, $g_htxtFillArcher = 0, $g_hchkFillEQ = 0		; SimpleTrain - Demen
 Global $g_ahTxtTrainArmyTroopCount[$eTroopCount] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 Global $g_ahLblTrainArmyTroopLevel[$eTroopCount] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 Global $g_ahTxtTrainArmySpellCount[$eSpellCount] = [0,0,0,0,0,0,0,0,0,0]
@@ -113,13 +114,12 @@ Func CreateTroopsSpellsSubTab()
 	   $g_hChkUseQuickTrain = GUICtrlCreateCheckbox(GetTranslatedFileIni("MBR GUI Design Child Attack - Troops", "ChkUseQuickTrain", "Use Quick Train"), $x + 15, $y + 19, -1, 15)
 	   GUICtrlSetState(-1, $GUI_UNCHECKED)
 	   GUICtrlSetOnEvent(-1, "chkUseQTrain")
-	   $g_hRdoArmy1 = GUICtrlCreateRadio(GetTranslatedFileIni("MBR GUI Design Child Attack - Troops", "RdoArmy_01", "Army 1"), $x + 120, $y + 20, 57, 15)
-	   GUICtrlSetState(-1, $GUI_DISABLE)
-	   GUICtrlSetState(-1, $GUI_CHECKED)
-	   $g_hRdoArmy2 = GUICtrlCreateRadio(GetTranslatedFileIni("MBR GUI Design Child Attack - Troops", "RdoArmy_02", "Army 2"), $x + 185, $y + 20, 57, 15)
-	   GUICtrlSetState(-1, $GUI_DISABLE)
-	   $g_hRdoArmy3 = GUICtrlCreateRadio(GetTranslatedFileIni("MBR GUI Design Child Attack - Troops", "RdoArmy_03", "Army 3"), $x + 250, $y + 20, 57, 15)
-	   GUICtrlSetState(-1, $GUI_DISABLE)
+	   For $i = 0 To 2												; QuickTrainCombo (check box) - Demen
+		   $g_ahChkArmy[$i] = _GUICtrlCreateCheckbox(GetTranslated(621, 37 + $i, "Army " & $i+1), $x + 120 + $i*60, $y + 10, 50, 15)
+		   GUICtrlSetState(-1, $GUI_DISABLE)
+		   If $i = 0 Then GUICtrlSetState(-1, $GUI_CHECKED)
+		   GUICtrlSetOnEvent(-1, "chkQuickTrainCombo")
+	   Next															; QuickTrainCombo (check box) - Demen
 	   GUICtrlCreateLabel(GetTranslatedFileIni("MBR GUI Design Child Attack - Troops", "Btn_Remove_Army", "Remove Army"), $x + 335, $y + 20, -1, 15, $SS_LEFT)
 	   GUICtrlCreateIcon($g_sLibIconPath, $eIcnResetButton, $x + 405, $y + 17, 24, 24)
 	   GUICtrlSetOnEvent(-1, "Removecamp")
@@ -644,6 +644,36 @@ Func CreateTroopsSpellsSubTab()
 			 GUICtrlSetColor(-1, $COLOR_WHITE)
 		  GUICtrlCreateIcon($g_sLibIconPath, $eIcnDark, $x + 146, $y + 14, 16, 16)
    GUICtrlCreateGroup("", -99, -99, 1, 1)
+        ;========== Adding GUI for SimpleTrain - Demen ==============
+	$x = 10
+	$y = 363
+	GUICtrlCreateGroup(GetTranslated(621, 300, "Simple Train (do not empty barracks)"), $x - 5, $y, $g_iSizeWGrpTab3, 38)
+		$x += 7
+		$y += 16
+			$g_hchkSimpleTrain = _GUICtrlCreateCheckbox(GetTranslated(621, 301, "Always train queue"), $x, $y - 10, -1, 15)
+				GUICtrlSetOnEvent(-1, "chkSimpleTrain")
+				_GUICtrlSetTip(-1, 	GetTranslated(621, 302, "Train 2 sets of army to make full camp & full queue") _
+									& @CRLF & GetTranslated(621, 303, "Only delete queued troops or spells if the queue is not full") _
+									& @CRLF & GetTranslated(621, 304, "Not delete training troops up to full camp capacity"))
+		$x += 130
+			$g_hchkPreciseTroops = GUICtrlCreateCheckbox(GetTranslated(621, 305, "Precise troops"), $x, $y, -1, 15)
+				GUICtrlSetOnEvent(-1, "chkPreciseTroops")
+				_GUICtrlSetTip(-1, 	GetTranslated(621, 306, "Check precision of troops & spells before training.") _
+									& @CRLF & GetTranslated(621, 307, "Will remove wrong troops or spells if any"))
+		$x += 103
+			$g_hchkFillArcher = _GUICtrlCreateCheckbox(GetTranslated(621, 308, "Fill Archer:"), $x, $y - 10, -1, 15)
+				GUICtrlSetState(-1, $GUI_DISABLE)
+				GUICtrlSetOnEvent(-1, "chkFillArcher")
+				_GUICtrlSetTip(-1, GetTranslated(621, 309, "Train some archers to top-up the camp or queue if it is nearly full"))
+			$g_htxtFillArcher = GUICtrlCreateInput("5", $x + 70, $y-1, 20, 16, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER, $ES_NUMBER))
+				GUICtrlSetState(-1, $GUI_DISABLE)
+				GUICtrlSetLimit(-1, 2)
+		$x += 110
+			$g_hchkFillEQ = _GUICtrlCreateCheckbox(GetTranslated(621, 310, "Fill 1 EQ"), $x, $y - 10, -1, 15)
+				GUICtrlSetState(-1, $GUI_DISABLE)
+				_GUICtrlSetTip(-1, GetTranslated(621, 311, "Brew 1 EarthQuake Spell to top-up the spell camp or queue"))
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
+;========== Adding GUI for SimpleTrain - Demen ==============
 EndFunc
 
 Func  CreateBoostSubTab()

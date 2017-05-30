@@ -161,6 +161,13 @@ Func SaveConfig_MOD()
 	;Enabele\Disabele Watchdog by rulesss,kychera
 	_Ini_Add("Other", "chkLaunchWatchdog", $iChkLaunchWatchdog ? 1 : 0)
 #ce
+     ; SimpleTrain (Demen) - Added By Demen
+	_Ini_Add("SimpleTrain", "Enable", $ichkSimpleTrain)
+	_Ini_Add("SimpleTrain", "PreciseTroops", $ichkPreciseTroops)
+	_Ini_Add("SimpleTrain", "ChkFillArcher", $ichkFillArcher)
+	_Ini_Add("SimpleTrain", "FillArcher", $iFillArcher)
+	_Ini_Add("SimpleTrain", "FillEQ", $ichkFillEQ)
+	
 	;Custom drop troops
 	_Ini_Add("troop2", "chkTroopDropOrder", $g_bCustomTrainDropOrderEnable ? 1 : 0)
     For $p = 0 To UBound($icmbDropTroops) - 1

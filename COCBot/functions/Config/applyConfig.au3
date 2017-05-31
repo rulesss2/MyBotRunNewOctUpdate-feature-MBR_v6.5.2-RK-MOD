@@ -109,8 +109,7 @@ Func applyConfig($bRedrawAtExit = True, $TypeReadSave = "Read") ;Applies the dat
 	ApplyConfig_641_1($TypeReadSave)
 
     ApplyConfig_MOD($TypeReadSave)
-    ApplyConfig_SwitchAcc($TypeReadSave)
-	ApplyConfig_SimpleTrain($TypeReadSave)
+ApplyConfig_SwitchAcc($TypeReadSave)
     ApplyConfig_DropTroops($TypeReadSave)
 	; <><><><> Attack Plan / Strategies <><><><>
 	; <<< nothing here >>>

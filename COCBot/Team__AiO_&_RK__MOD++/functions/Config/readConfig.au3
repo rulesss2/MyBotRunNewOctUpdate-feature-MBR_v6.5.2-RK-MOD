@@ -98,6 +98,8 @@ Func ReadConfig_MOD()
 	; Upgrade Management (MMHK) - Added by NguyenAnhHD
 	$g_ibUpdateNewUpgradesOnly = (IniRead($g_sProfileConfigPath, "upgrade", "UpdateNewUpgradesOnly", 0) = 1)
 
+	
+
 	; CoC Stats - Added by NguyenAnhHD
 	IniReadS($ichkCoCStats, $g_sProfileConfigPath, "Stats", "chkCoCStats", 0, "int")
 	IniReadS($MyApiKey, $g_sProfileConfigPath, "Stats", "txtAPIKey", "")
@@ -152,13 +154,12 @@ Func ReadConfig_MOD()
 	 ;Enabele\Disabele Watchdog by rulesss,kychera
 	 IniReadS($iChkLaunchWatchdog, $g_sProfileConfigPath, "Other", "chkLaunchWatchdog", 1, "Int")
 #ce	 
-     ; SimpleTrain (Demen) - Added By Demen
+; SimpleTrain (Demen) - Added By Demen
 	IniReadS($ichkSimpleTrain, $g_sProfileConfigPath, "SimpleTrain", "Enable", 0, "int")
 	IniReadS($ichkPreciseTroops, $g_sProfileConfigPath, "SimpleTrain", "PreciseTroops", 0, "int")
 	IniReadS($ichkFillArcher, $g_sProfileConfigPath, "SimpleTrain", "ChkFillArcher", 0, "int")
 	IniReadS($iFillArcher, $g_sProfileConfigPath, "SimpleTrain", "FillArcher", 5, "int")
 	IniReadS($ichkFillEQ, $g_sProfileConfigPath, "SimpleTrain", "FillEQ", 0, "int")
-	
 	 ;Custom drop troops by kychera
 	 IniReadS($g_bCustomTrainDropOrderEnable, $g_sProfileConfigPath, "troop2", "chkTroopDropOrder", False, "Bool")
 	For $p = 0 To UBound($icmbDropTroops) - 1

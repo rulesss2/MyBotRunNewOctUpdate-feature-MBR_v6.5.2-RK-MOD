@@ -33,6 +33,13 @@ Func ApplyConfig_MOD($TypeReadSave)
 			GUICtrlSetState($ChkGiantSlot, $iChkGiantSlot ? $GUI_CHECKED : $GUI_UNCHECKED)
 			_GUICtrlComboBox_SetCurSel($CmbGiantSlot,$iCmbGiantSlot)
 			ChkGiantSlot()
+			; SimpleTrain (Demen) - Added By Demen
+			GUICtrlSetState($g_hchkSimpleTrain, $ichkSimpleTrain = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($g_hchkPreciseTroops, $ichkPreciseTroops = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetState($g_hchkFillArcher, $ichkFillArcher = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			GUICtrlSetData($g_htxtFillArcher, $iFillArcher)
+			GUICtrlSetState($g_hchkFillEQ, $ichkFillEQ = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
+			chkSimpleTrain()
 		#cs	
             ; Disable background by kychera
 		    GUICtrlSetState($chkPic, $ichkPic = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
@@ -111,6 +118,7 @@ Func ApplyConfig_MOD($TypeReadSave)
 			; Upgrade Management (MMHK) - Added by NguyenAnhHD
 			GUICtrlSetState($g_hChkUpdateNewUpgradesOnly, $g_ibUpdateNewUpgradesOnly ? $GUI_CHECKED : $GUI_UNCHECKED)
 
+			
 
 			; CoC Stats - Added by NguyenAnhHD
 			GUICtrlSetState($g_hChkCoCStats, $ichkCoCStats = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
@@ -166,9 +174,7 @@ Func ApplyConfig_MOD($TypeReadSave)
 			;Enabele\Disabele Watchdog by rulesss,kychera
 			GUICtrlSetState($ChkLaunchWatchdog, $iChkLaunchWatchdog = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
 			chkLaunchWatchdog()
-	
 #ce
-
 		Case "Save"
 			; Multi Finger - Added by Eloy
 			$iMultiFingerStyle = _GUICtrlComboBox_GetCurSel($CmbDBMultiFinger)
@@ -180,6 +186,12 @@ Func ApplyConfig_MOD($TypeReadSave)
 			$iTxtWaveFactor = GUICtrlRead($TxtWaveFactor)
 			$iChkGiantSlot = (GUICtrlRead($ChkGiantSlot) = $GUI_CHECKED)
 			$iCmbGiantSlot = _GUICtrlComboBox_GetCurSel($CmbGiantSlot)
+			; SimpleTrain (Demen) - Added by Demen
+			$ichkSimpleTrain = GUICtrlRead($g_hchkSimpleTrain) = $GUI_CHECKED ? 1 : 0
+			$ichkPreciseTroops = GUICtrlRead($g_hchkPreciseTroops) = $GUI_CHECKED ? 1 : 0
+			$ichkFillArcher = GUICtrlRead($g_hchkFillArcher) = $GUI_CHECKED ? 1 : 0
+			$iFillArcher = GUICtrlRead($g_htxtFillArcher)
+			$ichkFillEQ = GUICtrlRead($g_hchkFillEQ) = $GUI_CHECKED ? 1 : 0
 #cs
             ; Disable background by kychera
 			$ichkPic = (GUICtrlRead($chkPic) = $GUI_CHECKED)
@@ -253,6 +265,8 @@ Func ApplyConfig_MOD($TypeReadSave)
 			; Upgrade Management (MMHK) - Added by NguyenAnhHD
 			$g_ibUpdateNewUpgradesOnly = (GUICtrlRead($g_hChkUpdateNewUpgradesOnly) = $GUI_CHECKED)
 
+			
+
 			; CoC Stats - Added by NguyenAnhHD
 			$ichkCoCStats = GUICtrlRead($g_hChkCoCStats) = $GUI_CHECKED ? 1 : 0
 			$MyApiKey = GUICtrlRead($g_hTxtAPIKey)
@@ -293,27 +307,8 @@ Func ApplyConfig_MOD($TypeReadSave)
 			;Enabele\Disabele Watchdog by rulesss,kychera
 			$iChkLaunchWatchdog = (GUICtrlRead($ChkLaunchWatchdog) = $GUI_CHECKED)
 #ce
-			
 	EndSwitch
 EndFunc
-
-Func ApplyConfig_SimpleTrain($TypeReadSave)
-	Switch $TypeReadSave
-		Case "Read"
-            GUICtrlSetState($g_hchkSimpleTrain, $ichkSimpleTrain = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-			GUICtrlSetState($g_hchkPreciseTroops, $ichkPreciseTroops = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-			GUICtrlSetState($g_hchkFillArcher, $ichkFillArcher = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-			GUICtrlSetData($g_htxtFillArcher, $iFillArcher)
-			GUICtrlSetState($g_hchkFillEQ, $ichkFillEQ = 1 ? $GUI_CHECKED : $GUI_UNCHECKED)
-			chkSimpleTrain()
-		Case "Save"
-		   $ichkSimpleTrain = GUICtrlRead($g_hchkSimpleTrain) = $GUI_CHECKED ? 1 : 0
-			$ichkPreciseTroops = GUICtrlRead($g_hchkPreciseTroops) = $GUI_CHECKED ? 1 : 0
-			$ichkFillArcher = GUICtrlRead($g_hchkFillArcher) = $GUI_CHECKED ? 1 : 0
-			$iFillArcher = GUICtrlRead($g_htxtFillArcher)
-			$ichkFillEQ = GUICtrlRead($g_hchkFillEQ) = $GUI_CHECKED ? 1 : 0
-	EndSwitch
-EndFunc   ;==>ApplyConfig_SimpleTrain
 
 ; SwitchAcc (Demen) - Added By Demen
 Func ApplyConfig_SwitchAcc($TypeReadSave)

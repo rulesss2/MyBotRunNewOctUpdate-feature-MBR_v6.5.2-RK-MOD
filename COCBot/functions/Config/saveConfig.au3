@@ -212,7 +212,7 @@ Func SaveRegularConfig()
 	; <><><><> Bot / Debug <><><><>
 	SaveConfig_Debug()
     SaveConfig_MOD()
-    SaveConfig_SwitchAcc()
+SaveConfig_SwitchAcc()
 	; <><><><> Attack Plan / Strategies <><><><>
 	; <<< nothing here >>>
 

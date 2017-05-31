@@ -31,7 +31,7 @@ Func TrainRevamp()
 		Return
 	EndIf
 
-	If Not $g_bQuickTrainEnable Then
+	If Not $g_bQuickTrainEnable And $ichkSimpleTrain = 0 Then
 		TrainRevampOldStyle()
 		Return
 	EndIf
@@ -43,7 +43,7 @@ Func TrainRevamp()
 	CheckIfArmyIsReady()
 
 	If Not $g_bRunState Then Return
-	
+
 	If $ichkSimpleTrain = 1 Then				;	SimpleTrain - Demen
 		SimpleTrain()
 		ResetVariables("donated")
@@ -130,8 +130,8 @@ Func TestMaxCamp()
 			$ToReturn = 1
 		Else
 			; The number of troops is not correct
-			If $ArmyCamp[1] > 480 Then Setlog(" Your CoC is outdated!!! ", $COLOR_RED)
-			Setlog(" - Your army is: " & $ArmyCamp[0], $COLOR_ACTION)
+			If $ArmyCamp[1] > 240 Then Setlog(" Your CoC is outdated!!! ", $COLOR_RED)
+			Setlog(" - Your army is: " & $ArmyCamp[1], $COLOR_RED)
 			$ToReturn = 0
 		EndIf
 	EndIf
@@ -1876,6 +1876,11 @@ Func ResetVariables($sArmyType = "")
 			$g_aiDonateTroops[$i] = 0
 			If _Sleep($DELAYTRAIN6) Then Return ; '20' just to Pause action
 		Next
+		For $i = 0 To $eSpellCount - 1			; fixed making wrong donated spells - Demen
+			If $g_bRunState = False Then Return
+			$g_aiDonateSpells[$i] = 0
+			If _Sleep($DELAYTRAIN6) Then Return
+		Next
 	EndIf
 
 EndFunc   ;==>ResetVariables
@@ -1891,14 +1896,14 @@ Func OpenTrainTabNumber($iTabNumber, $sWhereFrom)
 
 	If IsTrainPage() Then
 		Click($aTabNumber[$iTabNumber][0], $aTabNumber[$iTabNumber][1], 2, 200)
-		If _Sleep(1500) Then Return
+		If _Sleep(700) Then Return
 		If IsArmyWindow(False, $iTabNumber) Then Setlog("Opening " & $Message[$iTabNumber] & $g_iDebugSetlogTrain = 1 ? "(Called from " & $sWhereFrom & ")" : "", $COLOR_INFO)
 	Else
 		Setlog(" - Error Clicking On " & ($iTabNumber >= 0 And $iTabNumber < UBound($Message)) ? ($Message[$iTabNumber]) : ("Not selectable") & " Tab!", $COLOR_ERROR)
 	EndIf
 EndFunc   ;==>OpenTrainTabNumber
 
-Func TrainArmyNumber($Army) ; QuickTrainCombo (Checkbox) - Demen
+Func TrainArmyNumber($iArmyNumber)
 
 	$iArmyNumber = $iArmyNumber - 1
 	Local $a_TrainArmy[3][4] = [[784, 368, 0x71BB2B, 10], [784, 485, 0x74BD2D, 10], [784, 602, 0x73BD2D, 10]]
@@ -1906,18 +1911,15 @@ Func TrainArmyNumber($Army) ; QuickTrainCombo (Checkbox) - Demen
 	If $g_bRunState = False Then Return
 
 	If IsArmyWindow(False, $QuickTrainTAB) Then
-		For $Num = 0 To 2
-			If $Army[$Num] = True Then
-				If _ColorCheck(_GetPixelColor($a_TrainArmy[$Num][0], $a_TrainArmy[$Num][1], True), Hex($a_TrainArmy[$Num][2], 6), $a_TrainArmy[$Num][3]) Then
-					Click($a_TrainArmy[$Num][0], $a_TrainArmy[$Num][1], 1)
-					SetLog("Making the Army " & $Num + 1, $COLOR_INFO)
-					If _Sleep(500) Then Return	; Too slow with wait time 1s. Reduce to 0.5s. - Demen
-				Else
-					Setlog(" - Error Clicking On Army: " & $Num + 1 & "| Pixel was :" & _GetPixelColor($a_TrainArmy[$Num][0], $a_TrainArmy[$Num][1], True), $COLOR_ORANGE)
-					Setlog(" - Please 'edit' the Army " & $Num + 1 & " before start the BOT!!!", $COLOR_RED)
-				EndIf
-			EndIf
-		Next
+		; _ColorCheck($nColor1, $nColor2, $sVari = 5, $Ignore = "")
+		If _ColorCheck(_GetPixelColor($a_TrainArmy[$iArmyNumber][0], $a_TrainArmy[$iArmyNumber][1], True), Hex($a_TrainArmy[$iArmyNumber][2], 6), $a_TrainArmy[$iArmyNumber][3]) Then
+			Click($a_TrainArmy[$iArmyNumber][0], $a_TrainArmy[$iArmyNumber][1], 1)
+			SetLog("Making the Army " & $iArmyNumber + 1, $COLOR_INFO)
+			If _Sleep(1000) Then Return
+		Else
+			Setlog(" - Error Clicking On Army: " & $iArmyNumber + 1 & "| Pixel was :" & _GetPixelColor($a_TrainArmy[$iArmyNumber][0], $a_TrainArmy[$iArmyNumber][1], True), $COLOR_WARNING)
+			Setlog(" - Please 'edit' the Army " & $iArmyNumber + 1 & " before start the BOT!", $COLOR_ERROR)
+		EndIf
 	Else
 		Setlog(" - Error Clicking On Army! You are not on the Quicktrain Tab", $COLOR_ERROR)
 	EndIf
@@ -2044,7 +2046,7 @@ Func MakingDonatedTroops()
 			$Plural = 0
 			If $avDefaultTroopGroup[$i][4] > 0 Then
 				$RemainTrainSpace = GetOCRCurrent(48, 160)
-				If $RemainTrainSpace[0] = $RemainTrainSpace[1] Then ; army camps full
+				If $RemainTrainSpace[0] = $RemainTrainSpace[1] And $ichkSimpleTrain <> 1 Then ; army camps full	;; SimpleTrain - Demen
 					;Camps Full All Donate Counters should be zero!!!!
 					For $j = 0 To UBound($avDefaultTroopGroup, 1) - 1
 						$avDefaultTroopGroup[$j][4] = 0
@@ -2054,7 +2056,7 @@ Func MakingDonatedTroops()
 
 				Local $iTroopIndex = TroopIndexLookup($avDefaultTroopGroup[$i][0], "MakingDonatedTroops")
 
-				If $avDefaultTroopGroup[$i][2] * $avDefaultTroopGroup[$i][4] <= $RemainTrainSpace[2] Or $ichkSimpleTrain = 1 Then ; Troopheight x donate troop qty <= avaible train space
+				If $avDefaultTroopGroup[$i][2] * $avDefaultTroopGroup[$i][4] <= $RemainTrainSpace[2] Or $ichkSimpleTrain = 1 Then ; Troopheight x donate troop qty <= avaible train space ;; ;; SimpleTrain - Demen
 					;Local $pos = GetTrainPos(TroopIndexLookup($avDefaultTroopGroup[$i][0]))
 					Local $howMuch = $avDefaultTroopGroup[$i][4]
 					If $avDefaultTroopGroup[$i][5] = "e" Then
@@ -2073,7 +2075,7 @@ Func MakingDonatedTroops()
 				Else
 					For $z = 0 To $RemainTrainSpace[2] - 1
 						$RemainTrainSpace = GetOCRCurrent(48, 160)
-						If $RemainTrainSpace[0] = $RemainTrainSpace[1] And $ichkSimpleTrain <> 1 Then ; army camps full
+						If $RemainTrainSpace[0] = $RemainTrainSpace[1] Then ; army camps full
 							;Camps Full All Donate Counters should be zero!!!!
 							For $j = 0 To UBound($avDefaultTroopGroup, 1) - 1
 								$avDefaultTroopGroup[$j][4] = 0
@@ -2287,6 +2289,7 @@ Func CheckValuesCost($Troop = "Arch", $troopQuantity = 1, $DebugLogs = 0)
 	; Local Variables
 	Local $TempColorToCheck = ""
 	Local $nElixirCurrent = 0, $nDarkCurrent = 0, $bLocalDebugOCR = 0
+	;Local $iTroopIndex = TroopIndexLookup($Troop, "CheckValuesCost")		; Move up here to Bypass checking $TrainTroopsTAB when deal with Spell - SimpleTrain - Demen
 
 	If _sleep(1000) Then Return ; small delay
 	If $g_bRunState = False Then Return
@@ -2317,9 +2320,8 @@ Func CheckValuesCost($Troop = "Arch", $troopQuantity = 1, $DebugLogs = 0)
 	EndIf
 
 	Local $troopCost = 0
-	;~ 	Local $iTroopIndex = TroopIndexLookup($Troop, "CheckValuesCost")	; Moving up to Bypass checking $TrainTroopsTAB when deal with Spell - SimpleTrain - Demen
-    
-	Local $iTroopIndex 
+ 	Local $iTroopIndex = TroopIndexLookup($Troop, "CheckValuesCost")	; Moving up to Bypass checking $TrainTroopsTAB when deal with Spell - SimpleTrain - Demen
+
 	; Return the Cost of Troops or Spells
 	If $iTroopIndex >= $eBarb And $iTroopIndex <= $eBowl Then
 		$troopCost = $g_aiTroopCostPerLevel[$iTroopIndex][$g_aiTrainArmyTroopLevel[$iTroopIndex]]

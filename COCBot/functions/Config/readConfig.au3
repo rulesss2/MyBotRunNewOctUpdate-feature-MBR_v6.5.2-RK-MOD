@@ -236,7 +236,7 @@ Func ReadRegularConfig()
 	ReadConfig_641_1()
 
     ReadConfig_MOD() 
-	ReadConfig_SwitchAcc()
+ReadConfig_SwitchAcc()
 	; <><><><> Attack Plan / Strategies <><><><>
 	; <<< nothing here >>>
 

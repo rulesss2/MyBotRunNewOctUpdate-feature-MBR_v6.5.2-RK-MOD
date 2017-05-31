@@ -272,7 +272,7 @@ Func ClearTrainingTroops($Spell = False, $OpenTrainTab = False)
 		EndIf
 	EndIf
 
-	While _ColorCheck(_GetPixelColor(820, 220, True), Hex(0xCFCFC8, 6), 15) = False ; the gray background at slot 0 troop
+	While _ColorCheck(_GetPixelColor(820, 220, True), Hex(0xFCFCFC, 6), 15) = False ; the gray background at slot 0 troop
 		PureClick(820, 202, 2, 50)
 		$x += 1
 		If $x = $nClick Then ExitLoop
@@ -288,7 +288,7 @@ Func FillArcher($ArchToMake)
 EndFunc   ;==>FillArcher
 
 Func DeleteQueue($Spell = False)
-	Local $CheckTroop[4] = [810, 186, 0xCFCFC8, 15] ; the gray background
+	Local $CheckTroop[4] = [810, 186, 0xFCFCFC, 15] ; the gray background
 	For $i = 0 To 11
 		If _ColorCheck(_GetPixelColor($CheckTroop[0] - $i * 70, $CheckTroop[1], True), Hex($CheckTroop[2], 6), $CheckTroop[3]) = False Then
 			Local $x = 0

@@ -257,7 +257,7 @@ Func SimpleTrain()
 
 	ClickP($aAway, 2, 0, "#0000") ;Click Away
 
-	If $bRemoveUnpreciseTroops Then CheckArmySpellCastel()
+	If $bRemoveUnpreciseTroops Then IsFullClanCastleSpells()
 
 EndFunc   ;==>SimpleTrain
 
